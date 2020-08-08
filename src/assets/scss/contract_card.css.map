@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "AAAA,SAAS;EACP,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAE,KAAK;EACV,MAAM,EAAE,KAAK;EACb,KAAK,EAAE,KAAK;EACZ,aAAa,EAAE,IAAI;;AAErB,QAAQ;EACN,SAAS,EAAE,IAAI;;AAEjB,OAAO;EACL,SAAS,EAAE,IAAI;;AAEjB,iBAAiB;EACf,UAAU,EAAE,CAAC;EACb,aAAa,EAAE,GAAG;;AAEpB,UAAU;EACR,UAAU,EAAE,IAAI;EAChB,OAAO,EAAE,KAAK",
-"sources": ["contract_card.scss"],
+"mappings": "",
+"sources": [],
 "names": [],
 "file": "contract_card.css"
 }

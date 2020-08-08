@@ -2,6 +2,7 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import {ContractImg} from "../ui/Icons";
+import '../../assets/scss/contract_card.css'
 
 const ContractCard = () => {
     const useStyle=makeStyles({
