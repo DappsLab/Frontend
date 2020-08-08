@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 
-class Login extends Component {
+class Dapps extends Component {
     render() {
         return (
             <div>
-                i am login
+                i am dapps
             </div>
         );
     }
 }
 
-export default Login;
+export default Dapps;

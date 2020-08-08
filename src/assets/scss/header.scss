@@ -5,6 +5,8 @@
   width: 100%;
   height: 64px;
   padding: 16px 25px;
+  display: flex;
+  justify-content: space-between;
 }
 .Logo{
   height:32px;
@@ -19,23 +21,18 @@
 .navbar{
   color:#ffffff;
   align-self:center;
-
-  ul{
-    display:flex;
-    justify-content:center;
-    list-style:none;
-    li{
-      margin:16px;
-    }:hover{
-    color: $accent-color;
-    }
-  }
+  display:flex;
+  justify-content:center;
+}
+.Nav_item:hover{
+  $accent-color: #60DAFB;
 }
 .loginContainer{
   float:right;
 }
 .loginbtn{
   height:32px;
+  margin: 0 5px;
 }
 .none{
   display:none;

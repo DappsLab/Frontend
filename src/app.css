@@ -8,32 +8,7 @@ a {
     text-decoration: none;
     color: inherit;
 }
-.container {
-    width:1024px;
-    margin: 0 auto;
-}
 
 /*================================================
                     smart contract
 ===================================================*/
-.card img{
-    position: relative;
-    top: -20px;
-    height: 130px;
-    width: 130px;
-    border-radius: 10px;
-}
-.card h4{
-    font-size: 20px;
-}
-.card p{
-    font-size: 14px;
-}
-.card h4, .card p{
-    margin-top: 0;
-    margin-bottom: 5px;
-}
-.card span{
-    margin-top: 50px;
-    display: block;
-}

@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 
-class Login extends Component {
+class Smart_Contracts extends Component {
     render() {
         return (
             <div>
-                i am login
+                i am smart contract
             </div>
         );
     }
 }
 
-export default Login;
+export default Smart_Contracts;

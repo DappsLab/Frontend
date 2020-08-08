@@ -1,5 +1,5 @@
 import React from 'react';
-import ContractCard from "./smartcontract/ContractCard";
+import ContractCard from "./ContractCard";
 
 const Home = () => {
     return (

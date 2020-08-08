@@ -4,48 +4,32 @@
   height: 64px;
   padding: 16px 25px;
   display: flex;
-  justify-content: space-between;
-}
+  justify-content: space-between; }
 
 .Logo {
-  height: 32px;
-}
+  height: 32px; }
 
 .LogoCaption {
   margin-left: 10px;
-  height: inherit;
-}
+  height: inherit; }
 
 .logo-container {
-  height: 32px;
-}
+  height: 32px; }
 
 .navbar {
   color: #ffffff;
   align-self: center;
-}
-.navbar ul {
   display: flex;
-  justify-content: center;
-  list-style: none;
-}
-.navbar ul li {
-  margin: 16px;
-}
-.navbar ul :hover {
-  color: #60DAFB;
-}
+  justify-content: center; }
 
 .loginContainer {
-  float: right;
-}
+  float: right; }
 
 .loginbtn {
   height: 32px;
-}
+  margin: 0 5px; }
 
 .none {
-  display: none;
-}
+  display: none; }
 
 /*# sourceMappingURL=header.css.map */
