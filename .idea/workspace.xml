@@ -33,14 +33,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32e90308-b9a8-4ad4-a993-09de89e9aaf4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/images/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/logocaption.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/scss/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/header.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/scss/header.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/header.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/scss/header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/header.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header_footer/Header.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +119,7 @@
       <workItem from="1596742115820" duration="507000" />
       <workItem from="1596778463120" duration="588000" />
       <workItem from="1596869714457" duration="1021000" />
-      <workItem from="1596873023974" duration="6381000" />
+      <workItem from="1596873023974" duration="7510000" />
     </task>
     <servers />
   </component>
