@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import logo from '../assets/images/logo.jpg'
+import logo from '../assets/images/logo.png'
 import '../assets/scss/header.css'
 
 
@@ -9,7 +9,7 @@ class Header extends Component {
             <div>
                 <header className="Header">
                     <figure>
-                        <img src={logo} alt="Logo" />
+                        <img src={logo} alt="Logo" className="Logo"/>
                     </figure>
                     <nav>
 

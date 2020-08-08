@@ -3,4 +3,13 @@
 .Header{
   background-color: $primary-color;
   width: 100%;
+  height: 64px;
+  padding: 16px;
+}
+.Logo{
+  height:32px;
+}
+.logo-container{
+  height:32px;
+  display:inline-flex;
 }
