@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route} from "react-router-dom";
 import Layout from "./hoc/Layout";
-import Home from "./components/home/Home";
+import Home from "./components/Home";
 
 
 const Routes = () => {
