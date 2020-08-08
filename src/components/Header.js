@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import logo from '../assets/images/logo.png'
-import logoCaption from '../assets/images/logocaption.png'
 import '../assets/scss/header.css'
 import {DappsIcon} from "./ui/Icons";
 
