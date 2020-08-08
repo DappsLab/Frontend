@@ -24,15 +24,32 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -46,11 +63,14 @@
       <updated>1594220287775</updated>
       <workItem from="1594220289082" duration="7547000" />
       <workItem from="1594229537035" duration="530000" />
+      <workItem from="1596742115820" duration="507000" />
+      <workItem from="1596778463120" duration="588000" />
+      <workItem from="1596869714457" duration="1021000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
@@ -58,6 +78,22 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
+    <state width="1899" height="302" key="GridCell.Tab.0.bottom" timestamp="1596872564635">
+      <screen x="0" y="23" width="1920" height="1110" />
+    </state>
+    <state width="1899" height="302" key="GridCell.Tab.0.bottom/0.23.1920.1110@0.23.1920.1110" timestamp="1596872564635" />
+    <state width="1899" height="302" key="GridCell.Tab.0.center" timestamp="1596872564634">
+      <screen x="0" y="23" width="1920" height="1110" />
+    </state>
+    <state width="1899" height="302" key="GridCell.Tab.0.center/0.23.1920.1110@0.23.1920.1110" timestamp="1596872564634" />
+    <state width="1899" height="302" key="GridCell.Tab.0.left" timestamp="1596872564634">
+      <screen x="0" y="23" width="1920" height="1110" />
+    </state>
+    <state width="1899" height="302" key="GridCell.Tab.0.left/0.23.1920.1110@0.23.1920.1110" timestamp="1596872564634" />
+    <state width="1899" height="302" key="GridCell.Tab.0.right" timestamp="1596872564634">
+      <screen x="0" y="23" width="1920" height="1110" />
+    </state>
+    <state width="1899" height="302" key="GridCell.Tab.0.right/0.23.1920.1110@0.23.1920.1110" timestamp="1596872564634" />
     <state x="909" y="163" key="SettingsEditor" timestamp="1594220339376">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
