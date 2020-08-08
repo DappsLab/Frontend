@@ -1,9 +1,10 @@
 import React from 'react';
+import ContractCard from "./smartcontract/ContractCard";
 
 const Home = () => {
     return (
         <div>
-            i am home
+            <ContractCard/>
         </div>
     );
 };
