@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import logo from '../assets/images/logo.jpg'
 import '../assets/scss/header.css'
 
+
 class Header extends Component {
     render() {
         return (

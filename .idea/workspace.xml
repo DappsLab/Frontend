@@ -33,18 +33,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32e90308-b9a8-4ad4-a993-09de89e9aaf4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/logo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/scss/colors.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/scss/header.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Header.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Tahseen.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/Dappslogo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/login/Login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/login/Register.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/Icons.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header_footer/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header_footer/Header.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hoc/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hoc/Layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header_footer/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header_footer/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +125,7 @@
       <workItem from="1596742115820" duration="507000" />
       <workItem from="1596778463120" duration="588000" />
       <workItem from="1596869714457" duration="1021000" />
-      <workItem from="1596873023974" duration="4483000" />
+      <workItem from="1596873023974" duration="4913000" />
     </task>
     <servers />
   </component>
