@@ -29,6 +29,9 @@
   height: 32px;
   margin: 0 5px; }
 
+.loginbtn Button {
+  background-color: #60DAFB; }
+
 .none {
   display: none; }
 
