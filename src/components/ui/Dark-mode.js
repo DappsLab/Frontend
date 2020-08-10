@@ -11,7 +11,7 @@ const DarkMode = () => {
         cursor:'pointer'
     };
     return (
-            <span style={style} className={"darkbtn"} onClick={dm.toggle}>
+            <span style={style} className={"darkbtn block"} onClick={dm.toggle}>
                 {dm.value ? <Brightness7RoundedIcon/> : <Brightness4OutlinedIcon/>}
             </span>
     );

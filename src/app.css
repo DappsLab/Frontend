@@ -8,6 +8,12 @@ a {
     text-decoration: none;
     color: inherit;
 }
+.block{
+    display: block;
+}
+.darkbtn{
+    padding-top: 5px;
+}
 .flex{
     display:flex;
     align-items: center;

@@ -1,36 +1,39 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
-import { makeStyles } from '@material-ui/core/styles';
 import {ContractImg} from "../ui/Icons";
 import '../../assets/scss/contract_card.css'
 
 const ContractCard = () => {
-    const useStyle=makeStyles({
-        root:{
-            maxWidth:345,
-            margin:'0'
-        },
-        container:{
-          display:'flex'
-        },
-    });
-    const classes = useStyle();
+    const contractList=[
+        { check:false,title:"Contract Name", detail:"Lorem Ipsum is simply dummy\n" +
+                "                text of the printing and typesetting\n" +
+                "                industry. Lorem Ipsum has been\n" +
+                "                the industry's standard dummy text\n" +
+                "                ever since the 1500s,when an unknown\n" +
+                "                printer took a galley of type " ,price:"1000 pkr"},
+        {check:true, title:"Custom Contract", detail:"Lorem Ipsum is simply dummy\n" +
+                "                text of the printing and typesetting\n" +
+                "                industry. Lorem Ipsum has been\n" +
+                "                the industry's standard dummy text\n" +
+                "                ever since the 1500s,when an unknown\n" +
+                "                printer took a galley of type " ,price:"1000 pkr"}
+    ]
+    const renderCards=()=>(
+        contractList.map(contract=>(
+        <card className={"card"}>
+            <ContractImg
+                check={contract.check}
+                height={"100px"}
+                width={"100px"}
+            />
+            <h4>{contract.title}</h4>
+            <p>{contract.detail}</p>
+            <span className={"block"}>{contract.price}</span>
+        </card>
+        ))
+    );
     return (
-        <div className={classes.container}>
-            <Card className={classes.root}>
-                <ContractImg
-                    height={"70px"}
-                    width={"70px"}
-                />
-                <h4>Contract Name</h4>
-                <p>Lorem Ipsum is simply dummy
-                    text of the printing and typesetting
-                    industry. Lorem Ipsum has been
-                    the industry's standard dummy text
-                    ever since the 1500s,when an unknown
-                    printer took a galley of type </p>
-                <span>1000 pkr</span>
-            </Card>
+        <div className={"flex contract-container"}>
+            {renderCards()}
         </div>
     );
 };

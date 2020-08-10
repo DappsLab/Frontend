@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import logo from '../../assets/images/logo.png'
 import logoCaption from "../../assets/images/logocaption.png";
 import contractImg from "../../assets/images/c3.png";
+import custom_contract from "../../assets/images/custom-contract.png";
 
 export const DappsIcon = (props) => {
     const template=
@@ -23,13 +24,20 @@ export const DappsIcon = (props) => {
     }
 };
 export  const ContractImg = (props) => {
-    return <div
+    let bg='';
+    if(props.check){
+        bg=require('../../assets/images/custom-contract.png')
+    }else {
+        bg=require('../../assets/images/c3.png')
+    }
+    return <img src={bg} alt={"contract_image"}
         style={{
+            position:"relative",
+            top:"-40px",
+            borderRadius:"15px",
             width:props.width,
             height:props.height,
-            background:`url(${contractImg})`,
             backgroundSize:"cover"
         }}
-    >
-    </div>;
+    />;
 };
