@@ -4,8 +4,8 @@ import {Link} from "react-router-dom";
 import {Button, ButtonGroup} from '@material-ui/core'
 import {DappsIcon} from "./ui/Icons";
 import ListItem from "@material-ui/core/ListItem";
-// import Brightness7RoundedIcon from '@material-ui/icons/Brightness7Rounded';
-// import Brightness4OutlinedIcon from '@material-ui/icons/Brightness4Outlined';
+import DarkMode from "./ui/Dark-mode";
+
 
 
 const Header =()=>{
@@ -38,26 +38,23 @@ const Header =()=>{
     const renderButtons=()=>(
         link.map(l=>(
             <Link to={l.linkTo} key={l.title}>
-                <ButtonGroup variant="contained"  color={"primary"} aria-label="contained primary button group"
-                             className="loginbtn">
-                    <Button>{l.title}</Button>
-                </ButtonGroup>
+                <Button variant="contained" color="primary" className="loginbtn">{l.title}</Button>
             </Link>
         ))
     );
     return (
         <div>
-            <header className="Header">
+            <header className="flex">
                 <DappsIcon
                     link={true}
                     linkTo="/"
                 />
-                <nav className="navbar">
+                <nav className="flex">
                     {renderNav()}
                 </nav>
-                <div className="loginContainer">
+                <div className={"flex"}>
                     {renderButtons()}
-
+                    <DarkMode/>
                 </div>
             </header>
         </div>

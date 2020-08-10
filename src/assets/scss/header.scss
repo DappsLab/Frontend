@@ -1,11 +1,10 @@
 @import 'colors';
 
-.Header{
+header{
   background-color: $primary-color;
   width: 100%;
   height: 64px;
   padding: 16px 25px;
-  display: flex;
   justify-content: space-between;
 }
 .Logo{
@@ -18,24 +17,23 @@
 .logo-container{
   height:32px;
 }
-.navbar{
+header nav{
   color:#ffffff;
-  align-self:center;
-  display:flex;
-  justify-content:center;
 }
-.loginContainer{
-  float:right;
-}
-.loginbtn{
+.loginbtn {
   height:32px;
-  margin: 0 5px;
+  margin: 0 5px !important;
+  background-color: $accent-color !important;
+  color: $primary-color !important;
 }
-.loginbtn Button{
-  background-color: $accent-color;
-}:hover{
-  ;
- }
+.loginbtn:hover{
+  background-color: #75bAFB !important;
+  Box-shadow:
+          0 2px 4px -1px rgba(0,0,0,0.2),
+          0px 4px 5px 0px rgba(0,0,0,0.14),
+          0px 1px 10px 0px rgba(0,0,0,0.12);
+}
+
 .none{
   display:none;
 }
