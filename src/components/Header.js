@@ -1,10 +1,11 @@
 import React from 'react';
 import '../assets/scss/header.css';
 import {Link} from "react-router-dom";
-// import SearchIcon from '@material-ui/icons/Search';
 import {Button, ButtonGroup} from '@material-ui/core'
 import {DappsIcon} from "./ui/Icons";
 import ListItem from "@material-ui/core/ListItem";
+// import Brightness7RoundedIcon from '@material-ui/icons/Brightness7Rounded';
+// import Brightness4OutlinedIcon from '@material-ui/icons/Brightness4Outlined';
 
 
 const Header =()=>{
@@ -21,20 +22,13 @@ const Header =()=>{
         { title:'Register', linkTo:'/register'},
         { title:'Login', linkTo:'/login'}
     ]
-    // function  addBackground(e){
-    //     e.target.style.background = 'red';
-    // }
-    // function  removeBackground(e){
-    //     e.target.style.background = '#1b2c3d';
-    // }
+
     const renderNav =()=>(
         links.map(link=>(
             <Link to={link.linkTo} key={link.title}>
                 <ListItem
                     button
                     className={"Nav_item"}
-                    // onMouseOver={addBackground}
-                    // onMouseLeave={removeBackground}
                 >
                     {link.title}
                 </ListItem>
@@ -44,7 +38,7 @@ const Header =()=>{
     const renderButtons=()=>(
         link.map(l=>(
             <Link to={l.linkTo} key={l.title}>
-                <ButtonGroup variant="contained" color="Primary" aria-label="contained primary button group"
+                <ButtonGroup variant="contained"  color={"primary"} aria-label="contained primary button group"
                              className="loginbtn">
                     <Button>{l.title}</Button>
                 </ButtonGroup>

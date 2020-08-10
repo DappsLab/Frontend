@@ -24,9 +24,6 @@
   display:flex;
   justify-content:center;
 }
-.Nav_item:hover{
-  $accent-color: #60DAFB;
-}
 .loginContainer{
   float:right;
 }
@@ -34,6 +31,11 @@
   height:32px;
   margin: 0 5px;
 }
+.loginbtn Button{
+  background-color: $accent-color;
+}:hover{
+  ;
+ }
 .none{
   display:none;
 }
