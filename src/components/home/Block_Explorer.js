@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 
-class Register extends Component {
+class BlockExplorer extends Component {
     render() {
         return (
             <div>
-               i am register
+                i am block explorer
             </div>
         );
     }
 }
 
-export default Register;
+export default BlockExplorer;

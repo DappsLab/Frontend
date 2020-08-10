@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 
-class Register extends Component {
+class Downloads extends Component {
     render() {
         return (
             <div>
-               i am register
+                i am download
             </div>
         );
     }
 }
 
-export default Register;
+export default Downloads;
