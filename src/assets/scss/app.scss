@@ -1,0 +1,35 @@
+@import 'colors';
+*{
+  margin: 0;
+  padding:0;
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+body{
+  background-color: $background-color;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.block{
+  display: block;
+}
+.none{
+  display:none;
+}
+
+.flex{
+  display:flex;
+  align-items: center;
+}
+/*================================================
+                    Dark mode
+===================================================*/
+*.dark-mode{
+  background-color: #121212;
+  color: white;
+}
+.dark-mode body{
+  background-color: $background-dark;
+}
