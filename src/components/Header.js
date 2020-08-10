@@ -1,7 +1,7 @@
 import React from 'react';
 import '../assets/scss/header.css';
 import {Link} from "react-router-dom";
-import {Button, ButtonGroup} from '@material-ui/core'
+import {Button} from '@material-ui/core'
 import {DappsIcon} from "./ui/Icons";
 import ListItem from "@material-ui/core/ListItem";
 import DarkMode from "./ui/Dark-mode";
@@ -53,8 +53,8 @@ const Header =()=>{
                     {renderNav()}
                 </nav>
                 <div className={"flex"}>
-                    {renderButtons()}
                     <DarkMode/>
+                    {renderButtons()}
                 </div>
             </header>
         </div>
