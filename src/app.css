@@ -8,8 +8,13 @@ a {
     text-decoration: none;
     color: inherit;
 }
-.container{
-    width: 100%;
+.flex{
+    display:flex;
+    align-items: center;
+}
+*.dark-mode{
+    background-color: #121212;
+    color: white;
 }
 /*================================================
                     smart contract
