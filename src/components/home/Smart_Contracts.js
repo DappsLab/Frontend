@@ -14,7 +14,7 @@ class Smart_Contracts extends Component {
                         <h1 className="title">Explore <span className="">Smart Contracts</span></h1>
                         <p>Smart Contracts available on DappsLab Marketplace suited to your business growth and for developer community. Explore! </p>
                         <figure className="titleFigure">
-                            <img src={enterprise}/>
+                            <img src={enterprise} alt={"persons"}/>
                         </figure>
                     </div>
                     <SearchBar/>
@@ -22,7 +22,7 @@ class Smart_Contracts extends Component {
                 <section>
                     <ContractCard/>
                     <aside>
-                        
+
                     </aside>
                 </section>
 
