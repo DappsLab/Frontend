@@ -1,0 +1,22 @@
+@import "colors";
+@import "app.scss";
+
+.footer{
+  background-color:$primary-color;
+  @include primary();
+  color:$paper-color;
+  padding:60px 50px;
+  .logoContainer{
+    display:flex;
+    flex-direction:column;
+    img{
+      align-self:center;
+    }
+  }
+  hr{
+    margin-top:25px;
+    height:2px;
+    color:$paper-color;
+    background-color:$paper-color;
+  }
+}

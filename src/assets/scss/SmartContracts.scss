@@ -1,0 +1,27 @@
+@import "colors";
+.section1{
+  background-color: #fff;
+  //background-image:url("../images/hero.png");
+  padding-bottom:60px;
+  margin-bottom: 60px;
+}
+.titleContainer{
+  padding:60px 15px;
+  text-align:center;
+  h1{
+    font-size:36px;
+  }
+  p{
+    color:$light-text-color;
+  }
+
+}
+.title{
+  margin-bottom:16px;
+  color:$primary-color;
+}
+.titleFigure{
+  position:absolute;
+  right: 0;
+  top: 100px;
+}

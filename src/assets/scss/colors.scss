@@ -1,4 +1,4 @@
-$primary-color: #1b2c3d;
+$primary-color:linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) ;
 $accent-color: #60DAFB;
 $paper-color: #ffffff;
 $background-color: #F6F7F9;
@@ -8,3 +8,10 @@ $accent-color: #60DAFB;
 $paper-dark: #1F2125;
 $background-dark: #121212;
 
+$light-text-color: #97a3b5;
+@mixin primary(){
+  background-image:linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
+}
+@mixin accent(){
+  background-image: linear-gradient(-90deg,#5068ff 3%,#ab37f9 97%);
+}

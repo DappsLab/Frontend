@@ -32,7 +32,35 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e90308-b9a8-4ad4-a993-09de89e9aaf4" name="Default Changelist" comment="" />
+    <list default="true" id="32e90308-b9a8-4ad4-a993-09de89e9aaf4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/assets/images/enterprise-eth.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/hero.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/scss/Footer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/scss/Footer.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/scss/Footer.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/scss/SearchBar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/scss/SearchBar.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/scss/SearchBar.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/scss/SmartContracts.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/scss/SmartContracts.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/scss/SmartContracts.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/SearchBar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ui/SmartContractFilter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/app.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/app.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/colors.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/colors.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/contract_card.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/contract_card.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/contract_card.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/contract_card.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/header.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/header.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/Smart_Contracts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/Smart_Contracts.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,6 +92,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="NewWatcherDialog.advanced.open" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -71,17 +100,38 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/assets/images" />
       <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$/src/components/header" />
       <recent name="$PROJECT_DIR$/src/assets/images" />
       <recent name="$PROJECT_DIR$/src/assets" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="npm.start (1)">
+    <configuration name="scss" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="scss" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -94,6 +144,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.start (1)" />
+        <item itemvalue="npm.scss" />
         <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
@@ -113,7 +165,10 @@
       <workItem from="1596742115820" duration="507000" />
       <workItem from="1596778463120" duration="588000" />
       <workItem from="1596869714457" duration="1021000" />
-      <workItem from="1596873023974" duration="13419000" />
+      <workItem from="1596873023974" duration="13928000" />
+      <workItem from="1597039436612" duration="7955000" />
+      <workItem from="1597142824752" duration="37000" />
+      <workItem from="1597142885620" duration="10131000" />
     </task>
     <servers />
   </component>
@@ -130,6 +185,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -138,34 +194,52 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state x="688" y="378" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1596874457515">
-      <screen x="0" y="23" width="1920" height="1110" />
+    <state x="688" y="384" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1597144028507">
+      <screen x="0" y="0" width="1920" height="1200" />
     </state>
+    <state x="688" y="384" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1200@0.0.1920.1200" timestamp="1597144028507" />
     <state x="688" y="378" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1920.1110@0.23.1920.1110" timestamp="1596874457515" />
-    <state x="611" y="363" key="EditFileWatcherDialog" timestamp="1596875361917">
-      <screen x="0" y="23" width="1920" height="1110" />
+    <state x="748" y="295" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1597144990260">
+      <screen x="0" y="0" width="1920" height="1200" />
     </state>
+    <state x="748" y="295" key="#com.intellij.ide.macro.MacrosDialog/0.0.1920.1200@0.0.1920.1200" timestamp="1597144990260" />
+    <state x="611" y="368" width="698" height="675" key="EditFileWatcherDialog" timestamp="1597145062002">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="611" y="368" width="698" height="675" key="EditFileWatcherDialog/0.0.1920.1200@0.0.1920.1200" timestamp="1597145062002" />
     <state x="611" y="363" key="EditFileWatcherDialog/0.23.1920.1110@0.23.1920.1110" timestamp="1596875361917" />
-    <state width="1899" height="302" key="GridCell.Tab.0.bottom" timestamp="1596875374131">
+    <state width="1899" height="338" key="GridCell.Tab.0.bottom" timestamp="1597213352749">
       <screen x="0" y="23" width="1920" height="1110" />
     </state>
-    <state width="1899" height="302" key="GridCell.Tab.0.bottom/0.23.1920.1110@0.23.1920.1110" timestamp="1596875374131" />
-    <state width="1899" height="302" key="GridCell.Tab.0.center" timestamp="1596875374130">
+    <state width="1899" height="338" key="GridCell.Tab.0.bottom/0.0.1920.1200@0.0.1920.1200" timestamp="1597213010531" />
+    <state width="1899" height="338" key="GridCell.Tab.0.bottom/0.23.1920.1110@0.23.1920.1110" timestamp="1597213352749" />
+    <state width="1899" height="338" key="GridCell.Tab.0.center" timestamp="1597213352746">
       <screen x="0" y="23" width="1920" height="1110" />
     </state>
-    <state width="1899" height="302" key="GridCell.Tab.0.center/0.23.1920.1110@0.23.1920.1110" timestamp="1596875374130" />
-    <state width="1899" height="302" key="GridCell.Tab.0.left" timestamp="1596875374129">
+    <state width="1899" height="338" key="GridCell.Tab.0.center/0.0.1920.1200@0.0.1920.1200" timestamp="1597213010528" />
+    <state width="1899" height="338" key="GridCell.Tab.0.center/0.23.1920.1110@0.23.1920.1110" timestamp="1597213352746" />
+    <state width="1899" height="338" key="GridCell.Tab.0.left" timestamp="1597213352744">
       <screen x="0" y="23" width="1920" height="1110" />
     </state>
-    <state width="1899" height="302" key="GridCell.Tab.0.left/0.23.1920.1110@0.23.1920.1110" timestamp="1596875374129" />
-    <state width="1899" height="302" key="GridCell.Tab.0.right" timestamp="1596875374130">
+    <state width="1899" height="338" key="GridCell.Tab.0.left/0.0.1920.1200@0.0.1920.1200" timestamp="1597213010525" />
+    <state width="1899" height="338" key="GridCell.Tab.0.left/0.23.1920.1110@0.23.1920.1110" timestamp="1597213352744" />
+    <state width="1899" height="338" key="GridCell.Tab.0.right" timestamp="1597213352747">
       <screen x="0" y="23" width="1920" height="1110" />
     </state>
-    <state width="1899" height="302" key="GridCell.Tab.0.right/0.23.1920.1110@0.23.1920.1110" timestamp="1596875374130" />
-    <state x="751" y="189" key="SettingsEditor" timestamp="1596889656765">
+    <state width="1899" height="338" key="GridCell.Tab.0.right/0.0.1920.1200@0.0.1920.1200" timestamp="1597213010529" />
+    <state width="1899" height="338" key="GridCell.Tab.0.right/0.23.1920.1110@0.23.1920.1110" timestamp="1597213352747" />
+    <state x="548" y="342" key="IDE.errors.dialog" timestamp="1597142950489">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="548" y="342" key="IDE.errors.dialog/0.0.1920.1200@0.0.1920.1200" timestamp="1597142950489" />
+    <state x="751" y="189" key="SettingsEditor" timestamp="1597145065006">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="909" y="163" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1594220339376" />
-    <state x="751" y="189" key="SettingsEditor/0.0.1920.1200@0.0.1920.1200" timestamp="1596889656765" />
+    <state x="751" y="189" key="SettingsEditor/0.0.1920.1200@0.0.1920.1200" timestamp="1597145065006" />
+    <state x="625" y="271" width="670" height="676" key="search.everywhere.popup" timestamp="1597040179243">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="625" y="271" width="670" height="676" key="search.everywhere.popup/0.0.1920.1200@0.0.1920.1200" timestamp="1597040179243" />
   </component>
 </project>

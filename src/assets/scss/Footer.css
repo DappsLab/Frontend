@@ -48,4 +48,24 @@ a {
   background-color: #121212;
 }
 
-/*# sourceMappingURL=app.css.map */
+.footer {
+  background-color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
+  background-image: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
+  color: #ffffff;
+  padding: 60px 50px;
+}
+.footer .logoContainer {
+  display: flex;
+  flex-direction: column;
+}
+.footer .logoContainer img {
+  align-self: center;
+}
+.footer hr {
+  margin-top: 25px;
+  height: 2px;
+  color: #ffffff;
+  background-color: #ffffff;
+}
+
+/*# sourceMappingURL=Footer.css.map */

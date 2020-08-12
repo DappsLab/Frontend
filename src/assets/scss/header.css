@@ -1,35 +1,43 @@
 header {
-  background-color: #1b2c3d;
+  background-color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
   width: 100%;
   height: 64px;
   padding: 16px 25px;
-  justify-content: space-between; }
+  justify-content: space-between;
+}
 
 .Logo {
-  height: 32px; }
+  height: 32px;
+}
 
 .LogoCaption {
   margin-left: 10px;
-  height: inherit; }
+  height: inherit;
+}
 
 .logo-container {
-  height: 32px; }
+  height: 32px;
+}
 
 header nav {
-  color: #ffffff; }
+  color: #ffffff;
+}
 
 .loginbtn {
   height: 32px;
   margin: 0 5px !important;
   background-color: #60DAFB !important;
-  color: #1b2c3d !important; }
+  color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) !important;
+}
 
 .loginbtn:hover {
   background-color: #75bAFB !important;
-  Box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); }
+  Box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
 
 .darkbtn {
   padding-top: 5px;
-  margin: 0 5px; }
+  margin: 0 5px;
+}
 
 /*# sourceMappingURL=header.css.map */
