@@ -32,34 +32,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e90308-b9a8-4ad4-a993-09de89e9aaf4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/images/enterprise-eth.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/hero.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/scss/Footer.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/scss/Footer.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/scss/Footer.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/scss/SearchBar.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/scss/SearchBar.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/scss/SearchBar.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/scss/SmartContracts.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/scss/SmartContracts.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/scss/SmartContracts.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/SearchBar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/SmartContractFilter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+    <list default="true" id="83fcfe53-4ff3-4f77-84df-c14426d314f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/app.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/app.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/colors.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/colors.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/contract_card.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/contract_card.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/contract_card.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/contract_card.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/header.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/header.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/home/Smart_Contracts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/Smart_Contracts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/Icons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Icons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/SearchBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/SearchBar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,6 +128,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>

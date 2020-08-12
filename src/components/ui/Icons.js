@@ -2,8 +2,6 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import logo from '../../assets/images/logo.png'
 import logoCaption from "../../assets/images/logocaption.png";
-import contractImg from "../../assets/images/c3.png";
-import custom_contract from "../../assets/images/custom-contract.png";
 
 export const DappsIcon = (props) => {
     const template=

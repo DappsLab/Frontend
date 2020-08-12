@@ -1,7 +1,5 @@
 import React from 'react';
 import "../assets/scss/Footer.css"
-import logo from "../assets/images/logo.png"
-import logoCaption from "../assets/images/logocaption.png"
 import {DappsIcon} from "./ui/Icons";
 
 const Footer = () => {
