@@ -38,6 +38,22 @@
       <change beforePath="$PROJECT_DIR$/src/assets/scss/Footer.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/Footer.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/scss/Footer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/Footer.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.js" afterDir="false" />
+<<<<<<< HEAD
+=======
+=======
+    <list default="true" id="83fcfe53-4ff3-4f77-84df-c14426d314f7" name="Default Changelist" comment="">
+<<<<<<< Updated upstream
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/Smart_Contracts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/Smart_Contracts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/Icons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Icons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/SearchBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/SearchBar.js" afterDir="false" />
+>>>>>>> master
+=======
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/header.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/header.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/header.scss" afterDir="false" />
+>>>>>>> Stashed changes
+>>>>>>> master
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

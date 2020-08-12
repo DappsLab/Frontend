@@ -1,5 +1,5 @@
 import React from 'react';
-import ContractCard from "./ContractCard";
+import ContractCard from "./exploreContract/ContractCard";
 
 const Home = () => {
     return (

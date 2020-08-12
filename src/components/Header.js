@@ -28,7 +28,6 @@ const Header =()=>{
             <Link to={link.linkTo} key={link.title}>
                 <ListItem
                     button
-                    className={"Nav_item"}
                 >
                     {link.title}
                 </ListItem>

@@ -1,8 +1,11 @@
 import React from 'react';
-import {ContractImg} from "../ui/Icons";
-import '../../assets/scss/contract_card.css'
+import {ContractImg} from "../../ui/Icons";
+import '../../../assets/scss/contract_card.css';
+import ListItem from "@material-ui/core/ListItem";
+
 
 const ContractCard = () => {
+    const tags=[{name:"Document"}, {name:"Text"}, {name:"Utility"}];
     const contractList=[
         { check:false,title:"Contract Name", detail:"Lorem Ipsum is simply dummy\n" +
                 "                text of the printing and typesetting\n" +
@@ -20,6 +23,11 @@ const ContractCard = () => {
     const renderCards=()=>(
         contractList.map(contract=>(
         <card className={"card"}>
+            <div className={"flex tags"}>
+                {tags.map(tag => (
+                    <ListItem className={"tag"} button>{tag.name}</ListItem>
+                ))}
+            </div>
             <ContractImg
                 check={contract.check}
                 height={"100px"}

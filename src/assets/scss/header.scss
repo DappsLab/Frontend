@@ -1,5 +1,4 @@
 @import 'colors';
-
 header{
   @include default-primary();
   background-color: $primary-color;
