@@ -49,6 +49,8 @@ a {
 }
 
 .footer {
+  display: flex;
+  justify-content: space-between;
   background-color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
   background-image: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
   color: #ffffff;
@@ -61,11 +63,42 @@ a {
 .footer .logoContainer img {
   align-self: center;
 }
-.footer hr {
+.footer .iconContainer {
   margin-top: 25px;
-  height: 2px;
-  color: #ffffff;
-  background-color: #ffffff;
+}
+.footer .iconContainer ul {
+  display: flex;
+}
+.footer .iconContainer ul li {
+  list-style: none;
+  margin-right: 15px;
+}
+.footer .info {
+  padding-top: 60px;
+}
+.footer .info p {
+  font-size: 12px;
+  line-height: 17px;
+  margin: 5px 0;
+}
+.footer .info a {
+  background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.footer .navlist ul {
+  display: flex;
+}
+.footer .navlist ul a {
+  margin-left: 30px;
+  cursor: pointer;
+}
+.footer .navlist ul a li {
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  height: 32px;
 }
 
 /*# sourceMappingURL=Footer.css.map */

@@ -2,8 +2,10 @@
 @import "app.scss";
 
 .footer{
+  display: flex;
+  justify-content: space-between;
   background-color:$primary-color;
-  @include primary();
+  @include default-primary();
   color:$paper-color;
   padding:60px 50px;
   .logoContainer{
@@ -13,10 +15,45 @@
       align-self:center;
     }
   }
-  hr{
+  .iconContainer{
     margin-top:25px;
-    height:2px;
-    color:$paper-color;
-    background-color:$paper-color;
+
+    ul{
+      display:flex;
+
+      li{
+        list-style:none;
+        margin-right:15px;
+      }
+    }
+  }
+  .info{
+    padding-top:60px;
+    p{
+      font-size:12px;
+      line-height: 17px;
+      margin:5px 0;
+    }
+    a{
+      @include default-link();
+    }
+  }
+  .navlist{
+    ul{
+      display: flex;
+        a{
+          margin-left:30px;
+          cursor:pointer;
+          li{
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+            list-style:none;
+            height: 32px;
+          }
+        }
+
+    }
   }
 }
+

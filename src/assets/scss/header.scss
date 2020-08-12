@@ -1,6 +1,7 @@
 @import 'colors';
 
 header{
+  @include default-primary();
   background-color: $primary-color;
   width: 100%;
   height: 64px;

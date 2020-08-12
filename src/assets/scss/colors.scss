@@ -9,9 +9,16 @@ $paper-dark: #1F2125;
 $background-dark: #121212;
 
 $light-text-color: #97a3b5;
-@mixin primary(){
+
+
+@mixin default-primary(){
   background-image:linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
 }
-@mixin accent(){
+@mixin default-accent(){
   background-image: linear-gradient(-90deg,#5068ff 3%,#ab37f9 97%);
+}
+@mixin default-link(){
+  background-image:linear-gradient(-90deg,#5068ff 3%,#ab37f9 97%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
