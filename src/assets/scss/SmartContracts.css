@@ -1,29 +1,22 @@
 .section1 {
   background-color: #fff;
-  padding-bottom: 60px;
-  margin-bottom: 60px;
-}
+  padding-bottom: 14vh; }
 
 .titleContainer {
   padding: 60px 15px;
-  text-align: center;
-}
-.titleContainer h1 {
-  font-size: 36px;
-}
-.titleContainer p {
-  color: #97a3b5;
-}
+  text-align: center; }
+  .titleContainer h1 {
+    font-size: 36px; }
+  .titleContainer p {
+    color: #97a3b5; }
 
 .title {
   margin-bottom: 16px;
-  color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
-}
+  color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%); }
 
 .titleFigure {
   position: absolute;
   right: 0;
-  top: 100px;
-}
+  top: 100px; }
 
 /*# sourceMappingURL=SmartContracts.css.map */

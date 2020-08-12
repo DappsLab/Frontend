@@ -5,15 +5,16 @@
 }
 .card{
   background-color: $paper-color;
-  max-width: 342px;
+  max-width: 380px;
   margin: 20px 10px 20px 25px;
-  padding:20px 30px;
+  padding:20px 20px;
   border-radius: 7px;
   box-shadow: 0 2px 1px -1px rgba(0,0,0,0.2),
   0px 1px 1px 0px rgba(0,0,0,0.14),
   0px 1px 3px 0px rgba(0,0,0,0.12);
   &:hover {
     cursor: pointer;
+     @include default-accent ;
   }
 }
 
@@ -23,9 +24,20 @@
 }
 .card p{
   font-size: 15px;
+  text-align: justify;
 }
 .card span{
   margin-top: 20px;
+}
+.tags{
+  width: 100%;
+  justify-content: flex-end;
+}
+.tags .tag{
+  width: auto;
+  padding: 5px 5px;
+  margin-left: 8px;
+  font-size: 14px;
 }
 /*=============================================
                   Dark mode

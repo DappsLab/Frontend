@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import logo from '../../assets/images/logo.png'
 import logoCaption from "../../assets/images/logocaption.png";
+import enterprise from "../../assets/images/enterprise-eth.png";
 
 export const DappsIcon = (props) => {
     const template=
@@ -31,7 +32,7 @@ export  const ContractImg = (props) => {
     return <img src={bg} alt={"contract_image"}
         style={{
             position:"relative",
-            top:"-40px",
+            top:"-65px",
             borderRadius:"15px",
             width:props.width,
             height:props.height,
@@ -39,3 +40,8 @@ export  const ContractImg = (props) => {
         }}
     />;
 };
+export const PeoplesImg = ()=>{
+    return <figure className="titleFigure">
+        <img src={enterprise} alt={"persons"}/>
+    </figure>
+}

@@ -7,7 +7,7 @@ import BlockExplorer from "./components/home/Block_Explorer";
 import Dapps from "./components/home/Dapps";
 import Downloads from "./components/home/Downloads";
 import Help from "./components/home/Help";
-import Smart_Contracts from "./components/home/Smart_Contracts";
+import Smart_Contracts from "./components/home/exploreContract/Smart_Contracts";
 import Login from "./components/login/Login";
 import Register from "./components/login/Register";
 

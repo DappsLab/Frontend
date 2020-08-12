@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import ContractCard from "./ContractCard";
-import SearchBar from '../ui/SearchBar'
-import "../../assets/scss/SmartContracts.css"
-import "../../assets/scss/app.css"
-import enterprise from "../../assets/images/enterprise-eth.png"
+import "../../../assets/scss/SmartContracts.css"
+import "../../../assets/scss/app.css"
+import Search from "./Search";
+import {PeoplesImg} from "../../ui/Icons";
 
 class Smart_Contracts extends Component {
     render() {
@@ -13,11 +13,9 @@ class Smart_Contracts extends Component {
                     <div className="titleContainer">
                         <h1 className="title">Explore <span className="">Smart Contracts</span></h1>
                         <p>Smart Contracts available on DappsLab Marketplace suited to your business growth and for developer community. Explore! </p>
-                        <figure className="titleFigure">
-                            <img src={enterprise} alt={"persons"}/>
-                        </figure>
+                        <PeoplesImg/>
                     </div>
-                    <SearchBar/>
+                    <Search/>
                 </section>
                 <section>
                     <ContractCard/>
