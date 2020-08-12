@@ -6,6 +6,8 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
+
+
 const Footer = () => {
     return (
         <footer className="footer">
@@ -25,7 +27,7 @@ const Footer = () => {
                     </ul>
                 </div>
                 <section className="info">
-                    <p className="page-footer__copyright">© Smartz 2018</p>
+                    <p className="page-footer__copyright">© DappsLab2020</p>
                     <p>Designed by <a>Qasim Raheem Khokhar</a></p>
                 </section>
             </aside>
@@ -40,23 +42,40 @@ const Footer = () => {
                         <a><li>Docs</li></a>
                     </ul>
                 </section>
-                <section>
+                <section className="extras">
                     <div>
                         <ul>
-                            <li>Get Started</li>
+                            <li className="heading">GET STARTED</li>
                             <li><a>Tutorials</a></li>
                             <li><a>Help Center</a></li>
                             <li><a>Downloads</a></li>
                             <li><a>Get Your Wallet</a></li>
                             <li><a>BlockChain Explorer</a></li>
-                            <li><a>BlockChain Explorer</a></li>
                         </ul>
                     </div>
-                    <div></div>
-                    <div></div>
+                    <div>
+                        <ul>
+                            <li className="heading">DAPPSLAB</li>
+                            <li><a>About Us</a></li>
+                            <li><a>News</a></li>
+                            <li><a>Events</a></li>
+                            <li><a>Dapps</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li className="heading">LEGAL</li>
+                            <li><a>Privacy Policy</a></li>
+                            <li><a>Term of Use</a></li>
+                        </ul>
+                    </div>
+                    <div>
+
+                    </div>
                 </section>
             </aside>
         </footer>
     );
 };
 export default Footer;
+

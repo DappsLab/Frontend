@@ -101,4 +101,24 @@ a {
   height: 32px;
 }
 
+.extras {
+  display: flex;
+  justify-content: space-between;
+}
+.extras div {
+  margin-left: 40px;
+}
+.extras div ul li {
+  list-style: none;
+}
+.extras div ul li a {
+  text-decoration: underline;
+}
+.extras div ul .heading {
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: bolder;
+  margin-bottom: 16px;
+}
+
 /*# sourceMappingURL=Footer.css.map */

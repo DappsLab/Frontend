@@ -32,25 +32,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
     <list default="true" id="32e90308-b9a8-4ad4-a993-09de89e9aaf4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/scss/Footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/Footer.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/scss/Footer.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/Footer.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/scss/Footer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/Footer.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/colors.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/colors.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/header.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/header.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/header.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.js" afterDir="false" />
-=======
-    <list default="true" id="83fcfe53-4ff3-4f77-84df-c14426d314f7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/Smart_Contracts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/Smart_Contracts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/Icons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Icons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/SearchBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/SearchBar.js" afterDir="false" />
->>>>>>> master
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +128,6 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -160,7 +146,7 @@
       <workItem from="1596873023974" duration="13928000" />
       <workItem from="1597039436612" duration="7955000" />
       <workItem from="1597142824752" duration="37000" />
-      <workItem from="1597142885620" duration="15452000" />
+      <workItem from="1597142885620" duration="19111000" />
     </task>
     <servers />
   </component>
@@ -200,25 +186,25 @@
     </state>
     <state x="611" y="368" width="698" height="675" key="EditFileWatcherDialog/0.0.1920.1200@0.0.1920.1200" timestamp="1597145062002" />
     <state x="611" y="363" key="EditFileWatcherDialog/0.23.1920.1110@0.23.1920.1110" timestamp="1596875361917" />
-    <state width="1899" height="338" key="GridCell.Tab.0.bottom" timestamp="1597226522378">
+    <state width="1899" height="338" key="GridCell.Tab.0.bottom" timestamp="1597235374744">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state width="1899" height="338" key="GridCell.Tab.0.bottom/0.0.1920.1200@0.0.1920.1200" timestamp="1597226522378" />
+    <state width="1899" height="338" key="GridCell.Tab.0.bottom/0.0.1920.1200@0.0.1920.1200" timestamp="1597235374744" />
     <state width="1899" height="338" key="GridCell.Tab.0.bottom/0.23.1920.1110@0.23.1920.1110" timestamp="1597213352749" />
-    <state width="1899" height="338" key="GridCell.Tab.0.center" timestamp="1597226522376">
+    <state width="1899" height="338" key="GridCell.Tab.0.center" timestamp="1597235374742">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state width="1899" height="338" key="GridCell.Tab.0.center/0.0.1920.1200@0.0.1920.1200" timestamp="1597226522376" />
+    <state width="1899" height="338" key="GridCell.Tab.0.center/0.0.1920.1200@0.0.1920.1200" timestamp="1597235374742" />
     <state width="1899" height="338" key="GridCell.Tab.0.center/0.23.1920.1110@0.23.1920.1110" timestamp="1597213352746" />
-    <state width="1899" height="338" key="GridCell.Tab.0.left" timestamp="1597226522373">
+    <state width="1899" height="338" key="GridCell.Tab.0.left" timestamp="1597235374741">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state width="1899" height="338" key="GridCell.Tab.0.left/0.0.1920.1200@0.0.1920.1200" timestamp="1597226522373" />
+    <state width="1899" height="338" key="GridCell.Tab.0.left/0.0.1920.1200@0.0.1920.1200" timestamp="1597235374741" />
     <state width="1899" height="338" key="GridCell.Tab.0.left/0.23.1920.1110@0.23.1920.1110" timestamp="1597213352744" />
-    <state width="1899" height="338" key="GridCell.Tab.0.right" timestamp="1597226522377">
+    <state width="1899" height="338" key="GridCell.Tab.0.right" timestamp="1597235374743">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state width="1899" height="338" key="GridCell.Tab.0.right/0.0.1920.1200@0.0.1920.1200" timestamp="1597226522377" />
+    <state width="1899" height="338" key="GridCell.Tab.0.right/0.0.1920.1200@0.0.1920.1200" timestamp="1597235374743" />
     <state width="1899" height="338" key="GridCell.Tab.0.right/0.23.1920.1110@0.23.1920.1110" timestamp="1597213352747" />
     <state x="548" y="342" key="IDE.errors.dialog" timestamp="1597142950489">
       <screen x="0" y="0" width="1920" height="1200" />

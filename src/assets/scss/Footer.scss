@@ -52,8 +52,31 @@
             height: 32px;
           }
         }
-
     }
   }
 }
+.extras{
+  display: flex;
+  justify-content:space-between;
+  div{
+    margin-left: 40px;
+    ul{
+
+      li{
+        list-style:none;
+        a{
+          text-decoration:underline;
+        }
+
+      }
+      .heading{
+        margin-top: 30px;
+        font-size:16px;
+        font-weight:bolder;
+        margin-bottom:16px;
+      }
+    }
+  }
+}
+
 
