@@ -20,3 +20,19 @@ export  const SearchField = ({formData,id,change,press}) => {
     };
     return(renderTemplate())
 };
+export const PriceField=({formData,id,change})=>{
+    const renderTemplate = () => {
+        let formTemplate=null;
+        formTemplate=(
+            <div>
+                <input
+                    {...formData.config}
+                    value={formData.value}
+                    onChange={(event)=> change({event,id})}
+                />
+            </div>
+        );
+        return formTemplate;
+    };
+    return(renderTemplate())
+};

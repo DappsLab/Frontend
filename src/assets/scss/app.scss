@@ -14,7 +14,8 @@
 }
 .container{
   margin: 0 auto;
-  width:1248px;
+  min-height: 200px;
+  width:100%;
 }
 body{
   background-color: $background-color;

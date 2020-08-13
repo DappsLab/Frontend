@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {ContractImg} from "../../ui/Icons";
 import '../../../assets/scss/contract_card.css';
 import ListItem from "@material-ui/core/ListItem";
@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 
 
 const ContractCard = () => {
+    const [id] = useState("id");
     const tags=[{name:"Document"}, {name:"Text"}, {name:"Utility"}];
     const contractList=[
         { check:false,title:"Contract Name", detail:"Lorem Ipsum is simply dummy\n" +
@@ -23,8 +24,8 @@ const ContractCard = () => {
     ]
     const renderCards=()=>(
         contractList.map(contract=>(
-            // <Link to={"/detailed_contract"}>
-                <card className={"card"}>
+            <Link className={"card"} to={`/detailed_contract/${id}`}>
+                <card>
                     <div className={"flex tags"}>
                         {tags.map(tag => (
                             <ListItem className={"tag"} button>{tag.name}</ListItem>
@@ -39,7 +40,7 @@ const ContractCard = () => {
                     <p>{contract.detail}</p>
                     <span className={"block"}>{contract.price}</span>
                 </card>
-            // </Link>
+            </Link>
         ))
     );
     return (

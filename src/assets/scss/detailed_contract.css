@@ -1,0 +1,35 @@
+.contractContainer {
+  justify-content: center;
+  align-items: flex-start;
+  background: url(../images/background.jpg); }
+
+.contractLeft {
+  width: 730px;
+  margin: 30px 20px;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12); }
+
+.contractRight {
+  border-radius: 10px;
+  width: 420px;
+  background-color: #ffffff;
+  margin: 30px 20px;
+  padding: 20px;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12); }
+
+.checkCircle {
+  color: #39B64A;
+  font-size: 20px;
+  margin-right: 20px; }
+
+.buy-top {
+  border-bottom: 1px solid #1F2125;
+  padding: 10px 0;
+  margin-bottom: 15px; }
+
+.contractRight h4 {
+  margin: 10px 0; }
+
+/*# sourceMappingURL=detailed_contract.css.map */

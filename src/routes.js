@@ -17,7 +17,7 @@ import DetailedContract from "./components/home/exploreContract/DetailedContract
 const Routes = (props) => {
     return (
         <Layout {...props}>
-            <Route {...props} path={"/detailed_contract"} exact component={DetailedContract}/>
+            <Route {...props} path={"/detailed_contract/:id"} exact component={DetailedContract}/>
             <Route {...props} path={"/search_result"} exact component={SearchResult}/>
             <Route {...props} path={"/register"} exact component={Register}/>
             <Route {...props} path={"/login"} exact component={Login}/>

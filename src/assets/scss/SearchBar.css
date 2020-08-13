@@ -1,8 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Inconsolata:700");
 .barContainer {
   display: flex;
-  justify-content: center;
-}
+  justify-content: center; }
 
 .search-container {
   position: absolute;
@@ -18,7 +17,7 @@
     left: 0;
     width: 80px;
     height: 80px;
-    background: #60DAFB;
+    background: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
     border-radius: 50%;
     transition: all 1s;
     z-index: 4;
@@ -63,12 +62,12 @@
     height: 50px;
     outline: none;
     border: none;
-    background: #60DAFB;
-    color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
-    text-shadow: 0 0 10px #60DAFB;
+    background: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
+    color: #ffffff;
+    text-shadow: 0 0 10px linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
     padding: 0 80px 0 20px;
     border-radius: 30px;
-    box-shadow: 0 0 25px 0 #60DAFB, 0 20px 25px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 25px 0 #5068ff, 0 20px 25px 0 rgba(0, 0, 0, 0.2);
     transition: all 1s;
     opacity: 0;
     z-index: 5;
@@ -98,11 +97,12 @@
         border-radius: 0%;
         transform: rotate(-45deg); }
     .search-container input::placeholder {
-      color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
+      color: #ffffff;
       opacity: 0.5;
       font-weight: bolder; }
 
 .clear {
-  height: 100px; }
+  height: 100px;
+  margin-top: -50px; }
 
 /*# sourceMappingURL=SearchBar.css.map */
