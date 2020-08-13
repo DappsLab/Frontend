@@ -23,7 +23,7 @@ const ContractCard = () => {
     ]
     const renderCards=()=>(
         contractList.map(contract=>(
-            <Link to={"/detailed_contract"}>
+            // <Link to={"/detailed_contract"}>
                 <card className={"card"}>
                     <div className={"flex tags"}>
                         {tags.map(tag => (
@@ -39,7 +39,7 @@ const ContractCard = () => {
                     <p>{contract.detail}</p>
                     <span className={"block"}>{contract.price}</span>
                 </card>
-            </Link>
+            // </Link>
         ))
     );
     return (

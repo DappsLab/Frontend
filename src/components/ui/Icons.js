@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import '../../assets/scss/SmartContracts.css'
 import logo from '../../assets/images/logo.png'
 import logoCaption from "../../assets/images/logocaption.png";
 import enterprise from "../../assets/images/enterprise-eth.png";

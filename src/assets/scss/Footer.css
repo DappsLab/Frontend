@@ -49,81 +49,71 @@ a {
   background-color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
   background-image: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
   color: #ffffff;
-  padding: 60px 50px; }
-  .footer .logoContainer {
-    display: flex;
-    flex-direction: column; }
-    .footer .logoContainer img {
-      align-self: center; }
-  .footer .iconContainer {
-    margin-top: 25px; }
-    .footer .iconContainer ul {
-      display: flex; }
-      .footer .iconContainer ul li {
-        list-style: none;
-        margin-right: 15px; }
-  .footer .info {
-    padding-top: 60px; }
-    .footer .info p {
-      font-size: 12px;
-      line-height: 17px;
-      margin: 5px 0; }
-    .footer .info a {
-      background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; }
-  .footer .navlist ul {
-    display: flex; }
-    .footer .navlist ul a {
-      margin-left: 30px;
-      cursor: pointer; }
-      .footer .navlist ul a li {
-        padding: 0 10px;
-        display: flex;
-        align-items: center;
-        list-style: none;
-        height: 32px; }
-
-<<<<<<< HEAD
-.extras {
-  display: flex;
-  justify-content: space-between; }
-  .extras div {
-    margin-left: 40px; }
-    .extras div ul li {
-      list-style: none; }
-      .extras div ul li a {
-        text-decoration: underline; }
-    .extras div ul .heading {
-      margin-top: 30px;
-      font-size: 16px;
-      font-weight: bolder;
-      margin-bottom: 16px; }
-=======
-.extras div {
-  margin-left: 40px;
-  margin-top: 30px;
-  line-height: 30px;
-  width: 680px;
+  padding: 60px 50px;
 }
-.extras div ul {
+.footer .logoContainer {
+  display: flex;
+  flex-direction: column;
+}
+.footer .logoContainer img {
+  align-self: center;
+}
+.footer .iconContainer {
+  margin-top: 25px;
+}
+.footer .iconContainer ul {
   display: flex;
 }
-.extras div ul li {
-  margin-right: 30px;
+.footer .iconContainer ul li {
+  list-style: none;
+  margin-right: 15px;
+}
+.footer .info {
+  padding-top: 60px;
+}
+.footer .info p {
+  font-size: 12px;
+  line-height: 17px;
+  margin: 5px 0;
+}
+.footer .info a {
+  background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.footer .navlist ul {
+  display: flex;
+}
+.footer .navlist ul a {
+  margin-left: 30px;
+  cursor: pointer;
+}
+.footer .navlist ul a li {
+  padding: 0 10px;
   display: flex;
   align-items: center;
   list-style: none;
   height: 32px;
 }
-.extras div ul li a {
-  font-size: 12px;
-  line-height: 17px;
-  cursor: pointer;
-  background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+
+.extras {
+  display: flex;
+  justify-content: space-between;
 }
->>>>>>> master
+.extras div {
+  margin-left: 40px;
+}
+.extras div ul li {
+  list-style: none;
+}
+.extras div ul li a {
+  text-decoration: underline;
+}
+.extras div ul .heading {
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: bolder;
+  margin-bottom: 16px;
+}
 
 /*# sourceMappingURL=Footer.css.map */

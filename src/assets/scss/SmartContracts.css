@@ -1,6 +1,6 @@
 .section1 {
   background-color: #fff;
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+  padding-bottom: 14vh;
 }
 
 .titleContainer {
@@ -19,11 +19,12 @@
 
 .title {
   margin-bottom: 16px;
-  color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
-}
+  color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%); }
 
-.section2 {
-  padding: 50px 30px;
+.titleFigure {
+  position: absolute;
+  right: 0;
+  top: 100px;
 }
 
 /*# sourceMappingURL=SmartContracts.css.map */
