@@ -1,6 +1,6 @@
 import React from "react";
 
-export  const SearchField = ({formData,id,change}) => {
+export  const SearchField = ({formData,id,change,press}) => {
     const renderTemplate = () => {
         let formTemplate=null;
         formTemplate=(
@@ -10,6 +10,7 @@ export  const SearchField = ({formData,id,change}) => {
                         {...formData.config}
                         value={formData.value}
                         onChange={(event)=> change({event,id})}
+                        onKeyPress={press}
                     />
                     <div className="search"> </div>
                 </div>

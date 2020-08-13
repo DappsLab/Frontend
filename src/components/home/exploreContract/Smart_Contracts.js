@@ -15,7 +15,7 @@ class Smart_Contracts extends Component {
                         <p>Smart Contracts available on DappsLab Marketplace suited to your business growth and for developer community. Explore! </p>
                         <PeoplesImg/>
                     </div>
-                    <Search/>
+                    <Search {...this.props}/>
                 </section>
                 <section>
                     <ContractCard/>

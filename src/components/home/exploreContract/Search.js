@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
+
 import '../../../assets/scss/SearchBar.css'
 import {SearchField} from "../../ui/FormFields";
 import {Validation} from "../../ui/mise";
+import Alert from '@material-ui/lab/Alert';
+
 
 class Search extends Component {
     state={
@@ -22,13 +25,21 @@ class Search extends Component {
             }
         }
     };
+    onKeyUp(event) {
+        if (event.charCode === 13) {
+            this.submitForm();
+        }
+
+    }
+    submitForm(){
+       this.props.history.push("/search_result")
+    }
     updateForm(element){
         const newFormData = {...this.state.formData};
         const newElement = {...newFormData[element.id]};
         newElement.value = element.event.target.value;
 
         let validationData= Validation(newElement);
-        console.log(newElement.value)
         newFormData[element.id] = newElement;
         if(newElement.value===""){
             this.setState({show:false,formData:newFormData})
@@ -47,10 +58,11 @@ class Search extends Component {
                     id={'search'}
                     formData={this.state.formData.search}
                     change={(element)=> this.updateForm(element)}
+                    press={ (event)=> this.onKeyUp(event)}
                 />
                 <div className="clear"> </div>
                 {this.state.show ?
-                    <div className={"error_label barContainer"}>{this.state.message}</div>
+                    <Alert className={"error_label"} severity="error">{this.state.message}</Alert>
                     :null
                 }
             </div>

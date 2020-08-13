@@ -33,16 +33,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32e90308-b9a8-4ad4-a993-09de89e9aaf4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/home/exploreContract/DetailedContract.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/home/exploreContract/SearchResult.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/.sass-cache/f42b6a6ffd1d7579eb6deccc3ef4b80b1448a810/Footer.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/.sass-cache/f42b6a6ffd1d7579eb6deccc3ef4b80b1448a810/Footer.scssc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/.sass-cache/f42b6a6ffd1d7579eb6deccc3ef4b80b1448a810/app.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/.sass-cache/f42b6a6ffd1d7579eb6deccc3ef4b80b1448a810/app.scssc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/.sass-cache/f42b6a6ffd1d7579eb6deccc3ef4b80b1448a810/contract_card.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/.sass-cache/f42b6a6ffd1d7579eb6deccc3ef4b80b1448a810/contract_card.scssc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/scss/Footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/Footer.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/scss/Footer.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/Footer.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/SmartContracts.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/SmartContracts.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/SmartContracts.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/SmartContracts.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/app.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/scss/contract_card.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/contract_card.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/scss/contract_card.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/contract_card.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/contract_card.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/contract_card.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/header.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/header.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/exploreContract/ContractCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/exploreContract/ContractCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/exploreContract/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/exploreContract/Search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/exploreContract/Smart_Contracts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/exploreContract/Smart_Contracts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/FormFields.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/FormFields.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/mise.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/mise.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +93,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -94,7 +104,7 @@
       <recent name="$PROJECT_DIR$/src/assets" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start (1)">
+  <component name="RunManager" selected="npm.start">
     <configuration name="scss" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -127,12 +137,13 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.start" />
         <item itemvalue="npm.start (1)" />
         <item itemvalue="npm.scss" />
-        <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -152,11 +163,13 @@
       <workItem from="1597039436612" duration="7955000" />
       <workItem from="1597142824752" duration="37000" />
       <workItem from="1597142885620" duration="19563000" />
+      <workItem from="1597311435790" duration="9451000" />
+      <workItem from="1597321023194" duration="356000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -186,43 +199,56 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="748" y="295" key="#com.intellij.ide.macro.MacrosDialog/0.0.1920.1200@0.0.1920.1200" timestamp="1597144990260" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1597312019589">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1597312019589" />
     <state x="611" y="368" width="698" height="675" key="EditFileWatcherDialog" timestamp="1597145062002">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="611" y="368" width="698" height="675" key="EditFileWatcherDialog/0.0.1920.1200@0.0.1920.1200" timestamp="1597145062002" />
     <state x="611" y="363" key="EditFileWatcherDialog/0.23.1920.1110@0.23.1920.1110" timestamp="1596875361917" />
-    <state width="1899" height="338" key="GridCell.Tab.0.bottom" timestamp="1597235374744">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1597315471281">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1597315471281" />
+    <state width="1899" height="275" key="GridCell.Tab.0.bottom" timestamp="1597320769548">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="275" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1597320769548" />
     <state width="1899" height="338" key="GridCell.Tab.0.bottom/0.0.1920.1200@0.0.1920.1200" timestamp="1597235374744" />
     <state width="1899" height="338" key="GridCell.Tab.0.bottom/0.23.1920.1110@0.23.1920.1110" timestamp="1597213352749" />
-    <state width="1899" height="338" key="GridCell.Tab.0.center" timestamp="1597235374742">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1899" height="275" key="GridCell.Tab.0.center" timestamp="1597320769548">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1899" height="275" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1597320769548" />
     <state width="1899" height="338" key="GridCell.Tab.0.center/0.0.1920.1200@0.0.1920.1200" timestamp="1597235374742" />
     <state width="1899" height="338" key="GridCell.Tab.0.center/0.23.1920.1110@0.23.1920.1110" timestamp="1597213352746" />
-    <state width="1899" height="338" key="GridCell.Tab.0.left" timestamp="1597235374741">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1899" height="275" key="GridCell.Tab.0.left" timestamp="1597320769548">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1899" height="275" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1597320769548" />
     <state width="1899" height="338" key="GridCell.Tab.0.left/0.0.1920.1200@0.0.1920.1200" timestamp="1597235374741" />
     <state width="1899" height="338" key="GridCell.Tab.0.left/0.23.1920.1110@0.23.1920.1110" timestamp="1597213352744" />
-    <state width="1899" height="338" key="GridCell.Tab.0.right" timestamp="1597235374743">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1899" height="275" key="GridCell.Tab.0.right" timestamp="1597320769548">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1899" height="275" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597320769548" />
     <state width="1899" height="338" key="GridCell.Tab.0.right/0.0.1920.1200@0.0.1920.1200" timestamp="1597235374743" />
     <state width="1899" height="338" key="GridCell.Tab.0.right/0.23.1920.1110@0.23.1920.1110" timestamp="1597213352747" />
     <state x="548" y="342" key="IDE.errors.dialog" timestamp="1597142950489">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="548" y="342" key="IDE.errors.dialog/0.0.1920.1200@0.0.1920.1200" timestamp="1597142950489" />
-    <state x="751" y="189" key="SettingsEditor" timestamp="1597145065006">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state x="486" y="138" key="SettingsEditor" timestamp="1597317895718">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="909" y="163" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1594220339376" />
+    <state x="486" y="138" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1597317895718" />
     <state x="751" y="189" key="SettingsEditor/0.0.1920.1200@0.0.1920.1200" timestamp="1597145065006" />
-    <state x="625" y="271" width="670" height="676" key="search.everywhere.popup" timestamp="1597040179243">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state x="625" y="235" width="672" height="586" key="search.everywhere.popup" timestamp="1597318637926">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="625" y="235" width="672" height="586" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1597318637926" />
     <state x="625" y="271" width="670" height="676" key="search.everywhere.popup/0.0.1920.1200@0.0.1920.1200" timestamp="1597040179243" />
   </component>
 </project>

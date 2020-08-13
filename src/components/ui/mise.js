@@ -4,7 +4,6 @@ export const Validation =(element)=>{
         const valid = /^[A-Za-z]+$/.test(element.value);
         const message = `${!valid ? 'Must be Alphabet' : ''}`;
         error = !valid ? [!valid,message]: error
-        console.log(error)
     }
     return error;
 };

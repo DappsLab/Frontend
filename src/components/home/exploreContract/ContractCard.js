@@ -2,6 +2,7 @@ import React from 'react';
 import {ContractImg} from "../../ui/Icons";
 import '../../../assets/scss/contract_card.css';
 import ListItem from "@material-ui/core/ListItem";
+import {Link} from "react-router-dom";
 
 
 const ContractCard = () => {
@@ -22,21 +23,23 @@ const ContractCard = () => {
     ]
     const renderCards=()=>(
         contractList.map(contract=>(
-        <card className={"card"}>
-            <div className={"flex tags"}>
-                {tags.map(tag => (
-                    <ListItem className={"tag"} button>{tag.name}</ListItem>
-                ))}
-            </div>
-            <ContractImg
-                check={contract.check}
-                height={"100px"}
-                width={"100px"}
-            />
-            <h4>{contract.title}</h4>
-            <p>{contract.detail}</p>
-            <span className={"block"}>{contract.price}</span>
-        </card>
+            <Link to={"/detailed_contract"}>
+                <card className={"card"}>
+                    <div className={"flex tags"}>
+                        {tags.map(tag => (
+                            <ListItem className={"tag"} button>{tag.name}</ListItem>
+                        ))}
+                    </div>
+                    <ContractImg
+                        check={contract.check}
+                        height={"100px"}
+                        width={"100px"}
+                    />
+                    <h4>{contract.title}</h4>
+                    <p>{contract.detail}</p>
+                    <span className={"block"}>{contract.price}</span>
+                </card>
+            </Link>
         ))
     );
     return (

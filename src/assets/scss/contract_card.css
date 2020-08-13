@@ -1,7 +1,6 @@
 .contract-container {
   flex-wrap: wrap;
-  padding: 30px 0;
-}
+  padding: 30px 0; }
 
 .card {
   background-color: #ffffff;
@@ -9,46 +8,38 @@
   margin: 20px 10px 20px 25px;
   padding: 20px 20px;
   border-radius: 7px;
-  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-}
-.card:hover {
-  cursor: pointer;
-  background-image: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
-  color: #ffffff;
-}
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12); }
+  .card:hover {
+    cursor: pointer;
+    background-image: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
+    color: #ffffff; }
 
 .card h4 {
   font-size: 20px;
-  margin-top: -25px;
-}
+  margin-top: -25px; }
 
 .card p {
   font-size: 15px;
-  text-align: justify;
-}
+  text-align: justify; }
 
 .card span {
-  margin-top: 20px;
-}
+  margin-top: 20px; }
 
 .tags {
   width: 100%;
-  justify-content: flex-end;
-}
+  justify-content: flex-end; }
 
 .tags .tag {
   width: auto;
   padding: 5px 5px;
   margin-left: 8px;
-  font-size: 14px;
-}
+  font-size: 14px; }
 
 /*=============================================
                   Dark mode
 ===============================================*/
 .dark-mode .card {
   box-shadow: 0 2px 1px -1px rgba(250, 250, 250, 0.2), 0px 1px 1px 0px rgba(250, 250, 250, 0.14), 0px 1px 3px 0px rgba(250, 250, 250, 0.12);
-  background-color: #1F2125;
-}
+  background-color: #1F2125; }
 
 /*# sourceMappingURL=contract_card.css.map */
