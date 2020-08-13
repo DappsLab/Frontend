@@ -43,34 +43,44 @@ const Footer = () => {
                     </ul>
                 </section>
                 <section className="extras">
-                    <div>
-                        <ul>
-                            <li className="heading">GET STARTED</li>
-                            <li><a>Tutorials</a></li>
-                            <li><a>Help Center</a></li>
-                            <li><a>Downloads</a></li>
-                            <li><a>Get Your Wallet</a></li>
-                            <li><a>BlockChain Explorer</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <ul>
-                            <li className="heading">DAPPSLAB</li>
-                            <li><a>About Us</a></li>
-                            <li><a>News</a></li>
-                            <li><a>Events</a></li>
-                            <li><a>Dapps</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <ul>
-                            <li className="heading">LEGAL</li>
-                            <li><a>Privacy Policy</a></li>
-                            <li><a>Term of Use</a></li>
-                        </ul>
-                    </div>
-                    <div>
 
+                    {/*<div>*/}
+                    {/*    <ul>*/}
+                    {/*        <li className="heading">GET STARTED</li>*/}
+                    {/*        <li><a>Tutorials</a></li>*/}
+                    {/*        <li><a>Help Center</a></li>*/}
+                    {/*        <li><a>Downloads</a></li>*/}
+                    {/*        <li><a>Get Your Wallet</a></li>*/}
+                    {/*        <li><a>BlockChain Explorer</a></li>*/}
+                    {/*    </ul>*/}
+                    {/*</div>*/}
+                    {/*<div>*/}
+                    {/*    <ul>*/}
+                    {/*        <li className="heading">DAPPSLAB</li>*/}
+                    {/*        <li><a>About Us</a></li>*/}
+                    {/*        <li><a>News</a></li>*/}
+                    {/*        <li><a>Events</a></li>*/}
+                    {/*        <li><a>Dapps</a></li>*/}
+                    {/*    </ul>*/}
+                    {/*</div>*/}
+                    {/*<div>*/}
+                    {/*    <ul>*/}
+                    {/*        <li className="heading">LEGAL</li>*/}
+                    {/*        <li><a>Privacy Policy</a></li>*/}
+                    {/*        <li><a>Term of Use</a></li>*/}
+                    {/*    </ul>*/}
+                    {/*</div>*/}
+
+                    <div>
+                        We do not store your private keys, passwords or your cryptocurrency.
+                        Smartz is just a provider to conclude a smart contract.
+                    </div>
+                    <div>
+                        <ul>
+                            <li><a>Privacy policy</a></li>
+                            <li><a>Terms & conditions</a></li>
+                            <li><a>Technical Whitepaper</a></li>
+                        </ul>
                     </div>
                 </section>
             </aside>

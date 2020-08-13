@@ -2,16 +2,19 @@
 .section1{
   background-color: #fff;
   //background-image:url("../images/hero.png");
-  padding-bottom:14vh;
+  box-shadow:0 2px 10px 0 rgba(0, 0, 0, 0.16);
 }
 .titleContainer{
-  padding:60px 15px;
+  padding:65px 15px 65px 15px;
   text-align:center;
   h1{
     font-size:36px;
   }
   p{
     color:$light-text-color;
+  }
+  .peoplesImg{
+    width:10px;
   }
 
 }
@@ -20,7 +23,8 @@
   color:$primary-color;
 }
 .titleFigure{
-  position:absolute;
-  right: 0;
-  top: 100px;
+
+}
+.section2{
+  padding:50px 30px;
 }

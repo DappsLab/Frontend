@@ -11,13 +11,13 @@ class Smart_Contracts extends Component {
             <div>
                 <section className="section1">
                     <div className="titleContainer">
+                        <PeoplesImg className="peoplesImg"/>
                         <h1 className="title">Explore <span className="">Smart Contracts</span></h1>
                         <p>Smart Contracts available on DappsLab Marketplace suited to your business growth and for developer community. Explore! </p>
-                        <PeoplesImg/>
                     </div>
                     <Search/>
                 </section>
-                <section>
+                <section className="section2">
                     <ContractCard/>
                     <aside>
 

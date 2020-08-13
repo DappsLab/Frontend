@@ -1,10 +1,10 @@
 .section1 {
   background-color: #fff;
-  padding-bottom: 14vh;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
 }
 
 .titleContainer {
-  padding: 60px 15px;
+  padding: 65px 15px 65px 15px;
   text-align: center;
 }
 .titleContainer h1 {
@@ -13,16 +13,17 @@
 .titleContainer p {
   color: #97a3b5;
 }
+.titleContainer .peoplesImg {
+  width: 10px;
+}
 
 .title {
   margin-bottom: 16px;
   color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
 }
 
-.titleFigure {
-  position: absolute;
-  right: 0;
-  top: 100px;
+.section2 {
+  padding: 50px 30px;
 }
 
 /*# sourceMappingURL=SmartContracts.css.map */
