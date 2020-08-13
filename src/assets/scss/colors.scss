@@ -14,9 +14,13 @@ $light-text-color: #97a3b5;
 @mixin default-primary(){
   background-image:linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
 }
+$default-primary:linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
+
 @mixin default-accent(){
   background-image: linear-gradient(-90deg,#5068ff 3%,#ab37f9 97%);
 }
+$default-accent:linear-gradient(-90deg,#5068ff 3%,#ab37f9 97%);
+
 @mixin default-link(){
   background-image:linear-gradient(-90deg,#5068ff 3%,#ab37f9 97%);
   -webkit-background-clip: text;

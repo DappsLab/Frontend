@@ -43,6 +43,7 @@
       <change beforePath="$PROJECT_DIR$/src/assets/scss/.sass-cache/f42b6a6ffd1d7579eb6deccc3ef4b80b1448a810/contract_card.scssc" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/.sass-cache/f42b6a6ffd1d7579eb6deccc3ef4b80b1448a810/contract_card.scssc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/scss/Footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/Footer.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/scss/Footer.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/Footer.css.map" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/assets/scss/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/app.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/scss/contract_card.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/contract_card.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/scss/contract_card.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/contract_card.css.map" afterDir="false" />
@@ -52,6 +53,20 @@
       <change beforePath="$PROJECT_DIR$/src/components/ui/FormFields.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/FormFields.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ui/mise.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/mise.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.js" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/Footer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/Footer.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/SearchBar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/SearchBar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/SearchBar.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/SearchBar.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/SearchBar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/SearchBar.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/SmartContracts.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/SmartContracts.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/SmartContracts.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/SmartContracts.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/SmartContracts.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/SmartContracts.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/colors.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/colors.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/header.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/exploreContract/Smart_Contracts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/exploreContract/Smart_Contracts.js" afterDir="false" />
+>>>>>>> master
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -162,9 +177,13 @@
       <workItem from="1596873023974" duration="13928000" />
       <workItem from="1597039436612" duration="7955000" />
       <workItem from="1597142824752" duration="37000" />
+<<<<<<< HEAD
       <workItem from="1597142885620" duration="19563000" />
       <workItem from="1597311435790" duration="9451000" />
       <workItem from="1597321023194" duration="356000" />
+=======
+      <workItem from="1597142885620" duration="24700000" />
+>>>>>>> master
     </task>
     <servers />
   </component>
@@ -208,6 +227,7 @@
     </state>
     <state x="611" y="368" width="698" height="675" key="EditFileWatcherDialog/0.0.1920.1200@0.0.1920.1200" timestamp="1597145062002" />
     <state x="611" y="363" key="EditFileWatcherDialog/0.23.1920.1110@0.23.1920.1110" timestamp="1596875361917" />
+<<<<<<< HEAD
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1597315471281">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -235,6 +255,27 @@
     </state>
     <state width="1899" height="275" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597320769548" />
     <state width="1899" height="338" key="GridCell.Tab.0.right/0.0.1920.1200@0.0.1920.1200" timestamp="1597235374743" />
+=======
+    <state width="1899" height="338" key="GridCell.Tab.0.bottom" timestamp="1597253369645">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1899" height="338" key="GridCell.Tab.0.bottom/0.0.1920.1200@0.0.1920.1200" timestamp="1597253369645" />
+    <state width="1899" height="338" key="GridCell.Tab.0.bottom/0.23.1920.1110@0.23.1920.1110" timestamp="1597213352749" />
+    <state width="1899" height="338" key="GridCell.Tab.0.center" timestamp="1597253369644">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1899" height="338" key="GridCell.Tab.0.center/0.0.1920.1200@0.0.1920.1200" timestamp="1597253369644" />
+    <state width="1899" height="338" key="GridCell.Tab.0.center/0.23.1920.1110@0.23.1920.1110" timestamp="1597213352746" />
+    <state width="1899" height="338" key="GridCell.Tab.0.left" timestamp="1597253369643">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1899" height="338" key="GridCell.Tab.0.left/0.0.1920.1200@0.0.1920.1200" timestamp="1597253369643" />
+    <state width="1899" height="338" key="GridCell.Tab.0.left/0.23.1920.1110@0.23.1920.1110" timestamp="1597213352744" />
+    <state width="1899" height="338" key="GridCell.Tab.0.right" timestamp="1597253369645">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1899" height="338" key="GridCell.Tab.0.right/0.0.1920.1200@0.0.1920.1200" timestamp="1597253369645" />
+>>>>>>> master
     <state width="1899" height="338" key="GridCell.Tab.0.right/0.23.1920.1110@0.23.1920.1110" timestamp="1597213352747" />
     <state x="548" y="342" key="IDE.errors.dialog" timestamp="1597142950489">
       <screen x="0" y="0" width="1920" height="1200" />
@@ -245,10 +286,17 @@
     </state>
     <state x="486" y="138" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1597317895718" />
     <state x="751" y="189" key="SettingsEditor/0.0.1920.1200@0.0.1920.1200" timestamp="1597145065006" />
+<<<<<<< HEAD
     <state x="625" y="235" width="672" height="586" key="search.everywhere.popup" timestamp="1597318637926">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="625" y="235" width="672" height="586" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1597318637926" />
     <state x="625" y="271" width="670" height="676" key="search.everywhere.popup/0.0.1920.1200@0.0.1920.1200" timestamp="1597040179243" />
+=======
+    <state x="625" y="271" width="670" height="676" key="search.everywhere.popup" timestamp="1597249583648">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="625" y="271" width="670" height="676" key="search.everywhere.popup/0.0.1920.1200@0.0.1920.1200" timestamp="1597249583648" />
+>>>>>>> master
   </component>
 </project>

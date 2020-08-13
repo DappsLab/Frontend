@@ -1,79 +1,108 @@
 @import "colors";
 @import "app.scss";
 
-.footer{
+.footer {
   display: flex;
   justify-content: space-between;
-  background-color:$primary-color;
+  background-color: $primary-color;
   @include default-primary();
-  color:$paper-color;
-  padding:60px 50px;
-  .logoContainer{
-    display:flex;
-    flex-direction:column;
-    img{
-      align-self:center;
+  color: $paper-color;
+  padding: 60px 50px;
+
+  .logoContainer {
+    display: flex;
+    flex-direction: column;
+
+    img {
+      align-self: center;
     }
   }
-  .iconContainer{
-    margin-top:25px;
 
-    ul{
-      display:flex;
+  .iconContainer {
+    margin-top: 25px;
 
-      li{
-        list-style:none;
-        margin-right:15px;
+    ul {
+      display: flex;
+
+      li {
+        list-style: none;
+        margin-right: 15px;
       }
     }
   }
-  .info{
-    padding-top:60px;
-    p{
-      font-size:12px;
+
+  .info {
+    padding-top: 60px;
+
+    p {
+      font-size: 12px;
       line-height: 17px;
-      margin:5px 0;
+      margin: 5px 0;
     }
-    a{
+
+    a {
       @include default-link();
     }
   }
-  .navlist{
-    ul{
+
+  .navlist {
+    ul {
       display: flex;
-        a{
-          margin-left:30px;
-          cursor:pointer;
-          li{
-            padding: 0 10px;
-            display: flex;
-            align-items: center;
-            list-style:none;
-            height: 32px;
-          }
+
+      a {
+        margin-left: 30px;
+        cursor: pointer;
+
+        li {
+          padding: 0 10px;
+          display: flex;
+          align-items: center;
+          list-style: none;
+          height: 32px;
         }
+      }
     }
   }
 }
-.extras{
-  display: flex;
-  justify-content:space-between;
-  div{
+
+.extras {
+  div {
     margin-left: 40px;
-    ul{
+    margin-top: 30px;
+    line-height: 30px;
+    width: 680px;
+    //ul{
+    //
+    //  li{
+    //    list-style:none;
+    //    a{
+    //      text-decoration:underline;
+    //    }
+    //
+    //  }
+    //  .heading{
+    //    margin-top: 30px;
+    //    font-size:16px;
+    //    font-weight:bolder;
+    //    margin-bottom:16px;
+    //  }
+    //}
+    ul {
+      display: flex;
 
-      li{
-        list-style:none;
-        a{
-          text-decoration:underline;
+      li {
+        margin-right: 30px;
+        display: flex;
+        align-items: center;
+        list-style: none;
+        height: 32px;
+
+        a {
+          font-size: 12px;
+          line-height: 17px;
+          cursor: pointer;
+          @include default-link();
         }
-
-      }
-      .heading{
-        margin-top: 30px;
-        font-size:16px;
-        font-weight:bolder;
-        margin-bottom:16px;
       }
     }
   }

@@ -23,11 +23,11 @@ header nav{
 .loginbtn {
   height:32px;
   margin: 0 5px !important;
-  background-color: $accent-color !important;
+  background: $default-accent !important;
   color: $primary-color !important;
 }
 .loginbtn:hover{
-  background-color: #75bAFB !important;
+  background: $default-primary !important;
   Box-shadow:
           0 2px 4px -1px rgba(0,0,0,0.2),
           0px 4px 5px 0px rgba(0,0,0,0.14),
