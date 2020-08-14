@@ -73,7 +73,7 @@ const Footer = () => {
 
                     <div>
                         We do not store your private keys, passwords or your cryptocurrency.
-                        Smartz is just a provider to conclude a smart contract.
+                        Dappslab is just a provider to conclude a smart contract.
                     </div>
                     <div>
                         <ul>

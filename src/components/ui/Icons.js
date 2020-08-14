@@ -7,12 +7,10 @@ import enterprise from "../../assets/images/enterprise-eth.png";
 
 export const DappsIcon = (props) => {
     const template=
-        <a href="#">
-            <figure className="logo-container">
-                <img src={logo} alt="Logo" className="Logo"/>
-                <img src={logoCaption} alt="logo caption" className="LogoCaption"/>
-            </figure>
-        </a>;
+        <figure className="logo-container">
+            <img src={logo} alt="Logo" className="Logo"/>
+            <img src={logoCaption} alt="logo caption" className="LogoCaption"/>
+        </figure>
     if(props.link){
         return(
             <Link to={props.linkTo} className={"link_logo"}>

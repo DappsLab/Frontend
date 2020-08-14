@@ -24,11 +24,11 @@ const ContractCard = () => {
     ]
     const renderCards=()=>(
         contractList.map(contract=>(
-            <Link className={"card"} to={`/detailed_contract/${id}`}>
-                <card>
+            <Link className={"card"} key={contract.title} to={`/detailed_contract/${id}`}>
+                <div>
                     <div className={"flex tags"}>
                         {tags.map(tag => (
-                            <ListItem className={"tag"} button>{tag.name}</ListItem>
+                            <ListItem className={"tag"} key={tag.name} button>{tag.name}</ListItem>
                         ))}
                     </div>
                     <ContractImg
@@ -39,7 +39,7 @@ const ContractCard = () => {
                     <h4>{contract.title}</h4>
                     <p>{contract.detail}</p>
                     <span className={"block"}>{contract.price}</span>
-                </card>
+                </div>
             </Link>
         ))
     );

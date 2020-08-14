@@ -16,6 +16,7 @@
   margin: 0 auto;
   min-height: 200px;
   width:100%;
+  padding: 20px 0;
 }
 body{
   background-color: $background-color;
@@ -33,6 +34,9 @@ a {
 .error_label {
   width: 50vh;
   margin: 0 auto;
+}
+.cursor{
+  cursor: pointer;
 }
 .flex{
   display:flex;

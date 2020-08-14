@@ -1,16 +1,89 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faFilter } from '@fortawesome/free-solid-svg-icons'
+import '../../../assets/scss/SearchResult.css'
+import FilterDrawer from "../../ui/FilterDrawer";
+import {FormField} from "../../ui/FormFields";
+import {Validation} from "../../ui/mise";
+import {Button} from "@material-ui/core";
 
 
 
-const SearchResult = () => {
-    return (
-        <div className={"container"}>
-            <FontAwesomeIcon icon={faFilter} />
-        </div>
-    );
-};
+export default  class SearchResult extends React.Component{
+     state={
+         show:false,
+         close:false,
+         message:'',
+         formData: {
+             sort: {
+                 element: 'select',
+                 value: '',
+                 config: {
+                     label: 'Sort By:',
+                     name: 'sort_by',
+                     type: 'select',
+                     options: [
+                         {key: 'N', value: 'Newest contract'},
+                         {key: 'L', value: 'Price: low to high'},
+                         {key: 'H', value: 'Price: high to low'},
+                         {key: 'T', value: 'Topsellers'}
+                     ]
+                 },
+                 validation: {
+                     required: false,
+                 },
+                 showLabel:true
+             },
+             terms: {
+                 element: 'input',
+                 value: '',
+                 config: {
+                     label: 'Filter Smart Contracts:',
+                     name: 'terms_by',
+                     type: 'input',
+                 },
+                 validation: {
+                     required: true,
+                 },
+                 showLabel:true
+             },
+         }
+     }
+    updateForm(element){
+        const newFormData = {...this.state.formData};
+        const newElement = {...newFormData[element.id]};
+        newElement.value = element.event.target.value;
 
-export default SearchResult;
+        let validationData= Validation(newElement);
+        newFormData[element.id] = newElement;
 
+            this.setState({
+                show: validationData[0],
+                message: validationData[1],
+                formData: newFormData
+            })
+    }
+    onSubmit=()=>{
+         this.setState({close:true})
+         console.log("good")
+    }
+     render() {
+         return (
+             <div className={"container flex sr_container"}>
+                 <FilterDrawer
+                     close={this.state.close}
+                     select={
+                         <FormField id={'sort'}
+                         formData={this.state.formData.sort}
+                         change={(element)=> this.updateForm(element)}/>
+                     }
+                     input={
+                         <FormField id={'terms'}
+                         formData={this.state.formData.terms}
+                         change={(element)=> this.updateForm(element)}/>
+                     }
+                     button={<Button className={"drawerbtn"} onClick={this.onSubmit}>Apply</Button>}
+                 />
+                 <div className={"searchRight"}> No result</div>
+             </div>
+         );
+     }
+}
