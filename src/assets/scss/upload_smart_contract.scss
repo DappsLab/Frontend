@@ -1,0 +1,33 @@
+@import "colors";
+.uploadSection{
+  margin: 35px 24px;
+  background: #E6E9F0;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #3C3F41;
+}
+.uploadSection img{
+  width: 427px;
+  height: 280px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.uploadSection h3{
+  font-size: 20px;
+}
+.uploadSection p ,.uploadSection h3{
+  margin: 0;
+}
+.uploadSection button{
+  margin-top: 20px;
+  padding: 20px 10px;
+  border: none;
+  font-size: 18px;
+  background: #D0DDE6;
+  border-radius: 10px;
+}
+.uploadSection div{
+  margin-left: 30px;
+}
