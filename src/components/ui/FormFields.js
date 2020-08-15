@@ -1,5 +1,8 @@
 import React from "react";
 import "../../assets/scss/SearchResult.css"
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 export  const SearchField = ({formData,id,change,press}) => {
     const renderTemplate = () => {
         let formTemplate=null;
@@ -97,4 +100,27 @@ export const FormField =({id,formData,change})=>{
             {renderTemplate()}
         </div>
     )
+}
+export const CheckBox=({check,name,change,index})=>{
+    const renderTemplate = () => {
+        let formTemplate=null;
+        formTemplate=(
+            <FormGroup row>
+                <FormControlLabel
+                    control={
+                        <Checkbox
+                            checked={check}
+                            onChange={(event)=> change({event,name,index})}
+                            name={name}
+                            color="primary"
+                            value={"Primary"}
+                        />
+                    }
+                    label={name}
+                />
+            </FormGroup>
+        );
+        return formTemplate;
+    };
+    return(renderTemplate())
 }

@@ -39,7 +39,7 @@ export default function FilterDrawer(props) {
     const handleDrawerOpen = () => {
         setOpen(true);
         if(open===true){
-            handleDrawerClose();
+            handleDrawerClose()
         }
     };
 
@@ -49,7 +49,6 @@ export default function FilterDrawer(props) {
 
     return (
         <div>
-
             <FontAwesomeIcon className={"filterIcon cursor"} onClick={handleDrawerOpen} icon={faFilter}/>
             <Drawer
                 variant="persistent"
@@ -67,6 +66,9 @@ export default function FilterDrawer(props) {
                 </div>
                 {props.select}
                 {props.input}
+                {props.checkbox}
+                {props.tagInput}
+                {props.slider}
                 {props.button}
                 <Divider/>
             </Drawer>
