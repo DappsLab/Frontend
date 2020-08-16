@@ -9,7 +9,7 @@
   width: 730px;
   margin: 30px 20px;
   border-radius: 10px;
-  padding: 20px;
+  padding: 30px;
   background-color: $paper-color;
   box-shadow: 0 2px 1px -1px rgba(0,0,0,0.2),
   0px 1px 1px 0px rgba(0,0,0,0.14),
@@ -37,4 +37,42 @@
 }
 .contractRight h4{
   margin: 10px 0;
+}
+.btnGroups{
+  justify-content: space-between;
+}
+.testbtn{
+  width:180px !important;
+  background: $default-accent !important;
+  color: $primary-color !important;
+  &:hover {
+    background: $default-primary !important;
+    Box-shadow:
+            0 2px 4px -1px rgba(0,0,0,0.2),
+            0px 4px 5px 0px rgba(0,0,0,0.14),
+            0px 1px 10px 0px rgba(0,0,0,0.12);
+  }
+}
+.inputcontrol{
+  padding: 10px 0;
+  margin: 10px 0;
+}
+.priceInput{
+  margin-top: -25px;
+}
+.priceInput .label_inputs{
+  padding: 0;
+  margin-top: 0;
+}
+.priceInput .selectSort{
+  height: 45px;
+}
+.priceInput .block{
+  padding: 12px;
+  margin-top: 25px;
+  border-radius: 5px;
+  background-color: $background-color;
+}
+.inputcontrol input[type=radio]{
+  margin-top: 10px;
 }

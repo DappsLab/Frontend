@@ -14,6 +14,7 @@ export  const SearchField = ({formData,id,change,press}) => {
                         value={formData.value}
                         onChange={(event)=> change({event,id})}
                         onKeyPress={press}
+                        disabled={formData.disabled}
                     />
                     <div className="search"> </div>
                 </div>
