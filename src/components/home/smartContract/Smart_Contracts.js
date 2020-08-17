@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ContractCard from "./ContractCard";
 import "../../../assets/scss/SmartContracts.css"
 import "../../../assets/scss/app.css"
-import Search from "./Search";
+import Search from "../search/Search";
 import {PeoplesImg} from "../../ui/Icons";
 
 class Smart_Contracts extends Component {
