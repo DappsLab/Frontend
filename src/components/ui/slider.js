@@ -1,5 +1,4 @@
-import React, {useCallback} from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Slider from '@material-ui/core/Slider';

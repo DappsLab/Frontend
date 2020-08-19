@@ -31,3 +31,22 @@
 .uploadSection div{
   margin-left: 30px;
 }
+.upload_bg{
+  background-color: $paper-color;
+}
+.indexContainer ,.account_welcome{
+  background:url('../images/background.jpg');
+  padding: 20px 10px;
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+}
+.uploadNav .active{
+  border-bottom: 4px solid #1A97FF;
+}
+.indexContainer nav div{
+  margin: 10px 20px 10px 0;
+  color: #8292A9;
+  font-size: 20px;
+  font-weight: bold;
+}

@@ -1,7 +1,13 @@
+@import "colors";
 
 .login_wrapper {
-  margin-top: 96px;
-  padding: 20px;
-  min-height: 70VH;
+  padding: 20px 30px;
+  width: 100vh;
   text-align: center;
+  background-color: $background-color;
+}
+.login-bg{
+  background: url("../images/register-bg.jpg");
+  background-size: 100% 100%;
+  justify-content: center;
 }

@@ -32,4 +32,36 @@ header nav {
   padding-top: 5px;
   margin: 0 5px; }
 
+.arrowUp {
+  color: #F6F7F9; }
+
+.dropdown {
+  left: -20px !important; }
+
+.MuiPaper-root {
+  width: 180px; }
+
+.MuiMenuItem-root, .dropdown {
+  font-size: 14px !important; }
+
+.MuiList-padding {
+  margin-top: -40px !important; }
+
+.MuiPaper-root {
+  margin-top: 3px;
+  padding: 0 10px; }
+
+.user_logged {
+  padding: 10px 11px; }
+
+.user_logged h3 {
+  font-size: 14px; }
+
+.dropUpArrow {
+  position: relative;
+  top: -79px;
+  color: #F6F7F9;
+  left: 105px;
+  font-size: 35px !important; }
+
 /*# sourceMappingURL=header.css.map */

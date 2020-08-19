@@ -13,7 +13,7 @@ import {FormField} from "../../ui/FormFields";
 class  DetailedContract extends Component{
 
     state= {
-        radioValue:"one",
+        radioValue:"",
         formData: {
             oneDeployment: {
                 element: 'input',
@@ -51,6 +51,7 @@ class  DetailedContract extends Component{
     ]
     handleChange = (event) => {
         this.setState({radioValue:event.target.value});
+        console.log(event.target.value)
     };
     renderButton=()=>(
         this.btn_links.map(link=>(
@@ -59,13 +60,12 @@ class  DetailedContract extends Component{
             </Link>
         ))
     )
-
     render() {
         return (
             <div className={"contractContainer flex"}>
                 <Fade top delay={300}>
                     <div className={"contractLeft"}>
-                        SHow result
+
                     </div>
                 </Fade>
                 <Fade top delay={300}>

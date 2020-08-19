@@ -1,7 +1,12 @@
 .login_wrapper {
-  margin-top: 96px;
-  padding: 20px;
-  min-height: 70VH;
-  text-align: center; }
+  padding: 20px 30px;
+  width: 100vh;
+  text-align: center;
+  background-color: #F6F7F9; }
+
+.login-bg {
+  background: url("../images/register-bg.jpg");
+  background-size: 100% 100%;
+  justify-content: center; }
 
 /*# sourceMappingURL=login.css.map */

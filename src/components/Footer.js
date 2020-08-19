@@ -5,10 +5,44 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import {Link} from "react-router-dom";
 
 
 
 const Footer = () => {
+    const icon_links=[
+        {icon:<GitHubIcon/> ,LinkTo:"/github"},{icon:<FacebookIcon/>,LinkTo:"/facebook"},
+        {icon:<TwitterIcon/>,LinkTo:"/twitter"},{icon:<LinkedInIcon/>,LinkTo:"/linkin"}
+    ]
+    const nav_links=[
+        {title:"Smart Contracts",linkTo:"/smart"},{title:"Dapps",linkTo:"/dapps"},
+        {title:"Dashboard",linkTo:"/dashboard"},{title:"Block Explorer",linkTo:"/block"},
+        {title:"About",linkTo:"/about"},{title:"Docs",linkTo:"/docs"}
+    ]
+    const bottom_links=[
+        {title:"Privacy policy"},{title:"Terms & conditions"},{title:"Technical Whitepaper"}
+    ]
+    const  renderIcon=()=>(
+        icon_links.map(link=>(
+            <li  key={link.LinkTo}>
+                <Link to={link.LinkTo}>{link.icon}</Link>
+            </li>
+        ))
+    );
+    const renderNav=()=>(
+        nav_links.map(link=>(
+            <Link to={link.linkTo} key={link.linkTo}>
+                <li>{link.title}</li>
+            </Link>
+        ))
+    );
+    const renderBottom=()=>(
+        bottom_links.map(link=>(
+            <li  key={link.title}>
+                <Link to={""}>{link.title}</Link>
+            </li>
+        ))
+    )
     return (
         <footer className="footer">
             <aside>
@@ -20,10 +54,7 @@ const Footer = () => {
                 </div>
                 <div className="iconContainer">
                     <ul>
-                        <li><GitHubIcon/></li>
-                        <li><FacebookIcon/></li>
-                        <li><TwitterIcon/></li>
-                        <li><LinkedInIcon/></li>
+                        {renderIcon()}
                     </ul>
                 </div>
                 <section className="info">
@@ -33,17 +64,9 @@ const Footer = () => {
             </aside>
             <aside>
                 <section className="navlist">
-                    <ul>
-                        <a><li>Smart Contracts</li></a>
-                        <a><li>Dapps</li></a>
-                        <a><li>Dashboard</li></a>
-                        <a><li>Block Explorer</li></a>
-                        <a><li>About</li></a>
-                        <a><li>Docs</li></a>
-                    </ul>
+                    <ul>{renderNav()}</ul>
                 </section>
                 <section className="extras">
-
                     {/*<div>*/}
                     {/*    <ul>*/}
                     {/*        <li className="heading">GET STARTED</li>*/}
@@ -70,17 +93,12 @@ const Footer = () => {
                     {/*        <li><a>Term of Use</a></li>*/}
                     {/*    </ul>*/}
                     {/*</div>*/}
-
                     <div>
                         We do not store your private keys, passwords or your cryptocurrency.
                         Dappslab is just a provider to conclude a smart contract.
                     </div>
                     <div>
-                        <ul>
-                            <li><a>Privacy policy</a></li>
-                            <li><a>Terms & conditions</a></li>
-                            <li><a>Technical Whitepaper</a></li>
-                        </ul>
+                        <ul>{renderBottom()}</ul>
                     </div>
                 </section>
             </aside>

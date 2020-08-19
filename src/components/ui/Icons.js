@@ -44,3 +44,6 @@ export const PeoplesImg = ()=>{
         <img src={enterprise} alt={"persons"}/>
     </figure>
 }
+export const contractImg=()=>{
+
+}

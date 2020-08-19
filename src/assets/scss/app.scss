@@ -45,12 +45,13 @@ a {
   display:flex;
   align-items: center;
 }
+
 /*================================================
                     Dark mode
 ===================================================*/
 *.dark-mode{
   background-color: #121212;
-  color: white;
+  color: $background-color;
 }
 .dark-mode body{
   background-color: $background-dark;

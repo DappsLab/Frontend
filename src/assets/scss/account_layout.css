@@ -1,0 +1,22 @@
+.account_container {
+  width: 70%;
+  margin: auto;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 0; }
+
+.account_nav {
+  background-color: #ffffff;
+  width: 450px;
+  border: 1px solid #3C3F41;
+  border-radius: 10px;
+  padding: 10px 35px; }
+
+.account_right {
+  background-color: #ffffff;
+  width: 850px;
+  padding: 10px 35px 45px 35px;
+  border: 1px solid #3C3F41;
+  border-radius: 10px; }
+
+/*# sourceMappingURL=account_layout.css.map */

@@ -1,19 +1,16 @@
-
-
-
-
-
-import React from 'react';
+import React, {useState} from 'react';
 import '../assets/scss/header.css';
 import {Link} from "react-router-dom";
 import {Button} from '@material-ui/core'
 import {DappsIcon} from "./ui/Icons";
 import ListItem from "@material-ui/core/ListItem";
 import DarkMode from "./ui/Dark-mode";
+import DropDown from "./ui/DropDown";
 
 
 
 const Header =()=>{
+    const [logged] = useState(false);
     const links=[
         { title:'HOME', linkTo:'/'},
         { title:'SMART CONTRACTS', linkTo:'/smart_contracts'},
@@ -46,6 +43,11 @@ const Header =()=>{
             </Link>
         ))
     );
+    const renderAccount=()=>(
+        <div>
+            <DropDown/>
+        </div>
+    )
     return (
         <div>
             <header className="flex">
@@ -58,7 +60,10 @@ const Header =()=>{
                 </nav>
                 <div className={"flex"}>
                     <DarkMode/>
-                    {renderButtons()}
+                    {logged ?
+                        renderAccount()
+                        :renderButtons()
+                    }
                 </div>
             </header>
         </div>

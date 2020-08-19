@@ -7,16 +7,28 @@ import BlockExplorer from "./components/home/Block_Explorer";
 import Dapps from "./components/home/Dapps";
 import Downloads from "./components/home/Downloads";
 import Help from "./components/home/Help";
-import Smart_Contracts from "./components/home/exploreContract/Smart_Contracts";
+import Smart_Contracts from "./components/home/smartContract/Smart_Contracts";
 import Login from "./components/login/Login";
 import Register from "./components/login/Register";
-import SearchResult from "./components/home/exploreContract/SearchResult";
-import DetailedContract from "./components/home/exploreContract/DetailedContract";
+import SearchResult from "./components/home/search/SearchResult";
+import DetailedContract from "./components/home/smartContract/DetailedContract";
+import UploadSection from "./components/home/uploadContract/UploadSection";
+import AccountSetting from "./components/user/myAccount/AccountSetting";
+import WithdrawDeposite from "./components/user/myAccount/WithdrawDeposite";
+import Transactions from "./components/user/myAccount/Transactions";
+import TwoFA from "./components/user/myAccount/TwoFA";
+
 
 
 const Routes = (props) => {
     return (
         <Layout {...props}>
+            <Route {...props} path={"/account/profile/2fa"} exact component={TwoFA}/>
+            <Route {...props} path={"/account/profile/transactions"} exact component={Transactions}/>
+            <Route {...props} path={"/account/profile/wallet"} exact component={WithdrawDeposite}/>
+            <Route {...props} path={"/account/profile"} exact component={AccountSetting}/>
+
+            <Route {...props} path={"/upload_samrt_contract"} exact component={UploadSection}/>
             <Route {...props} path={"/detailed_contract/:id"} exact component={DetailedContract}/>
             <Route {...props} path={"/search_result"} exact component={SearchResult}/>
             <Route {...props} path={"/register"} exact component={Register}/>

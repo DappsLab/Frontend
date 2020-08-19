@@ -7,7 +7,7 @@ class Login extends Component {
     }
     render() {
         return (
-            <div className={"container"}>
+            <div className={"container login-bg fullWidth flex"}>
                 <div className={"login_wrapper"}>
                     <form onSubmit={(event)=> this.submitForm(event)}>
                         <h2>Please fill form</h2>

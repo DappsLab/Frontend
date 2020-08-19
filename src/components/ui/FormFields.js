@@ -46,7 +46,7 @@ export const FormField =({id,formData,change})=>{
         switch (formData.element) {
             case ('input'):
                 formTemplate=(
-                    <div>
+                    <div className={"input_box"}>
                         {
                             formData.showLabel ?
                                 <div className={"label_inputs"}>
@@ -61,6 +61,13 @@ export const FormField =({id,formData,change})=>{
                             value={formData.value}
                             onChange={(event)=> change({event,id})}
                         />
+                        {
+                            formData.showInfo ?
+                                <div className={"info"}>
+                                    {formData.info}
+                                </div>
+                            : null
+                        }
                     </div>
                 );
                 break;
