@@ -11,9 +11,9 @@
   font-size: 14px;
   padding: 10px 10px;
   border-radius: 5px;
-}
-.generalDescription a{
-  color: #299EF6;
+  a{
+    color: #299EF6;
+  }
 }
 .generalMain{
   justify-content: center;
@@ -27,27 +27,45 @@
 }
 .generalRight{
   width: 900px;
+  h3{
+    padding: 0 0 10px 0;
+  }
+  .block{
+    margin-top: 20px;
+  }
+  .ck-blurred{
+    min-height: 200px !important;
+  }
+  Button{
+    @include default-accent();
+    margin-top: 20px;
+    padding: 10px 30px;
+    color: $background-color;
+  }
 }
 
-.generalLeft .priceInput{
-  margin-top: 0;
-}
-.generalLeft .priceInput .label_inputs{
-  position: relative;
-  left: -68px;
-}
-.generalLeft .label_inputs{
-  font-weight: bold;
-  font-size: 16px ;
-  margin: 0;
-  padding: 0 0 10px 0;
-}
-.generalLeft .input_box{
-  margin-bottom: 20px;
-}
-.generalLeft .priceInput .block{
-  margin-top: 12px;
-}
-.generalLeft .info{
-  color: $info-color;
+.generalLeft {
+  .priceInput {
+    margin-top: 0;
+      .label_inputs {
+        position: relative;
+        left: -68px;
+      }
+    .block{
+      margin-top: 12px;
+    }
+  }
+
+  .label_inputs{
+    font-weight: bold;
+    font-size: 16px ;
+    margin: 0;
+    padding: 0 0 10px 0;
+  }
+  .input_box{
+    margin-bottom: 20px;
+  }
+  .info{
+    color: $info-color;
+  }
 }

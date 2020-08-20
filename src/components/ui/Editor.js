@@ -8,7 +8,6 @@ function Editor({change,id}) {
             <CKEditor
                 editor={ClassicEditor}
                 onChange={(event,value)=>change(event,value,id)}
-                className={"edit"}
             />
         </div>
     );

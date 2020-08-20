@@ -1,12 +1,12 @@
 import React from 'react';
 import ContractCard from "./smartContract/ContractCard";
-import UploadIndex from "./uploadContract/UploadIndex";
+import UploadSmartContract from "./uploadContract/UploadSmartContract";
 
 const Home = () => {
     return (
         <div>
             <ContractCard/>
-            <UploadIndex/>
+            <UploadSmartContract/>
         </div>
     );
 };

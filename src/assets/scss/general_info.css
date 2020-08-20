@@ -9,9 +9,8 @@
   font-size: 14px;
   padding: 10px 10px;
   border-radius: 5px; }
-
-.generalDescription a {
-  color: #299EF6; }
+  .generalDescription a {
+    color: #299EF6; }
 
 .generalMain {
   justify-content: center;
@@ -25,26 +24,32 @@
 
 .generalRight {
   width: 900px; }
+  .generalRight h3 {
+    padding: 0 0 10px 0; }
+  .generalRight .block {
+    margin-top: 20px; }
+  .generalRight .ck-blurred {
+    min-height: 200px !important; }
+  .generalRight Button {
+    background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
+    margin-top: 20px;
+    padding: 10px 30px;
+    color: #F6F7F9; }
 
 .generalLeft .priceInput {
   margin-top: 0; }
-
-.generalLeft .priceInput .label_inputs {
-  position: relative;
-  left: -68px; }
-
+  .generalLeft .priceInput .label_inputs {
+    position: relative;
+    left: -68px; }
+  .generalLeft .priceInput .block {
+    margin-top: 12px; }
 .generalLeft .label_inputs {
   font-weight: bold;
   font-size: 16px;
   margin: 0;
   padding: 0 0 10px 0; }
-
 .generalLeft .input_box {
   margin-bottom: 20px; }
-
-.generalLeft .priceInput .block {
-  margin-top: 12px; }
-
 .generalLeft .info {
   color: #96A3B6; }
 

@@ -1,0 +1,32 @@
+.attached_files {
+  width: 70%;
+  margin: auto;
+  padding-bottom: 30px; }
+
+.dropzone {
+  background: white;
+  border-radius: 5px;
+  border: 2px dashed #0087f7;
+  border-image: none;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto; }
+
+.inputFile {
+  height: 150px;
+  background: #F5F7FA;
+  margin: 20px 0;
+  cursor: pointer;
+  color: #9BA6B8;
+  align-items: center; }
+
+.files_ready {
+  flex-direction: column; }
+  .files_ready h3 {
+    text-align: center;
+    padding-bottom: 10px; }
+  .files_ready p {
+    text-align: center;
+    margin-top: 10px; }
+
+/*# sourceMappingURL=associated_files.css.map */

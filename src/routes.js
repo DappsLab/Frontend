@@ -12,11 +12,12 @@ import Login from "./components/login/Login";
 import Register from "./components/login/Register";
 import SearchResult from "./components/home/search/SearchResult";
 import DetailedContract from "./components/home/smartContract/DetailedContract";
-import UploadSection from "./components/home/uploadContract/UploadSection";
 import AccountSetting from "./components/user/myAccount/AccountSetting";
 import WithdrawDeposite from "./components/user/myAccount/WithdrawDeposite";
 import Transactions from "./components/user/myAccount/Transactions";
 import TwoFA from "./components/user/myAccount/TwoFA";
+import GeneralInfo from "./components/home/uploadContract/GeneralInfo";
+import AssociatedFiles from "./components/home/uploadContract/AssociatedFiles";
 
 
 
@@ -28,7 +29,8 @@ const Routes = (props) => {
             <Route {...props} path={"/account/profile/wallet"} exact component={WithdrawDeposite}/>
             <Route {...props} path={"/account/profile"} exact component={AccountSetting}/>
 
-            <Route {...props} path={"/upload_samrt_contract"} exact component={UploadSection}/>
+            <Route {...props} path={"/upload_samrt_contract/general_info"} exact component={GeneralInfo}/>
+            <Route {...props} path={"/upload_samrt_contract/associated_files"} exact component={AssociatedFiles}/>
             <Route {...props} path={"/detailed_contract/:id"} exact component={DetailedContract}/>
             <Route {...props} path={"/search_result"} exact component={SearchResult}/>
             <Route {...props} path={"/register"} exact component={Register}/>
