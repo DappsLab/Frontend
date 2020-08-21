@@ -6,7 +6,9 @@ class AccountSetting extends Component {
     render() {
         return (
             <AccountLayout>
-                account setting
+                <div>
+                    <h2>General Info</h2>
+                </div>
             </AccountLayout>
         );
     }

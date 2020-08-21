@@ -5,7 +5,9 @@ class TwoFA extends Component {
     render() {
         return (
             <AccountLayout>
-                two FA
+                <div>
+                    <h2>Enable 2FA</h2>
+                </div>
             </AccountLayout>
         );
     }

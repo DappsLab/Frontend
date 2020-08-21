@@ -10,7 +10,7 @@ import DropDown from "./ui/DropDown";
 
 
 const Header =()=>{
-    const [logged] = useState(false);
+    const [logged] = useState(true);
     const links=[
         { title:'HOME', linkTo:'/'},
         { title:'SMART CONTRACTS', linkTo:'/smart_contracts'},

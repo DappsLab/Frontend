@@ -7,7 +7,6 @@ import {Link} from "react-router-dom";
 import Fade from "react-reveal/Fade";
 import reactHtmlParser from 'react-html-parser'
 import Button from "@material-ui/core/Button";
-import AssociatedFiles from "./AssociatedFiles";
 import UploadLayout from "../../../hoc/UploadLayout";
 
 class GeneralInfo extends Component{
