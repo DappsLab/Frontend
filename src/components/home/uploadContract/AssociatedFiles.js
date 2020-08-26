@@ -7,11 +7,11 @@ import Button from "@material-ui/core/Button";
 
 class  AssociatedFiles extends Component{
     state={
-        show:true,
+        show:false,
     }
     submit=(files)=>{
         console.log(files.map(f => f.meta));
-        // this.setState({show:!this.state.show})
+        this.setState({show:!this.state.show})
     }
     renderReady=()=>(
         <div className={"attached_files flex files_ready"}>
