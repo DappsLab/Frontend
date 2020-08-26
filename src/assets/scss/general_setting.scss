@@ -1,0 +1,98 @@
+@import "colors";
+
+.general_setting {
+  .general_data{
+    align-items: flex-start;
+    .profile_picture{
+      padding: 0 5px 0 40px;
+      width: 230px;
+      .avatar{
+        margin-top: 10px;
+        width: 170px;
+        height: 170px;
+      }
+      .edit_btn{
+        background-color: $background-dark;
+        color: $background-color;
+        font-size: 12px !important;
+        padding: 4px 5px;
+        min-width: 50px;
+        position: relative;
+        top: -25px;
+        .MuiSvgIcon-root{
+          font-size: 16px !important;
+        }
+      }
+    }
+  }
+}
+.picture_menu{
+  margin-top: 10px;
+  margin-left: 17vh;
+  .MuiListItem-root{
+    font-size: 14px !important;
+  }
+  .dropUpArrow{
+    color: #BDBDBD;
+    top: -21px;
+    left: 5px;
+    font-size: 35px !important;
+  }
+}
+.MuiDialog-paperScrollPaper {
+  width: 600px;
+}
+.ReactCrop__crop-selection{
+  border-image-source:none !important;
+  border-radius: 50% !important;
+}
+.canvasImage{
+  border-radius: 50%;
+  position: relative;
+  top: -140px;
+}
+.general_data {
+  .left {
+    padding-right: 20px;
+    .input_box{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .selectSort{
+        width: 60%;
+      }
+    }
+    .label_inputs{
+      margin-top: 0;
+    }
+    .delete_warning,.general_email p,.delete_btn Button{
+      width: 60%;
+    }
+    .delete_warning{
+      float: right;
+      text-align: justify;
+      font-size: 14px;
+      color: $info-color;
+    }
+    .general_password {
+      justify-content: space-between;
+      p{
+        margin-right:85px ;
+      }
+      a{
+        @include default-link();
+      }
+    }
+    .delete_btn,.general_email{
+      justify-content: space-between;
+    }
+    .loginbtn{
+      height: auto;
+      font-weight: bold;
+      margin: 0;
+      padding: 7px 30px;
+
+    }
+  }
+}

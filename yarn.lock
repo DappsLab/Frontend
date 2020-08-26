@@ -3491,6 +3491,11 @@ core-js@^2.4.0:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.11.tgz#38831469f9922bded8ee21c9dc46985e0399308c"
   integrity sha512-5wjnpaT/3dV+XB4borEsnAYQchn00XSgTAWKDkEqv+K8KevjbzmofK6hfJ9TZIlpj2N0xQpazy7PiRQiWHqzWg==
 
+core-js@^3.4.2:
+  version "3.6.5"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.5.tgz#7395dc273af37fb2e50e9bd3d9fe841285231d1a"
+  integrity sha512-vZVEEwZoIsI+vPEuoF9Iqf5H7/M3eeQqWlQnYa8FSKKePuYTf5MWnxb5SDAzCa60b3JBRS5g9b+Dq7b1y/RCrA==
+
 core-js@^3.5.0:
   version "3.6.4"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.4.tgz#440a83536b458114b9cb2ac1580ba377dc470647"
@@ -7235,6 +7240,16 @@ known-css-properties@^0.3.0:
   resolved "https://registry.yarnpkg.com/known-css-properties/-/known-css-properties-0.3.0.tgz#a3d135bbfc60ee8c6eacf2f7e7e6f2d4755e49a4"
   integrity sha512-QMQcnKAiQccfQTqtBh/qwquGZ2XK/DXND1jrcN9M8gMMy99Gwla7GQjndVUsEqIaRyP6bsFRuhwRj5poafBGJQ==
 
+konva@2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/konva/-/konva-2.5.1.tgz#cca611a9522e831e54cf57c508a1aed3f0ceac25"
+  integrity sha512-YdHEWqmbWPieqIZuLx7JFGm9Ui08hSUaSJ2k2Ml8o5giFgJ0WmxAS0DPXIM+Ty2ADRagOHZfXSJ/skwYqqlwgQ==
+
+konva@^7.0.6:
+  version "7.0.6"
+  resolved "https://registry.yarnpkg.com/konva/-/konva-7.0.6.tgz#01f5cd893cd644613c8c2948ce3d5e06593146ab"
+  integrity sha512-dhl0pIw9FHRFw3JWCPZUxAvU+uPs6ZoW5mFvS3ft71cUyEEnHRby/WfxRpS/417Rq7HmSs1C0lTfp6EtAD+1WA==
+
 last-call-webpack-plugin@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/last-call-webpack-plugin/-/last-call-webpack-plugin-3.0.0.tgz#9742df0e10e3cf46e5c0381c2de90d3a7a2d7555"
@@ -9682,6 +9697,13 @@ react-app-polyfill@^1.0.6:
     regenerator-runtime "^0.13.3"
     whatwg-fetch "^3.0.0"
 
+react-avatar-edit@^0.8.3:
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/react-avatar-edit/-/react-avatar-edit-0.8.3.tgz#0ebf21391328fc255429bdfbc782f795827109bf"
+  integrity sha512-QEedh6DjDCSI7AUsUHHtfhxApCWC5hJAoywxUA5PtUdw03iIjEurgVqPOIt1UBHhU/Zk/9amElRF3oepN9JZSg==
+  dependencies:
+    konva "2.5.1"
+
 react-dev-utils@^10.2.1:
   version "10.2.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-10.2.1.tgz#f6de325ae25fa4d546d09df4bb1befdc6dd19c19"
@@ -9741,10 +9763,27 @@ react-html-parser@^2.0.2:
   dependencies:
     htmlparser2 "^3.9.0"
 
+react-image-crop@^8.6.5:
+  version "8.6.5"
+  resolved "https://registry.yarnpkg.com/react-image-crop/-/react-image-crop-8.6.5.tgz#8b67f3571ab3cf85096d9452b1dc1a05c9659a9e"
+  integrity sha512-IbcB8rPWZRClLfJjsB9de4sa7EwoLGnGSQH8BP+pay5uKkvulY6y3L4BGKhcckOt0NnTdUNAkeKICl9yH3wXuA==
+  dependencies:
+    clsx "^1.0.4"
+    core-js "^3.4.2"
+    prop-types "^15.7.2"
+
 react-is@^16.12.0, react-is@^16.6.0, react-is@^16.6.3, react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
+react-konva@^16.13.0-6:
+  version "16.13.0-6"
+  resolved "https://registry.yarnpkg.com/react-konva/-/react-konva-16.13.0-6.tgz#eae2864da3810bbfa33e159d027fcff82fcb0c32"
+  integrity sha512-wqIrZSneJWn2D2ExwtSqp9U804OUA3RhkxzzRbp/2s+54mx9iU2lpP2CNGHMAnxNccR03mcLwGirb6wvPOOPLA==
+  dependencies:
+    react-reconciler "^0.25.1"
+    scheduler "^0.19.1"
 
 react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
@@ -9772,6 +9811,16 @@ react-qr-code@^1.0.2:
     "@react-native-community/art" "^1.2.0"
     prop-types "^15.7.2"
     qr.js "0.0.0"
+
+react-reconciler@^0.25.1:
+  version "0.25.1"
+  resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.25.1.tgz#f9814d59d115e1210762287ce987801529363aaa"
+  integrity sha512-R5UwsIvRcSs3w8n9k3tBoTtUHdVhu9u84EG7E5M0Jk9F5i6DA1pQzPfUZd6opYWGy56MJOtV3VADzy6DRwYDjw==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    scheduler "^0.19.1"
 
 react-reveal@^1.2.2:
   version "1.2.2"

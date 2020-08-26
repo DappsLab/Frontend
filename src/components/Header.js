@@ -5,7 +5,7 @@ import {Button} from '@material-ui/core'
 import {DappsIcon} from "./ui/Icons";
 import ListItem from "@material-ui/core/ListItem";
 import DarkMode from "./ui/Dark-mode";
-import DropDown from "./ui/DropDown";
+import {DropDown} from "./ui/DropDown";
 
 
 
@@ -45,7 +45,7 @@ const Header =()=>{
     );
     const renderAccount=()=>(
         <div>
-            <DropDown/>
+            <DropDown check={true}/>
         </div>
     )
     return (

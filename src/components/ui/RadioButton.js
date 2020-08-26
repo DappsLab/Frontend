@@ -12,7 +12,7 @@ const RadioButton = (props) => {
     ]
     const renderInput=()=>(
         lists.map(list=>(
-            <div className={"flex inputcontrol"}>
+            <div key={list.value} className={"flex inputcontrol"}>
                 <FormControlLabel value={list.value} control={<Radio />}   label={""}/>
                 <div className={"fullWidth"}>
                     <div className={"flex priceInput"}>

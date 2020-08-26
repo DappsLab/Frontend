@@ -1,0 +1,77 @@
+.general_setting .general_data {
+  align-items: flex-start; }
+  .general_setting .general_data .profile_picture {
+    padding: 0 5px 0 40px;
+    width: 230px; }
+    .general_setting .general_data .profile_picture .avatar {
+      margin-top: 10px;
+      width: 170px;
+      height: 170px; }
+    .general_setting .general_data .profile_picture .edit_btn {
+      background-color: #121212;
+      color: #F6F7F9;
+      font-size: 12px !important;
+      padding: 4px 5px;
+      min-width: 50px;
+      position: relative;
+      top: -25px; }
+      .general_setting .general_data .profile_picture .edit_btn .MuiSvgIcon-root {
+        font-size: 16px !important; }
+
+.picture_menu {
+  margin-top: 10px;
+  margin-left: 17vh; }
+  .picture_menu .MuiListItem-root {
+    font-size: 14px !important; }
+  .picture_menu .dropUpArrow {
+    color: #BDBDBD;
+    top: -21px;
+    left: 5px;
+    font-size: 35px !important; }
+
+.MuiDialog-paperScrollPaper {
+  width: 600px; }
+
+.ReactCrop__crop-selection {
+  border-image-source: none !important;
+  border-radius: 50% !important; }
+
+.canvasImage {
+  border-radius: 50%;
+  position: relative;
+  top: -140px; }
+
+.general_data .left {
+  padding-right: 20px; }
+  .general_data .left .input_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    .general_data .left .input_box .selectSort {
+      width: 60%; }
+  .general_data .left .label_inputs {
+    margin-top: 0; }
+  .general_data .left .delete_warning, .general_data .left .general_email p, .general_data .left .delete_btn Button {
+    width: 60%; }
+  .general_data .left .delete_warning {
+    float: right;
+    text-align: justify;
+    font-size: 14px;
+    color: #96A3B6; }
+  .general_data .left .general_password {
+    justify-content: space-between; }
+    .general_data .left .general_password p {
+      margin-right: 85px; }
+    .general_data .left .general_password a {
+      background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; }
+  .general_data .left .delete_btn, .general_data .left .general_email {
+    justify-content: space-between; }
+  .general_data .left .loginbtn {
+    height: auto;
+    font-weight: bold;
+    margin: 0;
+    padding: 7px 30px; }
+
+/*# sourceMappingURL=general_setting.css.map */

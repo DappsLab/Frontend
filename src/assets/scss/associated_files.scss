@@ -24,6 +24,10 @@
 }
 .files_ready{
   flex-direction: column;
+  .radioBox{
+    flex-direction: column;
+    align-items: flex-start;
+  }
   h3 {
     text-align: center;
     padding-bottom: 10px;
@@ -31,5 +35,10 @@
   p{
     text-align: center;
     margin-top: 10px;
+  }
+  .radioInput{
+    p{
+      margin-top: 0;
+    }
   }
 }

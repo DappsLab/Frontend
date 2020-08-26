@@ -3,6 +3,11 @@ import "../../assets/scss/SearchResult.css"
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+
+const acceptedFileTypes = 'image/x-png, image/png, image/jpg, image/jpeg'
+const acceptedFileTypesArray = acceptedFileTypes.split(",").map((item) => {return item.trim()})
+const fileInputRef = React.createRef()
+
 export  const SearchField = ({formData,id,change,press}) => {
     const renderTemplate = () => {
         let formTemplate=null;
@@ -59,6 +64,7 @@ export const FormField =({id,formData,change})=>{
                             className={"selectSort"}
                             {...formData.config}
                             value={formData.value}
+                            placeholder={formData.config.placeholder}
                             onChange={(event)=> change({event,id})}
                         />
                         {
@@ -132,3 +138,37 @@ export const CheckBox=({check,name,change,index})=>{
     };
     return(renderTemplate())
 }
+export const UploadFile=({formData,updateimage})=>{
+    const hanldeChnage=(event)=>{
+        const files = event.target.files
+        const currentFile = files[0]
+        if (event.target.files && event.target.files.length > 0) {
+            const currentFileType = currentFile.type
+            if (!acceptedFileTypesArray.includes(currentFileType)) {
+                alert("This file is not allowed. Only images are allowed.")
+            }
+            const reader = new FileReader();
+            console.log("good")
+            reader.addEventListener('load', () =>
+                updateimage(reader.result)
+
+            )
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    }
+    const renderTemplate = () => {
+        let formTemplate;
+        formTemplate=(
+            <input
+                ref={fileInputRef}
+                type={"file"}
+                id={"upload_picture"}
+                style={{display:'none'}}
+                accept={formData.accept}
+                onChange={hanldeChnage}
+            />
+        );
+        return formTemplate;
+    };
+    return(renderTemplate())
+};

@@ -12,6 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import {Link} from "react-router-dom";
 import {Divider} from "@material-ui/core";
+import EditIcon from "@material-ui/icons/Edit";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function DropDown() {
+export const DropDown =({check,fileUpload,removeImage})=> {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
@@ -42,7 +43,13 @@ export default function DropDown() {
 
         setOpen(false);
     };
-
+    const handleInput=(event)=> {
+        handleClose(event)
+    }
+    const handleremove=(event)=>{
+        handleClose(event)
+        removeImage()
+    }
     function handleListKeyDown(event) {
         if (event.key === 'Tab') {
             event.preventDefault();
@@ -57,7 +64,7 @@ export default function DropDown() {
     ]
     const renderItem=()=>(
         links.map(link=>(
-            <Link to={link.linkTo}>
+            <Link key={link.title} to={link.linkTo}>
                 <MenuItem onClick={handleClose}>{link.title}</MenuItem>
             </Link>
         ))
@@ -70,37 +77,64 @@ export default function DropDown() {
     }, [open]);
     return (
         <div className={classes.root}>
-            <Button
-                ref={anchorRef}
-                aria-controls={open ? 'menu-list-grow' : undefined}
-                aria-haspopup="true"
-                onClick={handleToggle}
-            >
-                <Avatar className={classes.size} src="/broken-image.jpg"/>
-                <ArrowDropDownIcon className={"arrowUp"}/>
-            </Button>
+            {fileUpload}
+            {check?
+                <Button
+                    ref={anchorRef}
+                    aria-controls={open ? 'menu-list-grow' : undefined}
+                    aria-haspopup="true"
+                    onClick={handleToggle}
+                >
+                    <Avatar className={classes.size} src="/broken-image.jpg"/>
+                    <ArrowDropDownIcon className={"arrowUp"}/>
+                </Button>
+                : <Button
+                    ref={anchorRef}
+                    aria-controls={open ? 'menu-list-grow' : undefined}
+                    aria-haspopup="true"
+                    onClick={handleToggle}
+                    className={"edit_btn"}
+                >
+                    <EditIcon/> Edit
+                </Button>
+            }
             <Popper className={"dropdown"} open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                 {({ TransitionProps, placement }) => (
                     <Grow
                         {...TransitionProps}
                         style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
                     >
-                        <Paper>
-                            <div className={"user_logged"}>
-                                <div>Signed in as</div>
-                                <h3>Tahseen</h3>
-                            </div>
-                            <Divider/>
-                            <ArrowDropUpIcon className={"dropUpArrow"}/>
-                            <ClickAwayListener onClickAway={handleClose}>
-                                <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                        {check?
+                            <Paper>
+                                <div className={"user_logged"}>
+                                    <div>Signed in as</div>
+                                    <h3>Tahseen</h3>
+                                </div>
+                                <Divider/>
+                                <ArrowDropUpIcon className={"dropUpArrow"}/>
+                                <ClickAwayListener onClickAway={handleClose}>
+                                    <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                                     {renderItem()}
-                                </MenuList>
-                            </ClickAwayListener>
-                        </Paper>
+                                    </MenuList>
+                                </ClickAwayListener>
+                            </Paper>
+                            :
+                            <Paper className={"picture_menu"}>
+                                <ArrowDropUpIcon className={"dropUpArrow"}/>
+                                <ClickAwayListener onClickAway={handleClose}>
+                                    <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                                        <label htmlFor={"upload_picture"}>
+                                            <MenuItem  onClick={handleInput}>Upload a Photo</MenuItem>
+                                        </label>
+                                        <MenuItem  onClick={handleremove}>Remove Photo </MenuItem>
+                                    </MenuList>
+                                </ClickAwayListener>
+                            </Paper>
+                        }
                     </Grow>
                 )}
             </Popper>
         </div>
     );
 }
+

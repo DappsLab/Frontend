@@ -1,17 +1,14 @@
 import React, {Component} from 'react';
 import AccountLayout from "../../../hoc/AccountLayout";
 
-
-class AccountSetting extends Component {
+class ChangePassword extends Component {
     render() {
         return (
             <AccountLayout>
-                <div>
-                    <h2>General Info</h2>
-                </div>
+                change password
             </AccountLayout>
         );
     }
 }
 
-export default AccountSetting;
+export default ChangePassword;
