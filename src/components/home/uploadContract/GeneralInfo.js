@@ -9,6 +9,7 @@ import reactHtmlParser from 'react-html-parser'
 import Button from "@material-ui/core/Button";
 import UploadLayout from "../../../hoc/UploadLayout";
 
+
 class GeneralInfo extends Component{
     state= {
         shortEditor:"",
@@ -136,8 +137,8 @@ class GeneralInfo extends Component{
                             <Fade top delay={500}> {this.renderInput()}</Fade>
                             <Fade top delay={600}>
                                 <FormField id={'tag'}
-                                     formData={this.state.formData.tag}
-                                     change={(element)=> this.updateForm(element)}/>
+                                    formData={this.state.formData.tag}
+                                    change={(element)=> this.updateForm(element)}/>
                             </Fade>
                         </div>
                         <Divider orientation="vertical" flexItem />

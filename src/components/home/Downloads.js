@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
+import Layout from "../../hoc/Layout";
 
 class Downloads extends Component {
     render() {
         return (
-            <div>
+            <Layout>
                 i am download
-            </div>
+            </Layout>
         );
     }
 }

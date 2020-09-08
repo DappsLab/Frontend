@@ -4,6 +4,8 @@ import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 
+
+
 const acceptedFileTypes = 'image/x-png, image/png, image/jpg, image/jpeg'
 const acceptedFileTypesArray = acceptedFileTypes.split(",").map((item) => {return item.trim()})
 const fileInputRef = React.createRef()
@@ -117,7 +119,7 @@ export const FormField =({id,formData,change})=>{
 }
 export const CheckBox=({check,name,change,index})=>{
     const renderTemplate = () => {
-        let formTemplate=null;
+        let formTemplate;
         formTemplate=(
             <FormGroup row>
                 <FormControlLabel
@@ -172,3 +174,21 @@ export const UploadFile=({formData,updateimage})=>{
     };
     return(renderTemplate())
 };
+export const IconInput= ({id, formData,icon, change})=>{
+    let formTemplate;
+    const renderTemplate=()=> {
+        formTemplate =(
+            <div className={"flex icon_field"}>
+                {icon}
+                <input
+                    {...formData.config}
+                    value={formData.value}
+                    onChange={(event) => change({event, id})}
+                />
+            </div>
+        );
+        return formTemplate;
+    }
+    return(renderTemplate())
+}
+

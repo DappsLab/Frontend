@@ -62,10 +62,6 @@
     justify-content: space-between; }
     .general_data .left .general_password p {
       margin-right: 85px; }
-    .general_data .left .general_password a {
-      background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; }
   .general_data .left .delete_btn, .general_data .left .general_email {
     justify-content: space-between; }
   .general_data .left .loginbtn {
@@ -73,5 +69,10 @@
     font-weight: bold;
     margin: 0;
     padding: 7px 30px; }
+
+.login_top a, .general_password a, .forget_password a {
+  background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; }
 
 /*# sourceMappingURL=general_setting.css.map */

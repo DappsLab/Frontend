@@ -1,6 +1,7 @@
 import "../assets/scss/upload_smart_contract.css"
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
+import Layout from "./Layout";
 
 
 class UploadLayout extends Component{
@@ -28,15 +29,17 @@ class UploadLayout extends Component{
     )
     render() {
         return (
-            <div className={"upload_bg"}>
-                <section className={"indexContainer fullWidth"}>
-                    <h2><span>Publish new  Smart Contract</span></h2>
-                    <nav className={"flex uploadNav"}>
-                        {this.renderNav()}
-                    </nav>
-                </section>
-                {this.props.children}
-            </div>
+            <Layout>
+                <div className={"upload_bg"}>
+                    <section className={"indexContainer"}>
+                        <h2><span>Publish new  Smart Contract</span></h2>
+                        <nav className={"flex uploadNav"}>
+                            {this.renderNav()}
+                        </nav>
+                    </section>
+                    {this.props.children}
+                </div>
+            </Layout>
         );
     }
 };

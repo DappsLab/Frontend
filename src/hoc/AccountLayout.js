@@ -2,6 +2,7 @@ import React from 'react';
 import AccountNav from "../components/user/myAccount/AccountNav";
 import "../assets/scss/upload_smart_contract.css"
 import "../assets/scss/account_layout.css"
+import Layout from "./Layout";
 
 const AccountLayout = (props) => {
     const  renderBanner=()=>(
@@ -11,7 +12,7 @@ const AccountLayout = (props) => {
         </section>
     )
     return (
-        <section>
+        <Layout>
             {renderBanner()}
             <div className={"account_container flex"}>
                 <div className={"account_nav"}>
@@ -21,7 +22,7 @@ const AccountLayout = (props) => {
                     {props.children}
                 </div>
             </div>
-        </section>
+        </Layout>
     );
 };
 

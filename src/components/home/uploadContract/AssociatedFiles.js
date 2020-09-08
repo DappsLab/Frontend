@@ -5,6 +5,7 @@ import {Divider} from "@material-ui/core";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 
+
 class  AssociatedFiles extends Component{
     state={
         show:false,
@@ -50,6 +51,6 @@ class  AssociatedFiles extends Component{
             </UploadLayout>
         );
     }
-};
+}
 
 export default AssociatedFiles;

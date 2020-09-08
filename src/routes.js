@@ -1,6 +1,5 @@
 import React from 'react';
-import {Route} from "react-router-dom";
-import Layout from "./hoc/Layout";
+import {Route, Switch} from "react-router-dom";
 import Home from "./components/home/Home";
 import AboutUs from "./components/home/AboutUs";
 import BlockExplorer from "./components/home/Block_Explorer";
@@ -19,33 +18,38 @@ import TwoFA from "./components/user/myAccount/TwoFA";
 import GeneralInfo from "./components/home/uploadContract/GeneralInfo";
 import AssociatedFiles from "./components/home/uploadContract/AssociatedFiles";
 import ChangePassword from "./components/user/myAccount/ChangePassword";
+import Logout from "./components/user/myAccount/Logout";
 
 
 
-const Routes = (props) => {
-    return (
-        <Layout {...props}>
-            <Route {...props} path={"/account/profile/changr_password"} exact component={ChangePassword}/>
-            <Route {...props} path={"/account/profile/2fa"} exact component={TwoFA}/>
-            <Route {...props} path={"/account/profile/transactions"} exact component={Transactions}/>
-            <Route {...props} path={"/account/profile/wallet"} exact component={WithdrawDeposite}/>
-            <Route {...props} path={"/account/profile"} exact component={GeneralSetting}/>
+class Routes extends React.Component{
 
-            <Route {...props} path={"/upload_samrt_contract/general_info"} exact component={GeneralInfo}/>
-            <Route {...props} path={"/upload_samrt_contract/associated_files"} exact component={AssociatedFiles}/>
-            <Route {...props} path={"/detailed_contract/:id"} exact component={DetailedContract}/>
-            <Route {...props} path={"/search_result"} exact component={SearchResult}/>
-            <Route {...props} path={"/register"} exact component={Register}/>
-            <Route {...props} path={"/login"} exact component={Login}/>
-            <Route {...props} path={"/smart_contracts"} exact component={Smart_Contracts}/>
-            <Route {...props} path={"/help"} exact component={Help}/>
-            <Route {...props} path={"/downloads"} exact component={Downloads}/>
-            <Route {...props} path={"/dapps"} exact component={Dapps}/>
-            <Route {...props} path={"/block_explorer"} exact component={BlockExplorer}/>
-            <Route {...props} path={"/about_us"} exact component={AboutUs}/>
-            <Route {...props} path={"/"} exact component={Home}/>
-        </Layout>
-    );
+   render() {
+       return (
+           <Switch >
+               <Route  path={"/account/profile/changr_password"} exact component={ChangePassword}/>
+               <Route  path={"/account/profile/2fa"} exact component={TwoFA}/>
+               <Route  path={"/account/profile/transactions"} exact component={Transactions}/>
+               <Route  path={"/account/profile/wallet"} exact component={WithdrawDeposite}/>
+               <Route  path={"/account/profile"} exact component={GeneralSetting}/>
+
+               <Route  path={"/logout"} exact component={Logout}/>
+               <Route  path={"/upload_samrt_contract/general_info"} exact component={GeneralInfo}/>
+               <Route  path={"/upload_samrt_contract/associated_files"} exact component={AssociatedFiles}/>
+               <Route  path={"/detailed_contract/:id"} exact component={DetailedContract}/>
+               <Route  path={"/search_result"} exact component={SearchResult}/>
+               <Route  path={"/register"} exact component={Register}/>
+               <Route  path={"/login"} exact component={Login}/>
+               <Route  path={"/smart_contracts"} exact component={Smart_Contracts}/>
+               <Route  path={"/help"} exact component={Help}/>
+               <Route  path={"/downloads"} exact component={Downloads}/>
+               <Route  path={"/dapps"} exact component={Dapps}/>
+               <Route  path={"/block_explorer"} exact component={BlockExplorer}/>
+               <Route  path={"/about_us"} exact component={AboutUs}/>
+               <Route  path={"/"} exact component={Home}/>
+           </Switch>
+       );
+   }
 };
 
 export default Routes;

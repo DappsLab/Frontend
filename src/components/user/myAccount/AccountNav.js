@@ -12,7 +12,7 @@ class AccountNav extends Component {
             {icon:faBalanceScale,title:'Deposit & Withdraw',subtitle:"Withdraw or deposit balance from/to your account",linkTo:'/account/profile/wallet'},
             {icon:faExchangeAlt,title:'Transaction',subtitle:"View your transaction history",linkTo:'/account/profile/transactions'},
             {icon:faLock,title:'2AF',subtitle:"Enable your 2-Factor Authentication.",linkTo:'/account/profile/2fa'},
-            {icon:faSignOutAlt,title:'Layout',subtitle:"Sign Out",linkTo:'/'}
+            {icon:faSignOutAlt,title:'Layout',subtitle:"Sign Out",linkTo:'/logout'}
         ];
         const style={
             fontWeight: '300',

@@ -10,6 +10,7 @@ import CustomizedDialogs from "../../ui/DialogBox";
 import 'react-image-crop/dist/ReactCrop.css';
 import {Validation} from "../../ui/mise";
 
+
 class GeneralSetting extends Component {
     state={
         imageSrc:null,
@@ -183,12 +184,12 @@ class GeneralSetting extends Component {
                             crop={this.state.crop}
                             imageData={this.state.imageData}
                             src={this.state.imageSrc}
-                            onImageLoad={(image)=>this.onImageLoad(image)}
-                            onCropChange={(crop)=>this.onCropChange(crop)}
-                            onCropComplete={(crop,pixelCrop)=>this.onCropComplete(crop,pixelCrop)}
-                            handleSave={()=>this.handleSave()}
+                            onImageLoad={(image) => this.onImageLoad(image)}
+                            onCropChange={(crop) => this.onCropChange(crop)}
+                            onCropComplete={(crop, pixelCrop) => this.onCropComplete(crop, pixelCrop)}
+                            handleSave={() => this.handleSave()}
                         />
-                        : null
+                    : null
                 }
                 <div className={"general_setting"}>
                     <h2>General Info</h2>
@@ -227,8 +228,8 @@ class GeneralSetting extends Component {
                             <DropDown check={false}
                                  removeImage={()=>this.removeImage()}
                                  fileUpload={<UploadFile
-                                    formData={this.state.formData.upload_picture}
-                                    updateimage={(path)=>this.updateImage(path)}
+                                     formData={this.state.formData.upload_picture}
+                                     updateimage={(path)=>this.updateImage(path)}
                                  />}
                             />
                         </div>

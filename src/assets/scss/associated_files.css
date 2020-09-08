@@ -22,9 +22,6 @@
 
 .files_ready {
   flex-direction: column; }
-  .files_ready .radioBox {
-    flex-direction: column;
-    align-items: flex-start; }
   .files_ready h3 {
     text-align: center;
     font-size: 30px;
@@ -32,7 +29,12 @@
   .files_ready p {
     text-align: center;
     margin-top: 10px; }
-  .files_ready .radioInput p {
-    margin-top: 0; }
+
+.radioBox {
+  flex-direction: column;
+  align-items: flex-start; }
+
+.radioInput p {
+  margin-top: 0; }
 
 /*# sourceMappingURL=associated_files.css.map */

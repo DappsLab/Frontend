@@ -4,11 +4,12 @@ import "../../../assets/scss/SmartContracts.css"
 import "../../../assets/scss/app.css"
 import Search from "../search/Search";
 import {PeoplesImg} from "../../ui/Icons";
+import Layout from "../../../hoc/Layout";
 
 class Smart_Contracts extends Component {
     render() {
         return (
-            <div>
+            <Layout>
                 <section className="section1">
                     <div className="titleContainer">
                         <PeoplesImg className="peoplesImg"/>
@@ -24,7 +25,7 @@ class Smart_Contracts extends Component {
                     </aside>
                 </section>
 
-            </div>
+            </Layout>
         );
     }
 }

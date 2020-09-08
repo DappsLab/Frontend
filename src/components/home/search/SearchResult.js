@@ -6,6 +6,7 @@ import {Validation} from "../../ui/mise";
 import {Button} from "@material-ui/core";
 import CustomizedSlider from "../../ui/slider";
 import handleChnage from "../../ui/slider"
+import Layout from "../../../hoc/Layout";
 export default  class SearchResult extends React.Component{
      state={
          sliderMinValue:"",
@@ -102,42 +103,45 @@ export default  class SearchResult extends React.Component{
                 message: validationData[1],
                 formData: newFormData
             })
-    }
+        console.log(this.state.formData)
+     }
     onSubmit=()=>{
          this.setState({close:true})
          console.log("good")
     }
      render() {
          return (
-             <div className={"container flex sr_container"}>
-                 <FilterDrawer
-                     select={
-                         <FormField id={'sort'}
-                         formData={this.state.formData.sort}
-                         change={(element)=> this.updateForm(element)}/>
-                     }
-                     input={
-                         <FormField id={'terms'}
-                         formData={this.state.formData.terms}
-                         change={(element)=> this.updateForm(element)}/>
-                     }
-                    checkbox={this.renderCheckbox()}
-                     tagInput={
-                         <FormField id={'tags'}
-                         formData={this.state.formData.tags}
-                         change={(element)=> this.updateForm(element)}/>
-                     }
-                     slider={<CustomizedSlider
-                         newValue={this.state.newValue}
-                         changeSlider={(event,value)=> this.setSliderValues(event,value)}
-                     />}
-                     button={<Button className={"drawerbtn"} onClick={this.onSubmit}>Apply</Button>}
-                 />
-                 {console.log(handleChnage)}
-                 <div className={"searchRight"}>
-                     No result
+             <Layout>
+                 <div className={"container flex sr_container"}>
+                     <FilterDrawer
+                         select={
+                             <FormField id={'sort'}
+                             formData={this.state.formData.sort}
+                             change={(element)=> this.updateForm(element)}/>
+                         }
+                         input={
+                             <FormField id={'terms'}
+                             formData={this.state.formData.terms}
+                             change={(element)=> this.updateForm(element)}/>
+                         }
+                        checkbox={this.renderCheckbox()}
+                         tagInput={
+                             <FormField id={'tags'}
+                             formData={this.state.formData.tags}
+                             change={(element)=> this.updateForm(element)}/>
+                         }
+                         slider={<CustomizedSlider
+                             newValue={this.state.newValue}
+                             changeSlider={(event,value)=> this.setSliderValues(event,value)}
+                         />}
+                         button={<Button className={"drawerbtn"} onClick={this.onSubmit}>Apply</Button>}
+                     />
+                     {console.log(handleChnage)}
+                     <div className={"searchRight"}>
+                         No result
+                     </div>
                  </div>
-             </div>
+             </Layout>
          );
      }
 }

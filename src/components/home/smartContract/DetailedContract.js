@@ -7,6 +7,7 @@ import RadioButtons from "../../ui/RadioButton";
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
 import {FormField} from "../../ui/FormFields";
+import Layout from "../../../hoc/Layout";
 
 
 
@@ -62,40 +63,42 @@ class  DetailedContract extends Component{
     )
     render() {
         return (
-            <div className={"contractContainer flex"}>
-                <Fade top delay={300}>
-                    <div className={"contractLeft"}>
+            <Layout>
+                <div className={"contractContainer flex"}>
+                    <Fade top delay={300}>
+                        <div className={"contractLeft"}>
 
-                    </div>
-                </Fade>
-                <Fade top delay={300}>
-                    <div className={"contractRight"}>
-                        <h3 className={"buy-top"}><span>Buy</span></h3>
-                        <div className={"flex"}><FontAwesomeIcon className={"checkCircle"} icon={faCheckCircle}/>
-                            <p>Reviewed by Dappslab</p></div>
-                        <h4>Price</h4>
-                        <div>
-                            <RadioButtons
-                                value={this.state.radioValue}
-                                change={(event)=> this.handleChange(event)}
-                                input={
-                                    <FormField id={'oneDeployment'}
-                                         formData={this.state.formData.oneDeployment}
-                                         change={(element)=> this.updateForm(element)}/>
-                                }
-                                input2={
-                                    <FormField id={'unlimited'}
-                                        formData={this.state.formData.unlimited}
-                                       change={(element)=> this.updateForm(element)}/>
-                                }
-                            />
                         </div>
-                        <div className={"btnGroups flex"}>
-                            {this.renderButton()}
+                    </Fade>
+                    <Fade top delay={300}>
+                        <div className={"contractRight"}>
+                            <h3 className={"buy-top"}><span>Buy</span></h3>
+                            <div className={"flex"}><FontAwesomeIcon className={"checkCircle"} icon={faCheckCircle}/>
+                                <p>Reviewed by Dappslab</p></div>
+                            <h4>Price</h4>
+                            <div>
+                                <RadioButtons
+                                    value={this.state.radioValue}
+                                    change={(event)=> this.handleChange(event)}
+                                    input={
+                                        <FormField id={'oneDeployment'}
+                                             formData={this.state.formData.oneDeployment}
+                                             change={(element)=> this.updateForm(element)}/>
+                                    }
+                                    input2={
+                                        <FormField id={'unlimited'}
+                                            formData={this.state.formData.unlimited}
+                                           change={(element)=> this.updateForm(element)}/>
+                                    }
+                                />
+                            </div>
+                            <div className={"btnGroups flex"}>
+                                {this.renderButton()}
+                            </div>
                         </div>
-                    </div>
-                </Fade>
-            </div>
+                    </Fade>
+                </div>
+            </Layout>
         );
     }
 }

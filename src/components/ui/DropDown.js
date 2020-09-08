@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -40,7 +39,6 @@ export const DropDown =({check,fileUpload,removeImage})=> {
         if (anchorRef.current && anchorRef.current.contains(event.target)) {
             return;
         }
-
         setOpen(false);
     };
     const handleInput=(event)=> {
@@ -57,10 +55,9 @@ export const DropDown =({check,fileUpload,removeImage})=> {
         }
     }
 
-    const prevOpen = React.useRef(open);
     const links=[
         {title:"My Account",linkTo:"/account/profile"},
-        {title:"Logout",linkTo:"logout"}
+        {title:"Logout",linkTo:"/logout"}
     ]
     const renderItem=()=>(
         links.map(link=>(
@@ -69,12 +66,6 @@ export const DropDown =({check,fileUpload,removeImage})=> {
             </Link>
         ))
     )
-    React.useEffect(() => {
-        if (prevOpen.current === true && open === false) {
-            anchorRef.current.focus();
-        }
-        prevOpen.current = open;
-    }, [open]);
     return (
         <div className={classes.root}>
             {fileUpload}
@@ -99,11 +90,6 @@ export const DropDown =({check,fileUpload,removeImage})=> {
                 </Button>
             }
             <Popper className={"dropdown"} open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-                {({ TransitionProps, placement }) => (
-                    <Grow
-                        {...TransitionProps}
-                        style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-                    >
                         {check?
                             <Paper>
                                 <div className={"user_logged"}>
@@ -131,8 +117,6 @@ export const DropDown =({check,fileUpload,removeImage})=> {
                                 </ClickAwayListener>
                             </Paper>
                         }
-                    </Grow>
-                )}
             </Popper>
         </div>
     );

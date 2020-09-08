@@ -1,13 +1,14 @@
 import React from 'react';
 import ContractCard from "./smartContract/ContractCard";
 import UploadSmartContract from "./uploadContract/UploadSmartContract";
+import Layout from "../../hoc/Layout";
 
 const Home = () => {
     return (
-        <div>
+        <Layout>
             <ContractCard/>
             <UploadSmartContract/>
-        </div>
+        </Layout>
     );
 };
 
