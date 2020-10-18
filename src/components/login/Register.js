@@ -1,88 +1,87 @@
 import React, {Component} from 'react';
-import Paper from "@material-ui/core/Paper";
-import {LoginTop, Validation} from "../ui/mise";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faUser } from '@fortawesome/free-solid-svg-icons'
+import {LoginTop,isFormValid} from "../ui/mise";
 import "../../assets/scss/register.css"
-import {IconInput} from "../ui/FormFields";
-import {Lock, MailOutline} from "@material-ui/icons";
-import {Button} from "@material-ui/core";
+import { Grid, Form, Segment, Button } from 'semantic-ui-react';
 import Checkbox from "@material-ui/core/Checkbox";
 import Layout from "../../hoc/Layout";
+import {graphql} from "react-apollo";
+import {flowRight as compose} from 'lodash';
+import {createNewUser,getUsersData} from '../../queries/queries'
+import Spinner from "../ui/Spinner";
 
 
+const usernameRegex=RegExp(/^[a-zA-Z0-9]*$/);
+const alphabetRegex=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
+const emailRegex=RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 class Register extends Component {
-    state={
-        box1:null,
-        logged:true,
-        formData:{
-            username:{
-                element:'input',
-                value:'',
-                config:{
-                    name:'full_name',
-                    type:'text',
-                    placeholder:'Full Name'
-                },
-                validation:{
-                    name:true,
-                    required:true,
-                    email:false
-                },
-                showLabel:false,
-                valid:false,
-                validationMessage:''
-            },
-            email:{
-                element:'input',
-                value:'',
-                config:{
-                    name:'search_input',
-                    type:'email',
-                    placeholder:'Email adderss'
-                },
-                validation:{
-                    required:true,
-                    email:true
-                },
-                showLabel:false,
-                valid:false,
-                validationMessage:''
-            },
-            password: {
-                element: 'input',
-                value: '',
-                config: {
-                    name: 'tags',
-                    type: 'password',
-                    placeholder:'Password'
-                },
-                validation: {
-                    required:true,
-                    email:false
-                },
-                showLabel:false,
-                valid:false,
-                validationMessage:''
-            },
-            re_password: {
-                element: 'input',
-                value: '',
-                config: {
-                    name: 'tags',
-                    type: 'password',
-                    placeholder:'Confirm Password'
-                },
-                validation: {
-                    required:true,
-                    email:false
-                },
-                showLabel:false,
-                valid:false,
-                validationMessage:''
-            }
+    state = {
+        fullName: "",
+        email: "",
+        password: "",
+        passwordConfirmation: "",
+        username:"",
+        checkBox:"",
+        formErrors:{
+            fullName: "",
+            email: "",
+            password: "",
+            username:"",
+            passwordConfirmation:"",
+            check1:"",
+            check2:"",
+            check3:""
+
         }
-    }
+    };
+    handleChange = event => {
+        const {name,value}=event.target;
+        let formErrors=this.state.formErrors;
+        switch (name){
+            case 'fullName':
+                formErrors.fullName= alphabetRegex.test(value)
+                    ? ""
+                    :"Only Alphabet Allowed";
+                break;
+            case 'username':
+                formErrors.username= usernameRegex.test(value)
+                    ? ""
+                    :"Only Alphabet and Integer Allowed";
+                break;
+            case 'email':
+                if (emailRegex.test(value)){
+                    formErrors.email="";
+                    let Users=this.props.getUsersData.users;
+                    for (let i = 0; i < Users.length; i++) {
+                        if (Users[i]['email'] === value ) {
+                            formErrors.email="Email already exist";
+                            break;
+                        }
+                    }
+                }else{
+                formErrors.email="Invalid email address";
+                }
+                break;
+            case 'password':
+                formErrors.password=value.length<5
+                    ? "Minimum 5 characaters required"
+                    :"";
+                break;
+            case 'passwordConfirmation':
+                if (value.length<5){
+                    formErrors.passwordConfirmation="Minimum 5 characaters required"
+                }else {
+                    if (value!==this.state.password) {
+                        formErrors.passwordConfirmation = "Password not match";
+                    }else {
+                        formErrors.passwordConfirmation="";
+                    }
+                }
+                break;
+            default:
+               break;
+        }
+        this.setState({formErrors,[name]:value},()=>{});
+    };
     checkboxList=[
         {value:1,hint:"I agree with DappsLab term and condition"},
         {value:2,hint:"I agree with DappsLab Privacy Policy"},
@@ -100,101 +99,164 @@ class Register extends Component {
                     />
                     <p>{list.hint}</p>
                 </div>
-                {this.state.box1===false&&list.value===1?
-                    <span>it should be checked</span>
-                    :
-                    null
-
-                }
             </div>
         ))
-    )
-    submitForm=(event)=> {
-        if (this.state.box1) {
-            event.preventDefault();
-            let dataToSubmit = {};
-            let formIsValid = true;
-            for (let key in this.state.formData) {
-                dataToSubmit[key] = this.state.formData[key].value;
-                formIsValid = this.state.formData[key].valid && formIsValid;
-            }
-            if (formIsValid) {
-                this.setState({logged: true})
-                this.props.history.push('/login', this.state.logged)
+    );
+    isValidCheckbox=(checkbox)=>{
+        return checkbox.check1 === true && checkbox.check2 === true && checkbox.check3 === true;
+    };
+    handleSubmit = (event) => {
+        event.preventDefault();
+        if (this.isValidCheckbox(this.state.formErrors)) {
+            if (isFormValid(this.state)) {
+                console.log("added");
+                const {fullName,email,username,password}=this.state;
+                this.props.createNewUser({
+                    variables:{
+                        fullName: fullName.toString(),
+                        userName: username.toString(),
+                        email: email.toString(),
+                        password: password.toString()
+                    }
+                });
+            } else {
+                this.handleError(this.state);
             }
         }else {
-           this.setState({box1:false})
+            if (!isFormValid(this.state)) {
+                this.handleError(this.state);
+                this.setState({checkBox:"Check all Fileds"});
+            }else {
+                this.setState({checkBox:"Check all Fileds"});
+            }
         }
-    }
-    updateForm=(element)=>{
-        const newFormData = {...this.state.formData};
-        const newElement = {...newFormData[element.id]};
-        newElement.value = element.event.target.value;
-
-        let validationData= Validation(newElement);
-        newElement.valid = validationData[0];
-        newElement.validationMessage= validationData[1];
-        console.log(newElement.valid)
-        newFormData[element.id] = newElement;
-        this.setState({
-            formError:false,
-            formData:newFormData
-        })
+    };
+    handleError=(values)=>{
+        let error=values.formErrors;
+        console.log(error)
+        if (values.fullName===""){
+            error.fullName = "Required Field";
+        }
+        if (values.email===""){
+            error.email = "Required Field";
+        }
+        if (values.username===""){
+            error.username = "Required Field";
+        }
+        if (values.passwordConfirmation===""){
+            error.passwordConfirmation = "Required Field";
+        }
+        if (values.password===""){
+            error.password = "Required Field";
+        }
+        this.setState({formErrors: error});
     }
     onCheckboxChange=(event)=>{
-        if (event.target.value===1){
-            this.setState({box1:event.target.checked})
+        const {checked,value}=event.target;
+        let formErrors=this.state.formErrors;
+        switch (value){
+            case '1':
+                formErrors.check1=checked;
+                break;
+            case '2':
+                formErrors.check2=checked;
+                break;
+            case '3':
+                formErrors.check3=checked;
+                break;
+            default:
+            break;
         }
-        console.log(event.target.value)
+        this.setState({formErrors},()=>{ });
     }
     render() {
-        return (
+        console.log(this.props)
+        const { fullName,username, email, password, passwordConfirmation,checkBox ,formErrors} = this.state;
+        return  this.props.data.loading? <Spinner/>:(
             <Layout>
-                <div className={"login-bg fullWidth flex"}>
-                    <Paper elevation={3} className={"login_wrapper register_wrapper"}>
-                        <form  onSubmit={(event)=> this.submitForm(event)}>
+                <Grid textAlign="center"  verticalAlign='middle' className="register-bg">
+                    <Grid.Column style={{maxWidth:700}}>
+                        <Form   onSubmit={ this.handleSubmit}>
+                            <Segment piled>
                             <LoginTop
                                 heading={"Register"}
                                 paragraph={"Create your new account"}
                                 link={"Already have an account"}
                                 linkto={"/login"}
                             />
-                            <IconInput
-                                icon={<FontAwesomeIcon icon={faUser}/>}
-                                id={'username'}
-                                formData={this.state.formData.username}
-                                change={(element)=> this.updateForm(element)}
+                            <Form.Input
+                                fluid value={fullName} name="fullName"
+                                icon="user" iconPosition="left" type="text"
+                                placeholder="Full Name" onChange={this.handleChange}
+                                className={formErrors.fullName.length>0?"error":""}
                             />
-                            <IconInput
-                                icon={<MailOutline/>}
-                                id={'email'}
-                                formData={this.state.formData.email}
-                                change={(element)=> this.updateForm(element)}
-                            />
-                            <div className={"register_pass flex"}>
-                                <IconInput
-                                    icon={<Lock/>}
-                                    id={'password'}
-                                    formData={this.state.formData.password}
-                                    change={(element)=> this.updateForm(element)}
+                                {formErrors.fullName.length>0&&(
+                                    <span className={"errorMessage"}>{formErrors.fullName}</span>
+                                )}
+                            < Form.Input
+                                fluid value={email}
+                                name="email" icon="mail" iconPosition="left"
+                                type="email" placeholder="Email" onChange={this.handleChange}
+                                className={formErrors.email.length>0?"error":""}
                                 />
-                                <IconInput
-                                    icon={<Lock/>}
-                                    id={'re_password'}
-                                    formData={this.state.formData.re_password}
-                                    change={(element)=> this.updateForm(element)}
+                                {formErrors.email.length>0&&(
+                                    <span className={"errorMessage"}>{formErrors.email}</span>
+                                )}
+                                <Form.Input
+                                    autoComplete="new-password"
+                                    fluid value={username} name="username"
+                                    icon="user" iconPosition="left" type="text"
+                                    placeholder="Username" onChange={this.handleChange}
+                                    className={formErrors.username.length>0?"error":""}
                                 />
-                            </div>
+                                {formErrors.username.length>0&&(
+                                    <span className={"errorMessage"}>{formErrors.username}</span>
+                                )}
+                            <Form.Group widths={'equal'}>
+                                < Form.Input
+                                    fluid value={password}
+                                    name="password" icon="lock" iconPosition="left"
+                                    type="Password" placeholder="Password"
+                                    onChange={this.handleChange}
+                                    className={formErrors.password.length>0?"error":""}
+                                />
+                                < Form.Input
+                                    fluid value={passwordConfirmation}
+                                    name="passwordConfirmation" icon="repeat"
+                                    iconPosition="left" type="Password"
+                                    placeholder="Password confirmation"
+                                    onChange={this.handleChange}
+                                    className={formErrors.passwordConfirmation.length>0?"error":""}
+                                />
+                            </Form.Group>
+                                <div className={"flex errorBox"}>
+                                    {formErrors.password.length>0&&(
+                                        <span className={"errorMessage"}>{formErrors.password}</span>
+                                    )}
+                                    {formErrors.passwordConfirmation.length>0&&(
+                                        <span className={"errorMessage"}>{formErrors.passwordConfirmation}</span>
+                                    )}
+                                </div>
                             <div className={"checkboxs"}>
                                 {this.renderCheckBox()}
+                                {formErrors.check1&&formErrors.check2&&formErrors.check3?
+                                   ""
+                                    : <span className={"errorMessage"}>{checkBox}</span>
+                                }
                             </div>
-                            <Button onClick={(event)=> this.submitForm(event)}>Register</Button>
-                        </form>
-                    </Paper>
-                </div>
+                            <Button
+                                disabled={!(formErrors.fullName.length === 0 && formErrors.email.length === 0 && formErrors.password.length === 0 && formErrors.passwordConfirmation.length === 0)}
+                                fluid size="large">Register</Button>
+                            </Segment>
+                        </Form>
+                    </Grid.Column>
+                </Grid>
             </Layout>
         );
     }
 }
 
-export default Register;
+export default compose(
+    graphql(getUsersData,{name:"getUsersData"}),
+    graphql(createNewUser,{name:"createNewUser"})
+)(Register);

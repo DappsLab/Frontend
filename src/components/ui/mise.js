@@ -22,7 +22,6 @@ export const Validation =(element)=>{
     let error = [true,''];
     if(element.validation.email){
         const valid = /\S+@\S+\.\S+/.test(element.value);
-
         const message = `${valid ? '' : 'Must be valid email'}`;
         error = valid ? error: [valid,message]
     }
@@ -40,3 +39,10 @@ export const Validation =(element)=>{
     return error;
 };
 
+export const  isFormValid=values=>{
+    let valid=true;
+   if (values.fullName===""||values.email===""||values.password===""||values.passwordConfirmation===""){
+       valid=false;
+   }
+    return valid;
+}

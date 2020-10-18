@@ -93,6 +93,6 @@
     }
   }
 }
-.login_top a,.general_password a,.forget_password a{
+.login-bg a,.register-bg a,.general_password a,.forget_password a{
   @include default-link();
 }

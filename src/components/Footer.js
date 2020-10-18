@@ -59,7 +59,7 @@ const Footer = () => {
                 </div>
                 <section className="info">
                     <p className="page-footer__copyright">© DappsLab2020</p>
-                    <p>Designed by <a>Qasim Raheem Khokhar</a></p>
+                    <p>Designed by <a href="#/">DappsLab team</a></p>
                 </section>
             </aside>
             <aside>

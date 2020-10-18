@@ -1,63 +1,53 @@
 @import "colors";
 
-.login_wrapper {
-  padding: 30px;
-  width: 40%;
-  text-align: center;
-  background-color: $background-color!important;
-  .login_top{
-    margin: 20px auto 30px auto;
-    justify-content: space-between;
-    width: 70%;
-    .login_left{
-      text-align: left;
+.login-bg,.register-bg {
+  background: url("../images/register-bg.jpg");
+  background-size: 100% 100%;
+  height: auto;
+  margin: 0 !important;
+
+  Form {
+    p {
+      margin: 10px 0 20px 0;
+      font-size: 14px;
     }
-  }
-  form {
-    Button {
-      width: 70%;
+
+    .ui.fluid.button {
       height: 45px;
       @include default-primary();
       color: $paper-color;
       font-weight: bold;
+      margin: 0 !important;
     }
-    .forget_password{
-      margin: 10px 0 20px 0;
-      font-size: 14px;
+
+    .ui.segment {
+      padding: 50px !important;
+    }
+
+    .ui.input {
+      font-size: 16px;
+      border-bottom-right-radius: 5px;
+      border-top-right-radius: 5px;
+      border: none;
     }
   }
-}
-.login-bg{
-  background: url("../images/register-bg.jpg");
-  background-size: 100% 100%;
-  justify-content: center;
-  padding: 60px 0;
-}
-.icon_field{
-  height: 45px;
-  margin: 0 auto 25px auto;
-  background-color: $paper-color;
-  border-bottom: 1px solid $background-dark;
-  width: 70%;
-  padding: 0 0 0 10px;
-  border-radius: 5px;
-  input{
-    height: 100%;
+
+  .login_top {
+    margin-bottom: 20px;
+    justify-content: space-between;
     width: 100%;
-    font-size: 16px;
-    border-bottom-right-radius: 5px;
-    border-top-right-radius: 5px;
-    border: none;
-    margin-left: 15px;
-  }
-  input:focus{
-    border: none;
-    outline: none;
-  }
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
-  input:-webkit-autofill:active  {
-    -webkit-box-shadow: 0 0 0 30px $paper-color inset;
+
+    p {
+      margin: 0;
+    }
+
+    h2 {
+      margin-bottom: 0;
+    }
+
+    .login_left {
+      text-align: left;
+    }
   }
 }
+

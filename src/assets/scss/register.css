@@ -1,14 +1,10 @@
-.register_wrapper {
-  width: 60%; }
-  .register_wrapper .register_pass {
-    width: 70%;
-    margin: 0 auto;
-    justify-content: space-between; }
-    .register_wrapper .register_pass .icon_field {
-      width: 45%;
-      margin: 0 0 10px 0; }
-  .register_wrapper .checkboxs {
-    width: 70%;
-    margin: 10px auto; }
+.checkboxs {
+  margin: 10px auto; }
+
+.errorBox {
+  justify-content: space-around; }
+
+.register-bg Form p {
+  margin: 0 !important; }
 
 /*# sourceMappingURL=register.css.map */

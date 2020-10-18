@@ -1,116 +1,128 @@
 import React, {Component} from 'react';
 import '../../assets/scss/login.css'
 import {Link} from "react-router-dom";
-import {IconInput} from "../ui/FormFields";
-import Paper from "@material-ui/core/Paper";
-import {Lock, MailOutline} from "@material-ui/icons";
-import {Validation} from "../ui/mise";
-import {Button} from "@material-ui/core";
+import {Grid, Form, Segment, Button, Message} from 'semantic-ui-react';
 import {LoginTop} from "../ui/mise";
-import {connect} from "react-redux"
+import {connect} from "react-redux";
 import {setUser} from "../../actions/Actions";
 import Layout from "../../hoc/Layout";
+import {graphql} from "react-apollo";
+import {getUsersData} from '../../queries/queries';
+import Spinner from "../ui/Spinner";
 
+const usernameRegex=RegExp(/^[a-zA-Z0-9]*$/);
 class Login extends Component {
     state={
-        logged:true,
-        formData:{
-            email:{
-                element:'input',
-                value:'',
-                config:{
-                    name:'search_input',
-                    type:'email',
-                    placeholder:'Email adderss'
-                },
-                validation:{
-                    required:true,
-                    email:true
-                },
-                showLabel:false,
-                valid:false,
-                validationMessage:''
-            },
-            password: {
-                element: 'input',
-                value: '',
-                config: {
-                    name: 'tags',
-                    type: 'password',
-                    placeholder:'Password'
-                },
-                validation: {
-                    required:true,
-                    email:true
-                },
-                showLabel:false,
-                valid:false,
-                validationMessage:''
+        userName: "",
+        password: "",
+        error:false,
+        formErrors: {
+            userName: "",
+            password: "",
+        }
+    }
+    handleChange = event => {
+        const {name,value}=event.target;
+        let formErrors=this.state.formErrors;
+        switch (name) {
+            case 'password':
+                formErrors.password =value.length<5 &&value.length>0
+                    ? "Password too Short"
+                    : "";
+                break;
+            case 'userName':
+                formErrors.userName = usernameRegex.test(value)
+                    ? ""
+                    : "Only Alphabet and Integer Allowed";
+                break;
+            default:
+                break;
+        }
+        this.setState({formErrors,[name]:value},()=>{});
+    };
+    handleSubmit = (event) => {
+        event.preventDefault();
+        if (this.isFormValid(this.state)) {
+            this.setState({ errors: [] });
+            let Users=this.props.data.users;
+            for (let i = 0; i < Users.length; i++) {
+                if (Users[i]['userName'] === this.state.userName ) {
+                    if (Users[i]['password'] === this.state.password) {
+                        this.props.setUser();
+                        this.props.history.push('/')
+                    }else {
+                        console.log("password not match")
+                        console.log(Users[i]['password']);
+                        console.log(this.state.password);
+                        let formErrors=this.state.formErrors;
+                        formErrors.password="password not match";
+                        this.setState({error:false,formErrors});
+                    }
+                }else {
+                   this.setState({error:true});
+                }
             }
         }
-    }
-    submitForm=(event)=> {
-        event.preventDefault();
-        let dataToSubmit = {};
-        let formIsValid = true;
-        for (let key in this.state.formData) {
-            dataToSubmit[key] = this.state.formData[key].value;
-            // formIsValid = this.state.formData[key].valid && formIsValid;
-        }
-        if (formIsValid) {
-            this.props.setUser(dataToSubmit)
-            console.log(dataToSubmit)
-            this.props.history.push('/')
+    };
+    isFormValid = ({ userName, password }) =>{
+        if (userName.length!==0&&password.label!==0){
+            return true;
+        }else {
+            let error = this.state.formErrors;
+            if (userName === "") {error.userName = "Field Required";}
+            if (password === "") {error.password = "Field Required";}
+            this.setState({formErrors: error});
+            return false;
         }
     }
-    updateForm=(element)=>{
-        const newFormData = {...this.state.formData};
-        const newElement = {...newFormData[element.id]};
-        newElement.value = element.event.target.value;
 
-        let validationData= Validation(newElement);
-        newElement.valid = validationData[0];
-        newElement.validationMessage= validationData[1];
-
-
-        newFormData[element.id] = newElement;
-        this.setState({
-            formError:false,
-            formData:newFormData
-        })
-    }
     render() {
-        return (
+        const {  userName, password,formErrors ,error} = this.state;
+        return this.props.data.loading? <Spinner/>: (
             <Layout>
-                <div className={"login-bg fullWidth flex"}>
-                    <Paper elevation={3}  className={"login_wrapper"}>
-                        <form  onSubmit={(event)=> this.submitForm(event)}>
-                            <LoginTop
-                                heading={"Login"}
-                                paragraph={"Account login"}
-                                link={"Don't have an account"}
-                                linkto={"/register"}
-                            />
-                            <IconInput
-                                icon={<MailOutline/>}
-                                id={'email'}
-                                formData={this.state.formData.email}
-                                change={(element)=> this.updateForm(element)}
-                            />
-                            <IconInput
-                                icon={<Lock/>}
-                                id={'password'}
-                                formData={this.state.formData.password}
-                                change={(element)=> this.updateForm(element)}
-                            />
-                            <Button onClick={(event)=> this.submitForm(event)}>Login</Button>
-                           <p className={"forget_password"}> <Link to={"/forget_password"}>Click here</Link> if you forget your password</p>
-                        </form>
-                    </Paper>
-                </div>
+                <Grid textAlign="center"  verticalAlign='middle' className="login-bg">
+                    <Grid.Column style={{maxWidth:700}}>
+                        <Form  onSubmit={this.handleSubmit}>
+                            <Segment piled>
+                                <LoginTop
+                                    heading={"Login"}
+                                    paragraph={"Account login"}
+                                    link={"Don't have an account"}
+                                    linkto={"/register"}
+                                />
+                                <Form.Input
+                                    icon="user" iconPosition="left" value={userName}
+                                    name="userName" type="text"
+                                    placeholder="Usename" onChange={this.handleChange}
+                                    className={formErrors.userName.length>0?"error":""}
+                                />
+                                {formErrors.userName.length>0&&(
+                                    <span className={"errorMessage"}>{formErrors.userName}</span>
+                                )}
+                                <Form.Input
+                                    icon="lock" iconPosition="left" value={password}
+                                    name="password" type="password"
+                                    placeholder="Password" onChange={this.handleChange}
+                                    className={formErrors.password.length>0?"error":""}
+                                />
+                                {formErrors.password.length>0&&(
+                                    <span className={"errorMessage"}>{formErrors.password}</span>
+                                )}
+                                <Button fluid size="large">Login</Button>
+                                <p> <Link to={"/forget_password"}>Click here</Link> if you forget your password</p>
+                            </Segment>
+                        </Form>
+                        {error && (
+                            <Message error>
+                                <h3>User not found </h3>
+                            </Message>
+                        )}
+                    </Grid.Column>
+                </Grid>
             </Layout>
         );
     }
 }
 
-export default  connect(null, {setUser})(Login);
+const LoginComponent= graphql(getUsersData)(Login)
+export default  connect(null, {setUser})(LoginComponent);

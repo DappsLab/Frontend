@@ -1,5 +1,7 @@
 import React from 'react';
 import {Route, Switch} from "react-router-dom";
+
+//Routes Setup
 import Home from "./components/home/Home";
 import AboutUs from "./components/home/AboutUs";
 import BlockExplorer from "./components/home/Block_Explorer";
@@ -19,6 +21,7 @@ import GeneralInfo from "./components/home/uploadContract/GeneralInfo";
 import AssociatedFiles from "./components/home/uploadContract/AssociatedFiles";
 import ChangePassword from "./components/user/myAccount/ChangePassword";
 import Logout from "./components/user/myAccount/Logout";
+import ResetPassword from "./components/login/ResetPassword";
 
 
 
@@ -38,6 +41,7 @@ class Routes extends React.Component{
                <Route  path={"/upload_samrt_contract/associated_files"} exact component={AssociatedFiles}/>
                <Route  path={"/detailed_contract/:id"} exact component={DetailedContract}/>
                <Route  path={"/search_result"} exact component={SearchResult}/>
+               <Route  path={"/forget_password"} exact component={ResetPassword}/>
                <Route  path={"/register"} exact component={Register}/>
                <Route  path={"/login"} exact component={Login}/>
                <Route  path={"/smart_contracts"} exact component={Smart_Contracts}/>
@@ -50,6 +54,6 @@ class Routes extends React.Component{
            </Switch>
        );
    }
-};
+}
 
 export default Routes;

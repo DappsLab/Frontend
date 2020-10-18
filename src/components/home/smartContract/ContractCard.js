@@ -5,7 +5,7 @@ import ListItem from "@material-ui/core/ListItem";
 import {Link} from "react-router-dom";
 
 
-const ContractCard = () => {
+const ContractCard = (props) => {
     const [id] = useState("id");
     const tags=[{name:"Document"}, {name:"Text"}, {name:"Utility"}];
     const contractList=[
@@ -45,9 +45,10 @@ const ContractCard = () => {
     );
     return (
         <div className={"flex contract-container"}>
+
             {renderCards()}
         </div>
     );
 };
 
-export default ContractCard;
+export default  ContractCard;

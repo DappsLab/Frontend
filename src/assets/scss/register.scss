@@ -1,18 +1,10 @@
 @import "colors";
-
-.register_wrapper{
-  width: 60%;
-  .register_pass{
-    width: 70%;
-    margin: 0 auto;
-    justify-content: space-between;
-    .icon_field{
-      width: 45%;
-      margin: 0 0 10px 0;
-    }
-  }
   .checkboxs{
-    width: 70%;
     margin: 10px auto;
   }
+.errorBox{
+justify-content: space-around;
+}
+.register-bg Form p{
+  margin: 0 !important;
 }

@@ -28,6 +28,12 @@ a {
   text-decoration: none;
   color: inherit;
 }
+.errorMessage {
+  color: red;
+  font-size: 0.75em;
+  position: relative;
+  top: -13px;
+}
 .block{
   display: block;
 }

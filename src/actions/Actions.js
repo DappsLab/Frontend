@@ -1,11 +1,8 @@
 import * as actionTypes from "./Types";
 
-export const setUser = user => {
+export const setUser = () => {
     return {
         type: actionTypes.SET_USER,
-        payload: {
-            currentUser: user
-        }
     };
 };
 export const clearUser=()=>{

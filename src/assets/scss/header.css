@@ -19,12 +19,12 @@ header {
 header nav {
   color: #ffffff; }
 
-.loginbtn, .login_wrapper form Button {
+.loginbtn, .ui.fluid.button {
   height: 32px;
   margin: 0 5px !important;
   background: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%) !important;
   color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) !important; }
-  .loginbtn:hover, .login_wrapper form Button:hover {
+  .loginbtn:hover, .ui.fluid.button:hover {
     color: #ffffff;
     background: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) !important;
     Box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); }
