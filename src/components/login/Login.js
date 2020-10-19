@@ -6,9 +6,8 @@ import {LoginTop} from "../ui/mise";
 import {connect} from "react-redux";
 import {setUser} from "../../actions/Actions";
 import Layout from "../../hoc/Layout";
-import {graphql} from "react-apollo";
-import {getUsersData} from '../../queries/queries';
-import Spinner from "../ui/Spinner";
+import {graphql } from "react-apollo";
+import { loginUser} from '../../queries/queries';
 
 const usernameRegex=RegExp(/^[a-zA-Z0-9]*$/);
 class Login extends Component {
@@ -40,28 +39,36 @@ class Login extends Component {
         }
         this.setState({formErrors,[name]:value},()=>{});
     };
+
     handleSubmit = (event) => {
         event.preventDefault();
         if (this.isFormValid(this.state)) {
             this.setState({ errors: [] });
-            let Users=this.props.data.users;
-            for (let i = 0; i < Users.length; i++) {
-                if (Users[i]['userName'] === this.state.userName ) {
-                    if (Users[i]['password'] === this.state.password) {
-                        this.props.setUser();
-                        this.props.history.push('/')
-                    }else {
-                        console.log("password not match")
-                        console.log(Users[i]['password']);
-                        console.log(this.state.password);
-                        let formErrors=this.state.formErrors;
-                        formErrors.password="password not match";
-                        this.setState({error:false,formErrors});
-                    }
-                }else {
-                   this.setState({error:true});
+            const {username,password}=this.state;
+            this.props.loginUser({
+                variables:{
+                    userName: username,
+                    password: password,
                 }
-            }
+            });
+            // console.log(this.props);
+            // for (let i = 0; i < Users.length; i++) {
+            //     if (Users[i]['userName'] === this.state.userName ) {
+            //         if (Users[i]['password'] === this.state.password) {
+            //             this.props.setUser();
+            //             this.props.history.push('/')
+            //         }else {
+            //             console.log("password not match")
+            //             console.log(Users[i]['password']);
+            //             console.log(this.state.password);
+            //             let formErrors=this.state.formErrors;
+            //             formErrors.password="password not match";
+            //             this.setState({error:false,formErrors});
+            //         }
+            //     }else {
+            //        this.setState({error:true});
+            //     }
+            // }
         }
     };
     isFormValid = ({ userName, password }) =>{
@@ -77,8 +84,9 @@ class Login extends Component {
     }
 
     render() {
+        console.log(this.props.loginUser);
         const {  userName, password,formErrors ,error} = this.state;
-        return this.props.data.loading? <Spinner/>: (
+        return (
             <Layout>
                 <Grid textAlign="center"  verticalAlign='middle' className="login-bg">
                     <Grid.Column style={{maxWidth:700}}>
@@ -122,7 +130,18 @@ class Login extends Component {
             </Layout>
         );
     }
+    _confirm
 }
+// , {
+//     options: () => {
+//         return {
+//             variables: {
+//                 userName: "name23",
+//                 password: "Qasim12!"
+//             }
+//         }
+//     }
+// }
 
-const LoginComponent= graphql(getUsersData)(Login)
+const LoginComponent= graphql(loginUser,{name:"loginUser"})(Login)
 export default  connect(null, {setUser})(LoginComponent);

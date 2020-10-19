@@ -110,6 +110,7 @@ class Register extends Component {
         if (this.isValidCheckbox(this.state.formErrors)) {
             if (isFormValid(this.state)) {
                 console.log("added");
+
                 const {fullName,email,username,password}=this.state;
                 this.props.createNewUser({
                     variables:{
@@ -119,6 +120,7 @@ class Register extends Component {
                         password: password.toString()
                     }
                 });
+                console.log(this.props);
             } else {
                 this.handleError(this.state);
             }
@@ -172,7 +174,7 @@ class Register extends Component {
     render() {
         console.log(this.props)
         const { fullName,username, email, password, passwordConfirmation,checkBox ,formErrors} = this.state;
-        return  this.props.data.loading? <Spinner/>:(
+        return  this.props.getUsersData.loading? <Spinner/>:(
             <Layout>
                 <Grid textAlign="center"  verticalAlign='middle' className="register-bg">
                     <Grid.Column style={{maxWidth:700}}>
