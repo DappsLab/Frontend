@@ -44,11 +44,11 @@ class Login extends Component {
         event.preventDefault();
         if (this.isFormValid(this.state)) {
             this.setState({ errors: [] });
-            const {username,password}=this.state;
+            const {userName,password}=this.state;
             this.props.loginUser({
                 variables:{
-                    userName: username,
-                    password: password,
+                    userName: userName.toString(),
+                    password: password.toString()
                 }
             });
             // console.log(this.props);
