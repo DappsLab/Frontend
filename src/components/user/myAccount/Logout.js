@@ -8,9 +8,9 @@ import Layout from "../../../hoc/Layout";
 
 class Logout extends Component {
     componentDidMount(){
-        console.log("test")
-        this.props.history.push('/');
         this.props.clearUser();
+        localStorage.removeItem('token');
+        this.props.history.push('/');
     }
     render() {
         return (

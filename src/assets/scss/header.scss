@@ -18,7 +18,7 @@ header{
   height:32px;
 }
 header nav{
-  color:#ffffff;
+  color:#ffffff !important;
 }
 .loginbtn,.ui.fluid.button {
   height:32px;
@@ -63,10 +63,12 @@ header nav{
 }
 .user_logged h3{
   font-size: 14px;
+  margin-top: 5px;
+
 }
 .dropUpArrow, .picture_menu .dropUpArrow{
   position: relative;
-  top:-73px;
+  top:-83px;
   color: $background-color;
   left: 105px;
   font-size: 35px !important;

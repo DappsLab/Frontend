@@ -54,6 +54,7 @@
 .general_data {
   .left {
     padding-right: 20px;
+    width: 75%;
     .input_box{
       display: flex;
       align-items: center;
@@ -63,36 +64,79 @@
         width: 60%;
       }
     }
-    .label_inputs{
-      margin-top: 0;
-    }
-    .delete_warning,.general_email p,.delete_btn Button{
-      width: 60%;
-    }
     .delete_warning{
       float: right;
       text-align: justify;
       font-size: 14px;
       color: $info-color;
     }
-    .general_password {
-      justify-content: space-between;
-      p{
-        margin-right:85px ;
-      }
-    }
-    .delete_btn,.general_email{
-      justify-content: space-between;
-    }
     .loginbtn{
       height: auto;
       font-weight: bold;
-      margin: 0;
-      padding: 7px 30px;
+      margin: 0!important;
+      padding: 7px 50px;
 
+    }
+    .flex{
+      justify-content: space-between;
+      .MuiButton-containedSecondary{
+        width: 70%;
+      }
+      .field {
+        width: 70%;
+        div, button {
+          input::placeholder {
+            color: #121212 !important;
+            opacity: 1 !important;
+          }
+        }
+      }
+    }
+  }
+  .errorMessage{
+    justify-content: center!important;
+  }
+}
+.avatar_label {
+  display: table;
+  input[type="file"] {
+    display: none;
+  }
+}
+.password{
+  a{
+    cursor: pointer;
+  }
+  div{
+    margin-bottom: 0!important;
+  }
+  .field{
+    width: 42%!important;
+  }
+}
+.opacity{
+  .ui.disabled.input{
+    opacity: 1;
+  }
+}
+.passwordModel{
+  padding:1.5rem 6.5rem  !important;
+  .errorMessage{
+    justify-content: center!important;
+    margin: 0!important;
+  }
+  .flex {
+    justify-content: space-between;
+    margin: 20px 0;
+    .field {
+      width: 70%;
+      .input {
+        width: 100%;
+      }
     }
   }
 }
-.login-bg a,.register-bg a,.general_password a,.forget_password a{
+.login-bg a,.deposite a,.password a,.register-bg a,.indexContainer .borderless a,.general_password a,.forget_password a{
   @include default-link();
 }
+

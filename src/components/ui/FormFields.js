@@ -1,14 +1,9 @@
-import React from "react";
+import React,{createRef} from "react";
 import "../../assets/scss/SearchResult.css"
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 
-
-
-const acceptedFileTypes = 'image/x-png, image/png, image/jpg, image/jpeg'
-const acceptedFileTypesArray = acceptedFileTypes.split(",").map((item) => {return item.trim()})
-const fileInputRef = React.createRef()
 
 export  const SearchField = ({formData,id,change,press}) => {
     const renderTemplate = () => {
@@ -138,57 +133,6 @@ export const CheckBox=({check,name,change,index})=>{
         );
         return formTemplate;
     };
-    return(renderTemplate())
-}
-export const UploadFile=({formData,updateimage})=>{
-    const hanldeChnage=(event)=>{
-        const files = event.target.files
-        const currentFile = files[0]
-        if (event.target.files && event.target.files.length > 0) {
-            const currentFileType = currentFile.type
-            if (!acceptedFileTypesArray.includes(currentFileType)) {
-                alert("This file is not allowed. Only images are allowed.")
-            }
-            const reader = new FileReader();
-            console.log("good")
-            reader.addEventListener('load', () =>
-                updateimage(reader.result)
-
-            )
-            reader.readAsDataURL(event.target.files[0]);
-        }
-    }
-    const renderTemplate = () => {
-        let formTemplate;
-        formTemplate=(
-            <input
-                ref={fileInputRef}
-                type={"file"}
-                id={"upload_picture"}
-                style={{display:'none'}}
-                accept={formData.accept}
-                onChange={hanldeChnage}
-            />
-        );
-        return formTemplate;
-    };
-    return(renderTemplate())
-};
-export const IconInput= ({id, formData,icon, change})=>{
-    let formTemplate;
-    const renderTemplate=()=> {
-        formTemplate =(
-            <div className={"flex icon_field"}>
-                {icon}
-                <input
-                    {...formData.config}
-                    value={formData.value}
-                    onChange={(event) => change({event, id})}
-                />
-            </div>
-        );
-        return formTemplate;
-    }
     return(renderTemplate())
 }
 

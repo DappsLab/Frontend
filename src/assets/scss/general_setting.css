@@ -42,35 +42,65 @@
   top: -140px; }
 
 .general_data .left {
-  padding-right: 20px; }
+  padding-right: 20px;
+  width: 75%; }
   .general_data .left .input_box {
     display: flex;
     align-items: center;
     justify-content: space-between; }
     .general_data .left .input_box .selectSort {
       width: 60%; }
-  .general_data .left .label_inputs {
-    margin-top: 0; }
-  .general_data .left .delete_warning, .general_data .left .general_email p, .general_data .left .delete_btn Button {
-    width: 60%; }
   .general_data .left .delete_warning {
     float: right;
     text-align: justify;
     font-size: 14px;
     color: #96A3B6; }
-  .general_data .left .general_password {
-    justify-content: space-between; }
-    .general_data .left .general_password p {
-      margin-right: 85px; }
-  .general_data .left .delete_btn, .general_data .left .general_email {
-    justify-content: space-between; }
   .general_data .left .loginbtn {
     height: auto;
     font-weight: bold;
-    margin: 0;
-    padding: 7px 30px; }
+    margin: 0 !important;
+    padding: 7px 50px; }
+  .general_data .left .flex {
+    justify-content: space-between; }
+    .general_data .left .flex .MuiButton-containedSecondary {
+      width: 70%; }
+    .general_data .left .flex .field {
+      width: 70%; }
+      .general_data .left .flex .field div input::placeholder, .general_data .left .flex .field button input::placeholder {
+        color: #121212 !important;
+        opacity: 1 !important; }
+.general_data .errorMessage {
+  justify-content: center !important; }
 
-.login-bg a, .register-bg a, .general_password a, .forget_password a {
+.avatar_label {
+  display: table; }
+  .avatar_label input[type="file"] {
+    display: none; }
+
+.password a {
+  cursor: pointer; }
+.password div {
+  margin-bottom: 0 !important; }
+.password .field {
+  width: 42% !important; }
+
+.opacity .ui.disabled.input {
+  opacity: 1; }
+
+.passwordModel {
+  padding: 1.5rem 6.5rem  !important; }
+  .passwordModel .errorMessage {
+    justify-content: center !important;
+    margin: 0 !important; }
+  .passwordModel .flex {
+    justify-content: space-between;
+    margin: 20px 0; }
+    .passwordModel .flex .field {
+      width: 70%; }
+      .passwordModel .flex .field .input {
+        width: 100%; }
+
+.login-bg a, .deposite a, .password a, .register-bg a, .indexContainer .borderless a, .general_password a, .forget_password a {
   background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; }

@@ -67,7 +67,6 @@ export default function CustomizedDialogs({imageData,src,crop,handleSave,onImage
                     Crop your Image
                 </DialogTitle>
                 <DialogContent dividers>
-                    {console.log("src")}
                     <ReactCrop
                         src={src}
                         crop={crop}

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import AccountLayout from "../../../hoc/AccountLayout";
 import {Divider} from "@material-ui/core";
 import QRCode from 'react-qr-code';
+import {connect} from "react-redux";
 
 
 class WithdrawDeposite extends Component {
@@ -12,10 +13,12 @@ class WithdrawDeposite extends Component {
                         <h2>Deposite</h2>
                         <div className={"flex"}>
                             <span>Address</span>
-                            <p>Deposite Address</p>
-                            <div>copy</div>
+                            <p>{this.props.currentUser.address}</p>
+                            <a href={"#"}>copy</a>
                         </div>
-                        <QRCode size={200} value="Deposite Address" />
+                        <div className={"flex"}>
+                            <QRCode  size={200} value={this.props.currentUser.address} />
+                        </div>
                     </div>
                     <Divider/>
                     <div className={"withdraw"}>
@@ -25,5 +28,7 @@ class WithdrawDeposite extends Component {
         );
     }
 }
-
-export default WithdrawDeposite;
+const mapStateToProps=(state)=>({
+    currentUser:state.user.currentUser
+});
+export default connect(mapStateToProps)(WithdrawDeposite);

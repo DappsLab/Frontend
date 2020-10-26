@@ -38,7 +38,7 @@ a {
   display: block;
 }
 .none{
-  display:none;
+  display:none !important;
 }
 .error_label {
   width: 50vh;
@@ -53,6 +53,24 @@ a {
 }
 .clearBoth{
   clear: both;
+}
+.not_found_container {
+  margin-top: 96px;
+  padding: 20px;
+  background-size: 5px 5px !important;
+  min-height: 100vh;
+  text-align: center;
+  font-size: 90px;
+  font-family: 'Righteous', cursive;
+  color: #d5ebfe;
+}
+.LoginError{
+  width: 100%;
+  margin-top: 10px;
+  justify-content: center;
+  div{
+    width: auto;
+  }
 }
 /*================================================
                     Dark mode

@@ -1,22 +1,27 @@
 import React, {Component} from 'react';
 import '../../assets/scss/login.css'
 import {Link} from "react-router-dom";
-import {Grid, Form, Segment, Button, Message} from 'semantic-ui-react';
+import {Grid, Form, Segment, Button} from 'semantic-ui-react';
 import {LoginTop} from "../ui/mise";
 import {connect} from "react-redux";
-import {setUser} from "../../actions/Actions";
 import Layout from "../../hoc/Layout";
-import {graphql } from "react-apollo";
-import { loginUser} from '../../queries/queries';
+import {withAlert} from "react-alert";
+import {flowRight as compose} from 'lodash';
+import Alert from '@material-ui/lab/Alert';
+
 
 const usernameRegex=RegExp(/^[a-zA-Z0-9]*$/);
 class Login extends Component {
+    constructor(props) {
+        super(props);
+    }
     state={
-        userName: "",
+        username: "",
+        error:"",
+        hide:false,
         password: "",
-        error:false,
         formErrors: {
-            userName: "",
+            username: "",
             password: "",
         }
     }
@@ -29,8 +34,8 @@ class Login extends Component {
                     ? "Password too Short"
                     : "";
                 break;
-            case 'userName':
-                formErrors.userName = usernameRegex.test(value)
+            case 'username':
+                formErrors.username = usernameRegex.test(value)
                     ? ""
                     : "Only Alphabet and Integer Allowed";
                 break;
@@ -39,55 +44,39 @@ class Login extends Component {
         }
         this.setState({formErrors,[name]:value},()=>{});
     };
-
     handleSubmit = (event) => {
         event.preventDefault();
         if (this.isFormValid(this.state)) {
-            this.setState({ errors: [] });
-            const {userName,password}=this.state;
-            this.props.loginUser({
-                variables:{
-                    userName: userName.toString(),
-                    password: password.toString()
-                }
-            });
-            // console.log(this.props);
-            // for (let i = 0; i < Users.length; i++) {
-            //     if (Users[i]['userName'] === this.state.userName ) {
-            //         if (Users[i]['password'] === this.state.password) {
-            //             this.props.setUser();
-            //             this.props.history.push('/')
-            //         }else {
-            //             console.log("password not match")
-            //             console.log(Users[i]['password']);
-            //             console.log(this.state.password);
-            //             let formErrors=this.state.formErrors;
-            //             formErrors.password="password not match";
-            //             this.setState({error:false,formErrors});
-            //         }
-            //     }else {
-            //        this.setState({error:true});
-            //     }
-            // }
+            const {username,password}=this.state;
+            this.setState({model:true,hide:false});
+            this.props.history.push({pathname:'/LoginQ',state:{username,password}})
         }
     };
-    isFormValid = ({ userName, password }) =>{
-        if (userName.length!==0&&password.label!==0){
+    isFormValid = ({ username, password }) =>{
+        if (username.length!==0&&password.label!==0){
             return true;
         }else {
             let error = this.state.formErrors;
-            if (userName === "") {error.userName = "Field Required";}
+            if (username === "") {error.username = "Field Required";}
             if (password === "") {error.password = "Field Required";}
-            this.setState({formErrors: error});
             return false;
         }
     }
-
+    closeModel=()=>this.setState({model:false});
     render() {
-        console.log(this.props.loginUser);
-        const {  userName, password,formErrors ,error} = this.state;
+        const {username,password,formErrors,hide} = this.state;
+        const Loginerror=this.props.location.state;
+        setTimeout(function(){
+            this.setState({hide:true});
+        }.bind(this),5000);
         return (
             <Layout>
+                {Loginerror?
+                    <div className={`LoginError flex ${hide?"none":""}`}>
+                        <Alert severity="error">{Loginerror.Loginerror}</Alert>
+                    </div>
+                    :""
+                }
                 <Grid textAlign="center"  verticalAlign='middle' className="login-bg">
                     <Grid.Column style={{maxWidth:700}}>
                         <Form  onSubmit={this.handleSubmit}>
@@ -99,13 +88,13 @@ class Login extends Component {
                                     linkto={"/register"}
                                 />
                                 <Form.Input
-                                    icon="user" iconPosition="left" value={userName}
-                                    name="userName" type="text"
-                                    placeholder="Usename" onChange={this.handleChange}
-                                    className={formErrors.userName.length>0?"error":""}
+                                    icon="user"  iconPosition="left" value={username}
+                                    name="username" type="text"
+                                    placeholder="Username" onChange={this.handleChange}
+                                    className={formErrors.username.length>0?"error":""}
                                 />
-                                {formErrors.userName.length>0&&(
-                                    <span className={"errorMessage"}>{formErrors.userName}</span>
+                                {formErrors.username.length>0&&(
+                                    <span className={"errorMessage"}>{formErrors.username}</span>
                                 )}
                                 <Form.Input
                                     icon="lock" iconPosition="left" value={password}
@@ -120,28 +109,10 @@ class Login extends Component {
                                 <p> <Link to={"/forget_password"}>Click here</Link> if you forget your password</p>
                             </Segment>
                         </Form>
-                        {error && (
-                            <Message error>
-                                <h3>User not found </h3>
-                            </Message>
-                        )}
                     </Grid.Column>
                 </Grid>
             </Layout>
         );
     }
-    _confirm
 }
-// , {
-//     options: () => {
-//         return {
-//             variables: {
-//                 userName: "name23",
-//                 password: "Qasim12!"
-//             }
-//         }
-//     }
-// }
-
-const LoginComponent= graphql(loginUser,{name:"loginUser"})(Login)
-export default  connect(null, {setUser})(LoginComponent);
+export default (Login);

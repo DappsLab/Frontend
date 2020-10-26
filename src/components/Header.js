@@ -7,12 +7,14 @@ import ListItem from "@material-ui/core/ListItem";
 import DarkMode from "./ui/Dark-mode";
 import {DropDown} from "./ui/DropDown";
 import {connect} from 'react-redux';
-
+import {flowRight as compose} from 'lodash';
 
 
 class Header extends React.Component {
     state = {
-        logged:null
+        logged:null,
+        currentUser:null,
+        count:0
     }
     links = [
         {title: 'HOME', linkTo: '/'},
@@ -28,7 +30,12 @@ class Header extends React.Component {
         {title: 'Login', linkTo: '/login'}
     ];
     componentDidMount() {
-        this.setState({logged:this.props.logged_session})
+        if (this.props.currentUser) {
+            this.setState({
+                logged: this.props.logged_session, currentUser: this.props.currentUser
+            });
+
+        }
     }
 
     renderNav = () => (
@@ -49,10 +56,9 @@ class Header extends React.Component {
     );
     renderAccount = () => (
         <div>
-            <DropDown check={true}/>
+            <DropDown check={true} user={this.state.currentUser}/>
         </div>
     )
-
     render() {
         return (
             <div>
@@ -78,5 +84,6 @@ class Header extends React.Component {
 }
 const mapStateToProps=(state)=>({
     logged_session:state.user.logged_session,
+    currentUser:state.user.currentUser,
 })
-export default connect(mapStateToProps)(Header);
+export default compose(connect(mapStateToProps))(Header);

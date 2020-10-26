@@ -45,7 +45,6 @@ const ContractCard = (props) => {
     );
     return (
         <div className={"flex contract-container"}>
-
             {renderCards()}
         </div>
     );

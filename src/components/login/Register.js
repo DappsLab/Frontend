@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {LoginTop,isFormValid} from "../ui/mise";
 import "../../assets/scss/register.css"
-import { Grid, Form, Segment, Button } from 'semantic-ui-react';
+import {Grid, Form, Segment, Button} from 'semantic-ui-react';
 import Checkbox from "@material-ui/core/Checkbox";
 import Layout from "../../hoc/Layout";
 import {graphql} from "react-apollo";
 import {flowRight as compose} from 'lodash';
 import {createNewUser,getUsersData} from '../../queries/queries'
 import Spinner from "../ui/Spinner";
-
+import { withAlert } from 'react-alert'
 
 const usernameRegex=RegExp(/^[a-zA-Z0-9]*$/);
 const alphabetRegex=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
@@ -20,6 +20,8 @@ class Register extends Component {
         password: "",
         passwordConfirmation: "",
         username:"",
+        error:false,
+        errorMessage:"",
         checkBox:"",
         formErrors:{
             fullName: "",
@@ -36,6 +38,7 @@ class Register extends Component {
     handleChange = event => {
         const {name,value}=event.target;
         let formErrors=this.state.formErrors;
+        const {password,passwordConfirmation}=this.state;
         switch (name){
             case 'fullName':
                 formErrors.fullName= alphabetRegex.test(value)
@@ -43,36 +46,63 @@ class Register extends Component {
                     :"Only Alphabet Allowed";
                 break;
             case 'username':
-                formErrors.username= usernameRegex.test(value)
-                    ? ""
-                    :"Only Alphabet and Integer Allowed";
+                if(usernameRegex.test(value)){
+                    formErrors.username="";
+                    // let Users=this.props.getUsersData.users;
+                    // for (let i = 0; i < Users.length; i++) {
+                    //     if (Users[i]['userName'] === value ) {
+                    //         formErrors.username="Username already exist";
+                    //         break;
+                    //     }
+                    // }
+                }else {
+                    formErrors.username="Only Alphabet and Integer Allowed";
+                }
                 break;
             case 'email':
                 if (emailRegex.test(value)){
                     formErrors.email="";
-                    let Users=this.props.getUsersData.users;
-                    for (let i = 0; i < Users.length; i++) {
-                        if (Users[i]['email'] === value ) {
-                            formErrors.email="Email already exist";
-                            break;
-                        }
-                    }
+                    // let Users=this.props.getUsersData.users;
+                    // for (let i = 0; i < Users.length; i++) {
+                    //     if (Users[i]['email'] === value ) {
+                    //         formErrors.email="Email already exist";
+                    //         break;
+                    //     }
+                    // }
                 }else{
                 formErrors.email="Invalid email address";
                 }
                 break;
             case 'password':
-                formErrors.password=value.length<5
-                    ? "Minimum 5 characaters required"
-                    :"";
+                if (value.length<5){
+                    formErrors.password="Minimum 5 characaters required";
+                }else{
+                    if (passwordConfirmation.length>0){
+                        if (value!==this.state.passwordConfirmation) {
+                            formErrors.password = "Password not match";
+                        }  else {
+                            formErrors.password="";
+                            formErrors.passwordConfirmation="";
+                        }
+                    }
+                    else {
+                        formErrors.password="";
+                    }
+                }
                 break;
             case 'passwordConfirmation':
                 if (value.length<5){
                     formErrors.passwordConfirmation="Minimum 5 characaters required"
                 }else {
-                    if (value!==this.state.password) {
-                        formErrors.passwordConfirmation = "Password not match";
-                    }else {
+                    if (password.length>0){
+                        if (value!==this.state.password) {
+                            formErrors.passwordConfirmation = "Password not match";
+                        }  else {
+                            formErrors.passwordConfirmation="";
+                            formErrors.password="";
+                        }
+                    }
+                     else {
                         formErrors.passwordConfirmation="";
                     }
                 }
@@ -88,6 +118,7 @@ class Register extends Component {
         {value:3,hint:"I agree with DappsLab Subscription Agreement"}
     ]
     renderCheckBox=()=>(
+
         this.checkboxList.map(list=>(
             <div key={list.value}>
                 <div  className={"flex"}>
@@ -106,11 +137,10 @@ class Register extends Component {
         return checkbox.check1 === true && checkbox.check2 === true && checkbox.check3 === true;
     };
     handleSubmit = (event) => {
+        const alert = this.props.alert;
         event.preventDefault();
         if (this.isValidCheckbox(this.state.formErrors)) {
             if (isFormValid(this.state)) {
-                console.log("added");
-
                 const {fullName,email,username,password}=this.state;
                 this.props.createNewUser({
                     variables:{
@@ -119,8 +149,12 @@ class Register extends Component {
                         email: email.toString(),
                         password: password.toString()
                     }
-                });
-                console.log(this.props);
+                }).then(()=>{
+                    this.props.history.push('/login')
+                }).catch((error)=>{
+                    alert.error(error.message)
+                })
+
             } else {
                 this.handleError(this.state);
             }
@@ -132,25 +166,15 @@ class Register extends Component {
                 this.setState({checkBox:"Check all Fileds"});
             }
         }
-    };
+    }
     handleError=(values)=>{
         let error=values.formErrors;
         console.log(error)
-        if (values.fullName===""){
-            error.fullName = "Required Field";
-        }
-        if (values.email===""){
-            error.email = "Required Field";
-        }
-        if (values.username===""){
-            error.username = "Required Field";
-        }
-        if (values.passwordConfirmation===""){
-            error.passwordConfirmation = "Required Field";
-        }
-        if (values.password===""){
-            error.password = "Required Field";
-        }
+        if (values.fullName===""){error.fullName = "Required Field";}
+        if (values.email===""){error.email = "Required Field";}
+        if (values.username===""){error.username = "Required Field";}
+        if (values.passwordConfirmation===""){error.passwordConfirmation = "Required Field";}
+        if (values.password===""){error.password = "Required Field";}
         this.setState({formErrors: error});
     }
     onCheckboxChange=(event)=>{
@@ -181,10 +205,9 @@ class Register extends Component {
                         <Form   onSubmit={ this.handleSubmit}>
                             <Segment piled>
                             <LoginTop
-                                heading={"Register"}
+                                heading={"Register"}  linkto={"/login"}
                                 paragraph={"Create your new account"}
                                 link={"Already have an account"}
-                                linkto={"/login"}
                             />
                             <Form.Input
                                 fluid value={fullName} name="fullName"
@@ -258,7 +281,9 @@ class Register extends Component {
     }
 }
 
+
 export default compose(
     graphql(getUsersData,{name:"getUsersData"}),
-    graphql(createNewUser,{name:"createNewUser"})
+    graphql(createNewUser,{name:"createNewUser"}),
+    withAlert()
 )(Register);

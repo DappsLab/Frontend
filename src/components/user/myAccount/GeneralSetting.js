@@ -1,107 +1,81 @@
 import React, {Component} from 'react';
 import AccountLayout from "../../../hoc/AccountLayout";
-import {FormField, UploadFile} from "../../ui/FormFields";
-import {Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import {Avatar} from "@material-ui/core";
 import "../../../assets/scss/general_setting.css"
 import {DropDown} from "../../ui/DropDown";
 import CustomizedDialogs from "../../ui/DialogBox";
 import 'react-image-crop/dist/ReactCrop.css';
-import {Validation} from "../../ui/mise";
+import {Form} from 'semantic-ui-react';
+import {imageUpload} from "../../../queries/queries"
+import {flowRight as compose} from 'lodash';
+import {graphql} from "react-apollo";
+import ChangePassword from "./ChangePassword";
+import Spinner from "../../ui/Spinner";
+import {connect} from "react-redux";
 
 
+const usernameRegex=RegExp(/^[a-zA-Z0-9]*$/);
+const alphabetRegex=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
 class GeneralSetting extends Component {
-    state={
-        imageSrc:null,
+    state = {
+        currentUser: this.props.currentUser,
+        fullName: "",
+        userName: "",
+        location: "",
+        imageFinalPath:"",
+        model:false,
+        formErrors:{
+            fullName: "",
+            userName: "",
+            location: "",
+        },
+        imageSrc: null,
         crop: {
-            width: 170,
-            height: 170,
-            aspect:1
+            x:0,
+            y:0,
+            width: 300,
+            height: 300,
+            aspect: 1
         },
-        imageData:{
-            disabled:false,
-            locked:true,
+        imageData: {
+            disabled: false,
+            locked: true,
         },
-
-        showAvatar:true,
-        showDialog:false,
-        formData:{
-            full_name: {
-                element: 'input',
-                value: '',
-                config: {
-                    placeholder:'Full Name',
-                    label: 'Your Name:',
-                    name: 'name',
-                    type: 'input',
-                },
-                validation: {
-                    required: true,
-                },
-                showLabel: true
-            },
-            username: {
-                element: 'input',
-                value: '',
-                config: {
-                    placeholder:'Username',
-                    label: 'Username:',
-                    name: 'name',
-                    type: 'input',
-                },
-                validation: {
-                    required: true,
-                },
-                showLabel: true
-            },
-            location: {
-                element: 'input',
-                value: '',
-                accept:"image/jpeg,image/png",
-                config: {
-                    placeholder:'Location',
-                    label: 'Location:',
-                    name: 'location',
-
-                },
-                validation: {
-                    required: true,
-                },
-                showLabel: true
-            },
-            upload_picture:{
-                element: 'input',
-                config: {
-                    name: 'upload_picture',
-                    type: 'input',
-                },
-            }
-        }
+        showDialog: false,
     }
+    //image crop and update
     updateImage=(path)=>{
         this.setState({imageSrc:path,showDialog:true})
     }
     removeImage=()=>{
-        this.setState({showAvatar:true})
+        this.setState({imageFinalPath:""})
     }
     onImageLoad=(image)=>{
         this.imageRef = image;
     }
-     onCropChange=(crop)=>{
+    onCropChange=(crop)=>{
          this.setState({ crop });
     }
-     onCropComplete=(crop,pixelCrop)=>{
+    onCropComplete=(crop,pixelCrop)=>{
          this.setState({ crop });
     }
     async makeClientCrop(crop) {
+        var that=this;
         if (this.imageRef && crop.width && crop.height) {
-            const croppedImageUrl = await this.getCroppedImg(
+            const file = await this.getCroppedImg(
                 this.imageRef,
                 crop,
                 'newFile.jpeg'
             );
-            this.setState({ croppedImageUrl });
+            this.setState({ file });
+            this.props.mutate({variables:{file}}) .then(function(result) {
+                that.setState({imageFinalPath:result.data.imageUploader})
+            });
+            const newCrop={...this.state.crop}
+            newCrop.x=0;
+            newCrop.y=0;
+            this.setState({crop:newCrop})
         }
     }
     getCroppedImg(image, crop, fileName) {
@@ -111,7 +85,6 @@ class GeneralSetting extends Component {
         canvas.width = crop.width;
         canvas.height = crop.height;
         const ctx = canvas.getContext('2d');
-
         ctx.drawImage(
             image,
             crop.x * scaleX,
@@ -123,7 +96,6 @@ class GeneralSetting extends Component {
             crop.width,
             crop.height
         );
-
         return new Promise((resolve, reject) => {
             canvas.toBlob(blob => {
                 if (!blob) {
@@ -133,111 +105,172 @@ class GeneralSetting extends Component {
                 blob.name = fileName;
                 window.URL.revokeObjectURL(this.fileUrl);
                 this.fileUrl = window.URL.createObjectURL(blob);
-                resolve(this.fileUrl);
+                resolve(blob);
             }, 'image/jpeg');
         });
     }
-    renderInputs = () =>(
-        <div>
-            <FormField
-                id={'full_name'}
-                formData={this.state.formData.full_name}
-                change={(element)=> this.updateForm(element)}
-            />
-            <FormField
-                id={'username'}
-                formData={this.state.formData.username}
-                change={(element)=> this.updateForm(element)}
-            />
-        </div>
-    )
     handleSave=()=>{
        if (this.state.imageSrc!==null){
            this.setState({imageSrc:null})
-           console.log(this.state.imageSrc)
        }
-        this.setState({showAvatar:false,showDialog:false})
+        this.setState({showDialog:false})
         this.makeClientCrop(this.state.crop);
-
     }
-    updateForm(element){
-        const newFormData = {...this.state.formData};
-        const newElement = {...newFormData[element.id]};
-        newElement.value = element.event.target.value;
-
-        let validationData= Validation(newElement);
-        newFormData[element.id] = newElement;
-
-        this.setState({
-            show: validationData[0],
-            message: validationData[1],
-            formData: newFormData
-        })
+    //image end
+    openModel=()=>this.setState({model:true});
+    closeModel=()=>this.setState({model:false});
+    handleChange = event => {
+        const {name,value}=event.target;
+        let formErrors=this.state.formErrors;
+        switch (name){
+            case 'fullName':
+                formErrors.fullName= alphabetRegex.test(value)
+                    ? ""
+                    :"Only Alphabet Allowed";
+                break;
+            case 'userName':
+                if(usernameRegex.test(value)){
+                    formErrors.userName="";
+                    // let Users=this.props.getUsersData.users;
+                    // for (let i = 0; i < Users.length; i++) {
+                    //     if (Users[i]['userName'] === value ) {
+                    //         formErrors.username="Username already exist";
+                    //         break;
+                    //     }
+                    // }
+                }else {
+                    formErrors.userName="Only Alphabet and Integer Allowed";
+                }
+                break;
+            case 'location':
+                formErrors.location= alphabetRegex.test(value)
+                    ? ""
+                    :"Only Alphabet Allowed";
+                break;
+            default:
+                break;
+        }
+        this.setState({[name]:value},()=>{});
+    }
+    onSubmit=(event)=>{
+        event.preventDefault();
+        console.log("new")
+    }
+    passwordData=(currentPassword,newPassword)=>{
+        this.setState({currentPassword,newPassword});
+    }
+    componentDidMount() {
+        if (this.props.currentUser) {
+            this.setState({
+                 currentUser: this.props.currentUser
+            });
+        }
     }
     render() {
-        const { croppedImageUrl } = this.state;
-        return (
+
+        const {model,showDialog,crop,imageData,currentUser,imageSrc,formErrors,location,userName,imageFinalPath,fullName } = this.state;
+        return  (
             <AccountLayout>
-                {
-                    this.state.showDialog ?
+                {/*<Segment>*/}
+                    {showDialog ?
                         <CustomizedDialogs
-                            crop={this.state.crop}
-                            imageData={this.state.imageData}
-                            src={this.state.imageSrc}
+                            crop={crop}
+                            imageData={imageData}
+                            src={imageSrc}
                             onImageLoad={(image) => this.onImageLoad(image)}
                             onCropChange={(crop) => this.onCropChange(crop)}
                             onCropComplete={(crop, pixelCrop) => this.onCropComplete(crop, pixelCrop)}
                             handleSave={() => this.handleSave()}
                         />
-                    : null
-                }
-                <div className={"general_setting"}>
-                    <h2>General Info</h2>
-                    <div className={"flex general_data"}>
-                        <div className={"left"}>
-                            {this.renderInputs()}
-                            <div className={"general_email flex"}>
-                                <label className={"label_inputs"}>Mail</label>
-                                <p>abc@gmail.com</p>
+                        : null
+                    }
+                    <div className={"general_setting"}>
+                        <h2>General Info</h2>
+                        <div className={"flex general_data"}>
+                            <div className={"left"}>
+                                <Form>
+                                    <Form.Field className={"flex"} >
+                                        <label>First name</label>
+                                        <Form.Input
+                                            placeholder={currentUser.fullName} type={"text"}
+                                            value={fullName} className={formErrors.fullName.length>0?"error":""}
+                                            name="fullName" onChange={this.handleChange} />
+                                    </Form.Field>
+                                    {formErrors.fullName.length>0&&(
+                                        <span className={"flex errorMessage"}>{formErrors.fullName}</span>
+                                    )}
+                                    <Form.Field className={"flex"}>
+                                        <label>Username</label>
+                                        <Form.Input
+                                            placeholder={currentUser.userName} type={"text"}
+                                            value={userName} className={formErrors.userName.length>0?"error":""}
+                                            name="userName" onChange={this.handleChange}/>
+                                    </Form.Field>
+                                    {formErrors.userName.length>0&&(
+                                        <span className={"flex errorMessage"}>{formErrors.userName}</span>
+                                    )}
+                                    <Form.Field  className={"flex"}>
+                                        <label>Email</label>
+                                        <Form.Input
+                                            className={"opacity"} disabled transparent
+                                            placeholder={currentUser.email}
+                                            type={"email"} name="email" />
+                                    </Form.Field>
+                                    <Form.Field className={"flex password opacity"}>
+                                        <label>Password</label>
+                                        <Form.Input
+                                            disabled transparent placeholder={"************"}
+                                            type={"password"} name="password" />
+                                        <a onClick={this.openModel} >Change</a>
+                                    </Form.Field>
+                                    <Form.Field className={"flex"}>
+                                        <label>Location</label>
+                                        <Form.Input
+                                            placeholder={currentUser.location===null?"Location":currentUser.location}
+                                            type={"text"} className={formErrors.location.length>0?"error":""}
+                                            name="location" onChange={this.handleChange} value={location}/>
+                                    </Form.Field>
+                                    {formErrors.location.length>0&&(
+                                        <span className={"flex errorMessage"}>{formErrors.location}</span>
+                                    )}
+                                    <Form.Field className={"flex"}>
+                                        <label>Delete your Accoun</label>
+                                        <Button
+                                            variant="contained" color="secondary">Delete Account</Button>
+                                    </Form.Field>
+                                    <Button onClick={this.onSubmit} className={"loginbtn"}  variant="contained">Save</Button>
+                                </Form>
+
                             </div>
-                            <div className={"flex general_password"}>
-                                <label className={"label_inputs"}>Password</label>
-                                <p className={"flex"}>************</p>
-                                <Link to={"/account/profile/changr_password"}>chnage</Link>
+                            <div className={"profile_picture"}>
+                                <h5>Profile picture</h5>
+                                {imageFinalPath===""?
+                                    <Avatar className={"avatar"} alt="Crop" style={{maxWidth: '100%'}}
+                                            src={currentUser.avatar}/>:
+                                    <Avatar className={"avatar"} alt="Crop" style={{maxWidth: '100%'}} src={imageFinalPath} />
+                                }
+                                <DropDown
+                                    check={false}
+                                    updateimage={(path)=>this.updateImage(path)}
+                                    removeImage={()=>this.removeImage()}
+                                />
                             </div>
-                            <FormField
-                                id={'location'}
-                                formData={this.state.formData.location}
-                                change={(element)=> this.updateForm(element)}
-                            />
-                            <div className={"delete_btn flex"}>
-                                <label className={"label_inputs"}>Delete your Account</label>
-                                <Button variant="contained" color="secondary">Delete Account</Button>
-                            </div>
-                            <p className={"delete_warning"}>Your account will be permanently deleted in 14 days after opting to do so. Logging in during this time will allow you to cancel the operation to delete the account</p>
-                            <div className={"clearBoth"}>  </div>
-                            <Button className={"loginbtn"} variant="contained">Save</Button>
-                        </div>
-                        <div className={"profile_picture"}>
-                            <h5>Profile picture</h5>
-                            {this.state.showAvatar ?
-                                <Avatar className={"avatar"}/>
-                                :
-                                <Avatar className={"avatar"} alt="Crop" style={{ maxWidth: '100%' }} src={croppedImageUrl} />
-                            }
-                            <DropDown check={false}
-                                 removeImage={()=>this.removeImage()}
-                                 fileUpload={<UploadFile
-                                     formData={this.state.formData.upload_picture}
-                                     updateimage={(path)=>this.updateImage(path)}
-                                 />}
-                            />
                         </div>
                     </div>
-                </div>
+                    <ChangePassword
+                        model={model}
+                        closeModel={this.closeModel}
+                        passwordData={this.passwordData}
+                    />
+                {/*</Segment>*/}
             </AccountLayout>
         );
     }
 }
-
-export default GeneralSetting;
+const mapStateToProps=(state)=>({
+    currentUser:state.user.currentUser,
+})
+export default compose(
+   connect(mapStateToProps),
+    graphql(imageUpload)
+)(GeneralSetting);

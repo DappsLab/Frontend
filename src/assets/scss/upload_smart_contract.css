@@ -33,7 +33,11 @@
 .upload_bg {
   background-color: #ffffff; }
 
-.indexContainer, .account_welcome {
+.indexContainer {
+  margin: 0 !important;
+  background: url("../images/background.jpg"); }
+
+.account_welcome {
   background: url("../images/background.jpg");
   padding: 20px 10px;
   width: 70%;

@@ -1,19 +1,7 @@
-import {gql} from "apollo-boost";
+import { gql } from '@apollo/client';
+
 
 //Query
-const loginUser=gql`
-    query ($userName:String!,$password:String!){
-    loginUser(userName: $userName, password: $password) {
-        token
-        user {
-            id
-            userName
-            email
-            fullName
-        }
-    }
-}
-`
 const createNewUser= gql`
     mutation  ($fullName: String!,$userName: String!,$email: String!,$password: String!){
         registerUser(
@@ -37,11 +25,28 @@ const createNewUser= gql`
         }
     }
 `;
+
+const imageUpload=gql`
+    mutation UPLOAD_IMAGE($file: Upload!){
+        imageUploader(file: $file)
+    }
+`
 const getUsersData= gql`
     query GetData {
         users {
-            userName email password fullName
+            userName email  fullName
         }
     }
 `;
-export {loginUser,getUsersData,createNewUser};
+const userData=gql`    
+    query ($id:ID!){
+        userById(id: $id) {
+            avatar address
+            fullName id
+             email
+            location userName
+        }
+    }
+`
+
+export {userData,getUsersData,imageUpload,createNewUser};

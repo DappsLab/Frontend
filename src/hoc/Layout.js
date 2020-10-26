@@ -1,20 +1,20 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 
 
-const Layout = (props) => {
+class Layout extends Component{
+    render() {
+        return (
+            <div>
+                {  console.log(window.location.pathname)}
+                <Header/>
+                {this.props.children}
+                <Footer/>
+            </div>
+        );
+    }
+}
 
-    return (
-        <div>
-            <Header />
-            {props.children}
-            <Footer/>
-        </div>
-    );
-};
-
-
-
-export default  Layout;
+export default  (Layout);
