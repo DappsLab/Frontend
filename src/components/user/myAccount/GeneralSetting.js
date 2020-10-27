@@ -7,11 +7,10 @@ import {DropDown} from "../../ui/DropDown";
 import CustomizedDialogs from "../../ui/DialogBox";
 import 'react-image-crop/dist/ReactCrop.css';
 import {Form} from 'semantic-ui-react';
-import {imageUpload} from "../../../queries/queries"
+import {imageUpload, updateUser} from "../../../queries/queries"
 import {flowRight as compose} from 'lodash';
 import {graphql} from "react-apollo";
 import ChangePassword from "./ChangePassword";
-import Spinner from "../../ui/Spinner";
 import {connect} from "react-redux";
 
 
@@ -69,7 +68,7 @@ class GeneralSetting extends Component {
                 'newFile.jpeg'
             );
             this.setState({ file });
-            this.props.mutate({variables:{file}}) .then(function(result) {
+            this.props.uploadImage({variables:{file}}) .then(function(result) {
                 that.setState({imageFinalPath:result.data.imageUploader})
             });
             const newCrop={...this.state.crop}
@@ -153,7 +152,18 @@ class GeneralSetting extends Component {
         this.setState({[name]:value},()=>{});
     }
     onSubmit=(event)=>{
+        const {currentUser}=this.state;
         event.preventDefault();
+        this.props.updateUser({
+            variables:{
+                // id:currentUser.id,
+                fullName:currentUser.fullName,
+                userName:currentUser.userName,
+                email:currentUser.email,
+                password:this.state.newPassword,
+                avatar:currentUser.avatar,
+            }
+        })
         console.log("new")
     }
     passwordData=(currentPassword,newPassword)=>{
@@ -167,7 +177,7 @@ class GeneralSetting extends Component {
         }
     }
     render() {
-
+        console.log(this.props)
         const {model,showDialog,crop,imageData,currentUser,imageSrc,formErrors,location,userName,imageFinalPath,fullName } = this.state;
         return  (
             <AccountLayout>
@@ -272,5 +282,6 @@ const mapStateToProps=(state)=>({
 })
 export default compose(
    connect(mapStateToProps),
-    graphql(imageUpload)
+    graphql(imageUpload,{name:"uploadImage"}),
+    graphql(updateUser,{name:"updateUser"})
 )(GeneralSetting);

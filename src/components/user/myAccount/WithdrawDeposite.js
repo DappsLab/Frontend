@@ -3,6 +3,7 @@ import AccountLayout from "../../../hoc/AccountLayout";
 import {Divider} from "@material-ui/core";
 import QRCode from 'react-qr-code';
 import {connect} from "react-redux";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 
 class WithdrawDeposite extends Component {
@@ -13,11 +14,15 @@ class WithdrawDeposite extends Component {
                         <h2>Deposite</h2>
                         <div className={"flex"}>
                             <span>Address</span>
-                            <p>{this.props.currentUser.address}</p>
-                            <a href={"#"}>copy</a>
+                            <p className={"address"}>{this.props.currentUser.address}</p>
+                            <CopyToClipboard text={this.props.currentUser.address}>
+                                <a href={"#"}>copy</a>
+                            </CopyToClipboard>
                         </div>
-                        <div className={"flex"}>
+                        <h4>Scan QR</h4>
+                        <div className={"flex QR"}>
                             <QRCode  size={200} value={this.props.currentUser.address} />
+                            <p>Scan the QR Code to deposit Dapps</p>
                         </div>
                     </div>
                     <Divider/>

@@ -56,10 +56,14 @@
   p{
     width: auto;
     margin-bottom: 0;
-    overflow-wrap: break-word;
   }
-  .flex:last-child{
-    justify-content: center;
+  .QR {
+    flex-direction: column;
+    p{
+      margin: 10px;
+      color: $background-dark;
+      font-size: 14px;
+    }
   }
 }
 /*=======================================================

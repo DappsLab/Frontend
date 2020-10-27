@@ -1,0 +1,46 @@
+@import "colors";
+
+.block_explorer{
+  background: url("../images/background.jpg");
+  background-size: 100% 100%;
+  height: auto;
+  margin: 15px !important;
+  padding: 40px 20px !important;
+  object-fit: cover;
+}
+.recent_block  ,.block_explorer  {
+  align-items: flex-start!important;
+  .column {
+    .ui.table {
+      margin-bottom: 20px!important;
+      border-top: 1px solid rgba(34,36,38,.15);
+      border-bottom: 1px solid rgba(34,36,38,.15);
+      border-left: 0;
+      border-right: 0;
+      font-size: 12px!important;
+      tr{
+        height: 62px!important;
+      }
+    }
+    h1, h2 {
+      font-size: 36px;
+
+      span {
+        @include default-link();
+      }
+    }
+  }
+}
+.row {
+  .block_address {
+    width: 250px;
+    span {
+      width: 240px !important;
+      margin: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      display: inline-block;
+    }
+  }
+}

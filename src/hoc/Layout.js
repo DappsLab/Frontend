@@ -8,7 +8,6 @@ class Layout extends Component{
     render() {
         return (
             <div>
-                {  console.log(window.location.pathname)}
                 <Header/>
                 {this.props.children}
                 <Footer/>

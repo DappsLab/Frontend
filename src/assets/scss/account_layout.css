@@ -49,10 +49,13 @@
     justify-content: space-between; }
   .deposite p {
     width: auto;
-    margin-bottom: 0;
-    overflow-wrap: break-word; }
-  .deposite .flex:last-child {
-    justify-content: center; }
+    margin-bottom: 0; }
+  .deposite .QR {
+    flex-direction: column; }
+    .deposite .QR p {
+      margin: 10px;
+      color: #121212;
+      font-size: 14px; }
 
 /*=======================================================
                  Withdraw

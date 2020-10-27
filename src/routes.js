@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import {Switch,Route} from "react-router-dom";
+import React from 'react';
+import {Switch} from "react-router-dom";
 import {connect} from "react-redux";
 
 //Routes Setup
 import Home from "./components/home/Home";
 import AboutUs from "./components/home/AboutUs";
-import BlockExplorer from "./components/home/Block_Explorer";
+import BlockExplorer from "./components/block_explorer/BlockExplorer";
 import Dapps from "./components/home/Dapps";
 import Downloads from "./components/home/Downloads";
 import Help from "./components/home/Help";
@@ -29,46 +29,42 @@ import DevelopedContract from "./components/user/dashboard/DevelopedContract";
 import NotFound from "./components/ui/NotFound";
 import UserQuery from "./queries/UserQuery";
 import Spinner from "./components/ui/Spinner";
+import PublicRoute from "./components/route_auth/PublicRoute";
 
 
 
 
 const Routes =(props)=>{
-        const [loading,setLoading]=useState(false);
-        if (!props.currentUser){
-                // console.log(props.currentUser)
-                // console.log(window.location.pathname)
-                setLoading(true);
-        }
         return  (
             <Switch>
-                <Route  path={"/dashboard/developed_contract"} exact component={DevelopedContract}/>
-                <Route  path={"/dashboard/test_contract"} exact component={TestContract}/>
-                <Route  path={"/dashboard/purchased"} exact component={Purchased}/>
-                <Route  path={"/account/profile/2fa"} exact component={TwoFA}/>
-                <Route  path={"/account/profile/transactions"} exact component={Transactions}/>
-                <Route path={"/account/profile/wallet"} exact component={WithdrawDeposite}/>
-                <Route  path={"/account/profile"} exact component={GeneralSetting}/>
-                <Route  path={"/logout"} exact component={Logout}/>
+                <PublicRoute   path={"/dashboard/developed_contract"}  component={DevelopedContract}/>
+                <PublicRoute  path={"/dashboard/test_contract"}  component={TestContract}/>
+                <PublicRoute  path={"/dashboard/purchased"}  component={Purchased}/>
+                <PublicRoute  path={"/account/profile/2fa"}  component={TwoFA}/>
+                <PublicRoute  path={"/account/profile/transactions"}  component={Transactions}/>
+                <PublicRoute path={"/account/profile/wallet"}  component={WithdrawDeposite}/>
+                <PublicRoute  path={"/account/profile"}  component={GeneralSetting}/>
+                <PublicRoute  path={"/logout"}  component={Logout}/>
 
-                <Route  path={"/LoginQ"} exact component={LoginUser}/>
-                <Route  path={"/UserQ"} exact component={UserQuery}/>
+                    {console.log(!props.currentUser)}
+                <PublicRoute  path={"/LoginQ"}  component={LoginUser}/>
+                <PublicRoute  path={"/UserQ"}  component={UserQuery}/>
 
-                <Route  path={"/upload_samrt_contract/general_info"} exact component={GeneralInfo}/>
-                <Route  path={"/upload_samrt_contract/associated_files"} exact component={AssociatedFiles}/>
-                <Route  path={"/detailed_contract/:id"} exact component={DetailedContract}/>
-                <Route  path={"/search_result"} exact component={SearchResult}/>
-                <Route  path={"/forget_password"} exact component={ResetPassword}/>
-                <Route  path={"/register"} exact component={Register}/>
-                <Route  path={"/login"} exact component={Login}/>
-                <Route  path={"/smart_contracts"} exact component={Smart_Contracts}/>
-                <Route path={"/help"} exact component={Help}/>
-                <Route  path={"/downloads"} exact component={Downloads}/>
-                <Route  path={"/dapps"} exact component={Dapps}/>
-                <Route  path={"/block_explorer"} exact component={BlockExplorer}/>
-                <Route  path={"/about_us"} exact component={AboutUs}/>
-                <Route  path={"/"} exact component={Home}/>
-                <Route  component={NotFound}/>
+                <PublicRoute  path={"/upload_samrt_contract/general_info"}  component={GeneralInfo}/>
+                <PublicRoute  path={"/upload_samrt_contract/associated_files"}  component={AssociatedFiles}/>
+                <PublicRoute  path={"/detailed_contract/:id"}  component={DetailedContract}/>
+                <PublicRoute  path={"/search_result"}  component={SearchResult}/>
+                <PublicRoute  path={"/forget_password"}  component={ResetPassword}/>
+                <PublicRoute  path={"/register"}  component={Register}/>
+                <PublicRoute  path={"/login"}  component={Login}/>
+                <PublicRoute  path={"/smart_contracts"}  component={Smart_Contracts}/>
+                <PublicRoute path={"/help"}  component={Help}/>
+                <PublicRoute  path={"/downloads"}  component={Downloads}/>
+                <PublicRoute  path={"/dapps"}  component={Dapps}/>
+                <PublicRoute  path={"/block_explorer"}  component={BlockExplorer}/>
+                <PublicRoute  path={"/about_us"}  component={AboutUs}/>
+                <PublicRoute  path={"/"}  component={Home}/>
+                {/*<PublicRoute  component={NotFound}/>*/}
             </Switch>
         );
 }

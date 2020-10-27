@@ -100,9 +100,4 @@
       .passwordModel .flex .field .input {
         width: 100%; }
 
-.login-bg a, .deposite a, .password a, .register-bg a, .indexContainer .borderless a, .general_password a, .forget_password a {
-  background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; }
-
 /*# sourceMappingURL=general_setting.css.map */
