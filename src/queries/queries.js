@@ -3,21 +3,19 @@ import { gql } from '@apollo/client';
 
 //Query
 const updateUser=gql`
-    mutation ($fullName: String!,$userName: String!,$email: String!,$password: String!,$avatar:String!){
+    mutation ($fullName: String,$location: String,$avatar:String,$balance:String){
         editUser(
             newUser: {
-#                id:$id,
-                fullName: $fullName, 
-                userName: $userName, 
-                email: $email,
-                password: $password,
-                avatar:$avatar
+                fullName: $fullName,
+                avatar:$avatar,
+                location: $location,
+                balance: $balance,
             }
         ){
             avatar address
             fullName id
-            email
-            location userName
+            email location
+            userName
 
         }
     }
@@ -68,6 +66,31 @@ const userData=gql`
         }
     }
 `
-
-
-export {updateUser,userData,getUsersData,imageUpload,createNewUser};
+const getAuth=gql`
+    query AUTH_USER {
+        authUser {
+            avatar address
+            fullName id
+            email password
+            location userName
+        }
+    }
+`
+const deleteUser=gql`
+    mutation DeleteUser ($id:String!){
+        deleteUser(id:$id){
+            fullName
+        }
+    }
+`
+const confirmEmail=gql`
+    mutation ConfirmEmail ($token:String!) {
+        confirmEmail(token: $token)
+    }
+`
+const forgetPassword=gql`
+    mutation ForgetPassword ($email:String!){
+        forgetPassword(email:$email)
+    } 
+`
+export {forgetPassword,confirmEmail,deleteUser,getAuth,updateUser,userData,getUsersData,imageUpload,createNewUser};

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Grid, Form, Message,Segment,Header,Icon, Button } from 'semantic-ui-react';
 import Layout from "../../hoc/Layout";
-import {getUsersData} from '../../queries/queries'
+import {forgetPassword, getUsersData} from '../../queries/queries'
 import {graphql} from "react-apollo";
 import Spinner from "../ui/Spinner";
 
@@ -24,23 +24,20 @@ class ResetPassword extends Component {
     }
     handleSubmit=()=>{
         if (this.state.email!=="") {
-            let Users = this.props.data.users;
-            for (let i = 0; i < Users.length; i++) {
-                if (Users[i]['email'] === this.state.email) {
-                    this.setState({exist: false});
-                    console.log("exist")
-                } else {
-                    this.setState({exist: true});
+            this.props.mutate({
+                variables:{
+                    email:this.state.email
                 }
-            }
+            })
+            console.log(this.props)
         }else {
             this.setState({error:"Field Required"});
         }
     }
     render() {
         console.log(this.props);
-        const {email,error,exist}=this.state;
-        return this.props.data.loading? <Spinner/>:(
+        const {email,error}=this.state;
+        return (
             <Layout>
                 <Grid textAlign="center"  verticalAlign='middle' className="login-bg">
                     <Grid.Column style={{maxWidth:700}}>
@@ -50,7 +47,6 @@ class ResetPassword extends Component {
                         </Header>
                         <Form  onSubmit={this.handleSubmit}>
                             <Segment piled>
-
                                 < Form.Input
                                     label={"Enter Email for Confermation"}
                                     labelPosition="left"
@@ -65,12 +61,6 @@ class ResetPassword extends Component {
                                 <Button fluid size="large">Reset</Button>
                             </Segment>
                         </Form>
-                        {console.log(exist)}
-                        {exist && (
-                            <Message error>
-                                <h3>Email Not Register </h3>
-                            </Message>
-                        )}
                     </Grid.Column>
                 </Grid>
             </Layout>
@@ -78,4 +68,4 @@ class ResetPassword extends Component {
     }
 }
 
-export default graphql(getUsersData)(ResetPassword);
+export default graphql(forgetPassword)(ResetPassword);

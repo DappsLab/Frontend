@@ -15,6 +15,9 @@
   align-items: flex-start;
   margin-left: 20px;
 }
+.nav_text,.icon_box{
+  color: $background-dark;
+}
 .nav_text span{
   font-size: 12px;
 }

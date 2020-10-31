@@ -27,7 +27,7 @@ class DashboardLayout extends Component{
                 <Grid textAlign="center"  verticalAlign='middle' className={"indexContainer"} >
                     <Grid.Column style={{maxWidth:1355}}>
                         <div className="ui borderless menu">
-                           <Link to={"/"}>Home </Link>>
+                           <Link to={"/"}>Home </Link>
                             {window.location.pathname==="/dashboard/purchased"&& " Purchased"}
                             {window.location.pathname==="/dashboard/test_contract"&& " Tested Contract"}
                             {window.location.pathname==="/dashboard/developed_contract"&& " Developed Contract"}

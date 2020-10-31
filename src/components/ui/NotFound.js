@@ -1,11 +1,12 @@
 import React from 'react';
-import "../../assets/scss/app.css"
+import {Grid} from "semantic-ui-react";
 const NotFound = () => {
     return (
-        <div className={"not_found_container"}>
-            <div>Sorry :(</div>
-            <div>Page not found</div>
-        </div>
+        <Grid textAlign="center"  verticalAlign='middle' className={"not_found" }>
+           <Grid.Column>
+               Sorry:(   Page Not Found
+           </Grid.Column>
+        </Grid>
     );
 };
 

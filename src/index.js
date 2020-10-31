@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
 import Routes from './routes';
 import './assets/scss/app.css';
@@ -9,7 +9,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducer/Reducer';
 
 import { ApolloProvider} from "react-apollo";
-import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { ApolloClient,InMemoryCache } from '@apollo/client';
 import {createUploadLink} from "apollo-upload-client";
 import 'semantic-ui-css/semantic.min.css'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
@@ -35,10 +35,9 @@ const  App =()=>{
     useEffect(()=>{
         const token=localStorage.getItem('token');
         if (token){
-          console.log(token)
+            // console.log(token);
         }
     })
-
     return (
         <AlertProvider template={AlertTemplate} {...options}>
             <Routes/>

@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import Layout from "../../hoc/Layout";
-import {Divider, Grid, Segment, Table} from "semantic-ui-react";
+import { Grid, Table} from "semantic-ui-react";
 import "../../assets/scss/block_explorer.css"
-import DashboardLayout from "../../hoc/DashboardLayout";
 import RecentBlock from "./RecentBlock";
 import RecentTransaction from "./RecentTransaction";
 

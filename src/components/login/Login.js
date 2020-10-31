@@ -3,10 +3,7 @@ import '../../assets/scss/login.css'
 import {Link} from "react-router-dom";
 import {Grid, Form, Segment, Button} from 'semantic-ui-react';
 import {LoginTop} from "../ui/mise";
-import {connect} from "react-redux";
 import Layout from "../../hoc/Layout";
-import {withAlert} from "react-alert";
-import {flowRight as compose} from 'lodash';
 import Alert from '@material-ui/lab/Alert';
 
 

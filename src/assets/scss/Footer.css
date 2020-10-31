@@ -50,15 +50,12 @@ a {
 .clearBoth {
   clear: both; }
 
-.not_found_container {
-  margin-top: 96px;
-  padding: 20px;
-  background-size: 5px 5px !important;
-  min-height: 100vh;
+.not_found {
   text-align: center;
   font-size: 90px;
-  font-family: 'Righteous', cursive;
-  color: #d5ebfe; }
+  color: #d5ebfe;
+  padding-top: 100px !important;
+  margin: 0 !important; }
 
 .LoginError {
   width: 100%;

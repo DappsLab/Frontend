@@ -5,6 +5,7 @@ import "../../../assets/scss/app.css"
 import Search from "../search/Search";
 import {PeoplesImg} from "../../ui/Icons";
 import Layout from "../../../hoc/Layout";
+import UploadSmartContract from "../uploadContract/UploadSmartContract";
 
 class Smart_Contracts extends Component {
     render() {
@@ -24,7 +25,7 @@ class Smart_Contracts extends Component {
 
                     </aside>
                 </section>
-
+                <UploadSmartContract/>
             </Layout>
         );
     }

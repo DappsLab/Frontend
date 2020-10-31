@@ -6,8 +6,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Layout from "../../hoc/Layout";
 import {graphql} from "react-apollo";
 import {flowRight as compose} from 'lodash';
-import {createNewUser,getUsersData} from '../../queries/queries'
-import Spinner from "../ui/Spinner";
+import {createNewUser} from '../../queries/queries'
 import { withAlert } from 'react-alert'
 
 const usernameRegex=RegExp(/^[a-zA-Z0-9]*$/);
@@ -48,13 +47,6 @@ class Register extends Component {
             case 'username':
                 if(usernameRegex.test(value)){
                     formErrors.username="";
-                    // let Users=this.props.getUsersData.users;
-                    // for (let i = 0; i < Users.length; i++) {
-                    //     if (Users[i]['userName'] === value ) {
-                    //         formErrors.username="Username already exist";
-                    //         break;
-                    //     }
-                    // }
                 }else {
                     formErrors.username="Only Alphabet and Integer Allowed";
                 }
@@ -62,13 +54,7 @@ class Register extends Component {
             case 'email':
                 if (emailRegex.test(value)){
                     formErrors.email="";
-                    // let Users=this.props.getUsersData.users;
-                    // for (let i = 0; i < Users.length; i++) {
-                    //     if (Users[i]['email'] === value ) {
-                    //         formErrors.email="Email already exist";
-                    //         break;
-                    //     }
-                    // }
+
                 }else{
                 formErrors.email="Invalid email address";
                 }
@@ -198,7 +184,7 @@ class Register extends Component {
     render() {
         console.log(this.props)
         const { fullName,username, email, password, passwordConfirmation,checkBox ,formErrors} = this.state;
-        return  this.props.getUsersData.loading? <Spinner/>:(
+        return  (
             <Layout>
                 <Grid textAlign="center"  verticalAlign='middle' className="register-bg">
                     <Grid.Column style={{maxWidth:700}}>
@@ -283,7 +269,6 @@ class Register extends Component {
 
 
 export default compose(
-    graphql(getUsersData,{name:"getUsersData"}),
     graphql(createNewUser,{name:"createNewUser"}),
     withAlert()
 )(Register);

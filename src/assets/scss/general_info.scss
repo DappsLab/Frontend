@@ -2,8 +2,6 @@
 
 .generalContainer{
   background-color: $paper-color;
-  width: 70%;
-  margin: auto;
 }
 .generalDescription{
   background: #F6F9FB;
@@ -29,34 +27,28 @@
   width: 900px;
   h3{
     padding: 0 0 10px 0;
-  }
-  .block{
-    margin-top: 20px;
+    text-align: left;
   }
   .ck-blurred{
     min-height: 200px !important;
   }
-  Button{
+  .btnsave{
     @include default-accent();
     margin-top: 20px;
     padding: 10px 30px;
-    color: $background-color;
+    color: $background-color!important;
   }
 }
 
 .generalLeft {
   .priceInput {
     margin-top: 0;
-      .label_inputs {
-        position: relative;
-        left: -68px;
-      }
     .block{
       margin-top: 12px;
     }
   }
-
   .label_inputs{
+    text-align: left;
     font-weight: bold;
     font-size: 16px ;
     margin: 0;
@@ -67,5 +59,6 @@
   }
   .info{
     color: $info-color;
+    text-align: left;
   }
 }

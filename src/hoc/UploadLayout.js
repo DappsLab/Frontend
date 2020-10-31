@@ -2,6 +2,7 @@ import "../assets/scss/upload_smart_contract.css"
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import Layout from "./Layout";
+import {Grid} from "semantic-ui-react";
 
 
 class UploadLayout extends Component{
@@ -30,15 +31,19 @@ class UploadLayout extends Component{
     render() {
         return (
             <Layout>
-                <div className={"upload_bg"}>
-                    <section className={"indexContainer"}>
-                        <h2><span>Publish new  Smart Contract</span></h2>
-                        <nav className={"flex uploadNav"}>
-                            {this.renderNav()}
-                        </nav>
-                    </section>
-                    {this.props.children}
-                </div>
+                <Grid textAlign="center"  verticalAlign='middle' >
+                        <Grid.Column style={{maxWidth:1355}}>
+                            <Grid.Row className={"upload_bg"}>
+                                    <h2><span>Publish new  Smart Contract</span></h2>
+                                    <nav className={"flex uploadNav"}>
+                                        {this.renderNav()}
+                                    </nav>
+                            </Grid.Row>
+                            <Grid.Row>
+                                {this.props.children}
+                            </Grid.Row>
+                        </Grid.Column>
+                </Grid>
             </Layout>
         );
     }

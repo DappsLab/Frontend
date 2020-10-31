@@ -10,7 +10,7 @@ import {Form} from 'semantic-ui-react';
 import {imageUpload, updateUser} from "../../../queries/queries"
 import {flowRight as compose} from 'lodash';
 import {graphql} from "react-apollo";
-import ChangePassword from "./ChangePassword";
+
 import {connect} from "react-redux";
 
 
@@ -152,23 +152,27 @@ class GeneralSetting extends Component {
         this.setState({[name]:value},()=>{});
     }
     onSubmit=(event)=>{
-        const {currentUser}=this.state;
+        const {imageFinalPath,fullName,location}=this.state;
         event.preventDefault();
+        const token=localStorage.getItem('token')
+        console.log(token)
         this.props.updateUser({
-            variables:{
-                // id:currentUser.id,
-                fullName:currentUser.fullName,
-                userName:currentUser.userName,
-                email:currentUser.email,
-                password:this.state.newPassword,
-                avatar:currentUser.avatar,
+            variables: {
+                context:{
+                    headers: {
+                        authorization: token
+                    }
+                },
+                fullName: fullName,
+                location: location,
+                avatar: imageFinalPath,
             }
         })
-        console.log("new")
+        console.log(this.props)
     }
-    passwordData=(currentPassword,newPassword)=>{
-        this.setState({currentPassword,newPassword});
-    }
+    // passwordData=(currentPassword,newPassword)=>{
+    //     this.setState({currentPassword,newPassword});
+    // }
     componentDidMount() {
         if (this.props.currentUser) {
             this.setState({
@@ -176,35 +180,39 @@ class GeneralSetting extends Component {
             });
         }
     }
+    handleDelete=()=>{
+        console.log("delete")
+        const id=this.state.currentUser.id;
+        // this.props.history.push({pathname:'/delete_user',state:{id:id}})
+    }
     render() {
         console.log(this.props)
         const {model,showDialog,crop,imageData,currentUser,imageSrc,formErrors,location,userName,imageFinalPath,fullName } = this.state;
         return  (
             <AccountLayout>
-                {/*<Segment>*/}
-                    {showDialog ?
-                        <CustomizedDialogs
-                            crop={crop}
-                            imageData={imageData}
-                            src={imageSrc}
-                            onImageLoad={(image) => this.onImageLoad(image)}
-                            onCropChange={(crop) => this.onCropChange(crop)}
-                            onCropComplete={(crop, pixelCrop) => this.onCropComplete(crop, pixelCrop)}
-                            handleSave={() => this.handleSave()}
-                        />
-                        : null
-                    }
-                    <div className={"general_setting"}>
-                        <h2>General Info</h2>
-                        <div className={"flex general_data"}>
-                            <div className={"left"}>
-                                <Form>
-                                    <Form.Field className={"flex"} >
-                                        <label>First name</label>
-                                        <Form.Input
-                                            placeholder={currentUser.fullName} type={"text"}
-                                            value={fullName} className={formErrors.fullName.length>0?"error":""}
-                                            name="fullName" onChange={this.handleChange} />
+                {showDialog ?
+                    <CustomizedDialogs
+                        crop={crop}
+                        imageData={imageData}
+                        src={imageSrc}
+                        onImageLoad={(image) => this.onImageLoad(image)}
+                        onCropChange={(crop) => this.onCropChange(crop)}
+                        onCropComplete={(crop, pixelCrop) => this.onCropComplete(crop, pixelCrop)}
+                        handleSave={() => this.handleSave()}
+                    />
+                    : null
+                }
+                <div className={"general_setting"}>
+                    <h2>General Info</h2>
+                    <div className={"flex general_data"}>
+                        <div className={"left"}>
+                            <Form>
+                                <Form.Field className={"flex"} >
+                                    <label>First name</label>
+                                    <Form.Input
+                                        placeholder={currentUser.fullName} type={"text"}
+                                        value={fullName} className={formErrors.fullName.length>0?"error":""}
+                                        name="fullName" onChange={this.handleChange} />
                                     </Form.Field>
                                     {formErrors.fullName.length>0&&(
                                         <span className={"flex errorMessage"}>{formErrors.fullName}</span>
@@ -226,13 +234,13 @@ class GeneralSetting extends Component {
                                             placeholder={currentUser.email}
                                             type={"email"} name="email" />
                                     </Form.Field>
-                                    <Form.Field className={"flex password opacity"}>
-                                        <label>Password</label>
-                                        <Form.Input
-                                            disabled transparent placeholder={"************"}
-                                            type={"password"} name="password" />
-                                        <a onClick={this.openModel} >Change</a>
-                                    </Form.Field>
+                                    {/*<Form.Field className={"flex password opacity"}>*/}
+                                    {/*    <label>Password</label>*/}
+                                    {/*    <Form.Input*/}
+                                    {/*        disabled transparent placeholder={"************"}*/}
+                                    {/*        type={"password"} name="password" />*/}
+                                    {/*    <a onClick={this.openModel} >Change</a>*/}
+                                    {/*</Form.Field>*/}
                                     <Form.Field className={"flex"}>
                                         <label>Location</label>
                                         <Form.Input
@@ -246,11 +254,10 @@ class GeneralSetting extends Component {
                                     <Form.Field className={"flex"}>
                                         <label>Delete your Accoun</label>
                                         <Button
-                                            variant="contained" color="secondary">Delete Account</Button>
+                                            variant="contained" onClick={this.handleDelete} color="secondary">Delete Account</Button>
                                     </Form.Field>
                                     <Button onClick={this.onSubmit} className={"loginbtn"}  variant="contained">Save</Button>
                                 </Form>
-
                             </div>
                             <div className={"profile_picture"}>
                                 <h5>Profile picture</h5>
@@ -267,12 +274,11 @@ class GeneralSetting extends Component {
                             </div>
                         </div>
                     </div>
-                    <ChangePassword
-                        model={model}
-                        closeModel={this.closeModel}
-                        passwordData={this.passwordData}
-                    />
-                {/*</Segment>*/}
+                    {/*<ChangePassword*/}
+                    {/*    model={model}*/}
+                    {/*    closeModel={this.closeModel}*/}
+                    {/*    passwordData={this.passwordData}*/}
+                    {/*/>*/}
             </AccountLayout>
         );
     }
