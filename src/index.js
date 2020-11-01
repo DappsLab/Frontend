@@ -9,7 +9,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducer/Reducer';
 
 import { ApolloProvider} from "react-apollo";
-import { ApolloClient,InMemoryCache } from '@apollo/client';
+import {ApolloClient, ApolloLink, concat, InMemoryCache} from '@apollo/client';
 import {createUploadLink} from "apollo-upload-client";
 import 'semantic-ui-css/semantic.min.css'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
@@ -24,10 +24,19 @@ const options = {
     transition: transitions.SCALE
 }
 
-const link=createUploadLink({uri:"http://localhost:4000/graphql"})
+const link=createUploadLink({uri:"http://localhost:4000/graphql"});
+const authMiddleware = new ApolloLink((operation, forward) => {
+    operation.setContext({
+        headers: {
+            authorization: localStorage.getItem('token') || null,
+        }
+    });
+
+    return forward(operation);
+})
 const client = new ApolloClient({
-    link,
-    cache: new InMemoryCache()
+    link:concat(authMiddleware,link),
+    cache: new InMemoryCache(),
 });
 
 

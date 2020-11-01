@@ -12,21 +12,20 @@ import {flowRight as compose} from 'lodash';
 import {graphql} from "react-apollo";
 
 import {connect} from "react-redux";
+import {setUser} from "../../../actions/Actions";
 
 
-const usernameRegex=RegExp(/^[a-zA-Z0-9]*$/);
 const alphabetRegex=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
 class GeneralSetting extends Component {
     state = {
         currentUser: this.props.currentUser,
         fullName: "",
-        userName: "",
+
         location: "",
         imageFinalPath:"",
         model:false,
         formErrors:{
             fullName: "",
-            userName: "",
             location: "",
         },
         imageSrc: null,
@@ -116,8 +115,6 @@ class GeneralSetting extends Component {
         this.makeClientCrop(this.state.crop);
     }
     //image end
-    openModel=()=>this.setState({model:true});
-    closeModel=()=>this.setState({model:false});
     handleChange = event => {
         const {name,value}=event.target;
         let formErrors=this.state.formErrors;
@@ -126,20 +123,6 @@ class GeneralSetting extends Component {
                 formErrors.fullName= alphabetRegex.test(value)
                     ? ""
                     :"Only Alphabet Allowed";
-                break;
-            case 'userName':
-                if(usernameRegex.test(value)){
-                    formErrors.userName="";
-                    // let Users=this.props.getUsersData.users;
-                    // for (let i = 0; i < Users.length; i++) {
-                    //     if (Users[i]['userName'] === value ) {
-                    //         formErrors.username="Username already exist";
-                    //         break;
-                    //     }
-                    // }
-                }else {
-                    formErrors.userName="Only Alphabet and Integer Allowed";
-                }
                 break;
             case 'location':
                 formErrors.location= alphabetRegex.test(value)
@@ -152,27 +135,21 @@ class GeneralSetting extends Component {
         this.setState({[name]:value},()=>{});
     }
     onSubmit=(event)=>{
-        const {imageFinalPath,fullName,location}=this.state;
+        const {imageFinalPath,currentUser,fullName,location}=this.state;
+
         event.preventDefault();
-        const token=localStorage.getItem('token')
-        console.log(token)
         this.props.updateUser({
             variables: {
-                context:{
-                    headers: {
-                        authorization: token
-                    }
-                },
-                fullName: fullName,
-                location: location,
-                avatar: imageFinalPath,
+                fullName: fullName.length>0?fullName:currentUser.fullName,
+                location: location.length>0?location:currentUser.location,
+                avatar: imageFinalPath===""?currentUser.avatar:imageFinalPath,
             }
+        }).then(result=>{
+            console.log(result.data.editUser)
+            this.props.setUser(result.data.editUser)
         })
-        console.log(this.props)
     }
-    // passwordData=(currentPassword,newPassword)=>{
-    //     this.setState({currentPassword,newPassword});
-    // }
+
     componentDidMount() {
         if (this.props.currentUser) {
             this.setState({
@@ -217,30 +194,20 @@ class GeneralSetting extends Component {
                                     {formErrors.fullName.length>0&&(
                                         <span className={"flex errorMessage"}>{formErrors.fullName}</span>
                                     )}
-                                    <Form.Field className={"flex"}>
+                                    <Form.Field className={"flex opacity"}>
                                         <label>Username</label>
                                         <Form.Input
                                             placeholder={currentUser.userName} type={"text"}
-                                            value={userName} className={formErrors.userName.length>0?"error":""}
-                                            name="userName" onChange={this.handleChange}/>
+                                            disabled transparent name="userName"/>
                                     </Form.Field>
-                                    {formErrors.userName.length>0&&(
-                                        <span className={"flex errorMessage"}>{formErrors.userName}</span>
-                                    )}
-                                    <Form.Field  className={"flex"}>
+
+                                    <Form.Field  className={"flex opacity"}>
                                         <label>Email</label>
                                         <Form.Input
                                             className={"opacity"} disabled transparent
                                             placeholder={currentUser.email}
                                             type={"email"} name="email" />
                                     </Form.Field>
-                                    {/*<Form.Field className={"flex password opacity"}>*/}
-                                    {/*    <label>Password</label>*/}
-                                    {/*    <Form.Input*/}
-                                    {/*        disabled transparent placeholder={"************"}*/}
-                                    {/*        type={"password"} name="password" />*/}
-                                    {/*    <a onClick={this.openModel} >Change</a>*/}
-                                    {/*</Form.Field>*/}
                                     <Form.Field className={"flex"}>
                                         <label>Location</label>
                                         <Form.Input
@@ -287,7 +254,7 @@ const mapStateToProps=(state)=>({
     currentUser:state.user.currentUser,
 })
 export default compose(
-   connect(mapStateToProps),
+   connect(mapStateToProps, {setUser}),
     graphql(imageUpload,{name:"uploadImage"}),
     graphql(updateUser,{name:"updateUser"})
 )(GeneralSetting);

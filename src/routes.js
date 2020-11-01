@@ -32,6 +32,7 @@ import PublicRoute from "./components/route_auth/PublicRoute";
 import PrivateRoute from "./components/route_auth/PrivateRoute";
 import DeleteUser from "./queries/DeleteUser";
 import ConfirmEmail from "./components/user/ConfirmEmail";
+import ChangePassword from "./components/user/ChangePassword";
 
 
 
@@ -55,6 +56,8 @@ const Routes =(props)=>{
                 <PublicRoute  path={"/LoginQ"}  component={LoginUser}/>
                 <PublicRoute  path={"/UserQ"}  component={UserQuery}/>
 
+
+                <PublicRoute path={"/user/reset-password/:key"} component={ChangePassword}/>
                 <PublicRoute path={"/user/confirm/:key"} component={ConfirmEmail}/>
                 <PublicRoute  path={"/detailed_contract/:id"}  component={DetailedContract}/>
                 <PublicRoute  path={"/search_result"}  component={SearchResult}/>

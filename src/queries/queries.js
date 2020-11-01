@@ -71,7 +71,7 @@ const getAuth=gql`
         authUser {
             avatar address
             fullName id
-            email password
+            email 
             location userName
         }
     }
@@ -93,4 +93,9 @@ const forgetPassword=gql`
         forgetPassword(email:$email)
     } 
 `
-export {forgetPassword,confirmEmail,deleteUser,getAuth,updateUser,userData,getUsersData,imageUpload,createNewUser};
+const newPassword=gql`
+    mutation ResetPassword ($token:String,$password:String){
+        resetPassword(token:$token,password:$password)
+    }
+`
+export {newPassword,forgetPassword,confirmEmail,deleteUser,getAuth,updateUser,userData,getUsersData,imageUpload,createNewUser};

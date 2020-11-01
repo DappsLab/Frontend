@@ -103,38 +103,11 @@
     display: none;
   }
 }
-.password{
-  a{
-    cursor: pointer;
-  }
-  div{
-    margin-bottom: 0!important;
-  }
-  .field{
-    width: 42%!important;
-  }
-}
 .opacity{
   .ui.disabled.input{
     opacity: 1;
   }
 }
-.passwordModel{
-  padding:1.5rem 6.5rem  !important;
-  .errorMessage{
-    justify-content: center!important;
-    margin: 0!important;
-  }
-  .flex {
-    justify-content: space-between;
-    margin: 20px 0;
-    .field {
-      width: 70%;
-      .input {
-        width: 100%;
-      }
-    }
-  }
-}
+
 
 

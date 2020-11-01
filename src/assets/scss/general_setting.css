@@ -77,27 +77,7 @@
   .avatar_label input[type="file"] {
     display: none; }
 
-.password a {
-  cursor: pointer; }
-.password div {
-  margin-bottom: 0 !important; }
-.password .field {
-  width: 42% !important; }
-
 .opacity .ui.disabled.input {
   opacity: 1; }
-
-.passwordModel {
-  padding: 1.5rem 6.5rem  !important; }
-  .passwordModel .errorMessage {
-    justify-content: center !important;
-    margin: 0 !important; }
-  .passwordModel .flex {
-    justify-content: space-between;
-    margin: 20px 0; }
-    .passwordModel .flex .field {
-      width: 70%; }
-      .passwordModel .flex .field .input {
-        width: 100%; }
 
 /*# sourceMappingURL=general_setting.css.map */

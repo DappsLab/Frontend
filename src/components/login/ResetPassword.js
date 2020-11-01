@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import { Grid, Form, Message,Segment,Header,Icon, Button } from 'semantic-ui-react';
+import { Grid, Form,Segment,Header,Icon, Button } from 'semantic-ui-react';
 import Layout from "../../hoc/Layout";
-import {forgetPassword, getUsersData} from '../../queries/queries'
+import {forgetPassword} from '../../queries/queries'
 import {graphql} from "react-apollo";
 import Spinner from "../ui/Spinner";
 
@@ -23,19 +23,21 @@ class ResetPassword extends Component {
         this.setState({[name]:value},()=>{});
     }
     handleSubmit=()=>{
+        const that=this;
         if (this.state.email!=="") {
             this.props.mutate({
                 variables:{
                     email:this.state.email
                 }
-            })
-            console.log(this.props)
+            }).then(function(result) {
+                console.log(result.data)
+                // that.setState({imageFinalPath:result.data.imageUploader})
+            });
         }else {
             this.setState({error:"Field Required"});
         }
     }
     render() {
-        console.log(this.props);
         const {email,error}=this.state;
         return (
             <Layout>
