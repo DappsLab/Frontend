@@ -61,8 +61,7 @@ const userData=gql`
         userById(id: $id) {
             avatar address
             fullName id
-             email password
-            location userName
+             email location userName
         }
     }
 `
@@ -94,8 +93,17 @@ const forgetPassword=gql`
     } 
 `
 const newPassword=gql`
-    mutation ResetPassword ($token:String,$password:String){
+    mutation ResetPassword ($token:String!,$password:String!){
         resetPassword(token:$token,password:$password)
     }
 `
-export {newPassword,forgetPassword,confirmEmail,deleteUser,getAuth,updateUser,userData,getUsersData,imageUpload,createNewUser};
+const meQuery=gql`    
+    query {
+        me{
+            avatar address
+            fullName id
+            email location userName
+        }
+    }
+`
+export {meQuery,newPassword,forgetPassword,confirmEmail,deleteUser,getAuth,updateUser,userData,getUsersData,imageUpload,createNewUser};

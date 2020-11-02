@@ -61,14 +61,6 @@ a {
   padding-top: 100px !important;
   margin: 0!important;
 }
-.LoginError{
-  width: 100%;
-  margin-top: 10px;
-  justify-content: center;
-  div{
-    width: auto;
-  }
-}
 .login-bg a,.row a,.deposite a,.deposite .flex .address,.password a,.register-bg a,.indexContainer .borderless a,.general_password a,.forget_password a{
   @include default-link();
 }

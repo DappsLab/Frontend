@@ -57,13 +57,6 @@ a {
   padding-top: 100px !important;
   margin: 0 !important; }
 
-.LoginError {
-  width: 100%;
-  margin-top: 10px;
-  justify-content: center; }
-  .LoginError div {
-    width: auto; }
-
 .login-bg a, .row a, .deposite a, .deposite .flex .address, .password a, .register-bg a, .indexContainer .borderless a, .general_password a, .forget_password a {
   background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
   -webkit-background-clip: text;

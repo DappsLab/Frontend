@@ -4,7 +4,9 @@ import {Link} from "react-router-dom";
 import {Grid, Form, Segment, Button} from 'semantic-ui-react';
 import {LoginTop} from "../ui/mise";
 import Layout from "../../hoc/Layout";
-import Alert from '@material-ui/lab/Alert';
+import LoginQuery from "../../queries/LoginQuery";
+import UserQuery from "../../queries/UserQuery";
+import { withAlert} from "react-alert";
 
 
 const usernameRegex=RegExp(/^[a-zA-Z0-9]*$/);
@@ -14,8 +16,12 @@ class Login extends Component {
     }
     state={
         username: "",
+        loginQuery:false,
+        userQuery:false,
+        loginError:"",
         error:"",
-        hide:false,
+        id:"",
+        errorHide:false,
         password: "",
         formErrors: {
             username: "",
@@ -44,9 +50,7 @@ class Login extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         if (this.isFormValid(this.state)) {
-            const {username,password}=this.state;
-            this.setState({model:true,hide:false});
-            this.props.history.push({pathname:'/LoginQ',state:{username,password}})
+            this.setState({loginQuery:true,errorHide:false});
         }
     };
     isFormValid = ({ username, password }) =>{
@@ -59,21 +63,33 @@ class Login extends Component {
             return false;
         }
     }
-    closeModel=()=>this.setState({model:false});
+    closeLoginQuery=()=>{
+        this.setState({loginQuery:false})
+    }
+    closeUserQuery=()=>{
+        this.setState({userQuery:false})
+    }
+    getUserInfo=(data)=>{
+       if ( data.toLowerCase().includes("error")){
+           data=data.replace('GraphQL','')
+           const alert = this.props.alert;
+           alert.error(data, {timeout: 5000});
+       }else {
+           this.setState({id:data,userQuery:true});
+       }
+    }
+    getUserData=(data)=>{
+        if (data==="user"){
+            const alert = this.props.alert;
+            alert.success("Login Successfully", {timeout: 5000});
+            this.props.history.push('/');
+        }
+    }
     render() {
-        const {username,password,formErrors,hide} = this.state;
-        const Loginerror=this.props.location.state;
-        setTimeout(function(){
-            this.setState({hide:true});
-        }.bind(this),5000);
+        const {username,password,formErrors,userQuery,id,loginQuery,errorHide} = this.state;
         return (
             <Layout>
-                {Loginerror?
-                    <div className={`LoginError flex ${hide?"none":""}`}>
-                        <Alert severity="error">{Loginerror.Loginerror}</Alert>
-                    </div>
-                    :""
-                }
+
                 <Grid textAlign="center"  verticalAlign='middle' className="login-bg">
                     <Grid.Column style={{maxWidth:700}}>
                         <Form  onSubmit={this.handleSubmit}>
@@ -108,8 +124,24 @@ class Login extends Component {
                         </Form>
                     </Grid.Column>
                 </Grid>
+                {loginQuery&&
+                    <LoginQuery
+                        username={username}
+                        password={password}
+                        close={this.closeLoginQuery}
+                        getUserInfo={this.getUserInfo}
+                    />
+                }
+                {userQuery&&
+                    <UserQuery
+                        id={id}
+                        close={this.closeUserQuery}
+                        getUserData={this.getUserData}
+                    />
+                }
+
             </Layout>
         );
     }
 }
-export default (Login);
+export default withAlert()(Login);

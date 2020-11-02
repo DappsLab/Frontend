@@ -10,15 +10,16 @@ import {userData} from "./queries";
 
 class UserQuery extends Component{
     componentDidUpdate(prevProps, prevState, snapshot) {
+        const {close,getUserData}=this.props;
         if (this.props.data.error) {
             let Loginerror = this.props.data.error.message;
-            this.props.history.push({pathname: '/login', state: {Loginerror}});
+            close();
+            getUserData(Loginerror)
         } else {
             let user = this.props.data.userById;
             this.props.setUser(user);
-            const alert = this.props.alert;
-            alert.success("Login Successfully", {timeout: 2000});
-            this.props.history.push('/');
+            close();
+            getUserData("user");
         }
     }
     render() {
@@ -31,7 +32,7 @@ const BindData= graphql(userData, {
     options: (props) => {
         return {
             variables: {
-                id:props.location.state.user.user.id
+                id:props.id
             }
         }
     }

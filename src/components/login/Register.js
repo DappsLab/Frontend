@@ -8,6 +8,7 @@ import {graphql} from "react-apollo";
 import {flowRight as compose} from 'lodash';
 import {createNewUser} from '../../queries/queries'
 import { withAlert } from 'react-alert'
+import Spinner from "../ui/Spinner";
 
 const usernameRegex=RegExp(/^[a-zA-Z0-9]*$/);
 const alphabetRegex=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
@@ -20,6 +21,7 @@ class Register extends Component {
         passwordConfirmation: "",
         username:"",
         error:false,
+        loading:false,
         errorMessage:"",
         checkBox:"",
         formErrors:{
@@ -104,7 +106,6 @@ class Register extends Component {
         {value:3,hint:"I agree with DappsLab Subscription Agreement"}
     ]
     renderCheckBox=()=>(
-
         this.checkboxList.map(list=>(
             <div key={list.value}>
                 <div  className={"flex"}>
@@ -125,8 +126,10 @@ class Register extends Component {
     handleSubmit = (event) => {
         const alert = this.props.alert;
         event.preventDefault();
+        const that=this;
         if (this.isValidCheckbox(this.state.formErrors)) {
             if (isFormValid(this.state)) {
+                this.setState({loading:true})
                 const {fullName,email,username,password}=this.state;
                 this.props.createNewUser({
                     variables:{
@@ -136,9 +139,12 @@ class Register extends Component {
                         password: password.toString()
                     }
                 }).then(()=>{
+                    that.setState({loading:false})
+                    alert.success("User Register Successfully. Email varifection send tou your provided Email ",{timeout: 15000})
                     this.props.history.push('/login')
                 }).catch((error)=>{
-                    alert.error(error.message)
+                    that.setState({loading:false})
+                    alert.error(error.message,{timeout: 5000})
                 })
 
             } else {
@@ -183,7 +189,7 @@ class Register extends Component {
     }
     render() {
         console.log(this.props)
-        const { fullName,username, email, password, passwordConfirmation,checkBox ,formErrors} = this.state;
+        const { fullName,username, email, password, passwordConfirmation,checkBox,loading ,formErrors} = this.state;
         return  (
             <Layout>
                 <Grid textAlign="center"  verticalAlign='middle' className="register-bg">
@@ -262,6 +268,7 @@ class Register extends Component {
                         </Form>
                     </Grid.Column>
                 </Grid>
+                {loading &&<Spinner/>}
             </Layout>
         );
     }

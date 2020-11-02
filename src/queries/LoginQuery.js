@@ -20,17 +20,20 @@ const userLogin=gql`
 `
 class LoginQuery extends Component{
    componentDidUpdate(prevProps, prevState, snapshot) {
-           if (this.props.data.error) {
-               let Loginerror = this.props.data.error.message;
-               this.props.history.push({pathname: '/login', state: {Loginerror}});
-           } else {
-               let user = this.props.data.loginUser;
-               localStorage.setItem('token',user.token);
-               this.props.history.push({pathname:'/UserQ',state:{user}});
+       const {close,getUserInfo}=this.props;
+       if (this.props.data.error) {
+           let Loginerror = this.props.data.error.message;
+           getUserInfo(Loginerror)
+           close();
+       } else {
+           let user = this.props.data.loginUser;
+           localStorage.setItem('token',user.token);
+           getUserInfo(user.user.id);
+           close();
            }
        }
     render() {
-       console.log(this.props)
+
         return this.props.data.loading? <Spinner/>:(
             <div> </div>
         );
@@ -40,8 +43,8 @@ const BindData= graphql(userLogin, {
     options: (props) => {
         return {
             variables: {
-                username:props.location.state.username ,
-                password: props.location.state.password
+                username:props.username ,
+                password: props.password
             }
         }
     }

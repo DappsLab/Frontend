@@ -20,25 +20,29 @@ class BlockExplorer extends Component {
                        <Grid.Column textAlign={"left"} width={5}>
                            <h2>Recent <span>BLock</span></h2>
                            <Table className={"striped"} >
-                               <RecentBlock/>
-                               <RecentBlock/>
-                               <RecentBlock/>
-                               <RecentBlock/>
-                               <RecentBlock/>
-                               <RecentBlock/>
-                               <RecentBlock/>
+                               <Table.Body>
+                                   <RecentBlock/>
+                                   <RecentBlock/>
+                                   <RecentBlock/>
+                                   <RecentBlock/>
+                                   <RecentBlock/>
+                                   <RecentBlock/>
+                                   <RecentBlock/>
+                               </Table.Body>
                            </Table>
                        </Grid.Column>
                        <Grid.Column textAlign={"left"} width={11}>
                            <h2>Recent <span>Transaction</span></h2>
                            <Table className={"striped"} >
-                              <RecentTransaction/>
-                              <RecentTransaction/>
-                              <RecentTransaction/>
-                               <RecentTransaction/>
-                               <RecentTransaction/>
-                               <RecentTransaction/>
-                               <RecentTransaction/>
+                             <Table.Body>
+                                 <RecentTransaction/>
+                                 <RecentTransaction/>
+                                 <RecentTransaction/>
+                                 <RecentTransaction/>
+                                 <RecentTransaction/>
+                                 <RecentTransaction/>
+                                 <RecentTransaction/>
+                             </Table.Body>
                            </Table>
                        </Grid.Column>
                    </Grid.Row>

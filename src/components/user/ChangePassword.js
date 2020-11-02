@@ -6,6 +6,8 @@ import {withAlert} from "react-alert";
 import {flowRight as compose} from 'lodash';
 import {graphql} from "react-apollo";
 import {newPassword} from "../../queries/queries";
+import Spinner from "../ui/Spinner";
+import Layout from "../../hoc/Layout";
 
 
 class ChangePassword extends Component {
@@ -20,16 +22,29 @@ class ChangePassword extends Component {
         }
     }
     sendData=()=>{
+        const that=this;
+        const alert=this.props.alert;
+        that.setState({loading:true})
+
         const {confirmPassword,formErrors,token,newPassword}=this.state
         if (newPassword!==""&&confirmPassword!=="") {
             if (formErrors.newPassword===""&&formErrors.confirmPassword===""&&formErrors.newPassword==="") {
-                this.props.mutate({
-                    variables:{
-                        token:token,
-                        password:newPassword
+                   this.props.mutate({
+                    variables: {
+                        token: token,
+                        password: newPassword
                     }
-                })
-                console.log(this.props)
+                }).then((result)=>{
+                       that.setState({loading:false})
+
+                       if (result.data.resetPassword){
+                        alert.success("Password changed successfully",{timeout:5000})
+                        that.props.history.push('/login')
+                    }else {
+                        alert.error("Password not change.Try again ",{timeout:5000})
+                        that.props.history.push('/forget_password')
+                    }
+                   })
             }
         }else {
             const formErrors=this.state.formErrors;
@@ -88,11 +103,12 @@ class ChangePassword extends Component {
         this.setState({[name]:value},()=>{});
     }
     render() {
-        const {formErrors,newPassword,confirmPassword}=this.state;
+        const {formErrors,newPassword,loading,confirmPassword}=this.state;
         return (
            <Grid textAlign="center" className={"passwordChange"}  verticalAlign='middle'>
                <Grid.Column style={{maxWidth:600}}>
                    <Segment>
+                       <h3>Reset Password</h3>
                        <Form>
                             <Form.Field className={"flex"}>
                                 <label>New Password</label>
@@ -116,9 +132,10 @@ class ChangePassword extends Component {
                        </Form>
                    </Segment>
                </Grid.Column>
+               {loading&&<Spinner/>}
            </Grid>
         );
     }
 }
 
-export default compose(graphql(newPassword)) (ChangePassword);
+export default compose(graphql(newPassword),withAlert()) (ChangePassword);

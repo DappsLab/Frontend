@@ -21,9 +21,6 @@ class Smart_Contracts extends Component {
                 </section>
                 <section className="section2">
                     <ContractCard/>
-                    <aside>
-
-                    </aside>
                 </section>
                 <UploadSmartContract/>
             </Layout>

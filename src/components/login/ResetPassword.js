@@ -4,6 +4,8 @@ import Layout from "../../hoc/Layout";
 import {forgetPassword} from '../../queries/queries'
 import {graphql} from "react-apollo";
 import Spinner from "../ui/Spinner";
+import {flowRight as compose} from 'lodash';
+import {withAlert} from "react-alert";
 
 const emailRegex=RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 class ResetPassword extends Component {
@@ -11,6 +13,7 @@ class ResetPassword extends Component {
         email: "",
         error: "",
         exist:false,
+        loading:false
     }
     handleChange = event => {
         const {name,value}=event.target;
@@ -24,21 +27,29 @@ class ResetPassword extends Component {
     }
     handleSubmit=()=>{
         const that=this;
+        const alert=this.props.alert
         if (this.state.email!=="") {
+            that.setState({loading:true})
             this.props.mutate({
                 variables:{
                     email:this.state.email
                 }
-            }).then(function(result) {
-                console.log(result.data)
-                // that.setState({imageFinalPath:result.data.imageUploader})
-            });
+            }).then((result) => {
+                that.setState({loading:false})
+                that.props.history.push('/login')
+                alert.success("Reset password link send to your provided Email ", {timeout: 7000})
+            }).catch(e=>{
+                that.setState({loading:false})
+                const error=e.toString();
+                alert.error(error,{timeout: 5000})
+            })
+
         }else {
             this.setState({error:"Field Required"});
         }
     }
     render() {
-        const {email,error}=this.state;
+        const {email,error,loading}=this.state;
         return (
             <Layout>
                 <Grid textAlign="center"  verticalAlign='middle' className="login-bg">
@@ -65,9 +76,10 @@ class ResetPassword extends Component {
                         </Form>
                     </Grid.Column>
                 </Grid>
+                {loading&&<Spinner/>}
             </Layout>
         );
     }
 }
 
-export default graphql(forgetPassword)(ResetPassword);
+export default compose(graphql(forgetPassword),withAlert())(ResetPassword);

@@ -67,7 +67,7 @@ class GeneralSetting extends Component {
                 'newFile.jpeg'
             );
             this.setState({ file });
-            this.props.uploadImage({variables:{file}}) .then(function(result) {
+            this.props.uploadImage({variables:{file}}).then(function(result) {
                 that.setState({imageFinalPath:result.data.imageUploader})
             });
             const newCrop={...this.state.crop}
@@ -158,13 +158,12 @@ class GeneralSetting extends Component {
         }
     }
     handleDelete=()=>{
-        console.log("delete")
         const id=this.state.currentUser.id;
-        // this.props.history.push({pathname:'/delete_user',state:{id:id}})
+        console.log(id)
     }
     render() {
         console.log(this.props)
-        const {model,showDialog,crop,imageData,currentUser,imageSrc,formErrors,location,userName,imageFinalPath,fullName } = this.state;
+        const {showDialog,crop,imageData,currentUser,imageSrc,formErrors,location,imageFinalPath,fullName } = this.state;
         return  (
             <AccountLayout>
                 {showDialog ?
