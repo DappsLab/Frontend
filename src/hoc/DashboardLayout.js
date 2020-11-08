@@ -1,4 +1,4 @@
-import "../assets/scss/upload_smart_contract.css"
+import "../assets/scss/upload_section.css"
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import Layout from "./Layout";

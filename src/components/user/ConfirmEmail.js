@@ -6,7 +6,8 @@ import {Grid, Segment} from "semantic-ui-react";
 import Spinner from "../ui/Spinner";
 import {withAlert} from "react-alert";
 import {flowRight as compose} from 'lodash';
-
+import {DappsIcon} from "../ui/Icons";
+import "../../assets/scss/confirm_email.css"
 
 class ConfirmEmail extends Component {
     state={
@@ -24,36 +25,42 @@ class ConfirmEmail extends Component {
         this.props.mutate({
             variables:{token:this.state.token}
         }).then(function(result) {
-            if (result.data.confirmEmail){
-                that.setState({loading:false});
+            if (result.data.confirmEmail) {
+                that.setState({loading: false});
                 that.props.history.push('/login');
                 const alert = that.props.alert;
                 alert.success("Email varified Successfully", {timeout: 5000});
-            }else {
-                that.setState({loading:false});
-                that.props.history.push('/login');
-                const alert = that.props.alert;
-                alert.error("Email Not Varified", {timeout: 10000});
             }
+        }).catch(e=>{
+            that.setState({loading:false});
+            that.props.history.push('/login');
+            const alert = that.props.alert;
+            alert.error(e.toString(), {timeout: 10000});
         });
     }
     render() {
         // console.log(this.props)
         return (
+            <div>
             <Grid textAlign="center"  verticalAlign='middle' >
-                <Grid.Column style={{maxWidth:500}}>
-                    <Segment size={"massive"}>
-                        <h3>Click on confirm button</h3>
-                    <Button className={"confirm_email"} onClick={this.handleConfirm}
+                <Grid.Column style={{maxWidth:600}}>
+                    <Segment  className={"confirm_email"}>
+                        <DappsIcon
+                            link={false}
+                            linkTo="/"
+                        />
+                        <h1>Varify your email address</h1>
+                        <p>Simply click button below to varify your email address</p>
+                    <Button  onClick={this.handleConfirm}
                             variant="contained" color="primary">
-                        confirm
+                        Varify email address
                     </Button>
+
                     </Segment>
                 </Grid.Column>
-                {this.state.loading&&
-                    <Spinner/>
-                }
             </Grid>
+                 {this.state.loading&&<Spinner/>}
+            </div>
         );
     }
 }

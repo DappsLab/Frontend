@@ -4,4 +4,13 @@
   .indexContainer .borderless a {
     margin-right: 5px; }
 
+.developed_body {
+  height: 130px !important;
+  padding: 10px; }
+  .developed_body .ui.loader {
+    top: 71%; }
+
+.developed {
+  margin-bottom: 20px !important; }
+
 /*# sourceMappingURL=dashboard.css.map */

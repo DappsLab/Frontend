@@ -1,0 +1,17 @@
+.confirm_email {
+  padding: 0 0 20px 0 !important; }
+  .confirm_email h1 {
+    margin: 10px 0; }
+  .confirm_email .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 !important;
+    height: 90px;
+    background: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%) !important; }
+    .confirm_email .logo-container .LogoCaption {
+      height: 35px; }
+  .confirm_email Form {
+    padding: 0 20px; }
+
+/*# sourceMappingURL=confirm_email.css.map */

@@ -14,6 +14,13 @@
   box-shadow: 0 2px 1px -1px rgba(0,0,0,0.2),
   0px 1px 1px 0px rgba(0,0,0,0.14),
   0px 1px 3px 0px rgba(0,0,0,0.12);
+  .MuiAvatar-circle{
+    width: 80px!important;
+    height: 80px!important;
+  }
+  h3{
+    margin-top: 5px;
+  }
 }
 .contractRight{
   border-radius: 10px;
@@ -38,19 +45,21 @@
 .contractRight h4{
   margin: 10px 0;
 }
-.btnGroups{
+.btnGroups {
   justify-content: space-between;
-}
-.testbtn{
-  width:180px !important;
-  background: $default-accent !important;
-  color: $primary-color !important;
-  &:hover {
-    background: $default-primary !important;
-    Box-shadow:
-            0 2px 4px -1px rgba(0,0,0,0.2),
-            0px 4px 5px 0px rgba(0,0,0,0.14),
-            0px 1px 10px 0px rgba(0,0,0,0.12);
+
+  .testbtn {
+    width: 180px !important;
+    background: $default-accent !important;
+    color: $primary-color !important;
+    margin-right: 0!important;
+    &:hover {
+      color: $paper-color;
+      background: $default-primary !important;
+      Box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+      0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+      0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+    }
   }
 }
 .inputcontrol{
@@ -75,4 +84,26 @@
 }
 .inputcontrol input[type=radio]{
   margin-top: 10px;
+}
+.radio_detials{
+  margin-bottom: 15px;
+  .ui.disabled.input,.ui.input input{
+    opacity: unset!important;
+  }
+  label{
+    font-size: 15px!important;
+  }
+  .ui.input input {
+    opacity: 1;
+  }
+  .radio{
+    margin-right: 10px!important;
+  }
+}
+.contract_category{
+
+  margin: 15px 0;
+  .button:hover{
+    text-decoration: underline;
+  }
 }

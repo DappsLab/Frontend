@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {graphql } from "react-apollo";
 import Spinner from "../components/ui/Spinner";
-import {connect} from "react-redux";
-import {setUser} from "../actions/Actions";
 import {withAlert} from "react-alert";
 import {flowRight as compose} from 'lodash';
 import {userData} from "./queries";
@@ -17,9 +15,9 @@ class UserQuery extends Component{
             getUserData(Loginerror)
         } else {
             let user = this.props.data.userById;
-            this.props.setUser(user);
+
             close();
-            getUserData("user");
+            getUserData("user",user);
         }
     }
     render() {
@@ -37,6 +35,4 @@ const BindData= graphql(userData, {
         }
     }
 })(UserQuery);
-export default compose(
-    connect(null, {setUser}),withAlert(),
-)(BindData)
+export default compose(withAlert(),)(BindData)

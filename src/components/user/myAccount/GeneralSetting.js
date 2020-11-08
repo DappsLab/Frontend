@@ -10,7 +10,6 @@ import {Form} from 'semantic-ui-react';
 import {imageUpload, updateUser} from "../../../queries/queries"
 import {flowRight as compose} from 'lodash';
 import {graphql} from "react-apollo";
-
 import {connect} from "react-redux";
 import {setUser} from "../../../actions/Actions";
 
@@ -20,7 +19,6 @@ class GeneralSetting extends Component {
     state = {
         currentUser: this.props.currentUser,
         fullName: "",
-
         location: "",
         imageFinalPath:"",
         model:false,
@@ -145,7 +143,6 @@ class GeneralSetting extends Component {
                 avatar: imageFinalPath===""?currentUser.avatar:imageFinalPath,
             }
         }).then(result=>{
-            console.log(result.data.editUser)
             this.props.setUser(result.data.editUser)
         })
     }
@@ -162,7 +159,7 @@ class GeneralSetting extends Component {
         console.log(id)
     }
     render() {
-        console.log(this.props)
+
         const {showDialog,crop,imageData,currentUser,imageSrc,formErrors,location,imageFinalPath,fullName } = this.state;
         return  (
             <AccountLayout>
@@ -197,7 +194,7 @@ class GeneralSetting extends Component {
                                         <label>Username</label>
                                         <Form.Input
                                             placeholder={currentUser.userName} type={"text"}
-                                            disabled transparent name="userName"/>
+                                             name="userName"/>
                                     </Form.Field>
 
                                     <Form.Field  className={"flex opacity"}>

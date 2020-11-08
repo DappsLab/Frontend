@@ -14,6 +14,10 @@
   width: 100vh;
   padding: 20px 10px;
   background-color: $paper-color;
+  min-height: 200px;
+  .ui.loader{
+    top: 20%;
+  }
 }
 .drawerbtn{
   background: $default-accent;

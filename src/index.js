@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './assets/scss/app.css';
 import {BrowserRouter as Router} from 'react-router-dom';
@@ -13,7 +13,7 @@ import {createUploadLink} from "apollo-upload-client";
 import 'semantic-ui-css/semantic.min.css'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic';
-import App from "./App";
+import Routes from "./routes";
 
 
 const store = createStore(rootReducer, composeWithDevTools());
@@ -38,21 +38,10 @@ const client = new ApolloClient({
     link:concat(authMiddleware,link),
     cache: new InMemoryCache(),
 });
-
-
-const  Main =()=>{
-    const [token,setToken]=useState("");
-    useEffect(()=>{
-        const token=localStorage.getItem('token');
-        if (token){
-            setToken(token)
-        }else {
-            setToken("Null")
-        }
-    })
+const  App =()=>{
     return (
         <AlertProvider template={AlertTemplate} {...options}>
-            <App token={token} />
+            <Routes/>
         </AlertProvider>
     )
 }
@@ -61,7 +50,7 @@ ReactDOM.render(
     <Provider store={store}>
         <Router>
             <ApolloProvider client={client}>
-                <Main/>
+                <App/>
             </ApolloProvider>
         </Router>
     </Provider>

@@ -7,7 +7,8 @@ import {flowRight as compose} from 'lodash';
 import {graphql} from "react-apollo";
 import {newPassword} from "../../queries/queries";
 import Spinner from "../ui/Spinner";
-import Layout from "../../hoc/Layout";
+import "../../assets/scss/confirm_email.css"
+import {DappsIcon} from "../ui/Icons";
 
 
 class ChangePassword extends Component {
@@ -24,11 +25,12 @@ class ChangePassword extends Component {
     sendData=()=>{
         const that=this;
         const alert=this.props.alert;
-        that.setState({loading:true})
+
 
         const {confirmPassword,formErrors,token,newPassword}=this.state
         if (newPassword!==""&&confirmPassword!=="") {
             if (formErrors.newPassword===""&&formErrors.confirmPassword===""&&formErrors.newPassword==="") {
+                that.setState({loading:true})
                    this.props.mutate({
                     variables: {
                         token: token,
@@ -44,6 +46,10 @@ class ChangePassword extends Component {
                         alert.error("Password not change.Try again ",{timeout:5000})
                         that.props.history.push('/forget_password')
                     }
+                }).catch(e=>{
+                       that.setState({loading:false})
+                       alert.error(e.toString(),{timeout:5000})
+                       that.props.history.push('/forget_password')
                    })
             }
         }else {
@@ -105,9 +111,14 @@ class ChangePassword extends Component {
     render() {
         const {formErrors,newPassword,loading,confirmPassword}=this.state;
         return (
+            <div>
            <Grid textAlign="center" className={"passwordChange"}  verticalAlign='middle'>
                <Grid.Column style={{maxWidth:600}}>
-                   <Segment>
+                   <Segment className={"confirm_email"}>
+                       <DappsIcon
+                           link={false}
+                           linkTo="/"
+                       />
                        <h3>Reset Password</h3>
                        <Form>
                             <Form.Field className={"flex"}>
@@ -132,8 +143,9 @@ class ChangePassword extends Component {
                        </Form>
                    </Segment>
                </Grid.Column>
-               {loading&&<Spinner/>}
            </Grid>
+                {loading&&<Spinner/>}
+            </div>
         );
     }
 }

@@ -7,7 +7,12 @@ import {Button} from "@material-ui/core";
 import CustomizedSlider from "../../ui/slider";
 import handleChnage from "../../ui/slider"
 import Layout from "../../../hoc/Layout";
-export default  class SearchResult extends React.Component{
+import {getContract} from "../../../queries/queries";
+import {flowRight as compose} from "lodash";
+import {graphql} from "react-apollo";
+import {Loader} from "semantic-ui-react";
+
+ class SearchResult extends React.Component{
      state={
          sliderMinValue:"",
          sliderMaxValue:"",
@@ -109,39 +114,56 @@ export default  class SearchResult extends React.Component{
          this.setState({close:true})
          console.log("good")
     }
+     renderResult(){
+         const data=this.props.data.smartContracts;
+         const searchValue=this.props.match.params.key
+         if (data){
+             return data.map(contract=> {
+                 if (contract.contractName===searchValue) {
+                     return <div key={contract.id}>{contract.contractName}</div>
+                 }
+             })
+         }else {
+             return <div>Not Found</div>
+         }
+     }
      render() {
+         const {formData,newValue}=this.state;
+
          return (
              <Layout>
                  <div className={"container flex sr_container"}>
                      <FilterDrawer
                          select={
                              <FormField id={'sort'}
-                             formData={this.state.formData.sort}
+                             formData={formData.sort}
                              change={(element)=> this.updateForm(element)}/>
                          }
                          input={
                              <FormField id={'terms'}
-                             formData={this.state.formData.terms}
+                             formData={formData.terms}
                              change={(element)=> this.updateForm(element)}/>
                          }
                         checkbox={this.renderCheckbox()}
                          tagInput={
                              <FormField id={'tags'}
-                             formData={this.state.formData.tags}
+                             formData={formData.tags}
                              change={(element)=> this.updateForm(element)}/>
                          }
                          slider={<CustomizedSlider
-                             newValue={this.state.newValue}
+                             newValue={newValue}
                              changeSlider={(event,value)=> this.setSliderValues(event,value)}
                          />}
                          button={<Button className={"drawerbtn"} onClick={this.onSubmit}>Apply</Button>}
                      />
-                     {console.log(handleChnage)}
                      <div className={"searchRight"}>
-                         No result
+                         {this.props.data.loading?<Loader content={"Loading"} active size={"big"}/>
+                         : this.renderResult()
+                         }
                      </div>
                  </div>
              </Layout>
          );
      }
 }
+export default compose( graphql(getContract))(SearchResult);

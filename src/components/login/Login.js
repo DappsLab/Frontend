@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import '../../assets/scss/login.css'
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import {Grid, Form, Segment, Button} from 'semantic-ui-react';
 import {LoginTop} from "../ui/mise";
 import Layout from "../../hoc/Layout";
 import LoginQuery from "../../queries/LoginQuery";
 import UserQuery from "../../queries/UserQuery";
 import { withAlert} from "react-alert";
+import {flowRight as compose} from "lodash";
+import {connect} from "react-redux";
+import {setUser} from "../../actions/Actions";
 
 
 const usernameRegex=RegExp(/^[a-zA-Z0-9]*$/);
@@ -15,19 +18,22 @@ class Login extends Component {
         super(props);
     }
     state={
+        token:"",
         username: "",
         loginQuery:false,
         userQuery:false,
+        FA:null,
+        model:false,
         loginError:"",
         error:"",
         id:"",
-        errorHide:false,
         password: "",
         formErrors: {
             username: "",
             password: "",
         }
     }
+    closeModel=()=>this.setState({model:false});
     handleChange = event => {
         const {name,value}=event.target;
         let formErrors=this.state.formErrors;
@@ -50,46 +56,56 @@ class Login extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         if (this.isFormValid(this.state)) {
-            this.setState({loginQuery:true,errorHide:false});
+            this.setState({loginQuery:true},()=>{});
         }
     };
     isFormValid = ({ username, password }) =>{
         if (username.length!==0&&password.label!==0){
             return true;
         }else {
-            let error = this.state.formErrors;
-            if (username === "") {error.username = "Field Required";}
-            if (password === "") {error.password = "Field Required";}
+            let formErrors = this.state.formErrors;
+            if (username === "") {formErrors.username = "Field Required";}
+            if (password === "") {formErrors.password = "Field Required";}
+            this.setState({formErrors})
             return false;
         }
     }
     closeLoginQuery=()=>{
-        this.setState({loginQuery:false})
+        this.setState({loginQuery:false},()=>{})
     }
     closeUserQuery=()=>{
-        this.setState({userQuery:false})
+        this.setState({userQuery:false},()=>{})
     }
-    getUserInfo=(data)=>{
+    getUserInfo=(data,token)=>{
+        console.log("login",token)
        if ( data.toLowerCase().includes("error")){
            data=data.replace('GraphQL','')
            const alert = this.props.alert;
            alert.error(data, {timeout: 5000});
        }else {
-           this.setState({id:data,userQuery:true});
+           this.setState({id: data,token:token, userQuery: true});
        }
     }
-    getUserData=(data)=>{
+    getUserData=(data,user)=>{
         if (data==="user"){
-            const alert = this.props.alert;
-            alert.success("Login Successfully", {timeout: 5000});
-            this.props.history.push('/');
+            if (user.twoFactorEnabled===true) {
+                this.setState({model:true,FA:data.twoFactorEnabled},()=>{console.log(this.state)})
+                localStorage.setItem("token",this.state.token);
+                this.props.setUser(user);
+                this.props.history.push('/2FA_varifivcation');
+            }else {
+                const alert = this.props.alert;
+                this.props.setUser(user);
+                localStorage.setItem("token",this.state.token)
+                alert.success("Login Successfully", {timeout: 5000});
+                this.props.history.push('/');
+            }
         }
     }
     render() {
-        const {username,password,formErrors,userQuery,id,loginQuery,errorHide} = this.state;
+        const {username,password,formErrors,userQuery,id,loginQuery} = this.state;
         return (
             <Layout>
-
                 <Grid textAlign="center"  verticalAlign='middle' className="login-bg">
                     <Grid.Column style={{maxWidth:700}}>
                         <Form  onSubmit={this.handleSubmit}>
@@ -139,9 +155,11 @@ class Login extends Component {
                         getUserData={this.getUserData}
                     />
                 }
-
+                {/*{model&& <Redirect  to={'/2FA_varifivcation'}/>}*/}
             </Layout>
         );
     }
 }
-export default withAlert()(Login);
+export default  compose(
+    connect(null, {setUser}),withAlert(),
+) (Login);

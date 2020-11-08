@@ -24,7 +24,6 @@ class Purchased extends Component {
                             <Table.Cell>Free</Table.Cell>
                             <Table.Cell>2/2/20</Table.Cell>
                             <Table.Cell>Usages</Table.Cell>
-                            {/*<Icon circular link className={"flex"} inverted color='teal' name='chevron down'/>*/}
                         </Table.Row>
                         <Table.Row>
                             <Table.Cell>1</Table.Cell>

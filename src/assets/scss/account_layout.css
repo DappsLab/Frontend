@@ -50,17 +50,32 @@
   .deposite p {
     width: auto;
     margin-bottom: 0; }
-  .deposite .QR {
-    flex-direction: column; }
-    .deposite .QR p {
-      margin: 10px;
-      color: #121212;
-      font-size: 14px; }
+
+.QR {
+  flex-direction: column; }
+  .QR p {
+    margin: 10px;
+    color: #121212;
+    font-size: 14px; }
 
 /*=======================================================
                  Withdraw
 =========================================================*/
 .withdraw {
   padding-top: 20px; }
+
+/*=======================================================
+                 FA
+=========================================================*/
+.fa_container {
+  padding: 10px 40px !important; }
+  .fa_container .input, .fa_container label {
+    max-width: 300px !important; }
+  .fa_container label {
+    text-align: left;
+    margin: 0 auto !important; }
+  .fa_container button {
+    font-size: 16px !important;
+    padding: 0 30px !important; }
 
 /*# sourceMappingURL=account_layout.css.map */

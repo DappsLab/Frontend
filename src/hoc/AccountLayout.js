@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import AccountNav from "../components/user/myAccount/AccountNav";
-import "../assets/scss/upload_smart_contract.css"
+import "../assets/scss/upload_section.css"
 import "../assets/scss/account_layout.css"
 import Layout from "./Layout";
 import {connect} from "react-redux";

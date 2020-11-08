@@ -22,7 +22,7 @@ class Header extends React.Component {
         {title: 'DAPPS', linkTo: '/dapps'},
         {title: 'DOWNLOADS', linkTo: '/downloads'},
         {title: 'BLOCK EXPLORER', linkTo: '/block_explorer'},
-        {title: 'ABOUT US', linkTo: '/about_us'},
+        {title: 'ABOUT US', linkTo: '#aboutus'},
         {title: 'HELP', linkTo: '/help'}
     ];
     link = [

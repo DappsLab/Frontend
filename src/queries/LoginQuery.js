@@ -27,13 +27,12 @@ class LoginQuery extends Component{
            close();
        } else {
            let user = this.props.data.loginUser;
-           localStorage.setItem('token',user.token);
-           getUserInfo(user.user.id);
+           getUserInfo(user.user.id,user.token);
            close();
            }
        }
-    render() {
 
+    render() {
         return this.props.data.loading? <Spinner/>:(
             <div> </div>
         );

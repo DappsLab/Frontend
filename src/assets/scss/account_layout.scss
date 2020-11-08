@@ -57,13 +57,13 @@
     width: auto;
     margin-bottom: 0;
   }
-  .QR {
-    flex-direction: column;
-    p{
-      margin: 10px;
-      color: $background-dark;
-      font-size: 14px;
-    }
+}
+.QR {
+  flex-direction: column;
+  p{
+    margin: 10px;
+    color: $background-dark;
+    font-size: 14px;
   }
 }
 /*=======================================================
@@ -71,4 +71,21 @@
 =========================================================*/
 .withdraw{
   padding-top: 20px;
+}
+/*=======================================================
+                 FA
+=========================================================*/
+.fa_container{
+  padding: 10px 40px !important;
+  .input,label{
+    max-width: 300px !important;
+  }
+  label{
+    text-align: left;
+    margin: 0 auto!important;
+  }
+  button{
+    font-size: 16px!important;
+    padding: 0 30px!important;
+  }
 }

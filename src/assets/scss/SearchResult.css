@@ -12,7 +12,10 @@
 .searchRight {
   width: 100vh;
   padding: 20px 10px;
-  background-color: #ffffff; }
+  background-color: #ffffff;
+  min-height: 200px; }
+  .searchRight .ui.loader {
+    top: 20%; }
 
 .drawerbtn {
   background: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);

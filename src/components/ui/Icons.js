@@ -22,16 +22,10 @@ export const DappsIcon = (props) => {
     }
 };
 export  const ContractImg = (props) => {
-    let bg='';
-    if(props.check){
-        bg=require('../../assets/images/custom-contract.png')
-    }else {
-        bg=require('../../assets/images/c3.png')
-    }
-    return <img src={bg} alt={"contract_image"}
+    return <img src={props.imagePath} alt={"contract_image"}
         style={{
-            position:"relative",
-            top:"-65px",
+            position:props.position,
+            top:"-35px",
             borderRadius:"15px",
             width:props.width,
             height:props.height,

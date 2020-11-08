@@ -1,0 +1,22 @@
+@import "colors";
+
+.confirm_email{
+  padding: 0 0 20px 0!important;
+  h1{
+    margin: 10px 0;
+  }
+  .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 !important;
+    height: 90px;
+    background: $default-accent !important;
+    .LogoCaption {
+      height: 35px;
+    }
+  }
+  Form{
+    padding: 0 20px;
+  }
+}

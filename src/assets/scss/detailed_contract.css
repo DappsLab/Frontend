@@ -10,6 +10,11 @@
   padding: 30px;
   background-color: #ffffff;
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12); }
+  .contractLeft .MuiAvatar-circle {
+    width: 80px !important;
+    height: 80px !important; }
+  .contractLeft h3 {
+    margin-top: 5px; }
 
 .contractRight {
   border-radius: 10px;
@@ -34,14 +39,15 @@
 
 .btnGroups {
   justify-content: space-between; }
-
-.testbtn {
-  width: 180px !important;
-  background: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%) !important;
-  color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) !important; }
-  .testbtn:hover {
-    background: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) !important;
-    Box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); }
+  .btnGroups .testbtn {
+    width: 180px !important;
+    background: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%) !important;
+    color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) !important;
+    margin-right: 0 !important; }
+    .btnGroups .testbtn:hover {
+      color: #ffffff;
+      background: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) !important;
+      Box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); }
 
 .inputcontrol {
   padding: 10px 0;
@@ -65,5 +71,21 @@
 
 .inputcontrol input[type=radio] {
   margin-top: 10px; }
+
+.radio_detials {
+  margin-bottom: 15px; }
+  .radio_detials .ui.disabled.input, .radio_detials .ui.input input {
+    opacity: unset !important; }
+  .radio_detials label {
+    font-size: 15px !important; }
+  .radio_detials .ui.input input {
+    opacity: 1; }
+  .radio_detials .radio {
+    margin-right: 10px !important; }
+
+.contract_category {
+  margin: 15px 0; }
+  .contract_category .button:hover {
+    text-decoration: underline; }
 
 /*# sourceMappingURL=detailed_contract.css.map */

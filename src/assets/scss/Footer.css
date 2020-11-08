@@ -2,6 +2,9 @@
 /**
 * ! only global styles
  */
+html {
+  scroll-behavior: smooth; }
+
 * {
   margin: 0;
   padding: 0;
@@ -50,12 +53,31 @@ a {
 .clearBoth {
   clear: both; }
 
+.all-contract {
+  height: 150px; }
+  .all-contract .ui.loader {
+    top: 15% !important; }
+
 .not_found {
   text-align: center;
   font-size: 90px;
   color: #d5ebfe;
   padding-top: 100px !important;
   margin: 0 !important; }
+  .not_found div {
+    min-height: 100px; }
+  .not_found a {
+    font-size: 20px; }
+
+.loginbtn, .not_found button, .ui.fluid.button, .fa_container button, .passwordChange Button, .confirm_email Button {
+  height: 32px;
+  margin: 0 5px !important;
+  background: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%) !important;
+  color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) !important; }
+  .loginbtn:hover, .not_found button:hover, .ui.fluid.button:hover, .fa_container button:hover, .passwordChange Button:hover, .confirm_email Button:hover {
+    color: #ffffff !important;
+    background: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) !important;
+    Box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); }
 
 .login-bg a, .row a, .deposite a, .deposite .flex .address, .password a, .register-bg a, .indexContainer .borderless a, .general_password a, .forget_password a {
   background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);

@@ -5,7 +5,9 @@
  */
 
 @import 'colors';
-
+html{
+  scroll-behavior: smooth;
+}
 *{
   margin: 0;
   padding:0;
@@ -54,12 +56,39 @@ a {
 .clearBoth{
   clear: both;
 }
+.all-contract{
+  height: 150px;
+  .ui.loader{
+    top: 15%!important;
+  }
+}
+
 .not_found {
   text-align: center;
   font-size: 90px;
   color: #d5ebfe;
   padding-top: 100px !important;
   margin: 0!important;
+  div{
+    min-height: 100px;
+  }
+  a{
+    font-size: 20px;
+  }
+}
+.loginbtn,.not_found button,.ui.fluid.button,.fa_container button,.passwordChange Button ,.confirm_email Button{
+  height:32px;
+  margin: 0 5px !important;
+  background: $default-accent !important;
+  color: $primary-color !important;
+  &:hover{
+    color: $paper-color!important;
+    background: $default-primary !important;
+    Box-shadow:
+            0 2px 4px -1px rgba(0,0,0,0.2),
+            0px 4px 5px 0px rgba(0,0,0,0.14),
+            0px 1px 10px 0px rgba(0,0,0,0.12);
+  }
 }
 .login-bg a,.row a,.deposite a,.deposite .flex .address,.password a,.register-bg a,.indexContainer .borderless a,.general_password a,.forget_password a{
   @include default-link();

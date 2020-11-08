@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import '../../../assets/scss/SearchBar.css'
 import {SearchField} from "../../ui/FormFields";
 import {Validation} from "../../ui/mise";
-import Alert from '@material-ui/lab/Alert';
+import {Redirect} from "react-router";
 
 
 class Search extends Component {
@@ -27,12 +27,13 @@ class Search extends Component {
     };
     onKeyUp(event) {
         if (event.charCode === 13) {
+            this.setState({search:true});
             this.submitForm();
         }
 
     }
     submitForm(){
-       this.props.history.push("/search_result")
+       this.props.history.push(`/search_result/${this.state.formData.search.value}`);
     }
     updateForm(element){
         const newFormData = {...this.state.formData};
@@ -52,6 +53,7 @@ class Search extends Component {
         }
     }
     render() {
+        const {search ,formData}=this.state;
         return (
             <div>
                 <SearchField
@@ -61,10 +63,6 @@ class Search extends Component {
                     press={ (event)=> this.onKeyUp(event)}
                 />
                 <div className="clear"> </div>
-                {this.state.show ?
-                    <Alert className={"error_label"} severity="error">{this.state.message}</Alert>
-                    :null
-                }
             </div>
         );
     }
