@@ -1,37 +1,53 @@
-.account_container {
-  width: 80%;
-  margin: auto;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 20px 0; }
+.account_welcome span {
+  background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; }
 
-.account_welcome {
-  width: 80%; }
-  .account_welcome span {
-    background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; }
+.account_tab {
+  margin: 20px 0; }
+  .account_tab .ui.pointing.menu .active.item:after {
+    font-size: 25px;
+    border-top: 2px solid #F50057;
+    border-right: 2px solid #F50057; }
+  .account_tab .ui.vertical.tabular.menu {
+    border-top: 1px solid #d4d4d5;
+    border-bottom: 1px solid #d4d4d5;
+    border-left: 1px solid #d4d4d5;
+    border-radius: 5px; }
+  .account_tab .ui.grid > [class*="four wide"].column {
+    width: 32% !important; }
+  .account_tab .ui.grid > [class*="twelve wide"].column {
+    width: 68% !important;
+    height: 300px !important; }
+    .account_tab .ui.grid > [class*="twelve wide"].column h2 {
+      text-align: left; }
 
-.account_nav {
-  background-color: #ffffff;
-  width: 450px;
-  border: 1px solid #3C3F41;
+.icon_box {
+  height: 60px;
+  width: 60px;
   border-radius: 10px;
-  padding: 10px 35px; }
+  background-color: #F6F7F9;
+  justify-content: center;
+  border: 1px solid #121212; }
 
-.account_right {
-  background-color: #ffffff;
-  width: 67%;
-  padding: 10px 35px;
-  border: 1px solid #3C3F41;
-  border-radius: 10px; }
+.nav_text {
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 20px; }
+
+.nav_text, .icon_box {
+  color: #121212; }
+
+.nav_text span {
+  font-size: 12px; }
 
 /*=======================================================
                  Transaction
 =========================================================*/
 .transaction_result {
   text-align: center;
-  padding: 30px 0; }
+  padding: 10px 5px;
+  min-height: 200px; }
 
 .transaction .fullWidth {
   margin: 10px 0;

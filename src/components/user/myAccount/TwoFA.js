@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import AccountLayout from "../../../hoc/AccountLayout";
+import AccountLayout from "./UserAccount";
 import Switch from '@material-ui/core/Switch';
 import {flowRight as compose} from "lodash";
 import {graphql} from "react-apollo";
@@ -57,7 +57,7 @@ class TwoFA extends Component {
         console.log(this.props)
         const {loading,enableCheck}=this.state;
         return  loading?<Spinner/>:(
-                <AccountLayout>
+                <div>
                     <h2>Enable 2FA</h2>
                     <Switch
                         checked={enableCheck}
@@ -66,7 +66,7 @@ class TwoFA extends Component {
                         inputProps={{ 'aria-label': 'secondary checkbox' }}
                     />
                     {this.handleQR()}
-                </AccountLayout>
+                </div>
         );
     }
 }

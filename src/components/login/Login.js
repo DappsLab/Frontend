@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../../assets/scss/login.css'
-import {Link, Redirect} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {Grid, Form, Segment, Button} from 'semantic-ui-react';
 import {LoginTop} from "../ui/mise";
 import Layout from "../../hoc/Layout";

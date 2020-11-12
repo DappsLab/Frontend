@@ -10,7 +10,8 @@ import Layout from "../../../hoc/Layout";
 import {getContract} from "../../../queries/queries";
 import {flowRight as compose} from "lodash";
 import {graphql} from "react-apollo";
-import {Loader} from "semantic-ui-react";
+import img from "../../../assets/images/c3.png"
+import {Loader,Container,Item,Image} from "semantic-ui-react";
 
  class SearchResult extends React.Component{
      state={
@@ -117,15 +118,29 @@ import {Loader} from "semantic-ui-react";
      renderResult(){
          const data=this.props.data.smartContracts;
          const searchValue=this.props.match.params.key
-         if (data){
-             return data.map(contract=> {
-                 if (contract.contractName===searchValue) {
-                     return <div key={contract.id}>{contract.contractName}</div>
-                 }
-             })
-         }else {
-             return <div>Not Found</div>
-         }
+         return (
+             <Container>
+                 <Item.Group divided>
+                     <Item>
+                         <Item.Image src={img} />
+                         <Item.Content>
+                             <Item.Header as='a'>Content Header</Item.Header>
+                             <Item.Meta>
+                                 <span>Date</span>
+                                 <span>Category</span>
+                             </Item.Meta>
+                             <Item.Description>
+                                 A description which may flow for several lines and give context to the content.
+                             </Item.Description>
+                             <Item.Extra>
+                                 <Image avatar circular src={img} />
+                                 Username
+                             </Item.Extra>
+                         </Item.Content>
+                     </Item>
+                 </Item.Group>
+             </Container>
+         )
      }
      render() {
          const {formData,newValue}=this.state;

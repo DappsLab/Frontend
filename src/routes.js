@@ -30,6 +30,7 @@ import ConfirmEmail from "./components/user/ConfirmEmail";
 import ChangePassword from "./components/user/ChangePassword";
 import UploadSmartContract from "./components/home/uploadContract/UploadSmartContract";
 import FAConfirmation from "./components/user/2FAConfirmation";
+import UserAccount from "./components/user/myAccount/UserAccount";
 
 
 class Routes extends Component{
@@ -39,10 +40,7 @@ class Routes extends Component{
               <PrivateRoute  path={"/dashboard/developed_contract"} component={DevelopedContracts}/>
               <PrivateRoute  path={"/dashboard/test_contract"} component={TestContract}/>
               <PrivateRoute  path={"/dashboard/purchased"} component={Purchased}/>
-              <PrivateRoute  path={"/account/profile/2fa"} component={TwoFA}/>
-              <PrivateRoute  path={"/account/profile/transactions"} component={Transactions}/>
-              <PrivateRoute  path={"/account/profile/wallet"} component={WithdrawDeposite}/>
-              <PrivateRoute  path={"/account/profile"}  component={GeneralSetting}/>
+              <PrivateRoute  path={"/account_settings"}  component={UserAccount}/>
               <PrivateRoute  path={"/logout"} component={Logout}/>
               <PrivateRoute  path={"/delete_user"} component={DeleteUser}/>
               <PrivateRoute  path={"/upload_samrt_contract"} component={UploadSmartContract}/>

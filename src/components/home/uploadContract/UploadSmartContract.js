@@ -3,7 +3,7 @@ import "../../../assets/scss/upload_smart_contract.css"
 import {Divider} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import Fade from "react-reveal/Fade";
-import {Form, Grid, Input, TextArea} from "semantic-ui-react"
+import  {Loader,Form, Grid, Input, TextArea} from "semantic-ui-react"
 import Button from "@material-ui/core/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowUp} from "@fortawesome/free-solid-svg-icons";
@@ -18,7 +18,6 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/animated'
 import {withAlert} from "react-alert";
 import Spinner from "../../ui/Spinner";
-;
 
 
 const acceptedFileTypes = 'image/x-png, image/png, image/jpg, image/jpeg';
@@ -36,7 +35,8 @@ class UploadSmartContract extends Component{
         onePrice:"",
         unlimitedPrice:"",
         tag:"",
-        checkBox:"",
+        one:false,
+        two:false,
         loading:false,
         formErrors:{
             contractName:"",
@@ -67,8 +67,8 @@ class UploadSmartContract extends Component{
         showDialog: false,
         imageFinalPath:"",
     //associated file
-        show:true,
-        showAssocited:true,
+        show:false,
+        showAssocited:false,
         sourcePath:"",
      }
     categoryOption=[
@@ -79,7 +79,6 @@ class UploadSmartContract extends Component{
         {label: "SOCIAL",value: "SOCIAL"},
         {label: "ESCROW",value: "ESCROW"}
     ]
-
 
     handleChange=(event)=>{
         const {name,value}=event.target;
@@ -185,10 +184,12 @@ class UploadSmartContract extends Component{
         this.setState({ crop });
     }
     handleSave=()=>{
+        const formErrors=this.state.formErrors;
+        formErrors.imageFinalPath="";
         if (this.state.imageSrc!==null){
             this.setState({imageSrc:null})
         }
-        this.setState({showDialog:false})
+        this.setState({formErrors,showDialog:false})
         this.makeClientCrop(this.state.crop);
     }
     async makeClientCrop(crop) {
@@ -247,18 +248,27 @@ class UploadSmartContract extends Component{
         let formErrors=this.state.formErrors;
         switch (name){
             case 'one':
-                formErrors.check1=checked;
+                formErrors.check1=checked?"":"Field Required";
                 break;
             case 'two':
-                formErrors.check2=checked;
+                formErrors.check2=checked?"":"Field Required";
                 break;
             default:
                 break;
         }
+        this.setState({[name]:checked,formErrors});
     }
-    // isValidCheckbox=(checkBox)=>{
-    //     return checkbox.check1 === true && checkbox.check2 === true;
-    // };
+    isEmptyCheckbox=({one,two})=>{
+        if(one=== false|| two=== false){
+            let formErrors=this.state.formErrors;
+            formErrors.check1="Field Required"
+            formErrors.check2="Field Required"
+            this.setState({formErrors});
+            return false
+        }else {
+            return true;
+        }
+    }
     submit=(files)=>{
         const file=files[0].file;
         const  that =this;
@@ -294,51 +304,48 @@ class UploadSmartContract extends Component{
                     <p>I own the rights to the content that will be published</p>
                 </div>
             </div>
+            {this.state.formErrors.check1!==""||this.state.formErrors.check2!==""?(
+                <span className={"errorMessage"}>Field Required</span>
+            ):""}
             <Button variant="contained" onClick={this.handlePublish} color="primary">Publish</Button>
         </div>
     )
-    // isEmptySource=({sourcePath})=>{
-    //     const {formErrors}=this.state;
-    //     if (sourcePath!==""){
-    //         return true;
-    //     }else {
-    //         if (sourcePath === "") {formErrors.sourcePath = "Field Required"}
-    //         // if (onePrice === "") {formErrors.onePrice = "Field Required"}
-    //         this.setState({formErrors})
-    //         return false;
-    //     }
-    // }
-    handlePublish=()=>{
-        const {contractName,finalCategoryArray,shortDescription,longDescription,sourcePath,imageFinalPath,unlimitedPrice,onePrice,tag}=this.state;
-        const alert=this.props.alert;
-        const that=this;
-        this.setState({loading:true});
-        if (this.isEmpty(this.state)) {
-            this.props.createNewContract({
-                variables: {
-                    name: contractName,
-                    image: imageFinalPath,
-                    short: shortDescription,
-                    category: finalCategoryArray,
-                    long: longDescription,
-                    one: onePrice,
-                    unlimited: unlimitedPrice.toString(),
-                    source: sourcePath.toString()
-                },
-                refetchQueries: [{query: getContract}]
-            }).then((result) => {
-                that.setState({loading: false})
-                // alert.success("User Register Successfully. Email varifection send tou your provided Email ",{timeout: 15000})
-                this.props.history.push('/')
-            }).catch((error) => {
-                that.setState({loading: false})
-                alert.error(error.toString(), {timeout: 5000})
 
-            })
+    handlePublish=()=> {
+        const {contractName, finalCategoryArray, shortDescription, longDescription, sourcePath, imageFinalPath, unlimitedPrice, onePrice, tag} = this.state;
+        const alert = this.props.alert;
+        const that = this;
+        if (this.isEmpty(this.state)) {
+            if (this.isEmptyCheckbox(this.state)) {
+                this.setState({loading: true});
+                this.props.createNewContract({
+                    variables: {
+                        name: contractName,
+                        image: imageFinalPath,
+                        short: shortDescription,
+                        category: finalCategoryArray,
+                        long: longDescription,
+                        one: onePrice,
+                        unlimited: unlimitedPrice.toString(),
+                        source: sourcePath.toString()
+                    },
+                    refetchQueries: [{query: getContract}]
+                }).then((result) => {
+                    that.setState({loading: false})
+                    // alert.success("User Register Successfully. Email varifection send tou your provided Email ",{timeout: 15000})
+                    this.props.history.push('/')
+                }).catch((error) => {
+                    that.setState({loading: false})
+                    alert.error(error.toString(), {timeout: 5000})
+
+                })
+            }
         }
     }
 
+
     render() {
+        console.log(this.state)
         const {loading,showAssocited,showDialog,crop,imageData,imageSrc,formErrors,contractName,onePrice,tag,shortDescription,longDescription,show,unlimitedPrice}=this.state;
         return loading?<Spinner/>:(
             <Layout>

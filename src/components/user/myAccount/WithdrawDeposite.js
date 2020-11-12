@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import AccountLayout from "../../../hoc/AccountLayout";
+import AccountLayout from "./UserAccount";
 import {Divider} from "@material-ui/core";
 import QRCode from 'react-qr-code';
 import {connect} from "react-redux";
@@ -31,7 +31,7 @@ class WithdrawDeposite extends Component {
 
         const {currentUser}=this.state
         return (
-            <AccountLayout>
+            <div>
                 <div className={"deposite"}>
                     <h2>Deposite</h2>
                     <div className={"flex"}>
@@ -51,7 +51,7 @@ class WithdrawDeposite extends Component {
                 <div className={"withdraw"}>
                     <h2>Withdraw</h2>
                 </div>
-            </AccountLayout>
+            </div>
         );
     }
 }

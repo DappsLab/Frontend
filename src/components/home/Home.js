@@ -7,8 +7,7 @@ import AboutUs from "./AboutUs";
 import OurTeam from "./OurTeam";
 
 
-
-const Home = props =>{
+const Home = (props) =>{
     return (
             <Layout>
                 <ContractCard/>
@@ -22,7 +21,7 @@ const Home = props =>{
                     </div>
                     <img src={require('../../assets/images/developers.jpg')} alt={""}/>
                 </section>
-                <AboutUs/>
+                <AboutUs place={true}/>
                 <OurTeam/>
             </Layout>
         );

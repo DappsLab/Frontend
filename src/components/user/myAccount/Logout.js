@@ -15,11 +15,9 @@ class Logout extends Component {
     }
     render() {
         return (
-            <Layout>
-                <Dimmer active>
-                    <Loader size={"huge"} content={"Logging you out "}/>
-                </Dimmer>
-            </Layout>
+            <Dimmer active>
+                <Loader size={"huge"} content={"Logging you out "}/>
+            </Dimmer>
         );
     }
 }

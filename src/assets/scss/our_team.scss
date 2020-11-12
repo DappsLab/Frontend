@@ -1,0 +1,34 @@
+@import "colors";
+
+.card_image {
+  height: 160px;
+  width: 160px;
+  border-radius: 50%!important;
+  border: 5px solid #272133;
+  margin-top: 20px;
+  box-shadow: 0 10px 50px rgba(235, 25, 110, 1);
+}
+.card_team{
+  margin-bottom: 20px!important;
+  h4{
+    margin-top: 0!important;
+  }
+  h3{
+    margin-bottom: 0!important;
+  }
+  .icon{
+    font-size: 25px!important;
+  }
+}
+.team_avatar{
+  width: 150px!important;
+  margin: 0 auto;
+
+  .visible{
+    .ui.small.image{
+      height: 150px;
+    }
+  }
+}
+
+

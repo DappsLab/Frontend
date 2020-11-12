@@ -1,20 +1,42 @@
 import React, {Component} from 'react';
-import {Grid,Card} from "semantic-ui-react";
+import {Segment, Grid, Card, Reveal, Icon, Image} from "semantic-ui-react";
+import "../../assets/scss/our_team.css"
 
+import tahseen from "../../assets/images/tahseen.jpg"
 class OurTeam extends Component {
+    teams=[
+        {name:"Qasim Raheem",des:"Backend",avatar:tahseen,github:"github",linkedin:'linkedin',fb:"facebook official"},
+        {name:"Muhammad Tahseen",des:"Frontend",avatar:tahseen,github:"github",linkedin:'linkedin',fb:"facebook official"},
+        {name:"Tahir Ayyaz",des:"non",avatar:tahseen,github:"github",linkedin:'linkedin',fb:"facebook official"},
+    ]
+    renderTeam=()=>(
+          this.teams.map(team=>(
+            <Grid.Column>
+                <Segment className={"card_team"}>
+                    <Reveal animated='move down' className={"team_avatar"}>
+                        <Reveal.Content visible>
+                            <Image circular src={team.avatar} size='small' />
+                        </Reveal.Content>
+                        <Reveal.Content hidden>
+                            <Image circular src='https://react.semantic-ui.com/images/avatar/large/nan.jpg' size='small' />
+                        </Reveal.Content>
+                    </Reveal>
+                    <h3>{team.name}</h3>
+                    <h4>{team.des}</h4>
+                    <div>
+                        <Icon link className={team.github}/>
+                        <Icon link className={team.linkedin}/>
+                        <Icon link className={team.fb}/>
+                    </div>
+                </Segment>
+            </Grid.Column>
+          ))
+    )
     render() {
         return (
-           <Grid verticalAlign={'center'}>
-               <Grid.Row>
-                   <h2>Our Team</h2>
-               </Grid.Row>
-               <Grid.Row>
-                   <Grid.Column>
-                       <Card>
-
-                       </Card>
-                   </Grid.Column>
-               </Grid.Row>
+           <Grid columns={3} textAlign={'center'} container stackable >
+               <Grid.Row ><h2>Our Team</h2></Grid.Row>
+               {this.renderTeam()}
            </Grid>
         );
     }

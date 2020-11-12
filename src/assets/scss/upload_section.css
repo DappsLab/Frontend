@@ -36,8 +36,6 @@
 .account_welcome {
   background: url("../images/background.jpg");
   padding: 20px 10px;
-  width: 70%;
-  margin: 0 auto;
   text-align: center; }
 
 .uploadNav .active {

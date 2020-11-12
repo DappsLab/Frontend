@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import AccountLayout from "../../../hoc/AccountLayout";
+import AccountLayout from "./UserAccount";
 import Button from "@material-ui/core/Button";
 import {Avatar} from "@material-ui/core";
 import "../../../assets/scss/general_setting.css"
@@ -162,7 +162,7 @@ class GeneralSetting extends Component {
 
         const {showDialog,crop,imageData,currentUser,imageSrc,formErrors,location,imageFinalPath,fullName } = this.state;
         return  (
-            <AccountLayout>
+            <div>
                 {showDialog ?
                     <CustomizedDialogs
                         crop={crop}
@@ -242,7 +242,7 @@ class GeneralSetting extends Component {
                     {/*    closeModel={this.closeModel}*/}
                     {/*    passwordData={this.passwordData}*/}
                     {/*/>*/}
-            </AccountLayout>
+            </div>
         );
     }
 }
