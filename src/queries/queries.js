@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 
+const graphql_api="http://localhost:4000/graphql";
 
 //Query
 const updateUser=gql`
@@ -21,9 +22,9 @@ const updateUser=gql`
     }
 `
 const createNewContract=gql`
-    mutation ($name:String!,$category:[Category!]!,$image:String!,$short:String!,$long:String!,$one:String!,$unlimited:String!,$source:String!){
+    mutation ($name:String!,$tags:[String!],$category:[Category!]!,$image:String!,$short:String!,$long:String!,$one:String!,$unlimited:String!,$source:String!){
         createSmartContract(
-            newSmartContract: {contractName: $name, contractCategory: $category, image: $image, shortDescription: $short, description: $long, singleLicensePrice: $one, unlimitedLicensePrice: $unlimited, source: $source}) {
+            newSmartContract: {contractName: $name, tags:$tags,contractCategory: $category, image: $image, shortDescription: $short, description: $long, singleLicensePrice: $one, unlimitedLicensePrice: $unlimited, source: $source}) {
             id
         }
     }
@@ -51,7 +52,20 @@ const createNewUser= gql`
         }
     }
 `;
+const kycMutation=gql`    
+    mutation  UserKyc($id:String!,$mobile:String,$birth:String,$nationality:String,$country:String,$postalCode:String,$city:String,$street:String,$building:String){
+        addKyc(id:$id,mobile:$mobile,birthDate:$birth,nationality:$nationality,country:$country,postalCode:$postalCode,city:$city,street:$street,building:$building,kycStatus:PENDING)
+        {
+            avatar address
+            fullName id
+            kyc{
+                kycStatus mobile nationality country postalCode city birthDate street building
+            }
+            email location userName twoFactorEnabled
 
+        }
+    }
+`;
 const imageUpload=gql`
     mutation UPLOAD_IMAGE($file: Upload!){
         imageUploader(file: $file)
@@ -60,19 +74,28 @@ const imageUpload=gql`
 const sourceUpload=gql`
    mutation ($file:Upload!){contractUploader(file: $file)}
 `
-const getUsersData= gql`
-    query GetData {
-        users {
-            userName email  fullName
-        }
-    }
-`;
+
 const userData=gql`    
     query ($id:ID!){
         userById(id: $id) {
             avatar address
-            fullName id
+            fullName id 
+            kyc{
+                kycStatus 
+            }
              email location userName twoFactorEnabled
+        }
+    }
+`
+const UserKyc=gql`
+    query ($id:ID!){
+        userById(id: $id) {
+            avatar address
+            fullName id
+            kyc{
+                kycStatus mobile nationality country postalCode city birthDate street building
+            }
+            email location userName twoFactorEnabled
         }
     }
 `
@@ -127,11 +150,21 @@ const meQuery=gql`
     query {
         me{
             avatar address
-            fullName id
+            fullName id 
             email location userName
+            kyc{
+                kycStatus
+            }
         }
     }
 `
+const getUsersData=`
+    query GetData {
+        users {
+            userName email  fullName
+        }
+    }
+`;
 const getContract=gql`    
     query {
         smartContracts {
@@ -165,4 +198,4 @@ const verify2FA=gql`
         verify2FA(token:$token)
     }
 `
-export {disable2FA,verify2FA,enableFA,createNewContract,sourceUpload,getContract,contractById,meQuery,newPassword,forgetPassword,confirmEmail,deleteUser,getAuth,updateUser,userData,getUsersData,imageUpload,createNewUser};
+export {UserKyc,kycMutation,graphql_api,disable2FA,verify2FA,enableFA,createNewContract,sourceUpload,getContract,contractById,meQuery,newPassword,forgetPassword,confirmEmail,deleteUser,getAuth,updateUser,userData,getUsersData,imageUpload,createNewUser};

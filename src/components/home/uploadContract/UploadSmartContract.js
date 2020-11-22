@@ -34,7 +34,7 @@ class UploadSmartContract extends Component{
         finalCategoryArray:[],
         onePrice:"",
         unlimitedPrice:"",
-        tag:"",
+        tags:[],
         one:false,
         two:false,
         loading:false,
@@ -45,7 +45,7 @@ class UploadSmartContract extends Component{
             longDescription:"",
             onePrice:"",
             unlimitedPrice:"",
-            tag:"",
+            tags:"",
             check1:"",
             check2:"",
             sourcePath:"",
@@ -99,11 +99,11 @@ class UploadSmartContract extends Component{
                     ? ""
                     :"Only Integer Allowed";
                 break;
-            case "tag":
-                formErrors.tag= contractname.test(value)
-                    ? ""
-                    :"Only Alphabet Allowed";
-                break;
+            // case "tag":
+            //     formErrors.tag= contractname.test(value)
+            //         ? ""
+            //         :"Only Alphabet Allowed";
+            //     break;
             case "longDescription":
                 formErrors.longDescription= contractname.test(value)
                     ? ""
@@ -128,12 +128,12 @@ class UploadSmartContract extends Component{
             }
         }
     }
-    isEmpty=({contractName,contractCategory,imageFinalPath,unlimitedPrice,longDescription,shortDescription,onePrice,tag,formErrors})=>{
-        if (contractName.length!==0&&tag.length!==0&&contractCategory.length!==0&&shortDescription.length!==0&&longDescription.length!==0&&onePrice.length!==0&&imageFinalPath.length!==0&&unlimitedPrice.length!==0){
+    isEmpty=({contractName,contractCategory,imageFinalPath,unlimitedPrice,longDescription,shortDescription,onePrice,tags,formErrors})=>{
+        if (contractName.length!==0&&tags.length!==0&&contractCategory.length!==0&&shortDescription.length!==0&&longDescription.length!==0&&onePrice.length!==0&&imageFinalPath.length!==0&&unlimitedPrice.length!==0){
             return true;
         }else {
             if (contractName === "") {formErrors.contractName = "Field Required"}
-            if (tag === "") {formErrors.tag = "Field Required"}
+            if (tags.length=== 0) {formErrors.tags = "Field Required"}
             if (onePrice === "") {formErrors.onePrice = "Field Required"}
             if (shortDescription === "") {formErrors.shortDescription = "Field Required"}
             if (longDescription === "") {formErrors.longDescription = "Field Required"}
@@ -155,7 +155,6 @@ class UploadSmartContract extends Component{
     handleChangeImage=(event)=>{
         const files = event.target.files
         const currentFile = files[0];
-        console.log(event.target.files);
         if (event.target.files && event.target.files.length > 0) {
             const currentFileType = currentFile.type
             if (!acceptedFileTypesArray.includes(currentFileType)) {
@@ -164,7 +163,7 @@ class UploadSmartContract extends Component{
             const reader = new FileReader();
             reader.addEventListener('load', () =>
                 this.setState({imageSrc: reader.result, showDialog: true},()=>{
-                    console.log(this.state.showDialog)
+                    console.log("167",this.state.showDialog)
                 })
             )
             reader.readAsDataURL(event.target.files[0]);
@@ -312,7 +311,7 @@ class UploadSmartContract extends Component{
     )
 
     handlePublish=()=> {
-        const {contractName, finalCategoryArray, shortDescription, longDescription, sourcePath, imageFinalPath, unlimitedPrice, onePrice, tag} = this.state;
+        const {contractName, finalCategoryArray, shortDescription, longDescription, sourcePath, imageFinalPath, unlimitedPrice, onePrice, tags} = this.state;
         const alert = this.props.alert;
         const that = this;
         if (this.isEmpty(this.state)) {
@@ -326,6 +325,7 @@ class UploadSmartContract extends Component{
                         category: finalCategoryArray,
                         long: longDescription,
                         one: onePrice,
+                        tags:tags,
                         unlimited: unlimitedPrice.toString(),
                         source: sourcePath.toString()
                     },
@@ -342,11 +342,24 @@ class UploadSmartContract extends Component{
             }
         }
     }
+    removeTags=(i)=> {
+        this.setState({
+            tags: this.state.tags.filter((tag, index) => index !== i),
+        });
+    }
+     addTags = event => {
+         let formErrors=this.state.formErrors;
+        if (event.target.value !== "") {
+            formErrors.tags="";
+            console.log(event.target.value)
+            this.setState({formErrors,tags: [...this.state.tags, event.target.value]});
+            event.target.value = "";
+        }
+    };
 
 
     render() {
-        console.log(this.state)
-        const {loading,showAssocited,showDialog,crop,imageData,imageSrc,formErrors,contractName,onePrice,tag,shortDescription,longDescription,show,unlimitedPrice}=this.state;
+        const {tags,loading,showAssocited,showDialog,crop,imageData,imageSrc,formErrors,contractName,onePrice,shortDescription,longDescription,show,unlimitedPrice}=this.state;
         return loading?<Spinner/>:(
             <Layout>
                 <Grid textAlign="center"  verticalAlign='middle' >
@@ -427,11 +440,25 @@ class UploadSmartContract extends Component{
                                                     </Form.Field>
                                                     <Form.Field>
                                                         <label>Tag:</label>
-                                                        <Input fluid value={tag} size={'large'} type={'text'}
-                                                               name={"tag"}
-                                                               onChange={this.handleChange}/>
-                                                        {formErrors.tag.length>0&&(
-                                                            <span className={"errorMessage"}>{formErrors.tag}</span>
+                                                        <div className="tags-input">
+                                                            <ul id="tags">
+                                                                {tags.map((tag, index) => (
+                                                                    <li key={index} className="tag">
+                                                                        <span className='tag-title'>{tag}</span>
+                                                                        <span className='tag-close-icon'
+                                                                              onClick={() => this.removeTags(index)}
+                                                                        >x</span>
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                            <input
+                                                                type="text"
+                                                                onKeyUp={event => event.key === "Enter" ? this.addTags(event) : null}
+                                                                placeholder="Press enter to add tags"
+                                                            />
+                                                        </div>
+                                                        {formErrors.tags.length>0&&(
+                                                            <span className={"errorMessage"}>{formErrors.tags}</span>
                                                         )}
                                                         <p className={"info"}>List of tags</p>
                                                     </Form.Field>

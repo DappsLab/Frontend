@@ -21,7 +21,6 @@ class TwoFAQuery extends Component{
             }
     }
     render() {
-        console.log(this.props)
         return this.props.data.loading?<Spinner/>:(<div> </div>);
     }
 }

@@ -15,6 +15,7 @@ import Avatar from "@material-ui/core/Avatar";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControl from "@material-ui/core/FormControl";
+import {connect} from "react-redux";
 
 
 
@@ -22,33 +23,18 @@ class  DetailedContract extends Component{
 
     state= {
         radioValue:"onePrice",
+        kyc:this.props.currentUser.kyc
     }
-    btn_links= [
-        {title :"Buy contract",linkTo:"/buy_contract"},
-        {title :"Test contract",linkTo:"/test_contract"}
-    ]
     color=[
         {0:"violet",1:"blue",2:"orange",3:"grey",4:"real",5:"yellow",6:"brown"}
     ]
-    // handleChange = (event) => {
-    //     this.setState({radioValue:event.target.value});
-    //     console.log(event.target.value)
-    // };
     handleChange = (event) => {
         this.setState({radioValue:event.target.value});
     };
-    renderButton=()=>(
-        this.btn_links.map(link=>(
-            <Link to={link.linkTo} key={link.title}>
-                <Button className={"testbtn"}>{link.title}</Button>
-            </Link>
-        ))
-    )
+
     handleRadio(){
         const contractData=this.props.data.smartContractById;
-        console.log("now")
         if(contractData){
-            console.log("here")
             return <Form className={"radio_detials"}>
                 <Form.Field className={"flex"}>
                     <FormControlLabel className={"radio"} value={"onePrice"} control={<Radio />}   label={""}/>
@@ -73,6 +59,14 @@ class  DetailedContract extends Component{
                         value={this.state.radioValue==="unlimited"?
                             contractData.unlimitedLicensePrice
                             :contractData.singleLicensePrice}
+                    />
+                </Form.Field>
+                <Form.Field>
+                    <label>Fee</label>
+                    <Input
+                        fluid size={'large'}
+                        disabled label={{ basic: true, content: 'Eth' }}
+                        value={""}
                     />
                 </Form.Field>
             </Form>
@@ -117,9 +111,18 @@ class  DetailedContract extends Component{
             </div>
         }
     }
+    renderBuy(){
+        if (this.props.logged_session){
+            if (this.state.kyc.kycStatus==="VERIFIED") {
+               return <Button fluid onClick={this.handleBuy} className={"testbtn"}>Buy contract</Button>
+            }
+        }
+    }
+    handleBuy=()=>{
+        
+    }
     render() {
-        console.log(this.props)
-        const {radioValue}=this.state;
+        const {radioValue,kyc}=this.state;
         return (
             <Layout>
                 {this.props.data.loading?<div className={"all-contract"}>
@@ -143,7 +146,8 @@ class  DetailedContract extends Component{
                                 </RadioGroup>
                             </FormControl>
                             <div className={"btnGroups flex"}>
-                                {this.renderButton()}
+                                {this.renderBuy()}
+                                <Button fluid className={"testbtn"}>Test contract</Button>
                             </div>
                             </div>
                         </Fade>
@@ -153,6 +157,10 @@ class  DetailedContract extends Component{
         );
     }
 }
+const mapStateToProps=(state)=>({
+    logged_session:state.user.logged_session,
+    currentUser:state.user.currentUser
+});
 export default compose(graphql(contractById, {
     options: (props) => {
         return {
@@ -160,5 +168,5 @@ export default compose(graphql(contractById, {
                 id:props.match.params.id
             }
         }
-    }}),
+    }}), connect(mapStateToProps),
 ) (DetailedContract)

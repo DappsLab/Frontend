@@ -1,0 +1,31 @@
+@import "colors";
+.kyc_section{
+  label{
+    text-align: left!important;
+  }
+  input::placeholder,.dropdown .text {
+    color: #1B2529!important;
+    opacity: 1!important;
+  }
+  .button{
+    width: 50%;
+  }
+  .dropdown{
+    left:0!important;
+    right: -70vh!important;
+  }
+  .flex:nth-child(1){
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    h2,h3{
+      margin: 0;
+    }
+  }
+}
+.green{
+  color: #39B64A;
+}
+.yellow{
+  color: #FFCB6B;
+}

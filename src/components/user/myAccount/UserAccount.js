@@ -6,17 +6,18 @@ import {connect} from "react-redux";
 import {Tab, Menu, Grid} from "semantic-ui-react"
 import GeneralSetting from "./GeneralSetting";
 import {Account} from "../../ui/AccountNav";
-import {faBalanceScale, faExchangeAlt, faLock, faSignOutAlt, faUser} from "@fortawesome/free-solid-svg-icons";
+import {faBalanceScale,faTasks, faExchangeAlt, faLock, faSignOutAlt, faUser} from "@fortawesome/free-solid-svg-icons";
 import WithdrawDeposite from "./WithdrawDeposite";
 import TwoFA from "./TwoFA";
 import Logout from "./Logout";
 import Transactions from "./Transactions";
+import Kyc from "./KYC";
 
 class UserAccount extends Component {
 
     renderBanner = () => (
         <section className={"account_welcome"}>
-            <h2>Welcome back, <span>{this.props.currentUser}</span></h2>
+            <h2>Welcome back, <span>{this.props.currentUser.fullName}</span></h2>
             <p>You can manage your account, preferences, and much more using our unified login system</p>
         </section>
     )
@@ -26,6 +27,12 @@ class UserAccount extends Component {
                 <Account icon={faUser} title={'Profile'} subtitle={"Account setting"} />
             </Menu.Item>,
             render: () => <Tab.Pane attached={false}><GeneralSetting/></Tab.Pane>,
+        },
+        {
+            menuItem: <Menu.Item key='KYC'>
+                <Account icon={faTasks} title={'KYC'} subtitle={"Account Verification"} />
+            </Menu.Item>,
+            render: () => <Tab.Pane attached={false}><Kyc currentUser={this.props.currentUser}/></Tab.Pane>,
         },
         {
             menuItem: (
@@ -59,6 +66,7 @@ class UserAccount extends Component {
         },
     ]
     render() {
+
         return (
             <Layout>
                 <Grid textAlign="center"  verticalAlign='middle'>
@@ -77,6 +85,6 @@ class UserAccount extends Component {
 }
 
 const mapStateToProps=(state)=>({
-    currentUser:state.user.currentUser.fullName
+    currentUser:state.user.currentUser
 });
 export default connect(mapStateToProps)(UserAccount);

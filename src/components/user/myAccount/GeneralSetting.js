@@ -186,24 +186,23 @@ class GeneralSetting extends Component {
                                         placeholder={currentUser.fullName} type={"text"}
                                         value={fullName} className={formErrors.fullName.length>0?"error":""}
                                         name="fullName" onChange={this.handleChange} />
-                                    </Form.Field>
-                                    {formErrors.fullName.length>0&&(
-                                        <span className={"flex errorMessage"}>{formErrors.fullName}</span>
-                                    )}
-                                    <Form.Field className={"flex opacity"}>
-                                        <label>Username</label>
-                                        <Form.Input
-                                            placeholder={currentUser.userName} type={"text"}
-                                             name="userName"/>
-                                    </Form.Field>
-
-                                    <Form.Field  className={"flex opacity"}>
-                                        <label>Email</label>
-                                        <Form.Input
-                                            className={"opacity"} disabled transparent
-                                            placeholder={currentUser.email}
-                                            type={"email"} name="email" />
-                                    </Form.Field>
+                                </Form.Field>
+                                {formErrors.fullName.length>0&&(
+                                    <span className={"flex errorMessage"}>{formErrors.fullName}</span>
+                                )}
+                                <Form.Field className={"flex opacity"}>
+                                    <label>Username</label>
+                                    <Form.Input
+                                        placeholder={currentUser.userName} type={"text"}
+                                        name="userName"/>
+                                </Form.Field>
+                                <Form.Field  className={"flex opacity"}>
+                                    <label>Email</label>
+                                    <Form.Input
+                                        className={"opacity"} disabled transparent
+                                        placeholder={currentUser.email}
+                                        type={"email"} name="email" />
+                                </Form.Field>
                                     <Form.Field className={"flex"}>
                                         <label>Location</label>
                                         <Form.Input

@@ -40,7 +40,6 @@
 .btnGroups {
   justify-content: space-between; }
   .btnGroups .testbtn {
-    width: 180px !important;
     background: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%) !important;
     color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) !important;
     margin-right: 0 !important; }
