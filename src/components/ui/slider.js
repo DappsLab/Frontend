@@ -7,7 +7,8 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles(theme => ({
     root: {
         padding: "24px 0",
-        boxShadow:"none"
+        boxShadow:"none",
+        width:"100%"
     },
     margin: {
         height: theme.spacing(3),
@@ -70,7 +71,7 @@ export default function CustomizedSlider({changeSlider}) {
             <Typography gutterBottom>Filter by price (per deployment):</Typography>
             <AirbnbSlider
                 ThumbComponent={AirbnbThumbComponent}
-                aria-label="airbnb slider"
+                getAriaLabel={(index) => (index === 0 ? 'Minimum price' : 'Maximum price')}
                 defaultValue={[0, 40]}
                 onChange={(event,value)=>changeSlider(event,value)}
             />

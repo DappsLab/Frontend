@@ -6,8 +6,10 @@
 .kyc_section .button {
   width: 50%; }
 .kyc_section .dropdown {
-  left: 0 !important;
-  right: -70vh !important; }
+  left: 0 !important; }
+  .kyc_section .dropdown i.icon:before {
+    position: absolute;
+    right: 18px; }
 .kyc_section .flex:nth-child(1) {
   justify-content: space-between;
   align-items: center;

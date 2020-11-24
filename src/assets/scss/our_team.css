@@ -8,6 +8,8 @@
 
 .card_team {
   margin-bottom: 20px !important; }
+  .card_team .image {
+    margin: auto; }
   .card_team h4 {
     margin-top: 0 !important; }
   .card_team h3 {

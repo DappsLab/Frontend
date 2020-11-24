@@ -38,7 +38,8 @@
   margin: 10px 0; }
 
 .btnGroups {
-  justify-content: space-between; }
+  justify-content: space-between;
+  flex-direction: column; }
   .btnGroups .testbtn {
     background: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%) !important;
     color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) !important;
@@ -47,6 +48,34 @@
       color: #ffffff;
       background: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) !important;
       Box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); }
+  .btnGroups .kyc_information {
+    background-color: #FFF3CD;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 16px;
+    min-height: auto !important;
+    padding: 15px; }
+    .btnGroups .kyc_information .testbtn {
+      margin-left: 0 !important;
+      background: #39B64A !important; }
+
+.slider {
+  width: 100%;
+  align-items: flex-start !important;
+  justify-content: space-between; }
+  .slider .semantic_ui_range_inner {
+    margin: 0 !important; }
+  .slider .fields {
+    margin-right: 0 !important;
+    justify-content: space-between;
+    width: 80% !important;
+    flex-direction: column !important; }
+  .slider p {
+    font-size: 12px;
+    text-align: justify;
+    color: #96A3B6; }
+    .slider p span {
+      color: #39B64A; }
 
 .inputcontrol {
   padding: 10px 0;

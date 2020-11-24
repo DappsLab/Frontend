@@ -3,7 +3,7 @@ import "../../../assets/scss/upload_smart_contract.css"
 import {Divider} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import Fade from "react-reveal/Fade";
-import  {Loader,Form, Grid, Input, TextArea} from "semantic-ui-react"
+import { Form, Grid, Input, TextArea, Header} from "semantic-ui-react"
 import Button from "@material-ui/core/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowUp} from "@fortawesome/free-solid-svg-icons";
@@ -24,9 +24,12 @@ const acceptedFileTypes = 'image/x-png, image/png, image/jpg, image/jpeg';
 const acceptedFileTypesArray = acceptedFileTypes.split(",").map((item) => {return item.trim()});
 const contractname=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
 const numeric=RegExp(/^[0-9\s]*$/);
+const descriptionRGP=RegExp(/^[a-zA-Z][a-zA-Z\s,.]*$/);
 
 class UploadSmartContract extends Component{
     state= {
+        shortCounter:150,
+        longCounter:400,
         shortDescription:"",
         longDescription:"",
         contractName:"",
@@ -88,36 +91,59 @@ class UploadSmartContract extends Component{
                 formErrors.contractName= contractname.test(value)
                     ? ""
                     :"Only Alphabet Allowed";
+                if (value===""){
+                    formErrors.contractName="";
+                }
+                this.setState({formErrors,[name]:value},()=>{});
                 break;
             case "onePrice":
                 formErrors.onePrice= numeric.test(value)
                     ? ""
                     :"Only Integer Allowed";
+                if (value===""){
+                    formErrors.onePrice="";
+                }
+                this.setState({formErrors,[name]:value},()=>{});
                 break;
             case "unlimitedPrice":
+
                 formErrors.unlimitedPrice= numeric.test(value)
                     ? ""
                     :"Only Integer Allowed";
+                if (value===""){
+                    formErrors.unlimitedPrice="";
+                }
+                this.setState({formErrors,[name]:value},()=>{});
                 break;
-            // case "tag":
-            //     formErrors.tag= contractname.test(value)
-            //         ? ""
-            //         :"Only Alphabet Allowed";
-            //     break;
             case "longDescription":
-                formErrors.longDescription= contractname.test(value)
-                    ? ""
-                    :"Only Alphabet Allowed";
+                if (value.length<=400) {
+                    this.setState({longCounter: 400-value.length});
+                    formErrors.longDescription = descriptionRGP.test(value)
+                        ? ""
+                        : "Only Alphabet Allowed";
+                    if (value === "") {
+                        formErrors.longDescription = "";
+                    }
+                    this.setState({formErrors, [name]: value}, () => {
+                    });
+                }
                 break;
             case "shortDescription":
-                formErrors.shortDescription= contractname.test(value)
-                    ? ""
-                    :"Only Alphabet Allowed";
+                if (value.length<=150) {
+                    this.setState({shortCounter: 150-value.length});
+                    console.log("now")
+                    formErrors.shortDescription = descriptionRGP.test(value)
+                        ? ""
+                        : "Only Alphabet Allowed";
+                    if (value === "") {
+                        formErrors.shortDescription = "";
+                    }
+                    this.setState({formErrors,[name]:value},()=>{});
+                }
                 break;
             default:
                 break
         }
-        this.setState({formErrors,[name]:value},()=>{});
     }
     handleSaveContractData=()=>{
         const {contractCategory,finalCategoryArray}=this.state;
@@ -359,7 +385,7 @@ class UploadSmartContract extends Component{
 
 
     render() {
-        const {tags,loading,showAssocited,showDialog,crop,imageData,imageSrc,formErrors,contractName,onePrice,shortDescription,longDescription,show,unlimitedPrice}=this.state;
+        const {tags,longCounter,shortCounter,loading,showAssocited,showDialog,crop,imageData,imageSrc,formErrors,contractName,onePrice,shortDescription,longDescription,show,unlimitedPrice}=this.state;
         return loading?<Spinner/>:(
             <Layout>
                 <Grid textAlign="center"  verticalAlign='middle' >
@@ -481,7 +507,12 @@ class UploadSmartContract extends Component{
                                     <Divider orientation="vertical" flexItem />
                                     <div className={"generalRight"}>
                                         <Fade top delay={300}>
-                                            <h3>Short Description </h3>
+                                            <Header as={'h3'} floated={'left'}>
+                                                Short Description
+                                            </Header>
+                                            <Header as={'span'} floated={'right'}>
+                                                Characters left: {shortCounter}
+                                            </Header>
                                             <Form>
                                                 <TextArea
                                                     value={shortDescription} name={"shortDescription"}
@@ -493,7 +524,12 @@ class UploadSmartContract extends Component{
                                             </Form>
                                         </Fade>
                                         <Fade bottom delay={500}>
-                                            <h3>Contract Description</h3>
+                                            <Header as={'h3'} floated={'left'}>
+                                                Contract Description
+                                            </Header>
+                                            <Header as={'span'} floated={'right'}>
+                                                Characters left: {longCounter}
+                                            </Header>
                                             <Form>
                                                 <TextArea
                                                     value={longDescription} name={"longDescription"}

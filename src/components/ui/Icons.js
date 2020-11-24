@@ -5,6 +5,7 @@ import logo from '../../assets/images/logo.png'
 import logoCaption from "../../assets/images/logocaption.png";
 import enterprise from "../../assets/images/enterprise-eth.png";
 
+
 export const DappsIcon = (props) => {
     const template=
         <figure className="logo-container">

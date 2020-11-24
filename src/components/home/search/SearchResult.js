@@ -5,7 +5,6 @@ import {CheckBox, FormField} from "../../ui/FormFields";
 import {Validation} from "../../ui/mise";
 import {Button} from "@material-ui/core";
 import CustomizedSlider from "../../ui/slider";
-import handleChnage from "../../ui/slider"
 import Layout from "../../../hoc/Layout";
 import {getContract} from "../../../queries/queries";
 import {flowRight as compose} from "lodash";
@@ -84,8 +83,7 @@ import {Loader,Container,Item,Image} from "semantic-ui-react";
         ))
     )
     setSliderValues=(event,value)=>{
-         console.log(value)
-         // this.setState({sliderMinValue:min,sliderMaxValue:max})
+         this.setState({sliderMinValue:value[0],sliderMaxValue:value[1]})
     }
     updateCheckBox (element){
         const newData =  Object.assign([], this.state.checkboxs);
@@ -103,7 +101,6 @@ import {Loader,Container,Item,Image} from "semantic-ui-react";
 
         let validationData= Validation(newElement);
         newFormData[element.id] = newElement;
-
             this.setState({
                 show: validationData[0],
                 message: validationData[1],
@@ -117,10 +114,9 @@ import {Loader,Container,Item,Image} from "semantic-ui-react";
     }
      renderResult(){
          const data=this.props.data.smartContracts;
-         const searchValue=this.props.match.params.key
+         console.log(data)
          return (
-             <Container>
-                 <Item.Group divided>
+
                      <Item>
                          <Item.Image src={img} />
                          <Item.Content>
@@ -138,8 +134,7 @@ import {Loader,Container,Item,Image} from "semantic-ui-react";
                              </Item.Extra>
                          </Item.Content>
                      </Item>
-                 </Item.Group>
-             </Container>
+
          )
      }
      render() {
@@ -172,8 +167,13 @@ import {Loader,Container,Item,Image} from "semantic-ui-react";
                          button={<Button className={"drawerbtn"} onClick={this.onSubmit}>Apply</Button>}
                      />
                      <div className={"searchRight"}>
+
                          {this.props.data.loading?<Loader content={"Loading"} active size={"big"}/>
-                         : this.renderResult()
+                         : <Container >
+                             <Item.Group divided>
+                                 {this.renderResult()}
+                             </Item.Group>
+                         </Container>
                          }
                      </div>
                  </div>

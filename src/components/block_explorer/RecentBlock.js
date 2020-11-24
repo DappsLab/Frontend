@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Divider, Table} from "semantic-ui-react";
+import { Table} from "semantic-ui-react";
 
 class RecentBlock extends Component {
     render() {

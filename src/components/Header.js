@@ -8,6 +8,7 @@ import DarkMode from "./ui/Dark-mode";
 import {DropDown} from "./ui/DropDown";
 import {connect} from 'react-redux';
 import {flowRight as compose} from 'lodash';
+import Jump from 'react-reveal/Jump';
 
 
 class Header extends React.Component {
@@ -63,10 +64,9 @@ class Header extends React.Component {
         return (
             <div>
                 <header className="flex">
-                    <DappsIcon
-                        link={true}
-                        linkTo="/"
-                    />
+                    <Jump>
+                        <DappsIcon link={true} linkTo="/"/>
+                    </Jump>
                     <nav className="flex">
                         {this.renderNav()}
                     </nav>

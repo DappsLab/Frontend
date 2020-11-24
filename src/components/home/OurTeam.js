@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import {Segment, Grid, Reveal, Icon, Image} from "semantic-ui-react";
+import {Segment, Grid, Icon, Image} from "semantic-ui-react";
 import "../../assets/scss/our_team.css"
 import qasim from "../../assets/images/qasim1.jpg";
 import tahir from "../../assets/images/qasim.jpg";
 import tahseen from "../../assets/images/tahseen.jpeg";
+import Zoom from 'react-reveal/Zoom';
+
 
 class OurTeam extends Component {
     teams=[
@@ -15,14 +17,9 @@ class OurTeam extends Component {
           this.teams.map(team=>(
             <Grid.Column key={team.name}>
                 <Segment className={"card_team"}>
-                    <Reveal animated='move down' className={"team_avatar"}>
-                        <Reveal.Content visible>
-                            <Image circular src={team.avatar} size='small' />
-                        </Reveal.Content>
-                        <Reveal.Content hidden>
-                            <Image circular src='https://react.semantic-ui.com/images/avatar/large/nan.jpg' size='small' />
-                        </Reveal.Content>
-                    </Reveal>
+                    <Zoom>
+                        <Image circular src={team.avatar} size='small' />
+                    </Zoom>
                     <h3>{team.name}</h3>
                     <h4>{team.des}</h4>
                     <div>
@@ -38,7 +35,7 @@ class OurTeam extends Component {
         return (
            <Grid columns={3} textAlign={'center'} container stackable >
                <Grid.Row ><h2>Our Team</h2></Grid.Row>
-               {this.renderTeam()}
+                {this.renderTeam()}
            </Grid>
         );
     }

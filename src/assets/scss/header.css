@@ -5,6 +5,8 @@ header {
   height: 64px;
   padding: 16px 25px;
   justify-content: space-between; }
+  header .MuiButton-root:hover {
+    background-color: rgba(0, 0, 0, 0.24) !important; }
 
 .Logo {
   height: 32px; }
@@ -14,10 +16,13 @@ header {
   height: inherit; }
 
 .logo-container {
+  margin: 0;
   height: 32px; }
 
 header nav {
   color: #ffffff !important; }
+  header nav .MuiListItem-button:hover {
+    background-color: rgba(0, 0, 0, 0.24) !important; }
 
 .darkbtn {
   padding-top: 5px;

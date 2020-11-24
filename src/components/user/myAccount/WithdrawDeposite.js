@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import AccountLayout from "./UserAccount";
 import {Divider} from "@material-ui/core";
 import QRCode from 'react-qr-code';
 import {connect} from "react-redux";

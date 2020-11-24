@@ -3,8 +3,15 @@ import React, {Component} from 'react';
 import '../../../assets/scss/SearchBar.css'
 import {SearchField} from "../../ui/FormFields";
 import {Validation} from "../../ui/mise";
-import {Redirect} from "react-router";
+// import {graphql} from "react-apollo";
+import {getContract, search} from "../../../queries/queries";
 
+import { gql } from '@apollo/client';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
+const client = new ApolloClient({
+    uri: 'http://localhost:4000/graphql',
+    cache: new InMemoryCache()
+});
 
 class Search extends Component {
     state={
@@ -33,7 +40,14 @@ class Search extends Component {
 
     }
     submitForm(){
-       this.props.history.push(`/search_result/${this.state.formData.search.value}`);
+        const search=this.state.formData.search.value;
+        console.log(search);
+        client.query({
+            query:search,
+            variables:{search: search}
+        })
+        .then(result => console.log(result))
+       // this.props.history.push(`/search_result`);
     }
     updateForm(element){
         const newFormData = {...this.state.formData};
@@ -53,7 +67,6 @@ class Search extends Component {
         }
     }
     render() {
-        const {search ,formData}=this.state;
         return (
             <div>
                 <SearchField
@@ -67,5 +80,5 @@ class Search extends Component {
         );
     }
 }
-
-export default Search;
+// graphql(search)
+export default (Search);

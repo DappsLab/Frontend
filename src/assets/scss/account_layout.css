@@ -5,6 +5,12 @@
 
 .account_tab {
   margin: 20px 0; }
+  .account_tab .ui.menu .active.item .MuiListItem-gutters .icon_box {
+    background: #1A97FF !important;
+    color: #ffffff;
+    border: none !important; }
+  .account_tab .ui.menu .active.item .MuiListItem-gutters h4, .account_tab .ui.menu .active.item .MuiListItem-gutters span {
+    color: #1A97FF; }
   .account_tab .ui.pointing.menu .active.item:after {
     font-size: 25px;
     border-top: 2px solid #F50057;

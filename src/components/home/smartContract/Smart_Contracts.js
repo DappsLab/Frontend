@@ -18,7 +18,9 @@ class Smart_Contracts extends Component {
                     </div>
                     <Search {...this.props}/>
                 </section>
-                <ContractCard/>
+                <div className={"contracts"}>
+                    <ContractCard/>
+                </div>
             </Layout>
         );
     }

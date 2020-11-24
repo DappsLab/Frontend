@@ -24,14 +24,17 @@
 
 .generalRight {
   width: 900px; }
-  .generalRight h3 {
-    padding: 0 0 10px 0;
-    text-align: left; }
-  .generalRight .ck-blurred {
-    min-height: 200px !important; }
+  .generalRight .ui.form textarea {
+    max-height: 200px !important; }
+  .generalRight .ui.floated.header {
+    padding: 0 0 10px 0; }
+  .generalRight .ui.floated.header.right {
+    color: #39B64A;
+    font-size: 14px; }
+  .generalRight .ui.form {
+    margin-bottom: 25px; }
   .generalRight .btnsave {
     background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
-    margin-top: 20px;
     padding: 10px 30px;
     color: #F6F7F9 !important; }
 

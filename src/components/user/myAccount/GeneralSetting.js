@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import AccountLayout from "./UserAccount";
 import Button from "@material-ui/core/Button";
 import {Avatar} from "@material-ui/core";
 import "../../../assets/scss/general_setting.css"

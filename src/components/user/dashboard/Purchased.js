@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import DashboardLayout from "../../../hoc/DashboardLayout";
-import {Icon, Table} from 'semantic-ui-react'
+import { Table} from 'semantic-ui-react'
 
 
 class Purchased extends Component {

@@ -10457,6 +10457,11 @@ react-select@^3.1.0:
     react-input-autosize "^2.2.2"
     react-transition-group "^4.3.0"
 
+react-semantic-ui-range@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/react-semantic-ui-range/-/react-semantic-ui-range-0.7.0.tgz#54054eaddfe6e45b21863ef02f62022338db66fb"
+  integrity sha512-1Y0GakHM+9gvEpPDbzRFvwHsmPtTRH0lLEAx2Ho2rhH9q7S+goTjgHlEUXlvXS/WbBtwVDqfpzXSj+JO8p0nmQ==
+
 react-tag-input@^6.4.3:
   version "6.4.3"
   resolved "https://registry.yarnpkg.com/react-tag-input/-/react-tag-input-6.4.3.tgz#5c2a4c94c684e8004b2cbfc178e0889a0f08273c"

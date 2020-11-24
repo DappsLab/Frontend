@@ -50,6 +50,9 @@ a {
   display: flex;
   align-items: center; }
 
+.flex-row {
+  flex-direction: row !important; }
+
 .clearBoth {
   clear: both; }
 
@@ -94,41 +97,41 @@ a {
 .dark-mode body {
   background-color: #121212; }
 
-.footer {
+footer {
   display: flex;
   justify-content: space-between;
   background-color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
   background-image: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
   color: #ffffff;
   padding: 60px 50px; }
-  .footer .logoContainer {
+  footer .logoContainer {
     display: flex;
     flex-direction: column; }
-    .footer .logoContainer img {
+    footer .logoContainer img {
       align-self: center; }
-  .footer .iconContainer {
+  footer .iconContainer {
     margin-top: 25px; }
-    .footer .iconContainer ul {
+    footer .iconContainer ul {
       display: flex; }
-      .footer .iconContainer ul li {
+      footer .iconContainer ul li {
         list-style: none;
         margin-right: 15px; }
-  .footer .info {
+  footer .info {
     padding-top: 60px; }
-    .footer .info p {
+    footer .info p {
       font-size: 12px;
       line-height: 17px;
       margin: 5px 0; }
-    .footer .info a {
+    footer .info a {
       background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent; }
-  .footer .navlist ul {
+  footer .navlist ul {
     display: flex; }
-    .footer .navlist ul a {
+    footer .navlist ul a {
       margin-left: 30px;
       cursor: pointer; }
-      .footer .navlist ul a li {
+      footer .navlist ul a li {
         padding: 0 10px;
         display: flex;
         align-items: center;

@@ -12,7 +12,10 @@
   }
   .dropdown{
     left:0!important;
-    right: -70vh!important;
+    i.icon:before {
+      position: absolute;
+      right: 18px;
+    }
   }
   .flex:nth-child(1){
     justify-content: space-between;

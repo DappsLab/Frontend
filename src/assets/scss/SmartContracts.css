@@ -16,4 +16,7 @@
   margin-bottom: 16px;
   color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%); }
 
+.contracts .all-contract .ui.loader {
+  top: 160% !important; }
+
 /*# sourceMappingURL=SmartContracts.css.map */

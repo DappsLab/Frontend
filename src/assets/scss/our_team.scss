@@ -1,5 +1,6 @@
 @import "colors";
 
+
 .card_image {
   height: 160px;
   width: 160px;
@@ -9,6 +10,9 @@
   box-shadow: 0 10px 50px rgba(235, 25, 110, 1);
 }
 .card_team{
+  .image{
+    margin: auto;
+  }
   margin-bottom: 20px!important;
   h4{
     margin-top: 0!important;
@@ -20,6 +24,7 @@
     font-size: 25px!important;
   }
 }
+
 .team_avatar{
   width: 150px!important;
   margin: 0 auto;

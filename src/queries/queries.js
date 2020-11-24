@@ -21,14 +21,7 @@ const updateUser=gql`
         }
     }
 `
-const createNewContract=gql`
-    mutation ($name:String!,$tags:[String!],$category:[Category!]!,$image:String!,$short:String!,$long:String!,$one:String!,$unlimited:String!,$source:String!){
-        createSmartContract(
-            newSmartContract: {contractName: $name, tags:$tags,contractCategory: $category, image: $image, shortDescription: $short, description: $long, singleLicensePrice: $one, unlimitedLicensePrice: $unlimited, source: $source}) {
-            id
-        }
-    }
-`
+
 const createNewUser= gql`
     mutation  ($fullName: String!,$userName: String!,$email: String!,$password: String!){
         registerUser(
@@ -99,21 +92,7 @@ const UserKyc=gql`
         }
     }
 `
-const contractById=gql`
-    query  ($id:ID!){
-        smartContractById(id: $id)
-        {
-            contractCategory 
-            image  description verified
-            contractName publishingDateTime
-            singleLicensePrice unlimitedLicensePrice
-            publisher {
-                fullName
-                avatar
-            }
-        }
-    }
-`
+
 const getAuth=gql`
     query AUTH_USER {
         authUser {
@@ -131,11 +110,13 @@ const deleteUser=gql`
         }
     }
 `
+//====================Confirm Email===============================
 const confirmEmail=gql`
     mutation ConfirmEmail ($token:String!) {
         confirmEmail(token: $token)
     }
 `
+//====================Password===============================
 const forgetPassword=gql`
     mutation ForgetPassword ($email:String!){
         forgetPassword(email:$email)
@@ -146,6 +127,7 @@ const newPassword=gql`
         resetPassword(token:$token,password:$password)
     }
 `
+//====================Me Query===============================
 const meQuery=gql`    
     query {
         me{
@@ -165,6 +147,9 @@ const getUsersData=`
         }
     }
 `;
+//============================================================
+//                    Smart Contract
+//============================================================
 const getContract=gql`    
     query {
         smartContracts {
@@ -176,6 +161,32 @@ const getContract=gql`
         }
     }
 `
+const createNewContract=gql`
+    mutation ($name:String!,$tags:[String!],$category:[Category!]!,$image:String!,$short:String!,$long:String!,$one:String!,$unlimited:String!,$source:String!){
+        createSmartContract(
+            newSmartContract: {contractName: $name, tags:$tags,contractCategory: $category, image: $image, shortDescription: $short, description: $long, singleLicensePrice: $one, unlimitedLicensePrice: $unlimited, source: $source}) {
+            id
+        }
+    }
+`
+const contractById=gql`
+    query  ($id:ID!){
+        smartContractById(id: $id)
+        {
+            contractCategory  id
+            image  description verified
+            contractName publishingDateTime
+            singleLicensePrice unlimitedLicensePrice
+            publisher {
+                fullName
+                avatar
+            }
+        }
+    }
+`
+//==============================================================
+//                        2FA Verification
+//==============================================================
 const enableFA=gql`
     mutation{
         enable2FA{
@@ -198,4 +209,41 @@ const verify2FA=gql`
         verify2FA(token:$token)
     }
 `
-export {UserKyc,kycMutation,graphql_api,disable2FA,verify2FA,enableFA,createNewContract,sourceUpload,getContract,contractById,meQuery,newPassword,forgetPassword,confirmEmail,deleteUser,getAuth,updateUser,userData,getUsersData,imageUpload,createNewUser};
+//=======================================================================
+//                    Buy Smart Contract
+//=======================================================================
+const orderContract=gql`
+    mutation ($fee:String!,$id:String!,$type:LicenseType!) {
+        placeOrder(
+            newOrder:{
+                productType: SMARTCONTRACT, 
+                licenseType: $type, 
+                fee: $fee,
+                smartContract: $id
+            }
+        ){
+            id
+        }
+    }
+`
+//=======================================================================
+//                    Search Smart Contract
+//=======================================================================
+const search=gql` query ($search:String){
+    searchSmartContract(searchSmartContract: {contractName: $search}){
+        contractName
+        createdAt
+        description
+        id tags
+        image
+        # publisher {
+        #   fullName
+        #   avatar
+        # }
+        shortDescription
+        singleLicensePrice
+        unlimitedLicensePrice
+    }
+}
+`
+export {search,orderContract,UserKyc,kycMutation,graphql_api,disable2FA,verify2FA,enableFA,createNewContract,sourceUpload,getContract,contractById,meQuery,newPassword,forgetPassword,confirmEmail,deleteUser,getAuth,updateUser,userData,getUsersData,imageUpload,createNewUser};

@@ -5,9 +5,8 @@ import {flowRight as compose} from "lodash";
 import {connect} from "react-redux";
 import {setUser} from "../../../actions/Actions";
 import {graphql} from "react-apollo";
-import {UserKyc, kycMutation} from "../../../queries/queries";
+import { kycMutation} from "../../../queries/queries";
 import KycQuery from "../../../queries/KycQuery";
-import DatePicker from 'react-date-picker';
 const alphaNumaric=RegExp(/^[a-zA-Z0-9][a-zA-Z0-9\s]*$/);
 const numaric=RegExp(/^[0-9\s]*$/);
 const alphabet=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
@@ -117,7 +116,7 @@ class Kyc extends Component {
         }
     }
     handleEmpty=({mobile,city,street,building,postalCode,country,nationality,dateOfBirth})=>{
-        return mobile !== "",city !== "",street !== "",building !== "",postalCode !== "",country !== "",nationality !== "", dateOfBirth !== "";
+        return mobile !== "",city !== "",street !== "",building !== "",postalCode !== "",country !== "",nationality !== "",dateOfBirth !== "";
     }
     handlSubmit=(event)=>{
         const {currentUser,mobile,city,street,building,postalCode,country,nationality,dateOfBirth}=this.state;

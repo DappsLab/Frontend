@@ -6,7 +6,6 @@ import { createStore } from 'redux';
 import { Provider} from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducer/Reducer';
-
 import { ApolloProvider} from "react-apollo";
 import {ApolloClient, ApolloLink, concat, InMemoryCache} from '@apollo/client';
 import {createUploadLink} from "apollo-upload-client";

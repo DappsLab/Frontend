@@ -44,13 +44,10 @@ const Footer = () => {
         ))
     )
     return (
-        <footer className="footer">
+        <footer>
             <aside>
                 <div>
-                    <DappsIcon
-                        link={true}
-                        linkTo="/"
-                    />
+                    <DappsIcon/>
                 </div>
                 <div className="iconContainer">
                     <ul>

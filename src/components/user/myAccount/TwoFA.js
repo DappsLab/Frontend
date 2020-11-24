@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import AccountLayout from "./UserAccount";
 import Switch from '@material-ui/core/Switch';
 import {flowRight as compose} from "lodash";
 import {graphql} from "react-apollo";

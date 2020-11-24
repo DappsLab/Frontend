@@ -14,10 +14,6 @@ import Login from "./components/login/Login";
 import Register from "./components/login/Register";
 import SearchResult from "./components/home/search/SearchResult";
 import DetailedContract from "./components/home/smartContract/DetailedContract";
-import GeneralSetting from "./components/user/myAccount/GeneralSetting";
-import WithdrawDeposite from "./components/user/myAccount/WithdrawDeposite";
-import Transactions from "./components/user/myAccount/Transactions";
-import TwoFA from "./components/user/myAccount/TwoFA";
 import Logout from "./components/user/myAccount/Logout";
 import ResetPassword from "./components/login/ResetPassword";
 import Purchased from "./components/user/dashboard/Purchased";
@@ -50,7 +46,7 @@ class Routes extends Component{
               <PublicRoute  path={"/user/reset-password/:key"} component={ChangePassword}/>
               <PublicRoute  path={"/user/confirm/:key"} component={ConfirmEmail}/>
               <PublicRoute  path={"/detailed_contract/:id"} component={DetailedContract}/>
-              <PublicRoute  path={"/search_result/:key"} component={SearchResult}/>
+              <PublicRoute  path={"/search_result"} component={SearchResult}/>
               <PublicRoute  path={"/forget_password"} component={ResetPassword}/>
               <PublicRoute  path={"/register"} component={Register}/>
               <PublicRoute  path={"/login"} component={Login}/>

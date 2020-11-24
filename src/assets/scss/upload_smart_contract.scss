@@ -28,16 +28,21 @@
 }
 .generalRight{
   width: 900px;
-  h3{
-    padding: 0 0 10px 0;
-    text-align: left;
+  .ui.form textarea{
+    max-height: 200px!important;
   }
-  .ck-blurred{
-    min-height: 200px !important;
+  .ui.floated.header{
+    padding: 0 0 10px 0;
+  }
+  .ui.floated.header.right{
+    color: $green-color;
+    font-size: 14px;
+  }
+  .ui.form{
+    margin-bottom: 25px;
   }
   .btnsave{
     @include default-accent();
-    margin-top: 20px;
     padding: 10px 30px;
     color: $background-color!important;
   }

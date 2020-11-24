@@ -58,10 +58,10 @@ const ContractCard =(props)=>{
     )
    const displayContract=()=>{
         const data = props.data;
-       console.log(data)
         if (data.loading){
             return <div className={"all-contract"}><Loader active size={"big"} content={"Loading Contract"}/></div>
-        }if (data.error){
+        }
+        if (data.error){
             return <div>{data.error.message}</div>
        }else {
             return data.smartContracts.map(contract=>{
@@ -78,7 +78,7 @@ const ContractCard =(props)=>{
                          />
                     </div>
                     <h4>{contract.contractName}</h4>
-                    <p>{contract.description}</p>
+                    <p>{contract.shortDescription}</p>
                     <span className={"block"}>{contract.singleLicensePrice}</span>
                 </Link>
             })

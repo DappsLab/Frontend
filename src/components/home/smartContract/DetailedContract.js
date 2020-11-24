@@ -3,27 +3,28 @@ import React, {Component} from 'react';
 import Fade from "react-reveal/Fade";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCheckCircle } from '@fortawesome/free-solid-svg-icons'
-import {Button, Divider, Form, Icon, Input, Loader} from 'semantic-ui-react'
+import {Button,Container, Divider, Form, Icon, Input, Loader} from 'semantic-ui-react'
 import Radio from '@material-ui/core/Radio';
-import {Link} from "react-router-dom";
 import Layout from "../../../hoc/Layout";
 import {flowRight as compose} from 'lodash';
 import {graphql} from "react-apollo";
-import {contractById} from "../../../queries/queries";
+import {orderContract, contractById} from "../../../queries/queries";
 import {ContractImg} from "../../ui/Icons";
 import Avatar from "@material-ui/core/Avatar";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControl from "@material-ui/core/FormControl";
 import {connect} from "react-redux";
+import { Slider } from "react-semantic-ui-range";
 
 
 
 class  DetailedContract extends Component{
 
     state= {
-        radioValue:"onePrice",
-        kyc:this.props.currentUser.kyc
+        radioValue:"SINGLELICENSE",
+        kyc:this.props.currentUser.kyc,
+        fee: 0.01201,
     }
     color=[
         {0:"violet",1:"blue",2:"orange",3:"grey",4:"real",5:"yellow",6:"brown"}
@@ -31,45 +32,77 @@ class  DetailedContract extends Component{
     handleChange = (event) => {
         this.setState({radioValue:event.target.value});
     };
-
     handleRadio(){
         const contractData=this.props.data.smartContractById;
         if(contractData){
             return <Form className={"radio_detials"}>
                 <Form.Field className={"flex"}>
-                    <FormControlLabel className={"radio"} value={"onePrice"} control={<Radio />}   label={""}/>
+                    <FormControlLabel className={"radio"} value={"SINGLELICENSE"} control={<Radio />}   label={""}/>
                     <Input
-                        fluid size={'large'} name={"onePrice"}
+                        fluid size={'large'} name={"SINGLELICENSE"}
                          disabled label={{ basic: true, content: 'Dapps' }}
                         value={contractData.singleLicensePrice}/>
                 </Form.Field>
                 <Form.Field className={" flex"}>
-                    <FormControlLabel className={"radio"}  value={"unlimited"} control={<Radio />}   label={""}/>
+                    <FormControlLabel className={"radio"}  value={"UNLIMITEDLICENSE"} control={<Radio />}   label={""}/>
                     <Input
-                        fluid size={'large'} name={"unlimited"}
+                        fluid size={'large'} name={"UNLIMITEDLICENSE"}
                         disabled label={{ basic: true, content: 'Dapps' }}
                         value={contractData.unlimitedLicensePrice}/>
                 </Form.Field>
                 <Divider/>
+                <Form.Field className={"slider flex"}>
+                    <label>Set fee</label>
+                    <Form.Group>
+                       <Slider
+                           color="green"
+                           inverted={false}
+                           settings={{
+                               start: 0.01201,
+                               min: 0.00123647,
+                               max: 0.21111,
+                               step: 0.01,
+                               onChange: value => {
+                                   this.setState({
+                                       fee: value
+                                   });
+                               }
+                           }}
+                       />
+                       <p>This is the most amount of money that might be used to process this
+                           transaction. Your transaction will be processed in the
+                           <span>{this.feeProcessTime()}</span>
+                       </p>
+                   </Form.Group>
+                </Form.Field>
                 <Form.Field>
                     <label>Total amount</label>
                     <Input
                         fluid size={'large'}
                         disabled label={{ basic: true, content: 'Dapps' }}
-                        value={this.state.radioValue==="unlimited"?
+                        value={this.state.radioValue==="UNLIMITEDLICENSE"?
                             contractData.unlimitedLicensePrice
                             :contractData.singleLicensePrice}
                     />
                 </Form.Field>
-                <Form.Field>
+                <Form.Field >
                     <label>Fee</label>
                     <Input
                         fluid size={'large'}
                         disabled label={{ basic: true, content: 'Eth' }}
-                        value={""}
+                        value={this.state.fee}
                     />
                 </Form.Field>
             </Form>
+        }
+    }
+    feeProcessTime(){
+        if (this.state.fee<0.04123648){
+            return " Maximum time"
+        }else if (this.state.fee<0.11123647){
+            return " Medium time"
+        }else {
+            return " Minimum time"
         }
     }
     handleContractDetail(){
@@ -115,11 +148,27 @@ class  DetailedContract extends Component{
         if (this.props.logged_session){
             if (this.state.kyc.kycStatus==="VERIFIED") {
                return <Button fluid onClick={this.handleBuy} className={"testbtn"}>Buy contract</Button>
+            }else {
+                return <Container fluid className={"kyc_information"}>
+                    <p>Before you can purchase this contract, you have to complete your KYC information and get validated.</p>
+                     <Button fluid onClick={this.handleBuy} className={"testbtn"}>Verify your Account</Button>
+                </Container>
             }
         }
     }
+
+
     handleBuy=()=>{
-        
+        const {radioValue,fee}=this.state;
+        const contractData=this.props.data.smartContractById;
+        this.props.orderContract({
+            variables:{
+                fee: "21000",
+                id:contractData.id,
+                type:radioValue
+            }
+        })
+        console.log(this.props)
     }
     render() {
         const {radioValue,kyc}=this.state;
@@ -145,7 +194,7 @@ class  DetailedContract extends Component{
                                     {this.handleRadio()}
                                 </RadioGroup>
                             </FormControl>
-                            <div className={"btnGroups flex"}>
+                            <div className={`btnGroups flex ${kyc.kycStatus==="VERIFIED"?"flex-row":""}`}>
                                 {this.renderBuy()}
                                 <Button fluid className={"testbtn"}>Test contract</Button>
                             </div>
@@ -168,5 +217,7 @@ export default compose(graphql(contractById, {
                 id:props.match.params.id
             }
         }
-    }}), connect(mapStateToProps),
+    }}),
+    graphql(orderContract,{name:"orderContract"}),
+    connect(mapStateToProps),
 ) (DetailedContract)

@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import {clearUser} from "../../../actions/Actions";
 import {connect} from  'react-redux';
 import {Loader,Dimmer} from "semantic-ui-react";
-import Layout from "../../../hoc/Layout";
-import gql from "graphql-tag";
 
 
 class Logout extends Component {

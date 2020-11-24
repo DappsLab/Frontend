@@ -1,13 +1,8 @@
 import React, {Component} from 'react';
-import {Grid, Form, Segment, Input, Icon, Button} from 'semantic-ui-react'
+import {Grid, Form, Segment, Input} from 'semantic-ui-react'
 import fa from "../../assets/images/fa.png"
 import {Redirect} from "react-router-dom";
-import {flowRight as compose} from "lodash";
-import {graphql} from "react-apollo";
-import {verify2FA} from "../../queries/queries";
-import {withAlert} from "react-alert";
 import TwoFAQuery from "../../queries/TwoFAQuery";
-import LoginQuery from "../../queries/LoginQuery";
 const number=RegExp(/^[0-9]*$/);
 class FAConfirmation extends Component {
     state={

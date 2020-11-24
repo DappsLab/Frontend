@@ -45,9 +45,10 @@
 .contractRight h4{
   margin: 10px 0;
 }
+
 .btnGroups {
   justify-content: space-between;
-
+  flex-direction: column;
   .testbtn {
     background: $default-accent !important;
     color: $primary-color !important;
@@ -58,6 +59,40 @@
       Box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
       0px 4px 5px 0px rgba(0, 0, 0, 0.14),
       0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+    }
+  }
+  .kyc_information{
+    background-color: #FFF3CD;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 16px;
+    min-height: auto!important;
+    padding: 15px;
+    .testbtn{
+      margin-left: 0!important;
+      background: $green-color!important;
+    }
+  }
+}
+.slider{
+  width: 100%;
+  align-items: flex-start!important;
+  justify-content: space-between;
+  .semantic_ui_range_inner{
+    margin: 0!important;
+  }
+  .fields{
+    margin-right: 0!important;
+    justify-content: space-between;
+    width: 80%!important;
+    flex-direction: column!important;
+  }
+  p{
+    font-size: 12px;
+    text-align: justify;
+    color: $info-color;
+    span{
+      color: $green-color;
     }
   }
 }

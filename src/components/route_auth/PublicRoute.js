@@ -6,9 +6,7 @@ import {graphql} from "react-apollo";
 import {meQuery} from "../../queries/queries";
 import {connect} from "react-redux";
 import {setUser} from "../../actions/Actions";
-import Spinner from "../ui/Spinner";
-import Home from "../home/Home";
-
+import Spinner from "../ui/Spinner"
 
 class PublicRoute extends Component{
     handleRender(){
@@ -20,7 +18,6 @@ class PublicRoute extends Component{
                 if (path === '/login' || path === '/register') {
                     return <Redirect to={'/'}/>
                 }else if(path==='/2FA_varifivcation'){
-                    console.log("new")
                     return <Route path={path} exact component={this.props.component}/>
                 }else {
                     return <Route path={path} exact component={this.props.component}/>

@@ -14,9 +14,9 @@ import {setUser} from "../../actions/Actions";
 
 const usernameRegex=RegExp(/^[a-zA-Z0-9]*$/);
 class Login extends Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
     state={
         token:"",
         username: "",
