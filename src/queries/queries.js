@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-const graphql_api="http://localhost:4000/graphql";
+    const graphql_api="http://localhost:4000/graphql";
 
 //Query
 const updateUser=gql`
@@ -72,7 +72,7 @@ const userData=gql`
     query ($id:ID!){
         userById(id: $id) {
             avatar address
-            fullName id 
+            fullName id type
             kyc{
                 kycStatus 
             }
@@ -84,7 +84,7 @@ const UserKyc=gql`
     query ($id:ID!){
         userById(id: $id) {
             avatar address
-            fullName id
+            fullName id 
             kyc{
                 kycStatus mobile nationality country postalCode city birthDate street building
             }

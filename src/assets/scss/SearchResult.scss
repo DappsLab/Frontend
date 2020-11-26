@@ -3,12 +3,20 @@
   font-size: 30px !important;
   margin: 0 10px;
 }
+.dropdown {
+  left: 0 !important;
+  i.icon:before {
+    position: absolute;
+    right: 18px;
+  }
+}
 .sr_container{
   justify-content: center;
   align-items: flex-start;
   min-height: 87vh;
   border-radius: 10px;
   padding: 20px 0;
+
 }
 .searchRight{
   width: 100vh;
@@ -16,16 +24,24 @@
   background-color: $paper-color;
   min-height: 200px;
   .ui.loader{
-    top: 20%;
+    margin-top: 10%!important;
+    position: relative;
+  }
+  .container{
+    padding: 0!important;
+  }
+  .image{
+    width: 115px!important;
   }
 }
 .drawerbtn{
-  background: $default-accent;
-  color: $primary-color;
+  background: $default-accent!important;
+  color: $primary-color!important;
   margin-top: 10px !important;
 }
 .drawerbtn:hover{
   background: $default-primary !important;
+  color: $paper-color!important;
   Box-shadow:
           0 2px 4px -1px rgba(0,0,0,0.2),
           0px 4px 5px 0px rgba(0,0,0,0.14),
@@ -46,4 +62,56 @@
   padding: 0 10px;
   width: 100%;
 }
+.search_data{
+  .header{
+    margin-top: 1px!important;
+    font-size: 25px!important;
+  }
 
+  span:nth-child(2){
+    color: #1A97FF;
+  }
+  .search_tag{
+    text-decoration: none;
+    color: #1A97FF;
+    a{
+      margin-right: 7px;
+    }
+  }
+  .extra{
+    .contract_category {
+      margin: 10px 0!important;
+      .button {
+        opacity: 1 !important;
+        padding: 5px !important;
+      }
+    }
+    span{
+      color: $background-dark;
+      font-weight: bold;
+    }
+  }
+}
+.search_left{
+  width: 300px;
+  background: #FFFFFF;
+  padding: 20px 10px;
+  margin-right: 20px;
+  label, p:first-child{
+    text-align: left;
+  }
+  .makeStyles-root-5{
+    padding-bottom: 0!important;
+  }
+
+  .slider_value{
+    width: 100%;
+    text-align: right;
+    display: block;
+    margin-bottom: 25px;
+    font-size: 12px;
+  }
+  .ui.fluid.button{
+    margin-left: 0!important;
+  }
+}

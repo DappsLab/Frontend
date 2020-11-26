@@ -15,7 +15,6 @@ class UserQuery extends Component{
             getUserData(Loginerror)
         } else {
             let user = this.props.data.userById;
-
             close();
             getUserData("user",user);
         }

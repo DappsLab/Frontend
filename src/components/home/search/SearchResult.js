@@ -1,80 +1,97 @@
 import React from 'react';
 import '../../../assets/scss/SearchResult.css'
-import FilterDrawer from "../../ui/FilterDrawer";
-import {CheckBox, FormField} from "../../ui/FormFields";
-import {Validation} from "../../ui/mise";
-import {Button} from "@material-ui/core";
+import {CheckBox} from "../../ui/FormFields";
 import CustomizedSlider from "../../ui/slider";
 import Layout from "../../../hoc/Layout";
-import {getContract} from "../../../queries/queries";
-import {flowRight as compose} from "lodash";
-import {graphql} from "react-apollo";
-import img from "../../../assets/images/c3.png"
-import {Loader,Container,Item,Image} from "semantic-ui-react";
+import {Loader,Select,Button, Form,Container,Item} from "semantic-ui-react";
+import { gql } from '@apollo/client';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
+const client = new ApolloClient({
+    uri: 'http://localhost:4000/graphql',
+    cache: new InMemoryCache()
+});
+const alphabetRegex=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
 
  class SearchResult extends React.Component{
      state={
-         sliderMinValue:"",
-         sliderMaxValue:"",
+         sliderMinValue:0,
+         sliderMaxValue:1500,
+         searchResult:null,
          show:false,
-         message:'',
-         formData: {
-             sort: {
-                 element: 'select',
-                 value: '',
-                 config: {
-                     label: 'Sort By:',
-                     name: 'sort_by',
-                     type: 'select',
-                     options: [
-                         {key: 'N', value: 'Newest contract'},
-                         {key: 'L', value: 'Price: low to high'},
-                         {key: 'H', value: 'Price: high to low'},
-                         {key: 'T', value: 'Topsellers'}
-                     ]
-                 },
-                 validation: {
-                     required: false,
-                 },
-                 showLabel:true
-             },
-             terms: {
-                 element: 'input',
-                 value: '',
-                 config: {
-                     label: 'Filter Smart Contracts:',
-                     name: 'terms_by',
-                     type: 'input',
-                 },
-                 validation: {
-                     required: true,
-                 },
-                 showLabel:true
-             },
-             tags: {
-                 element: 'input',
-                 value: '',
-                 config: {
-                     label: 'Filter by Tags:',
-                     name: 'tags',
-                     type: 'input',
-                 },
-                 validation: {
-                     required: true,
-                 },
-                 showLabel:true
-             }
-         },
+         loading:true,
+         visible:false,
+         sort:'',
+         name:"",
+         tag:"",
          checkboxs:[
-             {check:false,name:"Documents"},
-             {check:false,name:"Escrow"},
-             {check:false,name:"Financial"},
-             {check:false,name:"Social"},
-             {check:false,name:"Tools"},
-             {check:false,name:"Utility"},
+             {check:false,name:"DOCUMENTS"},
+             {check:false,name:"SOCIAL"},
+             {check:false,name:"FINANCIAL"},
+             {check:false,name:"ESCROW"},
+             {check:false,name:"TOOLS"},
+             {check:false,name:"UTILITY"},
          ]
      }
-    renderCheckbox=()=>(
+     componentDidMount() {
+         const category="ESCROW UTILITY TOOLS FINANCIAL DOCUMENTS SOCIAL";
+         const search=this.props.match.params.search;
+         const that=this;
+         if (category.toLowerCase().includes(search.toLowerCase())){
+             const newData =  Object.assign([], this.state.checkboxs);
+             for (let i=0;i<6;i++){
+                 if (newData[i].name===search.toUpperCase()){
+                     newData[i].check = newData[i].check !== true;
+                 }
+             }
+             this.setState({checkboxs:newData});
+             this.onSubmit();
+         }else {
+             client.query({
+                 query: gql` query ($search:String){
+                     searchSmartContract(searchSmartContract: {contractName: $search}){
+                         contractName  description id tags contractCategory
+                         image shortDescription publishingDateTime
+                         publisher {
+                             fullName
+                             avatar
+                         }
+                         singleLicensePrice
+                     }
+                 }`, variables: {search}
+             }).then(result => {
+                 that.setState({loading: false, searchResult: result.data.searchSmartContract})
+             }).catch(error => {
+                 console.log(error);
+             });
+         }
+     }
+      returnColor=(color)=>{
+     switch (color){
+         case "TOOLS":
+             return "orange";
+         case "SOCIAl":
+             return "grey";
+         case "DOCUMENTS":
+             return "teal";
+         case "UTILITY":
+             return "purple";
+         case "ESCROW":
+             return "blue";
+         case "FINANCIAL":
+             return "green";
+         default:
+             return "violet";
+     }
+ }
+     color=[
+         {0:"violet",1:"blue",2:"orange",3:"grey",4:"real",5:"yellow",6:"brown"}
+     ]
+     countryOptions = [
+         { key: 'N', value: 'NEWEST', text: 'Newest contract' },
+         { key: 'L', value: 'LOW_TO_HIGH', text: 'Price: low to high' },
+         { key: 'H', value: 'HIGH_TO_LOW', text: 'Price: high to low' },
+     ]
+     renderCheckbox=()=>(
         this.state.checkboxs.map((check,index)=>(
             <CheckBox key={check.name} check={check.check}
             name={check.name}
@@ -83,102 +100,177 @@ import {Loader,Container,Item,Image} from "semantic-ui-react";
         ))
     )
     setSliderValues=(event,value)=>{
+
          this.setState({sliderMinValue:value[0],sliderMaxValue:value[1]})
     }
+     handleChange = event => {
+         const {name,value}=event.target;
+         if (alphabetRegex.test(value)){
+             this.setState({[name]:value},()=>{});
+         }
+         if (value===""){
+             this.setState({[name]:value},()=>{});
+         }
+     }
     updateCheckBox (element){
         const newData =  Object.assign([], this.state.checkboxs);
          for (let i=0;i<6;i++){
              if (i===element.index){
-                 newData[i].check=true;
+                 newData[i].check = newData[i].check !== true;
              }
          }
          this.setState({checkboxs:newData});
     }
-    updateForm(element){
-        const newFormData = {...this.state.formData};
-        const newElement = {...newFormData[element.id]};
-        newElement.value = element.event.target.value;
-
-        let validationData= Validation(newElement);
-        newFormData[element.id] = newElement;
-            this.setState({
-                show: validationData[0],
-                message: validationData[1],
-                formData: newFormData
-            })
-        console.log(this.state.formData)
-     }
     onSubmit=()=>{
-         this.setState({close:true})
-         console.log("good")
+         this.setState({close:true,loading:true});
+         const that=this;
+         let {sort,tag,checkboxs,sliderMaxValue,sliderMinValue,name}=this.state;
+         sliderMaxValue=sliderMaxValue*5;
+         const category=[];
+         checkboxs.map(checkbox=>{
+             if (checkbox.check){
+                 category.push(checkbox.name)
+             }
+         });
+        console.log(sort,tag,category,sliderMinValue,name,sliderMaxValue)
+         const input= {         }
+         if (name!==""){
+             input["contractName"]=name
+         }
+         if (sort!=="") {
+            input["sortBy"] = sort
+         }
+         if (tag!==""){
+             input["tags"]=tag
+         }
+         if (category.length>0){
+             input["contractCategory"]=category
+         }
+         input["minPrice"]=sliderMinValue.toString();
+         input["maxPrice"]=sliderMaxValue.toString();
+         client.query({
+             query: gql`query ($input:SearchSmartContract){
+                 filterSmartContract(searchSmartContract:$input) {
+                     contractName  description id tags contractCategory
+                     image shortDescription publishingDateTime
+                     publisher {
+                         fullName
+                         avatar
+                     }
+                     singleLicensePrice 
+                 }
+             }`,
+             variables:{input}
+         }).then(result =>{
+             that.setState({loading:false,searchResult:result.data.filterSmartContract})
+         })
     }
      renderResult(){
-         const data=this.props.data.smartContracts;
-         console.log(data)
-         return (
-
-                     <Item>
-                         <Item.Image src={img} />
-                         <Item.Content>
-                             <Item.Header as='a'>Content Header</Item.Header>
-                             <Item.Meta>
-                                 <span>Date</span>
-                                 <span>Category</span>
+         const {searchResult}=this.state;
+         if(searchResult.length>0) {
+             return searchResult.map(data=>{
+                    return <Item key={data.id}>
+                         <Item.Image src={data.image}/>
+                         <Item.Content className={"search_data"}>
+                             <Item.Header>{data.contractName}</Item.Header>
+                             <Item.Meta >
+                                 <span>Published By</span>
+                                 <span>{data.publisher.fullName}</span>
+                                 <span>|{data.publishingDateTime}</span>
                              </Item.Meta>
                              <Item.Description>
-                                 A description which may flow for several lines and give context to the content.
+                                 {data.shortDescription}
                              </Item.Description>
-                             <Item.Extra>
-                                 <Image avatar circular src={img} />
-                                 Username
+                             <Item.Extra className={"extra"}>
+                                 <div className={"contract_category"}>
+                                     {data.contractCategory.map((category, index) => {
+                                         return <Button disabled
+                                             size={"mini"}
+                                             color={this.returnColor(category)} key={category}>
+                                             {category}</Button>
+                                     })
+                                     }
+                                 </div>
+                                 <div className={"search_tag flex"} >
+                                     {data.tags.map(tag=>{
+                                         return <a key={tag} href={'#'}> #{tag} </a>
+                                     })}
+                                 </div>
+                                 <span>{data.singleLicensePrice} Dapps</span>
                              </Item.Extra>
                          </Item.Content>
                      </Item>
+                 })
 
-         )
+         }else {
+             return (
+                 <Item >
+                     <Item.Content>
+                         Not Found
+                     </Item.Content>
+                 </Item>
+             )
+         }
      }
      render() {
-         const {formData,newValue}=this.state;
-
+         const {loading,name,sort,tag,sliderMinValue,sliderMaxValue,visible}=this.state;
          return (
              <Layout>
                  <div className={"container flex sr_container"}>
-                     <FilterDrawer
-                         select={
-                             <FormField id={'sort'}
-                             formData={formData.sort}
-                             change={(element)=> this.updateForm(element)}/>
-                         }
-                         input={
-                             <FormField id={'terms'}
-                             formData={formData.terms}
-                             change={(element)=> this.updateForm(element)}/>
-                         }
-                        checkbox={this.renderCheckbox()}
-                         tagInput={
-                             <FormField id={'tags'}
-                             formData={formData.tags}
-                             change={(element)=> this.updateForm(element)}/>
-                         }
-                         slider={<CustomizedSlider
-                             newValue={newValue}
-                             changeSlider={(event,value)=> this.setSliderValues(event,value)}
-                         />}
-                         button={<Button className={"drawerbtn"} onClick={this.onSubmit}>Apply</Button>}
-                     />
-                     <div className={"searchRight"}>
+                     <div className={"search_left"}>
+                         <h3>Search Filter</h3>
+                         <Form>
+                             <Form.Field>
+                                 <label>Sort By:</label>
+                                 <Select
+                                     value={sort} options={this.countryOptions}
+                                     onChange={(event,{value})=>{
+                                         this.setState({sort:value});
+                                     }} name={'sort'} fluid
+                                     type={'select'} placeholder={"Select Category"}
+                                 />
+                             </Form.Field>
+                             <Form.Field>
+                                 <label>Filter Smart Contract</label>
+                                 <Form.Input
+                                     placeholder={"Enter Search Terms"} type={"text"}
+                                     value={name}
+                                     name="name" onChange={this.handleChange} />
+                             </Form.Field>
 
-                         {this.props.data.loading?<Loader content={"Loading"} active size={"big"}/>
-                         : <Container >
-                             <Item.Group divided>
-                                 {this.renderResult()}
-                             </Item.Group>
-                         </Container>
-                         }
+                             <Form.Field>
+                                 <label>Filter by Tags</label>
+                                 <Form.Input
+                                     placeholder={"Enter Search Terms"} type={"text"}
+                                     value={tag}
+                                     name="tag" onChange={this.handleChange} />
+                             </Form.Field>
+                             <Form.Field>
+                                 <label>Select Categories</label>
+                             </Form.Field>
+                             {this.renderCheckbox()}
+                             {<CustomizedSlider
+                                 changeSlider={(event,value)=> this.setSliderValues(event,value)}
+                             />}
+                             <span className={"slider_value"}>{sliderMinValue}-{sliderMaxValue} Dapps</span>
+                             {<Button fluid className={"drawerbtn"} onClick={this.onSubmit}>Apply</Button>}
+                         </Form>
                      </div>
-                 </div>
+                    <div className={"searchRight"}>
+                                 {loading?<Loader content={"Loading"} active size={"big"}/> :
+                                 <Container >
+
+                                     <Item.Group divided>
+                                         {this.renderResult()}
+                                     </Item.Group>
+                                 </Container>
+                                 }
+                             </div>
+
+
+         </div>
              </Layout>
          );
      }
 }
-export default compose( graphql(getContract))(SearchResult);
+export default (SearchResult);

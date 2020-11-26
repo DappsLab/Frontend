@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Grid, Form, Segment} from "semantic-ui-react";
+import {Grid, Form, Segment, Divider, Icon} from "semantic-ui-react";
 import "../../assets/scss/change-password.css"
 import {Button} from "@material-ui/core";
 import {withAlert} from "react-alert";
@@ -119,7 +119,18 @@ class ChangePassword extends Component {
                            link={false}
                            linkTo="/"
                        />
-                       <h3>Reset Password</h3>
+                       <h3 className={"flex"}>
+                           {/*<Icon name={"redo"}/>*/}
+                           <Icon.Group size='mini'>
+                               <Icon size='huge' color='blue' name='redo alternate' />
+                               <Icon size={'small'} color='blue' name='key' />
+                           </Icon.Group>
+                       Reset Your Password</h3>
+                       <p>
+                           Need to reset your password? No problem  just enter new password
+                           and click on below submit button
+                       </p>
+                       <Divider/>
                        <Form>
                             <Form.Field className={"flex"}>
                                 <label>New Password</label>

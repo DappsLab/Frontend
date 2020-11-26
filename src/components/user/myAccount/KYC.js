@@ -116,14 +116,16 @@ class Kyc extends Component {
         }
     }
     handleEmpty=({mobile,city,street,building,postalCode,country,nationality,dateOfBirth})=>{
-        return mobile !== "",city !== "",street !== "",building !== "",postalCode !== "",country !== "",nationality !== "",dateOfBirth !== "";
+        return mobile !== "",city.length> 0,street !== "",building !== "",postalCode !== "",country !== "",nationality !== "",dateOfBirth !== "";
     }
     handlSubmit=(event)=>{
         const {currentUser,mobile,city,street,building,postalCode,country,nationality,dateOfBirth}=this.state;
         event.preventDefault();
         this.setState({loadingbtn:true})
         const that=this;
+        console.log(this.state)
         if(this.handleEmpty(this.state)) {
+
             this.props.kycMutation({
                 variables: {
                     id: currentUser.id,

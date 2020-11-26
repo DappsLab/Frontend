@@ -28,8 +28,8 @@ const descriptionRGP=RegExp(/^[a-zA-Z][a-zA-Z\s,.]*$/);
 
 class UploadSmartContract extends Component{
     state= {
-        shortCounter:150,
-        longCounter:400,
+        shortCounter:250,
+        longCounter:500,
         shortDescription:"",
         longDescription:"",
         contractName:"",
@@ -147,11 +147,19 @@ class UploadSmartContract extends Component{
     }
     handleSaveContractData=()=>{
         const {contractCategory,finalCategoryArray}=this.state;
-        if (this.isEmpty(this.state)) {
+        if (this.isEmpty(this.state)&&this.isError(this.state.formErrors)) {
             this.setState({showAssocited: true});
             for (let i = 0; i < contractCategory.length; i++) {
                finalCategoryArray.push(contractCategory[i]['value']);
             }
+        }
+    }
+    isError=({contractName,tags,onePrice,contractCategory,shortDescription,imageFinalPath,unlimitedPrice,longDescription})=> {
+        if (contractName.length===0&&tags.length===0&&contractCategory.length===0&&shortDescription.length===0&&longDescription.length===0&&onePrice.length===0&&imageFinalPath.length===0&&unlimitedPrice.length===0){
+            return true;
+        }else {
+            console.log("erro")
+            return false
         }
     }
     isEmpty=({contractName,contractCategory,imageFinalPath,unlimitedPrice,longDescription,shortDescription,onePrice,tags,formErrors})=>{
@@ -188,9 +196,7 @@ class UploadSmartContract extends Component{
             }
             const reader = new FileReader();
             reader.addEventListener('load', () =>
-                this.setState({imageSrc: reader.result, showDialog: true},()=>{
-                    console.log("167",this.state.showDialog)
-                })
+                this.setState({imageSrc: reader.result, showDialog: true},()=>{})
             )
             reader.readAsDataURL(event.target.files[0]);
             event.target.value = '';
@@ -332,7 +338,7 @@ class UploadSmartContract extends Component{
             {this.state.formErrors.check1!==""||this.state.formErrors.check2!==""?(
                 <span className={"errorMessage"}>Field Required</span>
             ):""}
-            <Button variant="contained" onClick={this.handlePublish} color="primary">Publish</Button>
+            <Button variant="contained"  onClick={this.handlePublish} color="primary">Publish</Button>
         </div>
     )
 
@@ -540,7 +546,7 @@ class UploadSmartContract extends Component{
                                                 )}
                                             </Form>
                                         </Fade>
-                                        <Button onClick={this.handleSaveContractData} className={"btnsave"} >Save</Button>
+                                        <Button disabled={this.state.showAssocited} onClick={this.handleSaveContractData} className={"btnsave"} >Save</Button>
                                     </div>
                                 </div>
                             </div>

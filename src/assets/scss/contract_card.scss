@@ -1,16 +1,16 @@
 @import 'colors';
 .contract-container{
   flex-wrap: wrap;
-  padding: 40px 0 30px 0;
-
+  padding: 40px 15px 30px 0;
+  justify-content: space-between;
 }
 
 .card{
   background-color: $paper-color;
   flex-direction: column;
   align-items: flex-start!important;
-  max-width: 380px;
-  min-width: 380px;
+  max-width: 400px;
+  min-width: 400px;
   min-height: 320px;
   margin: 20px 10px 20px 25px;
   padding:20px 20px;
@@ -48,24 +48,22 @@
     justify-content: space-between;
     width: 100%;
   }
-  .tags{
-    width: 53%;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-  }
-  .tags .tag{
-    width: auto;
-    padding: 5px 3px!important;
-    border-radius:2px ;
-    margin-bottom: 3px;
-    margin-left: 2px;
-    font-size: 12px;
-    .visible.content{
-      text-decoration: underline;
-      margin-right: 0!important;
-    }
-  }
 
+.tags{
+  width: 53%;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.tags .card_tag {
+  width: auto;
+  padding: 5px 3px !important;
+  border-radius: 2px;
+  margin-bottom: 3px;
+  margin-left: 2px;
+  font-size: 12px;
+  text-decoration: underline;
+
+}
   /*=============================================
                     Dark mode
   ===============================================*/

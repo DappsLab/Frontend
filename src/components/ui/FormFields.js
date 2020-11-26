@@ -1,4 +1,4 @@
-import React from "react";
+ import React from "react";
 import "../../assets/scss/SearchResult.css"
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";

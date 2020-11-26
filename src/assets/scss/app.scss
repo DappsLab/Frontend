@@ -36,6 +36,12 @@ a {
   position: relative;
   top: -13px;
 }
+.contract_category{
+  margin: 15px 0 !important;
+  .button:hover{
+    text-decoration: underline!important;
+  }
+}
 .block{
   display: block;
 }

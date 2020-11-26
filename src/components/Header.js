@@ -13,8 +13,8 @@ import Jump from 'react-reveal/Jump';
 
 class Header extends React.Component {
     state = {
-        logged:null,
-        currentUser:null,
+        logged:this.props.logged_session,
+        currentUser:this.props.currentUser,
         count:0
     }
     links = [
@@ -30,14 +30,14 @@ class Header extends React.Component {
         {title: 'Register', linkTo: '/register'},
         {title: 'Login', linkTo: '/login'}
     ];
-    componentDidMount() {
-        if (this.props.currentUser) {
-            this.setState({
-                logged: this.props.logged_session, currentUser: this.props.currentUser
-            });
-
-        }
-    }
+    // componentDidMount() {
+    //     if (this.props.currentUser) {
+    //         this.setState({
+    //             logged: this.props.logged_session, currentUser: this.props.currentUser
+    //         });
+    //
+    //     }
+    // }
 
     renderNav = () => (
         this.links.map(link => (
@@ -57,7 +57,7 @@ class Header extends React.Component {
     );
     renderAccount = () => (
         <div>
-            <DropDown check={true} user={this.state.currentUser}/>
+            <DropDown check={true} user={this.props.currentUser}/>
         </div>
     )
     render() {
@@ -72,7 +72,7 @@ class Header extends React.Component {
                     </nav>
                     <div className={"flex"}>
                         <DarkMode/>
-                        {this.state.logged ?
+                        {this.props.logged_session ?
                             this.renderAccount()
                             : this.renderButtons()
                         }
@@ -86,4 +86,5 @@ const mapStateToProps=(state)=>({
     logged_session:state.user.logged_session,
     currentUser:state.user.currentUser,
 })
+
 export default compose(connect(mapStateToProps))(Header);

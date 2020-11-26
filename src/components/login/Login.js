@@ -77,7 +77,6 @@ class Login extends Component {
         this.setState({userQuery:false},()=>{})
     }
     getUserInfo=(data,token)=>{
-        console.log("login",token)
        if ( data.toLowerCase().includes("error")){
            data=data.replace('GraphQL','')
            const alert = this.props.alert;
@@ -98,7 +97,12 @@ class Login extends Component {
                 this.props.setUser(user);
                 localStorage.setItem("token",this.state.token)
                 alert.success("Login Successfully", {timeout: 5000});
-                this.props.history.push('/');
+                if (user.type==="ADMIN"){
+                    this.props.history.push('/admin');
+                }else {
+                    this.props.history.push('/');
+                }
+
             }
         }
     }

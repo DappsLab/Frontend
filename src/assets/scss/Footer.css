@@ -33,6 +33,11 @@ a {
   position: relative;
   top: -13px; }
 
+.contract_category {
+  margin: 15px 0 !important; }
+  .contract_category .button:hover {
+    text-decoration: underline !important; }
+
 .block {
   display: block; }
 

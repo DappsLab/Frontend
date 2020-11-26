@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {confirmEmail} from "../../queries/queries";
 import {graphql} from "react-apollo";
 import {Button} from "@material-ui/core";
-import {Grid, Segment} from "semantic-ui-react";
+import {Grid,Divider, Segment} from "semantic-ui-react";
 import Spinner from "../ui/Spinner";
 import {withAlert} from "react-alert";
 import {flowRight as compose} from 'lodash';
@@ -16,7 +16,7 @@ class ConfirmEmail extends Component {
     }
     componentDidMount() {
         const token=this.props.match.params.key;
-        this.setState({token:token},()=>console.log(this.state))
+        this.setState({token:token},()=>{})
     }
 
     handleConfirm=()=>{
@@ -30,6 +30,9 @@ class ConfirmEmail extends Component {
                 that.props.history.push('/login');
                 const alert = that.props.alert;
                 alert.success("Email varified Successfully", {timeout: 5000});
+            }else {
+                console.log(result)
+                that.setState({loading: false});
             }
         }).catch(e=>{
             that.setState({loading:false});
@@ -49,8 +52,9 @@ class ConfirmEmail extends Component {
                             link={false}
                             linkTo="/"
                         />
-                        <h1>Varify your email address</h1>
-                        <p>Simply click button below to varify your email address</p>
+                        <h1>Welcome in DappsLab</h1>
+                        <p>Woweee! Thanks for registering an account with DappsLab. Before we get started, we'll need
+                            to verify your email. Simply click button below to varify your email address</p>
                     <Button  onClick={this.handleConfirm}
                             variant="contained" color="primary">
                         Varify email address

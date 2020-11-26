@@ -3,8 +3,7 @@ import {ContractImg} from "../../ui/Icons";
 import '../../../assets/scss/contract_card.css';
 import {Link} from "react-router-dom";
 import {graphql } from "react-apollo";
-import {Button, Loader} from "semantic-ui-react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Label, Loader} from "semantic-ui-react";
 import {faTools,faWrench,faInfo,faFile,faShareAltSquare} from "@fortawesome/free-solid-svg-icons";
 import {getContract} from "../../../queries/queries";
 
@@ -48,12 +47,14 @@ const ContractCard =(props)=>{
     }
    const renderCategory=(categorys)=>(
         categorys.map(category=>{
-            return <Button color={returnColor(category)}  key={category} className={"tag"} animated>
-                <Button.Content   visible>{category}</Button.Content>
-                <Button.Content  hidden>
-                   <FontAwesomeIcon  icon={returnIcon(category)}/>
-                </Button.Content>
-            </Button>
+            return  <Label  key={category}
+                color={returnColor(category)}   className={`card_tag`} >
+                {category}
+                    {/*<Button.Content   visible>{category}</Button.Content>*/}
+                    {/*<Button.Content  hidden>*/}
+                    {/*    <FontAwesomeIcon  icon={returnIcon(category)}/>*/}
+                    {/*</Button.Content>*/}
+                 </Label>
         })
     )
    const displayContract=()=>{
@@ -65,7 +66,7 @@ const ContractCard =(props)=>{
             return <div>{data.error.message}</div>
        }else {
             return data.smartContracts.map(contract=>{
-                return <Link className={"card flex"} key={contract.id} to={`/detailed_contract/${contract.id}`}>
+                return <Link to={`/detailed_contract/${contract.id}`} className={"card flex"} key={contract.id}  >
                     <div className={"card-top flex"}>
                         <div className={"flex tags"}>
                             {renderCategory(contract.contractCategory)}
@@ -79,7 +80,7 @@ const ContractCard =(props)=>{
                     </div>
                     <h4>{contract.contractName}</h4>
                     <p>{contract.shortDescription}</p>
-                    <span className={"block"}>{contract.singleLicensePrice}</span>
+                    <span className={"block"}>{contract.singleLicensePrice} Dapps</span>
                 </Link>
             })
         }

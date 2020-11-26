@@ -16,6 +16,7 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControl from "@material-ui/core/FormControl";
 import {connect} from "react-redux";
 import { Slider } from "react-semantic-ui-range";
+import {Link} from "react-router-dom";
 
 
 
@@ -23,7 +24,7 @@ class  DetailedContract extends Component{
 
     state= {
         radioValue:"SINGLELICENSE",
-        kyc:this.props.currentUser.kyc,
+        kyc:this.props.logged_session?this.props.currentUser.kyc:"null",
         fee: 0.01201,
     }
     color=[
@@ -128,10 +129,12 @@ class  DetailedContract extends Component{
                     </Button>
                     <div className={"contract_category"}>
                         {contractData.contractCategory.map((category, index) => {
-                            return <Button
+                            return <Link   to={`/search_result/${category}`} >
+                            <Button
                                 size={"mini"}
                                 color={this.color["0"][index]} key={category}>
                                 {category}</Button>
+                            </Link>
                         })
                         }
                     </div>
@@ -145,6 +148,7 @@ class  DetailedContract extends Component{
         }
     }
     renderBuy(){
+        console.log(this.props.logged_session)
         if (this.props.logged_session){
             if (this.state.kyc.kycStatus==="VERIFIED") {
                return <Button fluid onClick={this.handleBuy} className={"testbtn"}>Buy contract</Button>

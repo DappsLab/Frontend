@@ -1,7 +1,12 @@
 .confirm_email {
   padding: 0 0 20px 0 !important; }
   .confirm_email h1 {
-    margin: 10px 0; }
+    margin: 10px 0;
+    text-align: left;
+    padding: 0 25px; }
+  .confirm_email p {
+    padding: 0 25px 25px 25px;
+    text-align: justify; }
   .confirm_email .logo-container {
     display: flex;
     align-items: center;

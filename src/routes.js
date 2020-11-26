@@ -27,12 +27,14 @@ import ChangePassword from "./components/user/ChangePassword";
 import UploadSmartContract from "./components/home/uploadContract/UploadSmartContract";
 import FAConfirmation from "./components/user/2FAConfirmation";
 import UserAccount from "./components/user/myAccount/UserAccount";
+import Admin from "./components/admin/Admin";
 
 
 class Routes extends Component{
      render() {
          return (
          <Switch>
+
               <PrivateRoute  path={"/dashboard/developed_contract"} component={DevelopedContracts}/>
               <PrivateRoute  path={"/dashboard/test_contract"} component={TestContract}/>
               <PrivateRoute  path={"/dashboard/purchased"} component={Purchased}/>
@@ -40,13 +42,13 @@ class Routes extends Component{
               <PrivateRoute  path={"/logout"} component={Logout}/>
               <PrivateRoute  path={"/delete_user"} component={DeleteUser}/>
               <PrivateRoute  path={"/upload_samrt_contract"} component={UploadSmartContract}/>
-
+              <PrivateRoute  path={"/admin"} component={Admin}/>
 
               <PublicRoute  path={"/2FA_varifivcation"} component={FAConfirmation}/>
               <PublicRoute  path={"/user/reset-password/:key"} component={ChangePassword}/>
               <PublicRoute  path={"/user/confirm/:key"} component={ConfirmEmail}/>
               <PublicRoute  path={"/detailed_contract/:id"} component={DetailedContract}/>
-              <PublicRoute  path={"/search_result"} component={SearchResult}/>
+              <PublicRoute  path={"/search_result/:search"} component={SearchResult}/>
               <PublicRoute  path={"/forget_password"} component={ResetPassword}/>
               <PublicRoute  path={"/register"} component={Register}/>
               <PublicRoute  path={"/login"} component={Login}/>

@@ -2,6 +2,12 @@
   font-size: 30px !important;
   margin: 0 10px; }
 
+.dropdown {
+  left: 0 !important; }
+  .dropdown i.icon:before {
+    position: absolute;
+    right: 18px; }
+
 .sr_container {
   justify-content: center;
   align-items: flex-start;
@@ -15,15 +21,21 @@
   background-color: #ffffff;
   min-height: 200px; }
   .searchRight .ui.loader {
-    top: 20%; }
+    margin-top: 10% !important;
+    position: relative; }
+  .searchRight .container {
+    padding: 0 !important; }
+  .searchRight .image {
+    width: 115px !important; }
 
 .drawerbtn {
-  background: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
-  color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
+  background: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%) !important;
+  color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) !important;
   margin-top: 10px !important; }
 
 .drawerbtn:hover {
   background: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) !important;
+  color: #ffffff !important;
   Box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); }
 
 .label_inputs {
@@ -40,5 +52,42 @@
   border-radius: 3px;
   padding: 0 10px;
   width: 100%; }
+
+.search_data .header {
+  margin-top: 1px !important;
+  font-size: 25px !important; }
+.search_data span:nth-child(2) {
+  color: #1A97FF; }
+.search_data .search_tag {
+  text-decoration: none;
+  color: #1A97FF; }
+  .search_data .search_tag a {
+    margin-right: 7px; }
+.search_data .extra .contract_category {
+  margin: 10px 0 !important; }
+  .search_data .extra .contract_category .button {
+    opacity: 1 !important;
+    padding: 5px !important; }
+.search_data .extra span {
+  color: #121212;
+  font-weight: bold; }
+
+.search_left {
+  width: 300px;
+  background: #FFFFFF;
+  padding: 20px 10px;
+  margin-right: 20px; }
+  .search_left label, .search_left p:first-child {
+    text-align: left; }
+  .search_left .makeStyles-root-5 {
+    padding-bottom: 0 !important; }
+  .search_left .slider_value {
+    width: 100%;
+    text-align: right;
+    display: block;
+    margin-bottom: 25px;
+    font-size: 12px; }
+  .search_left .ui.fluid.button {
+    margin-left: 0 !important; }
 
 /*# sourceMappingURL=SearchResult.css.map */
