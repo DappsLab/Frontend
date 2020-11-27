@@ -158,7 +158,6 @@ class GeneralSetting extends Component {
         console.log(id)
     }
     render() {
-
         const {showDialog,crop,imageData,currentUser,imageSrc,formErrors,location,imageFinalPath,fullName } = this.state;
         return  (
             <div>
@@ -244,11 +243,9 @@ class GeneralSetting extends Component {
         );
     }
 }
-const mapStateToProps=(state)=>({
-    currentUser:state.user.currentUser,
-})
+
 export default compose(
-   connect(mapStateToProps, {setUser}),
+   connect(null, {setUser}),
     graphql(imageUpload,{name:"uploadImage"}),
     graphql(updateUser,{name:"updateUser"})
 )(GeneralSetting);

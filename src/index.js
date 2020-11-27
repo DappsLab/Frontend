@@ -14,6 +14,7 @@ import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic';
 import Spinner from "./components/ui/Spinner";
 import App from "./App";
+import Routes from "./routes";
 
 
 const store = createStore(rootReducer, composeWithDevTools());
@@ -39,31 +40,33 @@ const client = new ApolloClient({
     link:concat(authMiddleware,link),
     cache: new InMemoryCache(),
 });
-const  Main =()=>{
+const  Main =(props)=>{
     const [user,setUser]=useState(null);
     const renderData=()=>{
         if (!!localStorage.getItem('token') ) {
             client.query({
                 query: gql`query {
                     me{
-                        avatar address fullName id
-                        email location userName
+                        avatar address fullName id type
+                        email location userName twoFactorEnabled
                         kyc{ kycStatus }
                     }
                 }`
             }).then(result => {
                 setUser(result.data.me);
             }).catch(e => {
-                console.log(e)
+                // localStorage.removeItem("token")
+                console.log(e.toString())
+                return <Routes {...props} user={user}/>
             });
             if (user===null){
                 return <Spinner/>
             }
             if (user){
-                return <App user={user}/>
+                return <Routes {...props} user={user}/>
             }
         }else {
-            return <App user={null}/>
+            return <Routes {...props} user={null}/>
         }
     }
     return  (
@@ -77,7 +80,7 @@ ReactDOM.render(
     <Provider store={store}>
         <Router>
             <ApolloProvider client={client}>
-                <Main/>
+                <Main />
             </ApolloProvider>
         </Router>
     </Provider>

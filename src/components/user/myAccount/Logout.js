@@ -6,10 +6,11 @@ import {Loader,Dimmer} from "semantic-ui-react";
 
 class Logout extends Component {
       componentDidMount(){
-        this.props.clearUser();
-        localStorage.removeItem('token');
-        this.props.history.push('/');
-        window.location.reload();
+          console.log(this.props)
+          this.props.clearUser();
+          localStorage.removeItem('token');
+          this.props.history.push('/');
+        // window.location.reload();
     }
     render() {
         return (

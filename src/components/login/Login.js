@@ -4,12 +4,12 @@ import {Link} from "react-router-dom";
 import {Grid, Form, Segment, Button} from 'semantic-ui-react';
 import {LoginTop} from "../ui/mise";
 import Layout from "../../hoc/Layout";
-import LoginQuery from "../../queries/LoginQuery";
-import UserQuery from "../../queries/UserQuery";
 import { withAlert} from "react-alert";
 import {flowRight as compose} from "lodash";
 import {connect} from "react-redux";
 import {setUser} from "../../actions/Actions";
+import {client} from "../../queries/queries";
+import {gql} from "@apollo/client";
 
 
 const usernameRegex=RegExp(/^[a-zA-Z0-9]*$/);
@@ -18,22 +18,14 @@ class Login extends Component {
     //     super(props);
     // }
     state={
-        token:"",
         username: "",
-        loginQuery:false,
-        userQuery:false,
-        FA:null,
-        model:false,
-        loginError:"",
         error:"",
-        id:"",
         password: "",
         formErrors: {
             username: "",
             password: "",
         }
     }
-    closeModel=()=>this.setState({model:false});
     handleChange = event => {
         const {name,value}=event.target;
         let formErrors=this.state.formErrors;
@@ -55,8 +47,61 @@ class Login extends Component {
     };
     handleSubmit = (event) => {
         event.preventDefault();
+        const {username,password}=this.state;
+        const alert = this.props.alert;
+        let that=this;
         if (this.isFormValid(this.state)) {
-            this.setState({loginQuery:true},()=>{});
+            this.setState({username: "",password: ""})
+            client.query({
+                query: gql`  query ($username:String!,$password:String!){
+                    loginUser(userName: $username, password: $password) {
+                        token
+                        user {
+                            id
+                        }
+                    }
+                }`, variables: {username: username,password: password}
+            }).then(result => {
+              const  logged=result.data.loginUser;
+              if (logged) {
+                  client.query({
+                      query: gql`   query ($id:ID!){
+                          userById(id: $id) {
+                              avatar address
+                              fullName id type
+                              kyc{
+                                  kycStatus
+                              }
+                              email location userName twoFactorEnabled
+                          }
+                      }`, variables: {id: logged.user.id}
+                  }).then(result => {
+                      const user=result.data.userById;
+                      if (user){
+                          console.log(user.twoFactorEnabled)
+                          if (user.twoFactorEnabled){
+                              that.props.history.push(`/2FA_varifivcation/${logged.token}`);
+                          }else {
+                              localStorage.setItem("token",logged.token);
+                              this.props.setUser(user);
+                              alert.success("Login Successfully", {timeout: 5000});
+                              if (user.type==="ADMIN"){
+                                  this.props.history.push('/admin');
+                              }else {
+                                  this.props.history.push('/');
+                              }
+                          }
+                      }
+                  }).catch(r => {
+                      const error=r.toString().replace('GraphQL','');
+                      alert.error(error,{time:5000});
+                      localStorage.removeItem("token");
+                  });
+              }
+            }).catch(r => {
+                const error=r.toString().replace('GraphQL','');
+                alert.error(error,{time:5000})
+            });
         }
     };
     isFormValid = ({ username, password }) =>{
@@ -70,44 +115,8 @@ class Login extends Component {
             return false;
         }
     }
-    closeLoginQuery=()=>{
-        this.setState({loginQuery:false},()=>{})
-    }
-    closeUserQuery=()=>{
-        this.setState({userQuery:false},()=>{})
-    }
-    getUserInfo=(data,token)=>{
-       if ( data.toLowerCase().includes("error")){
-           data=data.replace('GraphQL','')
-           const alert = this.props.alert;
-           alert.error(data, {timeout: 5000});
-       }else {
-           this.setState({id: data,token:token, userQuery: true});
-       }
-    }
-    getUserData=(data,user)=>{
-        if (data==="user"){
-            if (user.twoFactorEnabled===true) {
-                this.setState({model:true,FA:data.twoFactorEnabled},()=>{console.log(this.state)})
-                localStorage.setItem("token",this.state.token);
-                this.props.setUser(user);
-                this.props.history.push('/2FA_varifivcation');
-            }else {
-                const alert = this.props.alert;
-                this.props.setUser(user);
-                localStorage.setItem("token",this.state.token)
-                alert.success("Login Successfully", {timeout: 5000});
-                if (user.type==="ADMIN"){
-                    this.props.history.push('/admin');
-                }else {
-                    this.props.history.push('/');
-                }
-
-            }
-        }
-    }
     render() {
-        const {username,password,formErrors,userQuery,id,loginQuery} = this.state;
+        const {username,password,formErrors} = this.state;
         return (
             <Layout>
                 <Grid textAlign="center"  verticalAlign='middle' className="login-bg">
@@ -144,22 +153,6 @@ class Login extends Component {
                         </Form>
                     </Grid.Column>
                 </Grid>
-                {loginQuery&&
-                    <LoginQuery
-                        username={username}
-                        password={password}
-                        close={this.closeLoginQuery}
-                        getUserInfo={this.getUserInfo}
-                    />
-                }
-                {userQuery&&
-                    <UserQuery
-                        id={id}
-                        close={this.closeUserQuery}
-                        getUserData={this.getUserData}
-                    />
-                }
-                {/*{model&& <Redirect  to={'/2FA_varifivcation'}/>}*/}
             </Layout>
         );
     }

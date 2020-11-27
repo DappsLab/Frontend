@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useEffect} from 'react';
 import {Switch} from "react-router-dom";
 
 
@@ -28,40 +28,46 @@ import UploadSmartContract from "./components/home/uploadContract/UploadSmartCon
 import FAConfirmation from "./components/user/2FAConfirmation";
 import UserAccount from "./components/user/myAccount/UserAccount";
 import Admin from "./components/admin/Admin";
+import NotFound from "./components/ui/NotFound";
+import {connect} from "react-redux";
+import {setUser} from "./actions/Actions";
 
 
-class Routes extends Component{
-     render() {
+const Routes =(props)=>{
+     useEffect(()=>{
+               const user=props.user;
+               if (user!==null) {
+                    props.setUser(user);
+               }
+     })
          return (
          <Switch>
-
-              <PrivateRoute  path={"/dashboard/developed_contract"} component={DevelopedContracts}/>
-              <PrivateRoute  path={"/dashboard/test_contract"} component={TestContract}/>
-              <PrivateRoute  path={"/dashboard/purchased"} component={Purchased}/>
-              <PrivateRoute  path={"/account_settings"}  component={UserAccount}/>
-              <PrivateRoute  path={"/logout"} component={Logout}/>
-              <PrivateRoute  path={"/delete_user"} component={DeleteUser}/>
-              <PrivateRoute  path={"/upload_samrt_contract"} component={UploadSmartContract}/>
-              <PrivateRoute  path={"/admin"} component={Admin}/>
-
-              <PublicRoute  path={"/2FA_varifivcation"} component={FAConfirmation}/>
-              <PublicRoute  path={"/user/reset-password/:key"} component={ChangePassword}/>
-              <PublicRoute  path={"/user/confirm/:key"} component={ConfirmEmail}/>
-              <PublicRoute  path={"/detailed_contract/:id"} component={DetailedContract}/>
-              <PublicRoute  path={"/search_result/:search"} component={SearchResult}/>
-              <PublicRoute  path={"/forget_password"} component={ResetPassword}/>
-              <PublicRoute  path={"/register"} component={Register}/>
-              <PublicRoute  path={"/login"} component={Login}/>
-              <PublicRoute  path={"/smart_contracts"} component={Smart_Contracts}/>
-              <PublicRoute  path={"/help"} component={Help}/>
-              <PublicRoute  path={"/downloads"} component={Downloads}/>
-              <PublicRoute  path={"/dapps"} component={Dapps}/>
-              <PublicRoute  path={"/block_explorer"} component={BlockExplorer}/>
-              <PublicRoute  path={"/about_us"} component={AboutUs}/>
-              <PublicRoute  path={"/"} component={Home}/>
+              <PrivateRoute {...props}  path={"/dashboard/developed_contract"} exact component={DevelopedContracts}/>
+              <PrivateRoute {...props}  path={"/dashboard/test_contract"} exact component={TestContract}/>
+              <PrivateRoute {...props}  path={"/dashboard/purchased"} exact component={Purchased}/>
+              <PrivateRoute {...props}  path={"/account_settings"} component={UserAccount}/>
+              <PrivateRoute {...props}  path={"/logout"} exact component={Logout}/>
+              <PrivateRoute {...props}  path={"/delete_user"} exact component={DeleteUser}/>
+              <PrivateRoute {...props}  path={"/upload_samrt_contract"} exact component={UploadSmartContract}/>
+              <PrivateRoute {...props}  path={"/admin"} exact component={Admin}/>
+              <PublicRoute {...props} restricted={false}  path={"/2FA_varifivcation/:token"} exact component={FAConfirmation}/>
+              <PublicRoute {...props} restricted={false}  path={"/user/reset-password/:key"} exact component={ChangePassword}/>
+              <PublicRoute {...props} restricted={false}  path={"/user/confirm/:key"} exact component={ConfirmEmail}/>
+              <PublicRoute {...props} restricted={false}  path={"/detailed_contract/:id"} exact component={DetailedContract}/>
+              <PublicRoute {...props} restricted={false}  path={"/search_result/:search"} exact component={SearchResult}/>
+              <PublicRoute {...props} restricted={false}  path={"/forget_password"} exact component={ResetPassword}/>
+              <PublicRoute {...props} restricted={true}  path={"/register"} exact component={Register}/>
+              <PublicRoute {...props} restricted={true}  path={"/login"} exact component={Login}/>
+              <PublicRoute {...props} restricted={false}  path={"/smart_contracts"} exact component={Smart_Contracts}/>
+              <PublicRoute {...props} restricted={false}  path={"/help"} exact component={Help}/>
+              <PublicRoute {...props} restricted={false}  path={"/downloads"} exact component={Downloads}/>
+              <PublicRoute {...props} restricted={false}  path={"/dapps"} exact component={Dapps}/>
+              <PublicRoute {...props} restricted={false}  path={"/block_explorer"} exact component={BlockExplorer}/>
+              <PublicRoute {...props} restricted={false}  path={"/about_us"} exact component={AboutUs}/>
+              <PublicRoute {...props} restricted={false}  path={"/"} exact component={Home}/>
+              <PublicRoute {...props} restricted={false} component={NotFound}/>
          </Switch>
          );
-     }
 }
 
-export default  (Routes);
+export default connect(null, {setUser})  (Routes);

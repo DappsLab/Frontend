@@ -7,6 +7,7 @@ import {setUser} from "../../../actions/Actions";
 import {graphql} from "react-apollo";
 import { kycMutation} from "../../../queries/queries";
 import KycQuery from "../../../queries/KycQuery";
+import {withAlert} from "react-alert";
 const alphaNumaric=RegExp(/^[a-zA-Z0-9][a-zA-Z0-9\s]*$/);
 const numaric=RegExp(/^[0-9\s]*$/);
 const alphabet=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
@@ -67,8 +68,7 @@ class Kyc extends Component {
                 break;
             case 'country':
                 if (alphabet.test(value)){
-                    this.setState({[name]:value},()=>{
-                        console.log(value)})
+                    this.setState({[name]:value},()=>{})
                 }
                 break;
             case 'nationality':
@@ -100,15 +100,12 @@ class Kyc extends Component {
         switch (name) {
             case 'country':
                 if (alphabet.test(value)) {
-                    this.setState({[name]: value}, () => {
-                        console.log(value)
-                    })
+                    this.setState({[name]: value}, () => {})
                 }
                 break;
             case 'nationality':
                 if (alphabet.test(value)) {
-                    this.setState({[name]: value}, () => {
-                    })
+                    this.setState({[name]: value}, () => {})
                 }
                 break;
             default:
@@ -116,16 +113,15 @@ class Kyc extends Component {
         }
     }
     handleEmpty=({mobile,city,street,building,postalCode,country,nationality,dateOfBirth})=>{
-        return mobile !== "",city.length> 0,street !== "",building !== "",postalCode !== "",country !== "",nationality !== "",dateOfBirth !== "";
+        return mobile !== "",city!=="",street !== "",building !== "",postalCode !== "",country !== "",nationality !== "",dateOfBirth !== "";
     }
     handlSubmit=(event)=>{
         const {currentUser,mobile,city,street,building,postalCode,country,nationality,dateOfBirth}=this.state;
         event.preventDefault();
         this.setState({loadingbtn:true})
+        const alert=this.props.alert;
         const that=this;
-        console.log(this.state)
         if(this.handleEmpty(this.state)) {
-
             this.props.kycMutation({
                 variables: {
                     id: currentUser.id,
@@ -140,9 +136,10 @@ class Kyc extends Component {
                 },
             }).then(result => {
                 that.props.setUser(result.data.addKyc)
+                alert.success("Submitted", {timeout: 1000})
                 that.setState({kyc:result.data.addKyc.kyc,type:'text',loadingbtn:false,error:"",building:"",street: "",postalCode: "",city: "",country: "",mobile: "",dateOfBirth: "",nationality: ""})
             }).catch(e=>{
-                console.log(e);
+                alert.error(e.toString(), {timeout: 1000})
                 that.setState({loadingbtn: false,error:""})
             });
         }else {
@@ -233,6 +230,7 @@ const mapStateToProps=(state)=>({
 export default  compose(
     connect(mapStateToProps, {setUser}),
     graphql(kycMutation,{name:"kycMutation"}),
+    withAlert(),
 )(Kyc);
 
 

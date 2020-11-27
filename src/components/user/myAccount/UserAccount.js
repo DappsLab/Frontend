@@ -14,10 +14,12 @@ import Transactions from "./Transactions";
 import Kyc from "./KYC";
 
 class UserAccount extends Component {
-
+    state={
+        currentUser:this.props.user===null?this.props.currentUser:this.props.user
+    }
     renderBanner = () => (
         <section className={"account_welcome"}>
-            <h2>Welcome back, <span>{this.props.currentUser.fullName}</span></h2>
+            <h2>Welcome back, <span>{this.state.currentUser.fullName}</span></h2>
             <p>You can manage your account, preferences, and much more using our unified login system</p>
         </section>
     )
@@ -26,13 +28,13 @@ class UserAccount extends Component {
             menuItem: <Menu.Item key='profile'>
                 <Account icon={faUser} title={'Profile'} subtitle={"Account setting"} />
             </Menu.Item>,
-            render: () => <Tab.Pane attached={false}><GeneralSetting/></Tab.Pane>,
+            render: () => <Tab.Pane attached={false}><GeneralSetting currentUser={this.state.currentUser}/></Tab.Pane>,
         },
         {
             menuItem: <Menu.Item key='KYC'>
                 <Account icon={faTasks} title={'KYC'} subtitle={"Account Verification"} />
             </Menu.Item>,
-            render: () => <Tab.Pane attached={false}><Kyc currentUser={this.props.currentUser}/></Tab.Pane>,
+            render: () => <Tab.Pane attached={false}><Kyc currentUser={this.state.currentUser}/></Tab.Pane>,
         },
         {
             menuItem: (
@@ -66,7 +68,6 @@ class UserAccount extends Component {
         },
     ]
     render() {
-
         return (
             <Layout>
                 <Grid textAlign="center"  verticalAlign='middle'>

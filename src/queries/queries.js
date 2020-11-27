@@ -1,6 +1,9 @@
 import { gql } from '@apollo/client';
-
-    const graphql_api="http://localhost:4000/graphql";
+import { ApolloClient, InMemoryCache } from '@apollo/client';
+const client = new ApolloClient({
+    uri: 'http://localhost:4000/graphql',
+    cache: new InMemoryCache()
+});
 
 //Query
 const updateUser=gql`
@@ -246,4 +249,4 @@ const search=gql` query ($search:String){
     }
 }
 `
-export {search,orderContract,UserKyc,kycMutation,graphql_api,disable2FA,verify2FA,enableFA,createNewContract,sourceUpload,getContract,contractById,meQuery,newPassword,forgetPassword,confirmEmail,deleteUser,getAuth,updateUser,userData,getUsersData,imageUpload,createNewUser};
+export {search,orderContract,UserKyc,kycMutation,client,disable2FA,verify2FA,enableFA,createNewContract,sourceUpload,getContract,contractById,meQuery,newPassword,forgetPassword,confirmEmail,deleteUser,getAuth,updateUser,userData,getUsersData,imageUpload,createNewUser};
