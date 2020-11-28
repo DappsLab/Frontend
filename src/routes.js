@@ -18,7 +18,7 @@ import Logout from "./components/user/myAccount/Logout";
 import ResetPassword from "./components/login/ResetPassword";
 import Purchased from "./components/user/dashboard/Purchased";
 import TestContract from "./components/user/dashboard/TestContract";
-import DevelopedContracts from "./components/user/dashboard/DevelopedContracts";
+import DevelopedContracts from "./components/user/dashboard/developedContract/DevelopedContracts";
 import PublicRoute from "./components/route_auth/PublicRoute";
 import PrivateRoute from "./components/route_auth/PrivateRoute";
 import DeleteUser from "./queries/DeleteUser";
@@ -31,6 +31,8 @@ import Admin from "./components/admin/Admin";
 import NotFound from "./components/ui/NotFound";
 import {connect} from "react-redux";
 import {setUser} from "./actions/Actions";
+import OrderContracts from "./components/user/dashboard/orderContract/OrderContracts";
+import ExplorerResult from "./components/block_explorer/explorerSearch/ExplorerResult";
 
 
 const Routes =(props)=>{
@@ -43,6 +45,7 @@ const Routes =(props)=>{
          return (
          <Switch>
               <PrivateRoute {...props}  path={"/dashboard/developed_contract"} exact component={DevelopedContracts}/>
+              <PrivateRoute {...props}  path={"/dashboard/ordered_contract"} exact component={OrderContracts}/>
               <PrivateRoute {...props}  path={"/dashboard/test_contract"} exact component={TestContract}/>
               <PrivateRoute {...props}  path={"/dashboard/purchased"} exact component={Purchased}/>
               <PrivateRoute {...props}  path={"/account_settings"} component={UserAccount}/>
@@ -51,6 +54,7 @@ const Routes =(props)=>{
               <PrivateRoute {...props}  path={"/upload_samrt_contract"} exact component={UploadSmartContract}/>
               <PrivateRoute {...props}  path={"/admin"} exact component={Admin}/>
               <PublicRoute {...props} restricted={false}  path={"/2FA_varifivcation/:token"} exact component={FAConfirmation}/>
+              <PublicRoute {...props} restricted={false}  path={"/block_explorer/:search"} exact component={ExplorerResult}/>
               <PublicRoute {...props} restricted={false}  path={"/user/reset-password/:key"} exact component={ChangePassword}/>
               <PublicRoute {...props} restricted={false}  path={"/user/confirm/:key"} exact component={ConfirmEmail}/>
               <PublicRoute {...props} restricted={false}  path={"/detailed_contract/:id"} exact component={DetailedContract}/>

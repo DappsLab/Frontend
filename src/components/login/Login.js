@@ -24,7 +24,8 @@ class Login extends Component {
         formErrors: {
             username: "",
             password: "",
-        }
+        },
+        reload:0,
     }
     handleChange = event => {
         const {name,value}=event.target;
@@ -67,9 +68,27 @@ class Login extends Component {
                   client.query({
                       query: gql`   query ($id:ID!){
                           userById(id: $id) {
-                              avatar address
-                              fullName id type
-                              kyc{
+                              avatar address balance
+                              orders{
+                                  id
+                                  dateTime
+                                  fee
+                                  price
+                                  smartContract {
+                                      contractName
+                                  }
+                                  status
+                                  transactionHash
+                              }
+                              fullName id type twoFactorCode
+                              kyc{   birthDate
+                                  building
+                                  city
+                                  country
+                                  kycStatus mobile
+                                  nationality
+                                  postalCode
+                                  street
                                   kycStatus
                               }
                               email location userName twoFactorEnabled
@@ -77,8 +96,9 @@ class Login extends Component {
                       }`, variables: {id: logged.user.id}
                   }).then(result => {
                       const user=result.data.userById;
+                      console.log(user)
                       if (user){
-                          console.log(user.twoFactorEnabled)
+
                           if (user.twoFactorEnabled){
                               that.props.history.push(`/2FA_varifivcation/${logged.token}`);
                           }else {
@@ -115,12 +135,14 @@ class Login extends Component {
             return false;
         }
     }
+
+
     render() {
         const {username,password,formErrors} = this.state;
         return (
             <Layout>
                 <Grid textAlign="center"  verticalAlign='middle' className="login-bg">
-                    <Grid.Column style={{maxWidth:700}}>
+                    <Grid.Column style={{maxWidth:900}}>
                         <Form  onSubmit={this.handleSubmit}>
                             <Segment piled>
                                 <LoginTop

@@ -1,23 +1,26 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Table} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 
-class RecentTransaction extends Component {
-    render() {
-        return (
-            <Table.Row className={"row"}>
-                <Table.Cell className={"block_address"}>
-                    <span><Link to={"/"}>0x6fc60x6fc6811fdb48e28ac89f4a50bf4115ffb991b811fdb48e28ac89f4a50bf4115ffb991b</Link></span>
-                   <br/> Block: <Link to={"/"}>2912</Link>
-                </Table.Cell>
-                <Table.Cell width={2} textAlign={"center"} >0 Dapps</Table.Cell>
-                <Table.Cell >
-                    From:<Link to={"/"}> 0xf6df3CdC4Abc93AF4E36098db4B8D73a4980c2CF</Link><br/>
-                    To:<Link to={"/"}>0xf6df3CdC4Abc93AF4E36098db4B8D73a4980c2CF</Link>
-                </Table.Cell>
-            </Table.Row>
-        );
-    }
-}
-
-export default RecentTransaction;
+export  const RecentTransaction = (props) => {
+    const transactions=props.transactions;
+    return transactions.map((transaction, index = 1) => {
+        return <Table.Row key={transaction.id} className={"row"}>
+            <Table.Cell>
+                <div className={"block_address"}>
+                    <div>Hash:</div><span><Link to={`/block_explorer/transaction:${transaction.transactionHash}`}>{transaction.transactionHash}</Link></span>
+                </div>
+                Block: <Link to={`/block_explorer/block:${transaction.blockNumber}`}>{transaction.blockNumber}</Link>
+            </Table.Cell>
+            <Table.Cell width={2} textAlign={"center"}>0 Dapps</Table.Cell>
+            <Table.Cell >
+                <div className={"block_address"}>
+                    <div>From:</div><span><Link to={"/"}>{transaction.from}</Link></span>
+                </div>
+                <div className={"block_address"}>
+                    <div>To:</div><span><Link to={"/"}>{transaction.to}</Link></span>
+                </div>
+            </Table.Cell>
+        </Table.Row>
+    })
+};

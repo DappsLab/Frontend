@@ -1,8 +1,10 @@
-.indexContainer .borderless {
-  align-items: center;
-  padding-left: 5px; }
-  .indexContainer .borderless a {
-    margin-right: 5px; }
+.indexContainer {
+  margin: 20px 0 !important; }
+  .indexContainer .borderless {
+    align-items: center;
+    padding-left: 5px; }
+    .indexContainer .borderless a {
+      margin-right: 5px; }
 
 .developed_body {
   height: 130px !important;

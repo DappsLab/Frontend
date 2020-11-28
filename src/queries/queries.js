@@ -4,7 +4,13 @@ const client = new ApolloClient({
     uri: 'http://localhost:4000/graphql',
     cache: new InMemoryCache()
 });
-
+const Authclient = new ApolloClient({
+    uri: 'http://localhost:4000/graphql',
+    cache: new InMemoryCache(),
+    headers: {
+        authorization: localStorage.getItem("token"),
+    }
+});
 //Query
 const updateUser=gql`
     mutation ($fullName: String,$location: String,$avatar:String,$balance:String){
@@ -48,20 +54,7 @@ const createNewUser= gql`
         }
     }
 `;
-const kycMutation=gql`    
-    mutation  UserKyc($id:String!,$mobile:String,$birth:String,$nationality:String,$country:String,$postalCode:String,$city:String,$street:String,$building:String){
-        addKyc(id:$id,mobile:$mobile,birthDate:$birth,nationality:$nationality,country:$country,postalCode:$postalCode,city:$city,street:$street,building:$building,kycStatus:PENDING)
-        {
-            avatar address
-            fullName id
-            kyc{
-                kycStatus mobile nationality country postalCode city birthDate street building
-            }
-            email location userName twoFactorEnabled
 
-        }
-    }
-`;
 const imageUpload=gql`
     mutation UPLOAD_IMAGE($file: Upload!){
         imageUploader(file: $file)
@@ -130,19 +123,25 @@ const newPassword=gql`
         resetPassword(token:$token,password:$password)
     }
 `
-//====================Me Query===============================
-const meQuery=gql`    
-    query {
-        me{
-            avatar address
-            fullName id 
-            email location userName
-            kyc{
+//=====================kyc==================================
+const kycMutation=gql`
+    mutation  UserKyc($id:String!,$mobile:String,$birth:String,$nationality:String,$country:String,$postalCode:String,$city:String,$street:String,$building:String){
+        addKyc(id:$id,mobile:$mobile,birthDate:$birth,nationality:$nationality,country:$country,postalCode:$postalCode,city:$city,street:$street,building:$building,kycStatus:PENDING){
+           
+            kyc{   birthDate
+                building
+                city
+                country
+                kycStatus mobile
+                nationality
+                postalCode
+                street
                 kycStatus
             }
         }
     }
-`
+`;
+//====================Me Query===============================
 const getUsersData=`
     query GetData {
         users {
@@ -197,6 +196,9 @@ const enableFA=gql`
             twoFactorCode
             twoFactorSecret
             id
+            avatar address fullName id type 
+            email location userName 
+            kyc{ kycStatus }
             email
             userName
         }
@@ -249,4 +251,4 @@ const search=gql` query ($search:String){
     }
 }
 `
-export {search,orderContract,UserKyc,kycMutation,client,disable2FA,verify2FA,enableFA,createNewContract,sourceUpload,getContract,contractById,meQuery,newPassword,forgetPassword,confirmEmail,deleteUser,getAuth,updateUser,userData,getUsersData,imageUpload,createNewUser};
+export {search,orderContract,UserKyc,kycMutation,client,disable2FA,verify2FA,enableFA,createNewContract,sourceUpload,getContract,contractById,newPassword,forgetPassword,confirmEmail,deleteUser,getAuth,updateUser,userData,getUsersData,imageUpload,createNewUser};

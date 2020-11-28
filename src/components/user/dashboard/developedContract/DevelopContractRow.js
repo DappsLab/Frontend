@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {graphql} from "react-apollo";
-import { getContract} from "../../../queries/queries";
+import { getContract} from "../../../../queries/queries";
 import {flowRight as compose} from "lodash";
 import  {Loader,Table,Icon} from "semantic-ui-react";
 
 
 
-class DevelopContract extends Component {
+class DevelopContractRow extends Component {
 
     handelDeveloped(){
         const data = this.props.data;
@@ -53,4 +53,4 @@ export default compose(
             }
         }
     })
-)(DevelopContract);
+)(DevelopContractRow);

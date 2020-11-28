@@ -6,7 +6,7 @@ import {withAlert} from "react-alert";
 import {flowRight as compose} from 'lodash';
 import {graphql} from "react-apollo";
 import {newPassword} from "../../queries/queries";
-import Spinner from "../ui/Spinner";
+import {Spinner} from "../ui/Spinner";
 import "../../assets/scss/confirm_email.css"
 import {DappsIcon} from "../ui/Icons";
 

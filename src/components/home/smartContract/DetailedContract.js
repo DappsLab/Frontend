@@ -17,6 +17,9 @@ import FormControl from "@material-ui/core/FormControl";
 import {connect} from "react-redux";
 import { Slider } from "react-semantic-ui-range";
 import {Link} from "react-router-dom";
+import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
+import {withAlert} from "react-alert";
+import {setUser} from "../../../actions/Actions";
 
 
 
@@ -24,8 +27,9 @@ class  DetailedContract extends Component{
 
     state= {
         radioValue:"SINGLELICENSE",
-        kyc:this.props.logged_session?this.props.currentUser.kyc:"null",
-        fee: 0.01201,
+        kyc:this.props.currentUser||this.props.user?(this.props.user===null?this.props.currentUser.kyc:this.props.user.kyc):"null",
+        fee: 100000,
+        buy_loading:false
     }
     color=[
         {0:"violet",1:"blue",2:"orange",3:"grey",4:"real",5:"yellow",6:"brown"}
@@ -33,6 +37,13 @@ class  DetailedContract extends Component{
     handleChange = (event) => {
         this.setState({radioValue:event.target.value});
     };
+    client = new ApolloClient({
+        uri: 'http://localhost:4000/graphql',
+        cache: new InMemoryCache(),
+        headers: {
+            authorization: localStorage.getItem('token'),
+        }
+    });
     handleRadio(){
         const contractData=this.props.data.smartContractById;
         if(contractData){
@@ -59,10 +70,10 @@ class  DetailedContract extends Component{
                            color="green"
                            inverted={false}
                            settings={{
-                               start: 0.01201,
-                               min: 0.00123647,
-                               max: 0.21111,
-                               step: 0.01,
+                               start: 100000,
+                               min: 30000,
+                               max: 999999,
+                               step: 200,
                                onChange: value => {
                                    this.setState({
                                        fee: value
@@ -90,7 +101,7 @@ class  DetailedContract extends Component{
                     <label>Fee</label>
                     <Input
                         fluid size={'large'}
-                        disabled label={{ basic: true, content: 'Eth' }}
+                        disabled label={{ basic: true, content: 'Wei' }}
                         value={this.state.fee}
                     />
                 </Form.Field>
@@ -98,9 +109,9 @@ class  DetailedContract extends Component{
         }
     }
     feeProcessTime(){
-        if (this.state.fee<0.04123648){
+        if (this.state.fee<300000){
             return " Maximum time"
-        }else if (this.state.fee<0.11123647){
+        }else if (this.state.fee<700000){
             return " Medium time"
         }else {
             return " Minimum time"
@@ -129,10 +140,10 @@ class  DetailedContract extends Component{
                     </Button>
                     <div className={"contract_category"}>
                         {contractData.contractCategory.map((category, index) => {
-                            return <Link   to={`/search_result/${category}`} >
+                            return <Link  key={category}  to={`/search_result/${category}`} >
                             <Button
                                 size={"mini"}
-                                color={this.color["0"][index]} key={category}>
+                                color={this.color["0"][index]} >
                                 {category}</Button>
                             </Link>
                         })
@@ -150,30 +161,96 @@ class  DetailedContract extends Component{
     renderBuy(){
         console.log(this.props.logged_session)
         if (this.props.logged_session){
+            console.log(this.state.kyc)
             if (this.state.kyc.kycStatus==="VERIFIED") {
-               return <Button fluid onClick={this.handleBuy} className={"testbtn"}>Buy contract</Button>
+               return <Button loading={this.state.buy_loading} fluid onClick={this.handleBuy} className={"testbtn"}>Buy contract</Button>
             }else {
                 return <Container fluid className={"kyc_information"}>
                     <p>Before you can purchase this contract, you have to complete your KYC information and get validated.</p>
-                     <Button fluid onClick={this.handleBuy} className={"testbtn"}>Verify your Account</Button>
+                     <Button  fluid onClick={()=>{this.props.history.push('/account_settings')}} className={"testbtn"}>Verify your Account</Button>
                 </Container>
             }
         }
     }
 
-
     handleBuy=()=>{
+        const that=this;
+        const alert=this.props.alert;
+        this.setState({buy_loading:true});
         const {radioValue,fee}=this.state;
         const contractData=this.props.data.smartContractById;
         this.props.orderContract({
             variables:{
-                fee: "21000",
+                fee: fee.toString(),
                 id:contractData.id,
                 type:radioValue
             }
+        }).then(function (result){
+            if (result.data.placeOrder) {
+                console.log(result.data.placeOrder.id)
+                that.client.query({
+                    query: gql`query  ($id:ID!){
+                        verifyOrder(id: $id)
+                    }`,variables: {id: result.data.placeOrder.id}
+                }).then(result => {
+                    that.Authclient.query({
+                        query: gql`query {
+                            me{
+                                avatar address fullName id type twoFactorCode
+                                email location userName twoFactorEnabled balance
+                                kyc{   birthDate
+                                    building
+                                    city
+                                    country
+                                    kycStatus mobile
+                                    nationality
+                                    postalCode
+                                    street
+                                    kycStatus
+                                }
+                                orders{
+                                    id
+                                    dateTime
+                                    fee
+                                    price
+                                    smartContract {
+                                        contractName
+                                    }
+                                    status
+                                    transactionHash
+                                }
+                            }
+                        }`
+                    }).then(result => {
+                        console.log(result)
+                        that.props.setUser(result.data.me);
+                        alert.success("ORDERED Successfully", {timeout:1000})
+                        that.setState({buy_loading:false})
+                    }).catch(e => {
+                        console.log(e)
+                        that.setState({buy_loading: false})
+                    });
+
+                }).catch(e => {
+                    that.setState({buy_loading:false});
+                    console.log(e.toString())
+                    alert.error(e.toString(),{time:500});
+                });
+            }
+        }).catch(function (error){
+            that.setState({buy_loading:false});
+            console.log(error.toString());
+            alert.error(error.toString(),{time:500});
         })
         console.log(this.props)
     }
+    Authclient = new ApolloClient({
+        uri: 'http://localhost:4000/graphql',
+        cache: new InMemoryCache(),
+        headers: {
+            authorization: localStorage.getItem("token"),
+        }
+    });
     render() {
         const {radioValue,kyc}=this.state;
         return (
@@ -200,7 +277,7 @@ class  DetailedContract extends Component{
                             </FormControl>
                             <div className={`btnGroups flex ${kyc.kycStatus==="VERIFIED"?"flex-row":""}`}>
                                 {this.renderBuy()}
-                                <Button fluid className={"testbtn"}>Test contract</Button>
+                                {this.props.currentUser||this.props.user?<Button fluid className={"testbtn"}>Test contract</Button>:""}
                             </div>
                             </div>
                         </Fade>
@@ -223,5 +300,5 @@ export default compose(graphql(contractById, {
         }
     }}),
     graphql(orderContract,{name:"orderContract"}),
-    connect(mapStateToProps),
+    connect(mapStateToProps,{setUser}), withAlert(),
 ) (DetailedContract)

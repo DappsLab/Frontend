@@ -42,7 +42,7 @@ class UserAccount extends Component {
                     <Account icon={faBalanceScale} title={'Deposit & Withdraw'} subtitle={"Withdraw or deposit balance from/to your account"} />
                 </Menu.Item>
             ),
-            render: () => <Tab.Pane attached={false}><WithdrawDeposite/></Tab.Pane>,
+            render: () => <Tab.Pane attached={false}><WithdrawDeposite currentUser={this.state.currentUser}/></Tab.Pane>,
         },
         {
             menuItem: <Menu.Item key='transaction'>
@@ -64,7 +64,7 @@ class UserAccount extends Component {
                     <Account icon={faSignOutAlt} title={'Logout'} subtitle={"Sign Out"} />
                 </Menu.Item>
             ),
-            render: () => <Tab.Pane attached={false}><Logout/></Tab.Pane>,
+            render: () => <Tab.Pane attached={false}><Logout user={null} {...this.props}/></Tab.Pane>,
         },
     ]
     render() {

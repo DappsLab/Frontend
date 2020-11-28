@@ -5,12 +5,15 @@ import "../../../assets/scss/general_setting.css"
 import {DropDown} from "../../ui/DropDown";
 import CustomizedDialogs from "../../ui/DialogBox";
 import 'react-image-crop/dist/ReactCrop.css';
-import {Form} from 'semantic-ui-react';
+import {Divider, Form} from 'semantic-ui-react';
 import {imageUpload, updateUser} from "../../../queries/queries"
 import {flowRight as compose} from 'lodash';
 import {graphql} from "react-apollo";
 import {connect} from "react-redux";
 import {setUser} from "../../../actions/Actions";
+import Financial from "./Financial";
+import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
+import {withAlert} from "react-alert";
 
 
 const alphabetRegex=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
@@ -133,7 +136,8 @@ class GeneralSetting extends Component {
     }
     onSubmit=(event)=>{
         const {imageFinalPath,currentUser,fullName,location}=this.state;
-
+        const that=this;
+        const alert=this.props.alert;
         event.preventDefault();
         this.props.updateUser({
             variables: {
@@ -142,21 +146,55 @@ class GeneralSetting extends Component {
                 avatar: imageFinalPath===""?currentUser.avatar:imageFinalPath,
             }
         }).then(result=>{
-            this.props.setUser(result.data.editUser)
-        })
-    }
-
-    componentDidMount() {
-        if (this.props.currentUser) {
-            this.setState({
-                 currentUser: this.props.currentUser
+            this.client.query({
+                query: gql`query {
+                    me{
+                        avatar address fullName id type twoFactorCode
+                        email location userName twoFactorEnabled balance
+                        kyc{   birthDate
+                            building
+                            city
+                            country
+                            kycStatus mobile
+                            nationality
+                            postalCode
+                            street
+                            kycStatus
+                        }
+                        orders{
+                            id
+                            dateTime
+                            fee
+                            price
+                            smartContract {
+                                contractName
+                            }
+                            status
+                            transactionHash
+                        }
+                    }
+                }`
+            }).then(result => {
+                console.log(result.data.me)
+                that.setState({fullName: "",location: "",currentUser: result.data.me})
+                that.props.setUser(result.data.me);
+                alert.success("Changed Successfully", {timeout:1000})
+            }).catch(e => {
+                alert.error("Try again", {timeout:1000})
             });
-        }
+        })
     }
     handleDelete=()=>{
         const id=this.state.currentUser.id;
         console.log(id)
     }
+    client = new ApolloClient({
+        uri: 'http://localhost:4000/graphql',
+        cache: new InMemoryCache(),
+        headers: {
+            authorization: localStorage.getItem("token"),
+        }
+    });
     render() {
         const {showDialog,crop,imageData,currentUser,imageSrc,formErrors,location,imageFinalPath,fullName } = this.state;
         return  (
@@ -190,7 +228,7 @@ class GeneralSetting extends Component {
                                 )}
                                 <Form.Field className={"flex opacity"}>
                                     <label>Username</label>
-                                    <Form.Input
+                                    <Form.Input disabled transparent
                                         placeholder={currentUser.userName} type={"text"}
                                         name="userName"/>
                                 </Form.Field>
@@ -233,7 +271,9 @@ class GeneralSetting extends Component {
                                 />
                             </div>
                         </div>
-                    </div>
+                </div>
+                <Divider className={"line"}/>
+                <Financial currentUser={currentUser}/>
                     {/*<ChangePassword*/}
                     {/*    model={model}*/}
                     {/*    closeModel={this.closeModel}*/}
@@ -247,5 +287,6 @@ class GeneralSetting extends Component {
 export default compose(
    connect(null, {setUser}),
     graphql(imageUpload,{name:"uploadImage"}),
-    graphql(updateUser,{name:"updateUser"})
+    graphql(updateUser,{name:"updateUser"}),
+    withAlert(),
 )(GeneralSetting);

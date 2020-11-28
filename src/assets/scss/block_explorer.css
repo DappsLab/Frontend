@@ -3,8 +3,14 @@
   background-size: 100% 100%;
   height: auto;
   margin: 15px !important;
-  padding: 40px 20px !important;
+  padding: 40px 20px 20px 20px !important;
   object-fit: cover; }
+  .block_explorer .input .dropdown {
+    align-items: center;
+    display: flex; }
+    .block_explorer .input .dropdown i.icon:before {
+      position: relative;
+      right: 0 !important; }
 
 .recent_block, .block_explorer {
   align-items: flex-start !important; }
@@ -25,7 +31,8 @@
       -webkit-text-fill-color: transparent; }
 
 .row .block_address {
-  width: 250px; }
+  width: 250px;
+  display: flex; }
   .row .block_address span {
     width: 240px !important;
     margin: 0;
@@ -33,5 +40,10 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     display: inline-block; }
+
+.ui[class*="middle aligned"].grid > .row > .column {
+  flex-direction: column;
+  vertical-align: middle;
+  align-self: flex-start !important; }
 
 /*# sourceMappingURL=block_explorer.css.map */

@@ -25,6 +25,7 @@
       }
     }
   }
+
 }
 .picture_menu{
   margin-top: 10px;
@@ -108,6 +109,29 @@
     opacity: 1;
   }
 }
-
-
+.line{
+  margin: 4rem 0!important;
+}
+//=============================Financial==================
+.finanaial{
+  display: flex!important;
+  min-height: 70px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #3C3F41;
+  padding: 0 5px 0 0;
+  .flex div{
+    text-align: left;
+    h3{
+      margin-bottom: 0;
+    }
+    p{
+      font-size: 12px;
+    }
+  }
+  .balance{
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
 

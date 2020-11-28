@@ -10,13 +10,6 @@ class WithdrawDeposite extends Component {
         copied:false,
         currentUser: this.props.currentUser,
     }
-    componentDidMount() {
-        if (this.props.currentUser) {
-            this.setState({
-                currentUser: this.props.currentUser
-            });
-        }
-    }
     componentDidUpdate(prevProps, prevState, snapshot) {
         setTimeout(function(){
             this.setState({copied:false});

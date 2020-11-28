@@ -1,8 +1,11 @@
 @import 'colors';
 .contract-container{
-  flex-wrap: wrap;
-  padding: 40px 15px 30px 0;
-  justify-content: space-between;
+  width: 100%;
+  padding: 40px 0 30px 0;
+  display: grid!important;
+  grid-template-columns: repeat(auto-fill, 400px);
+  grid-gap: 1rem;
+  justify-content: space-around;
 }
 
 .card{
@@ -12,7 +15,7 @@
   max-width: 400px;
   min-width: 400px;
   min-height: 320px;
-  margin: 20px 10px 20px 25px;
+  margin: 20px 0;
   padding:20px 20px;
   border-radius: 7px;
   box-shadow: 0 2px 1px -1px rgba(0,0,0,0.2),

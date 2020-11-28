@@ -80,4 +80,24 @@
 .opacity .ui.disabled.input {
   opacity: 1; }
 
+.line {
+  margin: 4rem 0 !important; }
+
+.finanaial {
+  display: flex !important;
+  min-height: 70px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #3C3F41;
+  padding: 0 5px 0 0; }
+  .finanaial .flex div {
+    text-align: left; }
+    .finanaial .flex div h3 {
+      margin-bottom: 0; }
+    .finanaial .flex div p {
+      font-size: 12px; }
+  .finanaial .balance {
+    font-size: 20px;
+    font-weight: bold; }
+
 /*# sourceMappingURL=general_setting.css.map */

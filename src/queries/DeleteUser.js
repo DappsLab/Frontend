@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {graphql } from "react-apollo";
-import Spinner from "../components/ui/Spinner";
+import {Spinner} from "../components/ui/Spinner";
 import {flowRight as compose} from 'lodash';
 import {deleteUser} from "./queries";
 

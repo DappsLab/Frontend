@@ -8,7 +8,7 @@ import {graphql} from "react-apollo";
 import {flowRight as compose} from 'lodash';
 import {createNewUser} from '../../queries/queries'
 import { withAlert } from 'react-alert'
-import Spinner from "../ui/Spinner";
+import {Spinner} from "../ui/Spinner";
 
 const usernameRegex=RegExp(/^[a-zA-Z0-9]*$/);
 const alphabetRegex=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);

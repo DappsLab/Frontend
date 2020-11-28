@@ -17,7 +17,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated'
 import {withAlert} from "react-alert";
-import Spinner from "../../ui/Spinner";
+import {Spinner} from "../../ui/Spinner";
 
 
 const acceptedFileTypes = 'image/x-png, image/png, image/jpg, image/jpeg';

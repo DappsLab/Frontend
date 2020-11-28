@@ -12,8 +12,7 @@ import {createUploadLink} from "apollo-upload-client";
 import 'semantic-ui-css/semantic.min.css'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic';
-import Spinner from "./components/ui/Spinner";
-import App from "./App";
+import {Spinner} from "./components/ui/Spinner";
 import Routes from "./routes";
 
 
@@ -44,18 +43,37 @@ const  Main =(props)=>{
     const [user,setUser]=useState(null);
     const renderData=()=>{
         if (!!localStorage.getItem('token') ) {
-            client.query({
-                query: gql`query {
-                    me{
-                        avatar address fullName id type
-                        email location userName twoFactorEnabled
-                        kyc{ kycStatus }
+            client.query({query: gql`query {
+                me{
+                    avatar address fullName id type twoFactorCode
+                    email location userName twoFactorEnabled balance
+                    kyc{   birthDate
+                        building
+                        city
+                        country
+                        kycStatus mobile
+                        nationality
+                        postalCode
+                        street
+                        kycStatus
                     }
-                }`
-            }).then(result => {
+                    orders{
+                        id
+                        dateTime
+                        fee
+                        price
+                        smartContract {
+                            contractName
+                        }
+                        status
+                        transactionHash
+                    }
+                }
+            }`
+        }).then().then(result => {
+                console.log("index",result.data.me)
                 setUser(result.data.me);
             }).catch(e => {
-                // localStorage.removeItem("token")
                 console.log(e.toString())
                 return <Routes {...props} user={user}/>
             });

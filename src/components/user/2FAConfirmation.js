@@ -43,11 +43,24 @@ class FAConfirmation extends Component {
                                     query: gql`query {
                                         me{
                                             avatar address fullName id type
-                                            email location userName
+                                            email location userName balance
+                                            orders{
+                                                id
+                                                dateTime
+                                                fee
+                                                price
+                                                smartContract {
+                                                    contractName
+                                                }
+#                                                status
+                                                transactionHash
+                                            }
                                             kyc{ kycStatus }
+                                            twoFactorEnabled twoFactorCode
                                         }
                                     }`
                                 }).then(result => {
+                                    console.log(result.data.me)
                                     that.props.setUser(result.data.me);
                                     alert.success("Login Successfully", {timeout:5000})
                                     localStorage.setItem("token",that.props.match.params.token)

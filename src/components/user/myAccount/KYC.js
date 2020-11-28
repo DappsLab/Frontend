@@ -5,9 +5,9 @@ import {flowRight as compose} from "lodash";
 import {connect} from "react-redux";
 import {setUser} from "../../../actions/Actions";
 import {graphql} from "react-apollo";
-import { kycMutation} from "../../../queries/queries";
-import KycQuery from "../../../queries/KycQuery";
+import {kycMutation} from "../../../queries/queries";
 import {withAlert} from "react-alert";
+import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
 const alphaNumaric=RegExp(/^[a-zA-Z0-9][a-zA-Z0-9\s]*$/);
 const numaric=RegExp(/^[0-9\s]*$/);
 const alphabet=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
@@ -16,10 +16,7 @@ class Kyc extends Component {
     state={
         type:'text',
         currentUser:this.props.currentUser,
-        kyc:this.props.currentUser.kyc,
         loadingbtn:false,
-        kycQuery:false,
-        status:this.props.currentUser.kyc.kycStatus,
         street:"",
         building:"",
         postalCode:"",
@@ -115,6 +112,8 @@ class Kyc extends Component {
     handleEmpty=({mobile,city,street,building,postalCode,country,nationality,dateOfBirth})=>{
         return mobile !== "",city!=="",street !== "",building !== "",postalCode !== "",country !== "",nationality !== "",dateOfBirth !== "";
     }
+
+
     handlSubmit=(event)=>{
         const {currentUser,mobile,city,street,building,postalCode,country,nationality,dateOfBirth}=this.state;
         event.preventDefault();
@@ -135,40 +134,76 @@ class Kyc extends Component {
                     building: building.toString()
                 },
             }).then(result => {
-                that.props.setUser(result.data.addKyc)
-                alert.success("Submitted", {timeout: 1000})
-                that.setState({kyc:result.data.addKyc.kyc,type:'text',loadingbtn:false,error:"",building:"",street: "",postalCode: "",city: "",country: "",mobile: "",dateOfBirth: "",nationality: ""})
+                if (result.data.addKyc){
+                    this.Authclient.query({
+                        query: gql`query {
+                            me{
+                                avatar address fullName id type twoFactorCode
+                                email location userName twoFactorEnabled balance
+                                kyc{   birthDate
+                                    building
+                                    city
+                                    country
+                                    kycStatus mobile
+                                    nationality
+                                    postalCode
+                                    street
+                                    kycStatus
+                                }
+                                orders{
+                                    id
+                                    dateTime
+                                    fee
+                                    price
+                                    smartContract {
+                                        contractName
+                                    }
+                                    status
+                                    transactionHash
+                                }
+                            }
+                        }`
+                    }).then(result => {
+                        console.log(result)
+                        this.props.setUser(result.data.me);
+                        alert.success("Submit Successfully", {timeout:1000})
+                        that.setState({currentUser:result.data.me,type:'text',loadingbtn:false,error:"",building:"",street: "",postalCode: "",city: "",country: "",mobile: "",dateOfBirth: "",nationality: ""})
+                    }).catch(e => {
+                        console.log(e)
+                        this.setState({loadingbtn: false,error:""})
+                    });
+
+                }
             }).catch(e=>{
-                alert.error(e.toString(), {timeout: 1000})
+                alert.error(e.toString(), {timeout: 20000})
                 that.setState({loadingbtn: false,error:""})
             });
         }else {
             this.setState({loadingbtn: false,error:"all fields required"});
         }
+
     }
-    closeKycQuery=()=>{
-        this.setState({kycQuery:false},()=>{})
-    }
-    getUserKycInfo=(data)=>{
-        this.props.setUser(data);
-        this.setState({kyc:data.kyc,loadingbtn: false})
-    }
-    componentDidMount() {
-        const currentUser = this.props.currentUser;
-        if (currentUser.kyc.kycStatus !== "NOT_VERIFIED") {
-            this.setState({kycQuery:true})
+     Authclient = new ApolloClient({
+        uri: 'http://localhost:4000/graphql',
+        cache: new InMemoryCache(),
+        headers: {
+            authorization: localStorage.getItem("token"),
         }
-    }
+    });
+
+
+
     dateFocus=()=>{
-            this.setState({type:'date'})
+        this.setState({type:'date'})
     }
     render() {
-        const {error,type,kyc,kycQuery,country,nationality,currentUser,status,mobile,loadingbtn,city,street,building,postalCode,dateOfBirth}=this.state;
+        const {error,type,country,nationality,currentUser,status,mobile,loadingbtn,city,street,building,postalCode,dateOfBirth}=this.state;
+
         return (
             <section className={"kyc_section"}>
                 <div className={'flex'}>
                     <h2>Account Verification</h2>
-                    <h3>Status: <span className={status==="VERIFIED"?"green":"yellow"}>{status} </span></h3>
+                    <h3>Status: <span className={status==="VERIFIED"?"green":"yellow"}>{currentUser.kyc.kycStatus} </span></h3>
                 </div>
                 {error.length>0&&(
                     <span className={"flex errorMessage"}>{error}</span>
@@ -176,50 +211,43 @@ class Kyc extends Component {
                 <Form>
                     <Form.Group widths='equal'>
                         <Form.Input
-                            type={'text'} fluid  label='Street' placeholder={kyc.street}
+                            type={'text'} fluid  label='Street' placeholder={currentUser.kyc.street}
                             onChange={this.handleChange} name={'street'} value={street}
                         />
                         <Form.Input
-                            type={'text'} fluid label='Building Number' placeholder={kyc.building}
+                            type={'text'} fluid label='Building Number' placeholder={currentUser.kyc.building}
                             onChange={this.handleChange} name={'building'} value={building}
                         />
                     </Form.Group>
                     <Form.Group widths='equal'>
                         <Form.Input
-                            type={'text'} fluid  label='Postal Code' placeholder={kyc.postalCode}
+                            type={'text'} fluid  label='Postal Code' placeholder={currentUser.kyc.postalCode}
                             onChange={this.handleChange} name={'postalCode'} value={postalCode}
                         />
                         <Form.Input
-                            type={'text'} fluid label='City' placeholder={kyc.city}
+                            type={'text'} fluid label='City' placeholder={currentUser.kyc.city}
                             onChange={this.handleChange} name={'city'} value={city}
                         />
                     </Form.Group>
                     <Form.Group widths='equal'>
                         <Form.Select value={country}
                             options={this.countryOptions} onChange={this.handleSelect}
-                            name={'country'} label='Country' placeholder={kyc.country} />
+                            name={'country'} label='Country' placeholder={currentUser.kyc.country} />
                         <Form.Select value={nationality}
                             options={this.countryOptions} onChange={this.handleSelect}
-                            name={'nationality'} label='Nationality' placeholder={kyc.nationality} />
+                            name={'nationality'} label='Nationality' placeholder={currentUser.kyc.nationality} />
                     </Form.Group>
                     <Form.Group widths='equal'>
                         <Form.Input
                             fluid type={'text'} name={'mobile'} value={mobile}
-                            label='Mobile' placeholder={kyc.mobile} onChange={this.handleChange}/>
-                        <Form.Input placeholder={kyc.birthDate}
+                            label='Mobile' placeholder={currentUser.kyc.mobile} onChange={this.handleChange}/>
+                        <Form.Input placeholder={currentUser.kyc.birthDate}
                             fluid type={type} onFocus={this.dateFocus} label={'Date of Birth'} name={'dateOfBirth'}
                             value={dateOfBirth}  onChange={this.handleChange}
                         />
                     </Form.Group>
                     <Button loading={loadingbtn}  onClick={this.handlSubmit}>Submit</Button>
                 </Form>
-                {kycQuery&&
-                <KycQuery
-                    id={currentUser.id}
-                    close={this.closeKycQuery}
-                    getUserData={this.getUserKycInfo}
-                />
-                }
             </section>
         );
     }

@@ -1,0 +1,15 @@
+@import "colors";
+.result_container{
+  margin: 10px 0!important;
+  min-height: 200px;
+  .block_result{
+    text-align: left;
+    .flex{
+      display: flex!important;
+      padding: 14px 0;
+    }
+    .content{
+      width: 300px!important;
+    }
+  }
+}

@@ -3,7 +3,7 @@ import { Grid, Form,Segment,Header,Icon, Button } from 'semantic-ui-react';
 import Layout from "../../hoc/Layout";
 import {forgetPassword} from '../../queries/queries'
 import {graphql} from "react-apollo";
-import Spinner from "../ui/Spinner";
+import {Spinner} from "../ui/Spinner";
 import {flowRight as compose} from 'lodash';
 import {withAlert} from "react-alert";
 
