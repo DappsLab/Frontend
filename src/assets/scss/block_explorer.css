@@ -22,7 +22,7 @@
     border-right: 0;
     font-size: 12px !important; }
     .recent_block .column .ui.table tr, .block_explorer .column .ui.table tr {
-      height: 62px !important; }
+      height: 70px !important; }
   .recent_block .column h1, .recent_block .column h2, .block_explorer .column h1, .block_explorer .column h2 {
     font-size: 36px; }
     .recent_block .column h1 span, .recent_block .column h2 span, .block_explorer .column h1 span, .block_explorer .column h2 span {

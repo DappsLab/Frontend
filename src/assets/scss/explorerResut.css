@@ -1,12 +1,35 @@
 .result_container {
   margin: 10px 0 !important;
   min-height: 200px; }
+  .result_container .segment {
+    padding: 16px 0 !important; }
   .result_container .block_result {
     text-align: left; }
+    .result_container .block_result h4 {
+      padding-left: 10px; }
     .result_container .block_result .flex {
       display: flex !important;
-      padding: 14px 0; }
+      padding: 14px 10px; }
     .result_container .block_result .content {
       width: 300px !important; }
+
+.address h4 {
+  text-align: left;
+  margin-left: 10px; }
+
+.block_address {
+  width: 250px;
+  text-align: center;
+  display: flex; }
+  .block_address a {
+    background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: 240px !important;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block; }
 
 /*# sourceMappingURL=explorerResut.css.map */
