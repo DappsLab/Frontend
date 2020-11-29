@@ -20,6 +20,7 @@ class BlockExplorer extends Component {
         transactions:null,
         loading:true,
         error:false,
+        serverError:"",
     }
      options = [
          { key: 'All Filters', text: 'All Filters', value: 'All Filters' },
@@ -52,10 +53,12 @@ class BlockExplorer extends Component {
                 console.log(result.data.transactions)
                 that.setState({loading:false,transactions:result.data.transactions});
             }).catch(error=>{
-                console.log(error)
+                that.setState({loading:false,serverError:"Error! Try Again"})
+                console.log(error.toString())
             })
         }).catch(error=>{
-            console.log(error)
+            that.setState({loading:false,serverError:"Error! Try Again"})
+            console.log(error.toString())
         })
 
     }
@@ -84,7 +87,7 @@ class BlockExplorer extends Component {
         this.setState({error:false,search:event.target.value})
     }
     render() {
-        const {loading,transactions,error,blocks}=this.state
+        const {loading,transactions,serverError,error,blocks}=this.state
         return (
             <Layout>
                <Grid textAlign="center"  verticalAlign='middle' >
@@ -113,24 +116,27 @@ class BlockExplorer extends Component {
                        </Grid.Column>
                    </Grid.Row>
                    {loading ? <Spinner2/> :
-                       <Grid.Row className={"recent_block"} style={{maxWidth: 1200}}>
-                           <Grid.Column textAlign={"left"} width={5}>
-                               <h2>Recent <span>BLock</span></h2>
-                               <Table className={"striped"}>
-                                   <Table.Body>
-                                       <RecentBlock blocks={blocks}/>
-                                   </Table.Body>
-                               </Table>
-                           </Grid.Column>
-                           <Grid.Column className={"recent_transaction"} textAlign={"left"} width={11}>
-                               <h2>Recent <span>Transaction</span></h2>
-                               <Table className={"striped"}>
-                                   <Table.Body>
-                                       <RecentTransaction transactions={transactions}/>
-                                   </Table.Body>
-                               </Table>
-                           </Grid.Column>
-                       </Grid.Row>
+                      ( serverError!=="" ?
+                              <Grid.Row style={{maxWidth: 1200}}><span>{serverError}</span></Grid.Row> :
+                               <Grid.Row className={"recent_block"} style={{maxWidth: 1200}}>
+                                   <Grid.Column textAlign={"left"} width={5}>
+                                       <h2>Recent <span>BLock</span></h2>
+                                       <Table className={"striped"}>
+                                           <Table.Body>
+                                               <RecentBlock blocks={blocks}/>
+                                           </Table.Body>
+                                       </Table>
+                                   </Grid.Column>
+                                   <Grid.Column className={"recent_transaction"} textAlign={"left"} width={11}>
+                                       <h2>Recent <span>Transaction</span></h2>
+                                       <Table className={"striped"}>
+                                           <Table.Body>
+                                               <RecentTransaction transactions={transactions}/>
+                                           </Table.Body>
+                                       </Table>
+                                   </Grid.Column>
+                               </Grid.Row>
+                       )
                    }
                </Grid>
             </Layout>

@@ -142,7 +142,7 @@ class Login extends Component {
         return (
             <Layout>
                 <Grid textAlign="center"  verticalAlign='middle' className="login-bg">
-                    <Grid.Column style={{maxWidth:900}}>
+                    <Grid.Column style={{maxWidth:700}}>
                         <Form  onSubmit={this.handleSubmit}>
                             <Segment piled>
                                 <LoginTop

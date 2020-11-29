@@ -15,10 +15,10 @@ export  const RecentTransaction = (props) => {
             <Table.Cell width={2} textAlign={"center"}>0 Dapps</Table.Cell>
             <Table.Cell >
                 <div className={"block_address"}>
-                    <div>From:</div><span><Link to={"/"}>{transaction.from}</Link></span>
+                    <div>From:</div><span><Link to={`/block_explorer/addresses:${transaction.from}`}>{transaction.from}</Link></span>
                 </div>
                 <div className={"block_address"}>
-                    <div>To:</div><span><Link to={"/"}>{transaction.to}</Link></span>
+                    <div>To:</div><span><Link to={`/block_explorer/addresses:${transaction.to}`}>{transaction.to}</Link></span>
                 </div>
             </Table.Cell>
         </Table.Row>
