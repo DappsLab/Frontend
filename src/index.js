@@ -41,6 +41,7 @@ const client = new ApolloClient({
 });
 const  Main =(props)=>{
     const [user,setUser]=useState(null);
+    const [loading,setLoading]=useState(true);
     const renderData=()=>{
         if (!!localStorage.getItem('token') ) {
             client.query({query: gql`query {
@@ -48,40 +49,45 @@ const  Main =(props)=>{
                     avatar address fullName id type twoFactorCode
                     email location userName twoFactorEnabled balance
                     kyc{   birthDate
-                        building
-                        city
-                        country
-                        kycStatus mobile
-                        nationality
-                        postalCode
-                        street
-                        kycStatus
+                        building city country kycStatus mobile
+                        nationality postalCode street kycStatus
                     }
                     orders{
-                        id
-                        dateTime
-                        fee
-                        price
-                        smartContract {
+                        id dateTime fee price status transactionHash
+                        orderUsed  smartContract {
                             contractName
                         }
-                        status
-                        transactionHash
+                    }
+                    purchasedContracts {
+                        customizationsLeft id unlimitedCustomization
+                        licenses {
+                            purchaseDateTime
+                            order {
+                                id status
+                                smartContract {
+                                    id
+                                }
+                            }
+                        }
+                        smartContract {
+                            contractName id
+                        }
                     }
                 }
-            }`
-        }).then().then(result => {
-                console.log("index",result.data.me)
+            }`}).then(result => {
+                console.log("Index",result.data.me)
                 setUser(result.data.me);
+                setLoading(false)
             }).catch(e => {
-                console.log(e.toString())
-                return <Routes {...props} user={user}/>
+                console.log(e.toString());
+                setLoading(false)
             });
-            if (user===null){
+            if (loading){
                 return <Spinner/>
-            }
-            if (user){
+            } if (user){
                 return <Routes {...props} user={user}/>
+            }else {
+                return <div>Eternal Error</div>
             }
         }else {
             return <Routes {...props} user={null}/>

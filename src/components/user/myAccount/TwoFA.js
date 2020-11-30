@@ -28,25 +28,29 @@ class TwoFA extends Component {
                     avatar address fullName id type twoFactorCode
                     email location userName twoFactorEnabled balance
                     kyc{   birthDate
-                        building
-                        city
-                        country
-                        kycStatus mobile
-                        nationality
-                        postalCode
-                        street
-                        kycStatus
+                        building city country kycStatus mobile
+                        nationality postalCode street kycStatus
                     }
                     orders{
-                        id
-                        dateTime
-                        fee
-                        price
-                        smartContract {
+                        id dateTime fee price status transactionHash
+                        orderUsed smartContract {
                             contractName
                         }
-                        status
-                        transactionHash
+                    }
+                    purchasedContracts {
+                        customizationsLeft id unlimitedCustomization
+                        licenses {
+                            purchaseDateTime
+                            order {
+                                id status
+                                smartContract {
+                                    id
+                                }
+                            }
+                        }
+                        smartContract {
+                            contractName id
+                        }
                     }
                 }
             }`

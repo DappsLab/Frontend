@@ -1,0 +1,25 @@
+.licenses_header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px !important;
+  padding: 16px 25px;
+  min-height: 120px; }
+
+.licenses {
+  margin: 20px;
+  justify-content: space-between;
+  padding-left: 10px; }
+  .licenses .ui.segment {
+    width: 92%;
+    justify-content: space-between; }
+    .licenses .ui.segment button {
+      background: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%) !important;
+      color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) !important;
+      margin-right: 0 !important; }
+      .licenses .ui.segment button:hover {
+        color: #ffffff;
+        background: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) !important;
+        Box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); }
+
+/*# sourceMappingURL=licenses.css.map */

@@ -16,7 +16,7 @@ import SearchResult from "./components/home/search/SearchResult";
 import DetailedContract from "./components/home/smartContract/DetailedContract";
 import Logout from "./components/user/myAccount/Logout";
 import ResetPassword from "./components/login/ResetPassword";
-import Purchased from "./components/user/dashboard/Purchased";
+import Purchased from "./components/user/dashboard/purchased/Purchased";
 import TestContract from "./components/user/dashboard/TestContract";
 import DevelopedContracts from "./components/user/dashboard/developedContract/DevelopedContracts";
 import PublicRoute from "./components/route_auth/PublicRoute";
@@ -33,6 +33,7 @@ import {connect} from "react-redux";
 import {setUser} from "./actions/Actions";
 import OrderContracts from "./components/user/dashboard/orderContract/OrderContracts";
 import ExplorerResult from "./components/block_explorer/explorerSearch/ExplorerResult";
+import EditSmartContract from "./components/home/uploadContract/EditSmartContract";
 
 
 const Routes =(props)=>{
@@ -51,6 +52,7 @@ const Routes =(props)=>{
               <PrivateRoute {...props}  path={"/account_settings"} component={UserAccount}/>
               <PrivateRoute {...props}  path={"/logout"} exact component={Logout}/>
               <PrivateRoute {...props}  path={"/delete_user"} exact component={DeleteUser}/>
+              <PrivateRoute {...props}  path={"/edit_samrt_contract/:id"} exact component={EditSmartContract}/>
               <PrivateRoute {...props}  path={"/upload_samrt_contract"} exact component={UploadSmartContract}/>
               <PrivateRoute {...props}  path={"/admin"} exact component={Admin}/>
               <PublicRoute {...props} restricted={false}  path={"/2FA_varifivcation/:token"} exact component={FAConfirmation}/>

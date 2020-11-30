@@ -69,29 +69,34 @@ class Login extends Component {
                       query: gql`   query ($id:ID!){
                           userById(id: $id) {
                               avatar address balance
+                              fullName id type twoFactorCode
+                              email location userName twoFactorEnabled
                               orders{
-                                  id
-                                  dateTime
-                                  fee
-                                  price
+                                  id dateTime fee price orderUsed 
                                   smartContract {
                                       contractName
                                   }
-                                  status
-                                  transactionHash
+                                  status transactionHash
                               }
-                              fullName id type twoFactorCode
                               kyc{   birthDate
-                                  building
-                                  city
-                                  country
-                                  kycStatus mobile
-                                  nationality
-                                  postalCode
-                                  street
-                                  kycStatus
+                                  building city country kycStatus mobile
+                                  nationality postalCode street kycStatus
                               }
-                              email location userName twoFactorEnabled
+                              purchasedContracts {
+                                  customizationsLeft id unlimitedCustomization
+                                  licenses {
+                                      purchaseDateTime
+                                      order {
+                                          id status
+                                          smartContract {
+                                              id
+                                          }
+                                      }
+                                  }
+                                  smartContract {
+                                      contractName id
+                                  }
+                              }
                           }
                       }`, variables: {id: logged.user.id}
                   }).then(result => {

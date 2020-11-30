@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import Layout from "../../../hoc/Layout";
-import {Grid, Segment} from "semantic-ui-react"
+import {Button, Grid, Segment} from "semantic-ui-react"
 import "../../../assets/scss/explorerResut.css"
 import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
 import {AddressesResult, BlockResult, TransactionResult} from "./DisplayResults";
 import {Spinner2} from "../../ui/Spinner";
+import {Link} from "react-router-dom";
 const client = new ApolloClient({
     uri: 'http://localhost:4001/graphql',
     cache: new InMemoryCache(),
@@ -258,7 +259,15 @@ class ExplorerResult extends Component {
                     return <AddressesResult address={this.props.match.params.search} data={data}/>
                 }
             } else {
-                return <div>{error}</div>
+                console.log("here")
+                return <Grid textAlign={'center'}>
+                    <Grid.Row>
+                        {error}
+                    </Grid.Row>
+                    <Grid.Row>
+                        <Button onClick={()=>{this.props.history.push("/block_explorer")}}><Link  to={"/block_explorer"}>Goto Block Explorer</Link></Button>
+                    </Grid.Row>
+                </Grid>
             }
         }
     }

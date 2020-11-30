@@ -48,7 +48,10 @@
   }
 
 }
-
+.info {
+  color: $info-color;
+  text-align: left;
+}
 .generalLeft {
   .label_inputs {
     text-align: left;
@@ -61,10 +64,7 @@
     margin-bottom: 20px;
   }
 
-  .info {
-    color: $info-color;
-    text-align: left;
-  }
+
   .ui.form .field{
     margin-bottom: 20px;
   }
@@ -119,6 +119,16 @@
 //===============================================
 .attached_files{
   padding: 30px 0;
+  label{
+    font-weight: bold!important;
+    font-size: 16px!important;
+    text-align: left;
+  }
+  .info{
+    margin-top: 0;
+    position: relative;
+    top: -9px;
+  }
 }
 
 .dzu-dropzone{

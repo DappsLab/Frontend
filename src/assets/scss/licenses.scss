@@ -1,0 +1,31 @@
+@import "colors";
+
+.licenses_header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px !important;
+    padding: 16px 25px;
+    min-height: 120px;
+  }
+.licenses {
+  margin: 20px;
+  justify-content: space-between;
+  padding-left: 10px;
+  .ui.segment{
+    width: 92%;
+    justify-content: space-between;
+    button{
+        background: $default-accent !important;
+        color: $primary-color !important;
+        margin-right: 0!important;
+        &:hover {
+          color: $paper-color;
+          background: $default-primary !important;
+          Box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+          0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+          0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+        }
+    }
+  }
+}

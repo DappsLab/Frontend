@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import Fade from "react-reveal/Fade";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCheckCircle } from '@fortawesome/free-solid-svg-icons'
-import {Button,Container, Divider, Form, Icon, Input, Loader} from 'semantic-ui-react'
+import {Button, Container, Divider, Form, Icon, Input, Loader, Segment} from 'semantic-ui-react'
 import Radio from '@material-ui/core/Radio';
 import Layout from "../../../hoc/Layout";
 import {flowRight as compose} from 'lodash';
@@ -20,20 +20,29 @@ import {Link} from "react-router-dom";
 import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
 import {withAlert} from "react-alert";
 import {setUser} from "../../../actions/Actions";
-
+import "../../../assets/scss/licenses.css"
 
 
 class  DetailedContract extends Component{
 
     state= {
         radioValue:"SINGLELICENSE",
+        currentUser:this.props.user===null?this.props.currentUser:this.props.user,
         kyc:this.props.currentUser||this.props.user?(this.props.user===null?this.props.currentUser.kyc:this.props.user.kyc):"null",
         fee: 100000,
-        buy_loading:false
+        buy_loading:false,
+        showLicenses:false,
     }
     color=[
         {0:"violet",1:"blue",2:"orange",3:"grey",4:"real",5:"yellow",6:"brown"}
     ]
+    componentDidMount() {
+        if (this.props.currentUser) {
+            this.setState({
+                currentUser: this.props.currentUser
+            });
+        }
+    }
     handleChange = (event) => {
         this.setState({radioValue:event.target.value});
     };
@@ -159,9 +168,7 @@ class  DetailedContract extends Component{
         }
     }
     renderBuy(){
-        console.log(this.props.logged_session)
         if (this.props.logged_session){
-            console.log(this.state.kyc)
             if (this.state.kyc.kycStatus==="VERIFIED") {
                return <Button loading={this.state.buy_loading} fluid onClick={this.handleBuy} className={"testbtn"}>Buy contract</Button>
             }else {
@@ -173,6 +180,42 @@ class  DetailedContract extends Component{
         }
     }
 
+    meQuery=()=>{
+        const that=this;
+       return  that.Authclient.query({
+            query: gql`query {
+                me{
+                    avatar address fullName id type twoFactorCode
+                    email location userName twoFactorEnabled balance
+                    kyc{   birthDate
+                        building city country kycStatus mobile
+                        nationality postalCode street kycStatus
+                    }
+                    orders{
+                        id dateTime fee price status transactionHash
+                       orderUsed smartContract {
+                            contractName
+                        }
+                    }
+                    purchasedContracts {
+                        customizationsLeft id unlimitedCustomization
+                        licenses {
+                            purchaseDateTime
+                            order {
+                                id status
+                                smartContract {
+                                    id
+                                }
+                            }
+                        }
+                        smartContract {
+                            contractName id
+                        }
+                    }
+                }
+            }`
+        })
+    }
     handleBuy=()=>{
         const that=this;
         const alert=this.props.alert;
@@ -187,49 +230,65 @@ class  DetailedContract extends Component{
             }
         }).then(function (result){
             if (result.data.placeOrder) {
-                console.log(result.data.placeOrder.id)
+                const orderId=result.data.placeOrder.id;
                 that.client.query({
                     query: gql`query  ($id:ID!){
                         verifyOrder(id: $id)
-                    }`,variables: {id: result.data.placeOrder.id}
+                    }`,variables: {id: orderId}
                 }).then(result => {
-                    that.Authclient.query({
-                        query: gql`query {
-                            me{
-                                avatar address fullName id type twoFactorCode
-                                email location userName twoFactorEnabled balance
-                                kyc{   birthDate
-                                    building
-                                    city
-                                    country
-                                    kycStatus mobile
-                                    nationality
-                                    postalCode
-                                    street
-                                    kycStatus
-                                }
-                                orders{
-                                    id
-                                    dateTime
-                                    fee
-                                    price
-                                    smartContract {
-                                        contractName
+                    if (result.data.verifyOrder){
+                        that.Authclient.mutate({
+                            mutation:gql`
+                                mutation ($SID:String!,$OID:String!){
+                                    purchaseContract(newPurchase: {smartContractId:$SID, orderId: $OID}) {
+                                        createdAt
                                     }
-                                    status
-                                    transactionHash
                                 }
-                            }
-                        }`
-                    }).then(result => {
-                        console.log(result)
-                        that.props.setUser(result.data.me);
-                        alert.success("ORDERED Successfully", {timeout:1000})
-                        that.setState({buy_loading:false})
-                    }).catch(e => {
-                        console.log(e)
-                        that.setState({buy_loading: false})
-                    });
+                            `,variables:{SID:contractData.id,OID:orderId}
+                        }).then(result=>{
+                            that.meQuery().then(result => {
+                                console.log("Purchased1",result.data.me)
+                                that.props.setUser(result.data.me);
+                                that.setState({currentUser:result.data.me,buy_loading: false},()=>{
+                                    console.log(that.state.currentUser)
+                                });
+                                alert.success("License Purchased Successfully", {timeout:2000})
+                                that.props.history.push("/dashboard/purchased")
+                            }).catch(e => {
+                                console.log(e);
+                                that.meQuery().then(result => {
+                                    console.log("Purchased2",result.data.me)
+                                    that.props.setUser(result.data.me);
+                                    alert.success("Purchased Failed", {timeout:5000})
+                                    alert.error("Order Successfully", {timeout:5000})
+                                    that.setState({currentUser:result.data.me,buy_loading:false},()=>{
+                                        console.log(that.state.currentUser)
+                                    })
+                                    that.props.history.push("/dashboard/order_contract")
+                                }).catch(e => {
+                                    console.log(e)
+                                    alert.error(e.toString(),{timeout:5000})
+                                    that.setState({buy_loading: false})
+                                });
+                            });
+                        }).catch(e=>{
+                            console.log(e)
+                            that.setState({buy_loading: false})
+                            alert.error(e.toString(),{timeout:2000})
+                        })
+                    }else {
+                        that.meQuery().then(result => {
+                            console.log("Purchased2",result.data.me)
+                            that.props.setUser(result.data.me);
+                            alert.success("Order Successfully", {timeout:2000})
+                            that.setState({buy_loading:false})
+                            that.props.history.push("/dashboard/order_contract")
+                        }).catch(e => {
+                            console.log(e)
+                            that.setState({buy_loading: false})
+                            alert.error(e.toString(),{timeout:5000})
+                        });
+                    }
 
                 }).catch(e => {
                     that.setState({buy_loading:false});
@@ -242,7 +301,6 @@ class  DetailedContract extends Component{
             console.log(error.toString());
             alert.error(error.toString(),{time:500});
         })
-        console.log(this.props)
     }
     Authclient = new ApolloClient({
         uri: 'http://localhost:4000/graphql',
@@ -251,16 +309,62 @@ class  DetailedContract extends Component{
             authorization: localStorage.getItem("token"),
         }
     });
+    renderLicenses(currentUser){
+        const purchased=currentUser.purchasedContracts;
+        // console.log(purchased)
+        if (purchased.length>0){
+            for (let i=0;i<purchased.length;i++){
+                console.log(purchased[i])
+                if (purchased[i].smartContract.id===this.props.match.params.id){
+                    return <div> <Segment className={'licenses_header'}>
+                        <div>
+                            <h2 className={"flex"}>
+                                <Icon circular inverted color='blue' size={'large'}  name={'shopping cart'}/>
+                                Licenses
+                            </h2>
+                             <span>Customization Left: {purchased[i].unlimitedCustomization?"Unlimited Customizations":purchased[i].customizationsLeft}</span>
+                        </div>
+                        <div className={'flex'}>
+                            <span>{purchased[i].licenses.length}</span>
+                            <div onClick={()=>{this.setState({showLicenses: !this.state.showLicenses})}}>
+                                <Icon link size={'large'} name={`chevron ${this.state.showLicenses?"up":"down"}`}/>
+                            </div>
+                        </div>
+                    </Segment>
+                        { this.state.showLicenses&&purchased[i].licenses.map(license=>{
+                            return <div className={"licenses flex"} key={license.purchaseDateTime}>
+                                <Icon circular inverted color='blue'  name={'checkmark'}/>
+                                <Segment className={'flex'}>
+                                    <div>
+                                        <h2>Single Use License</h2>
+                                        <span>Purchased on {license.purchaseDateTime}</span>
+                                    </div>
+                                    <div>
+                                        <Button>Compile</Button>
+                                    </div>
+                                </Segment>
+                            </div>
+                        })}
+                    </div>
+                }
+            }
+        }
+
+    }
     render() {
-        const {radioValue,kyc}=this.state;
+        const {radioValue,currentUser,kyc}=this.state;
         return (
             <Layout>
                 {this.props.data.loading?<div className={"all-contract"}>
                         <Loader content={"Loading Details"} active size={'big'}/>
-                    </div>:
+                    </div>:(this.props.data.smartContractById===null?
+                    <div>Not Found</div>:
                     <div className={"contractContainer flex"}>
                         <Fade top delay={300}>
-                            {this.handleContractDetail()}
+                            <div>
+                                {this.handleContractDetail()}
+                                {currentUser&&this.renderLicenses(this.state.currentUser)}
+                            </div>
                         </Fade>
                         <Fade top delay={300}>
                             <div className={"contractRight"}>
@@ -282,7 +386,7 @@ class  DetailedContract extends Component{
                             </div>
                         </Fade>
                     </div>
-                }
+                )}
             </Layout>
         );
     }

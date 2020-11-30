@@ -42,21 +42,33 @@ class FAConfirmation extends Component {
                                 that.client.query({
                                     query: gql`query {
                                         me{
-                                            avatar address fullName id type
-                                            email location userName balance
+                                            avatar address fullName id type twoFactorCode
+                                            email location userName twoFactorEnabled balance
+                                            kyc{   birthDate
+                                                building city country kycStatus mobile
+                                                nationality postalCode street kycStatus
+                                            }
                                             orders{
-                                                id
-                                                dateTime
-                                                fee
-                                                price
-                                                smartContract {
+                                                id dateTime fee price status transactionHash
+                                                orderUsed smartContract {
                                                     contractName
                                                 }
-#                                                status
-                                                transactionHash
                                             }
-                                            kyc{ kycStatus }
-                                            twoFactorEnabled twoFactorCode
+                                            purchasedContracts {
+                                                customizationsLeft id unlimitedCustomization
+                                                licenses {
+                                                    purchaseDateTime
+                                                    order {
+                                                        id status
+                                                        smartContract {
+                                                            id
+                                                        }
+                                                    }
+                                                }
+                                                smartContract {
+                                                    contractName id
+                                                }
+                                            }
                                         }
                                     }`
                                 }).then(result => {

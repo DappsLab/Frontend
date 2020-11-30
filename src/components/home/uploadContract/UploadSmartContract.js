@@ -28,8 +28,8 @@ const descriptionRGP=RegExp(/^[a-zA-Z][a-zA-Z\s,.]*$/);
 
 class UploadSmartContract extends Component{
     state= {
-        shortCounter:250,
-        longCounter:500,
+        shortCounter:300,
+        longCounter:600,
         shortDescription:"",
         longDescription:"",
         contractName:"",
@@ -72,6 +72,8 @@ class UploadSmartContract extends Component{
     //associated file
         show:false,
         showAssocited:false,
+        funcationName:"",
+        fNameError:"",
         sourcePath:"",
      }
     categoryOption=[
@@ -116,8 +118,8 @@ class UploadSmartContract extends Component{
                 this.setState({formErrors,[name]:value},()=>{});
                 break;
             case "longDescription":
-                if (value.length<=400) {
-                    this.setState({longCounter: 400-value.length});
+                if (value.length<=600) {
+                    this.setState({longCounter: 600-value.length});
                     formErrors.longDescription = descriptionRGP.test(value)
                         ? ""
                         : "Only Alphabet Allowed";
@@ -129,8 +131,8 @@ class UploadSmartContract extends Component{
                 }
                 break;
             case "shortDescription":
-                if (value.length<=150) {
-                    this.setState({shortCounter: 150-value.length});
+                if (value.length<=300) {
+                    this.setState({shortCounter: 300-value.length});
                     console.log("now")
                     formErrors.shortDescription = descriptionRGP.test(value)
                         ? ""
@@ -301,14 +303,28 @@ class UploadSmartContract extends Component{
         }
     }
     submit=(files)=>{
+        const {funcationName}=this.state;
         const file=files[0].file;
         const  that =this;
-        this.props.sourceUpload({variables:{file}}).then(function(result) {
-            that.setState({sourcePath:result.data.contractUploader})
-        }).then(result=>{}).catch(error=>{
-            console.log(error);
-        });
-        this.setState({show:!this.state.show})
+        if (funcationName!=="") {
+            this.props.sourceUpload({variables: {file}}).then(function (result) {
+                that.setState({sourcePath: result.data.contractUploader})
+            }).catch(error => {
+                console.log(error);
+            });
+            this.setState({show: !this.state.show})
+        }else {
+            this.setState({fNameError:"Both Fields Required"})
+        }
+    }
+    handlefuncation=(event)=>{
+        const {value}=event.target;
+        if (contractname.test(value)){
+            this.setState({fNameError:"",funcationName:value})
+        }
+        if (value===""){
+            this.setState({funcationName:""});
+        }
     }
     renderReady=()=>(
         <div className={"attached_files flex files_ready"}>
@@ -343,7 +359,7 @@ class UploadSmartContract extends Component{
     )
 
     handlePublish=()=> {
-        const {contractName, finalCategoryArray, shortDescription, longDescription, sourcePath, imageFinalPath, unlimitedPrice, onePrice, tags} = this.state;
+        const {contractName,funcationName, finalCategoryArray, shortDescription, longDescription, sourcePath, imageFinalPath, unlimitedPrice, onePrice, tags} = this.state;
         const alert = this.props.alert;
         const that = this;
         if (this.isEmpty(this.state)) {
@@ -351,6 +367,7 @@ class UploadSmartContract extends Component{
                 this.setState({loading: true});
                 this.props.createNewContract({
                     variables: {
+                        fname:funcationName,
                         name: contractName,
                         image: imageFinalPath,
                         short: shortDescription,
@@ -367,7 +384,19 @@ class UploadSmartContract extends Component{
                     // alert.success("User Register Successfully. Email varifection send tou your provided Email ",{timeout: 15000})
                     this.props.history.push('/')
                 }).catch((error) => {
-                    that.setState({loading: false})
+                    that.setState({loading: false, show:false,
+                        showAssocited:false,
+                        funcationName:"",shortDescription:"",
+                        longDescription:"",
+                        contractName:"",
+                        contractCategory:[],
+                        finalCategoryArray:[],
+                        onePrice:"",
+                        unlimitedPrice:"",
+                        tags:[],
+                        one:false,
+                        two:false,
+                    })
                     alert.error(error.toString(), {timeout: 5000})
 
                 })
@@ -391,7 +420,7 @@ class UploadSmartContract extends Component{
 
 
     render() {
-        const {tags,longCounter,shortCounter,loading,showAssocited,showDialog,crop,imageData,imageSrc,formErrors,contractName,onePrice,shortDescription,longDescription,show,unlimitedPrice}=this.state;
+        const {funcationName,fNameError,tags,longCounter,shortCounter,loading,showAssocited,showDialog,crop,imageData,imageSrc,formErrors,contractName,onePrice,shortDescription,longDescription,show,unlimitedPrice}=this.state;
         return loading?<Spinner/>:(
             <Layout>
                 <Grid textAlign="center"  verticalAlign='middle' >
@@ -552,12 +581,31 @@ class UploadSmartContract extends Component{
                             </div>
                         </Grid.Row>
                         <Grid.Row>
-
                             {showAssocited&&
                                 <Fade bottom delay={400}>
                                     <div className={"attached_files"}>
                                         <h3>Associated Files</h3>
-                                        <Uploader onSubmit={(files) => this.submit(files)}/>
+                                        {fNameError.length>0&&(
+                                            <span className={"errorMessage"}>{fNameError}</span>
+                                        )}
+                                        <Grid columns={2} divided>
+                                            <Grid.Column>
+                                                <Uploader onSubmit={(files) => this.submit(files)}/>
+                                            </Grid.Column>
+                                            <Grid.Column>
+                                               <Form>
+
+                                                   <Form.Field>
+                                                       <label>Contract Funcation Name</label>
+                                                       <Form.Input
+                                                           fluid type={'text'} onChange={this.handlefuncation}
+                                                           value={funcationName}
+                                                       />
+                                                       <p className={'info'}>Enter the Exact  Name of funcation Which you used in Contract </p>
+                                                   </Form.Field>
+                                               </Form>
+                                            </Grid.Column>
+                                        </Grid>
                                     </div>
                                 </Fade>
                             }

@@ -38,6 +38,10 @@
     padding: 10px 30px;
     color: #F6F7F9 !important; }
 
+.info {
+  color: #96A3B6;
+  text-align: left; }
+
 .generalLeft .label_inputs {
   text-align: left;
   font-weight: bold;
@@ -46,9 +50,6 @@
   padding: 0 0 10px 0; }
 .generalLeft .input_box {
   margin-bottom: 20px; }
-.generalLeft .info {
-  color: #96A3B6;
-  text-align: left; }
 .generalLeft .ui.form .field {
   margin-bottom: 20px; }
 .generalLeft .ui.form .field > label, .generalLeft .price_label {
@@ -98,6 +99,14 @@
 
 .attached_files {
   padding: 30px 0; }
+  .attached_files label {
+    font-weight: bold !important;
+    font-size: 16px !important;
+    text-align: left; }
+  .attached_files .info {
+    margin-top: 0;
+    position: relative;
+    top: -9px; }
 
 .dzu-dropzone {
   background: #ffffff;
