@@ -251,4 +251,18 @@ const search=gql` query ($search:String){
     }
 }
 `
-export {search,orderContract,UserKyc,kycMutation,client,disable2FA,verify2FA,enableFA,createNewContract,sourceUpload,getContract,contractById,newPassword,forgetPassword,confirmEmail,deleteUser,getAuth,updateUser,userData,getUsersData,imageUpload,createNewUser};
+const orderById=gql`query ($id:ID!){
+    orderById(id: $id) {
+        smartContract {
+            contractName shortDescription
+            image publishingDateTime
+            publisher {
+                fullName
+            }
+            contractCategory
+        }
+        createdAt
+    }
+}
+`
+export {search,orderById,orderContract,UserKyc,kycMutation,client,disable2FA,verify2FA,enableFA,createNewContract,sourceUpload,getContract,contractById,newPassword,forgetPassword,confirmEmail,deleteUser,getAuth,updateUser,userData,getUsersData,imageUpload,createNewUser};

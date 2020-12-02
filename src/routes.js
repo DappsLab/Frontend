@@ -34,6 +34,7 @@ import {setUser} from "./actions/Actions";
 import OrderContracts from "./components/user/dashboard/orderContract/OrderContracts";
 import ExplorerResult from "./components/block_explorer/explorerSearch/ExplorerResult";
 import EditSmartContract from "./components/home/uploadContract/EditSmartContract";
+import Compile from "./components/home/smartContract/Compile";
 
 
 const Routes =(props)=>{
@@ -53,6 +54,7 @@ const Routes =(props)=>{
               <PrivateRoute {...props}  path={"/logout"} exact component={Logout}/>
               <PrivateRoute {...props}  path={"/delete_user"} exact component={DeleteUser}/>
               <PrivateRoute {...props}  path={"/edit_samrt_contract/:id"} exact component={EditSmartContract}/>
+              <PrivateRoute {...props}  path={"/compile/:id"} exact component={Compile}/>
               <PrivateRoute {...props}  path={"/upload_samrt_contract"} exact component={UploadSmartContract}/>
               <PrivateRoute {...props}  path={"/admin"} exact component={Admin}/>
               <PublicRoute {...props} restricted={false}  path={"/2FA_varifivcation/:token"} exact component={FAConfirmation}/>

@@ -48,7 +48,7 @@ class UserAccount extends Component {
             menuItem: <Menu.Item key='transaction'>
                 <Account icon={faExchangeAlt} title={'Transaction'} subtitle={"View your transaction history"} />
             </Menu.Item>,
-            render: () => <Tab.Pane attached={false}><Transactions/></Tab.Pane>,
+            render: () => <Tab.Pane attached={false}><Transactions currentUser={this.state.currentUser}/></Tab.Pane>,
         },
         {
             menuItem: (

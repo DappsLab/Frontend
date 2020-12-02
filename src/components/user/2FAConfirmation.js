@@ -7,12 +7,14 @@ import {withAlert} from "react-alert";
 import {flowRight as compose} from "lodash";
 import {connect} from "react-redux";
 import {setUser} from "../../actions/Actions";
+import {Spinner2} from "../ui/Spinner";
 
 
 const number=RegExp(/^[0-9]*$/);
 class FAConfirmation extends Component {
     state={
-        value:""
+        value:"",
+        loading:false
     }
      client = new ApolloClient({
     uri: 'http://localhost:4000/graphql',
@@ -32,6 +34,7 @@ class FAConfirmation extends Component {
                     token_value=value;
                     this.setState({[name]: value}, () => {});
                     if (value.length===6){
+                        this.setState({loading:true})
                         this.client.query({
                             query: gql`query ($token:String!){
                                 verify2FA(token:$token)
@@ -73,19 +76,23 @@ class FAConfirmation extends Component {
                                     }`
                                 }).then(result => {
                                     console.log(result.data.me)
+                                    that.setState({loading:false})
                                     that.props.setUser(result.data.me);
                                     alert.success("Login Successfully", {timeout:5000})
                                     localStorage.setItem("token",that.props.match.params.token)
                                     that.props.history.push('/')
                                 }).catch(e => {
+                                    that.setState({loading:false})
                                     alert.error("Try again", {timeout:1000})
                                 });
 
                             }else {
                                 alert.error("Try again", {timeout:1000})
+                                that.setState({loading:false})
                             }
                         }).catch(e=>{
                             console.log(e.toString())
+                            that.setState({loading:false})
                         })
                     }
                 }
@@ -93,9 +100,9 @@ class FAConfirmation extends Component {
         }
     }
     render() {
-        const {value}=this.state
+        const {loading,value}=this.state
 
-        return (
+        return  loading?<Spinner2/>:(
             <Grid textAlign="center"  verticalAlign='middle'>
                 <Grid.Column  style={{maxWidth:700}}>
                   <Segment className={"fa_container"}>

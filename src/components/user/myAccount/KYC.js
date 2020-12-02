@@ -207,7 +207,7 @@ class Kyc extends Component {
             <section className={"kyc_section"}>
                 <div className={'flex'}>
                     <h2>Account Verification</h2>
-                    <h3>Status: <span className={status==="VERIFIED"?"green":"yellow"}>{currentUser.kyc.kycStatus} </span></h3>
+                    <h3>Status: <span className={currentUser.kyc.kycStatus==="VERIFIED"?"green":"yellow"}>{currentUser.kyc.kycStatus} </span></h3>
                 </div>
                 {error.length>0&&(
                     <span className={"flex errorMessage"}>{error}</span>

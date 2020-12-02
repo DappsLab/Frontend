@@ -10,6 +10,7 @@ import {connect} from "react-redux";
 import {setUser} from "../../actions/Actions";
 import {client} from "../../queries/queries";
 import {gql} from "@apollo/client";
+import {Spinner2} from "../ui/Spinner";
 
 
 const usernameRegex=RegExp(/^[a-zA-Z0-9]*$/);
@@ -18,6 +19,7 @@ class Login extends Component {
     //     super(props);
     // }
     state={
+        loading:false,
         username: "",
         error:"",
         password: "",
@@ -25,7 +27,6 @@ class Login extends Component {
             username: "",
             password: "",
         },
-        reload:0,
     }
     handleChange = event => {
         const {name,value}=event.target;
@@ -52,7 +53,7 @@ class Login extends Component {
         const alert = this.props.alert;
         let that=this;
         if (this.isFormValid(this.state)) {
-            this.setState({username: "",password: ""})
+            this.setState({loading:true,username: "",password: ""})
             client.query({
                 query: gql`  query ($username:String!,$password:String!){
                     loginUser(userName: $username, password: $password) {
@@ -103,7 +104,7 @@ class Login extends Component {
                       const user=result.data.userById;
                       console.log(user)
                       if (user){
-
+                          that.setState({loading:false})
                           if (user.twoFactorEnabled){
                               that.props.history.push(`/2FA_varifivcation/${logged.token}`);
                           }else {
@@ -120,10 +121,12 @@ class Login extends Component {
                   }).catch(r => {
                       const error=r.toString().replace('GraphQL','');
                       alert.error(error,{time:5000});
+                      that.setState({loading:false})
                       localStorage.removeItem("token");
                   });
               }
             }).catch(r => {
+                that.setState({loading:false})
                 const error=r.toString().replace('GraphQL','');
                 alert.error(error,{time:5000})
             });
@@ -143,43 +146,45 @@ class Login extends Component {
 
 
     render() {
-        const {username,password,formErrors} = this.state;
-        return (
+        const {loading,username,password,formErrors} = this.state;
+        return  (
             <Layout>
-                <Grid textAlign="center"  verticalAlign='middle' className="login-bg">
-                    <Grid.Column style={{maxWidth:700}}>
-                        <Form  onSubmit={this.handleSubmit}>
-                            <Segment piled>
-                                <LoginTop
-                                    heading={"Login"}
-                                    paragraph={"Account login"}
-                                    link={"Don't have an account"}
-                                    linkto={"/register"}
-                                />
-                                <Form.Input
-                                    icon="user"  iconPosition="left" value={username}
-                                    name="username" type="text"
-                                    placeholder="Username" onChange={this.handleChange}
-                                    className={formErrors.username.length>0?"error":""}
-                                />
-                                {formErrors.username.length>0&&(
-                                    <span className={"errorMessage"}>{formErrors.username}</span>
-                                )}
-                                <Form.Input
-                                    icon="lock" iconPosition="left" value={password}
-                                    name="password" type="password"
-                                    placeholder="Password" onChange={this.handleChange}
-                                    className={formErrors.password.length>0?"error":""}
-                                />
-                                {formErrors.password.length>0&&(
-                                    <span className={"errorMessage"}>{formErrors.password}</span>
-                                )}
-                                <Button fluid size="large">Login</Button>
-                                <p> <Link to={"/forget_password"}>Click here</Link> if you forget your password</p>
-                            </Segment>
-                        </Form>
-                    </Grid.Column>
-                </Grid>
+                {loading ? <Spinner2/> :
+                    <Grid textAlign="center" verticalAlign='middle' className="login-bg">
+                        <Grid.Column style={{maxWidth: 700}}>
+                            <Form onSubmit={this.handleSubmit}>
+                                <Segment piled>
+                                    <LoginTop
+                                        heading={"Login"}
+                                        paragraph={"Account login"}
+                                        link={"Don't have an account"}
+                                        linkto={"/register"}
+                                    />
+                                    <Form.Input
+                                        icon="user" iconPosition="left" value={username}
+                                        name="username" type="text"
+                                        placeholder="Username" onChange={this.handleChange}
+                                        className={formErrors.username.length > 0 ? "error" : ""}
+                                    />
+                                    {formErrors.username.length > 0 && (
+                                        <span className={"errorMessage"}>{formErrors.username}</span>
+                                    )}
+                                    <Form.Input
+                                        icon="lock" iconPosition="left" value={password}
+                                        name="password" type="password"
+                                        placeholder="Password" onChange={this.handleChange}
+                                        className={formErrors.password.length > 0 ? "error" : ""}
+                                    />
+                                    {formErrors.password.length > 0 && (
+                                        <span className={"errorMessage"}>{formErrors.password}</span>
+                                    )}
+                                    <Button fluid size="large">Login</Button>
+                                    <p><Link to={"/forget_password"}>Click here</Link> if you forget your password</p>
+                                </Segment>
+                            </Form>
+                        </Grid.Column>
+                    </Grid>
+                }
             </Layout>
         );
     }

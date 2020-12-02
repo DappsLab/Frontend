@@ -264,7 +264,7 @@ class  DetailedContract extends Component{
                                     that.setState({currentUser:result.data.me,buy_loading:false},()=>{
                                         console.log(that.state.currentUser)
                                     })
-                                    that.props.history.push("/dashboard/order_contract")
+                                    that.props.history.push("/dashboard/ordered_contract")
                                 }).catch(e => {
                                     console.log(e)
                                     alert.error(e.toString(),{timeout:5000})
@@ -275,6 +275,16 @@ class  DetailedContract extends Component{
                             console.log(e)
                             that.setState({buy_loading: false})
                             alert.error(e.toString(),{timeout:2000})
+                            that.meQuery().then(result => {
+                                that.props.setUser(result.data.me);
+                                alert.success("Order Successfully", {timeout:2000})
+                                that.setState({buy_loading:false})
+                                that.props.history.push("/dashboard/ordered_contract")
+                            }).catch(e => {
+                                console.log(e)
+                                that.setState({buy_loading: false})
+                                alert.error(e.toString(),{timeout:5000})
+                            });
                         })
                     }else {
                         that.meQuery().then(result => {
@@ -282,7 +292,7 @@ class  DetailedContract extends Component{
                             that.props.setUser(result.data.me);
                             alert.success("Order Successfully", {timeout:2000})
                             that.setState({buy_loading:false})
-                            that.props.history.push("/dashboard/order_contract")
+                            that.props.history.push("/dashboard/ordered_contract")
                         }).catch(e => {
                             console.log(e)
                             that.setState({buy_loading: false})
@@ -311,7 +321,6 @@ class  DetailedContract extends Component{
     });
     renderLicenses(currentUser){
         const purchased=currentUser.purchasedContracts;
-        // console.log(purchased)
         if (purchased.length>0){
             for (let i=0;i<purchased.length;i++){
                 console.log(purchased[i])
@@ -329,18 +338,22 @@ class  DetailedContract extends Component{
                             <div onClick={()=>{this.setState({showLicenses: !this.state.showLicenses})}}>
                                 <Icon link size={'large'} name={`chevron ${this.state.showLicenses?"up":"down"}`}/>
                             </div>
+                            {console.log(purchased[i])}
                         </div>
                     </Segment>
+
                         { this.state.showLicenses&&purchased[i].licenses.map(license=>{
                             return <div className={"licenses flex"} key={license.purchaseDateTime}>
                                 <Icon circular inverted color='blue'  name={'checkmark'}/>
                                 <Segment className={'flex'}>
                                     <div>
                                         <h2>Single Use License</h2>
+                                        <span>Order ID :{license.order.id}</span><br/>
                                         <span>Purchased on {license.purchaseDateTime}</span>
+
                                     </div>
                                     <div>
-                                        <Button>Compile</Button>
+                                        <Button onClick={()=>{this.props.history.push(`/compile/${license.order.id}`)}}>Compile</Button>
                                     </div>
                                 </Segment>
                             </div>

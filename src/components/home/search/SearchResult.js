@@ -257,18 +257,15 @@ const alphabetRegex=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
                          </Form>
                      </div>
                     <div className={"searchRight"}>
-                                 {loading?<Loader content={"Loading"} active size={"big"}/> :
-                                 <Container >
-
-                                     <Item.Group divided>
-                                         {this.renderResult()}
-                                     </Item.Group>
-                                 </Container>
-                                 }
-                             </div>
-
-
-         </div>
+                        {loading?<Loader content={"Loading"} active size={"big"}/> :
+                            <Container >
+                                <Item.Group divided>
+                                    {this.renderResult()}
+                                </Item.Group>
+                            </Container>
+                        }
+                    </div>
+                </div>
              </Layout>
          );
      }
