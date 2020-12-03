@@ -42,6 +42,7 @@ const client = new ApolloClient({
 const  Main =(props)=>{
     const [user,setUser]=useState(null);
     const [loading,setLoading]=useState(true);
+    console.log(!!localStorage.getItem('token'))
     const renderData=()=>{
         if (!!localStorage.getItem('token') ) {
             client.query({query: gql`query {
@@ -61,13 +62,16 @@ const  Main =(props)=>{
                     purchasedContracts {
                         customizationsLeft id unlimitedCustomization
                         licenses {
-                            purchaseDateTime
+                            purchaseDateTime id used
                             order {
-                                id status
+                                id status licenseType
                                 smartContract {
-                                    id
+                                    id contractName image
                                 }
                             }
+#                            compilations {
+#                                id compiledFile
+#                            }
                         }
                         smartContract {
                             contractName id

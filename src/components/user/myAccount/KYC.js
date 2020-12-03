@@ -153,11 +153,11 @@ class Kyc extends Component {
                                 purchasedContracts {
                                     customizationsLeft id unlimitedCustomization
                                     licenses {
-                                        purchaseDateTime
+                                        purchaseDateTime id used
                                         order {
-                                            id status
+                                            id status licenseType
                                             smartContract {
-                                                id
+                                                id contractName image
                                             }
                                         }
                                     }
@@ -201,7 +201,7 @@ class Kyc extends Component {
         this.setState({type:'date'})
     }
     render() {
-        const {error,type,country,nationality,currentUser,status,mobile,loadingbtn,city,street,building,postalCode,dateOfBirth}=this.state;
+        const {error,type,country,nationality,currentUser,mobile,loadingbtn,city,street,building,postalCode,dateOfBirth}=this.state;
 
         return (
             <section className={"kyc_section"}>

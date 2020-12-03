@@ -29,3 +29,29 @@
     }
   }
 }
+
+.compile_result{
+  text-align: center;
+  h2{
+    text-align: left;
+  }
+  .icon{
+    margin-bottom: 20px!important;
+  }
+}
+//===================================================
+//                     Deploy
+//===================================================
+.compiled{
+  display: flex!important;
+  align-items: center;
+  margin: 0 20px!important;
+  justify-content: space-between;
+  img{
+    height: 100px;
+    width: 100px;
+  }
+  h3{
+    margin-top: 0;
+  }
+}

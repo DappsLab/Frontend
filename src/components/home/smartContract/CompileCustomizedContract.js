@@ -1,11 +1,8 @@
-import React, {useState} from "react";
-import {Button, Divider, Form, Item} from "semantic-ui-react";
-const alphabet=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
+import React from "react";
+import {Button, Divider, Form, Icon, Item} from "semantic-ui-react";
 
 export const Customized=(props)=>{
-    const [name,setName]=useState("")
     const contract=props.contract;
-    console.log(contract)
    const returnColor=(color)=>{
         switch (color){
             case "TOOLS":
@@ -22,15 +19,6 @@ export const Customized=(props)=>{
                 return "green";
             default:
                 return "violet";
-        }
-    }
-   const handelChnage=(event)=>{
-        const value=event.target.value;
-        if (alphabet.test(value)){
-            setName(value)
-        }
-        if (value===""){
-            setName("");
         }
     }
     return (
@@ -70,18 +58,28 @@ export const Customized=(props)=>{
                 <Form.Field>
                     <label>Name of this compilation</label>
                     <Form.Input
-                        fluid onChange={handelChnage}
-                        type={'text'} value={name}
+                        fluid onChange={(event)=>props.change(event)}
+                        type={'text'} value={props.name}
                     />
                     <p>This will help you differentiate it between multiple compilation</p>
                 </Form.Field>
             </Form>
-            <Button className={"compilebtn"} onClick={props.onCompiled}>Compile</Button>
+            <Button  className={"compilebtn"} onClick={props.onCompiled}>Compile</Button>
         </div>
     )
 }
 export const CompileResult=(props)=>{
-    return <div> complie result</div>
+    return (
+        <div className={'compile_result'}>
+            <h2>Successfully Compiled</h2>
+            <Divider/>
+            <Icon circular size={'huge'}  inverted color='green'  name={'checkmark'}/>
+            <p>Huray!</p>
+            <p>Your contract is compiled and ready for deployment</p>
+            <Button color={'blue'}>Download</Button>
+            <Button color={'green'}>Deploy</Button>
+        </div>
+        )
 }
 export const Deploy=()=>{
     return <div>deploy</div>

@@ -4,13 +4,26 @@ import {Container, Segment} from "semantic-ui-react";
 import Layout from "../../../hoc/Layout";
 import {flowRight as compose} from "lodash";
 import {graphql} from "react-apollo";
-import { orderById} from "../../../queries/queries";
+import { licenseById} from "../../../queries/queries";
 import {Spinner2} from "../../ui/Spinner";
 import {CompileResult, Customized, Deploy} from "./CompileCustomizedContract";
-
+import {ApolloClient, gql,InMemoryCache} from "@apollo/client";
+import {connect} from "react-redux";
+import {setUser} from "../../../actions/Actions";
+import {withAlert} from "react-alert";
+const alphabet=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
+const Authclient = new ApolloClient({
+    uri: 'http://localhost:4000/graphql',
+    cache: new InMemoryCache(),
+    headers: {
+        authorization: localStorage.getItem("token"),
+    }
+});
 class Compile extends Component {
     state={
         active:"customize",
+        name:"",
+        loading:false,
     }
     tab_data=[
         {id:1,heading:"Customize",subheading:"Insert your own parameter"},
@@ -26,6 +39,8 @@ class Compile extends Component {
                 return active==="compile"?"blue_background":"";
             case 3:
                 return active==="deploy"?"blue_background":"";
+            default:
+                return ;
         }
     }
     rendnerTab() {
@@ -43,22 +58,101 @@ class Compile extends Component {
     renderActiveTabData(){
         const {active} =this.state;
         if (active==="customize"){
-            return <Customized contract={this.props.data.orderById.smartContract} onCompiled={this.onComplied}/>
+            if (this.state.loading){
+                return <Spinner2/>
+            }else {
+                return <Customized
+                    change={this.handleChange}
+                    name={this.state.name}
+                    contract={this.props.data.licenseById.order.smartContract}
+                    onCompiled={this.onComplied}
+                />
+            }
         }else if (active==="compile"){
-            return <CompileResult contract={this.props.data.orderById} changeTab={this.changeTab}/>
+            return <CompileResult  changeTab={this.changeTab}/>
         }else if (active==="deploy"){
             return <Deploy changeTab={this.changeTab}/>
         }
     }
+    handleChange=(event)=>{
+        const {value}=event.target;
+        if (alphabet.test(value)) {
+            this.setState({name: value})
+        }
+        if (value===""){
+            this.setState({name:""})
+        }
+    }
     onComplied=()=>{
-        this.setState({active:"compile"})
-
+        const license=this.props.data.licenseById
+        this.setState({loading:true})
+        const name=this.state.name;
+        const alert=this.props.alert;
+        const that=this;
+       Authclient.mutate({
+          mutation: gql` mutation ($name:String!,$sId:ID!,$pId:ID!,$lId:ID!) {
+              compileContract(newCompile: {compilationName:$name,smartContract: $sId, purchasedContract: $pId, license: $lId}) {
+                  id compiledFile
+              }
+          }`, variables:{
+              name:name.toString(),
+              sId:license.order.smartContract.id,
+              pId:license.purchasedContract.id,
+              lId:license.id
+          }
+       }).then(data => {
+           if (data.data.compileContract){
+               Authclient.query({
+                   query: gql`query {
+                       me{
+                           avatar address fullName id type twoFactorCode
+                           email location userName twoFactorEnabled balance
+                           kyc{   birthDate
+                               building city country kycStatus mobile
+                               nationality postalCode street kycStatus
+                           }
+                           orders{
+                               id dateTime fee price status transactionHash
+                               orderUsed smartContract {
+                                   contractName
+                               }
+                           }
+                           purchasedContracts {
+                               customizationsLeft id unlimitedCustomization
+                               licenses {
+                                   purchaseDateTime id used
+                                   order {
+                                       id status licenseType
+                                       smartContract {
+                                           id contractName image
+                                       }
+                                   }
+                               }
+                               smartContract {
+                                   contractName id
+                               }
+                           }
+                       }
+                   }`
+               }).then(resultl=>{
+                   that.props.setUser(resultl.data.me)
+                   that.setState({loading:false,active:"compile"})
+               }).catch(error=>{
+                   console.log(error.toString())
+                   alert.error(error.toString(),{timeout:5000})
+                   that.setState({loading:false})
+               })
+           }
+       }).catch(error=>{
+           alert.error(error.toString(),{timeout:5000})
+           console.log(error.toString())
+           that.setState({loading:false})
+       })
     }
     render() {
         return (
             <Layout>
-                {this.props.data.loading?<Spinner2/>
-                :
+                {this.props.data.loading?<Spinner2/> :
                     <Container fluid className={"compile flex"}>
                         <Segment className={"compile_left"}>
                             {this.rendnerTab()}
@@ -72,12 +166,12 @@ class Compile extends Component {
         );
     }
 }
-export default compose(graphql(orderById, {
+export default compose(graphql(licenseById, {
     options: (props) => {
         return {
             variables: {
                 id:props.match.params.id
             }
         }
-    }}),
+    }}), connect(null,{setUser}),withAlert(),
 )(Compile);

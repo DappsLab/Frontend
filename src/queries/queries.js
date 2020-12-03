@@ -11,6 +11,39 @@ const Authclient = new ApolloClient({
         authorization: localStorage.getItem("token"),
     }
 });
+const test=Authclient.query({
+    query: gql`query {
+        me{
+            avatar address fullName id type twoFactorCode
+            email location userName twoFactorEnabled balance
+            kyc{   birthDate
+                building city country kycStatus mobile
+                nationality postalCode street kycStatus
+            }
+            orders{
+                id dateTime fee price status transactionHash
+                orderUsed smartContract {
+                    contractName
+                }
+            }
+            purchasedContracts {
+                customizationsLeft id unlimitedCustomization
+                licenses {
+                    purchaseDateTime
+                    order {
+                        id status
+                        smartContract {
+                            id
+                        }
+                    }
+                }
+                smartContract {
+                    contractName id
+                }
+            }
+        }
+    }`
+})
 //Query
 const updateUser=gql`
     mutation ($fullName: String,$location: String,$avatar:String,$balance:String){
@@ -42,15 +75,15 @@ const createNewUser= gql`
             }
         ) {
             token
-            user {
-                id
-                userName
-                type
-                wallet {
-                    privateKey
-                    publicKey
-                }
-            }
+#            user {
+#                id
+#                userName
+#                type
+#                wallet {
+#                    privateKey
+#                    publicKey
+#                }
+#            }
         }
     }
 `;
@@ -251,18 +284,25 @@ const search=gql` query ($search:String){
     }
 }
 `
-const orderById=gql`query ($id:ID!){
-    orderById(id: $id) {
-        smartContract {
-            contractName shortDescription
-            image publishingDateTime
-            publisher {
-                fullName
-            }
-            contractCategory
+const licenseById=gql`query ($id:ID!){
+    licenseById(id: $id) {
+        id
+        purchasedContract {
+            id
         }
-        createdAt
+        order {
+            id
+            smartContract {
+                id
+                contractName shortDescription
+                image publishingDateTime
+                publisher {
+                    fullName
+                }
+                contractCategory  createdAt
+            }
+        }
     }
 }
 `
-export {search,orderById,orderContract,UserKyc,kycMutation,client,disable2FA,verify2FA,enableFA,createNewContract,sourceUpload,getContract,contractById,newPassword,forgetPassword,confirmEmail,deleteUser,getAuth,updateUser,userData,getUsersData,imageUpload,createNewUser};
+export {test,search,licenseById,orderContract,UserKyc,kycMutation,client,disable2FA,verify2FA,enableFA,createNewContract,sourceUpload,getContract,contractById,newPassword,forgetPassword,confirmEmail,deleteUser,getAuth,updateUser,userData,getUsersData,imageUpload,createNewUser};

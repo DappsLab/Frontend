@@ -60,13 +60,14 @@ class FAConfirmation extends Component {
                                             purchasedContracts {
                                                 customizationsLeft id unlimitedCustomization
                                                 licenses {
-                                                    purchaseDateTime
+                                                    purchaseDateTime id used
                                                     order {
-                                                        id status
+                                                        id status licenseType
                                                         smartContract {
-                                                            id
+                                                            id contractName image
                                                         }
                                                     }
+
                                                 }
                                                 smartContract {
                                                     contractName id

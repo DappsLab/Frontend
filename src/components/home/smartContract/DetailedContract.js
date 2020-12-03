@@ -8,7 +8,7 @@ import Radio from '@material-ui/core/Radio';
 import Layout from "../../../hoc/Layout";
 import {flowRight as compose} from 'lodash';
 import {graphql} from "react-apollo";
-import {orderContract, contractById} from "../../../queries/queries";
+import {orderContract,contractById} from "../../../queries/queries";
 import {ContractImg} from "../../ui/Icons";
 import Avatar from "@material-ui/core/Avatar";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -17,7 +17,7 @@ import FormControl from "@material-ui/core/FormControl";
 import {connect} from "react-redux";
 import { Slider } from "react-semantic-ui-range";
 import {Link} from "react-router-dom";
-import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
+import {ApolloClient,gql, InMemoryCache} from "@apollo/client";
 import {withAlert} from "react-alert";
 import {setUser} from "../../../actions/Actions";
 import "../../../assets/scss/licenses.css"
@@ -44,6 +44,7 @@ class  DetailedContract extends Component{
         }
     }
     handleChange = (event) => {
+
         this.setState({radioValue:event.target.value});
     };
     client = new ApolloClient({
@@ -200,11 +201,11 @@ class  DetailedContract extends Component{
                     purchasedContracts {
                         customizationsLeft id unlimitedCustomization
                         licenses {
-                            purchaseDateTime
+                            purchaseDateTime id used
                             order {
-                                id status
+                                id status licenseType
                                 smartContract {
-                                    id
+                                    id contractName image
                                 }
                             }
                         }
@@ -229,6 +230,7 @@ class  DetailedContract extends Component{
                 type:radioValue
             }
         }).then(function (result){
+
             if (result.data.placeOrder) {
                 const orderId=result.data.placeOrder.id;
                 that.client.query({
@@ -299,7 +301,6 @@ class  DetailedContract extends Component{
                             alert.error(e.toString(),{timeout:5000})
                         });
                     }
-
                 }).catch(e => {
                     that.setState({buy_loading:false});
                     console.log(e.toString())
@@ -323,7 +324,7 @@ class  DetailedContract extends Component{
         const purchased=currentUser.purchasedContracts;
         if (purchased.length>0){
             for (let i=0;i<purchased.length;i++){
-                console.log(purchased[i])
+                console.log("Purchased",purchased[i])
                 if (purchased[i].smartContract.id===this.props.match.params.id){
                     return <div> <Segment className={'licenses_header'}>
                         <div>
@@ -338,24 +339,39 @@ class  DetailedContract extends Component{
                             <div onClick={()=>{this.setState({showLicenses: !this.state.showLicenses})}}>
                                 <Icon link size={'large'} name={`chevron ${this.state.showLicenses?"up":"down"}`}/>
                             </div>
-                            {console.log(purchased[i])}
                         </div>
                     </Segment>
-
                         { this.state.showLicenses&&purchased[i].licenses.map(license=>{
-                            return <div className={"licenses flex"} key={license.purchaseDateTime}>
-                                <Icon circular inverted color='blue'  name={'checkmark'}/>
-                                <Segment className={'flex'}>
-                                    <div>
-                                        <h2>Single Use License</h2>
-                                        <span>Order ID :{license.order.id}</span><br/>
-                                        <span>Purchased on {license.purchaseDateTime}</span>
-
-                                    </div>
-                                    <div>
-                                        <Button onClick={()=>{this.props.history.push(`/compile/${license.order.id}`)}}>Compile</Button>
-                                    </div>
-                                </Segment>
+                            return <div key={license.purchaseDateTime}>
+                                <div className={"licenses flex"} >
+                                    <Icon circular inverted color='blue'  name={'checkmark'}/>
+                                    <Segment className={'flex'}>
+                                        <div>
+                                            <h2>{license.order.licenseType}</h2>
+                                            <span>Order ID :{license.order.id}</span><br/>
+                                            <span>Purchased on {license.purchaseDateTime}</span>
+                                        </div>
+                                        <div>
+                                            {license.order.licenseType==="SINGLELICENSE" && license.used ?
+                                                ""
+                                                :<Button onClick={() => {
+                                                    this.props.history.push(`/compile/${license.id}`)
+                                                }}>Compile</Button>
+                                            }
+                                        </div>
+                                    </Segment>
+                                </div>
+                                {license.used?
+                                    <Segment className={"compiled"}>
+                                        <div>
+                                            <img src={license.order.smartContract.image} alt={"img"}/>
+                                            <h3>{license.order.smartContract.contractName}</h3>
+                                        </div>
+                                         <Button color={'green'} onClick={() => {
+                                             // this.props.history.push(`/compile/${license.id}`)
+                                         }}>Deploy</Button>
+                                    </Segment>:""
+                                }
                             </div>
                         })}
                     </div>

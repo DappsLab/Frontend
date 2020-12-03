@@ -4,7 +4,6 @@ import '../../../assets/scss/contract_card.css';
 import {Link} from "react-router-dom";
 import {graphql } from "react-apollo";
 import {Label, Loader} from "semantic-ui-react";
-import {faTools,faWrench,faInfo,faFile,faShareAltSquare} from "@fortawesome/free-solid-svg-icons";
 import {getContract} from "../../../queries/queries";
 
 
@@ -27,24 +26,7 @@ const ContractCard =(props)=>{
                 return "violet";
         }
     }
-   const returnIcon=(icon)=>{
-        switch (icon){
-            case "TOOLS":
-                return faWrench;
-            case "SOCIAl":
-                return faShareAltSquare;
-            case "DOCUMENTS":
-                return faFile;
-            case "UTILITY":
-                return faTools;
-            case "ESCROW":
-                return faInfo;
-            case "FINANCIAL":
-                return faInfo;
-            default:
-                return faShareAltSquare;
-        }
-    }
+
    const renderCategory=(categorys)=>(
         categorys.map(category=>{
             return  <Label  key={category}

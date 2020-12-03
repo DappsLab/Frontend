@@ -22,4 +22,22 @@
         background: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) !important;
         Box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); }
 
+.compile_result {
+  text-align: center; }
+  .compile_result h2 {
+    text-align: left; }
+  .compile_result .icon {
+    margin-bottom: 20px !important; }
+
+.compiled {
+  display: flex !important;
+  align-items: center;
+  margin: 0 20px !important;
+  justify-content: space-between; }
+  .compiled img {
+    height: 100px;
+    width: 100px; }
+  .compiled h3 {
+    margin-top: 0; }
+
 /*# sourceMappingURL=licenses.css.map */
