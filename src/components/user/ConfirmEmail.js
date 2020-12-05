@@ -6,7 +6,7 @@ import {Grid, Segment} from "semantic-ui-react";
 import {Spinner} from "../ui/Spinner";
 import {withAlert} from "react-alert";
 import {flowRight as compose} from 'lodash';
-import {DappsIcon} from "../ui/Icons";
+
 import "../../assets/scss/confirm_email.css"
 
 class ConfirmEmail extends Component {
@@ -48,10 +48,6 @@ class ConfirmEmail extends Component {
             <Grid textAlign="center"  verticalAlign='middle' >
                 <Grid.Column style={{maxWidth:600}}>
                     <Segment  className={"confirm_email"}>
-                        <DappsIcon
-                            link={false}
-                            linkTo="/"
-                        />
                         <h1>Welcome in DappsLab</h1>
                         <p>Woweee! Thanks for registering an account with DappsLab. Before we get started, we'll need
                             to verify your email. Simply click button below to varify your email address</p>

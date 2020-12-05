@@ -4,6 +4,7 @@ import { Table} from 'semantic-ui-react'
 import {flowRight as compose} from "lodash";
 import {connect} from "react-redux";
 import PurchasedRow from "./PurchasedRow";
+import Admin from "../../../admin/Admin";
 
 
 class Purchased extends Component {
@@ -31,6 +32,9 @@ class Purchased extends Component {
                     </Table.Header>
                     {<PurchasedRow {...this.props} purchased={currentUser.purchasedContracts}/>}
                 </Table>
+                {currentUser.type === "ADMIN" &&
+                    <Admin {...this.props} currentUser={currentUser}/>
+                }
             </DashboardLayout>
         );
     }

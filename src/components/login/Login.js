@@ -112,11 +112,7 @@ class Login extends Component {
                               localStorage.setItem("token",logged.token);
                               this.props.setUser(user);
                               alert.success("Login Successfully", {timeout: 5000});
-                              if (user.type==="ADMIN"){
-                                  this.props.history.push('/admin');
-                              }else {
-                                  this.props.history.push('/');
-                              }
+                              this.props.history.push('/');
                           }
                       }
                   }).catch(r => {

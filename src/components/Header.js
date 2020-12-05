@@ -1,8 +1,8 @@
 import React from 'react';
 import '../assets/scss/header.css';
 import {Link} from "react-router-dom";
-import {Button} from '@material-ui/core'
-import {DappsIcon} from "./ui/Icons";
+import {Button} from 'semantic-ui-react'
+import logo from '../assets/images/dappslab-logo-white.png'
 import ListItem from "@material-ui/core/ListItem";
 import DarkMode from "./ui/Dark-mode";
 import {DropDown} from "./ui/DropDown";
@@ -15,43 +15,34 @@ class Header extends React.Component {
     state = {
         logged:this.props.logged_session,
         currentUser:this.props.currentUser,
-        count:0
     }
     links = [
-        {title: 'HOME', linkTo: '/'},
-        {title: 'SMART CONTRACTS', linkTo: '/smart_contracts'},
-        {title: 'DAPPS', linkTo: '/dapps'},
-        {title: 'DOWNLOADS', linkTo: '/downloads'},
-        {title: 'BLOCK EXPLORER', linkTo: '/block_explorer'},
-        {title: 'ABOUT US', linkTo: '/about_us'},
-        {title: 'HELP', linkTo: '/help'}
+        {title: 'HOME', linkTo: '/',active:"/"},
+        {title: 'SMART CONTRACTS', linkTo: '/smart_contracts',active:"/smart_contracts"},
+        {title: 'DAPPS', linkTo: '/dapps',active:"/dapps"},
+        {title: 'DOWNLOADS', linkTo: '/downloads',active:"/downloads"},
+        {title: 'BLOCK EXPLORER', linkTo: '/block_explorer',active:"/block_explorer"},
+        {title: 'ABOUT US', linkTo: '/about_us',active:"/about_us"},
+        {title: 'HELP', linkTo: '/help',active:"/help"}
     ];
     link = [
-        {title: 'Register', linkTo: '/register'},
-        {title: 'Login', linkTo: '/login'}
+        {title: 'Login', linkTo: '/login'},
+        {title: 'Signup', linkTo: '/register'}
     ];
-    // componentDidMount() {
-    //     if (this.props.currentUser) {
-    //         this.setState({
-    //             logged: this.props.logged_session, currentUser: this.props.currentUser
-    //         });
-    //
-    //     }
-    // }
-
     renderNav = () => (
         this.links.map(link => (
             <Link to={link.linkTo} key={link.title}>
-                <ListItem button>
+                <ListItem button >
                     {link.title}
                 </ListItem>
+                {window.location.pathname===link.active&&<div className={"nav_list"}> </div>}
             </Link>
         ))
     );
     renderButtons = () => (
         this.link.map(l => (
-            <Link to={l.linkTo} key={l.title}>
-                <Button variant="contained" color="primary" className="loginbtn">{l.title}</Button>
+            <Link to={l.linkTo} className={"btn_group"} key={l.title}>
+                <Button className={` ${l.title==="Signup"&&"Signup_btn"}`}>{l.title}</Button>
             </Link>
         ))
     );
@@ -60,18 +51,21 @@ class Header extends React.Component {
             <DropDown check={true} user={this.props.currentUser}/>
         </div>
     )
+
     render() {
         return (
             <div>
                 <header className="flex">
                     <Jump>
-                        <DappsIcon link={true} linkTo="/"/>
+                        <Link to={'/'}>
+                            <img className={'logo'} src={logo} alt={"logo"}/>
+                        </Link>
                     </Jump>
                     <nav className="flex">
                         {this.renderNav()}
                     </nav>
-                    <div className={"flex"}>
-                        <DarkMode/>
+                    <div className={"flex "}>
+                        {/*<DarkMode/>*/}
                         {this.props.logged_session ?
                             this.renderAccount()
                             : this.renderButtons()

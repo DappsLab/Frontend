@@ -1,31 +1,58 @@
 @import 'colors';
-header{
-  @include default-primary();
+header {
+  @include default-color();
   background-color: $primary-color;
   width: 100%;
-  height: 64px;
+  height: 84px;
   padding: 16px 25px;
   justify-content: space-between;
-  .MuiButton-root:hover{
-    background-color: rgba(0, 0, 0, 0.24)!important;
+
+  .MuiButton-root:hover {
+    background-color: rgba(0, 0, 0, 0.24) !important;
   }
-}
-.Logo{
-  height:32px;
-}
-.LogoCaption{
-  margin-left: 10px;
-  height: inherit;
-}
-.logo-container{
-  margin: 0;
-  height:32px;
-}
-header nav{
-  .MuiListItem-button:hover{
-    background-color: rgba(0, 0, 0, 0.24)!important;
+
+  .logo {
+    height: 50px;
   }
-  color:#ffffff !important;
+
+  nav {
+    .MuiListItem-button:hover {
+      background-color: rgba(0, 0, 0, 0.24) !important;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    color: #ffffff !important;
+
+    .nav_list::after {
+      display: block;
+      justify-content: center;
+      content: "";
+      height: 5px;
+      border-radius: 50%;
+      width: 5px;
+      background-color: $meadow-color;
+    }
+  }
+    .btn_group {
+      margin: 0 10px!important;
+      .button {
+        color: $paper-color !important;
+        margin: 0 !important;
+        border-radius: 30px !important;
+        padding: 15px 30px !important;
+        background-color: $blue-color !important;
+      }
+      .Signup_btn{
+        background-color: $meadow-color!important;
+      }
+    }
+
 }
 
 

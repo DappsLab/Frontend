@@ -28,7 +28,7 @@ const descriptionRGP=RegExp(/^[a-zA-Z][a-zA-Z\s,.]*$/);
 
 class UploadSmartContract extends Component{
     state= {
-        shortCounter:300,
+        shortCounter:200,
         longCounter:600,
         shortDescription:"",
         longDescription:"",
@@ -131,8 +131,8 @@ class UploadSmartContract extends Component{
                 }
                 break;
             case "shortDescription":
-                if (value.length<=300) {
-                    this.setState({shortCounter: 300-value.length});
+                if (value.length<=200) {
+                    this.setState({shortCounter: 200-value.length});
                     console.log("now")
                     formErrors.shortDescription = descriptionRGP.test(value)
                         ? ""

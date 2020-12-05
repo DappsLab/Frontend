@@ -8,7 +8,6 @@ import {graphql} from "react-apollo";
 import {newPassword} from "../../queries/queries";
 import {Spinner} from "../ui/Spinner";
 import "../../assets/scss/confirm_email.css"
-import {DappsIcon} from "../ui/Icons";
 
 
 class ChangePassword extends Component {
@@ -115,10 +114,6 @@ class ChangePassword extends Component {
            <Grid textAlign="center" className={"passwordChange"}  verticalAlign='middle'>
                <Grid.Column style={{maxWidth:600}}>
                    <Segment className={"confirm_email"}>
-                       <DappsIcon
-                           link={false}
-                           linkTo="/"
-                       />
                        <h3 className={"flex"}>
                            {/*<Icon name={"redo"}/>*/}
                            <Icon.Group size='mini'>

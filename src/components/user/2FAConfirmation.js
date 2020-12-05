@@ -76,7 +76,6 @@ class FAConfirmation extends Component {
                                         }
                                     }`
                                 }).then(result => {
-                                    console.log(result.data.me)
                                     that.setState({loading:false})
                                     that.props.setUser(result.data.me);
                                     alert.success("Login Successfully", {timeout:5000})

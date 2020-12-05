@@ -1,77 +1,72 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {ContractImg} from "../../ui/Icons";
 import '../../../assets/scss/contract_card.css';
 import {Link} from "react-router-dom";
 import {graphql } from "react-apollo";
-import {Label, Loader} from "semantic-ui-react";
+import {Button} from "semantic-ui-react";
 import {getContract} from "../../../queries/queries";
+import {cardColors, categoryColors} from "../../ui/Helpers";
+import {dateTime} from "../../../helpers/DateTimeConversion";
+import {Spinner2} from "../../ui/Spinner";
 
 
 const ContractCard =(props)=>{
-   const returnColor=(color)=>{
-        switch (color){
-            case "TOOLS":
-                return "orange";
-            case "SOCIAl":
-                return "grey";
-            case "DOCUMENTS":
-                return "teal";
-            case "UTILITY":
-                return "purple";
-            case "ESCROW":
-                return "blue";
-            case "FINANCIAL":
-                return "green";
-            default:
-                return "violet";
-        }
-    }
-
+    const [height,setHeight]=useState("1200px");
    const renderCategory=(categorys)=>(
         categorys.map(category=>{
-            return  <Label  key={category}
-                color={returnColor(category)}   className={`card_tag`} >
+            return  <Button size={'mini'}
+                key={category}  style={{backgroundColor:`${categoryColors(category)}`}}
+                className={`card_tag`} >
                 {category}
-                    {/*<Button.Content   visible>{category}</Button.Content>*/}
-                    {/*<Button.Content  hidden>*/}
-                    {/*    <FontAwesomeIcon  icon={returnIcon(category)}/>*/}
-                    {/*</Button.Content>*/}
-                 </Label>
+            </Button>
         })
     )
    const displayContract=()=>{
         const data = props.data;
         if (data.loading){
-            return <div className={"all-contract"}><Loader active size={"big"} content={"Loading Contract"}/></div>
+            return <Spinner2/>
         }
         if (data.error){
             return <div>{data.error.message}</div>
        }else {
-            return data.smartContracts.map(contract=>{
-                return <Link to={`/detailed_contract/${contract.id}`} className={"card flex"} key={contract.id}  >
-                    <div className={"card-top flex"}>
-                        <div className={"flex tags"}>
-                            {renderCategory(contract.contractCategory)}
-                        </div>
-                        <ContractImg
-                            position={"relative"}
-                            imagePath={contract.image}
-                            height={"120px"}
-                            width={"120px"}
-                         />
-                    </div>
-                    <h4>{contract.contractName}</h4>
-                    <p>{contract.shortDescription}</p>
-                    <span className={"block"}>{contract.singleLicensePrice} Dapps</span>
-                </Link>
-            })
+            const smartContract=props.searchdata===null?data.verifiedSmartContracts:props.searchdata;
+           return <div>
+            <div style={{ height: `${smartContract.length>6?height:'820px'}`}} className={"flex card-container"}>
+                   {smartContract.map((contract, index) => {
+                       return <Link style={{backgroundColor: `${cardColors(index)}`}}
+                                    to={`/detailed_contract/${contract.id}`} className={"card flex"} key={contract.id}>
+                           <div className={"card-top flex"}>
+                               <ContractImg
+                                   position={"relative"}
+                                   imagePath={contract.image}
+                                   height={"100px"}
+                                   width={"100px"}
+                               />
+                               <div className={"card-right"}>
+                                   <h1>{contract.contractName}</h1>
+                                   <span>Publish By </span>
+                                   <span>{contract.publisher.fullName}</span>
+                                   <span> created at {dateTime(contract.createdAt)}</span>
+                               </div>
+                           </div>
+                           <p>{contract.shortDescription}</p>
+                           <div>
+                               {renderCategory(contract.contractCategory)}
+                           </div>
+                           <span className={"block"}>{contract.singleLicensePrice} Dapps</span>
+                       </Link>
+                   })}
+           </div>
+               {smartContract.length>8&&
+               <Button className={'see_more'} onClick={() => {
+                   setHeight("auto")
+               }}>See More</Button>
+               }
+           </div>
+
         }
     }
-    return (
-        <div className={"flex contract-container"}>
-            {displayContract()}
-        </div>
-    );
+    return (displayContract());
 
 }
 

@@ -56,7 +56,6 @@ const Routes =(props)=>{
               <PrivateRoute {...props}  path={"/edit_samrt_contract/:id"} exact component={EditSmartContract}/>
               <PrivateRoute {...props}  path={"/compile/:id"} exact component={Compile}/>
               <PrivateRoute {...props}  path={"/upload_samrt_contract"} exact component={UploadSmartContract}/>
-              <PrivateRoute {...props}  path={"/admin"} exact component={Admin}/>
               <PublicRoute {...props} restricted={false}  path={"/2FA_varifivcation/:token"} exact component={FAConfirmation}/>
               <PublicRoute {...props} restricted={false}  path={"/block_explorer/:search"} exact component={ExplorerResult}/>
               <PublicRoute {...props} restricted={false}  path={"/user/reset-password/:key"} exact component={ChangePassword}/>

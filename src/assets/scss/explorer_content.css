@@ -1,0 +1,29 @@
+.explorer_content h1 {
+  font-size: 70px; }
+  .explorer_content h1 span {
+    color: #5754AB; }
+.explorer_content p {
+  width: 30%;
+  font-size: 16px;
+  text-align: center; }
+.explorer_content .ui.form {
+  margin-top: 30px; }
+  .explorer_content .ui.form .field .ui.input input {
+    background: #0A0926;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 30px;
+    height: 60px;
+    width: 330px;
+    display: flex;
+    align-items: center;
+    padding: 0 25px; }
+.explorer_content i.inverted.circular.icon {
+  position: absolute;
+  top: 15px;
+  right: 16px;
+  background: #ffffff !important;
+  opacity: 1;
+  color: #0A0926 !important; }
+
+/*# sourceMappingURL=explorer_content.css.map */

@@ -2,11 +2,10 @@ import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Slider from '@material-ui/core/Slider';
-import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        padding: "24px 0",
+        padding: "0",
         boxShadow:"none",
         width:"100%"
     },
@@ -24,15 +23,15 @@ const AirbnbSlider = withStyles({
         width:"95%",
     },
     thumb: {
-        height: 20,
-        width: 20,
-        backgroundColor: '#fff',
+        height: 10,
+        width: 10,
+
         border: '1px solid currentColor',
-        marginTop: -8,
-        marginLeft: -13,
+        marginTop: -4,
+        marginLeft: -3,
         boxShadow: '#ebebeb 0px 2px 2px',
         '&:focus,&:hover,&$active': {
-            boxShadow: '#ccc 0px 3px 3px 1px',
+            boxShadow: '#ccc 0px 0px 0px 0px',
         },
         '& .bar': {
             // display: inline-block !important;
@@ -49,26 +48,24 @@ const AirbnbSlider = withStyles({
     },
     track: {
         background:"#0090FA",
-        height: 8,
+        height: 2,
     },
     rail: {
         color: '#d8d8d8',
         opacity: 1,
-        height: 8,
+        height: 2,
     },
 })(Slider);
-
 function AirbnbThumbComponent(props) {
     return (
         <span className={"sliderCircle"} {...props}> </span>
     );
 }
 export default function CustomizedSlider({changeSlider}) {
-
     const classes = useStyles();
     return (
         <Paper className={classes.root}>
-            <Typography gutterBottom>Filter by price (per deployment):</Typography>
+            <label >Filter by price (per deployment):</label>
             <AirbnbSlider
                 ThumbComponent={AirbnbThumbComponent}
                 getAriaLabel={(index) => (index === 0 ? 'Minimum price' : 'Maximum price')}

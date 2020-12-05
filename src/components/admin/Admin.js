@@ -1,44 +1,49 @@
-import React from 'react';
-import '../../assets/scss/header.css';
-import {DappsIcon} from "../ui/Icons";
+import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {flowRight as compose} from 'lodash';
-import Jump from 'react-reveal/Jump';
+import "../../assets/scss/admin.css"
+import Layout from "../../hoc/Layout";
+import {Menu, Tab} from "semantic-ui-react";
+import {Account} from "../ui/AccountNav";
+import { faTasks, faUser} from "@fortawesome/free-solid-svg-icons";
+import KycVerification from "./kyc_verification/KYCVerification";
+import SmartContractVerification from "./smart_contract_verification/SmartContractVerification";
 
 
-class Admin extends React.Component {
-    state = {
-        logged:this.props.logged_session,
-        currentUser:this.props.currentUser,
-        count:0
+
+class Admin extends Component {
+    state={
+        currentUser:this.props.currentUser
     }
-    // componentDidMount() {
-    //     if (this.props.currentUser) {
-    //         this.setState({
-    //             logged: this.props.logged_session, currentUser: this.props.currentUser
-    //         });
-    //
-    //     }
-    // }
-
-
+    panes = [
+        {
+            menuItem: <Menu.Item key='KYC'>
+                <Account icon={faUser} title={'KYC'} subtitle={"Account setting"} />
+            </Menu.Item>,
+            render: () => <Tab.Pane attached={false}><KycVerification currentUser={this.state.currentUser}/></Tab.Pane>,
+        },
+        {
+            menuItem: <Menu.Item key='Contract'>
+                <Account icon={faTasks} title={'Smart Contract '} subtitle={"Account Verification"} />
+            </Menu.Item>,
+            render: () => <Tab.Pane attached={false}><SmartContractVerification currentUser={this.state.currentUser}/></Tab.Pane>,
+        }
+    ]
     render() {
-        console.log("log")
-        return (
-            <div>
-                <header className="flex">
-                    <Jump>
-                        <DappsIcon link={true} linkTo="/"/>
-                    </Jump>
 
-                </header>
-            </div>
+        return (
+            <section className={"admin_container"}>
+                <h2>Verify Smart Contact and KYC</h2>
+                <Tab
+                    menu={{ fluid: true,tabular: true,pointing: true, vertical: true }}
+                    menuPosition='left'
+                    panes={this.panes}
+                />
+            </section>
         );
     }
 }
 const mapStateToProps=(state)=>({
-    logged_session:state.user.logged_session,
-    currentUser:state.user.currentUser,
-})
+    currentUser:state.user.currentUser
+});
 
-export default compose(connect(mapStateToProps))(Admin);
+export default connect(mapStateToProps)(Admin);

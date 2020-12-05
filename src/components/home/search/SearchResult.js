@@ -100,9 +100,9 @@ const alphabetRegex=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
         ))
     )
     setSliderValues=(event,value)=>{
-
          this.setState({sliderMinValue:value[0],sliderMaxValue:value[1]})
     }
+
      handleChange = event => {
          const {name,value}=event.target;
          if (alphabetRegex.test(value)){

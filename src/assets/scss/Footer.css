@@ -33,6 +33,14 @@ a {
   position: relative;
   top: -13px; }
 
+.dappslab_banner {
+  background: url("../images/dappslab_banner.png");
+  background-size: 100%;
+  color: #ffffff;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 820px; }
+
 .contract_category {
   margin: 15px 0 !important; }
   .contract_category .button:hover {
@@ -77,12 +85,12 @@ a {
   .not_found a {
     font-size: 20px; }
 
-.loginbtn, .kyc_section .button, .not_found button, .ui.fluid.button, .fa_container button, .passwordChange Button, .confirm_email Button {
+.loginbtn, .kyc_section .button, .not_found button, .fa_container button, .passwordChange Button, .confirm_email Button {
   height: 32px;
   margin: 0 5px !important;
   background: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%) !important;
   color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) !important; }
-  .loginbtn:hover, .kyc_section .button:hover, .not_found button:hover, .ui.fluid.button:hover, .fa_container button:hover, .passwordChange Button:hover, .confirm_email Button:hover {
+  .loginbtn:hover, .kyc_section .button:hover, .not_found button:hover, .fa_container button:hover, .passwordChange Button:hover, .confirm_email Button:hover {
     color: #ffffff !important;
     background: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) !important;
     Box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); }
@@ -103,65 +111,18 @@ a {
   background-color: #121212; }
 
 footer {
-  display: flex;
-  justify-content: space-between;
-  background-color: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
-  background-image: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%);
+  background: url("../images/footer.png") no-repeat;
+  min-height: 518px;
   color: #ffffff;
-  padding: 60px 50px; }
-  footer .logoContainer {
-    display: flex;
-    flex-direction: column; }
-    footer .logoContainer img {
-      align-self: center; }
-  footer .iconContainer {
-    margin-top: 25px; }
-    footer .iconContainer ul {
-      display: flex; }
-      footer .iconContainer ul li {
-        list-style: none;
-        margin-right: 15px; }
-  footer .info {
-    padding-top: 60px; }
-    footer .info p {
-      font-size: 12px;
-      line-height: 17px;
-      margin: 5px 0; }
-    footer .info a {
-      background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; }
-  footer .navlist ul {
-    display: flex; }
-    footer .navlist ul a {
-      margin-left: 30px;
-      cursor: pointer; }
-      footer .navlist ul a li {
-        padding: 0 10px;
-        display: flex;
-        align-items: center;
-        list-style: none;
-        height: 32px; }
-
-.extras div {
-  margin-left: 40px;
-  margin-top: 30px;
-  line-height: 30px;
-  width: 680px; }
-  .extras div ul {
-    display: flex; }
-    .extras div ul li {
-      margin-right: 30px;
-      display: flex;
-      align-items: center;
-      list-style: none;
-      height: 32px; }
-      .extras div ul li a {
-        font-size: 12px;
-        line-height: 17px;
-        cursor: pointer;
-        background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent; }
+  background-size: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10em; }
+  footer img {
+    height: 100px; }
+  footer div {
+    margin: 30px 0; }
+  footer p {
+    font-size: 23px; }
 
 /*# sourceMappingURL=Footer.css.map */

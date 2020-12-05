@@ -69,9 +69,6 @@ const  Main =(props)=>{
                                     id contractName image
                                 }
                             }
-#                            compilations {
-#                                id compiledFile
-#                            }
                         }
                         smartContract {
                             contractName id

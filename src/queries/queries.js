@@ -187,12 +187,15 @@ const getUsersData=`
 //============================================================
 const getContract=gql`    
     query {
-        smartContracts {
+        verifiedSmartContracts {
             contractName shortDescription
             description contractCategory 
             singleLicensePrice unlimitedLicensePrice
-            image verified 
+            image verified createdAt 
             id publishingDateTime
+            publisher {
+                fullName
+            }
         }
     }
 `
@@ -305,4 +308,14 @@ const licenseById=gql`query ($id:ID!){
     }
 }
 `
-export {test,search,licenseById,orderContract,UserKyc,kycMutation,client,disable2FA,verify2FA,enableFA,createNewContract,sourceUpload,getContract,contractById,newPassword,forgetPassword,confirmEmail,deleteUser,getAuth,updateUser,userData,getUsersData,imageUpload,createNewUser};
+const pendingKYC= gql`  query  {
+    searchPendingKyc {
+        id fullName
+        kyc {
+            birthDate kycStatus
+            city country street
+            building mobile
+            nationality postalCode
+        }
+    }}`
+export {test,pendingKYC,search,licenseById,orderContract,UserKyc,kycMutation,client,disable2FA,verify2FA,enableFA,createNewContract,sourceUpload,getContract,contractById,newPassword,forgetPassword,confirmEmail,deleteUser,getAuth,updateUser,userData,getUsersData,imageUpload,createNewUser};

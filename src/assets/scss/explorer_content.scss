@@ -1,0 +1,38 @@
+@import "colors";
+
+.explorer_content{
+  h1{
+    font-size: 70px;
+    span{
+      color: $liberty-color;
+    }
+  }
+  p{
+    width: 30%;
+    font-size: 16px;
+    text-align: center;
+  }
+  .ui.form {
+    margin-top: 30px;
+    .field .ui.input input {
+      background: $blue-dark-color;
+      color: $paper-color;
+      border: 2px solid $paper-color;
+      border-radius: 30px;
+      height: 60px;
+      width: 330px;
+      display: flex;
+      align-items: center;
+      padding: 0 25px;
+    }
+  }
+
+  i.inverted.circular.icon{
+    position: absolute;
+    top: 15px;
+    right: 16px;
+    background: $paper-color!important;
+    opacity: 1;
+    color: $blue-dark-color!important;
+  }
+}

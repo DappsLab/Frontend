@@ -3,6 +3,7 @@ import {Divider} from "@material-ui/core";
 import QRCode from 'react-qr-code';
 import {connect} from "react-redux";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
+import {Popup,Button} from "semantic-ui-react";
 
 
 class WithdrawDeposite extends Component {
@@ -10,11 +11,11 @@ class WithdrawDeposite extends Component {
         copied:false,
         currentUser: this.props.currentUser,
     }
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        setTimeout(function(){
-            this.setState({copied:false});
-        }.bind(this),10000);
-    }
+    // componentDidUpdate(prevProps, prevState, snapshot) {
+    //     setTimeout(function(){
+    //         this.setState({copied:false});
+    //     }.bind(this),10000);
+    // }
 
     change=()=>{
         this.setState({copied:true})
@@ -30,7 +31,13 @@ class WithdrawDeposite extends Component {
                         <span>Address</span>
                         <p className={"address"}>{currentUser.address}</p>
                         <CopyToClipboard text={currentUser.address}>
-                            <a onClick={this.change} href={"#"}>{this.state.copied?"Copied":"copy"}</a>
+                            <Popup
+                                content='Copied'
+                                mouseLeaveDelay={1000}
+                                on='click'
+                                trigger={<button>copy</button>}
+                            />
+
                         </CopyToClipboard>
                     </div>
                     <h4>Scan QR</h4>
