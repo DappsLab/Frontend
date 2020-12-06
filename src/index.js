@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './assets/scss/app.css';
 import {BrowserRouter as Router} from 'react-router-dom';
@@ -6,14 +6,16 @@ import { createStore } from 'redux';
 import { Provider} from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducer/Reducer';
-import { ApolloProvider} from "react-apollo";
-import {ApolloClient, ApolloLink, concat, gql, InMemoryCache} from '@apollo/client';
+import { ApolloProvider,Query} from "react-apollo";
+import {ApolloClient, useQuery,ApolloLink, concat, InMemoryCache} from '@apollo/client';
 import {createUploadLink} from "apollo-upload-client";
 import 'semantic-ui-css/semantic.min.css'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic';
 import {Spinner} from "./components/ui/Spinner";
 import Routes from "./routes";
+import {me_Query} from "./queries/queries";
+import {match} from "./queries/Services";
 
 
 const store = createStore(rootReducer, composeWithDevTools());
@@ -40,63 +42,19 @@ const client = new ApolloClient({
     cache: new InMemoryCache(),
 });
 const  Main =(props)=>{
-    const [user,setUser]=useState(null);
-    const [loading,setLoading]=useState(true);
-    console.log(!!localStorage.getItem('token'))
-    const renderData=()=>{
-        if (!!localStorage.getItem('token') ) {
-            client.query({query: gql`query {
-                me{
-                    avatar address fullName id type twoFactorCode
-                    email location userName twoFactorEnabled balance
-                    kyc{   birthDate
-                        building city country kycStatus mobile
-                        nationality postalCode street kycStatus
-                    }
-                    orders{
-                        id dateTime fee price status transactionHash
-                        orderUsed  smartContract {
-                            contractName
-                        }
-                    }
-                    purchasedContracts {
-                        customizationsLeft id unlimitedCustomization
-                        licenses {
-                            purchaseDateTime id used
-                            order {
-                                id status licenseType
-                                smartContract {
-                                    id contractName image
-                                }
-                            }
-                        }
-                        smartContract {
-                            contractName id
-                        }
-                    }
-                }
-            }`}).then(result => {
-                console.log("Index",result.data.me)
-                setUser(result.data.me);
-                setLoading(false)
-            }).catch(e => {
-                console.log(e.toString());
-                setLoading(false)
-            });
-            if (loading){
-                return <Spinner/>
-            } if (user){
-                return <Routes {...props} user={user}/>
-            }else {
-                return <div>Eternal Error</div>
-            }
-        }else {
-            return <Routes {...props} user={null}/>
-        }
+    const RenderData=()=>{
+        const {loading,data,error} =useQuery(me_Query,{client:client})
+        if (loading) return <Spinner/>
+        if (error) return (
+            match(error.toString())?
+                <Routes {...props} user={null}/>:
+                <div>{error.toString()}</div>
+        )
+        return <Routes {...props} user={data.me}/>
     }
     return  (
         <AlertProvider template={AlertTemplate} {...options}>
-            {renderData()}
+            {RenderData()}
         </AlertProvider>
     )
 }
@@ -105,7 +63,7 @@ ReactDOM.render(
     <Provider store={store}>
         <Router>
             <ApolloProvider client={client}>
-                <Main />
+                <Main/>
             </ApolloProvider>
         </Router>
     </Provider>

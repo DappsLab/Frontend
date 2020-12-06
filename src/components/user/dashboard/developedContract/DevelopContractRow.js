@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {graphql} from "react-apollo";
-import { getContract} from "../../../../queries/queries";
+import {contractById, getContract} from "../../../../queries/queries";
 import {flowRight as compose} from "lodash";
 import  {Loader,Table,Icon} from "semantic-ui-react";
 import {Link} from "react-router-dom";
@@ -60,7 +60,7 @@ class DevelopContractRow extends Component{
 }
 
 export default compose(
-    graphql(getContract, {
+    graphql(contractById, {
         options: (props) => {
             return {
                 variables: {

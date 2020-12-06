@@ -1,0 +1,20 @@
+.home_banner {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center; }
+  .home_banner h1 {
+    font-size: 60px;
+    width: 700px; }
+    .home_banner h1 span:first-child {
+      color: #8F4114; }
+    .home_banner h1 span:last-child {
+      color: #5754AB; }
+  .home_banner p {
+    padding: 0 10px;
+    width: 700px;
+    color: #5754AB;
+    font-size: 20px; }
+
+/*# sourceMappingURL=home.css.map */

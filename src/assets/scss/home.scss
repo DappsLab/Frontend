@@ -1,0 +1,30 @@
+@import "colors";
+.home_banner{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  h1{
+
+    font-size: 60px;
+    width: 700px;
+    span:first-child{
+      color: $brown-color;
+    }
+    span:last-child{
+      color: $liberty-color;
+    }
+  }
+  p{
+    padding: 0 10px;
+    width: 700px;
+    color: $liberty-color;
+    font-size: 20px;
+  }
+}
+.home_blockchain{
+  h2{
+
+  }
+}

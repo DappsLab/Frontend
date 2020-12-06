@@ -10,7 +10,12 @@ import {faArrowUp} from "@fortawesome/free-solid-svg-icons";
 import CustomizedDialogs from "../../ui/DialogBox";
 import {flowRight as compose} from "lodash";
 import {graphql} from "react-apollo";
-import {createNewContract, getContract, imageUpload, sourceUpload} from "../../../queries/queries";
+import {
+    createNewContract,
+    imageUpload,
+    pendingSmartContract,
+    sourceUpload
+} from "../../../queries/queries";
 import Layout from "../../../hoc/Layout";
 import Uploader from "../../ui/Uploader";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -18,7 +23,7 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/animated'
 import {withAlert} from "react-alert";
 import {Spinner} from "../../ui/Spinner";
-
+import MEDitor from "@uiw/react-md-editor";
 
 const acceptedFileTypes = 'image/x-png, image/png, image/jpg, image/jpeg';
 const acceptedFileTypesArray = acceptedFileTypes.split(",").map((item) => {return item.trim()});
@@ -31,7 +36,7 @@ class UploadSmartContract extends Component{
         shortCounter:200,
         longCounter:600,
         shortDescription:"",
-        longDescription:"",
+        longDescription:"`# Markdown Editor for React**Hello world!!!**",
         contractName:"",
         contractCategory:[],
         finalCategoryArray:[],
@@ -378,7 +383,7 @@ class UploadSmartContract extends Component{
                         unlimited: unlimitedPrice.toString(),
                         source: sourcePath.toString()
                     },
-                    refetchQueries: [{query: getContract}]
+                    refetchQueries: [{query: pendingSmartContract}]
                 }).then((result) => {
                     that.setState({loading: false})
                     // alert.success("User Register Successfully. Email varifection send tou your provided Email ",{timeout: 15000})
@@ -417,7 +422,9 @@ class UploadSmartContract extends Component{
             event.target.value = "";
         }
     };
-
+    onChange=(event)=>{
+        this.setState({longDescription:event})
+    }
 
     render() {
         const {funcationName,fNameError,tags,longCounter,shortCounter,loading,showAssocited,showDialog,crop,imageData,imageSrc,formErrors,contractName,onePrice,shortDescription,longDescription,show,unlimitedPrice}=this.state;
@@ -566,13 +573,17 @@ class UploadSmartContract extends Component{
                                                 Characters left: {longCounter}
                                             </Header>
                                             <Form>
-                                                <TextArea
-                                                    value={longDescription} name={"longDescription"}
-                                                    onChange={this.handleChange} className={"editor"} >
-                                                </TextArea>
-                                                {formErrors.longDescription.length>0&&(
-                                                    <span className={"errorMessage"}>{formErrors.longDescription}</span>
-                                                )}
+                                                <div className="container">
+                                                    <MEDitor height={200} value={this.state.longDescription} onChange={(event)=>this.onChange(event)} />
+                                                    {/*<MEDitor.Markdown source={this.state.longDescription} />*/}
+                                                </div>
+                                                {/*<TextArea*/}
+                                                {/*    value={longDescription} name={"longDescription"}*/}
+                                                {/*    onChange={this.handleChange} className={"editor"} >*/}
+                                                {/*</TextArea>*/}
+                                                {/*{formErrors.longDescription.length>0&&(*/}
+                                                {/*    <span className={"errorMessage"}>{formErrors.longDescription}</span>*/}
+                                                {/*)}*/}
                                             </Form>
                                         </Fade>
                                         <Button disabled={this.state.showAssocited} onClick={this.handleSaveContractData} className={"btnsave"} >Save</Button>

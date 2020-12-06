@@ -1,56 +1,15 @@
-import React, {Component} from 'react';
-import {ApolloClient,gql, InMemoryCache} from "@apollo/client";
-import {withAlert} from "react-alert";
+import React from 'react';
 import {Spinner2} from "../../ui/Spinner";
+import { pendingSmartContract} from "../../../queries/queries";
+import CollapsibleFormTable from "../../ui/CollapsibleTableForm";
+import {  useQuery } from '@apollo/client';
 
-const client = new ApolloClient({
-    uri: 'http://localhost:4000/graphql',
-    cache: new InMemoryCache(),
-    headers: {
-        authorization: localStorage.getItem("token"),
-    }
-});
-class SmartContractVerification extends Component {
-    state={
-        data:null,
-        loading:true,
-    }
-    componentDidMount() {
-        const that=this;
-        const alert=this.props.alert
-        client.query({
-            query: gql`  query  {
-                searchPendingSmartContracts {
-                    id
-                    verified
-                    publisher {
-                        id
-                        fullName
-                    }
-                    image
-                }
-            }`
-        }).then(result=>{
-            console.log(result.data.searchPendingSmartContracts)
-            that.setState({loading:false,data:result.data.searchPendingSmartContracts})
-        }).catch(error=>{
-            alert.error(error.toString(),{timeout:5000});
-            console.log(error.toString())
-            that.setState({loading:false});
-        })
-    }
-    render() {
-        const {loading,data}=this.state
-        return (
-            <div>
-                {loading?<Spinner2/> :
-                    data.map(da=>{
-                        return <div key={da.id}>{da.verified}</div>
-                    })
-                }
-            </div>
-        );
-    }
-}
+const SmartContractVerification = (props) => {
+    const {loading,error,data}=useQuery(pendingSmartContract);
+    if (loading) return <Spinner2/>
+    if (error) return <div className={"errorMessage"}>{error.toString()}</div>
+    if (data.searchPendingSmartContracts.length>0) return <CollapsibleFormTable {...props} data={data.searchPendingSmartContracts}/>
+    return <div>Empty</div>
+};
 
-export default  withAlert()(SmartContractVerification);
+export default SmartContractVerification;

@@ -33,16 +33,19 @@ import {connect} from "react-redux";
 import {setUser} from "./actions/Actions";
 import OrderContracts from "./components/user/dashboard/orderContract/OrderContracts";
 import ExplorerResult from "./components/block_explorer/explorerSearch/ExplorerResult";
-import EditSmartContract from "./components/home/uploadContract/EditSmartContract";
+import EditSmartContract from "./components/home/uploadContract/editSmartContract/EditSmartContract";
 import Compile from "./components/home/smartContract/Compile";
+import {Query} from "react-apollo";
+import {me_Query} from "./queries/queries";
+import {Spinner} from "./components/ui/Spinner";
 
 
 const Routes =(props)=>{
      useEffect(()=>{
-               const user=props.user;
-               if (user!==null) {
-                    props.setUser(user);
-               }
+          const user=props.user;
+          if (user!==null) {
+               props.setUser(user);
+          }
      })
          return (
          <Switch>

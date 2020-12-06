@@ -24,8 +24,10 @@
 
 .generalRight {
   width: 900px; }
-  .generalRight .ui.form textarea {
+  .generalRight .editor {
     max-height: 200px !important; }
+  .generalRight .container textarea {
+    background: none !important; }
   .generalRight .ui.floated.header {
     padding: 0 0 10px 0; }
   .generalRight .ui.floated.header.right {

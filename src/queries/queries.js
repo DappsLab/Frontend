@@ -1,49 +1,46 @@
 import { gql } from '@apollo/client';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
+const grapqg_path='http://localhost:4000/graphql';
 const client = new ApolloClient({
     uri: 'http://localhost:4000/graphql',
     cache: new InMemoryCache()
 });
-const Authclient = new ApolloClient({
-    uri: 'http://localhost:4000/graphql',
-    cache: new InMemoryCache(),
-    headers: {
-        authorization: localStorage.getItem("token"),
-    }
-});
-const test=Authclient.query({
-    query: gql`query {
-        me{
-            avatar address fullName id type twoFactorCode
-            email location userName twoFactorEnabled balance
-            kyc{   birthDate
-                building city country kycStatus mobile
-                nationality postalCode street kycStatus
-            }
-            orders{
-                id dateTime fee price status transactionHash
-                orderUsed smartContract {
-                    contractName
-                }
-            }
-            purchasedContracts {
-                customizationsLeft id unlimitedCustomization
-                licenses {
-                    purchaseDateTime
-                    order {
-                        id status
-                        smartContract {
-                            id
-                        }
-                    }
-                }
-                smartContract {
-                    contractName id
-                }
+
+export const me_Query=gql`query {
+    me{
+        avatar address fullName id type twoFactorCode
+        email location userName twoFactorEnabled balance
+        kyc{   birthDate
+            building city country kycStatus mobile
+            nationality postalCode street kycStatus
+        }
+        orders{
+            id dateTime fee price status transactionHash
+            orderUsed smartContract {
+                contractName
             }
         }
-    }`
-})
+        purchasedContracts {
+            customizationsLeft id unlimitedCustomization
+            licenses {
+                purchaseDateTime id used
+                order {
+                    id status licenseType
+                    smartContract {
+                        id contractName image
+                    }
+                }
+
+            }
+            smartContract {
+                contractName id
+            }
+        }
+    }
+}`
+
+//
+
 //Query
 const updateUser=gql`
     mutation ($fullName: String,$location: String,$avatar:String,$balance:String){
@@ -308,14 +305,67 @@ const licenseById=gql`query ($id:ID!){
     }
 }
 `
-const pendingKYC= gql`  query  {
+const pending_kyc_query= gql`query  {
     searchPendingKyc {
-        id fullName
+        id fullName createdAt
+        email location
         kyc {
             birthDate kycStatus
             city country street
             building mobile
             nationality postalCode
         }
-    }}`
-export {test,pendingKYC,search,licenseById,orderContract,UserKyc,kycMutation,client,disable2FA,verify2FA,enableFA,createNewContract,sourceUpload,getContract,contractById,newPassword,forgetPassword,confirmEmail,deleteUser,getAuth,updateUser,userData,getUsersData,imageUpload,createNewUser};
+    }
+}`
+const verifyKyc=gql`mutation ($id:ID!){
+verifyKyc(id: $id)
+}`
+const cancelKyc=gql`mutation ($id:ID!){
+    cancelKyc(id: $id)
+}`
+const pendingSmartContract=gql` query  {
+    searchPendingSmartContracts {
+         id
+    verified
+    publisher {
+      id
+      fullName
+    }
+    source
+    image
+    tags
+    sourceContractName
+    contractName
+    description
+    publishingDateTime
+    shortDescription
+    singleLicensePrice
+    unlimitedLicensePrice
+    }
+}`
+const cancel_smart_contract=gql`
+    mutation ($id:ID!) {
+        cancelSmartContract(id: $id) {
+            id
+
+        }
+    }
+`
+const verify_smart_contract=gql`
+    mutation ($id:ID!) {
+        verifySmartContract(id: $id) {
+            id
+        }
+    }
+`
+export const getSource=gql` query ($id:ID!){
+        getSource(id: $id)
+    }
+`
+export const compile=gql` mutation ($name:String!,$sId:ID!,$pId:ID!,$lId:ID!) {
+    compileContract(newCompile: {compilationName:$name,smartContract: $sId, purchasedContract: $pId, license: $lId}) {
+        id compiledFile
+    }
+}`
+
+export {verify_smart_contract,cancel_smart_contract,cancelKyc,verifyKyc,grapqg_path,pendingSmartContract,pending_kyc_query,search,licenseById,orderContract,UserKyc,kycMutation,client,disable2FA,verify2FA,enableFA,createNewContract,sourceUpload,getContract,contractById,newPassword,forgetPassword,confirmEmail,deleteUser,getAuth,updateUser,userData,getUsersData,imageUpload,createNewUser};
