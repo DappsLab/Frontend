@@ -151,6 +151,11 @@ class GeneralSetting extends Component {
                     me{
                         avatar address fullName id type twoFactorCode
                         email location userName twoFactorEnabled balance
+                        smartContracts {
+                            id contractName createdAt description verified
+                            image source  unlimitedLicensePrice singleLicensePrice
+                            contractCategory publishingDateTime
+                        }
                         kyc{   birthDate
                             building city country kycStatus mobile
                             nationality postalCode street kycStatus

@@ -36,7 +36,7 @@ class UploadSmartContract extends Component{
         shortCounter:200,
         longCounter:600,
         shortDescription:"",
-        longDescription:"`# Markdown Editor for React**Hello world!!!**",
+        longDescription:"",
         contractName:"",
         contractCategory:[],
         finalCategoryArray:[],
@@ -403,7 +403,6 @@ class UploadSmartContract extends Component{
                         two:false,
                     })
                     alert.error(error.toString(), {timeout: 5000})
-
                 })
             }
         }

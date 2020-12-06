@@ -17,7 +17,6 @@ class DevelopedContracts extends Component {
         }
     }
     render() {
-        console.log(this.props)
         const {currentUser}=this.state;
         return (
             <DashboardLayout>
@@ -33,7 +32,7 @@ class DevelopedContracts extends Component {
                             <Table.HeaderCell width={1}>Action</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
-                    <DevelopContractRow id={currentUser.id}/>
+                    <DevelopContractRow smartContracts={currentUser.smartContracts}/>
                 </Table>
             </DashboardLayout>
         );

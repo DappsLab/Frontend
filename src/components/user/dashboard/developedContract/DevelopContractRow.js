@@ -5,6 +5,7 @@ import {flowRight as compose} from "lodash";
 import  {Loader,Table,Icon} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 import DeleteModal from "./DeleteModel";
+import {dateTime} from "../../../../helpers/DateTimeConversion";
 
 
 
@@ -17,33 +18,23 @@ class DevelopContractRow extends Component{
     }
     delateAction=()=>{
         this.closeModal();
-        console.log("here")
     }
     handelDeveloped(){
-        const data = this.props.data;
-        console.log(this.props)
-        if (data.loading){
-            return <Table.Row >
-                <Table.Cell className={"developed_body"}>
-                    <Loader  size={"big"} content={"Loading"} active/>
+        const smartContracts = this.props.smartContracts;
+        return smartContracts.map((contract,index)=>{
+            return <Table.Row key={contract.id} >
+                <Table.Cell>{index+1}</Table.Cell>
+                <Table.Cell width={3}>{contract.contractName}</Table.Cell>
+                <Table.Cell width={2}>{contract.singleLicensePrice}</Table.Cell>
+                <Table.Cell width={2}>{contract.unlimitedLicensePrice}</Table.Cell>
+                <Table.Cell width={3}>{dateTime( contract.publishingDateTime)}</Table.Cell>
+                <Table.Cell width={1} negative={contract.verified!=="VERIFIED"&&true} positive={contract.verified==="VERIFIED"&&true}>{contract.verified}</Table.Cell>
+                <Table.Cell  width={1}>
+                    <Link to={`/edit_samrt_contract/${contract.id}`}><Icon circular  link  inverted color='green' name='edit'/></Link>
+                    <span onClick={()=>{this.setState({modalOpen:true})}}> <Icon circular link  inverted color='red' name='delete'/></span>
                 </Table.Cell>
             </Table.Row>
-        } else {
-            return data.smartContracts.map((contract,index)=>{
-                return <Table.Row key={contract.id} >
-                    <Table.Cell>{index+1}</Table.Cell>
-                    <Table.Cell width={3}>{contract.contractName}</Table.Cell>
-                    <Table.Cell width={2}>{contract.singleLicensePrice}</Table.Cell>
-                    <Table.Cell width={2}>{contract.unlimitedLicensePrice}</Table.Cell>
-                    <Table.Cell width={3}>{contract.publishingDateTime}</Table.Cell>
-                    <Table.Cell width={1} negative={contract.verified!=="VERIFIED"&&true} positive={contract.verified==="VERIFIED"&&true}>{contract.verified}</Table.Cell>
-                    <Table.Cell  width={1}>
-                        <Link to={`/edit_samrt_contract/${contract.id}`}><Icon circular  link  inverted color='green' name='edit'/></Link>
-                        <span onClick={()=>{this.setState({modalOpen:true})}}> <Icon circular link  inverted color='red' name='delete'/></span>
-                    </Table.Cell>
-                </Table.Row>
-            })
-        }
+        })
     }
     render() {
         return (
@@ -59,14 +50,4 @@ class DevelopContractRow extends Component{
     }
 }
 
-export default compose(
-    graphql(contractById, {
-        options: (props) => {
-            return {
-                variables: {
-                    id:props.id
-                }
-            }
-        }
-    })
-)(DevelopContractRow);
+export default (DevelopContractRow);

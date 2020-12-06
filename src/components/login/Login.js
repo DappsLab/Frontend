@@ -72,6 +72,11 @@ class Login extends Component {
                               avatar address balance
                               fullName id type twoFactorCode
                               email location userName twoFactorEnabled
+                              smartContracts {
+                                  id contractName createdAt description verified
+                                  image source  unlimitedLicensePrice singleLicensePrice
+                                  contractCategory publishingDateTime
+                              }
                               orders{
                                   id dateTime fee price orderUsed 
                                   smartContract {

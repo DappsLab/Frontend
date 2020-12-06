@@ -23,8 +23,9 @@ import {
 import {withAlert} from "react-alert";
 import {useMutation, useQuery} from "@apollo/client";
 import MEDitor from "@uiw/react-md-editor";
-
-
+import {Controlled as CodeMirror} from 'react-codemirror2'
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/material.css';
 const useRowStyles = makeStyles({
     root: {
         '& > *': {
@@ -116,8 +117,14 @@ function Row(props) {
                                 <TableRow>
                                     <TableCell style={{ width: 220 }}>Cntract Source </TableCell>
                                     <TableCell>
-
-                                        <MEDitor.Markdown source={GetSources(row.id)}  />
+                                        <CodeMirror
+                                            value={GetSources(row.id)}
+                                            options={{mode:'sol', lineNumbers: true,theme:'material'}}
+                                            // onBeforeChange={(editor, data, value) => {
+                                            //     this.setState({value});
+                                            // }}
+                                        />
+                                        {/*<MEDitor.Markdown source={GetSources(row.id)}  />*/}
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
