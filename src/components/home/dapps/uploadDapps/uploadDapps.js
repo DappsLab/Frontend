@@ -4,7 +4,8 @@ import Layout from "../../../../hoc/Layout";
 const UploadDapps = () => {
     return (
         <Layout>
-            upload_dapps
+           <h2>Upload Dapps</h2>
+            
         </Layout>
     );
 };

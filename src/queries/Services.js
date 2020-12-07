@@ -13,9 +13,9 @@ export const Client = new ApolloClient({
     }
 })
 export const match=(data)=>{
-    if (data.toString().toLowerCase().includes("cannot return null for non-nullable field query.me")){
+    // if (data.toString().toLowerCase().includes("cannot return null for non-nullable field query.me")){
         localStorage.removeItem('token');
         return true
-    }
+    // }
 }
 
