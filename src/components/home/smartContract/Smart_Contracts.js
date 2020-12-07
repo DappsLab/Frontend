@@ -20,10 +20,8 @@ class Smart_Contracts extends Component {
     state={
         sliderMinValue:0,
         sliderMaxValue:1500,
-        searchResult:null,
         show:false,
         loading:false,
-        visible:false,
         sort:'',
         name:"",
         tag:"",
@@ -58,13 +56,16 @@ class Smart_Contracts extends Component {
     }
     onKeyUp(event) {
         if (event.charCode === 13) {
-            console.log(this.state.searchValue)
-            this.onSubmit();
+            if (this.state.searchValue!=="") {
+                this.onSubmit();
+            }
         }
 
     }
     onSearch=()=>{
-        this.onSubmit();
+        if (this.state.searchValue!=="") {
+            this.onSubmit();
+        }
     }
     updateCheckBox (element){
         const newData =  Object.assign([], this.state.checkboxs);
@@ -140,9 +141,10 @@ class Smart_Contracts extends Component {
         return (
             <Layout>
                 <ExplorerContract
+                    type={'contract'}
                     onKeyUp={(event)=>this.onKeyUp(event)}
                     value={searchValue}
-                    change={this.handleChange}
+                    change={(event)=>this.handleChange(event)}
                     onSearch={this.onSearch}
                 />
                 <Grid className={'contract_container'} >
@@ -193,7 +195,7 @@ class Smart_Contracts extends Component {
                         }
                     </Grid.Column>
                 </Grid>
-                <Developer/>
+                <Developer type={"contract"} link={'/upload_samrt_contract'}/>
                 <CustomSmartContract/>
             </Layout>
         );

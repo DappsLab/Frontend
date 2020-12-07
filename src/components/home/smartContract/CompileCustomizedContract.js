@@ -76,6 +76,7 @@ export const CompileResult=(props)=>{
     const {loading,error,data}=useQuery(me_Query,{client:Client,
         onCompleted:data1 => {
             props.setUser(data1.me);
+            console.log(data1.me)
         },onError:error1 => {
             alert.error(error1.toString(),{timeout:5000})
         },
@@ -87,6 +88,7 @@ export const CompileResult=(props)=>{
     });
     if (loading) return <Spinner2/>
     if (error) return <div>{error.toString()}</div>
+    console.log(data.me)
     return (
         <div className={'compile_result'}>
             <h2>Successfully Compiled</h2>

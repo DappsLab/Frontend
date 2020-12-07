@@ -6,7 +6,7 @@ import {Switch} from "react-router-dom";
 import Home from "./components/home/Home";
 import AboutUs from "./components/home/AboutUs";
 import BlockExplorer from "./components/block_explorer/BlockExplorer";
-import Dapps from "./components/home/Dapps";
+import Dapps from "./components/home/dapps/Dapps";
 import Downloads from "./components/home/Downloads";
 import Help from "./components/home/Help";
 import Smart_Contracts from "./components/home/smartContract/Smart_Contracts";
@@ -38,6 +38,7 @@ import Compile from "./components/home/smartContract/Compile";
 import {Query} from "react-apollo";
 import {me_Query} from "./queries/queries";
 import {Spinner} from "./components/ui/Spinner";
+import UploadDapps from "./components/home/dapps/uploadDapps/uploadDapps";
 
 
 const Routes =(props)=>{
@@ -54,6 +55,7 @@ const Routes =(props)=>{
               <PrivateRoute {...props}  path={"/dashboard/test_contract"} exact component={TestContract}/>
               <PrivateRoute {...props}  path={"/dashboard/purchased"} exact component={Purchased}/>
               <PrivateRoute {...props}  path={"/account_settings"} component={UserAccount}/>
+              <PrivateRoute {...props} path={'/upload_dapps'} component={UploadDapps}/>
               <PrivateRoute {...props}  path={"/logout"} exact component={Logout}/>
               <PrivateRoute {...props}  path={"/delete_user"} exact component={DeleteUser}/>
               <PrivateRoute {...props}  path={"/edit_samrt_contract/:id"} exact component={EditSmartContract}/>

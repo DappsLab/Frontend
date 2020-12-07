@@ -4,15 +4,17 @@ import {Link} from "react-router-dom";
 import {Button} from "semantic-ui-react";
 
 
-const Developer = () => {
+const Developer = (props) => {
     return (
         <section className={"uploadSection flex"}>
             <div>
                 <h2>Developers!</h2>
-                <p>You can upload your smart contract to DappsLab marketplace</p>
+                <p>You can upload your {props.type==="contract"?" smart contract ":" Dapps "} to DappsLab marketplace</p>
             </div>
-            <Link to={"/upload_samrt_contract"}>
-                <Button className={"cursor"}>Upload Smart Contract</Button>
+            <Link to={props.link}>
+                <Button className={"cursor"}>
+                    Upload {props.type==="contract"?" Smart Contract":"Dapps"}
+                </Button>
             </Link>
         </section>
     );

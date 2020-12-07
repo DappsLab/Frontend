@@ -12,7 +12,7 @@ import {Spinner2} from "../../ui/Spinner";
 
 const ContractCard =(props)=>{
     const [height,setHeight]=useState("1200px");
-   const renderCategory=(categorys)=>(
+    const renderCategory=(categorys)=>(
         categorys.map(category=>{
             return  <Button size={'mini'}
                 key={category}  style={{backgroundColor:`${categoryColors(category)}`}}

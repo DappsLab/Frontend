@@ -1,26 +1,20 @@
-import React, {Component} from 'react';
-import {graphql} from "react-apollo";
-import {contractById, getContract} from "../../../../queries/queries";
-import {flowRight as compose} from "lodash";
-import  {Loader,Table,Icon} from "semantic-ui-react";
+import React, { useState} from 'react';
+
+import  {Table,Icon} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 import DeleteModal from "./DeleteModel";
 import {dateTime} from "../../../../helpers/DateTimeConversion";
 
-
-
-class DevelopContractRow extends Component{
-    state={
-        modalOpen:false,
+const DevelopContractRow =(props)=>{
+    const [modalOpen,setModalOpen]=useState(false);
+    const closeModal=()=> {
+        setModalOpen(false)
     }
-    closeModal=()=>{
-        this.setState({modalOpen:false})
+    const delateAction=()=>{
+        closeModal();
     }
-    delateAction=()=>{
-        this.closeModal();
-    }
-    handelDeveloped(){
-        const smartContracts = this.props.smartContracts;
+    const HandelDeveloped=()=>{
+        const smartContracts = props.smartContracts;
         return smartContracts.map((contract,index)=>{
             return <Table.Row key={contract.id} >
                 <Table.Cell>{index+1}</Table.Cell>
@@ -31,23 +25,21 @@ class DevelopContractRow extends Component{
                 <Table.Cell width={1} negative={contract.verified!=="VERIFIED"&&true} positive={contract.verified==="VERIFIED"&&true}>{contract.verified}</Table.Cell>
                 <Table.Cell  width={1}>
                     <Link to={`/edit_samrt_contract/${contract.id}`}><Icon circular  link  inverted color='green' name='edit'/></Link>
-                    <span onClick={()=>{this.setState({modalOpen:true})}}> <Icon circular link  inverted color='red' name='delete'/></span>
+                    <span onClick={()=>{setModalOpen(true)}}> <Icon circular link  inverted color='red' name='delete'/></span>
                 </Table.Cell>
             </Table.Row>
         })
     }
-    render() {
-        return (
-            <Table.Body>
-                {this.handelDeveloped()}
-                <DeleteModal
-                    open={this.state.modalOpen}
-                    close={this.closeModal}
-                    deleteAction={this.delateAction}
-                />
-            </Table.Body>
-        )
-    }
+    return (
+        <Table.Body>
+            {HandelDeveloped()}
+            <DeleteModal
+                open={modalOpen}
+                close={()=>setModalOpen(false)}
+                deleteAction={delateAction}
+            />
+        </Table.Body>
+    )
 }
 
 export default (DevelopContractRow);
