@@ -6,7 +6,6 @@ import {alphabetRegex} from "../../ui/Helpers";
 import {Button, Form, Grid, Select} from "semantic-ui-react";
 import CustomizedSlider from "../../ui/slider";
 import square_blue from "../../../assets/images/square_blue.png";
-import ContractCard from "../smartContract/ContractCard";
 import {CheckBox} from "../../ui/FormFields";
 import DappsCard from "./DappsCard";
 import {useQuery} from "@apollo/client";

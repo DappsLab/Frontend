@@ -175,13 +175,7 @@ export const kycMutation=gql`
   }
 `;
 //====================Me Query===============================
-export const getUsersData=`
-query GetData {
-users {
-userName email fullName
-}
-}
-`;
+
 //============================================================
 // Smart Contract
 //============================================================
@@ -387,4 +381,9 @@ export const getDapps=gql`
       id
     }
   }
-`
+`;
+export const createDapps=gql`mutation ($input:newDApp){
+  createDApp(newDApp: $input){
+  id
+  }
+}`;

@@ -25,6 +25,10 @@ const EditSmartContract =(props)=> {
     const [imgModel,setimgModel]=useState(false);
     const [crop,setCrop]=useState({x: 0, y: 0, width: 300, height: 300, aspect: 1})
     const [imgRef,setImgRef]=useState();
+    const [tags,setTag]=useState([]);
+    const [shortDescription,setshortDescription]=useState("");
+    const [longDescription,setlongDescription]=useState("");
+    const [finalCategoryArray,setFinalCategoryArray]=useState([]);
     const  categoryOption=[
         {label: "TOOLS",value: "TOOLS"},
         {label: "FINANCIAL",value: "FINANCIAL"},
@@ -142,7 +146,15 @@ const EditSmartContract =(props)=> {
        setimgModel(false)
         MakeClientCrop(crop);
     }
-
+    const removeTags=(i)=> {
+        setTag(tags.filter((tag, index) => index !== i))
+    }
+    const addTags = event => {
+        if (event.target.value !== "") {
+            setTag( [...tags ,event.target.value]);
+            event.target.value = "";
+        }
+    }
     const RenderContractData=()=>{
         const {loading,error,data}=useQuery(contractById,{
             variables:{id:props.match.params.id},
@@ -200,6 +212,27 @@ const EditSmartContract =(props)=> {
                         </div>
                         <Avatar src={imgPath===""? contract.image:imgPath} style={{height:"120px",marginLeft:"10px" ,width:"120px"}} />
                     </div>
+                </Form.Field>
+                <Form.Field>
+                    <label>Tag:</label>
+                    <div className="tags-input">
+                        <ul id="tags">
+                            {tags.map((tag, index) => (
+                                <li key={index} className="tag">
+                                    <span className='tag-title'>{tag}</span>
+                                    <span className='tag-close-icon'
+                                          onClick={() => removeTags(index)}
+                                    >x</span>
+                                </li>
+                            ))}
+                        </ul>
+                        <input
+                            type="text"
+                            onKeyUp={event => event.key === "Enter" ? addTags(event) : null}
+                            placeholder="Press enter to add tags"
+                        />
+                    </div>
+                    <p className={"info"}>List of tags</p>
                 </Form.Field>
             </Form>
         </Grid.Column>

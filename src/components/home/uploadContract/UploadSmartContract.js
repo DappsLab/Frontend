@@ -17,6 +17,7 @@ import {
 } from "../../../queries/queries";
 import Layout from "../../../hoc/Layout";
 import Uploader from "../../ui/Uploader";
+
 import Checkbox from "@material-ui/core/Checkbox";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated'
@@ -42,7 +43,6 @@ const UploadSmartContract =(props)=>{
     const [crop,setCrop]=useState({x: 0, y: 0, width: 300, height: 300, aspect: 1})
     const [imgRef,setImgRef]=useState();
     const [shortCounter,setshortCounter]=useState(200);
-    const [longCounter,setlongCounter]=useState(600);
     const [finalCategoryArray,setFinalCategoryArray]=useState([]);
     const [tags,setTag]=useState([]);
     const [contractError,setContractError]=useState("");
@@ -480,9 +480,6 @@ const UploadSmartContract =(props)=>{
                                     <Fade bottom delay={500}>
                                         <Header as={'h3'} floated={'left'}>
                                             Contract Description
-                                        </Header>
-                                        <Header as={'span'} floated={'right'}>
-                                            Characters left: {longCounter}
                                         </Header>
                                         <Form>
                                             <div className="container">
