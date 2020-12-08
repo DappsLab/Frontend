@@ -387,3 +387,9 @@ export const createDapps=gql`mutation ($input:newDApp){
   id
   }
 }`;
+
+export const dappsFile=gql`
+mutation ($file:Upload!) {
+  dAppUploader(file: $file)
+}
+`

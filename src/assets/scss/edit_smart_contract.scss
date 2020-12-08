@@ -4,6 +4,11 @@
     width: 70%!important;
     margin: 0 auto;
     align-items: flex-start!important;
-    justify-content: flex-start;
+    color: #0F0E2e;
+
+  }
+  .ui[class*="middle aligned"].grid>.column:not(.row){
+    vertical-align: unset!important;
+    align-self: flex-start!important;
   }
 }

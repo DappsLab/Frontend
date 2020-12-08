@@ -1,5 +1,10 @@
 .edit_contract .ui.grid {
   width: 70% !important;
-  margin: 0 auto; }
+  margin: 0 auto;
+  align-items: flex-start !important;
+  color: #0F0E2e; }
+.edit_contract .ui[class*="middle aligned"].grid > .column:not(.row) {
+  vertical-align: unset !important;
+  align-self: flex-start !important; }
 
 /*# sourceMappingURL=edit_smart_contract.css.map */

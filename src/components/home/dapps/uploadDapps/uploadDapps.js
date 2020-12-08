@@ -129,7 +129,12 @@ const UploadDapps = (props) => {
                                     <input type="file"  accept="image/jpeg,image/png" onChange={(event => handleChangeImage(event))} name={"img"}/>
                                     <FontAwesomeIcon className={"arrowIcon"} icon={faArrowUp}/>
                                 </div>
-                                {/*<Avatar src={imgPath===""? contract.image:imgPath} style={{height:"120px",marginLeft:"10px" ,width:"120px"}} />*/}
+                                {console.log(imgPath)}
+                                {imgPath.length > 0 &&
+                                     <Avatar
+                                         src={imgPath}
+                                        style={{height: "120px",borderRadius:0, marginLeft: "10px", width: "120px"}}/>
+                                }
                             </div>
                         </Form.Field>
                         <Form.Field>
