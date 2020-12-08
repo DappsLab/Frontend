@@ -3,7 +3,7 @@ import Layout from "../../../../hoc/Layout";
 import { nameReg, numericReg} from "../../../ui/Helpers";
 import {useMutation} from "@apollo/client";
 import '../../../../assets/scss/edit_smart_contract.css'
-import {imageUpload} from "../../../../queries/queries";
+import {dappsFile, imageUpload, sourceUpload} from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
 import {Form, Grid, Header, Input, TextArea} from "semantic-ui-react";
 import Select from "react-select";
@@ -14,6 +14,7 @@ import Avatar from "@material-ui/core/Avatar";
 import {withAlert} from "react-alert";
 
 import MEDitor from "@uiw/react-md-editor";
+import Uploader from "../../../ui/Uploader";
 
 const descriptionRGP=RegExp(/^[a-zA-Z][a-zA-Z\s,.]*$/);
 const UploadDapps = (props) => {
@@ -24,6 +25,7 @@ const UploadDapps = (props) => {
     const [tags,setTag]=useState([]);
     const [shortDescription,setshortDescription]=useState("");
     const [longDescription,setlongDescription]=useState("");
+    const [sourcePath,setsourcePath]=useState("");
     const [shortCounter,setshortCounter]=useState(200);
     const  categoryOption=[
         {label: "TOOLS",value: "TOOLS"},
@@ -86,6 +88,26 @@ const UploadDapps = (props) => {
             setTag( [...tags ,event.target.value]);
             event.target.value = "";
         }
+    }
+    const [source]=useMutation(dappsFile,{
+        client:Client,
+        onCompleted:data1 => {
+            setsourcePath(data1.dAppUploader);
+        },
+        onError:error1 => {
+            alert.error(error1.toString(),{timeout:2000})
+            console.log(error1.toString())
+        },
+        context: {
+            headers: {
+                authorization: localStorage.getItem("token")
+            }
+        },
+    })
+    const Submit=(files)=>{
+        const file=files[0].file;
+        source({variables:{file}})
+
     }
     return (
         <Layout>
@@ -184,6 +206,7 @@ const UploadDapps = (props) => {
                     </Form>
                 </Grid.Column>
             </Grid>
+                <Uploader type={'dapps'} onSubmit={(files) => Submit(files)}/>
             </section>
         </Layout>
     );

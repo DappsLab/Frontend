@@ -513,7 +513,7 @@ const UploadSmartContract =(props)=>{
                                 {/*)}*/}
                                 <Grid columns={2} divided>
                                     <Grid.Column>
-                                        <Uploader onSubmit={(files) => Submit(files)}/>
+                                        <Uploader type={'contract'} onSubmit={(files) => Submit(files)}/>
                                     </Grid.Column>
                                     <Grid.Column>
                                         <Form>

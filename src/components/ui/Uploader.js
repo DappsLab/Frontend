@@ -5,20 +5,27 @@ import "../../assets/scss/upload_smart_contract.css"
 const Uploader = (props) => {
     const handleChangeStatus = ({ meta, file }, status) => {
         if (status==="done"){
-            if (file.name.toLowerCase().includes(".sol")||file.name.toLowerCase().includes(".SOL")){
-                console.log("done");
+            if (props.type==="dapps"){
+                if (file.name.toLowerCase().includes(".zip") || file.name.toLowerCase().includes(".ZIP")) {
+                    console.log("done");
+                } else {
+                    alert("file not supported")
+                }
             }else {
-                alert("file not supported")
+                if (file.name.toLowerCase().includes(".sol") || file.name.toLowerCase().includes(".SOL")) {
+                    console.log("done");
+                } else {
+                    alert("file not supported")
+                }
             }
         }
-
       };
     return (
         <div>
             <Dropzone
                 onChangeStatus={handleChangeStatus}
                 onSubmit={(files)=>props.onSubmit(files)}
-                accept=".sol"
+                accept={props.type==="dapps"?".zip": ".sol"}
                 maxFiles={1}
             />
         </div>
