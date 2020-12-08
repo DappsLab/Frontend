@@ -23,8 +23,8 @@ const DevelopContractRow =(props)=>{
                 <Table.Cell width={2}>{contract.unlimitedLicensePrice}</Table.Cell>
                 <Table.Cell width={3}>{dateTime( contract.publishingDateTime)}</Table.Cell>
                 <Table.Cell width={1} negative={contract.verified!=="VERIFIED"&&true} positive={contract.verified==="VERIFIED"&&true}>{contract.verified}</Table.Cell>
-                <Table.Cell  width={1}>
-                    <Link to={`/edit_samrt_contract/${contract.id}`}><Icon circular  link  inverted color='green' name='edit'/></Link>
+                <Table.Cell className={'action'}  width={1}>
+                    {contract.verified!=="VERIFIED"&&<Link to={`/edit_samrt_contract/${contract.id}`}><Icon circular  link  inverted color='green' name='edit'/></Link>}
                     <span onClick={()=>{setModalOpen(true)}}> <Icon circular link  inverted color='red' name='delete'/></span>
                 </Table.Cell>
             </Table.Row>

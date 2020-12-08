@@ -1,4 +1,4 @@
-@import 'colors';
+  @import 'colors';
 .indexContainer{
   margin: 20px 0!important;
   .borderless{
@@ -22,4 +22,7 @@
 }
 .developed{
   margin-bottom: 20px!important;
+  .action{
+    text-align: center!important;
+  }
 }

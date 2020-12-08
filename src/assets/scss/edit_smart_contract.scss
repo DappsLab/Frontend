@@ -1,14 +1,35 @@
 @import "colors";
-.edit_contract{
-  .ui.grid{
-    width: 70%!important;
+.edit_contract,.edit_dapp {
+  .ui.grid {
+    width: 70% !important;
     margin: 0 auto;
-    align-items: flex-start!important;
+    align-items: flex-start !important;
     color: #0F0E2e;
+  }
+  .header.right{
+    font-size: 14px;
+    color: #0FBA87;
+  }
+  .ui[class*="middle aligned"].grid > .column:not(.row) {
+    vertical-align: unset !important;
+    align-self: flex-start !important;
+  }
 
+  .dzu-dropzone {
+    width: 70% !important;
   }
-  .ui[class*="middle aligned"].grid>.column:not(.row){
-    vertical-align: unset!important;
-    align-self: flex-start!important;
+  h2,.errorMessage{
+    text-align: center!important;
   }
+  .container textarea{
+    background: none!important;
+  }
+}
+.edit_contract{
+
+  input::placeholder,.select__placeholder,.dropdown .text {
+    color: #1B2529!important;
+    opacity: 1!important;
+  }
+
 }

@@ -14,5 +14,7 @@
 
 .developed {
   margin-bottom: 20px !important; }
+  .developed .action {
+    text-align: center !important; }
 
 /*# sourceMappingURL=dashboard.css.map */

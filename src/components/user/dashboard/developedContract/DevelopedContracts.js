@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import DashboardLayout from "../../../../hoc/DashboardLayout";
 import {Table} from "semantic-ui-react";
-import {flowRight as compose} from "lodash";
 import {connect} from "react-redux";
 import DevelopContractRow from "./DevelopContractRow";
 import {setUser} from "../../../../actions/Actions";
@@ -32,7 +31,7 @@ const DevelopedContracts =(props)=> {
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell width={1}>No </Table.HeaderCell>
-                    <Table.HeaderCell  > Contract Name</Table.HeaderCell>
+                    <Table.HeaderCell > Contract Name</Table.HeaderCell>
                     <Table.HeaderCell >Single Price</Table.HeaderCell>
                     <Table.HeaderCell >Unlimited Price</Table.HeaderCell>
                     <Table.HeaderCell >Created Date</Table.HeaderCell>

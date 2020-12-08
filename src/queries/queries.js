@@ -205,7 +205,7 @@ export const contractById=gql`
   query ($id:ID!){
     smartContractById(id: $id)
     {
-      contractCategory id
+      contractCategory id tags
       image description verified
       contractName publishingDateTime
       singleLicensePrice unlimitedLicensePrice
@@ -382,8 +382,8 @@ export const getDapps=gql`
     }
   }
 `;
-export const createDapps=gql`mutation ($input:newDApp){
-  createDApp(newDApp: $input){
+export const createDapps=gql`mutation ($name:String!,$image:String!,$tags:[String]!,$category:[Category!]!,$short:String!,$desc:String!,$price:String!,$zip:String!){
+  createDApp(newDApp: {dAppName: $name, image: $image, tags: $tags, dAppCategory: $category, shortDescription: $short, description: $desc, singleLicensePrice: $price, zip: $zip}){
   id
   }
 }`;
@@ -391,5 +391,20 @@ export const createDapps=gql`mutation ($input:newDApp){
 export const dappsFile=gql`
 mutation ($file:Upload!) {
   dAppUploader(file: $file)
+}
+`
+export const filterDapps=gql` query ($input:searchDApp){
+  filterDApps(searchDApp: $input) {
+    id
+    createdAt
+    dAppCategory
+    dAppName
+    description
+    image
+    publisher {
+      fullName
+    }
+    publishingDateTime
+  }
 }
 `

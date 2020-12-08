@@ -1,11 +1,17 @@
 import React, {useState} from 'react';
 import Layout from "../../../../hoc/Layout";
-import { nameReg, numericReg} from "../../../ui/Helpers";
+import {filename, nameReg, numericReg} from "../../../ui/Helpers";
 import {useMutation} from "@apollo/client";
 import '../../../../assets/scss/edit_smart_contract.css'
-import {dappsFile, imageUpload, sourceUpload} from "../../../../queries/queries";
+import {
+    createDapps,
+    dappsFile,
+    getDapps,
+    imageUpload, me_Query,
+
+} from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
-import {Form, Grid, Header, Input, TextArea} from "semantic-ui-react";
+import {Form, Button,Grid, Header, Input, TextArea} from "semantic-ui-react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated/dist/react-select.esm";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -15,11 +21,13 @@ import {withAlert} from "react-alert";
 
 import MEDitor from "@uiw/react-md-editor";
 import Uploader from "../../../ui/Uploader";
+import {Spinner2} from "../../../ui/Spinner";
+import {isEmpty} from "codemirror/src/util/misc";
 
 const descriptionRGP=RegExp(/^[a-zA-Z][a-zA-Z\s,.]*$/);
 const UploadDapps = (props) => {
     const [cName,setcName]=useState("");
-    const [cetagory,setCategory]=useState([]);
+    const [category,setCategory]=useState([]);
     const [onePrice,setonePrice]=useState('');
     const [imgPath,setImgPath]=useState("");
     const [tags,setTag]=useState([]);
@@ -27,6 +35,8 @@ const UploadDapps = (props) => {
     const [longDescription,setlongDescription]=useState("");
     const [sourcePath,setsourcePath]=useState("");
     const [shortCounter,setshortCounter]=useState(200);
+    const [loading,setLoading]=useState(false);
+    const [error,setError]=useState("");
     const  categoryOption=[
         {label: "TOOLS",value: "TOOLS"},
         {label: "FINANCIAL",value: "FINANCIAL"},
@@ -89,14 +99,58 @@ const UploadDapps = (props) => {
             event.target.value = "";
         }
     }
+    const [createDapp]=useMutation(createDapps,{
+        client:Client,
+        onCompleted:data => {
+            setLoading(false);
+            alert.success("Upload SUccessfully" ,{timeout:2000})
+            props.history.push('/dapps')
+        },onError:error => {
+            alert.error(error.toString(),{timeout:2000})
+            setLoading(false)
+        },context: {
+            headers: {
+                authorization: localStorage.getItem("token")
+            }
+        },
+        refetchQueries:[{query:getDapps,context:{
+                headers: {
+                    authorization: localStorage.getItem("token")
+                }
+            }},{query:me_Query,context:{
+                headers: {
+                    authorization: localStorage.getItem("token")
+                }
+            }}],
+
+    })
     const [source]=useMutation(dappsFile,{
         client:Client,
         onCompleted:data1 => {
+            console.log("here",data1.dAppUploader)
+            let finalCategoryArray=[];
+            for (let i = 0; i < category.length; i++) {
+                finalCategoryArray.push(category[i]['value']);
+            }
             setsourcePath(data1.dAppUploader);
+            console.log(sourcePath)
+            createDapp({
+                variables:{
+                    name:cName.toString(),
+                    image:imgPath,
+                    tags:tags,
+                    category:finalCategoryArray,
+                    short:shortDescription.toString(),
+                    desc:longDescription.toString(),
+                    price:onePrice.toString(),
+                    zip:data1.dAppUploader
+                }
+            })
         },
         onError:error1 => {
             alert.error(error1.toString(),{timeout:2000})
-            console.log(error1.toString())
+            console.log("here",error1.toString())
+            setLoading(false)
         },
         context: {
             headers: {
@@ -104,109 +158,133 @@ const UploadDapps = (props) => {
             }
         },
     })
-    const Submit=(files)=>{
-        const file=files[0].file;
-        source({variables:{file}})
+    const isEmpty=()=>{
+       if (cName.length>0&&imgPath.length>0&&tags.length>0,category.length>0,shortDescription.length>0,longDescription.length>0,onePrice.length>0){
+            return true
+        }else {
+            setError("all fields Required")
+            return false
+        }
+    }
 
+    const Submit=(file)=>{
+        if (isEmpty()){
+            setError("")
+            setLoading(true)
+            source({variables:{file}})
+        }
     }
     return (
         <Layout>
-            <section className={'edit_contract'}>
+            <section className={'edit_dapp'}>
            <h2>Upload Dapps</h2>
-            <Grid stretched columns={2} verticalAlign={'middle'}>
-                <Grid.Column width={5}>
-                    <Form>
-                        <Form.Field>
-                            <label>Contract Name</label>
-                            <Input
-                                type={'text'} name={'cName'}  value={cName}
-                                onChange={(event)=>onInputChange(event)}/>
-                        </Form.Field>
-                        <Form.Field>
-                            <label>Contract Category:</label>
-                            <Select
-                                components={makeAnimated()}
-                                isMulti
-                                size={'large'}
-                                value={cetagory}
-                                onChange={(value)=>setCategory(value)}
-                                name="contractCategory"
-                                options={categoryOption}
-                                className="basic-multi-select"
-                                classNamePrefix="select"
-                            />
-                        </Form.Field>
-                        <Form.Field>
-                            <label >Price per License</label>
-                            <Input
-                                fluid size={'large'} value={onePrice}
-                                label={{ basic: true, content: 'Dapps' }}
-                                name={"onePrice"}
-                                onChange={(event)=>onInputChange(event)}/>
-                        </Form.Field>
-                        <Form.Field>
-                            <label>Image</label>
-                            <div className="wrapper">
-                                <div className="file-upload">
-                                    <input type="file"  accept="image/jpeg,image/png" onChange={(event => handleChangeImage(event))} name={"img"}/>
-                                    <FontAwesomeIcon className={"arrowIcon"} icon={faArrowUp}/>
+                {loading ? <Spinner2/> :
+                    <div>
+                        {error.length>0&&<span className={'errorMessage'}>{error}</span>}
+                    <Grid stretched columns={2} verticalAlign={'middle'}>
+                        <Grid.Column width={5}>
+                            <Form>
+                                <Form.Field>
+                                    <label>Dapps Name</label>
+                                    <Input
+                                        type={'text'} name={'cName'} value={cName}
+                                        onChange={(event) => onInputChange(event)}/>
+                                </Form.Field>
+                                <Form.Field>
+                                    <label>Dapps Category:</label>
+                                    <Select
+                                        components={makeAnimated()}
+                                        isMulti
+                                        size={'large'}
+                                        value={category}
+                                        onChange={(value) => setCategory(value)}
+                                        name="contractCategory"
+                                        options={categoryOption}
+                                        className="basic-multi-select"
+                                        classNamePrefix="select"
+                                    />
+                                </Form.Field>
+                                <Form.Field>
+                                    <label>Price of Dapps</label>
+                                    <Input
+                                        fluid size={'large'} value={onePrice}
+                                        label={{basic: true, content: 'Dapps'}}
+                                        name={"onePrice"}
+                                        onChange={(event) => onInputChange(event)}/>
+                                </Form.Field>
+                                <Form.Field>
+                                    <label>Image</label>
+                                    <div className="wrapper">
+                                        <div className="file-upload">
+                                            <input type="file" accept="image/jpeg,image/png"
+                                                   onChange={(event => handleChangeImage(event))} name={"img"}/>
+                                            <FontAwesomeIcon className={"arrowIcon"} icon={faArrowUp}/>
+                                        </div>
+                                        {imgPath.length > 0 &&
+                                        <Avatar
+                                            src={imgPath}
+                                            style={{
+                                                height: "120px",
+                                                borderRadius: 0,
+                                                marginLeft: "10px",
+                                                width: "120px"
+                                            }}/>
+                                        }
+                                    </div>
+                                </Form.Field>
+                                <Form.Field>
+                                    <label>Dapps Tag:</label>
+                                    <div className="tags-input">
+                                        <ul id="tags">
+                                            {tags.map((tag, index) => (
+                                                <li key={index} className="tag">
+                                                    <span className='tag-title'>{tag}</span>
+                                                    <span className='tag-close-icon'
+                                                          onClick={() => removeTags(index)}
+                                                    >x</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        <input
+                                            type="text"
+                                            onKeyUp={event => event.key === "Enter" ? addTags(event) : null}
+                                            placeholder="Press enter to add tags"
+                                        />
+                                    </div>
+                                    <p className={"info"}>List of tags</p>
+                                </Form.Field>
+                            </Form>
+                        </Grid.Column>
+                        <Grid.Column width={11}>
+                            <div>
+                                <Header as={'h3'} floated={'left'}>
+                                    Short Description
+                                </Header>
+                                <Header as={'span'} floated={'right'}>
+                                    Characters left: {shortCounter}
+                                </Header>
+                            </div>
+                            <Form>
+                                <TextArea
+                                    value={shortDescription} name={"shortDescription"}
+                                    onChange={(event) => onInputChange(event)} className={"editor"}>
+                                </TextArea>
+                            </Form>
+                            <Header as={'h3'} floated={'left'}>
+                                Contract Description
+                            </Header>
+                            <Form>
+                                <div className="container">
+                                    <MEDitor height={200} value={longDescription}
+                                             onChange={(event) => setlongDescription(event)}/>
+                                    {/*<MEDitor.Markdown source={this.state.longDescription} />*/}
                                 </div>
-                                {console.log(imgPath)}
-                                {imgPath.length > 0 &&
-                                     <Avatar
-                                         src={imgPath}
-                                        style={{height: "120px",borderRadius:0, marginLeft: "10px", width: "120px"}}/>
-                                }
-                            </div>
-                        </Form.Field>
-                        <Form.Field>
-                            <label>Tag:</label>
-                            <div className="tags-input">
-                                <ul id="tags">
-                                    {tags.map((tag, index) => (
-                                        <li key={index} className="tag">
-                                            <span className='tag-title'>{tag}</span>
-                                            <span className='tag-close-icon'
-                                                  onClick={() => removeTags(index)}
-                                            >x</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                                <input
-                                    type="text"
-                                    onKeyUp={event => event.key === "Enter" ? addTags(event) : null}
-                                    placeholder="Press enter to add tags"
-                                />
-                            </div>
-                            <p className={"info"}>List of tags</p>
-                        </Form.Field>
-                    </Form>
-                </Grid.Column>
-                <Grid.Column width={11}>
-                    <Header as={'h3'} floated={'left'}>
-                        Short Description
-                    </Header>
-                    <Header as={'span'} floated={'right'}>
-                        Characters left: {shortCounter}
-                    </Header>
-                    <Form>
-                        <TextArea
-                            value={shortDescription} name={"shortDescription"}
-                            onChange={(event)=>onInputChange(event)} className={"editor"} >
-                        </TextArea>
-                    </Form>
-                    <Header as={'h3'} floated={'left'}>
-                        Contract Description
-                    </Header>
-                    <Form>
-                        <div className="container">
-                            <MEDitor height={200} value={longDescription} onChange={(event)=>setlongDescription(event)} />
-                            {/*<MEDitor.Markdown source={this.state.longDescription} />*/}
-                        </div>
-                    </Form>
-                </Grid.Column>
-            </Grid>
-                <Uploader type={'dapps'} onSubmit={(files) => Submit(files)}/>
+                            </Form>
+                        </Grid.Column>
+                    </Grid>
+                    <Uploader className={"file_upload"} type={'dapps'} onSubmit={(file) => Submit(file)}/>
+                    </div>
+                }
             </section>
         </Layout>
     );

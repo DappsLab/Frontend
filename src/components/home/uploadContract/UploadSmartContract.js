@@ -255,8 +255,7 @@ const UploadSmartContract =(props)=>{
             }
         },
     })
-    const Submit=(files)=>{
-        const file=files[0].file;
+    const Submit=(file)=>{
         if (funcationName!=="") {
             source({variables:{file}})
             setFileError("");
@@ -513,7 +512,7 @@ const UploadSmartContract =(props)=>{
                                 {/*)}*/}
                                 <Grid columns={2} divided>
                                     <Grid.Column>
-                                        <Uploader type={'contract'} onSubmit={(files) => Submit(files)}/>
+                                        <Uploader type={'contract'} onSubmit={(file) => Submit(file)}/>
                                     </Grid.Column>
                                     <Grid.Column>
                                         <Form>

@@ -9,11 +9,13 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowUp} from "@fortawesome/free-solid-svg-icons";
 import CustomizedDialogs from "../../../ui/DialogBox";
 import {useMutation, useQuery} from "@apollo/client";
-import {contractById, imageUpload} from "../../../../queries/queries";
+import {contractById, imageUpload, sourceUpload} from "../../../../queries/queries";
 import {Spinner2} from "../../../ui/Spinner";
 import {Client} from "../../../../queries/Services";
 import Avatar from "@material-ui/core/Avatar";
 import {withAlert} from "react-alert";
+import Uploader from "../../../ui/Uploader";
+
 
 const EditSmartContract =(props)=> {
     const [cName,setcName]=useState("");
@@ -28,7 +30,6 @@ const EditSmartContract =(props)=> {
     const [tags,setTag]=useState([]);
     const [shortDescription,setshortDescription]=useState("");
     const [longDescription,setlongDescription]=useState("");
-    const [finalCategoryArray,setFinalCategoryArray]=useState([]);
     const  categoryOption=[
         {label: "TOOLS",value: "TOOLS"},
         {label: "FINANCIAL",value: "FINANCIAL"},
@@ -37,6 +38,7 @@ const EditSmartContract =(props)=> {
         {label: "SOCIAL",value: "SOCIAL"},
         {label: "ESCROW",value: "ESCROW"}
     ]
+
     const alert=props.alert;
     const onInputChange=(event)=>{
         event.preventDefault();
@@ -155,6 +157,26 @@ const EditSmartContract =(props)=> {
             event.target.value = "";
         }
     }
+
+    const [source]=useMutation(sourceUpload,{
+        client:Client,
+        onCompleted:data1 => {
+            console.log(data1)
+        },
+        onError:error1 => {
+            alert.error(error1.toString(),{timeout:2000})
+            console.log(error1.toString())
+        },
+        context: {
+            headers: {
+                authorization: localStorage.getItem("token")
+            }
+        },
+    })
+    const Submit=(file)=>{
+        source({variables:{file}})
+
+    }
     const RenderContractData=()=>{
         const {loading,error,data}=useQuery(contractById,{
             variables:{id:props.match.params.id},
@@ -164,7 +186,8 @@ const EditSmartContract =(props)=> {
         if (error) return <div>{error.toString()}</div>
         const contract=data.smartContractById
         console.log(contract)
-        return <Grid.Column width={5}>
+        return  <Grid stretched columns={2} verticalAlign={'middle'}>
+            <Grid.Column width={5}>
             <Form>
                 <Form.Field>
                     <label>Contract Name</label>
@@ -210,7 +233,7 @@ const EditSmartContract =(props)=> {
                             <input type="file"  accept="image/jpeg,image/png" onChange={(event => handleChangeImage(event))} name={"img"}/>
                             <FontAwesomeIcon className={"arrowIcon"} icon={faArrowUp}/>
                         </div>
-                        <Avatar src={imgPath===""? contract.image:imgPath} style={{height:"120px",marginLeft:"10px" ,width:"120px"}} />
+                        <Avatar src={imgPath===""? contract.image:imgPath} style={{height:"120px",borderRadius:0,marginLeft:"10px" ,width:"120px"}} />
                     </div>
                 </Form.Field>
                 <Form.Field>
@@ -229,24 +252,23 @@ const EditSmartContract =(props)=> {
                         <input
                             type="text"
                             onKeyUp={event => event.key === "Enter" ? addTags(event) : null}
-                            placeholder="Press enter to add tags"
+                            placeholder={tags.length>0?"":contract.tags}
                         />
                     </div>
-                    <p className={"info"}>List of tags</p>
+                    <p className={"info"}>List of tags.Press enter to add tags</p>
                 </Form.Field>
             </Form>
         </Grid.Column>
+        <Grid.Column width={11}>
+            <Uploader  type={'dapps'} onSubmit={(file) => Submit(file)}/>
+        </Grid.Column>
+    </Grid>
     }
     return (
         <Layout>
         <section className={'edit_contract'}>
             <h2>Edit Smart contract</h2>
-            <Grid stretched columns={2} verticalAlign={'middle'}>
-                {RenderContractData()}
-                <Grid.Column width={11}>
-
-                </Grid.Column>
-            </Grid>
+            {RenderContractData()}
         </section>
             {imgModel?
                 <CustomizedDialogs

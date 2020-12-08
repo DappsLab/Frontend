@@ -93,24 +93,24 @@ const Dapps = () => {
                 category.push(checkbox.name)
             }
         });
-        // const input= {}
-        // if (name!==""){
-        //     input["contractName"]=name
-        // }
-        // if (sort!=="") {
-        //     input["sortBy"] = sort
-        // }
-        // if (tag!==""){
-        //     input["tags"]=tag
-        // }
-        // if (category.length>0){
-        //     input["contractCategory"]=category
-        // }
-        // if (searchValue!==""){
-        //     input["contractName"]=searchValue;
-        // }
-        // input["minPrice"]=sliderMinValue.toString();
-        // input["maxPrice"]=sliderMaxValue.toString();
+        const input= {}
+        if (name!==""){
+            input["contractName"]=name
+        }
+        if (sort!=="") {
+            input["sortBy"] = sort
+        }
+        if (tag!==""){
+            input["tags"]=tag
+        }
+        if (category.length>0){
+            input["contractCategory"]=category
+        }
+        if (searchValue!==""){
+            input["contractName"]=searchValue;
+        }
+        input["minPrice"]=sliderMinValue.toString();
+        input["maxPrice"]=sliderMaxValue.toString();
     }
     const renderCheckbox=()=>(
         checkboxs.map((check,index)=>(
