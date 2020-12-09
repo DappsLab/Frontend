@@ -366,11 +366,11 @@ export const compile=gql` mutation ($name:String!,$sId:ID!,$pId:ID!,$lId:ID!) {
 
 export const getDapps=gql`
   query {
-    dApps {
+    verifiedDApps {
       createdAt
       dAppName
       dAppCategory
-      description
+      description verified
       image
       publisher {
         fullName
@@ -393,18 +393,41 @@ mutation ($file:Upload!) {
   dAppUploader(file: $file)
 }
 `
-export const filterDapps=gql` query ($input:searchDApp){
+export const filterDapps=gql` query ($input:SearchDApp){
   filterDApps(searchDApp: $input) {
-    id
+    createdAt
+      dAppName
+      dAppCategory
+      description verified
+      image
+      publisher {
+        fullName
+      }
+      publishingDateTime
+      shortDescription
+      singleLicensePrice
+      id
+  }
+}
+`
+export const dappsbyid=gql`
+query ($id:ID!){
+  dAppById(id: $id) {
     createdAt
     dAppCategory
     dAppName
     description
+    id
     image
     publisher {
       fullName
+      avatar
     }
     publishingDateTime
+    shortDescription
+    singleLicensePrice
+    tags
   }
 }
+
 `

@@ -260,7 +260,7 @@ const EditSmartContract =(props)=> {
             </Form>
         </Grid.Column>
         <Grid.Column width={11}>
-            <Uploader  type={'dapps'} onSubmit={(file) => Submit(file)}/>
+            <Uploader  type={'contract'} onSubmit={(file) => Submit(file)}/>
         </Grid.Column>
     </Grid>
     }

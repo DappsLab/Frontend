@@ -39,6 +39,7 @@ import {Query} from "react-apollo";
 import {me_Query} from "./queries/queries";
 import {Spinner} from "./components/ui/Spinner";
 import UploadDapps from "./components/home/dapps/uploadDapps/uploadDapps";
+import DappsDetails from "./components/home/dapps/detailDApps/DappsDetails";
 
 
 const Routes =(props)=>{
@@ -56,6 +57,7 @@ const Routes =(props)=>{
               <PrivateRoute {...props}  path={"/dashboard/purchased"} exact component={Purchased}/>
               <PrivateRoute {...props}  path={"/account_settings"} component={UserAccount}/>
               <PrivateRoute {...props} path={'/upload_dapps'} component={UploadDapps}/>
+              <PrivateRoute {...props} path={'/dapps_details/:id'} component={DappsDetails}/>
               <PrivateRoute {...props}  path={"/logout"} exact component={Logout}/>
               <PrivateRoute {...props}  path={"/delete_user"} exact component={DeleteUser}/>
               <PrivateRoute {...props}  path={"/edit_samrt_contract/:id"} exact component={EditSmartContract}/>

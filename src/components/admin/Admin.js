@@ -5,6 +5,7 @@ import {Account} from "../ui/AccountNav";
 import { faTasks, faUser} from "@fortawesome/free-solid-svg-icons";
 import KycVerification from "./kyc_verification/KYCVerification";
 import SmartContractVerification from "./smart_contract_verification/SmartContractVerification";
+import DappsVerification from "./dapps_verification/DappsVerification";
 
 
 
@@ -19,10 +20,16 @@ const Admin =(props)=> {
         },
         {
             menuItem: <Menu.Item key='Contract'>
-                <Account icon={faTasks} title={'Smart Contract '} subtitle={"Account Verification"} />
+                <Account icon={faTasks} title={'Smart Contract '} subtitle={"Contract Verification"} />
             </Menu.Item>,
             render: () => <Tab.Pane attached={false}><SmartContractVerification {...props} currentUser={currentUser}/></Tab.Pane>,
-        }
+        },
+       {
+           menuItem: <Menu.Item key='Dapps'>
+               <Account icon={faTasks} title={'Dapps '} subtitle={"Dapps Verification"} />
+           </Menu.Item>,
+           render: () => <Tab.Pane attached={false}><DappsVerification {...props} currentUser={currentUser}/></Tab.Pane>,
+       }
     ]
         return (
             <section className={"admin_container"}>
