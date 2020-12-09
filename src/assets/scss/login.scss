@@ -5,162 +5,111 @@
   background-size: 100% 100%;
   height: auto;
   margin: 0 !important;
-
-  Form {
-    p {
-      margin: 10px 0 20px 0;
-      font-size: 14px;
-    }
-
-    .ui.fluid.button {
-      height: 45px;
-      @include default-primary();
-      color: $paper-color;
-      font-weight: bold;
-      margin: 0 !important;
-    }
-
-    .ui.segment {
-      padding: 50px !important;
-    }
-
-    .ui.input {
-      font-size: 16px;
-      border-bottom-right-radius: 5px;
-      border-top-right-radius: 5px;
-      border: none;
-    }
-  }
-
-  .login_top {
-    margin-bottom: 20px;
-    justify-content: space-between;
-    width: 100%;
-
-    p {
-      margin: 0;
-    }
-
-    h2 {
-      margin-bottom: 0;
-    }
-
-    .login_left {
-      text-align: left;
-    }
+}
+.wrapper{
+  background-image: url(../images/background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 60px;
+  .spinner2{
+    position: absolute;
   }
 }
-
-
 .login-wrapper {
   margin: 0 auto;
   max-width: 1462px;
   justify-content: center;
   min-height: 69vh;
+  height: 750px;
   flex-flow: row-reverse;
   display: flex;
 }
 .top{
-  margin: 0px 0px 110px 0px;
+  margin: 0 0 110px 0;
   display: flex;
   justify-content: space-between;
 }
-.right{
-  max-width: 565px;
+.loginRight{
+  max-width: 470px;
   background-color: white;
   width: 100%;
-
-  border-radius: 0px 12px 12px 0px;
+  padding: 0 30px;
+  border-radius: 0 12px 12px 0;
 }
-.left{
-  max-width: 900px;
+.loginleft{
+  max-width: 990px;
   width: 100%;
 }
 .btn {
-  margin: 39px 36px 0px 0px;
+  margin: 39px 0 0 0;
 }
 .logo{
-  margin: 28px 0px 0px 36px;
+  margin: 28px 0 0 0;
 }
 .signup{
-  font-family: 'Poppins';
   border-radius: 6px;
   background-color: #04031c;
   padding: 10px 25px 10px 25px;
   font-size: 15px;
-  border: none;
+  border: 2px solid #04031c;
   color: white;
+}
+.signup:hover{
+  background: #fff;
+  color: #333;
+  border: 2px solid #04031c;
 }
 h2{
   color: #04031c;
   font-size: 50px;
-  margin: 0px 0px 18px 28px;
+  margin: 0 0 18px 0;
 }
 .bar1{
-  margin: 0px 0px 95px 35px;
+  margin: 0 0 95px 0;
 }
-.usrnm {
-  font-family: 'Poppins';
-  border-style: none none solid none;
-  margin: 0px 0px 54px 35px;
-  padding: 14px 0px 14px 0px;
-  font-size: 13.95px;
-  text-transform: capitalize;
-  border-color: #e1e1e1;
+.uname {
+  label{
+    font-size: 18px!important;
+  }
   color: #bababa;
-  width: 87.249%;;
-}
-.pwd {
-  font-family: 'Poppins';
-  border-style: none none solid none;
-  margin: 0px 0px 15px 35px;
-  padding: 14px 0px 14px 0px;
-  font-size: 13.95px;
-  text-transform: capitalize;
-  border-color: #e1e1e1;
-  width: 87.249%;
-  color: #bababa;
+  width: 100%;
+  margin: 10px 0!important;
 }
 .fgtpwd{
   float: right;
-  margin: 0px 41px 0px 0%;
   color: #bababa;
   text-transform: capitalize;
 }
-.eye{
-  margin: 0px -26px;
-}
-.btm-btn{
-  margin: 95px 36px  200px 36px  ;
-}
+
 .login{
+  margin-top: 2em;
   color: #04031c;
-  font-family: 'Poppins';
   font-weight: 600;
+  width: 100%;
   font-size: 25px;
-  padding: 13px 205px 11px 206px;
+  padding: 13px 0;
   background: white;
-  border-style: solid;
-  border-radius: 6px;
+  border: 3px solid #04031c;
+  border-radius: 26px;
 }
 .login:hover{
+  cursor: pointer;
   background-color: #04031c;
   color: white;
 }
-.left{
+.loginleft{
   background-color: #04031c;
-  border-radius: 12px 0px 0px 12px;
+  border-radius: 12px 0 0 12px;
 }
 h1{
   margin: 252px 160px 55px 80px;
   color: white;
-  font-family: 'Poppins';
   font-size: 72px;
 }
 .bar2 {
-  margin: 0px 0px 0px 80px;
+  margin: 0 0 0 80px;
 }
-.left p {
+.loginleft p {
   font-size: 48px;
   color: white;
   margin: 50px 160px 51px 80px;
@@ -170,17 +119,19 @@ h1{
   margin: -15% 0px 0px 0%;
 }
 .box2{
-  border-radius: 0px 0px 0px 12px;
+  border-radius: 0 0 0 12px;
+  position: relative;
+  top: 77px;
 }
 .content {
   width: 90%;
   margin: 0 auto;
 }
 @media only screen and (max-width: 1024px){
-  .right{
+  .loginRight{
     border-radius: 12px;
   }
-  .left {
+  .loginleft {
     display: none;
   }
   .logo img{
@@ -196,15 +147,15 @@ h1{
 @media only screen and (max-width: 425px){
   .pwd{
     width: 87.249%;
-    margin: 0px 0px 15px 18px;
+    margin: 0 0 15px 18px;
   }
   .btm-btn{
     margin: 95px 54px 200px 18px;
   }
   .usrnm{
-    margin: 0px 0px 70px 18px;
+    margin: 0 0 70px 18px;
   }
   .logo {
-    margin: 28px 0px 0px 18px;
+    margin: 28px 0 0 18px;
   }
 }

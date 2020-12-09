@@ -483,6 +483,13 @@ export const pendingDapps=gql`query
     verified
   }
 }
-
-
 `
+export const login=gql`
+  query ($username:String!,$password:String!){  
+  loginUser(userName: $username, password: $password) {
+  token
+  user {
+  id
+ }
+  }
+  }`
