@@ -11,7 +11,7 @@ import {setUser} from "../../actions/Actions";
 import {client} from "../../queries/queries";
 import {gql} from "@apollo/client";
 import {Spinner2} from "../ui/Spinner";
-
+import logo from '../../assets/images/dappslab-logo.png'
 
 const usernameRegex=RegExp(/^[a-zA-Z0-9]*$/);
 class Login extends Component {
@@ -148,45 +148,84 @@ class Login extends Component {
 
 
     render() {
+        console.log("mew")
         const {loading,username,password,formErrors} = this.state;
         return  (
             <Layout>
-                {loading ? <Spinner2/> :
-                    <Grid textAlign="center" verticalAlign='middle' className="login-bg">
-                        <Grid.Column style={{maxWidth: 700}}>
-                            <Form onSubmit={this.handleSubmit}>
-                                <Segment piled>
-                                    <LoginTop
-                                        heading={"Login"}
-                                        paragraph={"Account login"}
-                                        link={"Don't have an account"}
-                                        linkto={"/register"}
-                                    />
-                                    <Form.Input
-                                        icon="user" iconPosition="left" value={username}
-                                        name="username" type="text"
-                                        placeholder="Username" onChange={this.handleChange}
-                                        className={formErrors.username.length > 0 ? "error" : ""}
-                                    />
-                                    {formErrors.username.length > 0 && (
-                                        <span className={"errorMessage"}>{formErrors.username}</span>
-                                    )}
-                                    <Form.Input
-                                        icon="lock" iconPosition="left" value={password}
-                                        name="password" type="password"
-                                        placeholder="Password" onChange={this.handleChange}
-                                        className={formErrors.password.length > 0 ? "error" : ""}
-                                    />
-                                    {formErrors.password.length > 0 && (
-                                        <span className={"errorMessage"}>{formErrors.password}</span>
-                                    )}
-                                    <Button fluid size="large">Login</Button>
-                                    <p><Link to={"/forget_password"}>Click here</Link> if you forget your password</p>
-                                </Segment>
-                            </Form>
-                        </Grid.Column>
-                    </Grid>
-                }
+                <div className="wrapper">
+                    <div className="login-wrapper">
+                        <div className="right">
+                            <div className="top">
+                                <div className="logo">
+                                    <img src="images/logo.png"/>
+                                </div>
+                                <div className="btn">
+                                    <button className="signup">SignUp</button>
+                                </div>
+                            </div>
+                            <div className="form">
+                                <h2>Login</h2>
+                                <img className="bar1" src="images/bar1.png"/><br/>
+                                    <input className="usrnm" type="text" id="fname" name="fname" placeholder="username"/><br/>
+                                        <input
+                                            className="pwd" type="password" id="pwd" name="pwd"
+                                            placeholder="password"/>
+                                            <img className="eye" src="images/eye.png"/>
+                                            <p className="fgtpwd"><a>forget password </a></p>
+                                <div className="btm-btn">
+                                    <button className="login">Login</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="left">
+                            <div className="content">
+                                <h1>Welcome back to Dappslab</h1>
+                                <img className="box1" src="images/Rectangle2.png"/>
+                                    <img className="bar2" src="images/Rectangle1.png"/>
+                                    <p>Login to continue to your account</p>
+                            </div>
+                            <img className="box2" src="images/Rectangle3.png"/>
+                        </div>
+                    </div>
+                </div>
+
+                {/*{loading ? <Spinner2/> :*/}
+                {/*    <Grid textAlign="center" verticalAlign='middle' className="login-bg">*/}
+                {/*        <Grid.Column style={{maxWidth: 700}}>*/}
+                {/*            <Form onSubmit={this.handleSubmit}>*/}
+                {/*                <Segment piled>*/}
+                {/*                    <LoginTop*/}
+                {/*                        heading={"Login"}*/}
+                {/*                        paragraph={"Account login"}*/}
+                {/*                        link={"Don't have an account"}*/}
+                {/*                        linkto={"/register"}*/}
+                {/*                    />*/}
+                {/*                    <Form.Input*/}
+                {/*                        icon="user" iconPosition="left" value={username}*/}
+                {/*                        name="username" type="text"*/}
+                {/*                        placeholder="Username" onChange={this.handleChange}*/}
+                {/*                        className={formErrors.username.length > 0 ? "error" : ""}*/}
+                {/*                    />*/}
+                {/*                    {formErrors.username.length > 0 && (*/}
+                {/*                        <span className={"errorMessage"}>{formErrors.username}</span>*/}
+                {/*                    )}*/}
+                {/*                    <Form.Input*/}
+                {/*                        icon="lock" iconPosition="left" value={password}*/}
+                {/*                        name="password" type="password"*/}
+                {/*                        placeholder="Password" onChange={this.handleChange}*/}
+                {/*                        className={formErrors.password.length > 0 ? "error" : ""}*/}
+                {/*                    />*/}
+                {/*                    {formErrors.password.length > 0 && (*/}
+                {/*                        <span className={"errorMessage"}>{formErrors.password}</span>*/}
+                {/*                    )}*/}
+                {/*                    <Button fluid size="large">Login</Button>*/}
+                {/*                    <p><Link to={"/forget_password"}>Click here</Link> if you forget your password</p>*/}
+                {/*                </Segment>*/}
+                {/*            </Form>*/}
+                {/*        </Grid.Column>*/}
+                {/*    </Grid>*/}
+                {/*}*/}
             </Layout>
         );
     }

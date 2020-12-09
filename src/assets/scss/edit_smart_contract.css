@@ -16,7 +16,7 @@
 .edit_contract .container textarea, .edit_dapp .container textarea {
   background: none !important; }
 
-.edit_contract input::placeholder, .edit_contract .select__placeholder, .edit_contract .dropdown .text {
+.edit_contract input::placeholder, .edit_contract textarea::placeholder, .edit_contract .select__placeholder, .edit_contract .dropdown .text {
   color: #1B2529 !important;
   opacity: 1 !important; }
 

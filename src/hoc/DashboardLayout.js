@@ -11,7 +11,8 @@ class DashboardLayout extends Component{
         {title:"Purchased",linkTo:"/dashboard/purchased"},
         {title:"Tested Contract",linkTo:"/dashboard/test_contract"},
         {title:"Developed Contract",linkTo:"/dashboard/developed_contract"},
-        {title:"Ordered Contract",linkTo:"/dashboard/ordered_contract"}
+        {title:"Ordered Contract",linkTo:"/dashboard/ordered_contract"},
+        {title:"Developed Dapps",linkTo:"/dashboard/developed_dapps"}
     ]
     renderNav=()=>(
         this.links.map(link =>(
@@ -33,6 +34,7 @@ class DashboardLayout extends Component{
                             {window.location.pathname==="/dashboard/test_contract"&& " Tested Contract"}
                             {window.location.pathname==="/dashboard/developed_contract"&& " Developed Contract"}
                             {window.location.pathname==="/dashboard/ordered_contract"&& " Ordered Contract"}
+                            {window.location.pathname==="/dashboard/developed_dapps"&& " Developed Dapps"}
                         </div>
                         <nav className={"flex uploadNav"}>
                             {this.renderNav()}

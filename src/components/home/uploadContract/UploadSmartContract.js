@@ -308,11 +308,7 @@ const UploadSmartContract =(props)=>{
             alert.error(error.toString(),{timeout:2000})
             console.log(error.toString())
         },
-        refetchQueries:[{query:pendingSmartContract,context:{
-                headers: {
-                    authorization: localStorage.getItem("token")
-                }
-            }},{query:me_Query,context:{
+        refetchQueries:[{query:me_Query,context:{
                 headers: {
                     authorization: localStorage.getItem("token")
                 }

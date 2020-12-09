@@ -6,6 +6,24 @@ export const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
+// dApps {
+//   createdAt
+//   dAppCategory
+//   dAppName
+//   description
+//   id
+//   image
+//   publisher {
+//     id
+//     fullName
+//   }
+//   publishingDateTime
+//   shortDescription
+//   singleLicensePrice
+//   tags
+//   verified
+// }
+
 export const me_Query=gql`query {
   me{
     avatar address fullName id type twoFactorCode
@@ -205,7 +223,7 @@ export const contractById=gql`
   query ($id:ID!){
     smartContractById(id: $id)
     {
-      contractCategory id tags
+      contractCategory id tags shortDescription
       image description verified
       contractName publishingDateTime
       singleLicensePrice unlimitedLicensePrice
@@ -347,12 +365,26 @@ export const cancel_smart_contract=gql`
     }
   }
 `
+export const cancelDapps=gql`
+ mutation ($id:ID!) {
+    cancelDApp(id: $id) {
+      id
+    }
+  }
+`
 export const verify_smart_contract=gql`
   mutation ($id:ID!) {
     verifySmartContract(id: $id) {
       id
     }
   }
+`
+export const verifyDapps=gql`
+mutation ($id:ID!){
+  verifyDApp(id: $id){
+  id
+}
+}
 `
 export const getSource=gql` query ($id:ID!){
   getSource(id: $id)
@@ -429,5 +461,28 @@ query ($id:ID!){
     tags
   }
 }
+
+`
+export const pendingDapps=gql`query
+{
+  searchPendingDApps {
+    createdAt
+    dAppCategory
+    dAppName
+    description
+    id
+    image
+    publisher {
+      fullName
+      id
+    }
+    publishingDateTime
+    shortDescription
+    singleLicensePrice
+    tags
+    verified
+  }
+}
+
 
 `

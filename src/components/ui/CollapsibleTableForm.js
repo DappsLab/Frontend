@@ -24,8 +24,7 @@ import {withAlert} from "react-alert";
 import {useMutation, useQuery} from "@apollo/client";
 import MEDitor from "@uiw/react-md-editor";
 import {Controlled as CodeMirror} from 'react-codemirror2'
-import 'codemirror/lib/codemirror.css';
-import 'codemirror/theme/material.css';
+
 const useRowStyles = makeStyles({
     root: {
         '& > *': {

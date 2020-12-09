@@ -40,6 +40,8 @@ import {me_Query} from "./queries/queries";
 import {Spinner} from "./components/ui/Spinner";
 import UploadDapps from "./components/home/dapps/uploadDapps/uploadDapps";
 import DappsDetails from "./components/home/dapps/detailDApps/DappsDetails";
+import EditDapp from "./components/home/dapps/eidtDapp/EditDapp";
+import DevelopedDapps from "./components/user/dashboard/developedDapps/DevelopedDapps";
 
 
 const Routes =(props)=>{
@@ -54,10 +56,12 @@ const Routes =(props)=>{
               <PrivateRoute {...props}  path={"/dashboard/developed_contract"} exact component={DevelopedContracts}/>
               <PrivateRoute {...props}  path={"/dashboard/ordered_contract"} exact component={OrderContracts}/>
               <PrivateRoute {...props}  path={"/dashboard/test_contract"} exact component={TestContract}/>
+              <PrivateRoute {...props}  path={"/dashboard/developed_dapps"} exact component={DevelopedDapps}/>
               <PrivateRoute {...props}  path={"/dashboard/purchased"} exact component={Purchased}/>
               <PrivateRoute {...props}  path={"/account_settings"} component={UserAccount}/>
               <PrivateRoute {...props} path={'/upload_dapps'} component={UploadDapps}/>
               <PrivateRoute {...props} path={'/dapps_details/:id'} component={DappsDetails}/>
+              <PrivateRoute {...props} path={'/edit_dapp/:id'} component={EditDapp}/>
               <PrivateRoute {...props}  path={"/logout"} exact component={Logout}/>
               <PrivateRoute {...props}  path={"/delete_user"} exact component={DeleteUser}/>
               <PrivateRoute {...props}  path={"/edit_samrt_contract/:id"} exact component={EditSmartContract}/>

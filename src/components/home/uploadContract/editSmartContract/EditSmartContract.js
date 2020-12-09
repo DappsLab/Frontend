@@ -2,25 +2,30 @@ import React, { useState} from 'react';
 import Layout from "../../../../hoc/Layout";
 import '../../../../assets/scss/edit_smart_contract.css'
 import {acceptedImageTypesArray, nameReg, numericReg} from "../../../ui/Helpers";
-import {Form, Grid, Input} from "semantic-ui-react";
+import {Form, Grid, Header, Input, TextArea} from "semantic-ui-react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated/dist/react-select.esm";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowUp} from "@fortawesome/free-solid-svg-icons";
 import CustomizedDialogs from "../../../ui/DialogBox";
 import {useMutation, useQuery} from "@apollo/client";
-import {contractById, imageUpload, sourceUpload} from "../../../../queries/queries";
+import {contractById, getSource, imageUpload, sourceUpload} from "../../../../queries/queries";
 import {Spinner2} from "../../../ui/Spinner";
 import {Client} from "../../../../queries/Services";
 import Avatar from "@material-ui/core/Avatar";
 import {withAlert} from "react-alert";
 import Uploader from "../../../ui/Uploader";
+import {Controlled as CodeMirror} from 'react-codemirror2'
+import TableCell from "@material-ui/core/TableCell";
+import GetSource from "./GetSource";
 
 
+const descriptionRGP=RegExp(/^[a-zA-Z][a-zA-Z\s,.]*$/);
 const EditSmartContract =(props)=> {
     const [cName,setcName]=useState("");
     const [cetagory,setCategory]=useState([]);
     const [onePrice,setonePrice]=useState('');
+    const [shortCounter,setshortCounter]=useState(200);
     const [uPrice,setuPrice]=useState("");
     const [img,setImg]=useState(null);
     const [imgPath,setImgPath]=useState("");
@@ -38,8 +43,56 @@ const EditSmartContract =(props)=> {
         {label: "SOCIAL",value: "SOCIAL"},
         {label: "ESCROW",value: "ESCROW"}
     ]
-
     const alert=props.alert;
+
+    //markdown
+
+    // const [field, mitt] = createFakeFieldAPI(field => field, initialValue)
+    // let sdk = {
+    //     field,
+    //     locales: {
+    //         default: 'en-US',
+    //         fallbacks: {
+    //             'en-US': undefined,
+    //         },
+    //         optional: {
+    //             'en-US': false,
+    //         },
+    //         direction: {
+    //             'en-US': 'ltr',
+    //         },
+    //     },
+    //     dialogs: {
+    //         openCurrent: openMarkdownDialog(sdk),
+    //         selectMultipleAssets: () => {
+    //             alert('select multiple assets dialog')
+    //         },
+    //     },
+    //     notifier: {
+    //         success: text => Notification.success(text),
+    //         error: text => Notification.error(text),
+    //     },
+    //     navigator: {
+    //         openNewAsset: () => {
+    //             alert('open new asset')
+    //         },
+    //     },
+    //     window: {
+    //         updateHeight: () => {},
+    //         startAutoResizer: () => {},
+    //     },
+    //     access: {
+    //         can: (access, entity) => {
+    //             if (access === 'create' && entity === 'Asset') {
+    //                 return Promise.resolve(true)
+    //             }
+    //             return Promise.resolve(false)
+    //         },
+    //     },
+    // }
+    //end markdown
+
+
     const onInputChange=(event)=>{
         event.preventDefault();
         const {name,value}=event.target;
@@ -55,6 +108,13 @@ const EditSmartContract =(props)=> {
             case 'uPrice':
                 numericReg.test(value)&&setuPrice(value);
                 value===""&&setuPrice("");
+                break;
+            case "shortDescription":
+                if (value.length<=200) {
+                    descriptionRGP.test(value)&&setshortCounter(200-value.length)
+                    descriptionRGP.test(value)&&setshortDescription(value);
+                    value===""&&setshortDescription("");
+                }
                 break;
             default:
                 break;
@@ -177,11 +237,25 @@ const EditSmartContract =(props)=> {
         source({variables:{file}})
 
     }
+    // const GetSources=(id)=>{
+    //     const {loading,error,data}=useQuery(getSource,{
+    //         variables:{id:id}
+    //     });
+    //     if (loading) return "Loading"
+    //     if (error) return <div className={`errorMessage`}>{error.toString()}</div>
+    //     return data.getSource
+    // }
     const RenderContractData=()=>{
-        const {loading,error,data}=useQuery(contractById,{
-            variables:{id:props.match.params.id},
-            client:Client
-        })
+        console.log(localStorage.getItem("token"))
+        const {loading,error,data}=useQuery(contractById, {
+            variables: {id: props.match.params.id},
+            client: Client,
+            context: {
+                headers: {
+                    authorization: localStorage.getItem("token")
+                }
+            }
+        });
         if (loading) return <Spinner2/>
         if (error) return <div>{error.toString()}</div>
         const contract=data.smartContractById
@@ -260,10 +334,41 @@ const EditSmartContract =(props)=> {
             </Form>
         </Grid.Column>
         <Grid.Column width={11}>
-            <Uploader  type={'contract'} onSubmit={(file) => Submit(file)}/>
+            <div>
+                <Header as={'h3'} floated={'left'}>
+                    Short Description
+                </Header>
+                <Header as={'span'} floated={'right'}>
+                    Characters left: {shortCounter}
+                </Header>
+                <Form>
+                    <TextArea
+                        value={shortDescription} placeholder={contract.shortDescription} name={"shortDescription"}
+                        onChange={(event)=>onInputChange(event)} className={"editor"} >
+                    </TextArea>
+                </Form>
+            </div>
+            <div>
+                <Header as={'h3'} floated={'left'}>
+                    Contract Description
+                </Header>
+                <Form>
+                    {/*<div className="container">*/}
+                    {/*    <MEDitor height={200} value={longDescription} onChange={(event)=>setlongDescription(event)} />*/}
+                    {/*    /!*<MEDitor.Markdown source={this.state.longDescription} />*!/*/}
+                    {/*</div>*/}
+                    <TextArea
+                        value={longDescription} name={"longDescription"} placeholder={contract.description}
+                        onChange={(event)=>setlongDescription(event.target.value)}  className={"editor"} >
+                    </TextArea>
+                </Form>
+            </div>
+            {/*<Uploader  type={'contract'} onSubmit={(file) => Submit(file)}/>*/}
+            <GetSource id={contract.id}/>
         </Grid.Column>
     </Grid>
     }
+
     return (
         <Layout>
         <section className={'edit_contract'}>
@@ -286,3 +391,4 @@ const EditSmartContract =(props)=> {
 }
 
 export default withAlert() (EditSmartContract);
+

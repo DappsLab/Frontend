@@ -14,6 +14,8 @@ import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic';
 import {Spinner} from "./components/ui/Spinner";
 import Routes from "./routes";
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/material.css';
 import {me_Query} from "./queries/queries";
 import {match} from "./queries/Services";
 
