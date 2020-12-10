@@ -90,7 +90,15 @@
   .flex{
     margin-top: 20px;
     justify-content: space-between;
-
+    button{
+      background: none;
+      border: none;
+      color: #04031c!important;
+      cursor: pointer;
+    }
+    button:focus{
+      outline: none;
+    }
   }
   p{
     width: auto;

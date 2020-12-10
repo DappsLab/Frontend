@@ -5,10 +5,10 @@ import {connect} from "react-redux";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {Popup,Button} from "semantic-ui-react";
 
-
+const timeoutLength = 2500
 class WithdrawDeposite extends Component {
     state={
-        copied:false,
+        isOpen:false,
         currentUser: this.props.currentUser,
     }
     // componentDidUpdate(prevProps, prevState, snapshot) {
@@ -17,9 +17,14 @@ class WithdrawDeposite extends Component {
     //     }.bind(this),10000);
     // }
 
-    change=()=>{
-        this.setState({copied:true})
+
+    handleOpen = () => {
+        this.setState({ isOpen: !this.state.isOpen })
+        this.timeout = setTimeout(() => {
+            this.setState({ isOpen: !this.state.isOpen })
+        }, timeoutLength)
     }
+
     render() {
 
         const {currentUser}=this.state
@@ -30,15 +35,19 @@ class WithdrawDeposite extends Component {
                     <div className={"flex"}>
                         <span>Address</span>
                         <p className={"address"}>{currentUser.address}</p>
-                        <CopyToClipboard text={currentUser.address}>
-                            <Popup
-                                content='Copied'
-                                mouseLeaveDelay={1000}
-                                on='click'
-                                trigger={<button>copy</button>}
-                            />
 
-                        </CopyToClipboard>
+                            <Popup
+                                content={`Copied`}
+                                on='click'
+                                open={this.state.isOpen}
+                                trigger={
+                                    <CopyToClipboard text={currentUser.address}>
+                                        <button onClick={this.handleOpen}>copy</button>
+                                    </CopyToClipboard>
+                                }
+                            >
+                            </Popup>
+
                     </div>
                     <h4>Scan QR</h4>
                     <div className={"flex QR"}>

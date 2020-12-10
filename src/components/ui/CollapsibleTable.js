@@ -18,6 +18,7 @@ import {Button} from "semantic-ui-react";
 import {verifyKyc, cancelKyc, pending_kyc_query} from "../../queries/queries";
 import {useMutation} from "@apollo/client";
 import {withAlert} from "react-alert";
+import {getDate} from "./Helpers";
 
 const useRowStyles = makeStyles({
     root: {

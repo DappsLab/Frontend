@@ -5,8 +5,7 @@ import {Link} from "react-router-dom";
 import {graphql } from "react-apollo";
 import {Button} from "semantic-ui-react";
 import {getContract} from "../../../queries/queries";
-import {cardColors, categoryColors} from "../../ui/Helpers";
-import {dateTime} from "../../../helpers/DateTimeConversion";
+import {cardColors, categoryColors, getDate} from "../../ui/Helpers";
 import {Spinner2} from "../../ui/Spinner";
 
 
@@ -23,6 +22,7 @@ const ContractCard =(props)=>{
     )
    const displayContract=()=>{
         const data = props.data;
+       console.log(data)
         if (data.loading){
             return <Spinner2/>
         }
@@ -46,7 +46,7 @@ const ContractCard =(props)=>{
                                    <h1>{contract.contractName}</h1>
                                    <span>Publish By </span>
                                    <span>{contract.publisher.fullName}</span>
-                                   <span> created at {dateTime(contract.createdAt)}</span>
+                                   <span> created at {getDate(contract.publishingDateTime)}</span>
                                </div>
                            </div>
                            <p>{contract.shortDescription}</p>

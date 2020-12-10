@@ -24,6 +24,7 @@ import {withAlert} from "react-alert";
 import {useMutation, useQuery} from "@apollo/client";
 import MEDitor from "@uiw/react-md-editor";
 import {Controlled as CodeMirror} from 'react-codemirror2'
+import {getDate} from "./Helpers";
 
 const useRowStyles = makeStyles({
     root: {
@@ -71,7 +72,15 @@ function Row(props) {
         });
         if (loading) return "Loading"
         if (error) return <div className={`errorMessage ${classes.error}`}>{error.toString()}</div>
-        return data.getSource
+        if (data) {
+            return <CodeMirror
+            value={data.getSource}
+            options={{mode:'sol', lineNumbers: true,theme:'material'}}
+            // onBeforeChange={(editor, data, value) => {
+            //     this.setState({value});
+            // }}
+            />
+        }
     }
     return (
         <React.Fragment>
@@ -86,7 +95,7 @@ function Row(props) {
                 </TableCell>
                 <TableCell>{row.publisher.fullName}</TableCell>
                 <TableCell>{row.verified}</TableCell>
-                <TableCell>{dateTime(row.publishingDateTime)}</TableCell>
+                <TableCell>{getDate(row.publishingDateTime)}</TableCell>
             </TableRow>
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -116,13 +125,7 @@ function Row(props) {
                                 <TableRow>
                                     <TableCell style={{ width: 220 }}>Cntract Source </TableCell>
                                     <TableCell>
-                                        <CodeMirror
-                                            value={GetSources(row.id)}
-                                            options={{mode:'sol', lineNumbers: true,theme:'material'}}
-                                            // onBeforeChange={(editor, data, value) => {
-                                            //     this.setState({value});
-                                            // }}
-                                        />
+                                        {GetSources(row.id)}
                                         {/*<MEDitor.Markdown source={GetSources(row.id)}  />*/}
                                     </TableCell>
                                 </TableRow>

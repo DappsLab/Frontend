@@ -6,6 +6,9 @@ import {Client} from "../../../../queries/Services";
 import {Spinner2} from "../../../ui/Spinner";
 import {Table} from "semantic-ui-react";
 import DevelopContractRow from "../developedContract/DevelopContractRow";
+import {connect} from "react-redux";
+import {setUser} from "../../../../actions/Actions";
+import DappsRow from "./DappsRow";
 
 const DevelopedDapps = (props) => {
     const RenderData=()=> {
@@ -28,15 +31,14 @@ const DevelopedDapps = (props) => {
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell width={1}>No </Table.HeaderCell>
-                    <Table.HeaderCell > Contract Name</Table.HeaderCell>
+                    <Table.HeaderCell > Dapps Name</Table.HeaderCell>
                     <Table.HeaderCell >Single Price</Table.HeaderCell>
-                    <Table.HeaderCell >Unlimited Price</Table.HeaderCell>
                     <Table.HeaderCell >Created Date</Table.HeaderCell>
                     <Table.HeaderCell >Status</Table.HeaderCell>
                     <Table.HeaderCell width={1}>Action</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
-            <DevelopContractRow smartContracts={data.me.dApps}/>
+            <DappsRow smartContracts={data.me.dApps}/>
         </Table>
     }
 
@@ -47,4 +49,4 @@ const DevelopedDapps = (props) => {
     );
 };
 
-export default DevelopedDapps;
+export default connect(null, {setUser})(DevelopedDapps);

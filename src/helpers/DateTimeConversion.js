@@ -1,7 +1,7 @@
 export  let dateTime=(timestemp)=>{
 
     let ts = Date(timestemp);
-    let date_ob = new Date(ts);
+   let date_ob = new Date(ts);
     let sec = date_ob.getSeconds();
     let min = date_ob.getMinutes();
     let hour = date_ob.getHours();

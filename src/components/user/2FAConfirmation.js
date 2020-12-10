@@ -48,6 +48,7 @@ const FAConfirmation = (props)=> {
                                })
                                 setLoading(false);
                                 if (me){
+                                    localStorage.setItem("token",props.match.params.token);
                                     props.setUser(me.data.me)
                                     alert.success("Login Successfully", {timeout: 5000});
                                     props.history.push('/');

@@ -12,7 +12,6 @@ import {flowRight as compose} from "lodash";
 import {
     createNewContract,
     imageUpload, me_Query,
-    pendingSmartContract,
     sourceUpload
 } from "../../../queries/queries";
 import Layout from "../../../hoc/Layout";
@@ -337,6 +336,8 @@ const UploadSmartContract =(props)=>{
                         unlimited: uPrice.toString(),
                         source: sourcePath.toString()
                     }
+                }).catch(error=>{
+                    console.log(error.toString())
                 })
             }
         }

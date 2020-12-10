@@ -8,7 +8,7 @@ import Radio from '@material-ui/core/Radio';
 import Layout from "../../../hoc/Layout";
 import {flowRight as compose} from 'lodash';
 import {graphql} from "react-apollo";
-import {orderContract,contractById} from "../../../queries/queries";
+import {orderContract, contractById, me_Query} from "../../../queries/queries";
 import {ContractImg} from "../../ui/Icons";
 import Avatar from "@material-ui/core/Avatar";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -184,42 +184,7 @@ class  DetailedContract extends Component{
     meQuery=()=>{
         const that=this;
        return  that.Authclient.query({
-            query: gql`query {
-                me{
-                    avatar address fullName id type twoFactorCode
-                    email location userName twoFactorEnabled balance
-                    smartContracts {
-                        id contractName createdAt description verified
-                        image source  unlimitedLicensePrice singleLicensePrice
-                        contractCategory publishingDateTime
-                    }
-                    kyc{   birthDate
-                        building city country kycStatus mobile
-                        nationality postalCode street kycStatus
-                    }
-                    orders{
-                        id dateTime fee price status transactionHash
-                       orderUsed smartContract {
-                            contractName
-                        }
-                    }
-                    purchasedContracts {
-                        customizationsLeft id unlimitedCustomization
-                        licenses {
-                            purchaseDateTime id used
-                            order {
-                                id status licenseType
-                                smartContract {
-                                    id contractName image
-                                }
-                            }
-                        }
-                        smartContract {
-                            contractName id
-                        }
-                    }
-                }
-            }`
+            query: me_Query
         })
     }
     handleBuy=()=>{

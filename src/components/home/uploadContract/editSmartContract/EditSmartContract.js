@@ -2,28 +2,28 @@ import React, { useState} from 'react';
 import Layout from "../../../../hoc/Layout";
 import '../../../../assets/scss/edit_smart_contract.css'
 import {acceptedImageTypesArray, nameReg, numericReg} from "../../../ui/Helpers";
-import {Form, Grid, Header, Input, TextArea} from "semantic-ui-react";
+import {Button, Form, Grid, Header, Input, TextArea} from "semantic-ui-react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated/dist/react-select.esm";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowUp} from "@fortawesome/free-solid-svg-icons";
 import CustomizedDialogs from "../../../ui/DialogBox";
 import {useMutation, useQuery} from "@apollo/client";
-import {contractById, getSource, imageUpload, sourceUpload} from "../../../../queries/queries";
+import {contractById, editContract, imageUpload, sourceUpload} from "../../../../queries/queries";
 import {Spinner2} from "../../../ui/Spinner";
 import {Client} from "../../../../queries/Services";
 import Avatar from "@material-ui/core/Avatar";
 import {withAlert} from "react-alert";
 import Uploader from "../../../ui/Uploader";
-import {Controlled as CodeMirror} from 'react-codemirror2'
-import TableCell from "@material-ui/core/TableCell";
 import GetSource from "./GetSource";
 
 
 const descriptionRGP=RegExp(/^[a-zA-Z][a-zA-Z\s,.]*$/);
 const EditSmartContract =(props)=> {
     const [cName,setcName]=useState("");
+    const [fName,setfName]=useState("");
     const [cetagory,setCategory]=useState([]);
+    const [newSource,setNewSource]=useState("");
     const [onePrice,setonePrice]=useState('');
     const [shortCounter,setshortCounter]=useState(200);
     const [uPrice,setuPrice]=useState("");
@@ -45,52 +45,6 @@ const EditSmartContract =(props)=> {
     ]
     const alert=props.alert;
 
-    //markdown
-
-    // const [field, mitt] = createFakeFieldAPI(field => field, initialValue)
-    // let sdk = {
-    //     field,
-    //     locales: {
-    //         default: 'en-US',
-    //         fallbacks: {
-    //             'en-US': undefined,
-    //         },
-    //         optional: {
-    //             'en-US': false,
-    //         },
-    //         direction: {
-    //             'en-US': 'ltr',
-    //         },
-    //     },
-    //     dialogs: {
-    //         openCurrent: openMarkdownDialog(sdk),
-    //         selectMultipleAssets: () => {
-    //             alert('select multiple assets dialog')
-    //         },
-    //     },
-    //     notifier: {
-    //         success: text => Notification.success(text),
-    //         error: text => Notification.error(text),
-    //     },
-    //     navigator: {
-    //         openNewAsset: () => {
-    //             alert('open new asset')
-    //         },
-    //     },
-    //     window: {
-    //         updateHeight: () => {},
-    //         startAutoResizer: () => {},
-    //     },
-    //     access: {
-    //         can: (access, entity) => {
-    //             if (access === 'create' && entity === 'Asset') {
-    //                 return Promise.resolve(true)
-    //             }
-    //             return Promise.resolve(false)
-    //         },
-    //     },
-    // }
-    //end markdown
 
 
     const onInputChange=(event)=>{
@@ -100,6 +54,10 @@ const EditSmartContract =(props)=> {
             case 'cName':
                 nameReg.test(value)&& setcName(value);
                 value===""&&setcName("");
+                break;
+            case 'fName':
+                nameReg.test(value)&& setfName(value);
+                value===""&&setfName("");
                 break;
             case 'onePrice':
                 numericReg.test(value)&&setonePrice(value);
@@ -222,6 +180,7 @@ const EditSmartContract =(props)=> {
         client:Client,
         onCompleted:data1 => {
             console.log(data1)
+            setNewSource(data1.contractUploader);
         },
         onError:error1 => {
             alert.error(error1.toString(),{timeout:2000})
@@ -233,20 +192,11 @@ const EditSmartContract =(props)=> {
             }
         },
     })
+
     const Submit=(file)=>{
         source({variables:{file}})
-
     }
-    // const GetSources=(id)=>{
-    //     const {loading,error,data}=useQuery(getSource,{
-    //         variables:{id:id}
-    //     });
-    //     if (loading) return "Loading"
-    //     if (error) return <div className={`errorMessage`}>{error.toString()}</div>
-    //     return data.getSource
-    // }
     const RenderContractData=()=>{
-        console.log(localStorage.getItem("token"))
         const {loading,error,data}=useQuery(contractById, {
             variables: {id: props.match.params.id},
             client: Client,
@@ -299,6 +249,14 @@ const EditSmartContract =(props)=> {
                         label={{ basic: true, content: 'Dapps' }}
                         name={"uPrice"} placeholder={contract.unlimitedLicensePrice}
                         onChange={(event)=>onInputChange(event)}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Contract Funcation Name</label>
+                    <Input
+                        type={'text'} placeholder={contract.sourceContractName} name={'fName'}  value={fName}
+                        onChange={(event)=>onInputChange(event)}
+                    />
+                    <p className={"info"}>Name must be same  as contract Funcation name</p>
                 </Form.Field>
                 <Form.Field>
                     <label>Image</label>
@@ -363,8 +321,12 @@ const EditSmartContract =(props)=> {
                     </TextArea>
                 </Form>
             </div>
-            {/*<Uploader  type={'contract'} onSubmit={(file) => Submit(file)}/>*/}
+            <h3>Contract Source</h3>
             <GetSource id={contract.id}/>
+            <h3>Upload New Source</h3>
+            <Uploader  type={'contract'} onSubmit={(file) => Submit(file)}/>
+
+            <Button className={'update-btn'}>Update Smart Contract</Button>
         </Grid.Column>
     </Grid>
     }

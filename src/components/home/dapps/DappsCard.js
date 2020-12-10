@@ -3,7 +3,7 @@ import {ContractImg} from "../../ui/Icons";
 import {dateTime} from "../../../helpers/DateTimeConversion";
 import {Button} from "semantic-ui-react";
 import {Link} from 'react-router-dom'
-import {cardColors, categoryColors} from "../../ui/Helpers";
+import {cardColors, categoryColors, getDate} from "../../ui/Helpers";
 import {getDapps} from "../../../queries/queries";
 import {Spinner2} from "../../ui/Spinner";
 import {graphql } from "react-apollo";
@@ -46,7 +46,7 @@ const DappsCard = (props) => {
                                     <h1>{dapp.dAppName}</h1>
                                     <span>Publish By </span>
                                     <span>{dapp.publisher.fullName}</span>
-                                    <span> created at {dateTime(dapp.createdAt)}</span>
+                                    <span> created at {getDate(dapp.publishingDateTime)}</span>
                                 </div>
                             </div>
                             <p>{dapp.shortDescription}</p>

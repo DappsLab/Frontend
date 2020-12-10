@@ -15,8 +15,11 @@
   text-align: center !important; }
 .edit_contract .container textarea, .edit_dapp .container textarea {
   background: none !important; }
-
-.edit_contract input::placeholder, .edit_contract textarea::placeholder, .edit_contract .select__placeholder, .edit_contract .dropdown .text {
+.edit_contract .update-btn, .edit_dapp .update-btn {
+  margin: 20px;
+  color: #FFF;
+  background: #04031c; }
+.edit_contract input::placeholder, .edit_contract textarea::placeholder, .edit_contract .select__placeholder, .edit_contract .dropdown .text, .edit_dapp input::placeholder, .edit_dapp textarea::placeholder, .edit_dapp .select__placeholder, .edit_dapp .dropdown .text {
   color: #1B2529 !important;
   opacity: 1 !important; }
 

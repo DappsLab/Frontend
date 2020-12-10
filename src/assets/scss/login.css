@@ -27,6 +27,10 @@
   width: 100%;
   padding: 30px;
   border-radius: 0 12px 12px 0; }
+  .loginRight h2 {
+    color: #04031c;
+    font-size: 50px;
+    margin: 0 0 18px 0; }
 
 .loginleft {
   background-color: #04031c;
@@ -34,7 +38,9 @@
   max-width: 990px;
   width: 100%; }
   .loginleft .pass-contect h1 {
-    width: 570px !important; }
+    width: 570px !important;
+    color: white;
+    font-size: 72px; }
   .loginleft p {
     font-size: 40px;
     color: white;
@@ -62,11 +68,6 @@
   background: #fff;
   color: #333;
   border: 2px solid #04031c; }
-
-h2 {
-  color: #04031c;
-  font-size: 50px;
-  margin: 0 0 18px 0; }
 
 .bar1 {
   margin: 0 0 95px 0; }
@@ -98,11 +99,6 @@ h2 {
   cursor: pointer;
   background-color: #04031c;
   color: white; }
-
-h1 {
-  margin: 252px 160px 55px 80px;
-  color: white;
-  font-size: 72px; }
 
 @media only screen and (max-width: 1024px) {
   .loginRight {

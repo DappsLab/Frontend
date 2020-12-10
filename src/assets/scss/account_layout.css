@@ -71,6 +71,13 @@
   .deposite .flex {
     margin-top: 20px;
     justify-content: space-between; }
+    .deposite .flex button {
+      background: none;
+      border: none;
+      color: #04031c !important;
+      cursor: pointer; }
+    .deposite .flex button:focus {
+      outline: none; }
   .deposite p {
     width: auto;
     margin-bottom: 0; }

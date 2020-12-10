@@ -24,6 +24,7 @@ import MEDitor from "@uiw/react-md-editor";
 import {Controlled as CodeMirror} from 'react-codemirror2'
 import Avatar from "@material-ui/core/Avatar";
 import {Client} from "../../queries/Services";
+import {getDate} from "./Helpers";
 
 const useRowStyles = makeStyles({
     root: {
@@ -108,7 +109,7 @@ function Row(props) {
                 </TableCell>
                 <TableCell>{row.publisher.fullName}</TableCell>
                 <TableCell>{row.verified}</TableCell>
-                <TableCell>{dateTime(row.publishingDateTime)}</TableCell>
+                <TableCell>{getDate(row.publishingDateTime)}</TableCell>
             </TableRow>
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>

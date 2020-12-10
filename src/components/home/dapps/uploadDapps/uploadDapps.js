@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Layout from "../../../../hoc/Layout";
-import {filename, nameReg, numericReg} from "../../../ui/Helpers";
+import { nameReg, numericReg} from "../../../ui/Helpers";
 import {useMutation} from "@apollo/client";
 import '../../../../assets/scss/edit_smart_contract.css'
 import {
@@ -22,7 +22,6 @@ import {withAlert} from "react-alert";
 import MEDitor from "@uiw/react-md-editor";
 import Uploader from "../../../ui/Uploader";
 import {Spinner2} from "../../../ui/Spinner";
-import {isEmpty} from "codemirror/src/util/misc";
 
 const descriptionRGP=RegExp(/^[a-zA-Z][a-zA-Z\s,.]*$/);
 const UploadDapps = (props) => {
@@ -104,7 +103,7 @@ const UploadDapps = (props) => {
         onCompleted:data => {
             setLoading(false);
             alert.success("Upload SUccessfully" ,{timeout:2000})
-            props.history.push('/dapps')
+            props.history.push('/dashboard/developed_dapps')
         },onError:error => {
             alert.error(error.toString(),{timeout:2000})
             setLoading(false)
@@ -127,7 +126,6 @@ const UploadDapps = (props) => {
     const [source]=useMutation(dappsFile,{
         client:Client,
         onCompleted:data1 => {
-            console.log("here",data1.dAppUploader)
             let finalCategoryArray=[];
             for (let i = 0; i < category.length; i++) {
                 finalCategoryArray.push(category[i]['value']);
@@ -145,12 +143,12 @@ const UploadDapps = (props) => {
                     price:onePrice.toString(),
                     zip:data1.dAppUploader
                 }
+            }).catch(errors=>{
+                alert.error(errors.toString(),{timeout:2000})
             })
-        },
-        onError:error1 => {
-            alert.error(error1.toString(),{timeout:2000})
-            console.log("here",error1.toString())
-            setLoading(false)
+        },onError:error => {
+        alert.error(error.toString(),{timeout:2000})
+        setLoading(false)
         },
         context: {
             headers: {
@@ -171,7 +169,9 @@ const UploadDapps = (props) => {
         if (isEmpty()){
             setError("")
             setLoading(true)
-            source({variables:{file}})
+            source({variables:{file}}).catch(err=>{
+                alert.error(err.toString(),{timeout:2000})
+            })
         }
     }
     return (

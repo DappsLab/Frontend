@@ -6,28 +6,29 @@ export const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-// dApps {
-//   createdAt
-//   dAppCategory
-//   dAppName
-//   description
-//   id
-//   image
-//   publisher {
-//     id
-//     fullName
-//   }
-//   publishingDateTime
-//   shortDescription
-//   singleLicensePrice
-//   tags
-//   verified
-// }
 
 export const me_Query=gql`query {
   me{
     avatar address fullName id type twoFactorCode
     email location userName twoFactorEnabled balance
+    dApps {
+      createdAt
+      dAppCategory
+      dAppName
+      description
+      id
+      image
+      publisher {
+        id
+        fullName
+      }
+      publishingDateTime
+      shortDescription
+      singleLicensePrice
+      tags
+      verified
+    }
+
     smartContracts {
       id contractName createdAt description verified
       image source unlimitedLicensePrice singleLicensePrice
@@ -93,15 +94,7 @@ export const createNewUser= gql`
       }
     ) {
       token
-      # user {
-      # id
-      # userName
-      # type
-      # wallet {
-      # privateKey
-      # publicKey
-      # }
-      # }
+   
     }
   }
 `;
@@ -203,7 +196,7 @@ export const getContract=gql`
       contractName shortDescription
       description contractCategory
       singleLicensePrice unlimitedLicensePrice
-      image verified createdAt
+      image verified createdAt sourceContractName
       id publishingDateTime
       publisher {
         fullName
@@ -225,7 +218,7 @@ export const contractById=gql`
     {
       contractCategory id tags shortDescription
       image description verified
-      contractName publishingDateTime
+      contractName publishingDateTime sourceContractName
       singleLicensePrice unlimitedLicensePrice
       publisher {
         fullName
@@ -233,6 +226,13 @@ export const contractById=gql`
       }
     }
   }
+`
+export const editContract=gql`
+mutation  ($id:ID!,$fname:String!,$name:String!,$tags:[String!],$category:[Category!]!,$image:String!,$short:String!,$long:String!,$one:String!,$unlimited:String!,$source:String!){
+  updateSmartContract(id: $id, newSmartContract: {sourceContractName:$fname,contractName: $name, tags:$tags,contractCategory: $category, image: $image, shortDescription: $short, description: $long, singleLicensePrice: $one, unlimitedLicensePrice: $unlimited, source: $source}) {
+    id
+  }
+}
 `
 //==============================================================
 // 2FA Verification
@@ -409,12 +409,19 @@ export const getDapps=gql`
     }
   }
 `;
-export const createDapps=gql`mutation ($name:String!,$image:String!,$tags:[String]!,$category:[Category!]!,$short:String!,$desc:String!,$price:String!,$zip:String!){
+export const createDapps=gql`mutation ($name:String!,$image:String!,$tags:[String]!,$category:[Category!]!,$short:String!,$desc:String!,$price:String!,$zip:String){
   createDApp(newDApp: {dAppName: $name, image: $image, tags: $tags, dAppCategory: $category, shortDescription: $short, description: $desc, singleLicensePrice: $price, zip: $zip}){
   id
   }
 }`;
 
+export const editDapp=gql`
+mutation ($id:ID!,$input:DAppInput){
+  updateDApp(id: $id, newDApp: $input){
+  id
+}
+}
+`
 export const dappsFile=gql`
 mutation ($file:Upload!) {
   dAppUploader(file: $file)

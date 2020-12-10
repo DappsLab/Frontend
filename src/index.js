@@ -17,7 +17,7 @@ import Routes from "./routes";
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
 import {me_Query} from "./queries/queries";
-import {match} from "./queries/Services";
+import {Client, match} from "./queries/Services";
 
 
 const store = createStore(rootReducer, composeWithDevTools());
@@ -45,13 +45,21 @@ const client = new ApolloClient({
 });
 const  Main =(props)=>{
     const RenderData=()=>{
-        const {loading,data,error} =useQuery(me_Query,{client:client})
+        const {loading,data,error} =useQuery(me_Query,{
+            client:Client,
+            context:{
+                headers: {
+                    authorization: localStorage.getItem('token')||null
+                }
+            }
+        })
         if (loading) return <Spinner/>
         if (error) return (
             match(error.toString())?
                 <Routes {...props} user={null}/>:
                 <div>{error.toString()}</div>
         )
+        console.log(data.me)
         return <Routes {...props} user={data.me}/>
     }
     return  (
