@@ -28,13 +28,6 @@ const Login =(props)=>{
     const [password,setPassword]=useState("")
     const [showPassword,setshowPassword]=useState(false)
     const [loading,setLoading]=useState(false);
-    // state={
-    //     loading:false,
-    //     username: "",
-    //     showPassword:false,
-    //     error:"",
-    //     password: "",
-    // }
     const alert = props.alert;
     const isFormValid = () => {
         if (username.length !== 0 && password.label !== 0) {
@@ -44,11 +37,6 @@ const Login =(props)=>{
             return false;
         }
     }
-
-
-
-
-
     const HandleSubmit = async (event) => {
         event.preventDefault();
         setUsername('');

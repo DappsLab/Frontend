@@ -257,11 +257,6 @@ export const disable2FA=gql`
     disable2FA
   }
 `
-export const verify2FA=gql`
-  query ($token:String!){
-    verify2FA(token:$token)
-  }
-`
 //=======================================================================
 // Buy Smart Contract
 //=======================================================================
@@ -484,6 +479,9 @@ export const pendingDapps=gql`query
   }
 }
 `
+export const verify2FA=gql`query ($token:String!){
+  verify2FA(token:$token)
+  }`
 export const login=gql`
   query ($username:String!,$password:String!){  
   loginUser(userName: $username, password: $password) {
