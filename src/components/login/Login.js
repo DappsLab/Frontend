@@ -20,7 +20,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment'
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import {Loader} from 'semantic-ui-react'
+
 
 const Login =(props)=>{
 
@@ -73,12 +73,13 @@ const Login =(props)=>{
                     }
                 }
             }
+            setLoading(false);
         }
     };
 
     return  (
             <Layout>
-                <div className="wrapper">
+                <div className="register-wrapper">
                     {loading&&<Spinner2/>}
                     <div className="login-wrapper">
                         <div className="loginRight">
@@ -87,7 +88,7 @@ const Login =(props)=>{
                                     <img src={logo} alt={"img"}/>
                                 </div>
                                 <div className="btn">
-                                    <button className="signup">SignUp</button>
+                                    <Link to={'/register'} className="signup">SignUp</Link>
                                 </div>
                             </div>
                             <div className="form">
@@ -127,13 +128,12 @@ const Login =(props)=>{
                                 <button onClick={HandleSubmit} className="login">Login</button>
                             </div>
                         </div>
-                        <div className="loginleft">
-                            <div className="content">
+                        <div className="loginleft flex password-left">
+                            <div className={'pass-contect'}>
                                 <h1>Welcome back to Dappslab</h1>
-                                <img className="box1" src={Rectangle2}/>
-                                    <img className="bar2" src={Rectangle1}/>
-                                    <p>Login to continue to your account</p>
+                                <img src={Rectangle2} alt={''} width={"85px"} height={"85px"}/>
                             </div>
+                            <p>Login to continue to your account</p>
                             <img className="box2" src={Rectangle3}/>
                         </div>
                     </div>

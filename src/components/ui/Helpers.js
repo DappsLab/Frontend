@@ -4,6 +4,7 @@ export const numericReg=RegExp(/^[0-9]*$/);
 export const acceptedImageTypes = 'image/x-png, image/png, image/jpg, image/jpeg';
 export  const acceptedImageTypesArray = acceptedImageTypes.split(",").map((item) => {return item.trim()});
 export const filename=RegExp(/^[a-zA-Z0-9]*$/);
+export const emailRegex=RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 
 export const  categoryColors=(color)=> {
     switch (color) {

@@ -1,33 +1,30 @@
 import React, {Component} from 'react';
-import { Grid, Form,Segment,Header,Icon, Button } from 'semantic-ui-react';
 import Layout from "../../hoc/Layout";
 import {forgetPassword} from '../../queries/queries'
+import {Link} from 'react-router-dom'
+import '../../assets/scss/reset_password.css'
 import {graphql} from "react-apollo";
-import {Spinner} from "../ui/Spinner";
+import { Spinner2} from "../ui/Spinner";
 import {flowRight as compose} from 'lodash';
+import logo from '../../assets/images/logo_dapps.png'
+import  bar1 from '../../assets/images/bar1.png';
+import Rectangle2 from '../../assets/images/Rectangle2.png'
+import Rectangle3 from '../../assets/images/Rectangle3.png'
 import {withAlert} from "react-alert";
-
-const emailRegex=RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
+import {TextField} from "@material-ui/core";
 class ResetPassword extends Component {
     state = {
         email: "",
-        error: "",
-        exist:false,
         loading:false
     }
+
     handleChange = event => {
         const {name,value}=event.target;
-        if (emailRegex.test(value)) {
-            this.setState({error:""});
-        }
-        else {
-            this.setState({error:"Invalid email address"});
-        }
         this.setState({[name]:value},()=>{});
     }
     handleSubmit=()=>{
-        const that=this;
         const alert=this.props.alert
+        const that=this;
         if (this.state.email!=="") {
             that.setState({loading:true})
             this.props.mutate({
@@ -45,38 +42,51 @@ class ResetPassword extends Component {
             })
 
         }else {
-            this.setState({error:"Field Required"});
+            alert.error("Field Required",{timeout:2000})
         }
     }
     render() {
-        const {email,error,loading}=this.state;
+        const {email,loading}=this.state;
         return (
             <Layout>
-                <Grid textAlign="center"  verticalAlign='middle' className="login-bg">
-                    <Grid.Column style={{maxWidth:700}}>
-                        <Header as="h1" icon color="violet" textAlign="center">
-                            <Icon name="recycle" color="violet" />
-                            Reset password
-                        </Header>
-                        <Form  onSubmit={this.handleSubmit}>
-                            <Segment piled>
-                                < Form.Input
-                                    label={"Enter Email for Confermation"}
-                                    labelPosition="left"
-                                    fluid value={email}
-                                    name="email" icon="mail" iconPosition="left"
-                                    type="email" placeholder=" Email" onChange={this.handleChange}
-                                    className={error>0?"error":""}
-                                />
-                                {error.length>0&&(
-                                    <span className={"errorMessage"}>{error}</span>
-                                )}
-                                <Button fluid size="large">Reset</Button>
-                            </Segment>
-                        </Form>
-                    </Grid.Column>
-                </Grid>
-                {loading&&<Spinner/>}
+                <div className="register-wrapper">
+                    {loading && <Spinner2/> }
+                        <div className="password-wrapper">
+                            <div className="password-right">
+                                <div className="top">
+                                    <div className="logo">
+                                        <img src={logo} alt={"logo"}/>
+                                    </div>
+                                    <div className="btn">
+                                        <Link to={'/login'} className="signup">Login</Link>
+                                    </div>
+                                </div>
+                                <div className="form">
+                                    <h2>Reset Password</h2>
+                                    <img className="bar1" src={bar1} alt={""}/><br/>
+                                    <p>
+                                        Enter the email associated with your account and we’ll send an
+                                        email with instructions to reset your password
+                                    </p>
+                                    <form autoComplete="off">
+                                        <TextField
+                                            label="Email" value={email} type={'email'} name={'email'}
+                                            onChange={(event => this.handleChange(event))}
+                                        />
+                                    </form>
+                                    <button onClick={this.handleSubmit} className="login">Send</button>
+                                </div>
+                            </div>
+
+                            <div className="password-left flex">
+                                <div className={'pass-contect'}>
+                                    <h1>Reset Password</h1>
+                                    <img src={Rectangle2} alt={''} width={"85px"} height={"85px"}/>
+                                </div>
+                                <img className="box2" alt={''} src={Rectangle3}/>
+                            </div>
+                        </div>
+                </div>
             </Layout>
         );
     }

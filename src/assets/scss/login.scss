@@ -1,26 +1,22 @@
 @import "colors";
 
-.login-bg,.register-bg {
-  background: url("../images/register-bg.jpg");
-  background-size: 100% 100%;
-  height: auto;
-  margin: 0 !important;
-}
-.wrapper{
+
+.register-wrapper{
   background-image: url(../images/background.png);
   background-repeat: no-repeat;
-  background-size: cover;
-  padding: 60px;
+  background-size: 100% 100% ;
+  height: 900px;
+  padding: 70px 0;
   .spinner2{
     position: absolute;
+    top: 50%;
   }
 }
 .login-wrapper {
   margin: 0 auto;
   max-width: 1462px;
   justify-content: center;
-  min-height: 69vh;
-  height: 750px;
+  height: 100%;
   flex-flow: row-reverse;
   display: flex;
 }
@@ -33,12 +29,29 @@
   max-width: 470px;
   background-color: white;
   width: 100%;
-  padding: 0 30px;
+  padding:  30px;
   border-radius: 0 12px 12px 0;
 }
 .loginleft{
+  background-color: #04031c;
+  border-radius: 12px 0 0 12px;
   max-width: 990px;
   width: 100%;
+  .pass-contect{
+    h1{
+      width: 570px!important;
+    }
+  }
+  p {
+    font-size: 40px;
+    color: white;
+    margin-bottom: 0!important;
+    width: 500px;
+    margin-top: 40px;
+  }
+  .box2{
+    top: 6.8em!important;
+  }
 }
 .btn {
   margin: 39px 0 0 0;
@@ -97,36 +110,14 @@ h2{
   background-color: #04031c;
   color: white;
 }
-.loginleft{
-  background-color: #04031c;
-  border-radius: 12px 0 0 12px;
-}
+
 h1{
   margin: 252px 160px 55px 80px;
   color: white;
   font-size: 72px;
 }
-.bar2 {
-  margin: 0 0 0 80px;
-}
-.loginleft p {
-  font-size: 48px;
-  color: white;
-  margin: 50px 160px 51px 80px;
-}
-.box1{
-  float: right;
-  margin: -15% 0px 0px 0%;
-}
-.box2{
-  border-radius: 0 0 0 12px;
-  position: relative;
-  top: 77px;
-}
-.content {
-  width: 90%;
-  margin: 0 auto;
-}
+
+
 @media only screen and (max-width: 1024px){
   .loginRight{
     border-radius: 12px;
