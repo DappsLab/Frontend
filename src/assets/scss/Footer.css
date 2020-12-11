@@ -20,6 +20,9 @@ html {
 .fullWidth, .priceInput div {
   width: 100%; }
 
+.strock:focus {
+  outline: none; }
+
 body {
   background-color: #F6F7F9; }
 

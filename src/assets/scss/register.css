@@ -1,13 +1,114 @@
-.checkboxs {
-  margin: 10px auto; }
-
-.errorBox {
-  justify-content: space-around; }
-
-.register-bg Form p {
-  margin: 0 !important; }
+.register {
+  height: 1060px; }
 
 #__react-alert__ div div div {
   width: auto !important; }
+
+.login-wrapper {
+  margin: 0 auto;
+  max-width: 1462px;
+  justify-content: center;
+  min-height: 69vh;
+  flex-flow: row-reverse;
+  display: flex; }
+
+.register-right {
+  max-width: 470px;
+  background-color: white;
+  width: 100%;
+  padding: 50px 30px;
+  border-radius: 0px 12px 12px 0px; }
+  .register-right .top {
+    display: flex;
+    margin-bottom: 5em;
+    align-items: center;
+    justify-content: space-between; }
+    .register-right .top .logo, .register-right .top .btn {
+      margin: 0; }
+  .register-right .login {
+    color: #04031c;
+    font-weight: 600;
+    font-size: 25px;
+    background: white;
+    border-style: solid;
+    border-radius: 36px; }
+  .register-right .login:hover {
+    background-color: #04031c;
+    color: white; }
+  .register-right .signup {
+    border-radius: 6px;
+    background-color: #04031c;
+    padding: 10px 25px 10px 25px;
+    font-size: 15px;
+    border: none;
+    color: white; }
+  .register-right .form .fname {
+    width: 100%; }
+  .register-right .form label {
+    font-size: 18px; }
+  .register-right .form .flex {
+    justify-content: space-between;
+    margin: 25px 0; }
+    .register-right .form .flex .MuiInput-root {
+      width: 190px !important; }
+  .register-right .form .checkboxs {
+    margin: 4em 0; }
+    .register-right .form .checkboxs .flex {
+      margin: 5px 0;
+      justify-content: flex-start !important; }
+    .register-right .form .checkboxs .MuiIconButton-colorPrimary:hover {
+      background: none !important; }
+    .register-right .form .checkboxs .PrivateSwitchBase-root-1 {
+      margin-right: 10px;
+      padding: 0 !important; }
+  .register-right .form h2 {
+    margin-bottom: 2.5em; }
+  .register-right .form h2::after {
+    content: "";
+    background: #04031c;
+    height: 3px;
+    margin-top: 20px;
+    border-radius: 5px;
+    width: 50px;
+    display: block; }
+
+.register-left {
+  max-width: 990px;
+  width: 100%;
+  background-color: #04031c;
+  border-radius: 12px 0px 0px 12px; }
+  .register-left p {
+    font-size: 40px;
+    color: white;
+    margin-bottom: 0 !important;
+    width: 500px;
+    margin-top: 40px; }
+  .register-left .box2 {
+    top: 12.7em !important; }
+
+@media only screen and (max-width: 1024px) {
+  .register-left {
+    display: none; }
+
+  .login {
+    padding: 13px 40% 11px 40%; }
+
+  .register-right {
+    border-radius: 12px; } }
+@media only screen and (max-width: 425px) {
+  .logo img {
+    width: 66%; }
+
+  .signup {
+    margin: -13px; }
+
+  .checkbox {
+    margin: 58px 0px 0px 18px; }
+
+  .btm-btn {
+    margin: 57px 29px 50px 3px; }
+
+  .login {
+    padding: 13px 37% 11px 40%; } }
 
 /*# sourceMappingURL=register.css.map */

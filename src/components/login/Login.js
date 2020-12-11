@@ -11,7 +11,6 @@ import {Spinner2} from "../ui/Spinner";
 import logo from '../../assets/images/logo_dapps.png'
 import  bar1 from '../../assets/images/bar1.png';
 import Rectangle2 from '../../assets/images/Rectangle2.png'
-import Rectangle1 from '../../assets/images/Rectangle1.png'
 import Rectangle3 from '../../assets/images/Rectangle3.png'
 import FormControl from "@material-ui/core/FormControl";
 import {InputLabel} from "@material-ui/core";
@@ -78,23 +77,23 @@ const Login =(props)=>{
     };
 
     return  (
-            <Layout>
-                <div className="register-wrapper">
-                    {loading&&<Spinner2/>}
-                    <div className="login-wrapper">
-                        <div className="loginRight">
-                            <div className="top">
-                                <div className="logo">
-                                    <img src={logo} alt={"img"}/>
-                                </div>
-                                <div className="btn">
-                                    <Link to={'/register'} className="signup">SignUp</Link>
-                                </div>
+        <Layout>
+            <div className="register-wrapper">
+                {loading&&<Spinner2/>}
+                <div className="login-wrapper">
+                    <div className="loginRight">
+                        <div className="top">
+                            <div className="logo">
+                                <img src={logo} alt={"img"}/>
                             </div>
-                            <div className="form">
-                                <h2>Login</h2>
-                                <img className="bar1" src={bar1}/><br/>
-                                <form autoComplete={'off'} noValidate>
+                            <div className="btn">
+                                <Link to={'/register'} className="signup">SignUp</Link>
+                            </div>
+                        </div>
+                        <div className="form">
+                            <h2>Login</h2>
+                            <img className="bar1" src={bar1}/><br/>
+                            <form autoComplete={'off'} noValidate>
                                 <FormControl className={'uname'} >
                                     <InputLabel>Username</InputLabel>
                                     <Input
@@ -123,23 +122,23 @@ const Login =(props)=>{
                                         }
                                     />
                                 </FormControl>
-                                </form>
-                                <p className="fgtpwd"><Link to={'/forget_password'}>forget password </Link></p>
-                                <button onClick={HandleSubmit} className="login">Login</button>
-                            </div>
-                        </div>
-                        <div className="loginleft flex password-left">
-                            <div className={'pass-contect'}>
-                                <h1>Welcome back to Dappslab</h1>
-                                <img src={Rectangle2} alt={''} width={"85px"} height={"85px"}/>
-                            </div>
-                            <p>Login to continue to your account</p>
-                            <img className="box2" src={Rectangle3}/>
+                            </form>
+                            <p className="fgtpwd"><Link to={'/forget_password'}>forget password </Link></p>
+                            <button onClick={HandleSubmit} className="login">Login</button>
                         </div>
                     </div>
+                    <div className="loginleft flex password-left">
+                        <div className={'pass-contect'}>
+                            <h1>Welcome back to Dappslab</h1>
+                            <img src={Rectangle2} alt={''} width={"85px"} height={"85px"}/>
+                        </div>
+                        <p>Login to continue to your account</p>
+                        <img className="box2" src={Rectangle3}/>
+                    </div>
                 </div>
-            </Layout>
-        );
+            </div>
+        </Layout>
+    );
 }
 export default  compose(
     connect(null, {setUser}),
