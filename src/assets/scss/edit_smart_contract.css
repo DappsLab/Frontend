@@ -1,3 +1,7 @@
+.edit_contract .spinner2, .edit_dapp .spinner2 {
+  position: absolute;
+  top: 50%;
+  z-index: 99; }
 .edit_contract .ui.grid, .edit_dapp .ui.grid {
   width: 70% !important;
   margin: 0 auto;

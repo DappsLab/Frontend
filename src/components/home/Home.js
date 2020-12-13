@@ -1,17 +1,22 @@
 import React from 'react';
 import Layout from "../../hoc/Layout";
-import AboutUs from "./AboutUs";
-import OurTeam from "./OurTeam";
-import {HomeBanner} from "./HomeComponents";
+import {
+    CustomSmartContract,
+    Decentralized,
+    HomeBanner,
+    HomeBlockChain,
+    OurSmartContract
+} from "./HomeComponents";
 import '../../assets/scss/home.css'
 
-const Home = () =>{
+const Home = (props) =>{
     return (
         <Layout>
             <HomeBanner/>
-            <AboutUs place={true}/>
-            <OurTeam/>
-
+            <HomeBlockChain/>
+            <OurSmartContract {...props}/>
+            <CustomSmartContract/>
+            <Decentralized {...props}/>
         </Layout>
     );
 };

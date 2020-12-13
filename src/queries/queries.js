@@ -217,7 +217,7 @@ export const contractById=gql`
     smartContractById(id: $id)
     {
       contractCategory id tags shortDescription
-      image description verified
+      image description verified source
       contractName publishingDateTime sourceContractName
       singleLicensePrice unlimitedLicensePrice
       publisher {
@@ -261,10 +261,10 @@ export const disable2FA=gql`
 // Buy Smart Contract
 //=======================================================================
 export const orderContract=gql`
-  mutation ($fee:String!,$id:String!,$type:LicenseType!) {
+  mutation ($producttype:ProductType!,$fee:String!,$id:String!,$type:LicenseType!) {
     placeOrder(
       newOrder:{
-        productType: SMARTCONTRACT,
+        productType: $producttype,
         licenseType: $type,
         fee: $fee,
         smartContract: $id
@@ -498,3 +498,8 @@ export const login=gql`
  }
   }
   }`
+
+export const getZip=gql`query ($did:ID!,$pid:ID!,$lid:ID!){ 
+  getZip(zipInput: {dApp: $did, purchasedDApp: $pid, license: $lid})
+}
+`

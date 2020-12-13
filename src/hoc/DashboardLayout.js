@@ -45,6 +45,6 @@ class DashboardLayout extends Component{
             </Layout>
         );
     }
-};
+}
 
 export default DashboardLayout;

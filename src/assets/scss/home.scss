@@ -23,8 +23,177 @@
     font-size: 20px;
   }
 }
-.home_blockchain{
-  h2{
+.home_blockchain {
+  display: flex;
+  height: 900px;
+  align-items: center;
+  padding: 5em 7em;
+  justify-content: space-between;
+  h2 {
+    font-size: 50px;
+    span{
+      color: #0fba87
+    }
+  }
+  h2::after{
+    content: "";
+    height: 3px;
+    width: 100px;
+    margin: 30px 0;
+    display: block;
+    background: #0FBA87;
+  }
 
+  .b-right {
+    flex-direction: column;
+    width: 40%;
+    align-self: center;
+    p{
+      width: 85%;
+      color: #0f0e2e;
+      font-size: 16px;
+    }
+  }
+
+  .b-left {
+    width: 40%;
+  }
+  img{
+    width: 100%;
+  }
+}
+
+.our-contract {
+  height: 900px;
+  background-color: #eae9f4;
+  padding: 10em 7em;
+  .s-left{
+    width: 50%;
+    align-self: center;
+    padding: 0 30px;
+    h2{
+      font-size: 40px;
+      span{
+        color: #5754ab;
+      }
+    }
+    p{
+      font-size: 18px;
+    }
+    h2::after{
+      content: "";
+      height: 3px;
+      width: 100px;
+      margin: 40px 0;
+      display: block;
+      background: #5754ab;
+    }
+    button{
+      border-radius: 36px;
+      background-color: #5754ab;
+      padding:22px 40px ;
+      font-size: 18px;
+      cursor: pointer;
+      border: 2px solid #5754ab;
+      margin: 4em 0;
+      color: white;
+    }
+    button:hover{
+      background: #fff;
+      color: #5754ab;
+    }
+  }
+  .s-right{
+    width: 50%;
+    img{
+      width: 100%;
+    }
+  }
+}
+
+
+.custom-contract{
+  height: 908px;
+  background-image: url(../images/btm-box.png);
+  color: #fff;
+  padding: 7em 5em;
+  .c-left{
+    h2 {
+      font-size: 50px;
+      span{
+        color: #8f4114
+      }
+    }
+    h2::after{
+      content: "";
+      height: 3px;
+      width: 100px;
+      margin: 30px 0;
+      display: block;
+      background: #8f4114;
+    }
+    p{
+      font-size: 18px;
+      width: 53%;
+    }
+    button{
+      padding:22px 40px ;
+      font-size: 18px;
+      border: 3px solid #8F4114;
+      color: white;
+      background-color: #8f4114;
+      margin: 50px 0 0 0;
+      border-radius: 36px;
+    }
+    button:hover{
+      background-color: #0f0e2e;
+    }
+  }
+  .c-right{
+    width: 46%;
+  }
+}
+.decentralized{
+  height: 900px;
+  text-align: center;
+  button{
+    background-color: #0fba87;
+    padding: 19px 50px;
+    border-radius: 36px;
+    border: 3px solid #0fba87;
+    color: white;
+    align-self:center;
+    margin:5em 0 0 0  ;
+  }
+  button:hover{
+    background: #fff;
+    color: #0FBA87;
+  }
+  p{
+    width: 85%;
+    font-size: 18px;
+    margin: auto;
+  }
+  h2 {
+    font-size: 50px;
+    span{
+      color: #0fba87
+    }
+  }
+  h2::after,h2::before{
+    margin: 0 auto;
+    content: "";
+    display: block;
+  }
+  h2::after{
+    height: 3px;
+    width: 100px;
+    background: #0fba87;
+    margin: 30px auto;
+  }
+  h2::before{
+    height: 168px;
+    width: 54px;
+    background: #5754ab;
   }
 }

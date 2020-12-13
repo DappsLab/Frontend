@@ -76,7 +76,7 @@ export const CompileResult=(props)=>{
     const {loading,error,data}=useQuery(me_Query,{client:Client,
         onCompleted:data1 => {
             props.setUser(data1.me);
-            console.log(data1.me)
+            console.log("me query",data1.me)
         },onError:error1 => {
             alert.error(error1.toString(),{timeout:5000})
         },

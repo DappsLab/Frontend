@@ -17,5 +17,9 @@ export const match=(data)=>{
         localStorage.removeItem('token');
         return true
     }
+    if (data.toString().toLowerCase().includes('error: failed to fetch')){
+        localStorage.removeItem('token')
+        return true;
+    }
 }
 

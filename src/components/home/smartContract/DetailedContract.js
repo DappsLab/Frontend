@@ -21,6 +21,7 @@ import {ApolloClient,gql, InMemoryCache} from "@apollo/client";
 import {withAlert} from "react-alert";
 import {setUser} from "../../../actions/Actions";
 import "../../../assets/scss/licenses.css"
+import {getDate} from "../../ui/Helpers";
 
 
 class  DetailedContract extends Component{
@@ -137,7 +138,7 @@ class  DetailedContract extends Component{
                     height={"90px"} width={"90px"}
                 />
                 <h2>{contractData.contractName}</h2>
-                <span>{contractData.publishingDateTime}</span>
+                <span>{getDate(contractData.publishingDateTime)}</span>
                 <div>
                     <Button size={"mini"} color='facebook'>
                         <Icon name='facebook' /> Facebook
@@ -195,6 +196,7 @@ class  DetailedContract extends Component{
         const contractData=this.props.data.smartContractById;
         this.props.orderContract({
             variables:{
+                producttype:'SMARTCONTRACT',
                 fee: fee.toString(),
                 id:contractData.id,
                 type:radioValue

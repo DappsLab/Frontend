@@ -1,0 +1,38 @@
+@import "colors";
+.detail-container {
+  width: 100%;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 auto;
+.dapps-details {
+  width: 50%;
+  margin: 14px 10px !important;
+  padding: 30px !important;
+
+  h2 {
+    margin-bottom: 0;
+  }
+
+  span:nth-child(2) {
+    color: #1A97FF;
+  }
+
+  p {
+    margin: 10px 0;
+  }
+
+  h4 {
+    span {
+      color: #1A97FF;
+    }
+  }
+
+  .dapp-category {
+    margin: 10px 0;
+  }
+}
+  .buy-dapps {
+
+    width: 25%;
+  }
+}

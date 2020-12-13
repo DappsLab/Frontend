@@ -9,13 +9,13 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowUp} from "@fortawesome/free-solid-svg-icons";
 import CustomizedDialogs from "../../../ui/DialogBox";
 import {useMutation, useQuery} from "@apollo/client";
-import {contractById, editContract, imageUpload, sourceUpload} from "../../../../queries/queries";
+import {contractById, editContract, imageUpload, me_Query, sourceUpload} from "../../../../queries/queries";
 import {Spinner2} from "../../../ui/Spinner";
 import {Client} from "../../../../queries/Services";
 import Avatar from "@material-ui/core/Avatar";
 import {withAlert} from "react-alert";
 import Uploader from "../../../ui/Uploader";
-import GetSource from "./GetSource";
+import {GetSource} from "./GetSource";
 
 
 const descriptionRGP=RegExp(/^[a-zA-Z][a-zA-Z\s,.]*$/);
@@ -27,6 +27,7 @@ const EditSmartContract =(props)=> {
     const [onePrice,setonePrice]=useState('');
     const [shortCounter,setshortCounter]=useState(200);
     const [uPrice,setuPrice]=useState("");
+    const [Loading,setLoading]=useState(false)
     const [img,setImg]=useState(null);
     const [imgPath,setImgPath]=useState("");
     const [imgModel,setimgModel]=useState(false);
@@ -192,10 +193,59 @@ const EditSmartContract =(props)=> {
             }
         },
     })
-
     const Submit=(file)=>{
-        source({variables:{file}})
+        source({variables:{file}}).catch(err=>{
+            console.log(err.toString())
+        })
     }
+    const HnadleSubmit=(contract)=>{
+
+        setLoading(true);
+        let finalCategoryArray=[];
+        for (let i = 0; i < cetagory.length; i++) {
+            finalCategoryArray.push(cetagory[i]['value']);
+        }
+        updateContract({
+            variables:{
+                id:contract.id,
+                fname: fName!==""?fName:contract.sourceContractName,
+                name: cName!==""?cName:contract.contractName,
+                image: imgPath!==""?imgPath:contract.image,
+                short: shortDescription!==""?shortDescription:contract.shortDescription,
+                category: finalCategoryArray.length>0?finalCategoryArray:contract.contractCategory,
+                long: longDescription!==""?longDescription:contract.description,
+                one: onePrice!==""?onePrice:contract.singleLicensePrice,
+                tags: tags.length>0?tags:contract.tags,
+                unlimited: uPrice!==""?uPrice.toString():contract.unlimitedLicensePrice,
+                source:newSource!==""? newSource.toString():contract.source
+            }
+        }).catch(err=>{
+            console.log(err.toString())
+        })
+    }
+
+    const [updateContract]=useMutation(editContract,{
+        client:Client,
+        context: {
+            headers: {
+                authorization: localStorage.getItem("token")
+            }
+        },onCompleted:data => {
+            setLoading(false);
+            props.history.push('/dashboard/developed_contract');
+            alert.success("Update Successfully",{timeout:2000})
+            console.log(data)
+        },onError:error => {
+            setLoading(false);
+            alert.error(error.toString(),{timeout:3000})
+            console.log(error.toString())
+        },
+        refetchQueries:[{query:me_Query,context:{
+            headers:{
+                authorization:localStorage.getItem('token')
+            }
+        }}]
+    })
     const RenderContractData=()=>{
         const {loading,error,data}=useQuery(contractById, {
             variables: {id: props.match.params.id},
@@ -326,7 +376,7 @@ const EditSmartContract =(props)=> {
             <h3>Upload New Source</h3>
             <Uploader  type={'contract'} onSubmit={(file) => Submit(file)}/>
 
-            <Button className={'update-btn'}>Update Smart Contract</Button>
+            <Button onClick={()=>HnadleSubmit(contract)} className={'update-btn'}>Update Smart Contract</Button>
         </Grid.Column>
     </Grid>
     }
@@ -335,6 +385,7 @@ const EditSmartContract =(props)=> {
         <Layout>
         <section className={'edit_contract'}>
             <h2>Edit Smart contract</h2>
+            {Loading&&<Spinner2/>}
             {RenderContractData()}
         </section>
             {imgModel?

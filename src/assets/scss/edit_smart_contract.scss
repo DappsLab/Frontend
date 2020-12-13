@@ -1,5 +1,10 @@
 @import "colors";
 .edit_contract,.edit_dapp {
+  .spinner2{
+    position: absolute;
+    top: 50%;
+    z-index: 99;
+  }
   .ui.grid {
     width: 70% !important;
     margin: 0 auto;

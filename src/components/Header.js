@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 import {Button} from 'semantic-ui-react'
 import logo from '../assets/images/dappslab-logo-white.png'
 import ListItem from "@material-ui/core/ListItem";
-import DarkMode from "./ui/Dark-mode";
 import {DropDown} from "./ui/DropDown";
 import {connect} from 'react-redux';
 import {flowRight as compose} from 'lodash';

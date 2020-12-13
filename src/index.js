@@ -19,7 +19,6 @@ import 'codemirror/theme/material.css';
 import {me_Query} from "./queries/queries";
 import {Client, match} from "./queries/Services";
 
-
 const store = createStore(rootReducer, composeWithDevTools());
 const options = {
     position: positions.TOP_CENTER,
@@ -71,7 +70,7 @@ const  Main =(props)=>{
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router>
+        <Router onUpdate={() => window.scrollTo(0, 0)}>
             <ApolloProvider client={client}>
                 <Main/>
             </ApolloProvider>
