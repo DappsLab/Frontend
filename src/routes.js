@@ -61,13 +61,13 @@ const Routes =(props)=>{
               <PrivateRoute {...props} path={"/dashboard/purchased"} exact component={Purchased}/>
               <PrivateRoute {...props} path={"/account_settings"} component={UserAccount}/>
               <PrivateRoute {...props} path={'/upload_dapps'} component={UploadDapps}/>
-              <PrivateRoute {...props} path={'/dapps_details/:id'} component={DappsDetails}/>
               <PrivateRoute {...props} path={'/edit_dapp/:id'} component={EditDapp}/>
               <PrivateRoute {...props} path={"/logout"} exact component={Logout}/>
               <PrivateRoute {...props} path={"/delete_user"} exact component={DeleteUser}/>
               <PrivateRoute {...props} path={"/edit_samrt_contract/:id"} exact component={EditSmartContract}/>
               <PrivateRoute {...props} path={"/compile/:id"} exact component={Compile}/>
               <PrivateRoute {...props} path={"/upload_samrt_contract"} exact component={UploadSmartContract}/>
+              <PublicRoute {...props} restricted={false} path={'/dapps_details/:id'} component={DappsDetails}/>
               <PublicRoute {...props} restricted={false} path={"/2FA_varifivcation/:token"} exact component={FAConfirmation}/>
               <PublicRoute {...props} restricted={false} path={"/block_explorer/:search"} exact component={ExplorerResult}/>
               <PublicRoute {...props} restricted={false} path={"/user/reset-password/:key"} exact component={ChangePassword}/>

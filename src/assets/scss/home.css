@@ -119,7 +119,10 @@
 
 .decentralized {
   height: 900px;
-  text-align: center; }
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center; }
   .decentralized button {
     background-color: #0fba87;
     padding: 19px 50px;
@@ -133,24 +136,17 @@
     color: #0FBA87; }
   .decentralized p {
     width: 85%;
-    font-size: 18px;
-    margin: auto; }
+    font-size: 18px; }
   .decentralized h2 {
     font-size: 50px; }
     .decentralized h2 span {
       color: #0fba87; }
-  .decentralized h2::after, .decentralized h2::before {
-    margin: 0 auto;
-    content: "";
-    display: block; }
   .decentralized h2::after {
+    content: "";
+    display: block;
     height: 3px;
     width: 100px;
     background: #0fba87;
     margin: 30px auto; }
-  .decentralized h2::before {
-    height: 168px;
-    width: 54px;
-    background: #5754ab; }
 
 /*# sourceMappingURL=home.css.map */

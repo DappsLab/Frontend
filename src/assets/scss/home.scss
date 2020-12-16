@@ -156,6 +156,9 @@
 .decentralized{
   height: 900px;
   text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   button{
     background-color: #0fba87;
     padding: 19px 50px;
@@ -172,7 +175,6 @@
   p{
     width: 85%;
     font-size: 18px;
-    margin: auto;
   }
   h2 {
     font-size: 50px;
@@ -180,20 +182,12 @@
       color: #0fba87
     }
   }
-  h2::after,h2::before{
-    margin: 0 auto;
+  h2::after{
     content: "";
     display: block;
-  }
-  h2::after{
     height: 3px;
     width: 100px;
     background: #0fba87;
     margin: 30px auto;
-  }
-  h2::before{
-    height: 168px;
-    width: 54px;
-    background: #5754ab;
   }
 }

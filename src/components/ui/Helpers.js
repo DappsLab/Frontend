@@ -90,3 +90,12 @@ export const cardColors=(index)=>{
     }
 
 }
+export const  feeProcessTime=(value)=>{
+    if (value<300000){
+        return " Maximum time"
+    }else if (value<700000){
+        return " Medium time"
+    }else {
+        return " Minimum time"
+    }
+}

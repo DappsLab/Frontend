@@ -6,6 +6,8 @@ import PurchasedRow from "./PurchasedRow";
 import Admin from "../../../admin/Admin";
 import {ApolloClient, InMemoryCache} from "@apollo/client";
 import { ApolloProvider } from '@apollo/client';
+import {setUser} from "../../../../actions/Actions";
+
 class Purchased extends Component {
     state={
         currentUser:this.props.user===null?this.props.currentUser:this.props.user
@@ -50,4 +52,4 @@ class Purchased extends Component {
 const mapStateToProps=(state)=>({
     currentUser:state.user.currentUser,
 })
-export default connect(mapStateToProps)(Purchased);
+export default connect(mapStateToProps, {setUser})(Purchased);

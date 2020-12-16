@@ -210,7 +210,7 @@ class  DetailedContract extends Component{
                         verifyOrder(id: $id)
                     }`,variables: {id: orderId}
                 }).then(result => {
-                    if (result.data.verifyOrder){
+                        if (result.data.verifyOrder){
                         that.Authclient.mutate({
                             mutation:gql`
                                 mutation ($SID:String!,$OID:String!){

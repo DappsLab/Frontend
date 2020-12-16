@@ -261,19 +261,21 @@ export const disable2FA=gql`
 // Buy Smart Contract
 //=======================================================================
 export const orderContract=gql`
-  mutation ($producttype:ProductType!,$fee:String!,$id:String!,$type:LicenseType!) {
+  mutation ($producttype:ProductType!,$fee:String!,$did:ID,$id:String,,$type:LicenseType!) {
     placeOrder(
       newOrder:{
         productType: $producttype,
         licenseType: $type,
         fee: $fee,
-        smartContract: $id
+        smartContract: $id,
+        dApp: $did
       }
     ){
       id
     }
   }
 `
+
 //=======================================================================
 // Search Smart Contract
 //=======================================================================
@@ -503,3 +505,22 @@ export const getZip=gql`query ($did:ID!,$pid:ID!,$lid:ID!){
   getZip(zipInput: {dApp: $did, purchasedDApp: $pid, license: $lid})
 }
 `
+export const verifyOrder=gql`
+query  ($id:ID!){
+     verifyOrder(id: $id)
+ }`
+export const purchaseDapp=gql`
+   mutation ($did:String!,$oid:String!){
+  purchaseDApp(newPurchase: {dAppId: $did, orderId: $oid}) {
+     licenses {
+      id
+    }
+    id
+    dApp {
+      id
+    }
+  }
+}
+
+   
+    `

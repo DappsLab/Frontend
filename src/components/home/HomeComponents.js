@@ -76,7 +76,7 @@ export const CustomSmartContract=()=>{
 }
 export  const  Decentralized=(props)=>{
     return(
-        <section className="decentralized">
+        <section className="decentralized flex">
             <h2>Decentralized <span>Application</span></h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                 incididunt
