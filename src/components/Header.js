@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import {Button} from 'semantic-ui-react'
 import logo from '../assets/images/dappslab-logo-white.png'
 import ListItem from "@material-ui/core/ListItem";
+import {Dropdown} from "semantic-ui-react";
 import {DropDown} from "./ui/DropDown";
 import {connect} from 'react-redux';
 import {flowRight as compose} from 'lodash';
@@ -60,10 +61,22 @@ class Header extends React.Component {
                             <img className={'logo'} src={logo} alt={"logo"}/>
                         </Link>
                     </Jump>
+
                     <nav className="flex">
                         {this.renderNav()}
                     </nav>
+
                     <div className={"flex "}>
+                        <Dropdown
+                            icon='bars'
+                            className='small-device icon'
+                        >
+                            <Dropdown.Menu>
+                                {this.links.map(link => (
+                                    <Dropdown.Item as={Link} to={`${link.linkTo}`} text={link.title}/>
+                                ))}
+                            </Dropdown.Menu>
+                        </Dropdown>
                         {/*<DarkMode/>*/}
                         {this.props.logged_session ?
                             this.renderAccount()

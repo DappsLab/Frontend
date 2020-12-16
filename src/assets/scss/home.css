@@ -17,6 +17,9 @@
     color: #5754AB;
     font-size: 20px; }
 
+@media only screen and (max-width: 1090px) {
+  .home_banner h1, .home_banner p {
+    width: auto; } }
 .home_blockchain {
   display: flex;
   height: 900px;
@@ -34,25 +37,35 @@
     margin: 30px 0;
     display: block;
     background: #0FBA87; }
-  .home_blockchain .b-right {
+  .home_blockchain .b-left {
     flex-direction: column;
-    width: 40%;
+    width: 55%;
     align-self: center; }
-    .home_blockchain .b-right p {
+    .home_blockchain .b-left p {
       width: 85%;
       color: #0f0e2e;
       font-size: 16px; }
-  .home_blockchain .b-left {
+  .home_blockchain .b-right {
     width: 40%; }
   .home_blockchain img {
     width: 100%; }
 
+@media only screen and (max-width: 1090px) {
+  .home_blockchain .b-right {
+    opacity: 0.2;
+    position: absolute;
+    width: 70%; }
+  .home_blockchain .b-left {
+    width: auto;
+    height: 100%;
+    display: flex;
+    justify-content: center; } }
 .our-contract {
   height: 900px;
   background-color: #eae9f4;
   padding: 10em 7em; }
   .our-contract .s-left {
-    width: 50%;
+    width: 55%;
     align-self: center;
     padding: 0 30px; }
     .our-contract .s-left h2 {
@@ -81,10 +94,23 @@
       background: #fff;
       color: #5754ab; }
   .our-contract .s-right {
-    width: 50%; }
+    width: 45%; }
     .our-contract .s-right img {
       width: 100%; }
 
+@media only screen and (max-width: 1090px) {
+  .our-contract .s-right {
+    opacity: 0.2;
+    position: absolute;
+    width: 100%; }
+  .our-contract .s-left {
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+    .our-contract .s-left button {
+      width: 340px; } }
 .custom-contract {
   height: 908px;
   background-image: url(../images/btm-box.png);
@@ -116,7 +142,24 @@
     background-color: #0f0e2e; }
   .custom-contract .c-right {
     width: 46%; }
+    .custom-contract .c-right img {
+      width: 100%; }
 
+@media only screen and (max-width: 1090px) {
+  .custom-contract .c-right {
+    opacity: 0.2;
+    position: absolute;
+    width: 70%; }
+  .custom-contract .s-left {
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+    .custom-contract .s-left p {
+      width: auto; }
+    .custom-contract .s-left button {
+      width: 340px; } }
 .decentralized {
   height: 900px;
   text-align: center;

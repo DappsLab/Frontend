@@ -7,14 +7,7 @@ import OrderRow from "./OrderRow";
 
 class OrderContracts extends Component {
     state={
-        currentUser:this.props.user===null?this.props.currentUser:this.props.user
-    }
-    componentDidMount() {
-        if (this.props.currentUser) {
-            this.setState({
-                currentUser: this.props.currentUser
-            });
-        }
+        currentUser:this.props.currentUser
     }
     render() {
         const {currentUser}=this.state;

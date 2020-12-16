@@ -16,6 +16,7 @@ header {
   }
 
   nav {
+    display: flex;
     .MuiListItem-button:hover {
       background-color: rgba(0, 0, 0, 0.24) !important;
     }
@@ -55,17 +56,10 @@ header {
 
 }
 
-
-.darkbtn{
-  padding-top: 5px;
-  margin: 0 5px;
-}
 .arrowUp{
   color: $background-color;
 }
-.dropdown{
-  left: -20px !important;
-}
+
 .MuiPaper-root{
   width: 200px;
 }
@@ -93,4 +87,38 @@ header {
   color: $background-color;
   left: 105px;
   font-size: 35px !important;
+}
+
+//================================
+
+.small-device {
+  display: none!important;
+  i{
+    color: #fff;
+  }
+}
+@media only screen and (max-width: 1300px) {
+  header{
+    .arrowUp{
+      display: none!important;
+    }
+  }
+}
+@media only screen and (max-width: 1090px) {
+  header {
+    .small-device{
+      display: inline-block!important;
+      .menu {
+        left: -96px!important;
+        top: 30px!important;
+      }
+    }
+    nav {
+      display: none !important;
+    }
+    .arrowUp{
+      display: none!important;
+    }
+  }
+
 }

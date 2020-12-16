@@ -7,7 +7,7 @@ import {Spinner2} from "../../ui/Spinner";
 
 export const Customized=(props)=>{
     const contract=props.contract;
-   const returnColor=(color)=>{
+    const returnColor=(color)=>{
         switch (color){
             case "TOOLS":
                 return "orange";

@@ -10,6 +10,7 @@ header {
   header .logo {
     height: 50px; }
   header nav {
+    display: flex;
     color: #ffffff !important; }
     header nav .MuiListItem-button:hover {
       background-color: rgba(0, 0, 0, 0.24) !important; }
@@ -37,15 +38,8 @@ header {
     header .btn_group .Signup_btn {
       background-color: #0FBA87 !important; }
 
-.darkbtn {
-  padding-top: 5px;
-  margin: 0 5px; }
-
 .arrowUp {
   color: #F6F7F9; }
-
-.dropdown {
-  left: -20px !important; }
 
 .MuiPaper-root {
   width: 200px; }
@@ -73,5 +67,24 @@ header {
   color: #F6F7F9;
   left: 105px;
   font-size: 35px !important; }
+
+.small-device {
+  display: none !important; }
+  .small-device i {
+    color: #fff; }
+
+@media only screen and (max-width: 1300px) {
+  header .arrowUp {
+    display: none !important; } }
+@media only screen and (max-width: 1090px) {
+  header .small-device {
+    display: inline-block !important; }
+    header .small-device .menu {
+      left: -96px !important;
+      top: 30px !important; }
+  header nav {
+    display: none !important; }
+  header .arrowUp {
+    display: none !important; } }
 
 /*# sourceMappingURL=header.css.map */

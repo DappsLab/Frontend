@@ -19,7 +19,7 @@ export const HomeBanner = () => {
 export const HomeBlockChain=()=>{
     return(
     <section className="home_blockchain">
-            <div className="b-right">
+            <div className="b-left">
                 <h2>Dappslab <span> Blockchain</span></h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
@@ -29,7 +29,7 @@ export const HomeBlockChain=()=>{
                     anim id est laborum.
                 </p>
             </div>
-            <div className="b-left">
+            <div className="b-right">
                 <img alt={''} src={group}/>
             </div>
     </section>

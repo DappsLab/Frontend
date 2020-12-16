@@ -4,7 +4,7 @@
   align-items: flex-start;
   margin: 0 auto; }
   .detail-container .dapps-details {
-    width: 50%;
+    width: 45%;
     margin: 14px 10px !important;
     padding: 30px !important; }
     .detail-container .dapps-details h2 {
@@ -35,9 +35,9 @@
       opacity: unset !important; }
     .detail-container .buy-dapps .slider {
       margin-top: 20px;
-      width: 100%;
       align-items: flex-start !important;
-      justify-content: space-between; }
+      justify-content: space-between;
+      width: 100%; }
       .detail-container .buy-dapps .slider .semantic_ui_range_inner {
         margin: 0 !important; }
       .detail-container .buy-dapps .slider .fields {

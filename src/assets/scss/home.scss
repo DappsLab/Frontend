@@ -23,6 +23,18 @@
     font-size: 20px;
   }
 }
+
+@media only screen and (max-width: 1090px) {
+  .home_banner{
+    h1,p{
+      width: auto;
+    }
+  }
+}
+
+
+
+//=====================================================
 .home_blockchain {
   display: flex;
   height: 900px;
@@ -44,9 +56,9 @@
     background: #0FBA87;
   }
 
-  .b-right {
+  .b-left {
     flex-direction: column;
-    width: 40%;
+    width: 55%;
     align-self: center;
     p{
       width: 85%;
@@ -55,20 +67,36 @@
     }
   }
 
-  .b-left {
+  .b-right {
     width: 40%;
   }
   img{
     width: 100%;
   }
 }
+@media only screen and (max-width: 1090px) {
+  .home_blockchain{
+   .b-right{
+     opacity: 0.2;
+     position: absolute;
+     width: 70%;
+   }
+    .b-left{
+      width: auto;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
 
+//==========================================================
 .our-contract {
   height: 900px;
   background-color: #eae9f4;
   padding: 10em 7em;
   .s-left{
-    width: 50%;
+    width: 55%;
     align-self: center;
     padding: 0 30px;
     h2{
@@ -104,14 +132,33 @@
     }
   }
   .s-right{
-    width: 50%;
+    width: 45%;
     img{
       width: 100%;
     }
   }
 }
 
-
+@media only screen and (max-width: 1090px) {
+  .our-contract{
+    .s-right{
+      opacity: 0.2;
+      position: absolute;
+      width: 100%;
+    }
+    .s-left{
+      width: auto;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      button{
+        width: 340px;
+      }
+    }
+  }
+}
+//=======================================================
 .custom-contract{
   height: 908px;
   background-image: url(../images/btm-box.png);
@@ -151,8 +198,34 @@
   }
   .c-right{
     width: 46%;
+    img{
+      width: 100%;
+    }
   }
 }
+@media only screen and (max-width: 1090px) {
+  .custom-contract{
+    .c-right{
+      opacity: 0.2;
+      position: absolute;
+      width: 70%;
+    }
+    .s-left{
+      width: auto;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      p{
+        width: auto;
+      }
+      button{
+        width: 340px;
+      }
+    }
+  }
+}
+//=======================================================
 .decentralized{
   height: 900px;
   text-align: center;
