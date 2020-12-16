@@ -34,5 +34,50 @@
   .buy-dapps {
 
     width: 25%;
+    .kyc_information{
+      background-color: #FFF3CD;
+      margin-bottom: 15px;
+      text-align: center;
+      font-size: 16px;
+      min-height: auto!important;
+      padding: 15px;
+      .testbtn{
+        margin-left: 0!important;
+        background: $green-color!important;
+      }
+    }
+    .ui.form{
+      margin-top: 20px;
+    }
+    .ui.disabled.input,.ui.input input{
+      opacity: unset!important;
+    }
+    .slider{
+      margin-top: 20px;
+      width: 100%;
+      align-items: flex-start!important;
+      justify-content: space-between;
+      .semantic_ui_range_inner{
+        margin: 0!important;
+      }
+      .fields{
+        margin-right: 0!important;
+        justify-content: space-between;
+        width: 80%!important;
+        flex-direction: column!important;
+      }
+      p{
+        font-size: 12px;
+        text-align: justify;
+        color: $info-color;
+        span{
+          color: $green-color;
+        }
+      }
+    }
+    .buybtn{
+      margin-top: 3em;
+    }
   }
+
 }

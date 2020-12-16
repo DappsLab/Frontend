@@ -19,5 +19,39 @@
       margin: 10px 0; }
   .detail-container .buy-dapps {
     width: 25%; }
+    .detail-container .buy-dapps .kyc_information {
+      background-color: #FFF3CD;
+      margin-bottom: 15px;
+      text-align: center;
+      font-size: 16px;
+      min-height: auto !important;
+      padding: 15px; }
+      .detail-container .buy-dapps .kyc_information .testbtn {
+        margin-left: 0 !important;
+        background: #39B64A !important; }
+    .detail-container .buy-dapps .ui.form {
+      margin-top: 20px; }
+    .detail-container .buy-dapps .ui.disabled.input, .detail-container .buy-dapps .ui.input input {
+      opacity: unset !important; }
+    .detail-container .buy-dapps .slider {
+      margin-top: 20px;
+      width: 100%;
+      align-items: flex-start !important;
+      justify-content: space-between; }
+      .detail-container .buy-dapps .slider .semantic_ui_range_inner {
+        margin: 0 !important; }
+      .detail-container .buy-dapps .slider .fields {
+        margin-right: 0 !important;
+        justify-content: space-between;
+        width: 80% !important;
+        flex-direction: column !important; }
+      .detail-container .buy-dapps .slider p {
+        font-size: 12px;
+        text-align: justify;
+        color: #96A3B6; }
+        .detail-container .buy-dapps .slider p span {
+          color: #39B64A; }
+    .detail-container .buy-dapps .buybtn {
+      margin-top: 3em; }
 
 /*# sourceMappingURL=dapp_details.css.map */
