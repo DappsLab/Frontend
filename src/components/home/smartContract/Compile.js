@@ -42,20 +42,19 @@ const Compile =(props)=> {
     })
    const OnComplied=(liecense)=>{
        setCLoading(true)
-         newCompile({
-             variables:{
-                 name:name.toString(),
-                 sId:liecense.order.smartContract.id,
-                 pId:liecense.purchasedContract.id,
-                 lId:liecense.id
-             },
-             context: {
-                 headers: {
-                     authorization: localStorage.getItem("token")
-                 }
-             }
-         });
-
+       newCompile({
+           variables:{
+               name:name.toString(),
+               sId:liecense.order.smartContract.id,
+               pId:liecense.purchasedContract.id,
+               lId:liecense.id
+           },
+           context: {
+               headers: {
+                   authorization: localStorage.getItem("token")
+               }
+           }
+       });
     }
 
    const {error, loading, data} = useQuery(licenseById, {
@@ -63,11 +62,14 @@ const Compile =(props)=> {
         client: Client,
         onCompleted: data1 => {
             setLicenses(data1.licenseById)
+            console.log(data1)
         }
     })
     if (loading) return <Spinner2/>
     if (error) return <div>{error.toString()}</div>
+    console.log(data,loading,error)
     const liecense=data.licenseById;
+    console.log(licenses)
     return (
         <Layout>
             <Container fluid className={"compile flex"}>

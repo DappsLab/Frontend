@@ -7,7 +7,7 @@ header {
   justify-content: space-between; }
   header .MuiButton-root:hover {
     background-color: rgba(0, 0, 0, 0.24) !important; }
-  header .logo {
+  header .dapplogo {
     height: 50px; }
   header nav {
     display: flex;

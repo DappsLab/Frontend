@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
 
-import  {Table,Icon} from "semantic-ui-react";
+import {Table, Icon, Button} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 import {getDate} from "../../../ui/Helpers";
 import DeleteModal from "../developedContract/DeleteModel";
@@ -21,12 +21,8 @@ const DappsRow =(props)=>{
                 <Table.Cell width={3}>{contract.dAppName}</Table.Cell>
                 <Table.Cell width={2}>{contract.singleLicensePrice}</Table.Cell>
                 <Table.Cell width={3}>{getDate( contract.publishingDateTime)}</Table.Cell>
-                <Table.Cell
-                    width={1}
-                    negative={contract.verified!=="VERIFIED"&&true}
-                    positive={contract.verified==="VERIFIED"&&true}
-                >
-                    {contract.verified}
+                <Table.Cell width={1}>
+                    <Button disabled className={'remove-opacity'} basic color={contract.verified==="VERIFIED"?"green":(contract.verified==="PENDING"?"yellow":'red')}> {contract.verified}</Button>
                 </Table.Cell>
                 <Table.Cell className={'action'}  width={1}>
                     {contract.verified!=="VERIFIED"&&<Link to={`/edit_dapp/${contract.id}`}><Icon circular  link  inverted color='green' name='edit'/></Link>}

@@ -1,17 +1,34 @@
-
 import React, {useEffect} from 'react';
 import {Route,Redirect} from "react-router-dom";
+import {useQuery} from "@apollo/client";
+import {me_Query} from "../../queries/queries";
+import {Client} from "../../queries/Services";
+import {Spinner2} from "../ui/Spinner";
+import {connect} from "react-redux";
+import {setUser} from "../../actions/Actions";
 
-const PrivateRoute = ({user,component:Comp,...rest}) => {
+const PrivateRoute = ({setUser,user,component:Comp,...rest}) => {
     useEffect(()=>{
         window.scrollTo(0,0)
+        refetch();
+    },[])
+    const {loading,data,error,refetch}=useQuery(me_Query,{
+        client:Client,onCompleted:data1 => {
+            setUser(data1.me)
+        },
+        context:{
+            headers: {
+                authorization: localStorage.getItem("token")||null
+            }
+        }
     })
+    if (loading) return <Spinner2/>
     return <Route {...rest} component={(props)=>(
         !!localStorage.getItem('token') ?
-           <Comp {...props} user={user}/>
+           <Comp {...props} user={data.me}/>
             :
             <Redirect to="/login"/>
     )}/>
 };
 
-export default (PrivateRoute);
+export default  connect(null,{setUser})(PrivateRoute);

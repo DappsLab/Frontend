@@ -1,6 +1,85 @@
 @import "colors";
 
+//===============================================================
+//                        Kyc
+//===============================================================
+.kyc-verification,.contract-container,.dapp-container {
+  border-radius: 20px!important;
+  thead tr {
+    th {
+      font-weight: 700 !important;
+    }
+  }
+  .kyc-details {
+    .MuiTypography-h6{
+      font-size: 30px!important;
+      font-weight: bold!important;
+    }
+    .MuiCollapse-wrapper{
+      margin: 10px 0 20px 0 !important;
+      background: $background-color;
+      border-radius: 10px;
+    }
 
-.kys-details{
+    td{
+      border: none!important;
+    }
+  }
+}
 
+//===============================================================
+//                        smart contract
+//===============================================================
+.contract-container ,.dapp-container{
+  .MuiCollapse-wrapper{
+    padding: 10px 30px;
+  }
+  .contract-details{
+    display: flex;
+    justify-content: space-between;
+    height: 330px;
+    .detial,img,.description{
+       width: 330px;
+      border-radius: 15px;
+    }
+    .detial,.description{
+      padding: 20px;
+    }
+    .detial{
+      h4{
+        margin: 0 10px 0 0;
+      }
+      background: #97DCC8;
+    }
+    .description{
+      overflow-y: auto;
+      color: #fff;
+      background: #5754AB;
+      width: 350px;
+    }
+  }
+  .source-view{
+    margin:  35px 0 ;
+    color: #fff;
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    background: #04031C;
+    h3{
+      min-width: 25%;
+      span{
+        display: block;
+        margin-top: 20px;
+        font-size: 45px;
+      }
+    }
+    .react-codemirror2{
+      width: 100%;
+    }
+  }
+}
+.dapp-container {
+  .contract-details {
+    margin-bottom: 35px;
+  }
 }

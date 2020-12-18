@@ -28,8 +28,8 @@ class  DetailedContract extends Component{
 
     state= {
         radioValue:"SINGLELICENSE",
-        currentUser:this.props.user===null?this.props.currentUser:this.props.user,
-        kyc:this.props.currentUser||this.props.user?(this.props.user===null?this.props.currentUser.kyc:this.props.user.kyc):"null",
+        currentUser:this.props.user,
+        kyc:this.props.user?this.props.user.kyc:'null',
         fee: 100000,
         buy_loading:false,
         showLicenses:false,
@@ -40,7 +40,8 @@ class  DetailedContract extends Component{
     componentDidMount() {
         if (this.props.currentUser) {
             this.setState({
-                currentUser: this.props.currentUser
+                currentUser: this.props.currentUser,
+                kyc:this.props.currentUser.kyc
             });
         }
     }
@@ -221,23 +222,17 @@ class  DetailedContract extends Component{
                             `,variables:{SID:contractData.id,OID:orderId}
                         }).then(result=>{
                             that.meQuery().then(result => {
-                                console.log("Purchased1",result.data.me)
                                 that.props.setUser(result.data.me);
-                                that.setState({currentUser:result.data.me,buy_loading: false},()=>{
-                                    console.log(that.state.currentUser)
-                                });
+                                that.setState({currentUser:result.data.me,buy_loading: false},()=>{});
                                 alert.success("License Purchased Successfully", {timeout:2000})
                                 that.props.history.push("/dashboard/purchased")
                             }).catch(e => {
                                 console.log(e);
                                 that.meQuery().then(result => {
-                                    console.log("Purchased2",result.data.me)
                                     that.props.setUser(result.data.me);
                                     alert.success("Purchased Failed", {timeout:5000})
                                     alert.error("Order Successfully", {timeout:5000})
-                                    that.setState({currentUser:result.data.me,buy_loading:false},()=>{
-                                        console.log(that.state.currentUser)
-                                    })
+                                    that.setState({currentUser:result.data.me,buy_loading:false},()=>{})
                                     that.props.history.push("/dashboard/ordered_contract")
                                 }).catch(e => {
                                     console.log(e)
@@ -262,7 +257,6 @@ class  DetailedContract extends Component{
                         })
                     }else {
                         that.meQuery().then(result => {
-                            console.log("Purchased2",result.data.me)
                             that.props.setUser(result.data.me);
                             alert.success("Order Successfully", {timeout:2000})
                             that.setState({buy_loading:false})
@@ -296,7 +290,6 @@ class  DetailedContract extends Component{
         const purchased=currentUser.purchasedContracts;
         if (purchased.length>0){
             for (let i=0;i<purchased.length;i++){
-                console.log("Purchased",purchased[i])
                 if (purchased[i].smartContract.id===this.props.match.params.id){
                     return <div> <Segment className={'licenses_header'}>
                         <div>
@@ -382,7 +375,7 @@ class  DetailedContract extends Component{
                             </FormControl>
                             <div className={`btnGroups flex ${kyc.kycStatus==="VERIFIED"?"flex-row":""}`}>
                                 {this.renderBuy()}
-                                {this.props.currentUser||this.props.user?<Button fluid className={"testbtn"}>Test contract</Button>:""}
+                                {this.props.user?<Button fluid onClick={()=>{this.props.history.push(`/test_smart_contract/${this.props.match.params.id}`)}} className={"testbtn"}>Test contract</Button>:""}
                             </div>
                             </div>
                         </Fade>

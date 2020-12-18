@@ -69,7 +69,7 @@ export const  categoryColors=(color)=> {
         case "ESCROW":
             return "#8F4114";
         case "FINANCIAL":
-            return "#FEE440";
+            return "#1D1B46";
         default:
             return ;
     }

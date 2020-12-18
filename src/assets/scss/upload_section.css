@@ -1,6 +1,6 @@
 .uploadSection {
   background: url("../images/developer_bg.png") no-repeat;
-  background-size: 100%;
+  background-size: 100% 100%;
   height: 290px;
   justify-content: space-between;
   padding: 0 60px;
@@ -20,14 +20,5 @@
   background: url("../images/background.jpg");
   padding: 20px 10px;
   text-align: center; }
-
-.uploadNav .active {
-  border-bottom: 4px solid #1A97FF; }
-
-.uploadNav a {
-  margin: 10px 20px 10px 0;
-  color: #8292A9;
-  font-size: 20px;
-  font-weight: bold; }
 
 /*# sourceMappingURL=upload_section.css.map */

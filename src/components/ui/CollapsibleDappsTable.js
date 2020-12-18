@@ -85,16 +85,8 @@ function Row(props) {
     }
     function onCancel(id){
         cancel({variables: {id:id}}).catch(error=>{
-            alert.error(error.toString(),{timeout:5000})
+            alert.error(error.toString()+"new",{timeout:5000})
         })
-    }
-    const GetSources=(id)=>{
-        const {loading,error,data}=useQuery(getSource,{
-            variables:{id:id}
-        });
-        if (loading) return "Loading"
-        if (error) return <div className={`errorMessage ${classes.error}`}>{error.toString()}</div>
-        return data.getSource
     }
     return (
         <React.Fragment>
@@ -112,60 +104,28 @@ function Row(props) {
                 <TableCell>{getDate(row.publishingDateTime)}</TableCell>
             </TableRow>
             <TableRow>
-                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                <TableCell className={"kyc-details "}  style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box margin={1}>
                             <Typography variant="h6" gutterBottom component="div">
                                 Smart Contract Details
                             </Typography>
-                            <Table size="small" aria-label="purchases">
-                                <TableBody>
-                                    <TableRow>
-                                        <TableCell  style={{ width: 220 }}>Image</TableCell>
-                                        <TableCell><Avatar src={row.image} style={{borderRadius:0}} height={"80px"} width={"80px"} alt={"img"}/></TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell style={{ width: 220 }}>Single Price</TableCell>
-                                        <TableCell>{row.dAppCategory.map(cate=> {return <span key={cate}> {cate} </span>} ) }</TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell style={{ width: 220 }}>Single Price</TableCell>
-                                        <TableCell>{row.singleLicensePrice} Dapps</TableCell>
-                                    </TableRow>
-
-                                    <TableRow>
-                                        <TableCell style={{ width: 220 }}>Single Price</TableCell>
-                                        <TableCell>{row.tags.map(tag=> {return <span key={tag}> #{tag} </span>} ) }</TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell style={{ width: 220 }}>Cntract Source </TableCell>
-                                        <TableCell>
-                                            {/*<CodeMirror*/}
-                                            {/*    value={GetSources(row.id)}*/}
-                                            {/*    options={{mode:'sol', lineNumbers: true,theme:'material'}}*/}
-                                            {/*    // onBeforeChange={(editor, data, value) => {*/}
-                                            {/*    //     this.setState({value});*/}
-                                            {/*    // }}*/}
-                                            {/*/>*/}
-                                            {/*<MEDitor.Markdown source={GetSources(row.id)}  />*/}
-                                        </TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell style={{ width: 220 }}>Short Description</TableCell>
-                                        <TableCell>{row.shortDescription}</TableCell>
-                                    </TableRow>
-
-                                    <TableRow>
-                                        <TableCell style={{ width: 220 }}>Description</TableCell>
-                                        <TableCell>
-                                            <MEDitor.Markdown source={row.description}  />
-                                        </TableCell>
-                                    </TableRow>
-                                </TableBody>
-                            </Table>
-                            <Button onClick={()=>onVerify(row.id)} color={'green'}>Verified</Button>
-                            <Button onClick={()=>onCancel(row.id)} color={'red'}>Rejected</Button>
-                            <Button onClick={()=>{props.history.push(`/edit_dapp/${row.id}`)}}  color={"blue"}>Edit</Button>
+                            <div className={'contract-details'}>
+                                <img  src={row.image}   alt={"img"}/>
+                                <div className={"detial"}>
+                                    <h2>Single Price {row.singleLicensePrice} Dapps</h2>
+                                    <div className={'flex'}> <h4>Categories: </h4> {row.dAppCategory.map(cate=> {return <span key={cate}> {cate} </span>} ) }</div>
+                                    <div className={'flex'}><h4>Tags: </h4> {row.tags.map(tag=> {return <span key={tag}> #{tag} </span>} ) }</div>
+                                    <p>Short Description: {row.shortDescription}</p>
+                                </div>
+                                <div className={'description'}>
+                                    <h3>Description</h3>
+                                    <MEDitor.Markdown source={row.description}  />
+                                </div>
+                            </div>
+                            <Button onClick={()=>onVerify(row.id)} color={'green'}>VERIFIED</Button>
+                            <Button onClick={()=>onCancel(row.id)} color={'red'}>REJECTED</Button>
+                            <Button onClick={()=>{props.history.push(`/edit_dapp/${row.id}`)}}  color={"blue"}>EDIT</Button>
                         </Box>
                     </Collapse>
                 </TableCell>
@@ -177,8 +137,9 @@ function Row(props) {
 
 function CollapsibleDappsTable(props) {
     const {data}=props;
-    return (
-        <TableContainer component={Paper}>
+    return(
+        <div className={'scroll'}>
+        <TableContainer className={'dapp-container'} component={Paper}>
             <Table aria-label="collapsible table">
                 <TableHead>
                     <TableRow>
@@ -196,6 +157,7 @@ function CollapsibleDappsTable(props) {
                 </TableBody>
             </Table>
         </TableContainer>
+        </div>
     );
 }
 export default withAlert()(CollapsibleDappsTable)

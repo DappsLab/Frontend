@@ -1,10 +1,56 @@
-.indexContainer {
-  margin: 20px 0 !important; }
-  .indexContainer .borderless {
-    align-items: center;
-    padding-left: 5px; }
-    .indexContainer .borderless a {
-      margin-right: 5px; }
+.dashContainer {
+  background-image: url("../images/admin-bg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  align-items: flex-start !important;
+  background-size: 100%;
+  padding: 5em 10em;
+  min-height: 1200px;
+  max-height: 1200px; }
+  .dashContainer .MuiList-padding {
+    margin-top: 0 !important; }
+  .dashContainer .uploadNav .active {
+    border-bottom: 4px solid #1A97FF; }
+  .dashContainer .uploadNav {
+    max-width: 360px;
+    min-width: 360px;
+    color: #fff !important;
+    background-image: url("../images/admin-nav-bg.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    min-height: 955px;
+    flex-direction: column;
+    justify-content: center; }
+  .dashContainer li {
+    cursor: pointer;
+    padding: 16px;
+    margin: 5px 0; }
+    .dashContainer li a {
+      display: flex;
+      width: 100%; }
+    .dashContainer li a:hover {
+      color: #fff;
+      text-decoration: none; }
+  .dashContainer .dash-right {
+    margin-left: 40px;
+    width: 100%; }
+    .dashContainer .dash-right .scroll {
+      overflow-y: auto;
+      min-height: 900px;
+      max-height: 900px;
+      border-radius: 20px; }
+    .dashContainer .dash-right h1 {
+      font-size: 40px;
+      margin: 40px 0 30px 0; }
+      .dashContainer .dash-right h1 span {
+        color: #0FBA87; }
+
+.active-nav {
+  position: relative;
+  left: -14px;
+  width: 10px;
+  height: 2px;
+  background-color: #5754AB; }
 
 .developed_body {
   height: 130px !important;
@@ -13,7 +59,7 @@
     top: 71%; }
 
 .developed {
-  margin-bottom: 20px !important; }
+  width: 100%; }
   .developed .action {
     text-align: center !important; }
 

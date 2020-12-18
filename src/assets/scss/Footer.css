@@ -52,6 +52,9 @@ a {
 .block {
   display: block; }
 
+.ui.disabled.button {
+  opacity: unset !important; }
+
 .none {
   display: none !important; }
 

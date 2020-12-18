@@ -8,7 +8,6 @@ import CustomizedSlider from "../../ui/slider";
 import square_blue from "../../../assets/images/square_blue.png";
 import {CheckBox} from "../../ui/FormFields";
 import DappsCard from "./DappsCard";
-import {gql} from "@apollo/client";
 import {client, filterDapps} from "../../../queries/queries";
 
 

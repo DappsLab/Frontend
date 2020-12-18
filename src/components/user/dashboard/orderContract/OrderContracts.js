@@ -6,26 +6,25 @@ import {connect} from "react-redux";
 import OrderRow from "./OrderRow";
 
 class OrderContracts extends Component {
-    state={
-        currentUser:this.props.currentUser
-    }
     render() {
-        const {currentUser}=this.state;
         return (
-            <DashboardLayout>
+            <DashboardLayout user={this.props.user}>
+                <h1><strong>Ordered <span>Contract & Dapps</span></strong></h1>
+                <div className={'scroll'}>
                 <Table className={"violet striped "} >
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell width={1}>No </Table.HeaderCell>
-                            <Table.HeaderCell  width={2}> Contract Name</Table.HeaderCell>
-                            <Table.HeaderCell width={5}>Transaction Hash</Table.HeaderCell>
-                            <Table.HeaderCell width={2}>Price</Table.HeaderCell>
-                            <Table.HeaderCell width={5}>Date and Time</Table.HeaderCell>
-                            <Table.HeaderCell width={1}>Status</Table.HeaderCell>
+                            <Table.HeaderCell > Contract Name</Table.HeaderCell>
+                            <Table.HeaderCell >Transaction Hash</Table.HeaderCell>
+                            <Table.HeaderCell >Price</Table.HeaderCell>
+                            <Table.HeaderCell >Date and Time</Table.HeaderCell>
+                            <Table.HeaderCell >Status</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
-                    <OrderRow orders={currentUser.orders}/>
+                    <OrderRow orders={this.props.user.orders}/>
                 </Table>
+                </div>
             </DashboardLayout>
         );
     }

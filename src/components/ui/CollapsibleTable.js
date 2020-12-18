@@ -18,7 +18,7 @@ import {Button} from "semantic-ui-react";
 import {verifyKyc, cancelKyc, pending_kyc_query} from "../../queries/queries";
 import {useMutation} from "@apollo/client";
 import {withAlert} from "react-alert";
-import {getDate} from "./Helpers";
+import {Client} from "../../queries/Services";
 
 const useRowStyles = makeStyles({
     root: {
@@ -33,13 +33,35 @@ function Row(props) {
     const [open, setOpen] = React.useState(false);
     const classes = useRowStyles();
     const [verify] = useMutation(verifyKyc, {
-        refetchQueries:mutationResult=>[{query:pending_kyc_query}],
+        context: {
+            headers: {
+                authorization: localStorage.getItem("token")
+            }
+        },
+        client:Client,
+        refetchQueries:mutationResult=>[{query:pending_kyc_query, context: {
+                headers: {
+                    authorization: localStorage.getItem("token")
+                }
+            }
+        }],
         onCompleted:data=>{
             console.log(data)
         }
     });
     const [cancel]=useMutation(cancelKyc, {
-        refetchQueries:mutationResult=>[{query:pending_kyc_query}],
+        context: {
+            headers: {
+                authorization: localStorage.getItem("token")
+            }
+        },
+        client:Client,
+        refetchQueries:mutationResult=>[{query:pending_kyc_query, context: {
+                headers: {
+                    authorization: localStorage.getItem("token")
+                }
+            }
+        }],
         onCompleted:data=>{
             console.log(data)
         }
@@ -71,42 +93,30 @@ function Row(props) {
                 <TableCell>{dateTime(row.createdAt)}</TableCell>
             </TableRow>
             <TableRow>
-                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                <TableCell className={"kyc-details"} style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box margin={1}>
                             <Typography variant="h6" gutterBottom component="div">
                                User KYC Details
                             </Typography>
-                            <Table size="small" aria-label="purchases">
+                            <Table size="small"  aria-label="purchases">
                                <TableBody>
                                 <TableRow>
-                                    <TableCell>Street No</TableCell>
-                                    <TableCell>{row.kyc.street}</TableCell>
+                                    <TableCell><strong>Street No: </strong>{row.kyc.street}</TableCell>
+                                    <TableCell><strong>Building: </strong> {row.kyc.building}</TableCell>
+                                    <TableCell><strong>Date of Birth: </strong> {row.kyc.birthDate}</TableCell>
+                                    <TableCell>  <Button size={'mini'} onClick={()=>onVerify(row.id)} color={'green'}>Verified</Button></TableCell>
                                 </TableRow>
                                 <TableRow>
-                                    <TableCell>Building</TableCell>
-                                    <TableCell>{row.kyc.building}</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>Postal Code</TableCell>
-                                    <TableCell>{row.kyc.postalCode}</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>Nationality</TableCell>
-                                    <TableCell>{row.kyc.nationality}</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>Mobile Number</TableCell>
-                                    <TableCell>{row.kyc.mobile}</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>Date of Birth</TableCell>
-                                    <TableCell>{row.kyc.dateOfBirth}</TableCell>
+                                    <TableCell><strong>Postal Code :</strong> {row.kyc.postalCode}</TableCell>
+                                    <TableCell><strong>Nationality :</strong> {row.kyc.nationality}</TableCell>
+                                    <TableCell><strong>Mobile Number: </strong> {row.kyc.mobile}</TableCell>
+                                    <TableCell> <Button size={'mini'} onClick={()=>onCancel(row.id)} color={'red'}>Rejected</Button> </TableCell>
                                 </TableRow>
                                </TableBody>
                             </Table>
-                            <Button onClick={()=>onVerify(row.id)} color={'green'}>Verified</Button>
-                            <Button onClick={()=>onCancel(row.id)} color={'red'}>Rejected</Button>
+
+
                         </Box>
                     </Collapse>
                 </TableCell>
@@ -119,8 +129,9 @@ function Row(props) {
  function CollapsibleTable(props) {
     const {data}=props;
     return (
-        <TableContainer component={Paper}>
-            <Table aria-label="collapsible table">
+        <div className={'scroll'}>
+        <TableContainer className={'kyc-verification'} component={Paper}>
+            <Table   aria-label="collapsible table">
                 <TableHead>
                     <TableRow>
                         <TableCell />
@@ -137,6 +148,7 @@ function Row(props) {
                 </TableBody>
             </Table>
         </TableContainer>
+        </div>
     );
 }
 export default  withAlert()(CollapsibleTable);

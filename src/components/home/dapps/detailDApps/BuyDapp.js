@@ -15,21 +15,20 @@ const BuyDapp = (props) => {
     const [loading,setLoading]=useState(false);
     const [fee,setFee]=useState(100000);
     const [downalaod,setDownlaod]=useState(false);
+    const [orderID,setOrderID]=useState();
     const [purchased,setPurchased]=useState();
     const alert=props.alert;
-    console.log(currentUser)
     const [buydApp]=useMutation(orderContract,{
         client:Client, context: {
             headers: {
                 authorization: localStorage.getItem("token")
             }
         },onCompleted:data => {
-            console.log(data)
+            console.log("buy",data)
+            setOrderID(data.placeOrder.id);
             verifiyOrder({variables:{
                     id:data.placeOrder.id
                 }
-            }).catch(err=>{
-                console.log('verify error',err.toString());
             })
         },
         onError:error => {
@@ -42,35 +41,42 @@ const BuyDapp = (props) => {
                 authorization: localStorage.getItem("token")
             }
         },onCompleted:data => {
-            console.log(data)
-            // if (data.verifyOrder){
-            //     purchase({variables:{
-            //
-            //         }})
-            // }else {
-            //     alert.error("Order Succesfull. Purchased Failed",{timeout:3000})
-            // }
+            console.log("verify",props.id,orderID)
+            if (data.verifyOrder){
+                purchase({
+                    variables:{
+                        did:props.id,
+                        oid:orderID
+                    }
+                }).catch(err=>{
+                    console.log(err)
+                })
+            }else {
+                alert.error("Order Succesfull. Purchased Failed",{timeout:3000})
+            }
         },
         onError:error => {
             alert.success("Order Succesfull.",{timeout:3000})
             alert.error(error.toString(),{timeout:3000})
         }
     });
-    // const [purchase]=useMutation(purchaseDapp, {
-    //     client: Client, context: {
-    //         headers: {
-    //             authorization: localStorage.getItem("token")
-    //         }
-    //     },
-    //     onError:error => {
-    //         alert.error(error.toString(),{timeout:5000})
-    //     },
-    //     onCompleted:data => {
-    //         setPurchased(data.purchaseDApp)
-    //     }
-    // })
+    const [purchase]=useMutation(purchaseDapp, {
+        client: Client, context: {
+            headers: {
+                authorization: localStorage.getItem("token")
+            }
+        },
+        onError:error => {
+            alert.error("purchasd "+error.toString(),{timeout:5000})
+        },
+        onCompleted:data => {
+            console.log(data)
+            // setPurchased(data.purchaseDApp)
+        }
+    })
 
     const HandelBuy=()=>{
+        console.log(props.id)
         buydApp({variables:{
                 producttype:'DAPP',
                 fee: fee.toString(),

@@ -25,6 +25,7 @@ import {useMutation, useQuery} from "@apollo/client";
 import MEDitor from "@uiw/react-md-editor";
 import {Controlled as CodeMirror} from 'react-codemirror2'
 import {getDate} from "./Helpers";
+import {Client} from "../../queries/Services";
 
 const useRowStyles = makeStyles({
     root: {
@@ -44,13 +45,34 @@ function Row(props) {
     const [open, setOpen] = React.useState(false);
     const classes = useRowStyles();
     const [verify] = useMutation(verify_smart_contract, {
-        refetchQueries:mutationResult=>[{query:pendingSmartContract}],
+        context: {
+            headers: {
+                authorization: localStorage.getItem("token")
+            }
+        },
+        client:Client,
+        refetchQueries:mutationResult=>[{query:pendingSmartContract,context: {
+                headers: {
+                    authorization: localStorage.getItem("token")
+                }
+            }}],
         onCompleted:data=>{
             console.log(data)
         }
     });
     const [cancel]=useMutation(cancel_smart_contract, {
-        refetchQueries:mutationResult=>[{query:pendingSmartContract}],
+        context: {
+            headers: {
+                authorization: localStorage.getItem("token")
+            }
+        },
+        client:Client,
+        refetchQueries:mutationResult=>[{query:pendingSmartContract,context: {
+                headers: {
+                    authorization: localStorage.getItem("token")
+                }
+            }
+        }],
         onCompleted:data=>{
             console.log(data)
         }
@@ -68,7 +90,12 @@ function Row(props) {
     }
     const GetSources=(id)=>{
         const {loading,error,data}=useQuery(getSource,{
-            variables:{id:id}
+            variables:{id:id},context: {
+                headers: {
+                    authorization: localStorage.getItem("token")
+                }
+            },
+            client:Client
         });
         if (loading) return "Loading"
         if (error) return <div className={`errorMessage ${classes.error}`}>{error.toString()}</div>
@@ -94,57 +121,38 @@ function Row(props) {
                     {row.contractName}
                 </TableCell>
                 <TableCell>{row.publisher.fullName}</TableCell>
-                <TableCell>{row.verified}</TableCell>
+                <TableCell><Button basic color='yellow'  size={"mini"} disabled >{row.verified}</Button></TableCell>
                 <TableCell>{getDate(row.publishingDateTime)}</TableCell>
             </TableRow>
             <TableRow>
-                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                <TableCell className={"kyc-details"} style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box margin={1}>
                             <Typography variant="h6" gutterBottom component="div">
                                 Smart Contract Details
                             </Typography>
-                            <Table size="small" aria-label="purchases">
-                                <TableBody>
-                                <TableRow>
-                                    <TableCell  style={{ width: 220 }}>Image</TableCell>
-                                    <TableCell><img src={row.image} height={"80px"} width={"80px"} alt={"img"}/></TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell style={{ width: 220 }}>Single Price</TableCell>
-                                    <TableCell>{row.singleLicensePrice} Dapps</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell style={{ width: 220 }}>Unlimited Price</TableCell>
-                                    <TableCell>{row.unlimitedLicensePrice} Dapps</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell style={{ width: 220 }}>Contract Function Name</TableCell>
-                                    <TableCell>{row.sourceContractName}</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell style={{ width: 220 }}>Cntract Source </TableCell>
-                                    <TableCell>
-                                        {GetSources(row.id)}
-                                        {/*<MEDitor.Markdown source={GetSources(row.id)}  />*/}
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell style={{ width: 220 }}>Short Description</TableCell>
-                                    <TableCell>{row.shortDescription}</TableCell>
-                                </TableRow>
-
-                                <TableRow>
-                                    <TableCell style={{ width: 220 }}>Description</TableCell>
-                                    <TableCell>
-                                        <MEDitor.Markdown source={row.description}  />
-                                    </TableCell>
-                                </TableRow>
-                                </TableBody>
-                            </Table>
-                            <Button onClick={()=>onVerify(row.id)} color={'green'}>Verified</Button>
-                            <Button onClick={()=>onCancel(row.id)} color={'red'}>Rejected</Button>
-                            <Button onClick={()=>{props.history.push(`/edit_samrt_contract/${row.id}`)}}  color={"blue"}>Edit</Button>
+                            <div className={"contract-details"}>
+                                <img   src={row.image}  alt={"img"}/>
+                                <div className={"detial"}>
+                                    <h2>Single Price {row.singleLicensePrice} Dapps</h2>
+                                    <h2>Unlimited Price {row.unlimitedLicensePrice} Dapps</h2>
+                                    <p>Short Description: {row.shortDescription}</p>
+                                </div>
+                                <div className={'description'}>
+                                    <h3>Description</h3>
+                                    <MEDitor.Markdown source={row.description}  />
+                                </div>
+                            </div>
+                            <div className={'source-view flex'}>
+                                <h3>
+                                    Contract Function Name
+                                  <span>  {row.sourceContractName}</span>
+                                </h3>
+                                {GetSources(row.id)}
+                            </div>
+                            <Button onClick={()=>onVerify(row.id)} color={'green'}>VERIFIED</Button>
+                            <Button onClick={()=>onCancel(row.id)} color={'red'}>REJECTED</Button>
+                            <Button onClick={()=>{props.history.push(`/edit_samrt_contract/${row.id}`)}}  color={"blue"}>EDIT</Button>
                         </Box>
                     </Collapse>
                 </TableCell>
@@ -157,7 +165,8 @@ function Row(props) {
  function CollapsibleFormTable(props) {
     const {data}=props;
     return (
-        <TableContainer component={Paper}>
+        <div className={'scroll'}>
+        <TableContainer className={'contract-container'} component={Paper}>
             <Table aria-label="collapsible table">
                 <TableHead>
                     <TableRow>
@@ -175,6 +184,7 @@ function Row(props) {
                 </TableBody>
             </Table>
         </TableContainer>
+        </div>
     );
 }
 export default withAlert()(CollapsibleFormTable)

@@ -1,3 +1,54 @@
+.kyc-verification, .contract-container, .dapp-container {
+  border-radius: 20px !important; }
+  .kyc-verification thead tr th, .contract-container thead tr th, .dapp-container thead tr th {
+    font-weight: 700 !important; }
+  .kyc-verification .kyc-details .MuiTypography-h6, .contract-container .kyc-details .MuiTypography-h6, .dapp-container .kyc-details .MuiTypography-h6 {
+    font-size: 30px !important;
+    font-weight: bold !important; }
+  .kyc-verification .kyc-details .MuiCollapse-wrapper, .contract-container .kyc-details .MuiCollapse-wrapper, .dapp-container .kyc-details .MuiCollapse-wrapper {
+    margin: 10px 0 20px 0 !important;
+    background: #F6F7F9;
+    border-radius: 10px; }
+  .kyc-verification .kyc-details td, .contract-container .kyc-details td, .dapp-container .kyc-details td {
+    border: none !important; }
 
+.contract-container .MuiCollapse-wrapper, .dapp-container .MuiCollapse-wrapper {
+  padding: 10px 30px; }
+.contract-container .contract-details, .dapp-container .contract-details {
+  display: flex;
+  justify-content: space-between;
+  height: 330px; }
+  .contract-container .contract-details .detial, .contract-container .contract-details img, .contract-container .contract-details .description, .dapp-container .contract-details .detial, .dapp-container .contract-details img, .dapp-container .contract-details .description {
+    width: 330px;
+    border-radius: 15px; }
+  .contract-container .contract-details .detial, .contract-container .contract-details .description, .dapp-container .contract-details .detial, .dapp-container .contract-details .description {
+    padding: 20px; }
+  .contract-container .contract-details .detial, .dapp-container .contract-details .detial {
+    background: #97DCC8; }
+    .contract-container .contract-details .detial h4, .dapp-container .contract-details .detial h4 {
+      margin: 0 10px 0 0; }
+  .contract-container .contract-details .description, .dapp-container .contract-details .description {
+    overflow-y: auto;
+    color: #fff;
+    background: #5754AB;
+    width: 350px; }
+.contract-container .source-view, .dapp-container .source-view {
+  margin: 35px 0;
+  color: #fff;
+  width: 100%;
+  padding: 20px;
+  border-radius: 20px;
+  background: #04031C; }
+  .contract-container .source-view h3, .dapp-container .source-view h3 {
+    min-width: 25%; }
+    .contract-container .source-view h3 span, .dapp-container .source-view h3 span {
+      display: block;
+      margin-top: 20px;
+      font-size: 45px; }
+  .contract-container .source-view .react-codemirror2, .dapp-container .source-view .react-codemirror2 {
+    width: 100%; }
 
-/*# sourceMappingURL=admin.css.map */
+.dapp-container .contract-details {
+  margin-bottom: 35px; }
+
+/*# sourceMappingURL=admin_verification.css.map */
