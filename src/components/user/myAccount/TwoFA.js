@@ -54,7 +54,10 @@ class TwoFA extends Component {
                             }
                         }
                         smartContract {
-                            contractName id
+                            contractName id  purchasedCounts contractCategory
+                            publisher {
+                              fullName
+                            }
                         }
                     }
                 }

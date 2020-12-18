@@ -11,6 +11,15 @@ export const me_Query=gql`query {
   me{
     avatar address fullName id type twoFactorCode
     email location userName twoFactorEnabled balance
+     testAddress {
+      wallet {
+        privateKey
+        publicKey
+      }
+      id
+      balance
+      address
+    }
     dApps {
       createdAt
       dAppCategory
@@ -43,6 +52,9 @@ export const me_Query=gql`query {
       orderUsed smartContract {
         contractName
       }
+       dApp{ 
+          dAppName
+       }
     }
     purchasedContracts {
       customizationsLeft id unlimitedCustomization
@@ -56,7 +68,10 @@ export const me_Query=gql`query {
         }
       }
       smartContract {
-        contractName id
+        contractName id  purchasedCounts contractCategory
+        publisher {
+          fullName
+        }
       }
     }
   }
@@ -511,16 +526,27 @@ query  ($id:ID!){
  }`
 export const purchaseDapp=gql`
    mutation ($did:String!,$oid:String!){
-  purchaseDApp(newPurchase: {dAppId: $did, orderId: $oid}) {
-     licenses {
-      id
-    }
-    id
-    dApp {
-      id
-    }
+  purchaseDApp(newPurchase: {dAppId: $did, orderId: $oid}) {    
+   id
   }
-}
+}`
 
-   
-    `
+export const addTestAddress=gql`mutation {
+  addTestAddress{
+  id
+}
+}`
+export const placeTestOrder=gql`
+    mutation ($addressID:ID!,$type:LicenseType! ,$fee:String!) {
+  placeTestOrder(newOrder: {testAddressId: $addressID, productType: SMARTCONTRACT, licenseType: $type, fee: $fee}) {
+    id
+  }
+ }
+  `
+export const purchasedTestOrder=gql`
+    mutation ($sid:String!,$oid:String!){
+        testPurchaseContract(newPurchase: {smartContractId: $sid, testOrderId: $oid}){
+        id
+    }
+}
+`

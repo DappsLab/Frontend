@@ -27,7 +27,6 @@ import ChangePassword from "./components/user/ChangePassword";
 import UploadSmartContract from "./components/home/uploadContract/UploadSmartContract";
 import FAConfirmation from "./components/user/2FAConfirmation";
 import UserAccount from "./components/user/myAccount/UserAccount";
-import Admin from "./components/admin/Admin";
 import NotFound from "./components/ui/NotFound";
 import {connect} from "react-redux";
 import {setUser} from "./actions/Actions";
@@ -35,13 +34,15 @@ import OrderContracts from "./components/user/dashboard/orderContract/OrderContr
 import ExplorerResult from "./components/block_explorer/explorerSearch/ExplorerResult";
 import EditSmartContract from "./components/home/uploadContract/editSmartContract/EditSmartContract";
 import Compile from "./components/home/smartContract/Compile";
-import {Query} from "react-apollo";
-import {me_Query} from "./queries/queries";
-import {Spinner} from "./components/ui/Spinner";
 import UploadDapps from "./components/home/dapps/uploadDapps/uploadDapps";
 import DappsDetails from "./components/home/dapps/detailDApps/DappsDetails";
 import EditDapp from "./components/home/dapps/eidtDapp/EditDapp";
 import DevelopedDapps from "./components/user/dashboard/developedDapps/DevelopedDapps";
+import KycVerification from "./components/admin/kyc_verification/KYCVerification";
+import DappsVerification from "./components/admin/dapps_verification/DappsVerification";
+import SmartContractVerification from "./components/admin/smart_contract_verification/SmartContractVerification";
+import TestSmartContract from "./components/home/smartContract/testSmartContract/TestSmartContract";
+import AddTestAddress from "./components/user/addTestAddress/AddTestAddress";
 
 
 const Routes =(props)=>{
@@ -59,8 +60,13 @@ const Routes =(props)=>{
               <PrivateRoute {...props} path={"/dashboard/test_contract"} exact component={TestContract}/>
               <PrivateRoute {...props} path={"/dashboard/developed_dapps"} exact component={DevelopedDapps}/>
               <PrivateRoute {...props} path={"/dashboard/purchased"} exact component={Purchased}/>
+              <PrivateRoute {...props} path={"/dashboard/contract_verification"} exact component={SmartContractVerification}/>
+              <PrivateRoute {...props} path={"/dashboard/dapps_verification"} exact component={DappsVerification}/>
+              <PrivateRoute {...props} path={"/dashboard/kyc_verification"} exact component={KycVerification}/>
               <PrivateRoute {...props} path={"/account_settings"} component={UserAccount}/>
+              <PrivateRoute {...props} path={"/test_smart_contract/:id"} component={TestSmartContract}/>
               <PrivateRoute {...props} path={'/upload_dapps'} component={UploadDapps}/>
+              <PrivateRoute {...props} path={'/add_test_address'} component={AddTestAddress}/>
               <PrivateRoute {...props} path={'/edit_dapp/:id'} component={EditDapp}/>
               <PrivateRoute {...props} path={"/logout"} exact component={Logout}/>
               <PrivateRoute {...props} path={"/delete_user"} exact component={DeleteUser}/>

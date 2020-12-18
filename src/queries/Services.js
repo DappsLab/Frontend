@@ -14,11 +14,11 @@ export const Client = new ApolloClient({
 })
 export const match=(data)=>{
     if (data.toString().toLowerCase().includes("cannot return null for non-nullable field query.me")){
-        localStorage.removeItem('token');
+        // localStorage.removeItem('token');
         return true
     }
     if (data.toString().toLowerCase().includes('error: failed to fetch')){
-        localStorage.removeItem('token')
+        // localStorage.removeItem('token')
         return true;
     }
 }

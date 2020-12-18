@@ -1,50 +1,21 @@
 import "../assets/scss/upload_section.css"
-import React, {Component} from 'react';
-import {Link} from "react-router-dom";
+import React from 'react';
+import DashboardNav from '../components/ui/DashboardNav'
 import Layout from "./Layout";
 import "../assets/scss/dashboard.css"
-import {Grid} from "semantic-ui-react";
-
-
-class DashboardLayout extends Component{
-    links=[
-        {title:"Purchased",linkTo:"/dashboard/purchased"},
-        {title:"Tested Contract",linkTo:"/dashboard/test_contract"},
-        {title:"Developed Contract",linkTo:"/dashboard/developed_contract"},
-        {title:"Ordered Contract",linkTo:"/dashboard/ordered_contract"},
-        {title:"Developed Dapps",linkTo:"/dashboard/developed_dapps"}
-    ]
-    renderNav=()=>(
-        this.links.map(link =>(
-            <Link to={link.linkTo} key={link.title}
-                  className={`cursor ${window.location.pathname===link.linkTo? 'active' :""}`}
-            >
-                {link.title}
-            </Link>
-        ))
-    )
-    render() {
-        return (
-            <Layout>
-                <Grid textAlign="center"  verticalAlign='middle' className={"indexContainer"} >
-                    <Grid.Column style={{maxWidth:1355}}>
-                        <div className="ui borderless menu">
-                           <Link to={"/"}>Home </Link>
-                            {window.location.pathname==="/dashboard/purchased"&& " Purchased"}
-                            {window.location.pathname==="/dashboard/test_contract"&& " Tested Contract"}
-                            {window.location.pathname==="/dashboard/developed_contract"&& " Developed Contract"}
-                            {window.location.pathname==="/dashboard/ordered_contract"&& " Ordered Contract"}
-                            {window.location.pathname==="/dashboard/developed_dapps"&& " Developed Dapps"}
-                        </div>
-                        <nav className={"flex uploadNav"}>
-                            {this.renderNav()}
-                        </nav>
-                        {this.props.children}
-                    </Grid.Column>
-                </Grid>
-            </Layout>
-        );
-    }
+import '../assets/scss/admin_verification.css'
+const DashboardLayout =(props)=>{
+    return (
+        <Layout>
+            <div className={"dashContainer flex"}>
+                <DashboardNav user={props.user}/>
+                <div className={'dash-right'}>
+                    {props.children}
+                </div>
+            </div>
+        </Layout>
+    );
 }
 
-export default DashboardLayout;
+export default (DashboardLayout);
+
