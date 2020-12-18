@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import  {Table} from "semantic-ui-react";
+import {Button, Table} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 
 
@@ -11,11 +11,13 @@ class OrderRow extends Component {
             return data.map((order,index)=>{
                 return <Table.Row key={order.id} >
                     <Table.Cell>{index+1}</Table.Cell>
-                    <Table.Cell width={4}>{order.smartContract.contractName}</Table.Cell>
-                    <Table.Cell width={7} className={"link"}><Link  to={`/block_explorer/transaction:${order.transactionHash}`}>{order.transactionHash}</Link></Table.Cell>
-                    <Table.Cell width={1}>{order.price} Dapps</Table.Cell>
-                    <Table.Cell width={2}>{order.dateTime}</Table.Cell>
-                    <Table.Cell width={1} negative={order.status==="false"&&false} positive={order.status==="true"&&true}>{order.status}</Table.Cell>
+                    <Table.Cell >{order.smartContract!==null?order.smartContract.contractName:order.dApp.dAppName}</Table.Cell>
+                    <Table.Cell  className={"link"}><Link  to={`/block_explorer/transaction:${order.transactionHash}`}>{order.transactionHash}</Link></Table.Cell>
+                    <Table.Cell >{order.price} Dapps</Table.Cell>
+                    <Table.Cell >{order.dateTime}</Table.Cell>
+                    <Table.Cell >
+                        <Button basic disabled color={order.status==='true'?'green':'red'}>{order.status}</Button>
+                    </Table.Cell>
                 </Table.Row>
             })
         }

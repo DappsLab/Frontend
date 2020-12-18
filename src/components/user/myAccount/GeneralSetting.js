@@ -179,8 +179,11 @@ class GeneralSetting extends Component {
 
                             }
                             smartContract {
-                                contractName id
+                            contractName id  purchasedCounts contractCategory
+                            publisher {
+                              fullName
                             }
+                          }
                         }
                     }
                 }`

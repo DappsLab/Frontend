@@ -166,9 +166,12 @@ class Kyc extends Component {
                                             }
                                         }
                                     }
-                                    smartContract {
-                                        contractName id
+                                     smartContract {
+                                    contractName id  purchasedCounts contractCategory
+                                    publisher {
+                                      fullName
                                     }
+                                  }
                                 }
                             }
                         }`

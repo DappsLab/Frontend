@@ -6,7 +6,9 @@ import {Table} from "semantic-ui-react";
 class TestContract extends Component {
     render() {
         return (
-            <DashboardLayout>
+            <DashboardLayout user={this.props.user}>
+                <h1><strong>Tested <span>Smart Contract</span></strong></h1>
+                <div className={'scroll'}>
                 <Table className={"violet striped "} >
                     <Table.Header>
                         <Table.Row>
@@ -32,6 +34,7 @@ class TestContract extends Component {
                         </Table.Row>
                     </Table.Body>
                 </Table>
+                </div>
             </DashboardLayout>
         );
     }

@@ -58,7 +58,7 @@ class Header extends React.Component {
                 <header className="flex">
                     <Jump>
                         <Link to={'/'}>
-                            <img className={'logo'} src={logo} alt={"logo"}/>
+                            <img className={'dapplogo'} src={logo} alt={"logo"}/>
                         </Link>
                     </Jump>
 
@@ -73,7 +73,7 @@ class Header extends React.Component {
                         >
                             <Dropdown.Menu>
                                 {this.links.map(link => (
-                                    <Dropdown.Item as={Link} to={`${link.linkTo}`} text={link.title}/>
+                                    <Dropdown.Item key={link.title} as={Link} to={`${link.linkTo}`} text={link.title}/>
                                 ))}
                             </Dropdown.Menu>
                         </Dropdown>
