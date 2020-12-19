@@ -8,7 +8,7 @@ class OrderRow extends Component {
     handelDeveloped(){
         const data = this.props.orders;
         console.log(this.props.orders)
-            return data.map((order,index)=>{
+            return data.slice(0).reverse().map((order,index)=>{
                 return <Table.Row key={order.id} >
                     <Table.Cell>{index+1}</Table.Cell>
                     <Table.Cell >{order.smartContract!==null?order.smartContract.contractName:order.dApp.dAppName}</Table.Cell>

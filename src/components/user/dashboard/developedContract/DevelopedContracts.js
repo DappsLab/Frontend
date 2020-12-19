@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import DashboardLayout from "../../../../hoc/DashboardLayout";
 import {Table} from "semantic-ui-react";
 import {connect} from "react-redux";
@@ -7,6 +7,9 @@ import {setUser} from "../../../../actions/Actions";
 
 
 const DevelopedContracts =(props)=> {
+    useEffect(()=>{
+        props.refetch();
+    })
     return (
         <DashboardLayout user={props.user}>
             <h1><strong>Developed <span>Smart Contract</span></strong></h1>

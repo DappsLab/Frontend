@@ -67,4 +67,9 @@ const DappsCard = (props) => {
     }
 }
 
-export default graphql(getDapps)(DappsCard)
+export default graphql(getDapps,{ options: (props) => {
+        return {
+            refetchQueries:getDapps,
+            fetchPolicy:'network-only'
+        }
+    }})(DappsCard)

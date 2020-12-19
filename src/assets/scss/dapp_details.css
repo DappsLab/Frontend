@@ -54,4 +54,14 @@
     .detail-container .buy-dapps .buybtn {
       margin-top: 3em; }
 
+.download-dapp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 300px;
+  justify-content: space-around;
+  padding: 10px 20px; }
+  .download-dapp p {
+    text-align: justify; }
+
 /*# sourceMappingURL=dapp_details.css.map */

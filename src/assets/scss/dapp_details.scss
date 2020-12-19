@@ -81,3 +81,15 @@
   }
 
 }
+.download-dapp{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 300px;
+  justify-content: space-around;
+  padding: 10px 20px;
+  p{
+    text-align: justify;
+  }
+
+}

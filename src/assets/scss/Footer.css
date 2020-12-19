@@ -101,6 +101,17 @@ a {
     background: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) !important;
     Box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); }
 
+.downlaod {
+  border-radius: 20px;
+  border: 2px solid #0F0E2e;
+  display: block;
+  padding: 10px 40px;
+  background: #0F0E2e;
+  color: #fff; }
+  .downlaod:hover {
+    background: #fff;
+    color: #0F0E2e; }
+
 .login-bg a, .link a, .block_result a, .row a, .deposite a, .deposite .flex .address, .password a, .register-bg a, .indexContainer .borderless a, .general_password a, .forget_password a {
   background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
   -webkit-background-clip: text;

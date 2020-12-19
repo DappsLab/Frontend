@@ -225,7 +225,7 @@ class  DetailedContract extends Component{
                                 that.props.setUser(result.data.me);
                                 that.setState({currentUser:result.data.me,buy_loading: false},()=>{});
                                 alert.success("License Purchased Successfully", {timeout:2000})
-                                that.props.history.push("/dashboard/purchased")
+                                that.props.history.push("/dashboard/purchased_contracts")
                             }).catch(e => {
                                 console.log(e);
                                 that.meQuery().then(result => {

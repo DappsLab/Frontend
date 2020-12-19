@@ -43,6 +43,7 @@ import DappsVerification from "./components/admin/dapps_verification/DappsVerifi
 import SmartContractVerification from "./components/admin/smart_contract_verification/SmartContractVerification";
 import TestSmartContract from "./components/home/smartContract/testSmartContract/TestSmartContract";
 import AddTestAddress from "./components/user/addTestAddress/AddTestAddress";
+import PurchasedDapp from "./components/user/dashboard/purchasedDapp/PurchasedDapp";
 
 
 const Routes =(props)=>{
@@ -59,7 +60,8 @@ const Routes =(props)=>{
               <PrivateRoute {...props} path={"/dashboard/ordered_contract"} exact component={OrderContracts}/>
               <PrivateRoute {...props} path={"/dashboard/test_contract"} exact component={TestContract}/>
               <PrivateRoute {...props} path={"/dashboard/developed_dapps"} exact component={DevelopedDapps}/>
-              <PrivateRoute {...props} path={"/dashboard/purchased"} exact component={Purchased}/>
+              <PrivateRoute {...props} path={"/dashboard/purchased_contracts"} exact component={Purchased}/>
+             <PrivateRoute {...props} path={"/dashboard/purchased_dapps"} exact component={PurchasedDapp}/>
               <PrivateRoute {...props} path={"/dashboard/contract_verification"} exact component={SmartContractVerification}/>
               <PrivateRoute {...props} path={"/dashboard/dapps_verification"} exact component={DappsVerification}/>
               <PrivateRoute {...props} path={"/dashboard/kyc_verification"} exact component={KycVerification}/>

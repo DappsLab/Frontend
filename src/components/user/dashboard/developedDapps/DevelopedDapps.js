@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import DashboardLayout from "../../../../hoc/DashboardLayout";
 import {Table} from "semantic-ui-react";
 import {connect} from "react-redux";
@@ -6,6 +6,9 @@ import {setUser} from "../../../../actions/Actions";
 import DappsRow from "./DappsRow";
 
 const DevelopedDapps = (props) => {
+    useEffect(()=>{
+        props.refetch();
+    })
     return (
         <DashboardLayout user={props.user}>
             <h1><strong>Developed <span>Dapps</span></strong></h1>

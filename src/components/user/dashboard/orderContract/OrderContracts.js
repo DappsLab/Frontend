@@ -1,16 +1,18 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import DashboardLayout from "../../../../hoc/DashboardLayout";
 import {Table} from "semantic-ui-react";
 import {flowRight as compose} from "lodash";
 import {connect} from "react-redux";
 import OrderRow from "./OrderRow";
 
-class OrderContracts extends Component {
-    render() {
-        return (
-            <DashboardLayout user={this.props.user}>
-                <h1><strong>Ordered <span>Contract & Dapps</span></strong></h1>
-                <div className={'scroll'}>
+const OrderContracts =(props)=>{
+    useEffect(()=>{
+        props.refetch();
+    })
+    return (
+        <DashboardLayout user={props.user}>
+            <h1><strong>Ordered <span>Contract & Dapps</span></strong></h1>
+            <div className={'scroll'}>
                 <Table className={"violet striped "} >
                     <Table.Header>
                         <Table.Row>
@@ -22,16 +24,11 @@ class OrderContracts extends Component {
                             <Table.HeaderCell >Status</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
-                    <OrderRow orders={this.props.user.orders}/>
+                    <OrderRow orders={props.user.orders}/>
                 </Table>
-                </div>
-            </DashboardLayout>
-        );
-    }
+            </div>
+        </DashboardLayout>
+    );
 }
-const mapStateToProps=(state)=>({
-    currentUser:state.user.currentUser,
-})
-export default compose(
-    connect(mapStateToProps)
-)(OrderContracts);
+
+export default (OrderContracts);

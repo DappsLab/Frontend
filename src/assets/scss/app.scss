@@ -113,6 +113,18 @@ a {
             0px 1px 10px 0px rgba(0,0,0,0.12);
   }
 }
+.downlaod{
+  border-radius: 20px;
+  border: 2px solid#0F0E2e;
+  display: block;
+  padding: 10px 40px;
+  background: #0F0E2e;
+  color: #fff;
+  &:hover{
+    background: #fff;
+    color: #0F0E2e;
+  }
+}
 .login-bg a,.link a,.block_result a,.row a,.deposite a,.deposite .flex .address,.password a,.register-bg a,.indexContainer .borderless a,.general_password a,.forget_password a{
   @include default-link();
 }

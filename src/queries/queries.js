@@ -11,6 +11,19 @@ export const me_Query=gql`query {
   me{
     avatar address fullName id type twoFactorCode
     email location userName twoFactorEnabled balance
+     purchasedDApps {
+      id dApp {
+      createdAt
+      dAppName
+      id
+      publisher {
+        fullName
+      }
+      }
+       licenses {
+        id
+      }
+    }
      testAddress {
       wallet {
         privateKey
@@ -516,10 +529,7 @@ export const login=gql`
   }
   }`
 
-export const getZip=gql`query ($did:ID!,$pid:ID!,$lid:ID!){ 
-  getZip(zipInput: {dApp: $did, purchasedDApp: $pid, license: $lid})
-}
-`
+
 export const verifyOrder=gql`
 query  ($id:ID!){
      verifyOrder(id: $id)
@@ -527,15 +537,39 @@ query  ($id:ID!){
 export const purchaseDapp=gql`
    mutation ($did:String!,$oid:String!){
   purchaseDApp(newPurchase: {dAppId: $did, orderId: $oid}) {    
-   id
+     id
+    dApp {
+      id
+    }
+    licenses {
+      id
+    }
   }
 }`
-
+export const getZip=gql`query ($did:ID!,$pid:ID!,$lid:ID!){ 
+  getZip(zipInput: {dApp: $did, purchasedDApp: $pid, license: $lid})
+}
+`
 export const addTestAddress=gql`mutation {
   addTestAddress{
   id
 }
 }`
+export const deleteTestAddress=gql`
+mutation  ($id:ID!){
+   deleteTestAddress(testAddressId: $id){
+  id
+}
+}
+
+`
+export const requestCoin=gql`
+mutation ($id:ID!) {
+  request5DAppsCoin(testAddressId: $id){
+  id
+}
+}
+`
 export const placeTestOrder=gql`
     mutation ($addressID:ID!,$type:LicenseType! ,$fee:String!) {
   placeTestOrder(newOrder: {testAddressId: $addressID, productType: SMARTCONTRACT, licenseType: $type, fee: $fee}) {

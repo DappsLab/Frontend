@@ -9,11 +9,12 @@ import LocalMallIcon from '@material-ui/icons/LocalMall';
 const DashboardNav = (props) => {
     const {user}=props;
     const links=[
-        {icon:<LocalMallIcon/>, title:"Purchased",linkTo:"/dashboard/purchased"},
-        {icon:<LocalMallIcon/>,title:"Tested Contract",linkTo:"/dashboard/test_contract"},
-        {icon:<LocalMallIcon/>,title:"Developed Smart Contract",linkTo:"/dashboard/developed_contract"},
         {icon:<LocalMallIcon/>,title:"Ordered Contract",linkTo:"/dashboard/ordered_contract"},
+        {icon:<LocalMallIcon/>, title:"Purchased Smart Contract",linkTo:"/dashboard/purchased_contracts"},
+        {icon:<LocalMallIcon/>,title:"Developed Smart Contract",linkTo:"/dashboard/developed_contract"},
+        {icon:<LocalMallIcon/>,title:"Tested Contract",linkTo:"/dashboard/test_contract"},
         {icon:<LocalMallIcon/>,title:"Developed Dapps",linkTo:"/dashboard/developed_dapps"},
+        {icon:<LocalMallIcon/>,title:"Purchased Dapps",linkTo:"/dashboard/purchased_dapps"},
         {icon:<LocalMallIcon/>,title:"KYC (Account Setting)",subtitle:"(Account Setting)",linkTo:"/dashboard/kyc_verification"},
         {icon:<LocalMallIcon/>,title:"Smart Contract (Contract  Verification)",subtitle:"(Contract  Verification)",linkTo:"/dashboard/contract_verification"},
         {icon:<LocalMallIcon/>,title:"Dapps (Dapps Verification)",subtitle:"(Dapps Verification)",linkTo:"/dashboard/dapps_verification"}

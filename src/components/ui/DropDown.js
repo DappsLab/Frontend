@@ -54,7 +54,7 @@ export const DropDown =({check,updateimage,user,removeImage})=> {
         }
     }
     const links=[
-        {title:"Dashboard",linkTo:"/dashboard/purchased"},
+        {title:"Dashboard",linkTo:"/dashboard/purchased_contracts"},
         {title:"My Account",linkTo:"/account_settings"},
         {title: "Add Test Address",linkTo:'/add_test_address'},
         {title:"Upload Smart Contract",linkTo:"/upload_samrt_contract"},

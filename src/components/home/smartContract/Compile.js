@@ -106,10 +106,7 @@ const Compile =(props)=> {
                                 onCompiled={()=>OnComplied(liecense)}
                             />
                         )
-                        :(active==="compile"?
-                                <CompileResult setUser={props.setUser} />:
-                                <Deploy />
-                        )
+                        :(active==="compile"? <CompileResult setUser={props.setUser} />: <Deploy />)
                     }
                 </Segment>
             </Container>
