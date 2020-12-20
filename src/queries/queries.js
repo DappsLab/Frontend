@@ -577,8 +577,8 @@ mutation ($id:ID!) {
 }
 `
 export const placeTestOrder=gql`
-    mutation ($addressID:ID!,$type:LicenseType! ,$fee:String!) {
-  placeTestOrder(newOrder: {testAddressId: $addressID, productType: SMARTCONTRACT, licenseType: $type, fee: $fee}) {
+    mutation ($addressId:ID!,$type:LicenseType!,$id:String!,$producttype: ProductType!,$fee:String!) {
+  placeTestOrder(newOrder: {smartContract: $id,testAddressId: $addressId, productType: $producttype, licenseType: $type, fee: $fee}) {
     id
   }
  }

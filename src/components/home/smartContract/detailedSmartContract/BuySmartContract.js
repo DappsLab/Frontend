@@ -43,6 +43,7 @@ const BuySmartContract = (props) => {
                 })
             }else {
                 props.refetch()
+                setBuyLoading(false)
                 props.history.push("/dashboard/ordered_contract")
                 alert.error("Order Succesfull. Purchased Failed",{timeout:3000})
             }
@@ -63,7 +64,7 @@ const BuySmartContract = (props) => {
             alert.error("purchasd Failed "+error.toString(),{timeout:5000})
         },
         onCompleted:data => {
-            alert.success("Congratulation, You purchasd Dapps Successfully and You can download it.",{timeout:5000})
+            alert.success("Congratulation, You purchasd Smart contract Successfully",{timeout:5000})
             props.refetch()
             setBuyLoading(false)
         }

@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 import FormControl from "@material-ui/core/FormControl";
 import RadioGroup from "@material-ui/core/RadioGroup";
-import { Divider, Form, Input} from "semantic-ui-react";
+import { Divider, Form,Select, Input} from "semantic-ui-react";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
 import {Slider} from "react-semantic-ui-range";
@@ -12,13 +12,12 @@ import BuyTestSmartContract from "./BuyTestSmartContract";
 import {useQuery} from "@apollo/client";
 import {me_Query} from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
-import {Spinner2} from "../../../ui/Spinner";
 
 const ContractBuyDetails = (props) => {
     const [radioValue,setradioValue]=useState("SINGLELICENSE");
     const [fee,setFee]=useState(100000);
+    const [address,setAddress]=useState("");
     const {logged_session,user,contract}=props;
-
     const handleChange = (event) => {
         setradioValue(event.target.value)
     };
@@ -56,10 +55,18 @@ const ContractBuyDetails = (props) => {
                     />
                     <BuyTestSmartContract
                         contract={contract} refetch={refetch} user={user} type={radioValue} fee={fee}
-                        logged_session={logged_session} {...props}
+                        logged_session={logged_session} {...props} address={address}
                     />
                 </div>
             )
+        }
+    }
+    const handleSelect=(event)=>{
+        const {value}=event.target;
+        if (value==="select"){
+            setAddress('')
+        }else {
+            setAddress(value)
         }
     }
     return (
@@ -131,8 +138,23 @@ const ContractBuyDetails = (props) => {
                     </Form>
                 </RadioGroup>
             </FormControl>
+            {logged_session&&(
+                user.testAddress.length>0&&
+                    <form>
+                        <select
+                            placeholder='Select Address'
+                            onChange={(event)=>handleSelect(event)}
+                        >
+                            <option  value={'select'}>Select Address</option>
+                            { user.testAddress.map(add => (
+                                <option key={add.id}  value={add.id}>{add.address}</option>
+                            ))}
+                        </select>
+                            <p className={'info'}>Only Select When you want test smart contracty</p>
+                    </form>
+            )}
             {logged_session&&
-            RenderButtonGroup()
+                 RenderButtonGroup()
             }
         </div>
     );

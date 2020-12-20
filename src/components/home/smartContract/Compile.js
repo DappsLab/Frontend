@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import "../../../assets/scss/compile.css"
 import {Container, Segment} from "semantic-ui-react";
 import Layout from "../../../hoc/Layout";
