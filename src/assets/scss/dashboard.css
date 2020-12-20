@@ -63,4 +63,7 @@
   .developed .action {
     text-align: center !important; }
 
+.order_tab .ui.menu {
+  margin-bottom: 0 !important; }
+
 /*# sourceMappingURL=dashboard.css.map */
