@@ -12,10 +12,11 @@ import "../../../../assets/scss/licenses.css"
 import {getDate} from "../../../ui/Helpers";
 import {Client} from "../../../../queries/Services";
 import {Spinner2} from "../../../ui/Spinner";
-import Licenses from "./Licenses";
+import Licenses from "./licenses/Licenses";
 import {useQuery} from "@apollo/client";
 import ContractBuyDetails from "./ContractBuyDetails";
 import {setUser} from "../../../../actions/Actions";
+import TestLicenses from "./licenses/TestLicenses";
 
 
 const  DetailedContract =(props)=>{
@@ -73,6 +74,7 @@ const  DetailedContract =(props)=>{
                     <h3>{contract.publisher.fullName}</h3>
                 </div>
                 <Licenses contract={contract} logged_session={props.logged_session}  {...props} user={props.currentUser}/>
+                <TestLicenses contract={contract} logged_session={props.logged_session}  {...props} user={props.currentUser}/>
             </div>
                 <ContractBuyDetails contract={contract} logged_session={props.logged_session}  {...props} user={props.currentUser}/>
             </div>

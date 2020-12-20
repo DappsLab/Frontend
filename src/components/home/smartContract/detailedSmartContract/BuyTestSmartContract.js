@@ -81,7 +81,7 @@ const BuyTestSmartContract = (props) => {
             alert.error("purchasd Failed "+error.toString(),{timeout:5000})
         },
         onCompleted:data => {
-            alert.success("Congratulation, You purchasd Dapps Successfully",{timeout:5000})
+            alert.success("Congratulation, You purchasd Test Smart Contract Successfully",{timeout:5000})
             props.refetch()
             setBuyLoading(false)
         }

@@ -108,4 +108,16 @@
   .radio_detials .radio {
     margin-right: 10px !important; }
 
+.test-address label {
+  font-weight: 700;
+  font-size: 15px; }
+.test-address select {
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  border-radius: 5px;
+  padding: 0 5px;
+  height: 45px;
+  width: 100%; }
+  .test-address select:focus {
+    stroke: none; }
+
 /*# sourceMappingURL=detailed_contract.css.map */

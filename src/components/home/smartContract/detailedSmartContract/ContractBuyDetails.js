@@ -140,14 +140,15 @@ const ContractBuyDetails = (props) => {
             </FormControl>
             {logged_session&&(
                 user.testAddress.length>0&&
-                    <form>
+                    <form className={'test-address'}>
+                        <label>Select Test Address</label>
                         <select
-                            placeholder='Select Address'
+                            placeholder='Select Address' className={'strock'}
                             onChange={(event)=>handleSelect(event)}
                         >
                             <option  value={'select'}>Select Address</option>
                             { user.testAddress.map(add => (
-                                <option key={add.id}  value={add.id}>{add.address}</option>
+                                <option key={add.id}  value={add.id}>{add.address}  ({Math.trunc(add.balance)})</option>
                             ))}
                         </select>
                             <p className={'info'}>Only Select When you want test smart contracty</p>
