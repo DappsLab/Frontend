@@ -13,7 +13,7 @@ import Smart_Contracts from "./components/home/smartContract/Smart_Contracts";
 import Login from "./components/login/Login";
 import Register from "./components/login/Register";
 import SearchResult from "./components/home/search/SearchResult";
-import DetailedContract from "./components/home/smartContract/DetailedContract";
+import DetailedContract from "./components/home/smartContract/detailedSmartContract/DetailedContract";
 import Logout from "./components/user/myAccount/Logout";
 import ResetPassword from "./components/login/ResetPassword";
 import Purchased from "./components/user/dashboard/purchased/Purchased";

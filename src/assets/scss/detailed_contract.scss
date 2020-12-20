@@ -47,12 +47,10 @@
 }
 
 .btnGroups {
-  justify-content: space-between;
-  flex-direction: column;
   .testbtn {
     background: $default-accent !important;
     color: $primary-color !important;
-    margin-right: 0!important;
+    margin:10px 0!important;
     &:hover {
       color: $paper-color;
       background: $default-primary !important;

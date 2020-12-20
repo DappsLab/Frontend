@@ -577,6 +577,10 @@ export const placeTestOrder=gql`
   }
  }
   `
+export const verifyTestOrder=gql`query ($id:ID!){
+  verifyTestOrder(id: $id)
+}
+`
 export const purchasedTestOrder=gql`
     mutation ($sid:String!,$oid:String!){
         testPurchaseContract(newPurchase: {smartContractId: $sid, testOrderId: $oid}){

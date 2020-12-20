@@ -8,7 +8,6 @@ import {dappsbyid} from "../../../../queries/queries";
 import {Button, Container, Segment} from "semantic-ui-react";
 import Avatar from "@material-ui/core/Avatar";
 import {categoryColors, getDate} from "../../../ui/Helpers";
-import {dappSource} from '../../uploadContract/editSmartContract/GetSource'
 import {connect} from 'react-redux'
 import BuyDapp from "./BuyDapp";
 
