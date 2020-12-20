@@ -65,11 +65,9 @@ const Compile =(props)=> {
             console.log(data1)
         }
     })
-    if (loading) return <Spinner2/>
+    if (loading) return <Layout> <Spinner2/></Layout>
     if (error) return <div>{error.toString()}</div>
-    console.log(data,loading,error)
     const liecense=data.licenseById;
-    console.log(licenses)
     return (
         <Layout>
             <Container fluid className={"compile flex"}>

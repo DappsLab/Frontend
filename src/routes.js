@@ -17,7 +17,6 @@ import DetailedContract from "./components/home/smartContract/detailedSmartContr
 import Logout from "./components/user/myAccount/Logout";
 import ResetPassword from "./components/login/ResetPassword";
 import Purchased from "./components/user/dashboard/purchased/Purchased";
-import TestContract from "./components/user/dashboard/TestContract";
 import DevelopedContracts from "./components/user/dashboard/developedContract/DevelopedContracts";
 import PublicRoute from "./components/route_auth/PublicRoute";
 import PrivateRoute from "./components/route_auth/PrivateRoute";
@@ -58,7 +57,6 @@ const Routes =(props)=>{
 
               <PrivateRoute {...props} path={"/dashboard/developed_contract"} exact component={DevelopedContracts}/>
               <PrivateRoute {...props} path={"/dashboard/ordered_contract"} exact component={OrderContracts}/>
-              <PrivateRoute {...props} path={"/dashboard/test_contract"} exact component={TestContract}/>
               <PrivateRoute {...props} path={"/dashboard/developed_dapps"} exact component={DevelopedDapps}/>
               <PrivateRoute {...props} path={"/dashboard/purchased_contracts"} exact component={Purchased}/>
              <PrivateRoute {...props} path={"/dashboard/purchased_dapps"} exact component={PurchasedDapp}/>

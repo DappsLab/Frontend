@@ -11,46 +11,39 @@ export const me_Query=gql`query {
   me{
     avatar address fullName id type twoFactorCode
     email location userName twoFactorEnabled balance
+     testPurchasedContracts {
+      id  customizationsLeft createdAt
+      smartContract {
+        contractName contractCategory id singleLicensePrice
+        publisher { fullName  }
+      }
+      testLicenses {  id used  purchaseDateTime 
+       testOrder {
+          productType status licenseType id
+          smartContract {
+            id image contractName
+          }
+        }
+       }
+    }
      purchasedDApps {
-      id dApp {
-      createdAt
-      dAppName
-      id
-      publisher {
-        fullName
-      }
-      }
-       licenses {
-        id
-      }
+      id dApp { createdAt   dAppName id publisher { fullName}}
+       licenses { id }
     }
      testAddress {
       wallet {
         privateKey
         publicKey
       }
-      id
-      balance
-      address
+      id balance address
     }
     dApps {
-      createdAt
-      dAppCategory
-      dAppName
-      description
-      id
-      image
+      createdAt dAppCategory dAppName description id image
       publisher {
-        id
-        fullName
+        id fullName
       }
-      publishingDateTime
-      shortDescription
-      singleLicensePrice
-      tags
-      verified
+      publishingDateTime shortDescription singleLicensePrice tags verified
     }
-
     smartContracts {
       id contractName createdAt description verified
       image source unlimitedLicensePrice singleLicensePrice
@@ -68,6 +61,12 @@ export const me_Query=gql`query {
        dApp{ 
           dAppName
        }
+    }
+    testOrders{
+    id dateTime fee price status transactionHash
+      orderUsed smartContract {
+        id contractName
+      }
     }
     purchasedContracts {
       customizationsLeft id unlimitedCustomization
@@ -592,5 +591,25 @@ export const purchasedTestOrder=gql`
         testPurchaseContract(newPurchase: {smartContractId: $sid, testOrderId: $oid}){
         id
     }
+}
+`
+export const testLicenseById=gql`query ($id:ID!){
+testLicenseById(id: $id) {
+    id testPurchasedContract { id }
+    testOrder { id
+      smartContract {
+        id contractName shortDescription
+        image publishingDateTime
+        publisher { fullName }
+        contractCategory createdAt
+      }
+    }
+  }
+}`
+export const testCompile=gql`
+mutation ($name:String!,$sid:ID!,$pid:ID!,$lid:ID!){ testCompileContract(
+newCompile:   {compilationName: $name, smartContract: $sid,testPurchasedContract: $pid, testLicense: $lid}){
+  id
+}
 }
 `

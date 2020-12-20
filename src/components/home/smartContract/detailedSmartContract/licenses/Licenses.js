@@ -52,7 +52,7 @@ const Licenses = (props) => {
                                             <h3>{license.order.smartContract.contractName}</h3>
                                         </div>
                                         <Button color={'green'} onClick={() => {
-                                            // this.props.history.push(`/compile/${license.id}`)
+                                            this.props.history.push(`/compile/${license.id}`)
                                         }}>Deploy</Button>
                                     </Segment>:""
                                 }

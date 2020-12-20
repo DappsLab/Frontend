@@ -58,8 +58,10 @@ const  Main =(props)=>{
                 <Routes {...props} user={null}/>:
                 <div>{error.toString()}</div>
         )
-        console.log(data.me)
-        return <Routes {...props} user={data.me}/>
+        if (data) {
+            return <Routes {...props} user={data.me}/>
+        }
+        return <Routes {...props} />
     }
     return  (
         <AlertProvider template={AlertTemplate} {...options}>

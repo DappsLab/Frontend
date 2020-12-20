@@ -12,7 +12,6 @@ const DashboardNav = (props) => {
         {icon:<LocalMallIcon/>,title:"Ordered Contract",linkTo:"/dashboard/ordered_contract"},
         {icon:<LocalMallIcon/>, title:"Purchased Smart Contract",linkTo:"/dashboard/purchased_contracts"},
         {icon:<LocalMallIcon/>,title:"Developed Smart Contract",linkTo:"/dashboard/developed_contract"},
-        {icon:<LocalMallIcon/>,title:"Tested Contract",linkTo:"/dashboard/test_contract"},
         {icon:<LocalMallIcon/>,title:"Developed Dapps",linkTo:"/dashboard/developed_dapps"},
         {icon:<LocalMallIcon/>,title:"Purchased Dapps",linkTo:"/dashboard/purchased_dapps"},
         {icon:<LocalMallIcon/>,title:"KYC (Account Setting)",subtitle:"(Account Setting)",linkTo:"/dashboard/kyc_verification"},
