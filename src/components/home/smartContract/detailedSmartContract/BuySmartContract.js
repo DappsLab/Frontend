@@ -1,97 +1,85 @@
 import React, {useState} from 'react';
 import {Button, Container} from "semantic-ui-react";
 import {withAlert} from "react-alert";
+import {useLazyQuery, useMutation} from "@apollo/client";
+import {orderContract, purchaseDapp, purchasedContract, verifyOrder} from "../../../../queries/queries";
+import {Client} from "../../../../queries/Services";
 
 const BuySmartContract = (props) => {
     const [buyLoading,setBuyLoading]=useState(false)
+    const [orderID,setOrderID]=useState();
     const {alert,type,fee,user,contract}=props;
 
+    const context= {
+        headers: {
+            authorization: localStorage.getItem("token")
+        }
+    }
+    const [order]=useMutation(orderContract,{
+        client:Client, context:context,
+        onCompleted:data => {
+            setOrderID(data.placeOrder.id);
+            verifiyOrder({variables:{
+                    id:data.placeOrder.id
+                }
+            })
+        },
+        onError:error => {
+            setBuyLoading(false)
+            alert.error(error.toString(),{timeout:3000})
+        }
+    });
+    const [verifiyOrder]=useLazyQuery(verifyOrder,{
+        client:Client, context:context,
+        onCompleted:data => {
+            if (data.verifyOrder){
+                purchase({
+                    variables:{
+                        SID:contract.id,
+                        OID:orderID
+                    }
+                }).catch(err=>{
+                    console.log(err)
+                })
+            }else {
+                props.refetch()
+                props.history.push("/dashboard/ordered_contract")
+                alert.error("Order Succesfull. Purchased Failed",{timeout:3000})
+            }
+        },
+        onError:error => {
+            props.refetch()
+            setBuyLoading(false)
+            alert.success("Order Succesfull.",{timeout:3000})
+            alert.error(error.toString(),{timeout:3000})
+        }
+    });
+    const [purchase]=useMutation(purchasedContract, {
+        client: Client, context:context,
+        onError:error => {
+            props.refetch()
+            props.history.push("/dashboard/ordered_contract")
+            alert.success("Order Succesfull",{timeout:5000})
+            alert.error("purchasd Failed "+error.toString(),{timeout:5000})
+        },
+        onCompleted:data => {
+            alert.success("Congratulation, You purchasd Dapps Successfully and You can download it.",{timeout:5000})
+            props.refetch()
+            setBuyLoading(false)
+        }
+    })
     const handleBuy=()=>{
         setBuyLoading(true);
-        //     const contractData=this.props.data.smartContractById;
-        //     this.props.orderContract({
-        //         variables:{
-        //             producttype:'SMARTCONTRACT',
-        //             fee: fee.toString(),
-        //             id:contractData.id,
-        //             type:radioValue
-        //         }
-        //     }).then(function (result){
-        //
-        //         if (result.data.placeOrder) {
-        //             const orderId=result.data.placeOrder.id;
-        //             that.client.query({
-        //                 query: gql`query  ($id:ID!){
-        //                     verifyOrder(id: $id)
-        //                 }`,variables: {id: orderId}
-        //             }).then(result => {
-        //                     if (result.data.verifyOrder){
-        //                     that.Authclient.mutate({
-        //                         mutation:gql`
-        //                             mutation ($SID:String!,$OID:String!){
-        //                                 purchaseContract(newPurchase: {smartContractId:$SID, orderId: $OID}) {
-        //                                     createdAt
-        //                                 }
-        //                             }
-        //                         `,variables:{SID:contractData.id,OID:orderId}
-        //                     }).then(result=>{
-        //                         that.meQuery().then(result => {
-        //                             that.props.setUser(result.data.me);
-        //                             that.setState({currentUser:result.data.me,buy_loading: false},()=>{});
-        //                             alert.success("License Purchased Successfully", {timeout:2000})
-        //                             that.props.history.push("/dashboard/purchased_contracts")
-        //                         }).catch(e => {
-        //                             console.log(e);
-        //                             that.meQuery().then(result => {
-        //                                 that.props.setUser(result.data.me);
-        //                                 alert.success("Purchased Failed", {timeout:5000})
-        //                                 alert.error("Order Successfully", {timeout:5000})
-        //                                 that.setState({currentUser:result.data.me,buy_loading:false},()=>{})
-        //                                 that.props.history.push("/dashboard/ordered_contract")
-        //                             }).catch(e => {
-        //                                 console.log(e)
-        //                                 alert.error(e.toString(),{timeout:5000})
-        //                                 that.setState({buy_loading: false})
-        //                             });
-        //                         });
-        //                     }).catch(e=>{
-        //                         console.log(e)
-        //                         that.setState({buy_loading: false})
-        //                         alert.error(e.toString(),{timeout:2000})
-        //                         that.meQuery().then(result => {
-        //                             that.props.setUser(result.data.me);
-        //                             alert.success("Order Successfully", {timeout:2000})
-        //                             that.setState({buy_loading:false})
-        //                             that.props.history.push("/dashboard/ordered_contract")
-        //                         }).catch(e => {
-        //                             console.log(e)
-        //                             that.setState({buy_loading: false})
-        //                             alert.error(e.toString(),{timeout:5000})
-        //                         });
-        //                     })
-        //                 }else {
-        //                     that.meQuery().then(result => {
-        //                         that.props.setUser(result.data.me);
-        //                         alert.success("Order Successfully", {timeout:2000})
-        //                         that.setState({buy_loading:false})
-        //                         that.props.history.push("/dashboard/ordered_contract")
-        //                     }).catch(e => {
-        //                         console.log(e)
-        //                         that.setState({buy_loading: false})
-        //                         alert.error(e.toString(),{timeout:5000})
-        //                     });
-        //                 }
-        //             }).catch(e => {
-        //                 that.setState({buy_loading:false});
-        //                 console.log(e.toString())
-        //                 alert.error(e.toString(),{time:500});
-        //             });
-        //         }
-        //     }).catch(function (error){
-        //         that.setState({buy_loading:false});
-        //         console.log(error.toString());
-        //         alert.error(error.toString(),{time:500});
-        //     })
+        order({
+            variables:{
+                producttype:'SMARTCONTRACT',
+                fee: fee.toString(),
+                id:contract.id,
+                type:type
+            }
+        }).catch(err=>{
+            console.log(err.toString())
+        })
     }
 
 

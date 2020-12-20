@@ -303,7 +303,13 @@ export const orderContract=gql`
     }
   }
 `
-
+export const purchasedContract=gql`
+ mutation ($SID:String!,$OID:String!){
+ purchaseContract(newPurchase: {smartContractId:$SID, orderId: $OID}) {
+ createdAt
+ }
+ }
+`
 //=======================================================================
 // Search Smart Contract
 //=======================================================================

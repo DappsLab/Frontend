@@ -3,7 +3,7 @@ import  '../../../../assets/scss/detailed_contract.css';
 import {Button, Divider, Icon} from 'semantic-ui-react'
 import Layout from "../../../../hoc/Layout";
 import {flowRight as compose} from 'lodash';
-import {orderContract, contractById, me_Query, dappsbyid} from "../../../../queries/queries";
+import { contractById} from "../../../../queries/queries";
 import {ContractImg} from "../../../ui/Icons";
 import Avatar from "@material-ui/core/Avatar";
 import {connect} from "react-redux";
@@ -15,6 +15,7 @@ import {Spinner2} from "../../../ui/Spinner";
 import Licenses from "./Licenses";
 import {useQuery} from "@apollo/client";
 import ContractBuyDetails from "./ContractBuyDetails";
+import {setUser} from "../../../../actions/Actions";
 
 
 const  DetailedContract =(props)=>{
@@ -87,4 +88,4 @@ const mapStateToProps=(state)=>({
     logged_session:state.user.logged_session,
     currentUser:state.user.currentUser
 });
-export default compose(connect(mapStateToProps)) (DetailedContract)
+export default compose(connect(mapStateToProps, {setUser})) (DetailedContract)

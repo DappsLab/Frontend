@@ -9,6 +9,10 @@ import Radio from "@material-ui/core/Radio";
 import {Slider} from "react-semantic-ui-range";
 import BuySmartContract from "./BuySmartContract";
 import BuyTestSmartContract from "./BuyTestSmartContract";
+import {useQuery} from "@apollo/client";
+import {me_Query} from "../../../../queries/queries";
+import {Client} from "../../../../queries/Services";
+import {Spinner2} from "../../../ui/Spinner";
 
 const ContractBuyDetails = (props) => {
     const [radioValue,setradioValue]=useState("SINGLELICENSE");
@@ -27,7 +31,37 @@ const ContractBuyDetails = (props) => {
             return " Minimum time"
         }
     }
-
+    const RenderButtonGroup=()=> {
+        const {loading, error,refetch, data} = useQuery(me_Query, {
+            client: Client, context: {
+                headers: {
+                    authorization: localStorage.getItem("token")
+                }
+            },
+            onCompleted:data1 => {
+                props.setUser(data1.me)
+            },onError:error1 => {
+                console.log(error1.toString())
+            }
+        })
+        if (error){
+            console.log(error.toString())
+        }
+        if (data) {
+            return (
+                <div className={`btnGroups`}>
+                    <BuySmartContract
+                        contract={contract} refetch={refetch} user={user} type={radioValue} fee={fee}
+                        logged_session={logged_session}{...props}
+                    />
+                    <BuyTestSmartContract
+                        contract={contract} refetch={refetch} user={user} type={radioValue} fee={fee}
+                        logged_session={logged_session} {...props}
+                    />
+                </div>
+            )
+        }
+    }
     return (
         <div className={"contractRight"}>
             <h3 className={"buy-top"}><span>Buy</span></h3>
@@ -98,16 +132,7 @@ const ContractBuyDetails = (props) => {
                 </RadioGroup>
             </FormControl>
             {logged_session&&
-                <div className={`btnGroups`}>
-                    <BuySmartContract
-                        contract={contract} user={user}  type={radioValue} fee={fee}
-                        logged_session={logged_session}{...props}
-                    />
-                    <BuyTestSmartContract
-                        contract={contract} user={user} type={radioValue} fee={fee}
-                        logged_session={logged_session} {...props}
-                    />
-                </div>
+            RenderButtonGroup()
             }
         </div>
     );
