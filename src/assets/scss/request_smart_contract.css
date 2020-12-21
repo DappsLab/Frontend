@@ -1,0 +1,13 @@
+.request-contract h1, .request-contract h2 {
+  text-align: center; }
+.request-contract .request-info {
+  width: 60%;
+  margin: 30px auto;
+  text-align: center; }
+.request-contract .request-form {
+  width: 50%;
+  margin: 0 auto 4em auto; }
+  .request-contract .request-form textarea {
+    min-height: 200px; }
+
+/*# sourceMappingURL=request_smart_contract.css.map */

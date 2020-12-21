@@ -1,3 +1,4 @@
+import {Icon} from "semantic-ui-react";
 
 export const nameReg=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
 export const numericReg=RegExp(/^[0-9]*$/);
@@ -8,6 +9,12 @@ export const emailRegex=RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(
 export const alphabetRegex=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
 
 
+
+export const infoData=[
+    {icon:"wpforms",heading:"Step 1: Complete the form below",detail:"We will conduct an extensive analysis on your business model, tech and product description, to determine what type of smart contract or DApp is best suited for you."},
+    {icon:"check",heading:"Step 2: We Post the Request",detail:"Once we agree on the bounty description, scope, and documentation, you need to send MODEX Tokens into an escrow until the bounty is solved by developers."},
+    {icon:"file code outline",heading:"Step 1: Devs start working",detail:"When the bounty is live, the developers in our community will be notified, and they can start working on it right away. If multiple solutions are submitted, we can assist you in selecting a winner."}
+]
 export const getDate=(data)=>{
     const split=data.split('-');
     let year =  split[0];
