@@ -1,7 +1,11 @@
 import React, {useState} from 'react';
 import {Button, Form} from "semantic-ui-react";
+import {useMutation} from "@apollo/client";
+import {createCustomOrder} from "../../../queries/queries";
+import {Client} from "../../../queries/Services";
+import {withAlert} from "react-alert";
 
-const SubmitRequest = () => {
+const SubmitRequest = (props) => {
     const [name,setName]=useState('');
     const [title,setTitle]=useState('');
     const [website,setWebsite]=useState('');
@@ -11,13 +15,50 @@ const SubmitRequest = () => {
     const [city,setCity]=useState('');
     const [country,setCountry]=useState('');
     const [description,setDescription]=useState('')
+    const {alert}=props;
 
 
+
+
+    const [create]=useMutation(createCustomOrder,{
+        client:Client,context: {
+            headers: {
+                authorization: localStorage.getItem("token")
+            }
+        },
+    })
     const  handelSubmit=()=>{
-        console.log(name,title,website,bname,email,phone,city,country,description)
+
+        if (isEmpty()){
+            console.log(name,title,website,bname,email,phone,city,country,description)
+            // create({
+            //     variables:{
+            //         input:{
+            //             businessName:,
+            //             businessPhone:,
+            //             businessEmail:,
+            //             productType:,
+            //             requirements:,
+            //             status:,
+            //             role:,
+            //             businessWebsite:,
+            //             createdAt:"",
+            //             updatedAt:"",
+            //         }
+            //     }
+            // })
+        }
+
+    }
+
+    const isEmpty=()=>{
+        if (name!=="",title!=="",website!=="",bname!=="",email!=="",phone!=="",city!=="",country!=="",description!==""){
+            return true
+        }else {
+            alert.error("All Fields not Required",{timeout:3000})
+        }
     }
     const desc='Please Describe your business, the core infrastructure and what smart contract or DApp you need built.'
-
     return (
         <div>
             <h2>Submit the Smart Contract Info</h2>
@@ -73,4 +114,4 @@ const SubmitRequest = () => {
     );
 };
 
-export default SubmitRequest;
+export default withAlert()(SubmitRequest);

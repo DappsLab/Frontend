@@ -613,3 +613,11 @@ newCompile:   {compilationName: $name, smartContract: $sid,testPurchasedContract
 }
 }
 `
+export const  createCustomOrder=gql`
+   mutation  ($input:newCustomOredr){
+  createCustomOrder(newCustomOrder: $input) {
+    id
+  }
+}
+
+    `
