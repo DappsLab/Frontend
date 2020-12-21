@@ -20,11 +20,13 @@ const BuyDapp = (props) => {
     const alert=props.alert;
 
     useEffect(()=>{
-        currentUser.purchasedDApps.map(dapp=>{
-            if (props.id===dapp.dApp.id){
-                setPurchased(dapp);
-            }
-        });
+        if (currentUser) {
+            currentUser.purchasedDApps.map(dapp => {
+                if (props.id === dapp.dApp.id) {
+                    setPurchased(dapp);
+                }
+            });
+        }
     })
     const [buydApp]=useMutation(orderContract,{
         client:Client, context: {

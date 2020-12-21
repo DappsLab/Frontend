@@ -128,6 +128,10 @@ a {
 .login-bg a,.link a,.block_result a,.row a,.deposite a,.deposite .flex .address,.password a,.register-bg a,.indexContainer .borderless a,.general_password a,.forget_password a{
   @include default-link();
 }
+
+.main-spinner{
+  padding-top: 200px;
+}
 /*================================================
                     Dark mode
 ===================================================*/

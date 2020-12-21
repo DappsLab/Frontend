@@ -6,9 +6,15 @@
   }
 
   .request-info{
-    width: 60%;
+    width: 50%;
     margin: 30px auto;
     text-align: center;
+    div{
+      margin: 0 10px;
+    }
+    .icon{
+      font-size: 20px!important;
+    }
   }
   .request-form{
     width: 50%;

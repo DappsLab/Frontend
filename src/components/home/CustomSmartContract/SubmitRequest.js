@@ -10,11 +10,11 @@ const SubmitRequest = () => {
     const [phone,setPhone]=useState('');
     const [city,setCity]=useState('');
     const [country,setCountry]=useState('');
-
+    const [description,setDescription]=useState('')
 
 
     const  handelSubmit=()=>{
-        console.log('here')
+        console.log(name,title,website,bname,email,phone,city,country,description)
     }
     const desc='Please Describe your business, the core infrastructure and what smart contract or DApp you need built.'
 
@@ -63,9 +63,9 @@ const SubmitRequest = () => {
                         value={country}
                     />
                 </Form.Group>
-                <Form.TextArea label={desc}>
-
-                </Form.TextArea>
+                <Form.TextArea
+                    label={desc} name={'description'} value={description}
+                    onChange={(event)=>setDescription(event.target.value)}> </Form.TextArea>
 
                 <Button color={'blue'} onClick={handelSubmit}>Submit</Button>
             </Form>

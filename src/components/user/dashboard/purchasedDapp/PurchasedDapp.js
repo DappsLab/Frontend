@@ -30,7 +30,7 @@ const PurchasedDapp = (props) => {
                             <Table.Cell >{data.dApp.dAppName}</Table.Cell>
                             <Table.Cell >{data.dApp.publisher.fullName}</Table.Cell>
                             <Table.Cell>{dateTime(data.dApp.createdAt)}</Table.Cell>
-                            <Table.Cell><DownlaodDapp check={false} purchased={data}/></Table.Cell>
+                            <Table.Cell className={'dapp-spinner'}><DownlaodDapp check={false} purchased={data}/></Table.Cell>
                         </Table.Row>
                     })):
                         <Table.Row>

@@ -1,9 +1,13 @@
 .request-contract h1, .request-contract h2 {
   text-align: center; }
 .request-contract .request-info {
-  width: 60%;
+  width: 50%;
   margin: 30px auto;
   text-align: center; }
+  .request-contract .request-info div {
+    margin: 0 10px; }
+  .request-contract .request-info .icon {
+    font-size: 20px !important; }
 .request-contract .request-form {
   width: 50%;
   margin: 0 auto 4em auto; }

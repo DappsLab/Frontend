@@ -15,8 +15,8 @@ const RequestSmartContract = (props) => {
             <div className={'request-contract'}>
                 <h1>Place a Request For New Smart Contract</h1>
                 <div className={"request-info flex"}>
-                    {infoData.map(info=>(
-                        <div>
+                    {infoData.map((info,index)=>(
+                        <div key={index}>
                             <Icon name={info.icon}/>
                             <h3>{info.heading}</h3>
                             <p>{info.detail}</p>

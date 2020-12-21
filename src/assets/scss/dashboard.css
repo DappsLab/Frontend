@@ -66,4 +66,10 @@
 .order_tab .ui.menu {
   margin-bottom: 0 !important; }
 
+.dapp-spinner .spinner2 {
+  height: 50px; }
+  .dapp-spinner .spinner2 .sub_spinner {
+    height: 40px;
+    width: 40px; }
+
 /*# sourceMappingURL=dashboard.css.map */

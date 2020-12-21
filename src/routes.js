@@ -47,12 +47,12 @@ import RequestSmartContract from "./components/home/CustomSmartContract/RequestS
 
 
 const Routes =(props)=>{
-     useEffect(()=>{
-          const user=props.user;
-          if (user!==null) {
-               props.setUser(user);
-          }
-     })
+     // useEffect(()=>{
+     //      const user=props.user;
+     //      if (user!==null) {
+     //           props.setUser(user);
+     //      }
+     // })
      return (
          <Switch>
 

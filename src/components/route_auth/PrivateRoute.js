@@ -10,7 +10,6 @@ import {setUser} from "../../actions/Actions";
 const PrivateRoute = ({setUser,user,component:Comp,...rest}) => {
     useEffect(()=>{
         window.scrollTo(0,0);
-
     });
     const RenderQuery=()=>{
         const {loading,data,error,refetch}=useQuery(me_Query,{
@@ -25,7 +24,7 @@ const PrivateRoute = ({setUser,user,component:Comp,...rest}) => {
                 }
             }
         })
-        if (loading) return <Spinner2/>
+        if (loading) return <div className={'main-spinner'}><Spinner2/></div>
         return <Route {...rest} component={(props)=>(
             !!localStorage.getItem('token') ?
                 <Comp {...props} refetch={refetch} user={data.me}/>

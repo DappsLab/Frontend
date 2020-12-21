@@ -21,7 +21,7 @@ const TestCustomized = (props) => {
             }
         },onCompleted:data => {
             setLoading(false)
-            props.changeTab('compile');
+            changeTab('compile');
         },onError:error => {
             setLoading(false)
             alert.error(error.toString(),{timeout:5000})

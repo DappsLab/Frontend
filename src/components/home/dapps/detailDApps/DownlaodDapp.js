@@ -9,7 +9,7 @@ const DownlaodDapp = ({check,purchased}) => {
     const pid=purchased.id;
     const did=purchased.dApp.id;
     const lid=purchased.licenses.slice(-1)[0].id
-    console.log(purchased);
+    const rest=true;
     const {loading,error,data}=useQuery(getZip,{
         client:Client,
         context: {

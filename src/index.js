@@ -65,7 +65,8 @@ const  Main =(props)=>{
     }
     return  (
         <AlertProvider template={AlertTemplate} {...options}>
-            {RenderData()}
+            {/*{RenderData()}*/}
+            <Routes/>
         </AlertProvider>
     )
 }

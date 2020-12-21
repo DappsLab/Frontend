@@ -117,6 +117,9 @@ a {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; }
 
+.main-spinner {
+  padding-top: 200px; }
+
 /*================================================
                     Dark mode
 ===================================================*/

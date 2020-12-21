@@ -8,6 +8,7 @@ import {graphql} from "react-apollo";
 import {kycMutation} from "../../../queries/queries";
 import {withAlert} from "react-alert";
 import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
+import {countryOptions} from "../../ui/Helpers";
 const alphaNumaric=RegExp(/^[a-zA-Z0-9][a-zA-Z0-9\s]*$/);
 const numaric=RegExp(/^[0-9\s]*$/);
 const alphabet=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
@@ -27,23 +28,7 @@ class Kyc extends Component {
         dateOfBirth:"",
         error:"",
     }
-    countryOptions = [
-        { key: 'pk', value: 'Pakistan', text: 'Pakistan' },
-        { key: 'af', value: 'Afghanistan', text: 'Afghanistan' },
-        { key: 'ax', value: 'Aland Islands', text: 'Aland Islands' },
-        { key: 'al', value: 'Albania', text: 'Albania' },
-        { key: 'dz', value: 'Algeria', text: 'Algeria' },
-        { key: 'as', value: 'American Samoa', text: 'American Samoa' },
-        { key: 'ad', value: 'Andorra', text: 'Andorra' },
-        { key: 'ao', value: 'Angola', text: 'Angola' },
-        { key: 'ai', value: 'Anguilla', text: 'Anguilla' },
-        { key: 'ag', value: 'Antigua', text: 'Antigua' },
-        { key: 'ar', value: 'Argentina', text: 'Argentina' },
-        { key: 'am', value: 'Armenia', text: 'Armenia' },
-        { key: 'aw', value: 'Aruba', text: 'Aruba' },
-        { key: 'au', value: 'Australia', text: 'Australia' },
-        { key: 'at', value: 'Austria', text: 'Austria' },
-    ]
+
     handleChange = event => {
         const {name,value}=event.target;
         this.setState({error:''})
@@ -243,10 +228,10 @@ class Kyc extends Component {
                     </Form.Group>
                     <Form.Group widths='equal'>
                         <Form.Select value={country}
-                            options={this.countryOptions} onChange={this.handleSelect}
+                            options={countryOptions} onChange={this.handleSelect}
                             name={'country'} label='Country' placeholder={currentUser.kyc.country} />
                         <Form.Select value={nationality}
-                            options={this.countryOptions} onChange={this.handleSelect}
+                            options={countryOptions} onChange={this.handleSelect}
                             name={'nationality'} label='Nationality' placeholder={currentUser.kyc.nationality} />
                     </Form.Group>
                     <Form.Group widths='equal'>

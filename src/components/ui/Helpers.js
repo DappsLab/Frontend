@@ -15,6 +15,23 @@ export const infoData=[
     {icon:"check",heading:"Step 2: We Post the Request",detail:"Once we agree on the bounty description, scope, and documentation, you need to send MODEX Tokens into an escrow until the bounty is solved by developers."},
     {icon:"file code outline",heading:"Step 1: Devs start working",detail:"When the bounty is live, the developers in our community will be notified, and they can start working on it right away. If multiple solutions are submitted, we can assist you in selecting a winner."}
 ]
+export const countryOptions = [
+    { key: 'pk', value: 'Pakistan', text: 'Pakistan' },
+    { key: 'af', value: 'Afghanistan', text: 'Afghanistan' },
+    { key: 'ax', value: 'Aland Islands', text: 'Aland Islands' },
+    { key: 'al', value: 'Albania', text: 'Albania' },
+    { key: 'dz', value: 'Algeria', text: 'Algeria' },
+    { key: 'as', value: 'American Samoa', text: 'American Samoa' },
+    { key: 'ad', value: 'Andorra', text: 'Andorra' },
+    { key: 'ao', value: 'Angola', text: 'Angola' },
+    { key: 'ai', value: 'Anguilla', text: 'Anguilla' },
+    { key: 'ag', value: 'Antigua', text: 'Antigua' },
+    { key: 'ar', value: 'Argentina', text: 'Argentina' },
+    { key: 'am', value: 'Armenia', text: 'Armenia' },
+    { key: 'aw', value: 'Aruba', text: 'Aruba' },
+    { key: 'au', value: 'Australia', text: 'Australia' },
+    { key: 'at', value: 'Austria', text: 'Austria' },
+]
 export const getDate=(data)=>{
     const split=data.split('-');
     let year =  split[0];
