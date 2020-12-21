@@ -25,7 +25,6 @@ const TestSmartContract = (props) => {
         },
         onCompleted: data1 => {
             setLicenses(data1.licenseById)
-            console.log("test-licenses", data1)
         }
     })
     if (loading) return <Layout> <Spinner2/></Layout>

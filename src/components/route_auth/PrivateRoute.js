@@ -12,23 +12,33 @@ const PrivateRoute = ({setUser,user,component:Comp,...rest}) => {
         window.scrollTo(0,0);
 
     });
-    const {loading,data,error,refetch}=useQuery(me_Query,{
-        fetchPolicy:'network-only',
-        client:Client,
-        onCompleted:data1 => {
-            setUser(data1.me)
-        },
-        context:{
-            headers: {
-                authorization: localStorage.getItem("token")
+    const RenderQuery=()=>{
+        const {loading,data,error,refetch}=useQuery(me_Query,{
+            fetchPolicy:'network-only',
+            client:Client,
+            onCompleted:data1 => {
+                setUser(data1.me)
+            },
+            context:{
+                headers: {
+                    authorization: localStorage.getItem("token")
+                }
             }
-        }
-    })
-    if (loading) return <Spinner2/>
+        })
+        if (loading) return <Spinner2/>
+        return <Route {...rest} component={(props)=>(
+            !!localStorage.getItem('token') ?
+                <Comp {...props} refetch={refetch} user={data.me}/>
+                :
+                <Redirect to="/login"/>
+        )}/>
+    }
 
-    return <Route {...rest} component={(props)=>(
+    return  localStorage.getItem('token')?
+        RenderQuery()
+        :<Route {...rest} component={(props)=>(
         !!localStorage.getItem('token') ?
-           <Comp {...props} refetch={refetch} user={data.me}/>
+           <Comp {...props} />
             :
             <Redirect to="/login"/>
     )}/>

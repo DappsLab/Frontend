@@ -56,7 +56,7 @@ export const OurSmartContract=(props)=>{
         </section>
     )
 }
-export const CustomSmartContract=()=>{
+export const CustomSmartContract=(props)=>{
     return(
         <section className="custom-contract flex">
             <div className="c-left">
@@ -66,7 +66,7 @@ export const CustomSmartContract=()=>{
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     Ut enim ad minim veniam.
                 </p>
-                <button className="strock cursor">Request Smart Contracts</button>
+                <button onClick={()=>{props.history.push('/request_smart_contract')}} className="strock cursor">Request Smart Contract</button>
             </div>
             <div className="c-right">
                 <img  src={group2}/>

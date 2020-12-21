@@ -15,7 +15,7 @@ const Home = (props) =>{
             <HomeBanner/>
             <HomeBlockChain/>
             <OurSmartContract {...props}/>
-            <CustomSmartContract/>
+            <CustomSmartContract {...props}/>
             <Decentralized {...props}/>
         </Layout>
     );

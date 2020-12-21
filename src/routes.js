@@ -43,6 +43,7 @@ import SmartContractVerification from "./components/admin/smart_contract_verific
 import TestSmartContract from "./components/home/smartContract/testSmartContract/TestSmartContract";
 import AddTestAddress from "./components/user/addTestAddress/AddTestAddress";
 import PurchasedDapp from "./components/user/dashboard/purchasedDapp/PurchasedDapp";
+import RequestSmartContract from "./components/home/CustomSmartContract/RequestSmartContract";
 
 
 const Routes =(props)=>{
@@ -59,7 +60,7 @@ const Routes =(props)=>{
               <PrivateRoute {...props} path={"/dashboard/ordered_contract"} exact component={OrderContracts}/>
               <PrivateRoute {...props} path={"/dashboard/developed_dapps"} exact component={DevelopedDapps}/>
               <PrivateRoute {...props} path={"/dashboard/purchased_contracts"} exact component={Purchased}/>
-             <PrivateRoute {...props} path={"/dashboard/purchased_dapps"} exact component={PurchasedDapp}/>
+              <PrivateRoute {...props} path={"/dashboard/purchased_dapps"} exact component={PurchasedDapp}/>
               <PrivateRoute {...props} path={"/dashboard/contract_verification"} exact component={SmartContractVerification}/>
               <PrivateRoute {...props} path={"/dashboard/dapps_verification"} exact component={DappsVerification}/>
               <PrivateRoute {...props} path={"/dashboard/kyc_verification"} exact component={KycVerification}/>
@@ -69,6 +70,7 @@ const Routes =(props)=>{
               <PrivateRoute {...props} path={'/add_test_address'} component={AddTestAddress}/>
               <PrivateRoute {...props} path={'/edit_dapp/:id'} component={EditDapp}/>
               <PrivateRoute {...props} path={"/logout"} exact component={Logout}/>
+              <PrivateRoute {...props} path={"/request_smart_contract"} exact component={RequestSmartContract}/>
               <PrivateRoute {...props} path={"/delete_user"} exact component={DeleteUser}/>
               <PrivateRoute {...props} path={"/edit_samrt_contract/:id"} exact component={EditSmartContract}/>
               <PrivateRoute {...props} path={"/compile/:id"} exact component={Compile}/>

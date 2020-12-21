@@ -196,7 +196,7 @@ class Smart_Contracts extends Component {
                     </Grid.Column>
                 </Grid>
                 <Developer type={"contract"} link={'/upload_samrt_contract'}/>
-                <CustomSmartContract/>
+                <CustomSmartContract {...this.props}/>
             </Layout>
         );
     }
