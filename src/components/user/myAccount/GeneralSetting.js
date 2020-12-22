@@ -6,7 +6,7 @@ import {DropDown} from "../../ui/DropDown";
 import CustomizedDialogs from "../../ui/DialogBox";
 import 'react-image-crop/dist/ReactCrop.css';
 import {Divider, Form} from 'semantic-ui-react';
-import {imageUpload, updateUser} from "../../../queries/queries"
+import {imageUpload, me_Query, updateUser} from "../../../queries/queries"
 import {flowRight as compose} from 'lodash';
 import {graphql} from "react-apollo";
 import {connect} from "react-redux";
@@ -22,6 +22,7 @@ class GeneralSetting extends Component {
         currentUser: this.props.currentUser,
         fullName: "",
         location: "",
+        type:"",
         imageFinalPath:"",
         model:false,
         formErrors:{
@@ -42,6 +43,10 @@ class GeneralSetting extends Component {
         },
         showDialog: false,
     }
+    typeOptions=[
+        {key:'u',value:'USER',text:'USER'},
+        {key:'dev',value:'DEVELOPER',text:'DEVELOPER'},
+    ]
     //image crop and update
     updateImage=(path)=>{
         this.setState({imageSrc:path,showDialog:true})
@@ -135,7 +140,7 @@ class GeneralSetting extends Component {
         this.setState({[name]:value},()=>{});
     }
     onSubmit=(event)=>{
-        const {imageFinalPath,currentUser,fullName,location}=this.state;
+        const {imageFinalPath,currentUser,fullName,type,location}=this.state;
         const that=this;
         const alert=this.props.alert;
         event.preventDefault();
@@ -144,49 +149,11 @@ class GeneralSetting extends Component {
                 fullName: fullName.length>0?fullName:currentUser.fullName,
                 location: location.length>0?location:currentUser.location,
                 avatar: imageFinalPath===""?currentUser.avatar:imageFinalPath,
+                type:type===""?currentUser.type:type
             }
         }).then(result=>{
             this.client.query({
-                query: gql`query {
-                    me{
-                        avatar address fullName id type twoFactorCode
-                        email location userName twoFactorEnabled balance
-                        smartContracts {
-                            id contractName createdAt description verified
-                            image source  unlimitedLicensePrice singleLicensePrice
-                            contractCategory publishingDateTime
-                        }
-                        kyc{   birthDate
-                            building city country kycStatus mobile
-                            nationality postalCode street kycStatus
-                        }
-                        orders{
-                            id dateTime fee price status transactionHash
-                            orderUsed smartContract {
-                                contractName
-                            }
-                        }
-                        purchasedContracts {
-                            customizationsLeft id unlimitedCustomization
-                            licenses {
-                                purchaseDateTime id used
-                                order {
-                                    id status licenseType
-                                    smartContract {
-                                        id contractName image
-                                    }
-                                }
-
-                            }
-                            smartContract {
-                            contractName id  purchasedCounts contractCategory
-                            publisher {
-                              fullName
-                            }
-                          }
-                        }
-                    }
-                }`
+                query: me_Query
             }).then(result => {
                 console.log(result.data.me)
                 that.setState({fullName: "",location: "",currentUser: result.data.me})
@@ -209,7 +176,7 @@ class GeneralSetting extends Component {
         }
     });
     render() {
-        const {showDialog,crop,imageData,currentUser,imageSrc,formErrors,location,imageFinalPath,fullName } = this.state;
+        const {showDialog,crop,imageData,type,currentUser,imageSrc,formErrors,location,imageFinalPath,fullName } = this.state;
         return  (
             <div>
                 {showDialog ?
@@ -252,7 +219,14 @@ class GeneralSetting extends Component {
                                         placeholder={currentUser.email}
                                         type={"email"} name="email" />
                                 </Form.Field>
-                                    <Form.Field className={"flex"}>
+                                <Form.Field className={'flex'}>
+                                    <label>Type</label>
+                                    <Form.Select
+                                        placeholder={currentUser.type} name={'type'} value={type}
+                                        options={this.typeOptions} onChange={((event,{value}) =>{this.setState({type:value})} )}
+                                    />
+                                </Form.Field>
+                                <Form.Field className={"flex"}>
                                         <label>Location</label>
                                         <Form.Input
                                             placeholder={currentUser.location===null?"Location":currentUser.location}

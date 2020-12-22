@@ -7,7 +7,6 @@ const CustomOrder = (props) => {
     useEffect(()=>{
         props.refetch();
     })
-    console.log(props.user)
     return (
         <DashboardLayout user={props.user}>
             <h1><strong>Custom orders of <span>Smart Contract/Dapp</span></strong></h1>
@@ -34,8 +33,8 @@ const CustomOrder = (props) => {
                                 <Table.Cell width={1} >
                                     <Button disabled className={'remove-opacity'} basic color={order.status==="VERIFIED"?"green":(order.status==="PENDING"?"yellow":'red')}> {order.status}</Button>
                                 </Table.Cell>
-                                <Table.Cell className={'action'}  width={1}>
-                                    {order.status!=="VERIFIED"&&<Link to={`/edit_samrt_contract/${order.id}`}><Icon circular  link  inverted color='green' name='edit'/></Link>}
+                                <Table.Cell className={'action flex'}  width={1}>
+                                    {order.status!=="VERIFIED"&&<Link to={`/edit_custom_order/${order.id}`}><Icon circular  link  inverted color='green' name='edit'/></Link>}
                                     <span> <Icon circular link  inverted color='red' name='delete'/></span>
                                 </Table.Cell>
                             </Table.Row>

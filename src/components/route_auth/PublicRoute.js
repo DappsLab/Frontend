@@ -15,7 +15,7 @@ const PublicRoute = ({setUser,user,component:Comp,...rest}) => {
 
     const RenderQuery=()=> {
         const {loading, data, error, refetch} = useQuery(me_Query, {
-            fetchPolicy: 'network-only',
+            // fetchPolicy: 'network-only',
             client: Client,
             onCompleted: data1 => {
                 setUser(data1.me)

@@ -98,13 +98,14 @@ export const me_Query=gql`query {
 
 //Query
 export const updateUser=gql`
-  mutation ($fullName: String,$location: String,$avatar:String,$balance:String){
+  mutation ($type:Type,$fullName: String,$location: String,$avatar:String,$balance:String){
     editUser(
       newUser: {
         fullName: $fullName,
         avatar:$avatar,
         location: $location,
         balance: $balance,
+        type:$type
       }
     ){
       avatar address

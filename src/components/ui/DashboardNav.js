@@ -8,9 +8,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 const DashboardNav = (props) => {
     const {user}=props;
+    const type=user.type;
     const links=[
-        {icon:<LocalMallIcon/>,title:"Ordered Contract",linkTo:"/dashboard/ordered_contract"},
         {icon:<LocalMallIcon/>, title:"Custom Orders",linkTo:"/dashboard/custom_orders"},
+        {icon:<LocalMallIcon/>,title:"Ordered Contract",linkTo:"/dashboard/ordered_contract"},
         {icon:<LocalMallIcon/>, title:"Purchased Smart Contract",linkTo:"/dashboard/purchased_contracts"},
         {icon:<LocalMallIcon/>,title:"Developed Smart Contract",linkTo:"/dashboard/developed_contract"},
         {icon:<LocalMallIcon/>,title:"Developed Dapps",linkTo:"/dashboard/developed_dapps"},
@@ -20,9 +21,17 @@ const DashboardNav = (props) => {
         {icon:<LocalMallIcon/>,title:"Dapps (Dapps Verification)",subtitle:"(Dapps Verification)",linkTo:"/dashboard/dapps_verification"}
 
     ]
+    const checkUser=()=>{
+        if (user==="DEVELOPER"){
+            return 0,5
+        }else if (user==='USER'){
+            return 1,5
+        }
+    }
     return (
         <List component="nav"  className={'uploadNav flex'} aria-label="main mailbox folders">
-            {user.type==='ADMIN'? links.map(link=>{
+            {user.type==='ADMIN'?
+             links.map(link=>{
                 return  <ListItem key={link.title}>
                     {window.location.pathname===link.linkTo&&<div className={'active-nav'}> </div>}
                     <Link to={link.linkTo}>
@@ -32,7 +41,8 @@ const DashboardNav = (props) => {
                         <ListItemText primary={link.title} />
                     </Link>
                 </ListItem>
-            }):
+            })
+            :(user.type==="DEVELOPER"?
                 links.slice(0,5).map(link=>{
                 return  <ListItem key={link.title}>
                         {window.location.pathname===link.linkTo&&<div className={'active-nav'}> </div>}
@@ -43,10 +53,21 @@ const DashboardNav = (props) => {
                 <ListItemText primary={link.title} />
                 </Link>
                 </ListItem>
-                })
-            }
+                }):links.slice(1,5).map(link=>{
+                    return  <ListItem key={link.title}>
+                        {window.location.pathname===link.linkTo&&<div className={'active-nav'}> </div>}
+                        <Link to={link.linkTo}>
+                            <ListItemIcon>
+                                <InboxIcon style={{ color: '#fff' }} />
+                            </ListItemIcon>
+                            <ListItemText primary={link.title} />
+                        </Link>
+                </ListItem>
+            })
+            )
+             }
         </List>
-    );
-};
+    )
+}
 
 export default DashboardNav;
