@@ -4,16 +4,15 @@ import {useMutation} from "@apollo/client";
 import {createCustomOrder} from "../../../queries/queries";
 import {Client} from "../../../queries/Services";
 import {withAlert} from "react-alert";
+import {FormValidation} from "../../ui/mise";
 
 const SubmitRequest = (props) => {
-    const [name,setName]=useState('');
-    const [title,setTitle]=useState('');
     const [website,setWebsite]=useState('');
     const [bname,setBName]=useState('');
     const [email,setEmail]=useState('');
-    const [phone,setPhone]=useState('');
-    const [city,setCity]=useState('');
-    const [country,setCountry]=useState('');
+    const [role,setRole]=useState('');
+    const [type,setType]=useState("");
+    const [phone,setPhone]=useState("");
     const [description,setDescription]=useState('')
     const {alert}=props;
 
@@ -25,34 +24,41 @@ const SubmitRequest = (props) => {
             headers: {
                 authorization: localStorage.getItem("token")
             }
-        },
+        },onCompleted:data => {
+            console.log(data)
+        },onError:error => {
+            console.log(error.toString())
+        }
     })
     const  handelSubmit=()=>{
 
         if (isEmpty()){
-            console.log(name,title,website,bname,email,phone,city,country,description)
-            // create({
-            //     variables:{
-            //         input:{
-            //             businessName:,
-            //             businessPhone:,
-            //             businessEmail:,
-            //             productType:,
-            //             requirements:,
-            //             status:,
-            //             role:,
-            //             businessWebsite:,
-            //             createdAt:"",
-            //             updatedAt:"",
-            //         }
-            //     }
-            // })
+            create({
+                variables:{
+                    input:{
+                        businessName:bname,
+                        businessPhone:phone,
+                        businessEmail:email,
+                        productType:type,
+                        requirements:description,
+                        status:'PENDING',
+                        role: role,
+                        businessWebsite: website,
+                    }
+                }
+            }).catch(err=>{
+                console.log(err.toString())
+            })
         }
 
     }
 
+    const optionType=[
+        {key:"sm",value:"SMARTCONTRACT",text:"SMARTCONTRACT"},
+        {key:"dp",value:"DAPP",text:"DAPP"}
+    ]
     const isEmpty=()=>{
-        if (name!=="",title!=="",website!=="",bname!=="",email!=="",phone!=="",city!=="",country!=="",description!==""){
+        if (website!=="",bname!=="",email!=="",phone!=="",role!=="",type!=="",description!==""){
             return true
         }else {
             alert.error("All Fields not Required",{timeout:3000})
@@ -65,16 +71,17 @@ const SubmitRequest = (props) => {
             <Form className={'request-form'}>
                 <Form.Input
                     text={'text'} fluid label={'Business Name'} placeholder={'Business Name'}
-                    onChange={(event)=>setBName(event.target.value)} name={'bname'} value={bname}
+                    onChange={(event, {name, value})=>setBName(FormValidation(bname,value,name))}
+                    name={'bname'} value={bname}
                 />
-                <Form.Input
-                    text={'text'} fluid label={'Full Name'} placeholder={'Full Name'}
-                    onChange={(event)=>setName(event.target.value)} name={'name'} value={name}
+                <Form.Select
+                     fluid label={'Request Type'} placeholder={'Request Type'} options={optionType} name={'type'}
+                      value={type} onChange={(event ,{value})=>{setType(value);} }
                 />
                 <Form.Group widths={"equal"}>
                     <Form.Input
-                        type={'text'} fluid  label='Position/Title' placeholder={'Position/Title'} value={title}
-                        onChange={(event)=>setTitle(event.target.value)} name={'title'}
+                        type={'text'} fluid  label='Role' placeholder={'Role'} value={role}  name={'role'}
+                        onChange={(event, {name, value})=>setRole(FormValidation(role,value,name))}
                     />
                     <Form.Input
                         type={'text'} fluid label='Business Website' placeholder={'Business Website'}
@@ -88,20 +95,9 @@ const SubmitRequest = (props) => {
                         onChange={(event)=>setEmail(event.target.value)}
                     />
                     <Form.Input
-                        type={'text'} fluid label='Phone Number' placeholder={'Phone Number'}
-                        onChange={(event)=>setPhone(event.target.value)}
+                        type={'text'} fluid label='Phone Number' name={'phone'} placeholder={'Phone Number'}
+                        onChange={(event,{name,value})=>setPhone(FormValidation(phone,value,name))}
                          value={phone}
-                    />
-                </Form.Group>
-                <Form.Group widths={"equal"}>
-                    <Form.Input
-                        type={'text'} fluid  label='City' placeholder={'City'} value={city} name={'city'}
-                        onChange={(event)=>setCity(event.target.value)}
-                    />
-                    <Form.Input
-                        type={'text'} fluid label='Country' placeholder={'Country'}
-                        onChange={(event)=>setCountry(event.target.value)}
-                        value={country}
                     />
                 </Form.Group>
                 <Form.TextArea

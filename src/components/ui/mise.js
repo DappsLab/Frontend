@@ -1,22 +1,7 @@
-import {Link} from "react-router-dom";
 import React from "react";
+import {nameReg, phoneNumber} from "./Helpers";
 
-export const LoginTop =({heading,paragraph,link,linkto})=>{
-    let template;
-    const renderTemplate=()=> {
-       template=(
-           <div className={"flex login_top"}>
-               <div className={"login_left"}>
-                   <h2>{heading}</h2>
-                   <p>{paragraph}</p>
-               </div>
-               <Link to={linkto}>{link}</Link>
-           </div>
-       );
-        return template;
-    }
-    return(renderTemplate())
-}
+
 
 export const Validation =(element)=>{
     let error = [true,''];
@@ -45,4 +30,19 @@ export const  isFormValid=values=>{
        valid=false;
    }
     return valid;
+}
+
+export const FormValidation=(oldValue,value,name)=>{
+    switch (name){
+        case 'bname':
+            return value!==""?nameReg.test(value)?value:oldValue:""
+        case 'role':
+            return value!==""?nameReg.test(value)?value:oldValue:""
+        case 'phone':
+            console.log(value)
+            return value!==""?phoneNumber.test(value)?value:oldValue:""
+        default:
+            return
+    }
+
 }

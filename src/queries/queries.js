@@ -86,6 +86,11 @@ export const me_Query=gql`query {
         }
       }
     }
+     customOrders {
+      businessEmail businessName businessPhone businessWebsite
+      createdAt id productType requirements role status
+      user {fullName}
+    }
   }
 }`
 
@@ -614,7 +619,7 @@ newCompile:   {compilationName: $name, smartContract: $sid,testPurchasedContract
 }
 `
 export const  createCustomOrder=gql`
-   mutation  ($input:newCustomOredr){
+   mutation  ($input:CustomOrderInput!){
   createCustomOrder(newCustomOrder: $input) {
     id
   }
