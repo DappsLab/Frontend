@@ -44,6 +44,7 @@ import TestSmartContract from "./components/home/smartContract/testSmartContract
 import AddTestAddress from "./components/user/addTestAddress/AddTestAddress";
 import PurchasedDapp from "./components/user/dashboard/purchasedDapp/PurchasedDapp";
 import RequestSmartContract from "./components/home/CustomSmartContract/RequestSmartContract";
+import CustomOrder from "./components/user/dashboard/customOrder/CustomOrder";
 
 
 const Routes =(props)=>{
@@ -55,10 +56,10 @@ const Routes =(props)=>{
      // })
      return (
          <Switch>
-
               <PrivateRoute {...props} path={"/dashboard/developed_contract"} exact component={DevelopedContracts}/>
               <PrivateRoute {...props} path={"/dashboard/ordered_contract"} exact component={OrderContracts}/>
               <PrivateRoute {...props} path={"/dashboard/developed_dapps"} exact component={DevelopedDapps}/>
+              <PrivateRoute {...props} path={"/dashboard/custom_orders"} exact component={CustomOrder}/>
               <PrivateRoute {...props} path={"/dashboard/purchased_contracts"} exact component={Purchased}/>
               <PrivateRoute {...props} path={"/dashboard/purchased_dapps"} exact component={PurchasedDapp}/>
               <PrivateRoute {...props} path={"/dashboard/contract_verification"} exact component={SmartContractVerification}/>

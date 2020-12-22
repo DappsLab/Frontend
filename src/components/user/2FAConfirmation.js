@@ -1,7 +1,6 @@
 import React, {Component, useState} from 'react';
 import {Grid, Form, Segment, Input} from 'semantic-ui-react'
 import fa from "../../assets/images/fa.png"
-import {gql} from "@apollo/client";
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import {withAlert} from "react-alert";
 import {flowRight as compose} from "lodash";

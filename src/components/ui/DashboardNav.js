@@ -10,6 +10,7 @@ const DashboardNav = (props) => {
     const {user}=props;
     const links=[
         {icon:<LocalMallIcon/>,title:"Ordered Contract",linkTo:"/dashboard/ordered_contract"},
+        {icon:<LocalMallIcon/>, title:"Custom Orders",linkTo:"/dashboard/custom_orders"},
         {icon:<LocalMallIcon/>, title:"Purchased Smart Contract",linkTo:"/dashboard/purchased_contracts"},
         {icon:<LocalMallIcon/>,title:"Developed Smart Contract",linkTo:"/dashboard/developed_contract"},
         {icon:<LocalMallIcon/>,title:"Developed Dapps",linkTo:"/dashboard/developed_dapps"},
@@ -17,6 +18,7 @@ const DashboardNav = (props) => {
         {icon:<LocalMallIcon/>,title:"KYC (Account Setting)",subtitle:"(Account Setting)",linkTo:"/dashboard/kyc_verification"},
         {icon:<LocalMallIcon/>,title:"Smart Contract (Contract  Verification)",subtitle:"(Contract  Verification)",linkTo:"/dashboard/contract_verification"},
         {icon:<LocalMallIcon/>,title:"Dapps (Dapps Verification)",subtitle:"(Dapps Verification)",linkTo:"/dashboard/dapps_verification"}
+
     ]
     return (
         <List component="nav"  className={'uploadNav flex'} aria-label="main mailbox folders">
