@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {useQuery} from "@apollo/client";
-import {testLicenseById} from "../../../../queries/queries";
-import {Client} from "../../../../queries/Services";
-import {Spinner2} from "../../../ui/Spinner";
+import {testLicenseById} from "../../../../../queries/queries";
+import {Client} from "../../../../../queries/Services";
+import {Spinner2} from "../../../../ui/Spinner";
 import {Form, Input} from "semantic-ui-react";
 import {Slider} from "react-semantic-ui-range";
-import {feeProcessTime} from "../../../ui/Helpers";
-import TestABI from "../../../../queries/TestABI";
+import {feeProcessTime} from "../../../../ui/Helpers";
+import RenderArguments from "./RenderArguments";
 
 const TestDeploy = (props) => {
     const [fee,setFee]=useState(100000);
@@ -30,8 +30,6 @@ const TestDeploy = (props) => {
     if (error) return <div>{error.toString()}</div>
     if (data) {
         const license=data.testLicenseById;
-        const ABI=TestABI(license.testCompilations[license.testCompilations.length - 1].id)
-        console.log("fg",ABI)
         return (
             <div className={'test_deploy'}>
                 <Form>
@@ -68,6 +66,7 @@ const TestDeploy = (props) => {
                             disabled label={{basic: true, content: 'Wei'}}
                         />
                     </Form.Field>
+                    <RenderArguments license={license}/>
                 </Form>
             </div>
         );

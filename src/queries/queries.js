@@ -583,7 +583,7 @@ mutation ($id:ID!) {
 `
 export const placeTestOrder=gql`
     mutation ($addressId:ID!,$type:LicenseType!,$id:String!,$producttype: ProductType!,$fee:String!) {
-  placeTestOrder(newOrder: {smartContract: $id,testAddressId: $addressId, productType: $producttype, licenseType: $type, fee: $fee}) {
+  placeTestOrder(newOrder: {smartContract: $id,testAddress: $addressId, productType: $producttype, licenseType: $type, fee: $fee}) {
     id
   }
  }
@@ -601,8 +601,12 @@ export const purchasedTestOrder=gql`
 `
 export const testLicenseById=gql`query ($id:ID!){
 testLicenseById(id: $id) {
+ testCompilations{
+    id
+  } used
     id testPurchasedContract { id }
     testOrder { id
+        testAddress{ id }
       smartContract {
         id contractName shortDescription
         image publishingDateTime
@@ -619,6 +623,7 @@ newCompile:   {compilationName: $name, smartContract: $sid,testPurchasedContract
 }
 }
 `
+
 export const  createCustomOrder=gql`
    mutation  ($input:CustomOrderInput!){
   createCustomOrder(newCustomOrder: $input) {
@@ -626,4 +631,18 @@ export const  createCustomOrder=gql`
   }
 }
 
+    `
+export const getTestABI=gql`query  ($id:ID!) {
+  testGetABI(id: $id)
+}`
+export const getTestBinery=gql`query  ($id:ID!) {
+  testGetBinary(id: $id)
+}`
+export const testDeploy=gql`
+   mutation ($input:TestDeployedContractInput!){
+   testDeployContract(newDeploy: $input){
+  id
+}
+}
+   
     `
