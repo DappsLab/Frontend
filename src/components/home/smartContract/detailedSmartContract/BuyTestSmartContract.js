@@ -94,7 +94,7 @@ const BuyTestSmartContract = (props) => {
         <Button loading={buyLoading} disabled={address === ""}  fluid onClick={handleTestBuy} className={"testbtn"}>Buy Test contract</Button>
             : <Container fluid className={"kyc_information"}>
                 <p>Before you can Test this contract, you have to atleast one  Test Addresses.</p>
-                {/*<Button  fluid onClick={()=>{props.history.push('/add_test_address')}} className={"testbtn"}>Add Test Address</Button>*/}
+                <Button  fluid onClick={()=>{props.history.push('/add_test_address')}} className={"testbtn"}>Add Test Address</Button>
             </Container>
     );
 }
