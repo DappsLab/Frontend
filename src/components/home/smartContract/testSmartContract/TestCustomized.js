@@ -11,7 +11,6 @@ const TestCustomized = (props) => {
     const [name,setName]=useState('');
     const [loading,setLoading]=useState(false);
     const {license,alert,changeTab}=props
-    console.log(license)
     const contract=license.testOrder.smartContract;
 
     const [test_compile]=useMutation(testCompile,{
@@ -20,10 +19,10 @@ const TestCustomized = (props) => {
                 authorization:localStorage.getItem('token')
             }
         },onCompleted:data => {
-            setLoading(false)
+            setLoading(false);
             changeTab('compile');
         },onError:error => {
-            setLoading(false)
+            setLoading(false);
             alert.error(error.toString(),{timeout:5000})
         }
     })
@@ -40,7 +39,6 @@ const TestCustomized = (props) => {
             console.log(err.toString())
         })
     }
-
     return (
         <div className={"customize"}>
             <h2>Customize your contract</h2>
