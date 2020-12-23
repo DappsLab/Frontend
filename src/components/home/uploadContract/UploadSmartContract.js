@@ -240,7 +240,6 @@ const UploadSmartContract =(props)=>{
     const [source]=useMutation(sourceUpload,{
         client:Client,
         onCompleted:data1 => {
-            console.log(data1)
             setsourcePath(data1.contractUploader);
             setshow(true)
         },
