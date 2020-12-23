@@ -48,6 +48,17 @@ const TestLicenses = (props) => {
                                         </div>
                                     </Segment>
                                 </div>
+                                {license.used?
+                                    <Segment className={"compiled"}>
+                                        <div>
+                                            <img src={license.testOrder.smartContract.image} alt={"img"}/>
+                                            <h3>{license.testOrder.smartContract.contractName}</h3>
+                                        </div>
+                                        <Button color={'green'} onClick={() => {
+                                            this.props.history.push(`/compile/${license.id}`)
+                                        }}>Deploy</Button>
+                                    </Segment>:""
+                                }
                             </div>
                         })}
                     </div>
