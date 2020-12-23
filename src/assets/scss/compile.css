@@ -53,4 +53,10 @@
         background: linear-gradient(135.14deg, #29334F 0%, #1F4C55 100%) !important;
         Box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); }
 
+.test_compie .spinner2 {
+  height: 50px; }
+.test_compie .sub_spinner {
+  height: 30px;
+  width: 30px; }
+
 /*# sourceMappingURL=compile.css.map */

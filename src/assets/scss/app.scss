@@ -99,6 +99,11 @@ a {
     font-size: 20px;
   }
 }
+.test_deploy{
+  .disabled{
+    opacity: unset!important;
+  }
+}
 .loginbtn,.kyc_section .button,.not_found button,.fa_container button,.passwordChange Button ,.confirm_email Button{
   height:32px;
   margin: 0 5px !important;
