@@ -45,6 +45,7 @@ const Licenses = (props) => {
                                         </div>
                                     </Segment>
                                 </div>
+                                {console.log("now",license)}
                                 {license.used?
                                     <Segment className={"compiled"}>
                                         <div>
@@ -52,7 +53,7 @@ const Licenses = (props) => {
                                             <h3>{license.order.smartContract.contractName}</h3>
                                         </div>
                                         <Button color={'green'} onClick={() => {
-                                            this.props.history.push(`/compile/${license.id}`)
+                                            props.history.push(`/compile/${license.id}`)
                                         }}>Deploy</Button>
                                     </Segment>:""
                                 }

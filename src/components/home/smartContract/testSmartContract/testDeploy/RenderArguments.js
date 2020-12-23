@@ -42,7 +42,7 @@ const RenderArguments = (props) => {
     })
     const onTestDeploy=()=>{
         const input= {}
-        input["testCompiledContract"] = newID
+        input["testCompiledContractId"] = newID
         input["testAddressId"]=license.testOrder.testAddress.id
         if (inputSize>0){
             // argumentsArray:''
