@@ -1,11 +1,37 @@
 @import "colors";
 .kyc_section{
+  .ui.form input[type=text]::placeholder,.dropdown .text{
+    color: #fff!important;
+    opacity: 1!important;
+  }
+  .dropdown .item{
+    background: #070622!important;
+  }
+  .ui.selection.dropdown{
+    display: flex;
+    align-items: center;
+  }
+  .ui.form .field>label{
+    font-size: 16px;
+    color: #fff;
+  }
+  .ui.form input[type=text],.ui.form input[type=email],.ui.form input[type=date],.ui.selection.dropdown{
+    border: 1px solid rgba(255,255,255,.15)!important;
+    color: #fff!important;
+    height: 50px;
+    background: #070622!important;
+    border-radius: 10px!important;
+    i.icon:before{
+      color: #fff;
+    }
+  }
+  h2{
+    span{
+      font-size: 14px;
+    }
+  }
   label{
     text-align: left!important;
-  }
-  input::placeholder,.dropdown .text {
-    color: #1B2529!important;
-    opacity: 1!important;
   }
   .button{
     width: 50%;

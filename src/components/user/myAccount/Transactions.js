@@ -64,7 +64,7 @@ class Transactions extends Component {
         console.log(this.props.currentUser);
         const {loading}=this.state
         return (
-            <AccountLayout {this.props}>
+            <AccountLayout {...this.props}>
             <div className={"transaction"}>
                 <h2>Transaction</h2>
                 <Paper   className={"fullWidth"}>

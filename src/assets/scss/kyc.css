@@ -1,8 +1,26 @@
+.kyc_section .ui.form input[type=text]::placeholder, .kyc_section .dropdown .text {
+  color: #fff !important;
+  opacity: 1 !important; }
+.kyc_section .dropdown .item {
+  background: #070622 !important; }
+.kyc_section .ui.selection.dropdown {
+  display: flex;
+  align-items: center; }
+.kyc_section .ui.form .field > label {
+  font-size: 16px;
+  color: #fff; }
+.kyc_section .ui.form input[type=text], .kyc_section .ui.form input[type=email], .kyc_section .ui.form input[type=date], .kyc_section .ui.selection.dropdown {
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #fff !important;
+  height: 50px;
+  background: #070622 !important;
+  border-radius: 10px !important; }
+  .kyc_section .ui.form input[type=text] i.icon:before, .kyc_section .ui.form input[type=email] i.icon:before, .kyc_section .ui.form input[type=date] i.icon:before, .kyc_section .ui.selection.dropdown i.icon:before {
+    color: #fff; }
+.kyc_section h2 span {
+  font-size: 14px; }
 .kyc_section label {
   text-align: left !important; }
-.kyc_section input::placeholder, .kyc_section .dropdown .text {
-  color: #1B2529 !important;
-  opacity: 1 !important; }
 .kyc_section .button {
   width: 50%; }
 .kyc_section .dropdown {

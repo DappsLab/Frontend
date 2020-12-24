@@ -15,7 +15,7 @@ const AccountNav=(props)=>{
     ]
 
     return NavLinks.map(nav=>{
-            return <div className={'flex items_container'}>
+            return <div key={nav.title} className={'flex items_container'}>
                     <div className={"account_item cursor flex"} onClick={()=>props.history.push(nav.link)} >
                     <div className={`icon_box flex ${nav.link===window.location.pathname?"meadow-color":""} ${nav.title==="Logout"? "brown-color":""}`}><FontAwesomeIcon  icon={nav.icon}/></div>
                     <div className={"flex nav_text"}>

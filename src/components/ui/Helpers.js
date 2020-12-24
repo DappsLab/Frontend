@@ -1,4 +1,4 @@
-
+export const alphanumaric=RegExp(/^[a-zA-Z][a-zA-Z0-9\s]*$/);
 export const nameReg=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
 export const numericReg=RegExp(/^[0-9]*$/);
 export const phoneNumber=RegExp(/^[0-9+]*$/);
@@ -7,6 +7,7 @@ export  const acceptedImageTypesArray = acceptedImageTypes.split(",").map((item)
 export const filename=RegExp(/^[a-zA-Z0-9]*$/);
 export const emailRegex=RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 export const alphabetRegex=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
+export const alphabetOutSpace=RegExp(/^[a-zA-Z][a-zA-Z]*$/);
 
 
 
@@ -21,7 +22,6 @@ export const countryOptions = [
     { key: 'ax', value: 'Aland Islands', text: 'Aland Islands' },
     { key: 'al', value: 'Albania', text: 'Albania' },
     { key: 'dz', value: 'Algeria', text: 'Algeria' },
-    { key: 'as', value: 'American Samoa', text: 'American Samoa' },
     { key: 'ad', value: 'Andorra', text: 'Andorra' },
     { key: 'ao', value: 'Angola', text: 'Angola' },
     { key: 'ai', value: 'Anguilla', text: 'Anguilla' },
