@@ -337,7 +337,7 @@ export const search=gql` query ($search:String){
 `
 export const licenseById=gql`query ($id:ID!){
   licenseById(id: $id) {
-    id
+    id used
     purchasedContract {
       id
     }

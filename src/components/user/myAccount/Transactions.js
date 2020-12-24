@@ -8,6 +8,7 @@ import TableBody from "@material-ui/core/TableBody";
 import {ApolloClient,gql, InMemoryCache} from "@apollo/client";
 import {Spinner2} from "../../ui/Spinner";
 import {dateTime} from "../../../helpers/DateTimeConversion";
+import AccountLayout from "../../../hoc/AccountLayout";
 const client = new ApolloClient({
     uri: 'http://localhost:4001/graphql',
     cache: new InMemoryCache(),
@@ -63,6 +64,7 @@ class Transactions extends Component {
         console.log(this.props.currentUser);
         const {loading}=this.state
         return (
+            <AccountLayout {this.props}>
             <div className={"transaction"}>
                 <h2>Transaction</h2>
                 <Paper   className={"fullWidth"}>
@@ -83,6 +85,7 @@ class Transactions extends Component {
                     {loading&&<Spinner2/>}
                 </Paper>
             </div>
+            </AccountLayout>
         );
     }
 }

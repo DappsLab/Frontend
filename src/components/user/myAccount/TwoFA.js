@@ -7,6 +7,7 @@ import {Loader} from "semantic-ui-react"
 import {connect} from "react-redux";
 import {setUser} from "../../../actions/Actions";
 import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
+import AccountLayout from "../../../hoc/AccountLayout";
 
 class TwoFA extends Component {
     state ={
@@ -96,7 +97,7 @@ class TwoFA extends Component {
     render() {
         const {loading,currentUser}=this.state;
         return  loading?<Loader active/>:(
-                <div>
+                <AccountLayout {...this.props}>
                     <h2>Enable 2FA</h2>
                     <Switch
                         checked={currentUser.twoFactorEnabled}
@@ -109,7 +110,7 @@ class TwoFA extends Component {
                         <p>Open the Google Authenticator app and scan this QR code</p>
                     </div>
                     }
-                </div>
+                </AccountLayout>
         );
     }
 }

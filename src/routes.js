@@ -25,7 +25,6 @@ import ConfirmEmail from "./components/user/ConfirmEmail";
 import ChangePassword from "./components/user/ChangePassword";
 import UploadSmartContract from "./components/home/uploadContract/UploadSmartContract";
 import FAConfirmation from "./components/user/2FAConfirmation";
-import UserAccount from "./components/user/myAccount/UserAccount";
 import NotFound from "./components/ui/NotFound";
 import {connect} from "react-redux";
 import {setUser} from "./actions/Actions";
@@ -40,11 +39,18 @@ import DevelopedDapps from "./components/user/dashboard/developedDapps/Developed
 import KycVerification from "./components/admin/kyc_verification/KYCVerification";
 import DappsVerification from "./components/admin/dapps_verification/DappsVerification";
 import SmartContractVerification from "./components/admin/smart_contract_verification/SmartContractVerification";
-import TestSmartContract from "./components/home/smartContract/testSmartContract/TestSmartContract";
 import AddTestAddress from "./components/user/addTestAddress/AddTestAddress";
 import PurchasedDapp from "./components/user/dashboard/purchasedDapp/PurchasedDapp";
 import RequestSmartContract from "./components/home/CustomSmartContract/RequestSmartContract";
 import CustomOrder from "./components/user/dashboard/customOrder/CustomOrder";
+import TestCustomizeSmartContract from "./components/home/smartContract/testSmartContract/CustomizeTestSmartContract";
+import TestCompileResult from "./components/home/smartContract/testSmartContract/TestCompileResult";
+import TestDeploy from "./components/home/smartContract/testSmartContract/testDeploy/TestDeploy";
+import GeneralSetting from "./components/user/myAccount/GeneralSetting/GeneralSetting";
+import KYC from "./components/user/myAccount/KYC";
+import WithdrawDeposite from "./components/user/myAccount/WithdrawDeposite";
+import Transactions from "./components/user/myAccount/Transactions";
+import TwoFA from "./components/user/myAccount/TwoFA";
 
 
 const Routes =(props)=>{
@@ -65,8 +71,11 @@ const Routes =(props)=>{
               <PrivateRoute {...props} path={"/dashboard/contract_verification"} exact component={SmartContractVerification}/>
               <PrivateRoute {...props} path={"/dashboard/dapps_verification"} exact component={DappsVerification}/>
               <PrivateRoute {...props} path={"/dashboard/kyc_verification"} exact component={KycVerification}/>
-              <PrivateRoute {...props} path={"/account_settings"} component={UserAccount}/>
-              <PrivateRoute {...props} path={"/test_smart_contract/:id"} component={TestSmartContract}/>
+              <PrivateRoute {...props} path={"/account_settings/profile"} component={GeneralSetting}/>
+              <PrivateRoute {...props} path={"/account_settings/KYC"} component={KYC}/>
+              <PrivateRoute {...props} path={"/account_settings/withdraw&deposite"} component={WithdrawDeposite}/>
+              <PrivateRoute {...props} path={"/account_settings/transaction"} component={Transactions}/>
+              <PrivateRoute {...props} path={"/account_settings/2fa"} component={TwoFA}/>
               <PrivateRoute {...props} path={'/upload_dapps'} component={UploadDapps}/>
               <PrivateRoute {...props} path={'/add_test_address'} component={AddTestAddress}/>
               <PrivateRoute {...props} path={'/edit_dapp/:id'} component={EditDapp}/>
@@ -75,6 +84,9 @@ const Routes =(props)=>{
               <PrivateRoute {...props} path={"/delete_user"} exact component={DeleteUser}/>
               <PrivateRoute {...props} path={"/edit_samrt_contract/:id"} exact component={EditSmartContract}/>
               <PrivateRoute {...props} path={"/compile/:id"} exact component={Compile}/>
+              <PrivateRoute {...props} path={"/customize_test_smart_contract/:id"} exact component={TestCustomizeSmartContract}/>
+              <PrivateRoute {...props} path={"/compiled_test_smart_contract/:id"} exact component={TestCompileResult}/>
+              <PrivateRoute {...props} path={"/deploy_test_smart_contract/:id"} exact component={TestDeploy}/>
               <PrivateRoute {...props} path={"/upload_samrt_contract"} exact component={UploadSmartContract}/>
               <PublicRoute {...props} restricted={false} path={'/dapps_details/:id'} component={DappsDetails}/>
               <PublicRoute {...props} restricted={false} path={"/2FA_varifivcation/:token"} exact component={FAConfirmation}/>

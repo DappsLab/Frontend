@@ -4,6 +4,7 @@ import QRCode from 'react-qr-code';
 import {connect} from "react-redux";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {Popup,Button} from "semantic-ui-react";
+import AccountLayout from "../../../hoc/AccountLayout";
 
 const timeoutLength = 2500
 class WithdrawDeposite extends Component {
@@ -29,7 +30,7 @@ class WithdrawDeposite extends Component {
 
         const {currentUser}=this.state
         return (
-            <div>
+            <AccountLayout {...this.props}>
                 <div className={"deposite"}>
                     <h2>Deposite</h2>
                     <div className={"flex"}>
@@ -59,7 +60,7 @@ class WithdrawDeposite extends Component {
                 <div className={"withdraw"}>
                     <h2>Withdraw</h2>
                 </div>
-            </div>
+            </AccountLayout>
         );
     }
 }

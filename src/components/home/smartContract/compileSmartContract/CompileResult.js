@@ -1,12 +1,11 @@
-import React from "react";
-import {Button, Divider, Form, Icon, Item} from "semantic-ui-react";
+import React from 'react';
 import {useQuery} from "@apollo/client";
 import {me_Query} from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
 import {Spinner2} from "../../../ui/Spinner";
+import {Button, Divider, Icon} from "semantic-ui-react";
 
-
-export const CompileResult=(props)=>{
+const CompileResult = (props) => {
     const {loading,error,data}=useQuery(me_Query,{client:Client,
         onCompleted:data1 => {
             props.setUser(data1.me);
@@ -33,8 +32,7 @@ export const CompileResult=(props)=>{
             <Button color={'blue'}>Download</Button>
             <Button color={'green'}>Deploy</Button>
         </div>
-        )
-}
-export const Deploy=()=>{
-    return <div>deploy</div>
-}
+    )
+};
+
+export default CompileResult;

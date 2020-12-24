@@ -1,32 +1,141 @@
 @import "colors";
 
-.general_setting {
-  .general_data{
-    align-items: flex-start;
-    .profile_picture{
-      padding: 0 5px 0 40px;
-      width: 230px;
-      .avatar{
-        margin-top: 10px;
-        width: 170px;
-        height: 170px;
-      }
-      .edit_btn{
-        background-color: $background-dark;
-        color: $background-color;
-        font-size: 12px !important;
-        padding: 4px 5px;
-        min-width: 50px;
-        position: relative;
-        top: -25px;
-        .MuiSvgIcon-root{
-          font-size: 16px !important;
-        }
-      }
-    }
-  }
+ .general_data {
+   align-items: flex-start;
+   justify-content: space-between;
+   .ui.form .field>label{
+     font-size: 16px;
+     color: #fff;
+   }
+   .ui.selection.dropdown{
+     display: flex;
+     align-items: center;
+   }
+   .ui.form input[type=text],.ui.form input[type=email],.ui.selection.dropdown{
+     border: 1px solid rgba(255,255,255,.15)!important;
+     color: #fff;
+     height: 50px;
+     background: #070622!important;
+     border-radius: 10px!important;
+      i.icon:before{
+       color: #fff;
+     }
+   }
 
-}
+   .general_left {
+     padding-right: 20px;
+     width: 50%;
+     h2{
+       font-size: 40px;
+     }
+     .update{
+       cursor: pointer;
+       margin-top: 2em;
+       border: 1px solid #8F4114;
+       background: #8F4114;
+       color: #fff;
+       border-radius: 30px;
+       padding: 15px 40px;
+     }
+   }
+
+   .general_right {
+     width: 45%;
+     padding-top: 40px;
+     .delete-btn{
+       margin-top: 30px;
+       label{
+         font-size: 22px!important;
+         margin-bottom: 20px;
+       }
+       span{
+         font-size: 14px;
+       }
+       button{
+         margin-left: 20px;
+         color: #fff;
+         background: #DD2121;
+         border-radius: 30px;
+         padding: 15px 30px;
+         border: 1px solid #DD2121;
+       }
+     }
+     .avatar {
+       margin-top: 10px;
+       width: 170px;
+       height: 170px;
+     }
+
+     .edit_btn {
+       background-color: $background-dark;
+       color: $background-color;
+       font-size: 12px !important;
+       padding: 4px 5px;
+       min-width: 50px;
+       position: relative;
+       top: -25px;
+
+       .MuiSvgIcon-root {
+         font-size: 16px !important;
+       }
+     }
+   }
+
+   .profile_picture {
+     justify-content: space-between;
+     margin-bottom: 20px;
+   }
+
+
+   .picture_btn {
+     display: flex;
+     align-items: center;
+
+     .remove_picture {
+       background-color: #DD2121;
+       border: 2px solid #DD2121;
+       cursor: pointer;
+       margin-left: 20px;
+     }
+
+     .strock {
+       border-radius: 30px;
+       height: 35px;
+       color: #fff !important;
+       width: 110px;
+     }
+   }
+
+   .file-upload {
+     border-radius: 30px;
+     position: relative;
+     display: flex;
+     background-color: #5754AB;
+     justify-content: center;
+     align-items: center;
+     overflow: hidden;
+
+     button {
+       background: #5754AB;
+       border: 2px solid #5754AB;
+     }
+   }
+
+   .file-upload input[type='file'] {
+     height: 50px;
+     width: 110px;
+     position: absolute;
+     top: 0;
+     left: 0;
+     opacity: 0;
+     cursor: pointer;
+   }
+
+   .wrapper .file-upload:hover {
+     color: #2590eb;
+   }
+
+ }
 .picture_menu{
   margin-top: 10px;
   margin-left: 17vh;
@@ -52,66 +161,17 @@
   position: relative;
   top: -140px;
 }
-.general_data {
-  .left {
-    padding-right: 20px;
-    width: 75%;
-    .input_box{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
 
-      .selectSort{
-        width: 60%;
-      }
-    }
-    .delete_warning{
-      float: right;
-      text-align: justify;
-      font-size: 14px;
-      color: $info-color;
-    }
-    .loginbtn{
-      height: auto;
-      font-weight: bold;
-      margin: 0!important;
-      padding: 7px 50px;
 
-    }
-    .flex{
-      justify-content: space-between;
-      .MuiButton-containedSecondary{
-        width: 70%;
-      }
-      .field {
-        width: 70%;
-        div, button {
-          input::placeholder {
-            color: #121212 !important;
-            opacity: 1 !important;
-          }
-        }
-      }
-    }
-  }
-  .errorMessage{
-    justify-content: center!important;
-  }
-}
-.avatar_label {
-  display: table;
-  input[type="file"] {
-    display: none;
-  }
-}
 .opacity{
-  .ui.disabled.input{
-    opacity: 1;
+  .disabled {
+    opacity: 1 !important;
+    .input {
+      opacity: 1 !important;
+    }
   }
 }
-.line{
-  margin: 4rem 0!important;
-}
+
 //=============================Financial==================
 .finanaial{
   display: flex!important;

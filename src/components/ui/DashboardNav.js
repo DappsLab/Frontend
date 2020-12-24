@@ -21,13 +21,6 @@ const DashboardNav = (props) => {
         {icon:<LocalMallIcon/>,title:"Dapps (Dapps Verification)",subtitle:"(Dapps Verification)",linkTo:"/dashboard/dapps_verification"}
 
     ]
-    const checkUser=()=>{
-        if (user==="DEVELOPER"){
-            return 0,5
-        }else if (user==='USER'){
-            return 1,5
-        }
-    }
     return (
         <List component="nav"  className={'uploadNav flex'} aria-label="main mailbox folders">
             {user.type==='ADMIN'?

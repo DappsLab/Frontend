@@ -1,16 +1,18 @@
 import React, { useState} from 'react';
-import "../../../assets/scss/compile.css"
+import "../../../../assets/scss/compile.css"
 import {Container, Segment} from "semantic-ui-react";
-import Layout from "../../../hoc/Layout";
+import Layout from "../../../../hoc/Layout";
 import {flowRight as compose} from "lodash";
-import {compile, licenseById, me_Query} from "../../../queries/queries";
-import {Spinner2} from "../../ui/Spinner";
-import {CompileResult, Customized, Deploy} from "./CompileCustomizedContract";
+import {compile, licenseById, me_Query} from "../../../../queries/queries";
+import {Spinner2} from "../../../ui/Spinner";
 import { useMutation, useQuery} from "@apollo/client";
 import {connect} from "react-redux";
-import {setUser} from "../../../actions/Actions";
+import {setUser} from "../../../../actions/Actions";
 import {withAlert} from "react-alert";
-import {Client} from "../../../queries/Services";
+import {Client} from "../../../../queries/Services";
+import CustomizedSmartContract from "./CustomizedSmartContract";
+import CompileResult from "./CompileResult";
+import DeploySmartContract from "../deploySmartContract/DeploySmartContract";
 const alphabet=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
 
 const Compile =(props)=> {
@@ -61,8 +63,10 @@ const Compile =(props)=> {
         variables: {id: props.match.params.id},
         client: Client,
         onCompleted: data1 => {
+            if (data1.licenseById.used){
+                setActive('compile')
+            }
             setLicenses(data1.licenseById)
-            console.log(data1)
         }
     })
     if (loading) return <Layout> <Spinner2/></Layout>
@@ -97,14 +101,14 @@ const Compile =(props)=> {
                 <Segment className={"compile_right"}>
                     {active==="customize"?
                         (cloading? <Spinner2/>:
-                            <Customized
+                            <CustomizedSmartContract
                                 change={(event)=>handleChange(event)}
                                 name={name}
                                 contract={liecense.order.smartContract}
                                 onCompiled={()=>OnComplied(liecense)}
                             />
                         )
-                        :(active==="compile"? <CompileResult setUser={props.setUser} />: <Deploy />)
+                        :(active==="compile"? <CompileResult setUser={props.setUser} />: <DeploySmartContract />)
                     }
                 </Segment>
             </Container>

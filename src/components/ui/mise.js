@@ -1,5 +1,5 @@
 import React from "react";
-import {nameReg, phoneNumber} from "./Helpers";
+import {alphabetRegex, nameReg, phoneNumber} from "./Helpers";
 
 
 
@@ -34,6 +34,9 @@ export const  isFormValid=values=>{
 
 export const FormValidation=(oldValue,value,name)=>{
     switch (name){
+        case 'fullName':
+        case 'location':
+            return value!==""?alphabetRegex.test(value)?value:oldValue:""
         case 'bname':
             return value!==""?nameReg.test(value)?value:oldValue:""
         case 'role':

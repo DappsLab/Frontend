@@ -7,16 +7,19 @@ import {Form, Input} from "semantic-ui-react";
 import {Slider} from "react-semantic-ui-range";
 import {feeProcessTime} from "../../../../ui/Helpers";
 import RenderArguments from "./RenderArguments";
+import CompileLayout from "../../../../../hoc/CompileLayout";
 
 const TestDeploy = (props) => {
-    const [fee,setFee]=useState(100000);
-    const [name,setName]=useState('');
+    const [fee, setFee] = useState(100000);
+    const [name, setName] = useState('');
     // const [abi,setABI]=useState(TestABI)
     // console.log(abi)
-    const {id}=props
+    const id = props.match.params.id
+
+    const RenderData=()=> {
     const {error, loading, data} = useQuery(testLicenseById, {
         variables: {id: id},
-        fetchPolicy:'network-only',
+        fetchPolicy: 'network-only',
         client: Client, context: {
             headers: {
                 authorization: localStorage.getItem('token')
@@ -26,10 +29,10 @@ const TestDeploy = (props) => {
             console.log(data1.testLicenseById)
         }
     })
-    if (loading) return  <Spinner2/>
+    if (loading) return <Spinner2/>
     if (error) return <div>{error.toString()}</div>
     if (data) {
-        const license=data.testLicenseById;
+        const license = data.testLicenseById;
         return (
             <div className={'test_deploy'}>
                 <Form>
@@ -37,7 +40,9 @@ const TestDeploy = (props) => {
                         <label>Label Name</label>
                         <Input
                             fluid size={'large'} value={name}
-                            onChange={(event,{name,value}) =>{setName(value)} }
+                            onChange={(event, {name, value}) => {
+                                setName(value)
+                            }}
                         />
                     </Form.Field>
                     <Form.Field className={"slider flex"}>
@@ -50,7 +55,9 @@ const TestDeploy = (props) => {
                                     min: 30000,
                                     max: 999999,
                                     step: 200,
-                                    onChange: value => {setFee(value);}
+                                    onChange: value => {
+                                        setFee(value);
+                                    }
                                 }}
                             />
                             <p>This is the most amount of money that might be used to process this
@@ -72,6 +79,12 @@ const TestDeploy = (props) => {
         );
     }
     return <div>Error</div>
+}
+    return (
+        <CompileLayout>
+            {RenderData()}
+        </CompileLayout>
+    )
 };
 
 export default TestDeploy;

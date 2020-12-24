@@ -57,7 +57,7 @@ const UploadSmartContract =(props)=>{
     const [funcationName,setfuncationName]=useState("");
     const [sourcePath,setsourcePath]=useState("");
     const [version,setVersion]=useState("");
-    //    image
+
     const  categoryOption=[
         {label: "TOOLS",value: "TOOLS"},
         {label: "FINANCIAL",value: "FINANCIAL"},
@@ -97,6 +97,7 @@ const UploadSmartContract =(props)=>{
                 break
         }
     }
+
     const removeTags=(i)=> {
         setTag(tags.filter((tag, index) => index !== i))
     }

@@ -14,8 +14,7 @@ import {Divider} from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 
 
-const acceptedFileTypes = 'image/x-png, image/png, image/jpg, image/jpeg';
-const acceptedFileTypesArray = acceptedFileTypes.split(",").map((item) => {return item.trim()});
+
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -55,7 +54,7 @@ export const DropDown =({check,updateimage,user,removeImage})=> {
     }
     const links=[
         {title:"Dashboard",linkTo:"/dashboard/purchased_contracts"},
-        {title:"My Account",linkTo:"/account_settings"},
+        {title:"My Account",linkTo:"/account_settings/profile"},
         {title: "Add Test Address",linkTo:'/add_test_address'},
         {title:"Upload Smart Contract",linkTo:"/upload_samrt_contract"},
         {title:"Upload Dapps",linkTo:"/upload_dapps"},
@@ -72,21 +71,7 @@ export const DropDown =({check,updateimage,user,removeImage})=> {
             </Link>
         ))
     )
-    const hanldeChnage=(event)=>{
-        const files = event.target.files
-        const currentFile = files[0];
-        if (event.target.files && event.target.files.length > 0) {
-            const currentFileType = currentFile.type
-            if (!acceptedFileTypesArray.includes(currentFileType)) {
-                alert("This file is not allowed. Only images are allowed.")
-            }
-            const reader = new FileReader();
-            reader.addEventListener('load', () =>
-                updateimage(reader.result)
-            )
-            reader.readAsDataURL(event.target.files[0]);
-        }
-    }
+
     return (
         <div className={classes.root}>
             {check?
@@ -99,7 +84,7 @@ export const DropDown =({check,updateimage,user,removeImage})=> {
                     <Avatar
                         className={classes.size}
                         src={user.avatar}/>
-                    <span className={"arrowUp"}>{user.fullName}</span>
+                    <span className={"arrowUp arrowName"}>{user.fullName}</span>
                     <ArrowDropDownIcon className={"arrowUp"}/>
                 </Button>
                 : <Button
@@ -140,7 +125,6 @@ export const DropDown =({check,updateimage,user,removeImage})=> {
                                             id={"upload_picture"}
                                             name={"upload_picture"}
                                             accept="image/jpeg,image/png"
-                                            onChange={hanldeChnage}
                                         />
                                     </MenuItem>
                                 </label>

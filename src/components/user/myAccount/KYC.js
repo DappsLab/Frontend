@@ -9,6 +9,7 @@ import {kycMutation} from "../../../queries/queries";
 import {withAlert} from "react-alert";
 import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
 import {countryOptions} from "../../ui/Helpers";
+import AccountLayout from "../../../hoc/AccountLayout";
 const alphaNumaric=RegExp(/^[a-zA-Z0-9][a-zA-Z0-9\s]*$/);
 const numaric=RegExp(/^[0-9\s]*$/);
 const alphabet=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
@@ -197,6 +198,7 @@ class Kyc extends Component {
         const {error,type,country,nationality,currentUser,mobile,loadingbtn,city,street,building,postalCode,dateOfBirth}=this.state;
 
         return (
+            <AccountLayout {...this.props}>
             <section className={"kyc_section"}>
                 <div className={'flex'}>
                     <h2>Account Verification</h2>
@@ -246,6 +248,7 @@ class Kyc extends Component {
                     <Button loading={loadingbtn}  onClick={this.handlSubmit}>Submit</Button>
                 </Form>
             </section>
+            </AccountLayout>
         );
     }
 }

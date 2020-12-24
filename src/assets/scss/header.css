@@ -74,7 +74,7 @@ header {
     color: #fff; }
 
 @media only screen and (max-width: 1300px) {
-  header .arrowUp {
+  header .arrowName {
     display: none !important; } }
 @media only screen and (max-width: 1090px) {
   header .small-device {
