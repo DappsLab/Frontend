@@ -16,6 +16,7 @@ import Avatar from "@material-ui/core/Avatar";
 import {withAlert} from "react-alert";
 import Uploader from "../../../ui/Uploader";
 import {GetSource} from "./GetSource";
+import GetVersion from "../GetVersion";
 
 
 const descriptionRGP=RegExp(/^[a-zA-Z][a-zA-Z\s,.]*$/);
@@ -36,6 +37,7 @@ const EditSmartContract =(props)=> {
     const [tags,setTag]=useState([]);
     const [shortDescription,setshortDescription]=useState("");
     const [longDescription,setlongDescription]=useState("");
+    const [version,setVersion]=useState("");
     const  categoryOption=[
         {label: "TOOLS",value: "TOOLS"},
         {label: "FINANCIAL",value: "FINANCIAL"},
@@ -216,6 +218,7 @@ const EditSmartContract =(props)=> {
                 long: longDescription!==""?longDescription:contract.description,
                 one: onePrice!==""?onePrice:contract.singleLicensePrice,
                 tags: tags.length>0?tags:contract.tags,
+                version:version!==''?version:contract.compilerVersion,
                 unlimited: uPrice!==""?uPrice.toString():contract.unlimitedLicensePrice,
                 source:newSource!==""? newSource.toString():contract.source
             }
@@ -246,6 +249,14 @@ const EditSmartContract =(props)=> {
             }
         }}]
     })
+    const onConstVersion=(event)=>{
+        const {value}=event.target;
+        if (value==="select"){
+            setVersion('')
+        }else {
+            setVersion(value)
+        }
+    }
     const RenderContractData=()=>{
         const {loading,error,data}=useQuery(contractById, {
             variables: {id: props.match.params.id},
@@ -340,6 +351,7 @@ const EditSmartContract =(props)=> {
                     <p className={"info"}>List of tags.Press enter to add tags</p>
                 </Form.Field>
             </Form>
+                <GetVersion value={contract.compilerVersion} onConstVersion={(event)=>onConstVersion(event)}/>
         </Grid.Column>
         <Grid.Column width={11}>
             <div>

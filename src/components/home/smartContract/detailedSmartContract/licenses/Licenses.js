@@ -5,6 +5,7 @@ const Licenses = (props) => {
     const [showLicenses,setShowLicenses]=useState(false)
     const {user,logged_session,contract}=props
 
+    console.log(user)
     const RenderLicenses=()=>{
         const purchased=user.purchasedContracts;
         if (purchased.length>0){

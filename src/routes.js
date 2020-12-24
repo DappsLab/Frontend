@@ -32,7 +32,7 @@ import {setUser} from "./actions/Actions";
 import OrderContracts from "./components/user/dashboard/orderContract/OrderContracts";
 import ExplorerResult from "./components/block_explorer/explorerSearch/ExplorerResult";
 import EditSmartContract from "./components/home/uploadContract/editSmartContract/EditSmartContract";
-import Compile from "./components/home/smartContract/Compile";
+import Compile from "./components/home/smartContract/compileSmartContract/Compile";
 import UploadDapps from "./components/home/dapps/uploadDapps/uploadDapps";
 import DappsDetails from "./components/home/dapps/detailDApps/DappsDetails";
 import EditDapp from "./components/home/dapps/eidtDapp/EditDapp";

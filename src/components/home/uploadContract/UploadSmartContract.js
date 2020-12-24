@@ -26,6 +26,7 @@ import MEDitor from "@uiw/react-md-editor";
 import {useMutation} from "@apollo/client";
 import {Client} from "../../../queries/Services";
 import {acceptedImageTypesArray, nameReg, numericReg} from "../../ui/Helpers";
+import GetVersion from "./GetVersion";
 
 const descriptionRGP=RegExp(/^[a-zA-Z][a-zA-Z\s,.]*$/);
 
@@ -55,7 +56,7 @@ const UploadSmartContract =(props)=>{
     const [showAssocited,setshowAssocited]=useState(false);
     const [funcationName,setfuncationName]=useState("");
     const [sourcePath,setsourcePath]=useState("");
-
+    const [version,setVersion]=useState("");
     //    image
     const  categoryOption=[
         {label: "TOOLS",value: "TOOLS"},
@@ -254,7 +255,7 @@ const UploadSmartContract =(props)=>{
         },
     })
     const Submit=(file)=>{
-        if (funcationName!=="") {
+        if (funcationName!==""&&version!=='') {
             source({variables:{file}})
             setFileError("");
         }else {
@@ -332,6 +333,7 @@ const UploadSmartContract =(props)=>{
                         long: longDescription,
                         one: onePrice,
                         tags: tags,
+                        version:version,
                         unlimited: uPrice.toString(),
                         source: sourcePath.toString()
                     }
@@ -351,6 +353,14 @@ const UploadSmartContract =(props)=>{
         //                 tags:[],
         //                 one:false,
         //                 two:false,
+    }
+    const onConstVersion=(event)=>{
+        const {value}=event.target;
+        if (value==="select"){
+            setVersion('')
+        }else {
+            setVersion(value)
+        }
     }
     return  uplaodLoading?<Spinner/>: (
         <Layout>
@@ -521,6 +531,7 @@ const UploadSmartContract =(props)=>{
                                                 <p className={'info'}>Enter the Exact  Name of funcation Which you used in Contract </p>
                                             </Form.Field>
                                         </Form>
+                                        <GetVersion onConstVersion={(event)=>onConstVersion(event)}/>
                                     </Grid.Column>
                                 </Grid>
                             </div>

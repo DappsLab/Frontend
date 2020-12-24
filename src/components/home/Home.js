@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from "../../hoc/Layout";
 import {
-    CustomSmartContract,
+    CustomSmartContractInfo,
     Decentralized,
     HomeBanner,
     HomeBlockChain,
@@ -15,7 +15,7 @@ const Home = (props) =>{
             <HomeBanner/>
             <HomeBlockChain/>
             <OurSmartContract {...props}/>
-            <CustomSmartContract {...props}/>
+            <CustomSmartContractInfo {...props}/>
             <Decentralized {...props}/>
         </Layout>
     );

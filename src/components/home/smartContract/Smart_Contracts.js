@@ -11,7 +11,6 @@ import {CheckBox} from "../../ui/FormFields";
 import square_blue from "../../../assets/images/square_blue.png";
 import Developer from "../uploadContract/Developer";
 import ExplorerContract from "./ExplorerContract";
-import CustomSmartContract from "./CustomSmartContract";
 const client = new ApolloClient({
     uri: 'http://localhost:4000/graphql',
     cache: new InMemoryCache()
@@ -196,7 +195,12 @@ class Smart_Contracts extends Component {
                     </Grid.Column>
                 </Grid>
                 <Developer type={"contract"} link={'/upload_samrt_contract'}/>
-                <CustomSmartContract {...this.props}/>
+                <section className={'custom_section'}>
+                    <h2>Custom <span>Smart Contract</span></h2>
+                    <p> If you don't find what you need on our Marketplace you can submit a
+                        bounty to be solved by the devs community.</p>
+                    <Button onClick={()=>{this.props.history.push('/request_smart_contract')}}>Order Now</Button>
+                </section>
             </Layout>
         );
     }

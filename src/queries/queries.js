@@ -238,9 +238,9 @@ export const getContract=gql`
   }
 `
 export const createNewContract=gql`
-  mutation ($fname:String!,$name:String!,$tags:[String!],$category:[Category!]!,$image:String!,$short:String!,$long:String!,$one:String!,$unlimited:String!,$source:String!){
+  mutation ($fname:String!,$name:String!,$version:String!,$tags:[String!],$category:[Category!]!,$image:String!,$short:String!,$long:String!,$one:String!,$unlimited:String!,$source:String!){
     createSmartContract(
-      newSmartContract: {sourceContractName:$fname,contractName: $name, tags:$tags,contractCategory: $category, image: $image, shortDescription: $short, description: $long, singleLicensePrice: $one, unlimitedLicensePrice: $unlimited, source: $source}) {
+      newSmartContract: {sourceContractName:$fname,compilerVersion:$version,contractName: $name, tags:$tags,contractCategory: $category, image: $image, shortDescription: $short, description: $long, singleLicensePrice: $one, unlimitedLicensePrice: $unlimited, source: $source}) {
       id
     }
   }
@@ -248,7 +248,7 @@ export const createNewContract=gql`
 export const contractById=gql`
   query ($id:ID!){
     smartContractById(id: $id)
-    {
+    { compilerVersion
       contractCategory id tags shortDescription
       image description verified source
       contractName publishingDateTime sourceContractName
@@ -261,8 +261,8 @@ export const contractById=gql`
   }
 `
 export const editContract=gql`
-mutation  ($id:ID!,$fname:String!,$name:String!,$tags:[String!],$category:[Category!]!,$image:String!,$short:String!,$long:String!,$one:String!,$unlimited:String!,$source:String!){
-  updateSmartContract(id: $id, newSmartContract: {sourceContractName:$fname,contractName: $name, tags:$tags,contractCategory: $category, image: $image, shortDescription: $short, description: $long, singleLicensePrice: $one, unlimitedLicensePrice: $unlimited, source: $source}) {
+mutation  ($id:ID!,$fname:String!,$version:String!,$name:String!,$tags:[String!],$category:[Category!]!,$image:String!,$short:String!,$long:String!,$one:String!,$unlimited:String!,$source:String!){
+  updateSmartContract(id: $id,compilerVersion:$version, newSmartContract: {sourceContractName:$fname,contractName: $name, tags:$tags,contractCategory: $category, image: $image, shortDescription: $short, description: $long, singleLicensePrice: $one, unlimitedLicensePrice: $unlimited, source: $source}) {
     id
   }
 }
@@ -646,3 +646,7 @@ export const testDeploy=gql`
 }
    
     `
+export const getCompiler=gql`
+   query   {
+   getCompilerVersions
+}`

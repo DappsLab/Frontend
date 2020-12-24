@@ -56,7 +56,7 @@ export const OurSmartContract=(props)=>{
         </section>
     )
 }
-export const CustomSmartContract=(props)=>{
+export const CustomSmartContractInfo=(props)=>{
     return(
         <section className="custom-contract flex">
             <div className="c-left">
