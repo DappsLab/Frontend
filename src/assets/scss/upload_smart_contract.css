@@ -1,91 +1,100 @@
 .generalContainer {
   background-image: linear-gradient(135.14deg, #04031D 0%, #0F0E2e 100%); }
+  .generalContainer .ui.basic.label {
+    background-color: #5754AB !important;
+    color: #fff; }
+  .generalContainer .header.left {
+    color: #fff !important; }
+  .generalContainer .ui.form .field > label, .generalContainer .price_label {
+    font-weight: bold;
+    font-size: 16px;
+    color: #0FBA87;
+    text-align: left; }
+  .generalContainer .ui.floated.header.right {
+    color: #39B64A;
+    font-size: 14px; }
+  .generalContainer .select__indicator-separator {
+    background-color: rgba(255, 255, 255, 0.15); }
+  .generalContainer .css-1rhbuit-multiValue:nth-child(1) {
+    background-color: #0FBA87 !important; }
+  .generalContainer .css-1rhbuit-multiValue:nth-child(2) {
+    background-color: #0F0E2e !important; }
+  .generalContainer .ui.form input[type=text]:focus {
+    color: #fff; }
+  .generalContainer .ui.form .field .ui.input input[type=text], .generalContainer select, .generalContainer .ui.form textarea, .generalContainer .tags-input, .generalContainer .tags-input input[type=text], .generalContainer .select__control {
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #fff;
+    background: #0F0E2e !important;
+    border-radius: 10px !important; }
+  .generalContainer .select__control {
+    min-height: 45px; }
+  .generalContainer .ui.form .field .ui.input input[type=text] {
+    height: 45px; }
+  .generalContainer .tags-input {
+    min-height: 47px; }
+  .generalContainer .ui.labeled.input:not([class*="corner labeled"]) .label:first-child + input {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important; }
+  .generalContainer #tags .tag {
+    background-color: #5754AB; }
+    .generalContainer #tags .tag .tag-close-icon {
+      background: #F00;
+      color: #FFF; }
+  .generalContainer .info {
+    margin-top: 4px;
+    color: #8F4114; }
+  .generalContainer .desc {
+    color: #5754AB;
+    text-align: left !important;
+    margin-bottom: 20px;
+    display: block; }
+  .generalContainer .publishbtn {
+    background: #8F4114 !important;
+    padding: 15px 40px;
+    border-radius: 30px;
+    border: 2px solid #8F4114;
+    color: #fff !important;
+    margin: 20px; }
+    .generalContainer .publishbtn:hover {
+      background: #0F0E2e !important; }
+  .generalContainer h1 {
+    font-size: 50px;
+    margin-bottom: 0;
+    color: #fff;
+    text-align: left; }
+  .generalContainer .guiding {
+    display: flex;
+    margin: 3em 0; }
+    .generalContainer .guiding a {
+      background: #8F4114 !important;
+      padding: 15px 20px;
+      border-radius: 30px;
+      border: 2px solid #8F4114;
+      color: #fff !important;
+      cursor: pointer; }
 
 .generalMain {
   justify-content: center;
   padding: 20px 0;
   align-items: flex-start; }
-  .generalMain .info {
-    margin-top: 4px;
-    color: #8F4114; }
-  .generalMain .ui.basic.label {
-    background-color: #5754AB !important;
-    color: #fff; }
-  .generalMain .select__indicator-separator {
-    background-color: rgba(255, 255, 255, 0.15); }
-  .generalMain .css-1rhbuit-multiValue:nth-child(1) {
-    background-color: #0FBA87 !important; }
-  .generalMain .css-1rhbuit-multiValue:nth-child(2) {
-    background-color: #0F0E2e !important; }
-  .generalMain .ui.form input[type=text]:focus {
-    color: #fff; }
-  .generalMain .ui.form .field .ui.input input[type=text], .generalMain .tags-input, .generalMain .tags-input input[type=text], .generalMain .select__control {
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    color: #fff;
-    background: #070622 !important;
-    border-radius: 10px !important; }
-  .generalMain .select__control {
-    min-height: 45px; }
-  .generalMain .ui.form .field .ui.input input[type=text] {
-    height: 45px; }
-  .generalMain .ui.labeled.input:not([class*="corner labeled"]) .label:first-child + input {
-    border-top-left-radius: 0 !important;
-    border-bottom-left-radius: 0 !important; }
-  .generalMain #tags .tag {
-    background-color: #5754AB; }
-    .generalMain #tags .tag .tag-close-icon {
-      background: #F00;
-      color: #FFF; }
 
 .generalLeft, .generalRight {
   width: 370px;
   padding: 0 20px;
   margin: 0 15px; }
-  .generalLeft .desc, .generalRight .desc {
-    color: #5754AB;
-    text-align: left !important;
-    margin-bottom: 20px;
-    display: block; }
-  .generalLeft .upload-image, .generalRight .upload-image {
-    justify-content: space-between;
-    margin-bottom: 5px !important; }
-    .generalLeft .upload-image .file-upload, .generalRight .upload-image .file-upload {
-      width: 100px;
-      height: 35px;
-      border-radius: 30px;
-      position: relative;
-      display: flex;
-      background-color: #5754AB;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden; }
-      .generalLeft .upload-image .file-upload button, .generalRight .upload-image .file-upload button {
-        background: #5754AB;
-        border: 2px solid #5754AB;
-        border-radius: 30px;
-        color: #fff !important;
-        height: 100%;
-        width: 100%; }
-    .generalLeft .upload-image .file-upload input[type='file'], .generalRight .upload-image .file-upload input[type='file'] {
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      padding: 10px 20px;
-      top: 0;
-      left: 0;
-      opacity: 0; }
 
 .generalRight {
   width: 900px; }
+  .generalRight .ui.form textarea, .generalRight select {
+    border: 1px solid rgba(255, 255, 255, 0.15) !important; }
   .generalRight .editor {
-    max-height: 200px !important; }
-  .generalRight .container textarea {
-    background: none !important; }
+    max-height: 200px !important;
+    background: #0F0E2e !important;
+    color: #fff !important; }
+  .generalRight .longDesc textarea {
+    max-width: 50%; }
   .generalRight .ui.floated.header {
-    padding: 0 0 10px 0; }
-  .generalRight .ui.floated.header.right {
-    color: #39B64A;
-    font-size: 14px; }
+    padding-bottom: 20px; }
   .generalRight .ui.form {
     margin-bottom: 25px; }
   .generalRight .btnsave {
@@ -107,11 +116,6 @@
   margin-bottom: 20px; }
 .generalLeft .ui.form .field {
   margin-bottom: 20px; }
-.generalLeft .ui.form .field > label, .generalLeft .price_label {
-  font-weight: bold;
-  font-size: 16px;
-  color: #0FBA87;
-  text-align: left; }
 
 .wrapper {
   width: 100%;
@@ -155,6 +159,8 @@
 
 .attached_files {
   padding: 30px 0; }
+  .attached_files .ui.form .field > label {
+    color: #fff; }
   .attached_files label {
     font-weight: bold !important;
     font-size: 16px !important;
@@ -165,8 +171,36 @@
     top: -9px; }
 
 .dzu-dropzone {
+  margin: 20px 0 !important;
   background: #ffffff;
-  min-height: 200px !important; }
+  padding: 0 0 0 20px;
+  min-height: 47px !important;
+  border-radius: 10px !important;
+  flex-direction: row !important;
+  overflow: unset !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  background: #0F0E2e;
+  color: #fff; }
+  .dzu-dropzone .dzu-previewContainer {
+    border: none;
+    min-height: 50px;
+    padding: 0 !important; }
+    .dzu-dropzone .dzu-previewContainer .dzu-previewFileName, .dzu-dropzone .dzu-previewContainer .dzu-previewStatusContainer {
+      color: #fff !important; }
+      .dzu-dropzone .dzu-previewContainer .dzu-previewFileName .dzu-previewButton, .dzu-dropzone .dzu-previewContainer .dzu-previewStatusContainer .dzu-previewButton {
+        margin: 0; }
+    .dzu-dropzone .dzu-previewContainer .dzu-previewStatusContainer {
+      height: 14px;
+      width: 14px; }
+  .dzu-dropzone .dzu-submitButtonContainer {
+    height: 50px;
+    margin: 0 0 0 20px; }
+    .dzu-dropzone .dzu-submitButtonContainer button {
+      background: #5754AB !important;
+      height: 100%;
+      padding: 0 30px; }
+      .dzu-dropzone .dzu-submitButtonContainer button:focus {
+        outline: none; }
 
 .dropzone {
   border-radius: 5px;
@@ -181,23 +215,6 @@
   cursor: pointer;
   color: #9BA6B8;
   align-items: center; }
-
-.files_ready {
-  flex-direction: column; }
-  .files_ready h3 {
-    text-align: center;
-    font-size: 30px;
-    padding-bottom: 10px; }
-  .files_ready p {
-    text-align: center;
-    margin-top: 10px; }
-
-.radioBox {
-  flex-direction: column;
-  align-items: flex-start; }
-
-.radioInput p {
-  margin-top: 0; }
 
 .tags-input {
   display: flex;
@@ -256,5 +273,8 @@
 
 .editor {
   min-height: 200px; }
+
+.select__menu, .css-2613qy-menu {
+  z-index: 99 !important; }
 
 /*# sourceMappingURL=upload_smart_contract.css.map */

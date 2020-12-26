@@ -14,71 +14,52 @@ import {
 } from "../../../queries/queries";
 import Layout from "../../../hoc/Layout";
 import Uploader from "../../ui/Uploader";
-import Checkbox from "@material-ui/core/Checkbox";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated'
 import {withAlert} from "react-alert";
-import {Spinner} from "../../ui/Spinner";
-import MEDitor from "@uiw/react-md-editor";
+import {Spinner, Spinner2} from "../../ui/Spinner";
+import ReactMarkdown from 'react-markdown'
 import {useMutation} from "@apollo/client";
 import {Client} from "../../../queries/Services";
-import {acceptedImageTypesArray, nameReg, numericReg} from "../../ui/Helpers";
+import {acceptedImageTypesArray, categoryOption, nameReg, numericReg} from "../../ui/Helpers";
 import GetVersion from "./GetVersion";
+import UploadImage from "../contractCompoent/UploadImage";
+import Tags from "../contractCompoent/Tags";
+import {
+    ContractCategory,
+    ContractName,
+    FuncationName,
+    OneLicense,
+    UnlimitedLicense
+} from "../contractCompoent/ContractFileds";
 
 const descriptionRGP=RegExp(/^[a-zA-Z][a-zA-Z\s,.]*$/);
 
 const UploadSmartContract =(props)=>{
-    const alert = props.alert;
     const [cName,setcName]=useState("");
     const [category,setCategory]=useState([]);
     const [onePrice,setonePrice]=useState('');
     const [uPrice,setuPrice]=useState("");
-    const [fileError,setFileError]=useState("");
-    const [img,setImg]=useState(null);
+    const [active,setActive]=useState(true);
+
     const [imgPath,setImgPath]=useState("");
-    const [imgModel,setimgModel]=useState(false);
-    const [crop,setCrop]=useState({x: 0, y: 0, width: 300, height: 300, aspect: 1})
-    const [imgRef,setImgRef]=useState();
+
     const [shortCounter,setshortCounter]=useState(200);
     const [finalCategoryArray,setFinalCategoryArray]=useState([]);
     const [tags,setTag]=useState([]);
-    const [contractError,setContractError]=useState("");
-    const [checkError,setCheckError]=useState("")
-    const [one,setOne]=useState(false);
-    const [two,setTwo]=useState(false);
     const [uplaodLoading,setuplaodLoading]=useState(false);
     const [shortDescription,setshortDescription]=useState("");
     const [longDescription,setlongDescription]=useState("");
-    const [show,setshow]=useState(false);
     const [showAssocited,setshowAssocited]=useState(false);
     const [funcationName,setfuncationName]=useState("");
     const [sourcePath,setsourcePath]=useState("");
     const [version,setVersion]=useState("");
-
-    const  categoryOption=[
-        {label: "TOOLS",value: "TOOLS"},
-        {label: "FINANCIAL",value: "FINANCIAL"},
-        {label: "DOCUMENTS",value: "DOCUMENTS"},
-        {label: "UTILITY",value: "UTILITY"},
-        {label: "SOCIAL",value: "SOCIAL"},
-        {label: "ESCROW",value: "ESCROW"}
-    ]
+    const {user,alert}=props
 
     const handleChange=(event)=>{
         const {name,value}=event.target;
         switch (name){
-            case 'cName':
-                nameReg.test(value)&& setcName(value);
-                value===""&&setcName("");
-                break;
-            case 'onePrice':
-                numericReg.test(value)&&setonePrice(value);
-                value===""&&setonePrice("");
-                break;
-            case 'uPrice':
-                numericReg.test(value)&&setuPrice(value);
-                value===""&&setuPrice("");
-                break;
+
             case "shortDescription":
                 if (value.length<=200) {
                     descriptionRGP.test(value)&&setshortCounter(200-value.length)
@@ -86,27 +67,14 @@ const UploadSmartContract =(props)=>{
                     value===""&&setshortDescription("");
                 }
                 break;
-            case 'funcationName':
-                setfuncationName(value);
-                value===""&&setfuncationName("");
-                break
             default:
                 break
         }
     }
 
-    const removeTags=(i)=> {
-        setTag(tags.filter((tag, index) => index !== i))
-    }
-    const addTags = event => {
-        if (event.target.value !== "") {
-            setTag( [...tags ,event.target.value]);
-            event.target.value = "";
-        }
-    }
+
      const handleSaveContractData=()=>{
         if (isEmpty()) {
-            setContractError("")
             setshowAssocited(true);
             for (let i = 0; i < category.length; i++) {
                finalCategoryArray.push(category[i]['value']);
@@ -117,132 +85,20 @@ const UploadSmartContract =(props)=>{
         if ( cName.length !== 0 && tags.length !== 0 && category.length !== 0 && shortDescription.length !== 0 && longDescription.length !== 0 && onePrice.length !== 0 && imgPath.length !== 0 && uPrice.length !== 0){
             return true
         }else {
-            setContractError("All Field Required");
+            alert.error("ALl Fields Required",{timeout:3000})
             return false
         }
     }
 
-    //image crop and update
-    const handleChangeImage=(event)=>{
-        const files = event.target.files
-        const currentFile = files[0];
-        if (event.target.files && event.target.files.length > 0) {
-            const currentFileType = currentFile.type
-            if (!acceptedImageTypesArray.includes(currentFileType)) {
-                alert("This file is not allowed. Only images are allowed.")
-            }
-            const reader = new FileReader();
-            reader.addEventListener('load', () =>
-                setImg(reader.result),
-            )
-            setimgModel(true)
-            reader.readAsDataURL(event.target.files[0]);
-            event.target.value = '';
-        }
-    }
-    const onImageLoad=(image)=>{
-        setImgRef( image);
-    }
-    const onCropChange=(crop)=>{
-        setCrop(crop)
-    }
-    const onCropComplete=(crop,pixelCrop)=>{
-        setCrop(crop)
-    }
 
-    async function getCroppedImg(image, crop, fileName) {
-        const canvas = document.createElement('canvas');
-        const scaleX = image.naturalWidth / image.width;
-        const scaleY = image.naturalHeight / image.height;
-        canvas.width = crop.width;
-        canvas.height = crop.height;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(
-            image,
-            crop.x * scaleX,
-            crop.y * scaleY,
-            crop.width * scaleX,
-            crop.height * scaleY,
-            0,
-            0,
-            crop.width,
-            crop.height
-        );
-        return new Promise((resolve, reject) => {
-            canvas.toBlob(blob => {
-                if (!blob) {
-                    console.error('Canvas is empty');
-                    return;
-                }
-                blob.name = fileName;
-                resolve(blob);
-            }, 'image/jpeg');
-        });
-    }
 
-    async function  MakeClientCrop(crop) {
-        if (crop.width && imgRef && crop.height) {
-            const file = await getCroppedImg(
-                imgRef,
-                crop,
-                'newFile.jpeg'
-            );
-            UploadImage(file)
-            setCrop({x: 0, y: 0, width: 300, height: 300, aspect: 1})
-        }
-    }
-    const [upload]=useMutation(imageUpload,{
-        client:Client,
-        onCompleted:data1 => {
-            setImgPath(data1.imageUploader);
-            alert.success("Source Uploaded",{timeout:1000})
-        },
-        onError:error1 => {
-            alert.error(error1.toString(),{timeout:2000})
-            console.log(error1.toString())
-        }
-    });
-    const UploadImage=(file)=>{
-        upload({variables: {file}});
-    }
-    const handleSave=()=>{
-        if (img!==null){
-            setImg(null)
-        }
-        setimgModel(false)
-        MakeClientCrop(crop);
-    }
 
-    //Associated file
-    const handleCheckbox=(event)=>{
-        const {name,checked}=event.target;
-        setCheckError("")
-        switch (name){
-            case 'one':
-                setOne(checked)
-                break;
-            case 'two':
-                setTwo(checked)
-                break;
-            default:
-                break;
-        }
-    }
-    const isEmptyCheckbox=()=>{
-        console.log(one,two)
-        if(one=== false|| two=== false){
-           setCheckError("Both Required")
-            return false
-        }else {
-            return true;
-        }
-    }
     const [source]=useMutation(sourceUpload,{
         client:Client,
         onCompleted:data1 => {
             setsourcePath(data1.contractUploader);
             alert.success("Source Uploaded",{timeout:1000})
-            setshow(true)
+            setActive(false)
         },
         onError:error1 => {
             alert.error(error1.toString(),{timeout:2000})
@@ -255,45 +111,10 @@ const UploadSmartContract =(props)=>{
         },
     })
     const Submit=(file)=>{
-        if (funcationName!==""&&version!=='') {
-            source({variables:{file}})
-            setFileError("");
-        }else {
-            setFileError("Both Fields Required")
-        }
+        source({variables:{file}}).catch(err=>{
+            console.log(err.toString())
+        })
     }
-    const renderReady=()=>(
-        <div className={"attached_files flex files_ready"}>
-            <h3>Ready rockstar?</h3>
-            <Divider/>
-            <p>There are just a few more things we need from you:</p>
-            <div className={"radioBox flex"}>
-                <div className={"radioInput flex"}>
-                    <Checkbox
-                        onChange={handleCheckbox}
-                        color="primary"
-                        name={"one"}
-                        inputProps={{ 'aria-label': 'secondary checkbox' }}
-                    />
-                    <p>I accept the term and condition</p>
-                </div>
-                <div className={"radioInput flex"}>
-                    <Checkbox
-                        name={"two"}
-                        onChange={handleCheckbox}
-                        color="primary"
-                        inputProps={{ 'aria-label': 'secondary checkbox' }}
-                    />
-                    <p>I own the rights to the content that will be published</p>
-                </div>
-            </div>
-            {checkError.length>0?
-                <span className={"errorMessage"}>Field Required</span>
-            :""
-            }
-            <Button variant="contained"   onClick={HandlePublish} color="primary">Publish</Button>
-        </div>
-    )
 
     const [newContract]=useMutation(createNewContract,{
         client:Client,
@@ -321,7 +142,7 @@ const UploadSmartContract =(props)=>{
     });
     const HandlePublish=()=> {
         if (isEmpty()) {
-            if (isEmptyCheckbox()) {
+            if (funcationName!==""&&version!=='') {
                 setuplaodLoading(true);
                 newContract({
                     variables: {
@@ -362,101 +183,33 @@ const UploadSmartContract =(props)=>{
             setVersion(value)
         }
     }
-    return  uplaodLoading?<Spinner/>: (
+    console.log(cName,category,onePrice,uPrice)
+    return  (
         <Layout>
+            {uplaodLoading&&<Spinner2/>}
             <Grid textAlign="center"  verticalAlign='middle' >
                 <Grid.Column>
                     <Grid.Row>
-
                         <div className={"generalContainer"}>
                             <div className={"generalMain flex"}>
                                 <div className={"generalLeft"}>
                                     <span className={'desc'}>Upload the general information about your contract code (description,pricing,etc)</span>
                                     <Form>
-                                        <Fade top delay={300}>
-                                            <Form.Field>
-                                                <label>Contract Name:</label>
-                                                <Input
-                                                    type={'text'}
-                                                    value={cName} name={"cName"}
-                                                    onChange={(event)=>handleChange(event)}/>
-                                                    <p className={"info"}>This will show in the list as the title</p>
-                                            </Form.Field>
-                                            <Form.Field>
-                                                <label>Contract Category:</label>
-                                                <Select
-                                                    components={makeAnimated()}
-                                                    isMulti
-                                                    size={'large'}
-                                                    value={category}
-                                                    onChange={(value)=>{setCategory(value)}}
-                                                    name="contractCategory"
-                                                    options={categoryOption}
-                                                    className="basic-multi-select"
-                                                    classNamePrefix="select"
-                                                />
-                                                <p className={"info"}>What categories suits your contract</p>
-                                                <Form.Field>
-                                                    <label >Price per License</label>
-                                                    <Input
-                                                        fluid size={'large'} value={onePrice}
-                                                        label={{ basic: true, content: 'Dapps' }}
-                                                        name={"onePrice"}
-                                                        onChange={(event)=>handleChange(event)}/>
-                                                </Form.Field>
-                                                <Form.Field>
-                                                    <label>Unlimited License</label>
-                                                    <Input
-                                                        fluid size={'large'} value={uPrice}
-                                                        label={{ basic: true, content: 'Dapps' }}
-                                                        name={"uPrice"}
-                                                        onChange={(event)=>handleChange(event)}/>
-                                                </Form.Field>
-                                                <Form.Field>
-                                                    <label>Tag:</label>
-                                                    <div className="tags-input">
-                                                        <ul id="tags">
-                                                            {tags.map((tag, index) => (
-                                                                <li key={index} className="tag">
-                                                                    <span className='tag-title'>{tag}</span>
-                                                                    <span className='tag-close-icon'
-                                                                          onClick={() => removeTags(index)}
-                                                                    >x</span>
-                                                                </li>
-                                                            ))}
-                                                        </ul>
-                                                        <input
-                                                            type="text"
-                                                            onKeyUp={event => event.key === "Enter" ? addTags(event) : null}
-                                                            placeholder="Press enter to add tags"
-                                                        />
-                                                    </div>
-                                                    <p className={"info"}>List of tags. Press Enter to add Tags</p>
-                                                </Form.Field>
-                                            </Form.Field>
-                                            <Form.Field className={'upload-image flex'}>
-                                                <label>Uplaod Image</label>
-                                                <div className="file-upload">
-                                                    <input type="file" accept="image/jpeg,image/png"
-                                                           onChange={(event) => handleChangeImage(event)} name={"img"}/>
-                                                    <button className={'strock'}>Upload </button>
-                                                </div>
-                                                {/*<div className="wrapper">*/}
-                                                {/*    <div className="file-upload">*/}
-                                                {/*        <input type="file"  accept="image/jpeg,image/png" onChange={(event )=> handleChangeImage(event)} name={"img"}/>*/}
-                                                {/*        <FontAwesomeIcon className={"arrowIcon"} icon={faArrowUp}/>*/}
-                                                {/*    </div>*/}
-                                                {/*</div>*/}
-                                            </Form.Field>
-                                            <div>
-                                                {imgPath!==''&& <Avatar src={imgPath} style={{borderRadius:'0',width:'100px' ,height:'100px'}}/>}
-                                            </div>
-                                        </Fade>
+                                        <ContractName cName={cName} setcName={setcName}/>
+                                        <ContractCategory category={category} setCategory={setCategory}/>
+                                        <OneLicense onePrice={onePrice} setonePrice={setonePrice}/>
+                                        <UnlimitedLicense uPrice={uPrice} setuPrice={setuPrice}/>
+                                        <Tags tags={tags} setTag={setTag}/>
+                                        <UploadImage imgPath={imgPath} setImgPath={setImgPath}/>
                                     </Form>
                                 </div>
                                 <Divider orientation="vertical" flexItem />
                                 <div className={"generalRight"}>
-                                    <Fade top delay={300}>
+                                    <h1>Publish New  Smart Contract</h1>
+                                   <div className={'guiding'}>
+                                       <a >Downlaod User Guiding For Adding a Smart Contract</a>
+                                   </div>
+                                    <Fade right delay={300}>
                                         <Header as={'h3'} floated={'left'}>
                                             Short Description
                                         </Header>
@@ -470,76 +223,39 @@ const UploadSmartContract =(props)=>{
                                             </TextArea>
                                         </Form>
                                     </Fade>
-                                    <Fade bottom delay={500}>
+                                    <Fade right delay={500}>
                                         <Header as={'h3'} floated={'left'}>
                                             Contract Description
                                         </Header>
                                         <Form>
-                                            <div className="container">
-                                                <MEDitor height={200} value={longDescription} onChange={(event)=>setlongDescription(event)} />
-                                                {/*<MEDitor.Markdown source={this.state.longDescription} />*/}
-                                            </div>
-                                            {/*<TextArea*/}
-                                            {/*    value={longDescription} name={"longDescription"}*/}
-                                            {/*    onChange={this.handleChange} className={"editor"} >*/}
-                                            {/*</TextArea>*/}
-                                            {/*{formErrors.longDescription.length>0&&(*/}
-                                            {/*    <span className={"errorMessage"}>{formErrors.longDescription}</span>*/}
-                                            {/*)}*/}
+                                            <Form.Field className={'longDesc flex'}>
+                                                <TextArea
+                                                    value={longDescription} name={"longDescription"}
+                                                    onChange={(event)=>setlongDescription(event.target.value)} className={"editor"} >
+                                                </TextArea>
+                                                <ReactMarkdown source={longDescription} className={'markdown'}/>
+                                            </Form.Field>
                                         </Form>
                                     </Fade>
-                                    <Button disabled={showAssocited} onClick={handleSaveContractData} className={"btnsave"} >Save</Button>
+                                    <Button disabled={showAssocited}  onClick={handleSaveContractData} className={"publishbtn"} >Save</Button>
+
+                                    {showAssocited&&
+                                    <div className={"attached_files"}>
+                                        <h1>Associated Files</h1>
+                                        <Uploader type={'contract'} onSubmit={(file) => Submit(file)}/>
+                                        <Form>
+                                            <FuncationName funcationName={funcationName} setfuncationName={setfuncationName} />
+                                        </Form>
+                                        <GetVersion onConstVersion={(event)=>onConstVersion(event)}/>
+                                        <Button variant="contained" className={'publishbtn'} disabled={active}   onClick={()=>HandlePublish()} color="primary">Publish</Button>
+                                    </div>
+                                    }
                                 </div>
                             </div>
                         </div>
-                        {imgModel?
-                            <CustomizedDialogs
-                                crop={crop}
-                                imageData={{disabled: false, locked: true}}
-                                src={img}
-                                onImageLoad={(image) => onImageLoad(image)}
-                                onCropChange={(crop) => onCropChange(crop)}
-                                onCropComplete={(crop, pixelCrop) => onCropComplete(crop, pixelCrop)}
-                                handleSave={() => handleSave()}
-                            />:""
-                        }
                     </Grid.Row>
                     <Grid.Row>
-                        {showAssocited&&
-                        <Fade bottom delay={400}>
-                            <div className={"attached_files"}>
-                                <h3>Associated Files</h3>
-                                {fileError.length>0&&<span style={{top:"0"}} className={"errorMessage"}>
-                                {fileError}
-                            </span>}
-                                {/*{fNameError.length>0&&(*/}
-                                {/*    <span className={"errorMessage"}>{fNameError}</span>*/}
-                                {/*)}*/}
-                                <Grid columns={2} divided>
-                                    <Grid.Column>
-                                        <Uploader type={'contract'} onSubmit={(file) => Submit(file)}/>
-                                    </Grid.Column>
-                                    <Grid.Column>
-                                        <Form>
-                                            <Form.Field>
-                                                <label>Contract Funcation Name</label>
-                                                <Form.Input
-                                                    fluid type={'text'} name={'funcationName'} onChange={(event)=>handleChange(event)}
-                                                    value={funcationName}
-                                                />
-                                                <p className={'info'}>Enter the Exact  Name of funcation Which you used in Contract </p>
-                                            </Form.Field>
-                                        </Form>
-                                        <GetVersion onConstVersion={(event)=>onConstVersion(event)}/>
-                                    </Grid.Column>
-                                </Grid>
-                            </div>
-                        </Fade>
-                        }
-                        {show ?
-                            renderReady()
-                            : null
-                        }
+
                     </Grid.Row>
                 </Grid.Column>
             </Grid>

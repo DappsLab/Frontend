@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ContractCard from "./ContractCard";
 import "../../../assets/scss/SmartContracts.css"
+import '../../../assets/scss/custom_smart_contract.css'
 import "../../../assets/scss/app.css"
 import Layout from "../../../hoc/Layout";
 import {Button, Form, Grid, Select} from "semantic-ui-react";

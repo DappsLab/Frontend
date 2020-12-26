@@ -262,7 +262,7 @@ export const contractById=gql`
 `
 export const editContract=gql`
 mutation  ($id:ID!,$fname:String!,$version:String!,$name:String!,$tags:[String!],$category:[Category!]!,$image:String!,$short:String!,$long:String!,$one:String!,$unlimited:String!,$source:String!){
-  updateSmartContract(id: $id,compilerVersion:$version, newSmartContract: {sourceContractName:$fname,contractName: $name, tags:$tags,contractCategory: $category, image: $image, shortDescription: $short, description: $long, singleLicensePrice: $one, unlimitedLicensePrice: $unlimited, source: $source}) {
+  updateSmartContract(id: $id, newSmartContract: {sourceContractName:$fname,compilerVersion:$version,contractName: $name, tags:$tags,contractCategory: $category, image: $image, shortDescription: $short, description: $long, singleLicensePrice: $one, unlimitedLicensePrice: $unlimited, source: $source}) {
     id
   }
 }

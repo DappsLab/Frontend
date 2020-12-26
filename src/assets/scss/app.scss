@@ -56,6 +56,19 @@ a {
 .block{
   display: block;
 }
+.markdown{
+  width: 50%;
+  border: 2px solid rgba(255,255,255,.15)!important;
+  background-color: #0F0E2e;
+  height: 200px;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  overflow-y: auto;
+  min-height: 200px;
+  max-height: 200px;
+  text-align: left;
+}
 .ui.disabled.button{
   opacity: unset!important;
 }
@@ -104,6 +117,39 @@ a {
     opacity: unset!important;
   }
 }
+.upload-image {
+  justify-content: space-between;
+  margin-bottom: 5px !important;
+  .file-upload {
+    width: 100px;
+    height: 35px;
+    border-radius: 30px;
+    position: relative;
+    display: flex;
+    background-color: #5754AB;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    button {
+      background: #5754AB;
+      border: 2px solid #5754AB;
+      border-radius: 30px;
+      color: #fff !important;
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .file-upload input[type='file'] {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    padding: 10px 20px;
+    top: 0;
+    left: 0;
+    opacity: 0;
+
+  }
+}
 .loginbtn,.not_found button,.fa_container button,.passwordChange Button ,.confirm_email Button{
   height:32px;
   margin: 0 5px !important;
@@ -130,7 +176,7 @@ a {
     color: #0F0E2e;
   }
 }
-.login-bg a,.link a,.block_result a,.row a,.deposite a,.deposite .flex .address,.password a,.register-bg a,.indexContainer .borderless a,.general_password a,.forget_password a{
+.login-bg a,.link a,.block_result a,.deposite a,.deposite .flex .address,.password a,.register-bg a,.indexContainer .borderless a,.general_password a,.forget_password a{
   @include default-link();
 }
 

@@ -1,15 +1,22 @@
 @import "colors";
 .edit_contract,.edit_dapp {
+  min-height: 600px;
   .spinner2{
     position: absolute;
     top: 50%;
     z-index: 99;
+  }
+  h3{
+    color: #fff;
   }
   .ui.grid {
     width: 70% !important;
     margin: 0 auto;
     align-items: flex-start !important;
     color: #0F0E2e;
+  }
+  .dzu-dropzone{
+    max-width: 386.27px!important;
   }
   .header.right{
     font-size: 14px;
@@ -20,22 +27,22 @@
     align-self: flex-start !important;
   }
 
-  .dzu-dropzone {
-    width: 70% !important;
-  }
-  h2,.errorMessage{
-    text-align: center!important;
-  }
   .container textarea{
     background: none!important;
   }
   .update-btn{
     margin: 20px;
     color: #FFF;
-    background: #04031c;
+    background: #8F4114;
+    border-radius: 30px;
+    border: 2px solid #8F4114;
+    &:hover{
+      background: #0F0E2e;
+      color: #fff;
+    }
   }
   input::placeholder,textarea::placeholder,.select__placeholder,.dropdown .text {
-    color: #1B2529!important;
+    color: #fff!important;
     opacity: 1!important;
   }
 }

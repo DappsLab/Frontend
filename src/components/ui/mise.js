@@ -1,5 +1,5 @@
 import React from "react";
-import {alphabetRegex,alphanumaric,alphabetOutSpace, nameReg, phoneNumber} from "./Helpers";
+import {alphabetRegex, alphanumaric, alphabetOutSpace, nameReg, phoneNumber, numericReg} from "./Helpers";
 
 
 
@@ -39,6 +39,7 @@ export const FormValidation=(oldValue,value,name)=>{
         case 'city':
             return value!==""?alphabetRegex.test(value)?value:oldValue:""
         case 'bname':
+        case 'cName':
             return value!==""?nameReg.test(value)?value:oldValue:""
         case 'role':
             return value!==""?nameReg.test(value)?value:oldValue:""
@@ -52,6 +53,9 @@ export const FormValidation=(oldValue,value,name)=>{
         case 'building':
         case 'postalCode':
             return value!==""?alphanumaric.test(value)?value:oldValue:""
+        case 'onePrice':
+        case 'uPrice':
+            return value!==""?numericReg.test(value)?value:oldValue:""
         default:
             return
     }

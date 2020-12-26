@@ -6,12 +6,13 @@ import {Spinner2} from "../../../ui/Spinner";
 import {Button, Divider, Form, Item, Segment} from "semantic-ui-react";
 import CompileLayout from "../../../../hoc/CompileLayout";
 import {categoryColors} from "../../../ui/Helpers";
+import {withAlert} from "react-alert";
 
 const TestCustomizeSmartContract = (props) => {
     const [name,setName]=useState('');
-    const [loading,setLoading]=useState(false);
+    const [Loading,setLoading]=useState(false);
     const [licenses, setLicenses] = useState(null);
-
+    const {alert}=props
     const [test_compile]=useMutation(testCompile,{
         client:Client,context:{
             headers:{
@@ -27,6 +28,7 @@ const TestCustomizeSmartContract = (props) => {
     })
     const Compile=()=>{
         setLoading(true)
+        console.log('nam')
         test_compile({
             variables:{
                 name:name,
@@ -55,6 +57,7 @@ const TestCustomizeSmartContract = (props) => {
             }
         })
         if (loading) return  <Spinner2/>
+        if (Loading) return  <Spinner2/>
         if (error) return <div>{error.toString()}</div>
         if (data) {
             const license = data.testLicenseById
@@ -119,4 +122,4 @@ const TestCustomizeSmartContract = (props) => {
     )
 }
 
-export default TestCustomizeSmartContract;
+export default withAlert() (TestCustomizeSmartContract);

@@ -27,11 +27,11 @@ const PublicRoute = ({setUser,user,component:Comp,...rest}) => {
             }
         })
         if (loading) return <div className={'main-spinner'}><Spinner2/></div>
-        if (error) return  (
-            match(error.toString())?
-                <Redirect to="/login"/>:
-                <div>{error.toString()}</div>
-        )
+        // if (error) return  (
+        //     match(error.toString())?
+        //         <Redirect to="/login"/>:
+        //         <div>{error.toString()}</div>
+        // )
         if (data) {
             return (!!localStorage.getItem('token') ?
                     <Route {...rest} component={(props) => (
@@ -52,6 +52,16 @@ const PublicRoute = ({setUser,user,component:Comp,...rest}) => {
                             <Comp {...props} user={null}/>
                     )}/>
             )
+        }else {
+          return  <Route {...rest} component={(props) => (
+                rest.restricted ?
+                    (!!localStorage.getItem('token') ?
+                            <Redirect to={"/"}/>
+                            :
+                            <Comp {...props} user={null}/>
+                    ) :
+                    <Comp {...props} user={null}/>
+            )}/>
         }
     }
     return RenderQuery()

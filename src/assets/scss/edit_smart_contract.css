@@ -1,30 +1,37 @@
-.edit_contract .spinner2, .edit_dapp .spinner2 {
-  position: absolute;
-  top: 50%;
-  z-index: 99; }
-.edit_contract .ui.grid, .edit_dapp .ui.grid {
-  width: 70% !important;
-  margin: 0 auto;
-  align-items: flex-start !important;
-  color: #0F0E2e; }
-.edit_contract .header.right, .edit_dapp .header.right {
-  font-size: 14px;
-  color: #0FBA87; }
-.edit_contract .ui[class*="middle aligned"].grid > .column:not(.row), .edit_dapp .ui[class*="middle aligned"].grid > .column:not(.row) {
-  vertical-align: unset !important;
-  align-self: flex-start !important; }
-.edit_contract .dzu-dropzone, .edit_dapp .dzu-dropzone {
-  width: 70% !important; }
-.edit_contract h2, .edit_contract .errorMessage, .edit_dapp h2, .edit_dapp .errorMessage {
-  text-align: center !important; }
-.edit_contract .container textarea, .edit_dapp .container textarea {
-  background: none !important; }
-.edit_contract .update-btn, .edit_dapp .update-btn {
-  margin: 20px;
-  color: #FFF;
-  background: #04031c; }
-.edit_contract input::placeholder, .edit_contract textarea::placeholder, .edit_contract .select__placeholder, .edit_contract .dropdown .text, .edit_dapp input::placeholder, .edit_dapp textarea::placeholder, .edit_dapp .select__placeholder, .edit_dapp .dropdown .text {
-  color: #1B2529 !important;
-  opacity: 1 !important; }
+.edit_contract, .edit_dapp {
+  min-height: 600px; }
+  .edit_contract .spinner2, .edit_dapp .spinner2 {
+    position: absolute;
+    top: 50%;
+    z-index: 99; }
+  .edit_contract h3, .edit_dapp h3 {
+    color: #fff; }
+  .edit_contract .ui.grid, .edit_dapp .ui.grid {
+    width: 70% !important;
+    margin: 0 auto;
+    align-items: flex-start !important;
+    color: #0F0E2e; }
+  .edit_contract .dzu-dropzone, .edit_dapp .dzu-dropzone {
+    max-width: 386.27px !important; }
+  .edit_contract .header.right, .edit_dapp .header.right {
+    font-size: 14px;
+    color: #0FBA87; }
+  .edit_contract .ui[class*="middle aligned"].grid > .column:not(.row), .edit_dapp .ui[class*="middle aligned"].grid > .column:not(.row) {
+    vertical-align: unset !important;
+    align-self: flex-start !important; }
+  .edit_contract .container textarea, .edit_dapp .container textarea {
+    background: none !important; }
+  .edit_contract .update-btn, .edit_dapp .update-btn {
+    margin: 20px;
+    color: #FFF;
+    background: #8F4114;
+    border-radius: 30px;
+    border: 2px solid #8F4114; }
+    .edit_contract .update-btn:hover, .edit_dapp .update-btn:hover {
+      background: #0F0E2e;
+      color: #fff; }
+  .edit_contract input::placeholder, .edit_contract textarea::placeholder, .edit_contract .select__placeholder, .edit_contract .dropdown .text, .edit_dapp input::placeholder, .edit_dapp textarea::placeholder, .edit_dapp .select__placeholder, .edit_dapp .dropdown .text {
+    color: #fff !important;
+    opacity: 1 !important; }
 
 /*# sourceMappingURL=edit_smart_contract.css.map */

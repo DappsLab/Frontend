@@ -1,12 +1,11 @@
-import React, {Component, useState} from 'react';
+import React, { useState} from 'react';
 import Switch from '@material-ui/core/Switch';
 import {flowRight as compose} from "lodash";
 import {disable2FA, enableFA, me_Query} from "../../../queries/queries";
-import {Loader} from "semantic-ui-react"
 import AccountLayout from "../../../hoc/AccountLayout";
 import {withAlert} from "react-alert";
 import {Client} from "../../../queries/Services";
-import {useMutation, useQuery} from "@apollo/client";
+import {useMutation} from "@apollo/client";
 import {Spinner2} from "../../ui/Spinner";
 import {connect} from "react-redux";
 import {setUser} from "../../../actions/Actions";
@@ -27,7 +26,7 @@ const TwoFA =(props)=> {
             console.log("disable")
             props.refetch()
 
-            alert.success("Enabled Successfully",{timeout:3000})
+            alert.success("Disable Successfully",{timeout:3000})
             setLoader(false)
         },
         onError:error => {
@@ -40,7 +39,7 @@ const TwoFA =(props)=> {
             console.log("enable")
             props.refetch()
 
-            alert.success("Disable Successfully",{timeout:3000})
+            alert.success("Enable Successfully",{timeout:3000})
             setLoader(false)
         },
 
@@ -84,14 +83,15 @@ const TwoFA =(props)=> {
 
             return (
                 <div>
-                    <h2>Enable 2FA</h2>
+                    <h2>Two-Factor Authentication</h2>
+                    <label>Enable your Two-Factor Authentication</label>
                     <Switch
                         checked={user.twoFactorEnabled}
                         onClick={(event) => handleChange(event)}
                         name="enableCheck"
                         inputProps={{'aria-label': 'secondary checkbox'}}
                     />
-                    {user.twoFactorEnabled && <div className={"flex QR"}>
+                    {user.twoFactorEnabled && <div className={" QR"}>
                         <img src={user.twoFactorCode} alt={""}/>
                         <p>Open the Google Authenticator app and scan this QR code</p>
                     </div>

@@ -6,7 +6,7 @@ export const nameReg=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
 export const numericReg=RegExp(/^[0-9]*$/);
 export const phoneNumber=RegExp(/^[0-9+]*$/);
 export const acceptedImageTypes = 'image/x-png, image/png, image/jpg, image/jpeg';
-export  const acceptedImageTypesArray = acceptedImageTypes.split(",").map((item) => {return item.trim()});
+export const acceptedImageTypesArray = acceptedImageTypes.split(",").map((item) => {return item.trim()});
 export const filename=RegExp(/^[a-zA-Z0-9]*$/);
 export const emailRegex=RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 export const alphabetRegex=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
@@ -148,3 +148,11 @@ export const getDateBirth=(data)=>{
     return month+1+'/'+date+'/'+year
 
 }
+export  const  categoryOption=[
+    {label: "TOOLS",value: "TOOLS"},
+    {label: "FINANCIAL",value: "FINANCIAL"},
+    {label: "DOCUMENTS",value: "DOCUMENTS"},
+    {label: "UTILITY",value: "UTILITY"},
+    {label: "SOCIAL",value: "SOCIAL"},
+    {label: "ESCROW",value: "ESCROW"}
+]

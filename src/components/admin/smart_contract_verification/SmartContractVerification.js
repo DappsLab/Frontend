@@ -16,7 +16,7 @@ const SmartContractVerification = (props) => {
             headers: {
                 authorization: localStorage.getItem("token")
             }
-        },
+        },fetchPolicy:'network-only',
         client: Client
         });
     if (loading) return <div className={'main-spinner'}><Spinner2/></div>
