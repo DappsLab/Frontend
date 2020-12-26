@@ -78,17 +78,21 @@
 /*=======================================================
                  Transaction
 =========================================================*/
-.transaction_result{
-  text-align: center;
-  padding: 10px 5px;
-  min-height: 200px;
-}
 .transaction {
+  .MuiPaper-root{
+    background-color: #0F0E2e;
+    color: #fff;
+  }
   .fullWidth {
     margin: 10px 0;
     padding: 0;
   }
+  .MuiTableCell-root{
+    border: none;
+    color: #fff!important;
+  }
   .MuiTableCell-head{
+    color: #fff;
     font-weight: bold;
   }
   .spinner2{
@@ -98,39 +102,103 @@
 /*=======================================================
                  Deposite
 =========================================================*/
-.deposite{
-  padding-bottom: 20px;
-  .flex{
-    margin-top: 20px;
-    justify-content: space-between;
-    button{
-      background: none;
-      border: none;
-      color: #04031c!important;
-      cursor: pointer;
+.deposite {
+  display: flex;
+  justify-content: space-between;
+  .deposite-right {
+    width: 50%;
+    .address {
+      display: flex;
+       input[type=text]{
+         border-radius: 10px!important;
+         background-color: #0A0927!important;
+         border: 2px solid rgba(255,255,255,.29)!important;
+         color: #fff;
+       }
+      .field>label{
+        font-size: 16px!important;
+        color: #fff!important;
+        opacity: unset!important;
+      }
+      .disabled.field{
+        opacity: unset!important;
+      }
+      .disabled{
+        width: 100%;
+        margin: 0;
+      }
+      .copied {
+        color: #fff !important;
+        position: relative;
+        top: 24px;
+        left: -20px;
+        background: #5754AB;
+        border-radius: 10px;
+        height: 38px;
+        padding: 9px 20px;
+        cursor: pointer;
+        margin: 0;
+      }
     }
-    button:focus{
-      outline: none;
+  }
+
+
+
+  .QR{
+    div{
+      width: 70%;
+      padding: 30px 0;
+      margin: 0 auto;
+      border-radius: 20px;
+      color: #000;
+      background-color: #fff;
+      h3{
+        font-size: 30px;
+        margin-bottom: 30px;
+      }
+    }
+    text-align: center;
+    width: 40%;
+    p{
+      padding: 1em 4em 0 4em;
+
     }
   }
-  p{
-    width: auto;
-    margin-bottom: 0;
+  h2 {
+    margin-bottom: 1em;
+    font-size: 40px;
   }
+
 }
-.QR {
-  flex-direction: column;
-  p{
-    margin: 10px;
-    color: $background-dark;
-    font-size: 14px;
-  }
-}
+
 /*=======================================================
                  Withdraw
 =========================================================*/
 .withdraw{
-  padding-top: 20px;
+  padding-top: 40px;
+  .balance{
+    width: 200px;
+    background-color: #1D1B46;
+    border-radius: 10px;
+    padding: 20px 10px;
+    color: #fff;
+    h3{
+      margin-bottom: 0;
+    }
+  }
+  .withdrawbtn{
+    padding: 15px 5em;
+    border-radius: 30px;
+    color: #fff;
+    border: 2px solid #8F4114;
+    background-color: #8F4114;
+    cursor: pointer;
+    margin: 3em 0;
+    &:hover{
+      color: $paper-color!important;
+      background: #0B0A27 !important;
+    }
+  }
 }
 /*=======================================================
                  FA

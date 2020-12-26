@@ -1,3 +1,6 @@
+import React from "react";
+import {CalendarContainer} from "react-datepicker";
+
 export const alphanumaric=RegExp(/^[a-zA-Z][a-zA-Z0-9\s]*$/);
 export const nameReg=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
 export const numericReg=RegExp(/^[0-9]*$/);
@@ -122,4 +125,26 @@ export const  feeProcessTime=(value)=>{
     }else {
         return " Minimum time"
     }
+}
+
+export  const MyContainer = ({ className, children }) => {
+    return (
+        <div style={{padding: "16px", background: "#216ba5", color: "#fff"}}>
+            <CalendarContainer className={className}>
+                <div style={{background: "#f0f0f0"}}>
+                    What is your Date of Birth?
+                </div>
+                <div style={{position: "relative"}}>{children}</div>
+            </CalendarContainer>
+        </div>
+    );
+}
+
+export const getDateBirth=(data)=>{
+    let date_ob = new Date(data);
+    let date = date_ob.getDate();
+    let month = date_ob.getMonth() ;
+    let year = date_ob.getFullYear();
+    return month+1+'/'+date+'/'+year
+
 }

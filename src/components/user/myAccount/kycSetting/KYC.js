@@ -14,22 +14,23 @@ import UpdateKYC from "./UpdateKYC";
 
 const Kyc =(props)=> {
     const {setUser} = props
-    const {data, error, loading, refetch} = useQuery(me_Query, {
-        client: Client, context: {
-            headers: {
-                authorization: localStorage.getItem("token")
+
+    const  RenderData= ()=> {
+        const {data, error, loading, refetch} = useQuery(me_Query, {
+            client: Client, context: {
+                headers: {
+                    authorization: localStorage.getItem("token")
+                }
+            }, fetchPolicy: 'network-only',
+            onCompleted: data1 => {
+                setUser(data1.me)
             }
-        }, fetchPolicy: 'network-only',
-        onCompleted: data1 => {
-            setUser(data1.me)
-        }
-    })
-    if (loading) return <AccountLayout><Spinner2/></AccountLayout>
-    if (error) return <div>{error.toString()}</div>
-    if (data) {
-        const user = data.me
-        return (
-            <AccountLayout {...props}>
+        })
+        if (loading) return <Spinner2/>
+        if (error) return <div>{error.toString()}</div>
+        if (data) {
+            const user = data.me
+            return (
                 <section className={"kyc_section"}>
                     <div className={'flex'}>
                         <h2>KYC <span> (Account Verification)</span></h2>
@@ -39,9 +40,15 @@ const Kyc =(props)=> {
                     </div>
                     <UpdateKYC fetch={refetch} user={user}/>
                 </section>
-            </AccountLayout>
-        );
+            );
+        }
+        return <div>Refresh</div>
     }
+    return(
+        <AccountLayout {...props}>
+            {RenderData()}
+        </AccountLayout>
+    )
 }
 
 export default  compose(

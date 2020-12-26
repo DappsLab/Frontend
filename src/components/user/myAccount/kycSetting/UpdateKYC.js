@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
 import {Button, Form} from "semantic-ui-react";
-import {countryOptions} from "../../../ui/Helpers";
+import {countryOptions, getDateBirth, MyContainer} from "../../../ui/Helpers";
 import {useMutation} from "@apollo/client";
 import {kycMutation} from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
 import {withAlert} from "react-alert";
 import {FormValidation} from "../../../ui/mise";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 const UpdateKyc = (props) => {
     const [type,setType]=useState('text')
@@ -18,6 +21,9 @@ const UpdateKyc = (props) => {
     const [mobile,setMobile]=useState('')
     const [dateOfBirth,setDateOfBirth]=useState('')
     const {alert,fetch,user}=props
+    const [date, setDate] = useState();
+
+    console.log(user.kyc)
     const [updatekyc]=useMutation(kycMutation,{
         client:Client,context: {
             headers: {
@@ -35,14 +41,14 @@ const UpdateKyc = (props) => {
             updatekyc({
                 variables: {
                     id: user.id,
-                    mobile: mobile.toString(),
-                    birth: dateOfBirth.toString(),
-                    nationality: nationality.toString(),
-                    country: country.toString(),
-                    postalCode: postalCode.toString(),
-                    city: city.toString(),
-                    street: street.toString(),
-                    building: building.toString()
+                    mobile: mobile!==''?mobile:user.kyc.mobile,
+                    birth: dateOfBirth!==''?mobile:user.kyc.birthDate,
+                    nationality: nationality!==''?mobile:user.kyc.nationality,
+                    country: country!==''?mobile:user.kyc.country,
+                    postalCode: postalCode!==''?mobile:user.kyc.postalCode,
+                    city: city!==''?mobile:user.kyc.city,
+                    street: street!==''?mobile:user.kyc.street,
+                    building: building!==''?mobile:user.kyc.building
                 },
             }).catch(err=>{
                 console.log(err.toString())
@@ -53,10 +59,10 @@ const UpdateKyc = (props) => {
 
 
     const handleEmpty=()=>{
-        if ( mobile !== "",city!=="",street !== "",building !== "",postalCode !== "",country !== "",nationality !== "",dateOfBirth !== ""){
+        if ( mobile !== ""||city!==""||street !== ""||building !== ""||postalCode !== ""||country !== ""||nationality !== ""||dateOfBirth !== ""){
             return true
         }else {
-            alert.error("All fields are required",{timeout:3000});
+            alert.error("Enter atleast one value",{timeout:3000});
             return false
         }
     }
@@ -98,19 +104,28 @@ const UpdateKyc = (props) => {
                     onChange={(event,{value,name})=>setNationality(FormValidation(nationality,value,name))}
                 />
             </Form.Group>
-            <Form.Group widths='equal'>
+            <Form.Group className={'date_box'}>
                 <Form.Input
                     fluid type={'text'} name={'mobile'} value={mobile}
                     label='Mobile' placeholder={user.kyc.mobile}
                     onChange={(event,{value,name})=>setMobile(FormValidation(mobile,value,name))}
 
                 />
-                <Form.Input
-                    placeholder={user.kyc.birthDate} value={dateOfBirth}
-                    fluid type={type} onFocus={()=>{setType('date')}} label={'Date of Birth'} name={'dateOfBirth'}
-                    onChange={(event,{name,value})=>setDateOfBirth(value)}
+               <div className={'date-picker'}>
+                   <label>Date of Birth</label>
+                <DatePicker
+
+                    placeholderText={user.kyc.birthDate}
+                    selected={date}
+                    onChange={date => {
+                        setDate(date)
+                        setDateOfBirth(getDateBirth(date))
+                    }}
+                    calendarContainer={MyContainer}
                 />
+               </div>
             </Form.Group>
+
             <Button  onClick={()=>handlSubmit()}>Submit</Button>
         </Form>
     );

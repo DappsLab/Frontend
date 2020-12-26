@@ -19,11 +19,12 @@ class Transactions extends Component {
         loading:true,
         data:null,
     }
-   componentDidMount() {
-        const address=this.props.currentUser.address;
-    const that=this;
-            client.query({
-                query: gql`
+    componentDidMount() {
+        const address = this.props.user.address;
+        console.log(address)
+        const that = this;
+        client.query({
+            query: gql`
                     query ($address:String!) {
                         transactionsByAddress(address: $address) {
                             from id to blockHash blockNumber
@@ -31,22 +32,22 @@ class Transactions extends Component {
                             gasPrice gasUsed createdAt
                         }
                     }
-                `, variables: {address:address.toString()}
-            }).then(result=>{
-                if (result.data.transactionsByAddress){
-                    that.setState({loading:false,data:result.data.transactionsByAddress})
-                }else {
-                    that.setState({loading:false,error:"Not Found"})
-                }
-            }).catch(error=>{
-                that.setState({loading:false,error:"Not Found"});
-                console.log(error)
-            })
+                `, variables: {address: address.toString()}
+        }).then(result => {
+            if (result.data.transactionsByAddress) {
+                that.setState({loading: false, data: result.data.transactionsByAddress})
+            } else {
+                that.setState({loading: false, error: "Not Found"})
+            }
+        }).catch(error => {
+            that.setState({loading: false, error: "Not Found"});
+            console.log(error)
+        })
     }
     renderTransaction(){
         const {data}=this.state;
         console.log("transaction",data)
-        if (data){
+        if (data.length>0){
             return data.slice(0,10).map(da=> {
                 return <TableRow key={da.id}>
                     <TableCell>{da.blockNumber}</TableCell>
@@ -57,11 +58,16 @@ class Transactions extends Component {
                 </TableRow>
             })
         }else {
-            return <div className={"transaction_result "}>No Transaction</div>
+            return <TableRow>
+                <TableCell> </TableCell>
+                <TableCell> </TableCell>
+                <TableCell style={{textAlign:'center'}}>No Transaction</TableCell>
+                <TableCell> </TableCell>
+                <TableCell> </TableCell>
+            </TableRow>
         }
     }
     render() {
-        console.log(this.props.currentUser);
         const {loading}=this.state
         return (
             <AccountLayout {...this.props}>

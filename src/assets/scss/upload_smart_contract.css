@@ -1,26 +1,79 @@
 .generalContainer {
-  background-color: #ffffff; }
-
-.generalDescription {
-  background: #F6F9FB;
-  justify-content: space-between;
-  font-size: 14px;
-  padding: 10px 10px;
-  border-radius: 5px; }
-  .generalDescription a {
-    color: #299EF6; }
+  background-image: linear-gradient(135.14deg, #04031D 0%, #0F0E2e 100%); }
 
 .generalMain {
   justify-content: center;
   padding: 20px 0;
   align-items: flex-start; }
+  .generalMain .info {
+    margin-top: 4px;
+    color: #8F4114; }
+  .generalMain .ui.basic.label {
+    background-color: #5754AB !important;
+    color: #fff; }
+  .generalMain .select__indicator-separator {
+    background-color: rgba(255, 255, 255, 0.15); }
+  .generalMain .css-1rhbuit-multiValue:nth-child(1) {
+    background-color: #0FBA87 !important; }
+  .generalMain .css-1rhbuit-multiValue:nth-child(2) {
+    background-color: #0F0E2e !important; }
+  .generalMain .ui.form input[type=text]:focus {
+    color: #fff; }
+  .generalMain .ui.form .field .ui.input input[type=text], .generalMain .tags-input, .generalMain .tags-input input[type=text], .generalMain .select__control {
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #fff;
+    background: #070622 !important;
+    border-radius: 10px !important; }
+  .generalMain .select__control {
+    min-height: 45px; }
+  .generalMain .ui.form .field .ui.input input[type=text] {
+    height: 45px; }
+  .generalMain .ui.labeled.input:not([class*="corner labeled"]) .label:first-child + input {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important; }
+  .generalMain #tags .tag {
+    background-color: #5754AB; }
+    .generalMain #tags .tag .tag-close-icon {
+      background: #F00;
+      color: #FFF; }
 
 .generalLeft, .generalRight {
   width: 370px;
   padding: 0 20px;
   margin: 0 15px; }
-  .generalLeft .errorMessage, .generalRight .errorMessage {
-    top: 0; }
+  .generalLeft .desc, .generalRight .desc {
+    color: #5754AB;
+    text-align: left !important;
+    margin-bottom: 20px;
+    display: block; }
+  .generalLeft .upload-image, .generalRight .upload-image {
+    justify-content: space-between;
+    margin-bottom: 5px !important; }
+    .generalLeft .upload-image .file-upload, .generalRight .upload-image .file-upload {
+      width: 100px;
+      height: 35px;
+      border-radius: 30px;
+      position: relative;
+      display: flex;
+      background-color: #5754AB;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden; }
+      .generalLeft .upload-image .file-upload button, .generalRight .upload-image .file-upload button {
+        background: #5754AB;
+        border: 2px solid #5754AB;
+        border-radius: 30px;
+        color: #fff !important;
+        height: 100%;
+        width: 100%; }
+    .generalLeft .upload-image .file-upload input[type='file'], .generalRight .upload-image .file-upload input[type='file'] {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      padding: 10px 20px;
+      top: 0;
+      left: 0;
+      opacity: 0; }
 
 .generalRight {
   width: 900px; }
@@ -57,6 +110,7 @@
 .generalLeft .ui.form .field > label, .generalLeft .price_label {
   font-weight: bold;
   font-size: 16px;
+  color: #0FBA87;
   text-align: left; }
 
 .wrapper {

@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import Button from "@material-ui/core/Button";
 import {Avatar} from "@material-ui/core";
 import "../../../../assets/scss/general_setting.css"
@@ -21,15 +21,17 @@ import {FormValidation} from "../../../ui/mise";
 
 const  GeneralSetting =(props)=>{
     const [imgPath,setImgPath]=useState("");
-    const [user,setUsers]=useState(null);
     const [img,setImg]=useState(null);
     const [imgModel,setimgModel]=useState(false);
     const [crop,setCrop]=useState({x: 0, y: 0, width: 300, height: 300, aspect: 1})
     const [imgRef,setImgRef]=useState();
     const [fullName,setFullName]=useState('');
+    const [Loading,setLoading]=useState(false)
     const [type,setType]=useState('');
     const [location,setLocation]=useState('');
-    const {alert,setUser}=props
+    const {alert,setUser}=props;
+
+
     const  typeOptions=[
         {key:'u',value:'USER',text:'USER'},
         {key:'dev',value:'DEVELOPER',text:'DEVELOPER'},
@@ -134,105 +136,128 @@ const  GeneralSetting =(props)=>{
     //image end
 
     const handleDelete=()=>{
-        const id=user.id;
-        console.log(id)
+        console.log("id")
     }
 
-    const {data,error,loading,refetch}=useQuery(me_Query,{
-        client:Client,context:context, fetchPolicy:'network-only',
-        onCompleted:data1 => {
-            setUser(data1.me)
-            setUsers(data1.me)
-        }
-    })
-    if (loading) return <AccountLayout><Spinner2/></AccountLayout>
-    if (error) return <div>{error.toString()}</div>
-    if (data) {
-        const user=data.me
-        return (
-            <AccountLayout {...props}>
-                <div className={"flex general_data"}>
-                    <div className={"general_left"}>
-                        <h2>Profile</h2>
-                        <Form>
-                            <Form.Field >
-                                <label>First name</label>
-                                <Form.Input
-                                    placeholder={user.fullName} type={"text"}
-                                    value={fullName} onChange={(event,{value,name})=>setFullName(FormValidation(fullName,value,name))}
-                                    name="fullName" />
-                            </Form.Field>
-                            <Form.Field className={"opacity"}>
-                                <label>Username</label>
-                                <Form.Input disabled
-                                    placeholder={user.userName} type={"text"}
-                                    name="userName"/>
-                            </Form.Field>
+    const  RenderData= ()=> {
+        const {data, error, loading} =  useQuery(me_Query, {
+            client: Client, context: context,fetchPolicy:"network-only",
+            onCompleted: data1 => {
+                setUser(data1.me)
+                // setLoading(false)
+            }
+        })
 
-                            <Form.Field >
-                                <label>User Type</label>
-                                <Form.Select
-                                    placeholder={user.type} name={'type'} value={type}
-                                    options={typeOptions}
-                                    onChange={((event,{value}) =>{setType(value)} )}
-                                />
-                            </Form.Field>
-                            <Form.Field >
+        if (loading) return <Spinner2/>;
+        if (error) return <div>{error.toString()}</div>
+        if (Loading) return <Spinner2/>;
+        if (data) {
+            const user=data.me
+            return (
+                <div>
+                    <div className={"flex general_data"}>
+                        <div className={"general_left"}>
+                            <h2>Profile</h2>
+                            <Form>
+                                <Form.Field>
+                                    <label>First name</label>
+                                    <Form.Input
+                                        placeholder={user.fullName} type={"text"}
+                                        value={fullName} onChange={(event, {
+                                        value,
+                                        name
+                                    }) => setFullName(FormValidation(fullName, value, name))}
+                                        name="fullName"/>
+                                </Form.Field>
+                                <Form.Field className={"opacity"}>
+                                    <label>Username</label>
+                                    <Form.Input disabled
+                                                placeholder={user.userName} type={"text"}
+                                                name="userName"/>
+                                </Form.Field>
+
+                                <Form.Field>
+                                    <label>User Type</label>
+                                    <Form.Select
+                                        placeholder={user.type} name={'type'} value={type}
+                                        options={typeOptions}
+                                        onChange={((event, {value}) => {
+                                            setType(value)
+                                        })}
+                                    />
+                                </Form.Field>
+                                <Form.Field>
                                     <label>Location</label>
                                     <Form.Input
-                                        placeholder={user.location===null?"Location":user.location}
+                                        placeholder={user.location === null ? "Location" : user.location}
                                         type={"text"} name="location" value={location}
-                                        onChange={(event,{value,name})=>setLocation(FormValidation(location,value,name))}/>
-                            </Form.Field>
-                                <UpdateUser type={type} imgPath={imgPath} location={location} fullName={fullName} user={user}  fetch={refetch} />
+                                        onChange={(event, {
+                                            value,
+                                            name
+                                        }) => setLocation(FormValidation(location, value, name))}/>
+                                </Form.Field>
+                                <UpdateUser type={type} imgPath={imgPath} location={location} fullName={fullName}
+                                            user={user} setLoading={setLoading}/>
                             </Form>
-                    </div>
-                    <div className={"general_right"}>
-                        <div className={'profile_picture flex'}>
-                            {imgPath===""?
-                                <Avatar className={"avatar"} alt="Crop" style={{maxWidth: '100%'}}
-                                        src={user.avatar}/>:
-                                <Avatar className={"avatar"} alt="Crop" style={{maxWidth: '100%'}} src={imgPath} />
-                            }
-                            <div className="picture_btn">
-                            <div className="file-upload">
-                                <input type="file"  accept="image/jpeg,image/png" onChange={(event )=> handleChangeImage(event)} name={"img"}/>
-                                <button className={'strock'} >Upload Photo</button>
-                            </div>
-                                <button onClick={()=>{setImgPath("")}} className={'strock remove_picture'}>Remove Photo</button>
-                            </div>
-
                         </div>
-                        <Form>
-                            <Form.Field  className={"opacity"}>
-                                <label>Email</label>
-                                <Form.Input
-                                    className={"opacity"} disabled
-                                    placeholder={user.email}
-                                    type={"email"} name="email" />
-                            </Form.Field>
-                            <Form.Field className={'delete-btn'}>
-                                <label>Delete your Account</label>
-                                <span>Want to delete your account?</span><button  onClick={()=>handleDelete()} >Delete Account</button>
-                            </Form.Field>
-                        </Form>
+                        <div className={"general_right"}>
+                            <div className={'profile_picture flex'}>
+                                {imgPath === "" ?
+                                    <Avatar className={"avatar"} alt="Crop" style={{maxWidth: '100%'}}
+                                            src={user.avatar}/> :
+                                    <Avatar className={"avatar"} alt="Crop" style={{maxWidth: '100%'}} src={imgPath}/>
+                                }
+                                <div className="picture_btn">
+                                    <div className="file-upload">
+                                        <input type="file" accept="image/jpeg,image/png"
+                                               onChange={(event) => handleChangeImage(event)} name={"img"}/>
+                                        <button className={'strock'}>Upload Photo</button>
+                                    </div>
+                                    <button onClick={() => {
+                                        setImgPath("")
+                                    }} className={'strock remove_picture'}>Remove Photo
+                                    </button>
+                                </div>
+
+                            </div>
+                            <Form>
+                                <Form.Field className={"opacity"}>
+                                    <label>Email</label>
+                                    <Form.Input
+                                        className={"opacity"} disabled
+                                        placeholder={user.email}
+                                        type={"email"} name="email"/>
+                                </Form.Field>
+                                <Form.Field className={'delete-btn'}>
+                                    <label>Delete your Account</label>
+                                    <span>Want to delete your account?</span>
+                                    <button onClick={() => handleDelete()}>Delete Account</button>
+                                </Form.Field>
+                            </Form>
+                        </div>
                     </div>
+                    {imgModel ?
+                        <CustomizedDialogs
+                            crop={crop}
+                            imageData={{disabled: false, locked: true}}
+                            src={img}
+                            onImageLoad={(image) => onImageLoad(image)}
+                            onCropChange={(crop) => onCropChange(crop)}
+                            onCropComplete={(crop, pixelCrop) => onCropComplete(crop, pixelCrop)}
+                            handleSave={() => handleSave()}
+                        /> : ""
+                    }
                 </div>
-                {imgModel ?
-                    <CustomizedDialogs
-                        crop={crop}
-                        imageData={{disabled: false, locked: true}}
-                        src={img}
-                        onImageLoad={(image) => onImageLoad(image)}
-                        onCropChange={(crop) => onCropChange(crop)}
-                        onCropComplete={(crop, pixelCrop) => onCropComplete(crop, pixelCrop)}
-                        handleSave={() => handleSave()}
-                    /> : ""
-                }
-            </AccountLayout>
-        )
+            );
+        }
+        return <div>Refresh</div>
     }
-    return <div>Refresh</div>
+
+    return(
+        <AccountLayout {...props}>
+            {RenderData()}
+        </AccountLayout>
+    )
 }
 
 export default compose(

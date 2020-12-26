@@ -1,70 +1,52 @@
-import React, {Component} from 'react';
+import React, { useState} from 'react';
 import {Divider} from "@material-ui/core";
 import QRCode from 'react-qr-code';
-import {connect} from "react-redux";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-import {Popup,Button} from "semantic-ui-react";
+import {Form, Popup} from "semantic-ui-react";
 import AccountLayout from "../../../hoc/AccountLayout";
+import {withAlert} from "react-alert";
 
 const timeoutLength = 2500
-class WithdrawDeposite extends Component {
-    state={
-        isOpen:false,
-        currentUser: this.props.currentUser,
-    }
-    // componentDidUpdate(prevProps, prevState, snapshot) {
-    //     setTimeout(function(){
-    //         this.setState({copied:false});
-    //     }.bind(this),10000);
-    // }
+const WithdrawDeposite =(props)=>{
+    const [isOpen,setIsOpen]=useState(false);
+    const {user,alert}=props
 
-
-    handleOpen = () => {
-        this.setState({ isOpen: !this.state.isOpen })
-        this.timeout = setTimeout(() => {
-            this.setState({ isOpen: !this.state.isOpen })
-        }, timeoutLength)
-    }
-
-    render() {
-
-        const {currentUser}=this.state
-        return (
-            <AccountLayout {...this.props}>
+    return (
+            <AccountLayout {...props}>
                 <div className={"deposite"}>
-                    <h2>Deposite</h2>
-                    <div className={"flex"}>
-                        <span>Address</span>
-                        <p className={"address"}>{currentUser.address}</p>
+                    <div className={'deposite-right'}>
+                        <h2>Deposite</h2>
+                        <Form>
+                            <Form.Field className={'address'}>
+                                <Form.Input
+                                    disabled label={'Address'} value={user.address}
+                                />
+                                <CopyToClipboard text={user.address}>
+                                    <label className={'copied'} onClick={()=>{alert.success("Copied",{timeout:1000})}}> copy</label>
+                                </CopyToClipboard>
+                            </Form.Field>
+                        </Form>
+                        <div className={"withdraw"}>
+                            <h2>Withdraw</h2>
+                            <div className={'balance'}>
+                                <h3>Dapps Coin</h3>
+                                <span>Balance: {user.balance}</span>
+                            </div>
 
-                            <Popup
-                                content={`Copied`}
-                                on='click'
-                                open={this.state.isOpen}
-                                trigger={
-                                    <CopyToClipboard text={currentUser.address}>
-                                        <button onClick={this.handleOpen}>copy</button>
-                                    </CopyToClipboard>
-                                }
-                            >
-                            </Popup>
-
+                            <button className={'withdrawbtn'}>Withdraw</button>
+                        </div>
                     </div>
-                    <h4>Scan QR</h4>
-                    <div className={"flex QR"}>
-                        <QRCode  size={200} value={currentUser.address} />
-                        <p>Scan the QR Code to deposit Dapps</p>
+                    <div className={"QR"}>
+                        <div>
+                            <h3>Scan QR</h3>
+                            <QRCode  size={200} value={user.address} />
+                            <p>Scan the QR Code to deposit Dapps</p>
+                        </div>
                     </div>
                 </div>
                 <Divider/>
-                <div className={"withdraw"}>
-                    <h2>Withdraw</h2>
-                </div>
+
             </AccountLayout>
         );
-    }
 }
-const mapStateToProps=(state)=>({
-    currentUser:state.user.currentUser
-});
-export default connect(mapStateToProps)(WithdrawDeposite);
+export default withAlert()(WithdrawDeposite);

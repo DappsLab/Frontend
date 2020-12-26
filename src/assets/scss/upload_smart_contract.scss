@@ -1,30 +1,104 @@
 @import "colors";
 
 .generalContainer{
-  background-color: $paper-color;
-}
-.generalDescription{
-  background: #F6F9FB;
-  justify-content: space-between;
-  font-size: 14px;
-  padding: 10px 10px;
-  border-radius: 5px;
-  a{
-    color: #299EF6;
-  }
+  @include default-color();
 }
 .generalMain{
   justify-content: center;
   padding: 20px 0;
   align-items: flex-start;
+  .info {
+    margin-top: 4px;
+    color: #8F4114;
+  }
+  .ui.basic.label{
+    background-color: #5754AB!important;
+    color: #fff;
+  }
+   .select__indicator-separator{
+     background-color: rgba(255,255,255,.15)
+   }
+  .css-1rhbuit-multiValue:nth-child(1) {
+    background-color: #0FBA87!important;
+  }
+  .css-1rhbuit-multiValue:nth-child(2) {
+    background-color: #0F0E2e!important;
+  }
+  .ui.form input[type=text]:focus{
+    color: #fff;
+  }
+  .ui.form .field .ui.input input[type=text],.tags-input,.tags-input input[type=text],.select__control{
+    border: 1px solid rgba(255,255,255,.15)!important;
+    color: #fff;
+    background: #070622!important;
+    border-radius: 10px!important;
+
+  }
+  .select__control{
+    min-height: 45px;
+  }
+  .ui.form .field .ui.input input[type=text]{
+    height: 45px;
+  }
+  .ui.labeled.input:not([class*="corner labeled"]) .label:first-child+input{
+    border-top-left-radius:0 !important;
+    border-bottom-left-radius: 0!important;
+  }
+  #tags {
+    .tag {
+      background-color: #5754AB;
+      .tag-close-icon{
+        background: #F00;
+        color: #FFF;
+      }
+    }
+  }
 }
 .generalLeft, .generalRight{
-  .errorMessage{
-    top:0;
-  }
+
+
   width: 370px;
   padding: 0 20px ;
   margin: 0 15px;
+  .desc{
+    color: #5754AB;
+    text-align: left!important;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .upload-image {
+    justify-content: space-between;
+    margin-bottom: 5px !important;
+    .file-upload {
+      width: 100px;
+      height: 35px;
+      border-radius: 30px;
+      position: relative;
+      display: flex;
+      background-color: #5754AB;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      button {
+        background: #5754AB;
+        border: 2px solid #5754AB;
+        border-radius: 30px;
+        color: #fff !important;
+        height: 100%;
+        width: 100%;
+      }
+    }
+    .file-upload input[type='file'] {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      padding: 10px 20px;
+      top: 0;
+      left: 0;
+      opacity: 0;
+
+    }
+  }
 }
 .generalRight{
   width: 900px;
@@ -74,6 +148,7 @@
   .ui.form .field>label,.price_label{
     font-weight: bold;
     font-size: 16px;
+    color: #0FBA87;
     text-align: left;
   }
 }

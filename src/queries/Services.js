@@ -13,8 +13,9 @@ export const Client = new ApolloClient({
     }
 })
 export const match=(data)=>{
-    if (data.toString().toLowerCase().includes("cannot return null for non-nullable field query.me")){
-        // localStorage.removeItem('token');
+    if (data.toString().toLowerCase().includes("error: authentication must be provided")){
+        localStorage.removeItem('token');
+        window.location.reload();
         return true
     }
     if (data.toString().toLowerCase().includes('error: failed to fetch')){

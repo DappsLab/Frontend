@@ -6,7 +6,7 @@ import {Loader,Dimmer} from "semantic-ui-react";
 
 class Logout extends Component {
       componentDidMount(){
-
+          console.log("here")
           this.props.clearUser();
           localStorage.removeItem('token');
           this.props.history.push('/');

@@ -207,6 +207,7 @@ const EditSmartContract =(props)=> {
         for (let i = 0; i < cetagory.length; i++) {
             finalCategoryArray.push(cetagory[i]['value']);
         }
+
         updateContract({
             variables:{
                 id:contract.id,
@@ -218,7 +219,7 @@ const EditSmartContract =(props)=> {
                 long: longDescription!==""?longDescription:contract.description,
                 one: onePrice!==""?onePrice:contract.singleLicensePrice,
                 tags: tags.length>0?tags:contract.tags,
-                version:version!==''?version:contract.compilerVersion,
+                version:version!==''?version.toString():contract.compilerVersion,
                 unlimited: uPrice!==""?uPrice.toString():contract.unlimitedLicensePrice,
                 source:newSource!==""? newSource.toString():contract.source
             }

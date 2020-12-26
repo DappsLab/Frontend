@@ -22,7 +22,14 @@
 .kyc_section label {
   text-align: left !important; }
 .kyc_section .button {
-  width: 50%; }
+  padding: 1em 5em;
+  margin-top: 2em;
+  border-radius: 30px;
+  background: #8F4114 !important;
+  border: 2px solid #8F4114 !important; }
+  .kyc_section .button:hover {
+    color: #ffffff !important;
+    background: #0F0E2e !important; }
 .kyc_section .dropdown {
   left: 0 !important; }
   .kyc_section .dropdown i.icon:before {
@@ -34,6 +41,22 @@
   padding-bottom: 10px; }
   .kyc_section .flex:nth-child(1) h2, .kyc_section .flex:nth-child(1) h3 {
     margin: 0; }
+.kyc_section .date_box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 0 !important;
+  margin-left: 0 !important; }
+  .kyc_section .date_box .field, .kyc_section .date_box .date-picker {
+    padding: 0 !important;
+    width: 49.2% !important; }
+.kyc_section .date-picker {
+  display: flex;
+  flex-direction: column; }
+  .kyc_section .date-picker label {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 .28571429rem 0; }
 
 .green {
   color: #39B64A; }

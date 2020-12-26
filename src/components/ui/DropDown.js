@@ -97,7 +97,7 @@ export const DropDown =({check,updateimage,user,removeImage})=> {
                     <EditIcon/> Edit
                 </Button>
             }
-            <Popper className={"dropdown"} open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+            <Popper className={"dropdown "} style={{zIndex:99}} open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                 {check?
                     <Paper>
                         <div className={"user_logged"}>

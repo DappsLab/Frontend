@@ -1,12 +1,10 @@
 import React, { useState} from 'react';
 import "../../../assets/scss/upload_smart_contract.css"
 import {Divider} from "@material-ui/core";
-import {Link} from "react-router-dom";
 import Fade from "react-reveal/Fade";
 import { Form, Grid, Input, TextArea, Header} from "semantic-ui-react"
 import Button from "@material-ui/core/Button";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowUp} from "@fortawesome/free-solid-svg-icons";
+import Avatar from "@material-ui/core/Avatar";
 import CustomizedDialogs from "../../ui/DialogBox";
 import {flowRight as compose} from "lodash";
 import {
@@ -16,7 +14,6 @@ import {
 } from "../../../queries/queries";
 import Layout from "../../../hoc/Layout";
 import Uploader from "../../ui/Uploader";
-
 import Checkbox from "@material-ui/core/Checkbox";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated'
@@ -198,6 +195,7 @@ const UploadSmartContract =(props)=>{
         client:Client,
         onCompleted:data1 => {
             setImgPath(data1.imageUploader);
+            alert.success("Source Uploaded",{timeout:1000})
         },
         onError:error1 => {
             alert.error(error1.toString(),{timeout:2000})
@@ -243,6 +241,7 @@ const UploadSmartContract =(props)=>{
         client:Client,
         onCompleted:data1 => {
             setsourcePath(data1.contractUploader);
+            alert.success("Source Uploaded",{timeout:1000})
             setshow(true)
         },
         onError:error1 => {
@@ -366,33 +365,13 @@ const UploadSmartContract =(props)=>{
     return  uplaodLoading?<Spinner/>: (
         <Layout>
             <Grid textAlign="center"  verticalAlign='middle' >
-                <Grid.Column style={{maxWidth:1355}}>
-                    <Grid.Row className={"upload_bg"}>
-                        <h2><strong>Publish new  Smart Contract</strong></h2>
-                        <h3>General Info</h3>
-                    </Grid.Row>
+                <Grid.Column>
                     <Grid.Row>
-                        {imgModel?
-                            <CustomizedDialogs
-                                crop={crop}
-                                imageData={{disabled: false, locked: true}}
-                                src={img}
-                                onImageLoad={(image) => onImageLoad(image)}
-                                onCropChange={(crop) => onCropChange(crop)}
-                                onCropComplete={(crop, pixelCrop) => onCropComplete(crop, pixelCrop)}
-                                handleSave={() => handleSave()}
-                            />:""
-                        }
+
                         <div className={"generalContainer"}>
-                            <div className={"generalDescription flex"}>
-                                <div>Upload the general information about your contract code (description,pricing,etc)</div>
-                                <Link to={""} className={"cursor"}>Download user guiding for adding a smart contract</Link>
-                            </div>
-                            {contractError.length>0&&<span style={{top:"0"}} className={"errorMessage"}>
-                                {contractError}
-                            </span>}
                             <div className={"generalMain flex"}>
                                 <div className={"generalLeft"}>
+                                    <span className={'desc'}>Upload the general information about your contract code (description,pricing,etc)</span>
                                     <Form>
                                         <Fade top delay={300}>
                                             <Form.Field>
@@ -452,18 +431,26 @@ const UploadSmartContract =(props)=>{
                                                             placeholder="Press enter to add tags"
                                                         />
                                                     </div>
-                                                    <p className={"info"}>List of tags</p>
+                                                    <p className={"info"}>List of tags. Press Enter to add Tags</p>
                                                 </Form.Field>
                                             </Form.Field>
-                                            <Form.Field>
-                                                <label>Image</label>
-                                                <div className="wrapper">
-                                                    <div className="file-upload">
-                                                        <input type="file"  accept="image/jpeg,image/png" onChange={(event )=> handleChangeImage(event)} name={"img"}/>
-                                                        <FontAwesomeIcon className={"arrowIcon"} icon={faArrowUp}/>
-                                                    </div>
+                                            <Form.Field className={'upload-image flex'}>
+                                                <label>Uplaod Image</label>
+                                                <div className="file-upload">
+                                                    <input type="file" accept="image/jpeg,image/png"
+                                                           onChange={(event) => handleChangeImage(event)} name={"img"}/>
+                                                    <button className={'strock'}>Upload </button>
                                                 </div>
+                                                {/*<div className="wrapper">*/}
+                                                {/*    <div className="file-upload">*/}
+                                                {/*        <input type="file"  accept="image/jpeg,image/png" onChange={(event )=> handleChangeImage(event)} name={"img"}/>*/}
+                                                {/*        <FontAwesomeIcon className={"arrowIcon"} icon={faArrowUp}/>*/}
+                                                {/*    </div>*/}
+                                                {/*</div>*/}
                                             </Form.Field>
+                                            <div>
+                                                {imgPath!==''&& <Avatar src={imgPath} style={{borderRadius:'0',width:'100px' ,height:'100px'}}/>}
+                                            </div>
                                         </Fade>
                                     </Form>
                                 </div>
@@ -505,6 +492,17 @@ const UploadSmartContract =(props)=>{
                                 </div>
                             </div>
                         </div>
+                        {imgModel?
+                            <CustomizedDialogs
+                                crop={crop}
+                                imageData={{disabled: false, locked: true}}
+                                src={img}
+                                onImageLoad={(image) => onImageLoad(image)}
+                                onCropChange={(crop) => onCropChange(crop)}
+                                onCropComplete={(crop, pixelCrop) => onCropComplete(crop, pixelCrop)}
+                                handleSave={() => handleSave()}
+                            />:""
+                        }
                     </Grid.Row>
                     <Grid.Row>
                         {showAssocited&&
