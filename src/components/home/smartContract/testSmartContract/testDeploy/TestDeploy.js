@@ -73,7 +73,7 @@ const TestDeploy = (props) => {
                             disabled label={{basic: true, content: 'Wei'}}
                         />
                     </Form.Field>
-                    <RenderArguments license={license}/>
+                    <RenderArguments fee={fee} name={name} license={license}/>
                 </Form>
             </div>
         );
