@@ -2,6 +2,7 @@ import React from 'react';
 import {useQuery} from "@apollo/client";
 import {getCompiler} from "../../../queries/queries";
 import {Client} from "../../../queries/Services";
+import {Form} from "semantic-ui-react";
 
 const GetVersion = (props) => {
 
@@ -15,8 +16,8 @@ const GetVersion = (props) => {
         return (
             <form className={'test-address'}>
                 <label>Compiler Version</label>
-                <select placeholder={'Select Verson'} className={'strock'}
-                        onChange={(event)=>props.onConstVersion(event)}>
+                <select placeholder={'Select Version'} className={'strock'}
+                        onChange={(event)=>props.onContractVersion(event)}>
                     <option value={'select'}>{props.value?props.value:"Select Compiler Version"}</option>
                     {data.getCompilerVersions.map(version=>{
                         return <option key={version} value={version} >{version}</option>

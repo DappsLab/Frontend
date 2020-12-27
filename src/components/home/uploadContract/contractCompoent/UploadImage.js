@@ -126,7 +126,7 @@ const UploadImage = (props) => {
                 </div>
             </Form.Field>
             <div>
-                {imgPath!==''&& <Avatar src={imgPath} style={{borderRadius:'0',width:'100px' ,height:'100px'}}/>}
+                {imgPath!==''&& <Avatar src={imgPath} style={{borderRadius:'0', marginBottom:'20px',width:'100px' ,height:'100px'}}/>}
             </div>
         </div>
     );

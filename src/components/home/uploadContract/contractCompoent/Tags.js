@@ -3,7 +3,7 @@ import {Form} from "semantic-ui-react";
 import '../../../../assets/scss/upload_smart_contract.css'
 
 const Tags = (props) => {
-    const {setTag,tags}=props
+    const {setTag,contract,tags,dapp}=props
     const removeTags=(i)=> {
         setTag(tags.filter((tag, index) => index !== i))
     }
@@ -30,7 +30,7 @@ const Tags = (props) => {
                 <input
                     type="text"
                     onKeyUp={event => event.key === "Enter" ? addTags(event) : null}
-                    placeholder="Press enter to add tags"
+                    placeholder={contract?contract.sourceContractName:"Press enter to add tags"}
                 />
             </div>
             <p className={"info"}>List of tags. Press Enter to add Tags</p>
