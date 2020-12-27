@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": "AAEA,aAAa;EACX,MAAM,EAAE,CAAC",
+"sources": ["upload_dapps.scss"],
 "names": [],
 "file": "upload_dapps.css"
 }

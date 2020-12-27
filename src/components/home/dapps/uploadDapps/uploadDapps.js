@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Layout from "../../../../hoc/Layout";
-import { nameReg, numericReg} from "../../../ui/Helpers";
+import {categoryOption, nameReg, numericReg} from "../../../ui/Helpers";
 import {useMutation} from "@apollo/client";
 import '../../../../assets/scss/edit_smart_contract.css'
 import {
@@ -18,10 +18,11 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowUp} from "@fortawesome/free-solid-svg-icons";
 import Avatar from "@material-ui/core/Avatar";
 import {withAlert} from "react-alert";
-
-import MEDitor from "@uiw/react-md-editor";
 import Uploader from "../../../ui/Uploader";
 import {Spinner2} from "../../../ui/Spinner";
+import ReactMarkdown from "react-markdown";
+import UploadImage from "../../uploadContract/contractCompoent/UploadImage";
+import Tags from "../../uploadContract/contractCompoent/Tags";
 
 const descriptionRGP=RegExp(/^[a-zA-Z][a-zA-Z\s,.]*$/);
 const UploadDapps = (props) => {
@@ -35,15 +36,7 @@ const UploadDapps = (props) => {
     const [sourcePath,setsourcePath]=useState("");
     const [shortCounter,setshortCounter]=useState(200);
     const [loading,setLoading]=useState(false);
-    const [error,setError]=useState("");
-    const  categoryOption=[
-        {label: "TOOLS",value: "TOOLS"},
-        {label: "FINANCIAL",value: "FINANCIAL"},
-        {label: "DOCUMENTS",value: "DOCUMENTS"},
-        {label: "UTILITY",value: "UTILITY"},
-        {label: "SOCIAL",value: "SOCIAL"},
-        {label: "ESCROW",value: "ESCROW"}
-    ]
+
     const alert=props.alert;
     const onInputChange=(event)=>{
         event.preventDefault();
@@ -66,36 +59,6 @@ const UploadDapps = (props) => {
                 break;
             default:
                 break;
-        }
-    }
-    const handleChangeImage=(event)=> {
-        const files = event.target.files
-        const currentFile = files[0];
-        if (currentFile){
-            UploadImage(currentFile);
-            event.target.value = '';
-        }
-    }
-    const [upload]=useMutation(imageUpload,{
-        client:Client,
-        onCompleted:data1 => {
-            setImgPath(data1.imageUploader);
-        },
-        onError:error1 => {
-            alert.error(error1.toString(),{timeout:2000})
-            console.log(error1.toString())
-        }
-    });
-    const UploadImage=(file)=>{
-        upload({variables: {file}});
-    }
-    const removeTags=(i)=> {
-        setTag(tags.filter((tag, index) => index !== i))
-    }
-    const addTags = event => {
-        if (event.target.value !== "") {
-            setTag( [...tags ,event.target.value]);
-            event.target.value = "";
         }
     }
     const [createDapp]=useMutation(createDapps,{
@@ -122,32 +85,37 @@ const UploadDapps = (props) => {
                 }
             }}],
     })
-    const [source]=useMutation(dappsFile,{
-        client:Client,
-        onCompleted:data1 => {
-            let finalCategoryArray=[];
+    const UploadDapp=()=>{
+        if (isEmpty()) {
+            setLoading(true)
+            let finalCategoryArray = [];
             for (let i = 0; i < category.length; i++) {
                 finalCategoryArray.push(category[i]['value']);
             }
-            setsourcePath(data1.dAppUploader);
-            console.log(sourcePath)
+
             createDapp({
-                variables:{
-                    name:cName.toString(),
-                    image:imgPath,
-                    tags:tags,
-                    category:finalCategoryArray,
-                    short:shortDescription.toString(),
-                    desc:longDescription.toString(),
-                    price:onePrice.toString(),
-                    zip:data1.dAppUploader
+                variables: {
+                    name: cName.toString(),
+                    image: imgPath,
+                    tags: tags,
+                    category: finalCategoryArray,
+                    short: shortDescription.toString(),
+                    desc: longDescription.toString(),
+                    price: onePrice.toString(),
+                    zip: sourcePath
                 }
-            }).catch(errors=>{
-                alert.error(errors.toString(),{timeout:2000})
+            }).catch(errors => {
+                alert.error(errors.toString(), {timeout: 2000})
             })
+        }
+    }
+    const [source]=useMutation(dappsFile,{
+        client:Client,
+        onCompleted:data1 => {
+           alert.success("Source Uploaded")
+            setsourcePath(data1.dAppUploader)
         },onError:error => {
         alert.error(error.toString(),{timeout:2000})
-        setLoading(false)
         },
         context: {
             headers: {
@@ -159,27 +127,21 @@ const UploadDapps = (props) => {
        if (cName.length>0&&imgPath.length>0&&tags.length>0,category.length>0,shortDescription.length>0,longDescription.length>0,onePrice.length>0){
             return true
         }else {
-            setError("all fields Required")
+            alert.error("all fields Required",{timeout:2000})
             return false
         }
     }
 
     const Submit=(file)=>{
-        if (isEmpty()){
-            setError("")
-            setLoading(true)
-            source({variables:{file}}).catch(err=>{
-                alert.error(err.toString(),{timeout:2000})
-            })
-        }
+        source({variables:{file}}).catch(err=>{
+            alert.error(err.toString(),{timeout:2000})
+        })
     }
     return (
         <Layout>
-            <section className={'edit_dapp'}>
-           <h2>Upload Dapps</h2>
+            <section className={'generalContainer edit_dapp'}>
+
                 {loading ? <Spinner2/> :
-                    <div>
-                        {error.length>0&&<span className={'errorMessage'}>{error}</span>}
                     <Grid stretched columns={2} verticalAlign={'middle'}>
                         <Grid.Column width={5}>
                             <Form>
@@ -211,50 +173,16 @@ const UploadDapps = (props) => {
                                         name={"onePrice"}
                                         onChange={(event) => onInputChange(event)}/>
                                 </Form.Field>
+                                <UploadImage imgPath={imgPath} setImgPath={setImgPath}/>
+                                <Tags tags={tags} setTag={setTag}/>
                                 <Form.Field>
-                                    <label>Image</label>
-                                    <div className="wrapper">
-                                        <div className="file-upload">
-                                            <input type="file" accept="image/jpeg,image/png"
-                                                   onChange={(event => handleChangeImage(event))} name={"img"}/>
-                                            <FontAwesomeIcon className={"arrowIcon"} icon={faArrowUp}/>
-                                        </div>
-                                        {imgPath.length > 0 &&
-                                        <Avatar
-                                            src={imgPath}
-                                            style={{
-                                                height: "120px",
-                                                borderRadius: 0,
-                                                marginLeft: "10px",
-                                                width: "120px"
-                                            }}/>
-                                        }
-                                    </div>
-                                </Form.Field>
-                                <Form.Field>
-                                    <label>Dapps Tag:</label>
-                                    <div className="tags-input">
-                                        <ul id="tags">
-                                            {tags.map((tag, index) => (
-                                                <li key={index} className="tag">
-                                                    <span className='tag-title'>{tag}</span>
-                                                    <span className='tag-close-icon'
-                                                          onClick={() => removeTags(index)}
-                                                    >x</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                        <input
-                                            type="text"
-                                            onKeyUp={event => event.key === "Enter" ? addTags(event) : null}
-                                            placeholder="Press enter to add tags"
-                                        />
-                                    </div>
-                                    <p className={"info"}>List of tags</p>
+                                    <label>Upload  Source</label>
+                                    <Uploader className={"file_upload"} type={'dapps'} onSubmit={(file) => Submit(file)}/>
                                 </Form.Field>
                             </Form>
                         </Grid.Column>
                         <Grid.Column width={11}>
+                            <h1>Upload Dapps</h1>
                             <div>
                                 <Header as={'h3'} floated={'left'}>
                                     Short Description
@@ -270,19 +198,22 @@ const UploadDapps = (props) => {
                                 </TextArea>
                             </Form>
                             <Header as={'h3'} floated={'left'}>
-                                Contract Description
+                                Dapp Description
                             </Header>
                             <Form>
-                                <div className="container">
-                                    <MEDitor height={200} value={longDescription}
-                                             onChange={(event) => setlongDescription(event)}/>
-                                    {/*<MEDitor.Markdown source={this.state.longDescription} />*/}
-                                </div>
+                                <Form.Field className={'longDesc flex'}>
+                                    <TextArea
+                                        value={longDescription} name={"longDescription"}
+                                        onChange={(event)=>setlongDescription(event.target.value)} className={"editor"} >
+                                    </TextArea>
+                                    <ReactMarkdown source={longDescription} className={'markdown'}/>
+                                </Form.Field>
+                                <Button disabled={sourcePath===''&&true} className={'update-btn'} onClick={()=>UploadDapp()}>Uplaod Dapp</Button>
                             </Form>
+
                         </Grid.Column>
                     </Grid>
-                    <Uploader className={"file_upload"} type={'dapps'} onSubmit={(file) => Submit(file)}/>
-                    </div>
+
                 }
             </section>
         </Layout>
