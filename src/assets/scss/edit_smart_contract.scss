@@ -9,6 +9,22 @@
   h3{
     color: #fff;
   }
+  .test-address label{
+    font-weight: bold;
+    font-size: 16px;
+    color: #0FBA87;
+  }
+  .compilebtn{
+    margin-top: 30px!important;
+    border: 2px solid #5754AB!important;
+    background: #5754AB!important;
+    border-radius: 30px;
+    color: #fff!important;
+    &:hover{
+      background: #090825!important;
+      color: #fff!important;
+    }
+  }
   .ui.grid {
     width: 70% !important;
     margin: 0 auto;
@@ -17,6 +33,7 @@
   }
   .dzu-dropzone{
     max-width: 386.27px!important;
+    margin: 0!important;
   }
   .header.right{
     font-size: 14px;
@@ -45,4 +62,5 @@
     color: #fff!important;
     opacity: 1!important;
   }
+
 }

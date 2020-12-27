@@ -3,10 +3,8 @@ import Layout from "../../../../hoc/Layout";
 import '../../../../assets/scss/edit_smart_contract.css'
 import { nameReg, numericReg} from "../../../ui/Helpers";
 import {Button, Form, Grid, Header, Input, TextArea} from "semantic-ui-react";
-import Select from "react-select";
-import makeAnimated from "react-select/animated/dist/react-select.esm";
 import {useMutation, useQuery} from "@apollo/client";
-import {contractById, editContract, imageUpload, me_Query, sourceUpload} from "../../../../queries/queries";
+import {contractById, editContract, testVersion, me_Query, sourceUpload} from "../../../../queries/queries";
 import {Spinner2} from "../../../ui/Spinner";
 import {Client} from "../../../../queries/Services";
 import {withAlert} from "react-alert";
@@ -15,7 +13,14 @@ import {GetSource} from "./GetSource";
 import GetVersion from "../GetVersion";
 import UploadImage from "../contractCompoent/UploadImage";
 import Tags from "../contractCompoent/Tags";
-import {ContractCategory} from "../contractCompoent/ContractFileds";
+import {
+    ContractCategory,
+    ContractName,
+    FuncationName,
+    OneLicense,
+    UnlimitedLicense
+} from "../contractCompoent/ContractFileds";
+import ReactMarkdown from "react-markdown";
 
 
 const descriptionRGP=RegExp(/^[a-zA-Z][a-zA-Z\s,.]*$/);
@@ -34,14 +39,6 @@ const EditSmartContract =(props)=> {
     const [longDescription,setlongDescription]=useState("");
     const [version,setVersion]=useState("");
     const [contract,setContract]=useState(null);
-    const  categoryOption=[
-        {label: "TOOLS",value: "TOOLS"},
-        {label: "FINANCIAL",value: "FINANCIAL"},
-        {label: "DOCUMENTS",value: "DOCUMENTS"},
-        {label: "UTILITY",value: "UTILITY"},
-        {label: "SOCIAL",value: "SOCIAL"},
-        {label: "ESCROW",value: "ESCROW"}
-    ]
     const {alert,user}=props;
 
 
@@ -50,22 +47,6 @@ const EditSmartContract =(props)=> {
         event.preventDefault();
         const {name,value}=event.target;
         switch (name){
-            case 'cName':
-                nameReg.test(value)&& setcName(value);
-                value===""&&setcName("");
-                break;
-            case 'fName':
-                nameReg.test(value)&& setfName(value);
-                value===""&&setfName("");
-                break;
-            case 'onePrice':
-                numericReg.test(value)&&setonePrice(value);
-                value===""&&setonePrice("");
-                break;
-            case 'uPrice':
-                numericReg.test(value)&&setuPrice(value);
-                value===""&&setuPrice("");
-                break;
             case "shortDescription":
                 if (value.length<=200) {
                     descriptionRGP.test(value)&&setshortCounter(200-value.length)
@@ -78,15 +59,6 @@ const EditSmartContract =(props)=> {
         }
     }
 
-    const removeTags=(i)=> {
-        setTag(tags.filter((tag, index) => index !== i))
-    }
-    const addTags = event => {
-        if (event.target.value !== "") {
-            setTag( [...tags ,event.target.value]);
-            event.target.value = "";
-        }
-    }
 
     const [source]=useMutation(sourceUpload,{
         client:Client,
@@ -159,13 +131,38 @@ const EditSmartContract =(props)=> {
             }
         }}]
     })
-    const onConstVersion=(event)=>{
+    const onContractVersion=(event)=>{
         const {value}=event.target;
         if (value==="select"){
             setVersion('')
         }else {
             setVersion(value)
         }
+    }
+    const [version_test]=useMutation(testVersion,{
+        client:Client,context: {
+            headers: {
+                authorization: localStorage.getItem("token")
+            }
+        },onCompleted:data1 => {
+            if (data1.testCompiledContractVersion.abi){
+                alert.success("Successful Compiled With this version")
+            }else {
+                alert.error(data1.testCompiledContractVersion.error,{timeout:3000})
+            }
+    },onError:error1 => {
+        alert.error(error1.toString(),{timeout:3000})
+    }
+    })
+    const onVersionTest=(contract)=>{
+        version_test({
+            variables:{
+                id:contract.id,
+                version:version
+            }
+        }).catch(err=>{
+            console.log(err.toString())
+        })
     }
     const RenderContractData=()=>{
         const {loading,error,data}=useQuery(contractById, {
@@ -177,6 +174,8 @@ const EditSmartContract =(props)=> {
                 }
             },onCompleted:data1 => {
                 setContract(data1.smartContractById)
+            },onError:error1 => {
+                alert.error(error1.toString(),{timeout:3000})
             }
         });
         if (loading) return <Spinner2/>
@@ -193,63 +192,22 @@ const EditSmartContract =(props)=> {
             <Grid stretched columns={2} verticalAlign={'middle'}>
                 <Grid.Column width={5}>
                     <Form>
-                        <Form.Field>
-                            <label>Contract Name</label>
-                            <Input
-                                type={'text'} placeholder={contract.contractName} name={'cName'} value={cName}
-                                onChange={(event) => onInputChange(event)}/>
-                        </Form.Field>
+                        <ContractName cName={cName} contract={contract} setcName={setcName}/>
                         <ContractCategory category={cetagory} contract={contract} setCategory={setCategory}/>
-                        {/*<Form.Field>*/}
-                        {/*    <label>Contract Category:</label>*/}
-                        {/*    <Select*/}
-                        {/*        components={makeAnimated()}*/}
-                        {/*        isMulti*/}
-                        {/*        size={'large'}*/}
-                        {/*        placeholder={contract.contractCategory}*/}
-                        {/*        value={cetagory}*/}
-                        {/*        onChange={(value) => setCategory(value)}*/}
-                        {/*        name="contractCategory"*/}
-                        {/*        options={categoryOption}*/}
-                        {/*        className="basic-multi-select"*/}
-                        {/*        classNamePrefix="select"*/}
-                        {/*    />*/}
-                        {/*</Form.Field>*/}
-                        <Form.Field>
-                            <label>Price per License</label>
-                            <Input
-                                fluid size={'large'} value={onePrice}
-                                label={{basic: true, content: 'Dapps'}}
-                                name={"onePrice"} placeholder={contract.singleLicensePrice}
-                                onChange={(event) => onInputChange(event)}/>
-                        </Form.Field>
-                        <Form.Field>
-                            <label>Unlimited License</label>
-                            <Input
-                                fluid size={'large'} value={uPrice}
-                                label={{basic: true, content: 'Dapps'}}
-                                name={"uPrice"} placeholder={contract.unlimitedLicensePrice}
-                                onChange={(event) => onInputChange(event)}/>
-                        </Form.Field>
-                        <Form.Field>
-                            <label>Contract Funcation Name</label>
-                            <Input
-                                type={'text'} placeholder={contract.sourceContractName} name={'fName'} value={fName}
-                                onChange={(event) => onInputChange(event)}
-                            />
-                            <p className={"info"}>Name must be same as contract Funcation name</p>
-                        </Form.Field>
-                        <UploadImage imgPath={imgPath} setImgPath={setImgPath} />
-                        <Tags tags={tags} setTag={setTag}/>
+                        <OneLicense onePrice={onePrice} contract={contract} setonePrice={setonePrice}/>
+                        <UnlimitedLicense uPrice={uPrice} contract={contract} setuPrice={setuPrice}/>
+                        <Tags tags={tags} setTag={setTag} contract={contract}/>
+                        <UploadImage imgPath={imgPath===''?contract.image:imgPath} setImgPath={setImgPath} />
+                        <FuncationName contract={contract} funcationName={fName} setfuncationName={setfName} />
                         <Form.Field>
                             <label>Upload New Source</label>
                             <Uploader type={'contract'} onSubmit={(file) => Submit(file)}/>
                         </Form.Field>
                     </Form>
-                    <GetVersion value={contract.compilerVersion} onConstVersion={(event) => onConstVersion(event)}/>
+                    <GetVersion value={contract.compilerVersion} onContractVersion={(event) => onContractVersion(event)}/>
                     {user.type==="ADMIN"&&
                         <div>
-                        <Button>Compile Test</Button>
+                        <Button onClick={()=>onVersionTest(contract)} className={'compilebtn'}>Compile Test</Button>
                         </div>
                     }
                 </Grid.Column>
@@ -275,18 +233,18 @@ const EditSmartContract =(props)=> {
                             Contract Description
                         </Header>
                         <Form>
-                            <TextArea
-                                value={longDescription} name={"longDescription"} placeholder={contract.description}
-                                onChange={(event) => setlongDescription(event.target.value)} className={"editor"}>
-                            </TextArea>
+                            <Form.Field className={'longDesc flex'}>
+                                <TextArea
+                                    value={longDescription} name={"longDescription"} placeholder={contract.description}
+                                    onChange={(event)=>setlongDescription(event.target.value)} className={"editor"} >
+                                </TextArea>
+                                <ReactMarkdown source={longDescription===""?contract.description:longDescription} className={'markdown'}/>
+                            </Form.Field>
                         </Form>
                     </div>
                     <h3>Contract Source</h3>
                     <GetSource id={contract.id}/>
-
-
-                    <Button onClick={() => HnadleSubmit(contract)} className={'update-btn'}>Update Smart
-                        Contract</Button>
+                    <Button onClick={() => HnadleSubmit(contract)} className={'update-btn'}>Update Smart Contract</Button>
                 </Grid.Column>
             </Grid>
             }

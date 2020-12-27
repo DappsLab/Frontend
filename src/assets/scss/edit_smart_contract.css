@@ -6,13 +6,27 @@
     z-index: 99; }
   .edit_contract h3, .edit_dapp h3 {
     color: #fff; }
+  .edit_contract .test-address label, .edit_dapp .test-address label {
+    font-weight: bold;
+    font-size: 16px;
+    color: #0FBA87; }
+  .edit_contract .compilebtn, .edit_dapp .compilebtn {
+    margin-top: 30px !important;
+    border: 2px solid #5754AB !important;
+    background: #5754AB !important;
+    border-radius: 30px;
+    color: #fff !important; }
+    .edit_contract .compilebtn:hover, .edit_dapp .compilebtn:hover {
+      background: #090825 !important;
+      color: #fff !important; }
   .edit_contract .ui.grid, .edit_dapp .ui.grid {
     width: 70% !important;
     margin: 0 auto;
     align-items: flex-start !important;
     color: #0F0E2e; }
   .edit_contract .dzu-dropzone, .edit_dapp .dzu-dropzone {
-    max-width: 386.27px !important; }
+    max-width: 386.27px !important;
+    margin: 0 !important; }
   .edit_contract .header.right, .edit_dapp .header.right {
     font-size: 14px;
     color: #0FBA87; }
