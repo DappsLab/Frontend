@@ -217,3 +217,38 @@
     padding: 0 30px!important;
   }
 }
+.two-fa{
+h1{
+  font-size: 40px;
+}
+  label{
+    font-size: 20px;
+    margin-right: 20px;
+  }
+  .MuiSwitch-thumb{
+    color: #0FBA87;
+  }
+  .MuiSwitch-track{
+    background: #fff;
+  }
+  .MuiSwitch-colorSecondary.Mui-checked + .MuiSwitch-track{
+    background: #8F4114;
+  }
+  .QR{
+
+    h3{
+      color: #000;
+      font-size: 30px;
+    }
+    margin-top: 30px;
+    border-radius: 10px;
+    text-align: center;
+    padding: 30px;
+    background: #fff;
+    width: 250px;
+    p{
+      font-size: 12px;
+      color: #000;
+    }
+  }
+}

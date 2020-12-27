@@ -169,4 +169,29 @@
     font-size: 16px !important;
     padding: 0 30px !important; }
 
+.two-fa h1 {
+  font-size: 40px; }
+.two-fa label {
+  font-size: 20px;
+  margin-right: 20px; }
+.two-fa .MuiSwitch-thumb {
+  color: #0FBA87; }
+.two-fa .MuiSwitch-track {
+  background: #fff; }
+.two-fa .MuiSwitch-colorSecondary.Mui-checked + .MuiSwitch-track {
+  background: #8F4114; }
+.two-fa .QR {
+  margin-top: 30px;
+  border-radius: 10px;
+  text-align: center;
+  padding: 30px;
+  background: #fff;
+  width: 250px; }
+  .two-fa .QR h3 {
+    color: #000;
+    font-size: 30px; }
+  .two-fa .QR p {
+    font-size: 12px;
+    color: #000; }
+
 /*# sourceMappingURL=account_layout.css.map */
