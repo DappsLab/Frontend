@@ -4,34 +4,28 @@ import {Divider} from "@material-ui/core";
 import Fade from "react-reveal/Fade";
 import { Form, Grid, Input, TextArea, Header} from "semantic-ui-react"
 import Button from "@material-ui/core/Button";
-import Avatar from "@material-ui/core/Avatar";
-import CustomizedDialogs from "../../ui/DialogBox";
 import {flowRight as compose} from "lodash";
 import {
-    createNewContract,
-    imageUpload, me_Query,
+    createNewContract, me_Query,
     sourceUpload
 } from "../../../queries/queries";
 import Layout from "../../../hoc/Layout";
 import Uploader from "../../ui/Uploader";
-import Select from 'react-select';
-import makeAnimated from 'react-select/animated'
 import {withAlert} from "react-alert";
-import {Spinner, Spinner2} from "../../ui/Spinner";
+import { Spinner2} from "../../ui/Spinner";
 import ReactMarkdown from 'react-markdown'
 import {useMutation} from "@apollo/client";
 import {Client} from "../../../queries/Services";
-import {acceptedImageTypesArray, categoryOption, nameReg, numericReg} from "../../ui/Helpers";
 import GetVersion from "./GetVersion";
-import UploadImage from "../contractCompoent/UploadImage";
-import Tags from "../contractCompoent/Tags";
+import UploadImage from "./contractCompoent/UploadImage";
+import Tags from "./contractCompoent/Tags";
 import {
     ContractCategory,
     ContractName,
     FuncationName,
     OneLicense,
     UnlimitedLicense
-} from "../contractCompoent/ContractFileds";
+} from "./contractCompoent/ContractFileds";
 
 const descriptionRGP=RegExp(/^[a-zA-Z][a-zA-Z\s,.]*$/);
 
@@ -41,9 +35,7 @@ const UploadSmartContract =(props)=>{
     const [onePrice,setonePrice]=useState('');
     const [uPrice,setuPrice]=useState("");
     const [active,setActive]=useState(true);
-
     const [imgPath,setImgPath]=useState("");
-
     const [shortCounter,setshortCounter]=useState(200);
     const [finalCategoryArray,setFinalCategoryArray]=useState([]);
     const [tags,setTag]=useState([]);

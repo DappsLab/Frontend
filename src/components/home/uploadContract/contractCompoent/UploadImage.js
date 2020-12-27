@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {Form} from 'semantic-ui-react'
-import CustomizedDialogs from "../../ui/DialogBox";
-import {acceptedImageTypesArray} from "../../ui/Helpers";
+import CustomizedDialogs from "../../../ui/DialogBox";
+import {acceptedImageTypesArray} from "../../../ui/Helpers";
 import {useMutation} from "@apollo/client";
-import {imageUpload} from "../../../queries/queries";
-import {Client} from "../../../queries/Services";
+import {imageUpload} from "../../../../queries/queries";
+import {Client} from "../../../../queries/Services";
 import {withAlert} from "react-alert";
 import Avatar from "@material-ui/core/Avatar";
 

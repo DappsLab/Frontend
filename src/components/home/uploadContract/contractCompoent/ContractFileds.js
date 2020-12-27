@@ -1,9 +1,9 @@
 import React from 'react';
 import {Form, Input} from "semantic-ui-react";
-import {FormValidation} from "../../ui/mise";
+import {FormValidation} from "../../../ui/mise";
 import Select from "react-select";
 import makeAnimated from "react-select/animated/dist/react-select.esm";
-import {categoryOption} from "../../ui/Helpers";
+import {categoryOption} from "../../../ui/Helpers";
 
 export const ContractName = (props) => {
     const {cName,setcName}=props
@@ -46,7 +46,7 @@ export const UnlimitedLicense=(props)=>{
     )
 }
 export const ContractCategory=(props)=>{
-    const {category,setCategory}=props
+    const {category,setCategory,contract}=props
     return (
         <Form.Field>
             <label>Contract Category:</label>
@@ -55,6 +55,7 @@ export const ContractCategory=(props)=>{
                 isMulti
                 size={'large'}
                 value={category}
+                placeholder={contract&&contract.contractCategory}
                 onChange={(value)=>{setCategory(value)}}
                 name="contractCategory"
                 options={categoryOption}

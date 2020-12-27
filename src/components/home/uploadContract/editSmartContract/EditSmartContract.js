@@ -13,8 +13,9 @@ import {withAlert} from "react-alert";
 import Uploader from "../../../ui/Uploader";
 import {GetSource} from "./GetSource";
 import GetVersion from "../GetVersion";
-import UploadImage from "../../contractCompoent/UploadImage";
-import Tags from "../../contractCompoent/Tags";
+import UploadImage from "../contractCompoent/UploadImage";
+import Tags from "../contractCompoent/Tags";
+import {ContractCategory} from "../contractCompoent/ContractFileds";
 
 
 const descriptionRGP=RegExp(/^[a-zA-Z][a-zA-Z\s,.]*$/);
@@ -198,21 +199,22 @@ const EditSmartContract =(props)=> {
                                 type={'text'} placeholder={contract.contractName} name={'cName'} value={cName}
                                 onChange={(event) => onInputChange(event)}/>
                         </Form.Field>
-                        <Form.Field>
-                            <label>Contract Category:</label>
-                            <Select
-                                components={makeAnimated()}
-                                isMulti
-                                size={'large'}
-                                placeholder={contract.contractCategory}
-                                value={cetagory}
-                                onChange={(value) => setCategory(value)}
-                                name="contractCategory"
-                                options={categoryOption}
-                                className="basic-multi-select"
-                                classNamePrefix="select"
-                            />
-                        </Form.Field>
+                        <ContractCategory category={cetagory} contract={contract} setCategory={setCategory}/>
+                        {/*<Form.Field>*/}
+                        {/*    <label>Contract Category:</label>*/}
+                        {/*    <Select*/}
+                        {/*        components={makeAnimated()}*/}
+                        {/*        isMulti*/}
+                        {/*        size={'large'}*/}
+                        {/*        placeholder={contract.contractCategory}*/}
+                        {/*        value={cetagory}*/}
+                        {/*        onChange={(value) => setCategory(value)}*/}
+                        {/*        name="contractCategory"*/}
+                        {/*        options={categoryOption}*/}
+                        {/*        className="basic-multi-select"*/}
+                        {/*        classNamePrefix="select"*/}
+                        {/*    />*/}
+                        {/*</Form.Field>*/}
                         <Form.Field>
                             <label>Price per License</label>
                             <Input

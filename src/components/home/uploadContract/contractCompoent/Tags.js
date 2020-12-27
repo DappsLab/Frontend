@@ -1,6 +1,6 @@
 import React from 'react';
 import {Form} from "semantic-ui-react";
-import '../../../assets/scss/upload_smart_contract.css'
+import '../../../../assets/scss/upload_smart_contract.css'
 
 const Tags = (props) => {
     const {setTag,tags}=props
