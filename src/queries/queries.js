@@ -650,3 +650,13 @@ export const getCompiler=gql`
    query   {
    getCompilerVersions
 }`
+
+export const testVersion=gql`
+mutation ($id:ID!,$version:String!) {
+  testCompiledContractVersion(smartContractId: $id, version: $version) {
+    abi
+    error
+  }
+}
+
+`
