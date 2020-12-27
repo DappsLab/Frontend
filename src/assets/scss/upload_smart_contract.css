@@ -19,14 +19,21 @@
     background-color: #0FBA87 !important; }
   .generalContainer .css-1rhbuit-multiValue:nth-child(2) {
     background-color: #0F0E2e !important; }
+  .generalContainer h1 {
+    font-size: 50px;
+    margin-bottom: 0;
+    color: #fff;
+    text-align: left; }
   .generalContainer .ui.form input[type=text]:focus {
     color: #fff; }
-  .generalContainer .ui.form .field .ui.input input[type=text], .generalContainer select, .generalContainer .ui.form textarea, .generalContainer .tags-input, .generalContainer .tags-input input[type=text], .generalContainer .select__control {
+  .generalContainer .ui.form .field .ui.input input[type=text], .generalContainer .test-address select, .generalContainer select, .generalContainer .ui.form textarea, .generalContainer .tags-input, .generalContainer .tags-input input[type=text], .generalContainer .select__control {
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
     color: #fff;
     background: #0F0E2e !important;
     border-radius: 10px !important; }
-  .generalContainer .select__control {
+  .generalContainer .longDesc textarea {
+    max-width: 50%; }
+  .generalContainer .select__control, .generalContainer .test-address select {
     min-height: 45px; }
   .generalContainer .ui.form .field .ui.input input[type=text] {
     height: 45px; }
@@ -35,6 +42,14 @@
   .generalContainer .ui.labeled.input:not([class*="corner labeled"]) .label:first-child + input {
     border-top-left-radius: 0 !important;
     border-bottom-left-radius: 0 !important; }
+  .generalContainer .label_inputs {
+    text-align: left;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0;
+    padding: 0 0 10px 0; }
+  .generalContainer .input_box {
+    margin-bottom: 20px; }
   .generalContainer #tags .tag {
     background-color: #5754AB; }
     .generalContainer #tags .tag .tag-close-icon {
@@ -57,11 +72,6 @@
     margin: 20px; }
     .generalContainer .publishbtn:hover {
       background: #0F0E2e !important; }
-  .generalContainer h1 {
-    font-size: 50px;
-    margin-bottom: 0;
-    color: #fff;
-    text-align: left; }
   .generalContainer .guiding {
     display: flex;
     margin: 3em 0; }
@@ -91,8 +101,6 @@
     max-height: 200px !important;
     background: #0F0E2e !important;
     color: #fff !important; }
-  .generalRight .longDesc textarea {
-    max-width: 50%; }
   .generalRight .ui.floated.header {
     padding-bottom: 20px; }
   .generalRight .ui.form {
@@ -106,14 +114,6 @@
   color: #96A3B6;
   text-align: left; }
 
-.generalLeft .label_inputs {
-  text-align: left;
-  font-weight: bold;
-  font-size: 16px;
-  margin: 0;
-  padding: 0 0 10px 0; }
-.generalLeft .input_box {
-  margin-bottom: 20px; }
 .generalLeft .ui.form .field {
   margin-bottom: 20px; }
 

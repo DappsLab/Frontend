@@ -6,12 +6,12 @@ import makeAnimated from "react-select/animated/dist/react-select.esm";
 import {categoryOption} from "../../../ui/Helpers";
 
 export const ContractName = (props) => {
-    const {cName,setcName}=props
+    const {cName,contract,setcName}=props
     return (
         <Form.Field>
             <label>Contract Name:</label>
             <Input
-                type={'text'}
+                type={'text'} placeholder={contract&&contract.contractName}
                 value={cName} name={"cName"}
                 onChange={(event,{value,name})=>setcName(FormValidation(cName,value,name))}/>
             <p className={"info"}>This will show in the list as the title</p>
@@ -19,28 +19,28 @@ export const ContractName = (props) => {
     );
 };
 export const OneLicense=(props)=>{
-    const {onePrice,setonePrice}=props
+    const {onePrice,contract,setonePrice}=props
     return (
         <Form.Field>
             <label >Price per License</label>
             <Input
                 fluid size={'large'} value={onePrice}
                 label={{ basic: true, content: 'Dapps' }}
-                name={"onePrice"}
+                name={"onePrice"} placeholder={contract&&contract.singleLicensePrice}
                 onChange={(event,{value,name})=>setonePrice(FormValidation(onePrice,value,name))}/>
         </Form.Field>
     )
 }
 
 export const UnlimitedLicense=(props)=>{
-    const {uPrice,setuPrice}=props
+    const {uPrice,contract,setuPrice}=props
     return (
         <Form.Field>
             <label>Unlimited License</label>
             <Input
                 fluid size={'large'} value={uPrice}
                 label={{ basic: true, content: 'Dapps' }}
-                name={"uPrice"}
+                name={"uPrice"} placeholder={contract&&contract.unlimitedLicensePrice}
                 onChange={(event,{value,name})=>setuPrice(FormValidation(uPrice,value,name))}/>
         </Form.Field>
     )
@@ -67,14 +67,14 @@ export const ContractCategory=(props)=>{
     )
 }
 export const FuncationName=(props)=>{
-    const {funcationName,setfuncationName}=props
+    const {funcationName,contract,setfuncationName}=props
     return (
         <Form.Field>
             <label>Contract Funcation Name</label>
-            <Form.Input
+            <Input
                 fluid type={'text'} name={'funcationName'} value={funcationName}
+                placeholder={contract&&contract.sourceContractName}
                 onChange={(event,{value,name})=>setfuncationName(value)}/>
-            />
             <p className={'info'}>Enter the Exact  Name of funcation Which you used in Contract </p>
         </Form.Field>
     )

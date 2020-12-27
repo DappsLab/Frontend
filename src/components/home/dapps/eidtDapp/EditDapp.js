@@ -11,9 +11,11 @@ import makeAnimated from "react-select/animated/dist/react-select.esm";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowUp} from "@fortawesome/free-solid-svg-icons";
 import Avatar from "@material-ui/core/Avatar";
-import {nameReg, numericReg} from "../../../ui/Helpers";
+import {categoryOption, nameReg, numericReg} from "../../../ui/Helpers";
 import {withAlert} from "react-alert";
 import Uploader from "../../../ui/Uploader";
+import ReactMarkdown from "react-markdown";
+import UploadImage from "../../uploadContract/contractCompoent/UploadImage";
 
 
 const descriptionRGP=RegExp(/^[a-zA-Z][a-zA-Z\s,.]*$/);
@@ -28,14 +30,6 @@ const EditDapp = (props) => {
     const [shortDescription,setshortDescription]=useState("");
     const [longDescription,setlongDescription]=useState("");
     const [filesource,setFileSource]=useState("");
-    const  categoryOption=[
-        {label: "TOOLS",value: "TOOLS"},
-        {label: "FINANCIAL",value: "FINANCIAL"},
-        {label: "DOCUMENTS",value: "DOCUMENTS"},
-        {label: "UTILITY",value: "UTILITY"},
-        {label: "SOCIAL",value: "SOCIAL"},
-        {label: "ESCROW",value: "ESCROW"}
-    ]
     const alert=props.alert;
     const RenderDappData=()=> {
         const {loading, error, data} = useQuery(dappsbyid, {
@@ -84,16 +78,17 @@ const EditDapp = (props) => {
                                name={"onePrice"} placeholder={dapp.singleLicensePrice}
                                onChange={(event)=>onInputChange(event)}/>
                        </Form.Field>
-                       <Form.Field>
-                           <label>Image</label>
-                           <div className="wrapper">
-                               <div className="file-upload">
-                                   <input type="file"  accept="image/jpeg,image/png" onChange={(event => handleChangeImage(event))} name={"img"}/>
-                                   <FontAwesomeIcon className={"arrowIcon"} icon={faArrowUp}/>
-                               </div>
-                               <Avatar src={imgPath===""? dapp.image:imgPath} style={{height:"120px",borderRadius:0,marginLeft:"10px" ,width:"120px"}} />
-                           </div>
-                       </Form.Field>
+                       <UploadImage imgPath={imgPath===''?dapp.image:imgPath} setImgPath={setImgPath}/>
+                       {/*<Form.Field>*/}
+                       {/*    <label>Image</label>*/}
+                       {/*    <div className="wrapper">*/}
+                       {/*        <div className="file-upload">*/}
+                       {/*            <input type="file"  accept="image/jpeg,image/png" onChange={(event => handleChangeImage(event))} name={"img"}/>*/}
+                       {/*            <FontAwesomeIcon className={"arrowIcon"} icon={faArrowUp}/>*/}
+                       {/*        </div>*/}
+                       {/*        <Avatar src={imgPath===""? dapp.image:imgPath} style={{height:"120px",borderRadius:0,marginLeft:"10px" ,width:"120px"}} />*/}
+                       {/*    </div>*/}
+                       {/*</Form.Field>*/}
                        <Form.Field>
                            <label>Tag:</label>
                            <div className="tags-input">
@@ -115,9 +110,14 @@ const EditDapp = (props) => {
                            </div>
                            <p className={"info"}>List of tags.Press enter to add tags</p>
                        </Form.Field>
+                       <Form.Field>
+                           <label>Upload  Source</label>
+                           <Uploader className={"file_upload"} type={'dapps'} onSubmit={(file) => Submit(file)}/>
+                       </Form.Field>
                    </Form>
                </Grid.Column>
                <Grid.Column width={11}>
+                   <h1>Edit Dapp</h1>
                    <div>
                        <Header as={'h3'} floated={'left'}>
                            Short Description
@@ -137,21 +137,16 @@ const EditDapp = (props) => {
                            Dapp Description
                        </Header>
                        <Form>
-                           {/*<div className="container">*/}
-                           {/*    <MEDitor height={200} value={longDescription} onChange={(event)=>setlongDescription(event)} />*/}
-                           {/*    /!*<MEDitor.Markdown source={this.state.longDescription} />*!/*/}
-                           {/*</div>*/}
-                           <TextArea
-                               value={longDescription} name={"longDescription"} placeholder={dapp.description}
-                               onChange={(event)=>setlongDescription(event.target.value)}  className={"editor"} >
-                           </TextArea>
+                           <Form.Field className={'longDesc flex'}>
+                               <TextArea
+                                   value={longDescription} name={"longDescription"}
+                                   onChange={(event)=>setlongDescription(event.target.value)} className={"editor"} >
+                               </TextArea>
+                               <ReactMarkdown source={longDescription} className={'markdown'}/>
+                           </Form.Field>
+                           <Button onClick={()=>OnUpdate(dapp)}  className={'update-btn'}>Update Dapp</Button>
                        </Form>
-
                    </div>
-                   <h3>Upload new FIle</h3>
-                   <Uploader className={"file_upload"} type={'dapps'} onSubmit={(file) => Submit(file)}/>
-
-                   <Button onClick={()=>OnUpdate(dapp)}  className={'update-btn'}>Update Dapp</Button>
                </Grid.Column>
            </Grid>
        }
@@ -244,25 +239,25 @@ const EditDapp = (props) => {
                 break;
         }
     }
-    const handleChangeImage=(event)=> {
-        const files = event.target.files
-        const currentFile = files[0];
-        if (currentFile){
-            UploadImage(currentFile);
-            event.target.value = '';
-        }
-    }
-    const [upload]=useMutation(imageUpload,{
-        client:Client,
-        onCompleted:data1 => {
-            setImgPath(data1.imageUploader);
-        },
-    });
-    const UploadImage=(file)=>{
-        upload({variables: {file}}).catch(erro=>{
-            alert.error(erro.toString(),{timeout:2000})
-        });
-    }
+    // const handleChangeImage=(event)=> {
+    //     const files = event.target.files
+    //     const currentFile = files[0];
+    //     if (currentFile){
+    //         UploadImage(currentFile);
+    //         event.target.value = '';
+    //     }
+    // }
+    // const [upload]=useMutation(imageUpload,{
+    //     client:Client,
+    //     onCompleted:data1 => {
+    //         setImgPath(data1.imageUploader);
+    //     },
+    // });
+    // const UploadImage=(file)=>{
+    //     upload({variables: {file}}).catch(erro=>{
+    //         alert.error(erro.toString(),{timeout:2000})
+    //     });
+    // }
     const removeTags=(i)=> {
         setTag(tags.filter((tag, index) => index !== i))
     }
@@ -274,7 +269,7 @@ const EditDapp = (props) => {
     }
     return (
         <Layout>
-            <section className={'edit_dapp'}>
+            <section className={'generalContainer edit_dapp'}>
                 <h2>Edit Dapp</h2>
                 {RenderDappData()}
             </section>

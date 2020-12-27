@@ -28,17 +28,28 @@
   .css-1rhbuit-multiValue:nth-child(2) {
     background-color: #0F0E2e!important;
   }
+  h1{
+    font-size: 50px;
+    margin-bottom: 0;
+    color: #fff;
+    text-align: left;
+  }
   .ui.form input[type=text]:focus{
     color: #fff;
   }
-  .ui.form .field .ui.input input[type=text],select,.ui.form textarea,.tags-input,.tags-input input[type=text],.select__control{
+  .ui.form .field .ui.input input[type=text],.test-address select,select,.ui.form textarea,.tags-input,.tags-input input[type=text],.select__control{
     border: 1px solid rgba(255,255,255,.15)!important;
     color: #fff;
     background: #0F0E2e!important;
     border-radius: 10px!important;
 
   }
-  .select__control{
+  .longDesc{
+    textarea{
+      max-width: 50%;
+    }
+  }
+  .select__control,.test-address select{
     min-height: 45px;
 
   }
@@ -52,7 +63,16 @@
     border-top-left-radius:0 !important;
     border-bottom-left-radius: 0!important;
   }
-
+  .label_inputs {
+    text-align: left;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0;
+    padding: 0 0 10px 0;
+  }
+  .input_box {
+    margin-bottom: 20px;
+  }
 
   #tags {
 
@@ -85,12 +105,7 @@
       background: #0F0E2e!important;
     }
   }
-  h1{
-    font-size: 50px;
-    margin-bottom: 0;
-    color: #fff;
-    text-align: left;
-  }
+
   .guiding{
     display: flex;
     margin: 3em 0;
@@ -131,11 +146,7 @@
     background: #0F0E2e!important;
     color: #fff!important;
   }
-  .longDesc{
-    textarea{
-      max-width: 50%;
-    }
-  }
+
   .ui.floated.header{
     padding-bottom: 20px;
   }
@@ -155,16 +166,7 @@
   text-align: left;
 }
 .generalLeft {
-  .label_inputs {
-    text-align: left;
-    font-weight: bold;
-    font-size: 16px;
-    margin: 0;
-    padding: 0 0 10px 0;
-  }
-  .input_box {
-    margin-bottom: 20px;
-  }
+
 
 
   .ui.form .field{
