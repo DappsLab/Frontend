@@ -82,8 +82,8 @@ const TwoFA =(props)=> {
         //     const user = data.me
 
             return (
-                <div>
-                    <h2>Two-Factor Authentication</h2>
+                <div className={'two-fa'}>
+                    <h1>Two-Factor Authentication</h1>
                     <label>Enable your Two-Factor Authentication</label>
                     <Switch
                         checked={user.twoFactorEnabled}
@@ -92,6 +92,7 @@ const TwoFA =(props)=> {
                         inputProps={{'aria-label': 'secondary checkbox'}}
                     />
                     {user.twoFactorEnabled && <div className={" QR"}>
+                        <h3>Scan QR</h3>
                         <img src={user.twoFactorCode} alt={""}/>
                         <p>Open the Google Authenticator app and scan this QR code</p>
                     </div>
