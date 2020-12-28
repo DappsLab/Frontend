@@ -4,7 +4,7 @@ import {getTestABI} from "../../../../../queries/queries";
 import {Client} from "../../../../../queries/Services";
 import {Spinner2} from "../../../../ui/Spinner";
 
-const GetAbi = (props) => {
+const TestGetABI = (props) => {
     const {data,error,loading}=useQuery(getTestABI,{
         client:Client,
         context:{
@@ -29,4 +29,4 @@ const GetAbi = (props) => {
     return <div>Nont found</div>
 };
 
-export default GetAbi;
+export default TestGetABI;
