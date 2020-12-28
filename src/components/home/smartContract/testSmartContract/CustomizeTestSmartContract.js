@@ -116,7 +116,7 @@ const TestCustomizeSmartContract = (props) => {
         return <div>Not found Retry</div>
     }
     return (
-        <CompileLayout>
+        <CompileLayout type={'test'}>
             {RenderData()}
         </CompileLayout>
     )

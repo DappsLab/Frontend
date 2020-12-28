@@ -1,7 +1,6 @@
 import React, { useState} from 'react';
 import "../../../../assets/scss/compile.css"
-import {Button, Container, Divider, Form, Item, Segment} from "semantic-ui-react";
-import Layout from "../../../../hoc/Layout";
+import {Button, Divider, Form, Item, Segment} from "semantic-ui-react";
 import {flowRight as compose} from "lodash";
 import {compile, licenseById, me_Query} from "../../../../queries/queries";
 import {Spinner2} from "../../../ui/Spinner";
@@ -14,12 +13,10 @@ import {Client} from "../../../../queries/Services";
 import CompileLayout from "../../../../hoc/CompileLayout";
 const alphabet=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
 
-const Compile =(props)=> {
-    const [licenses, setLicenses] = useState(null);
+const CustomizedSmartContract =(props)=> {
+    const [license, setLicenses] = useState(null);
     const [name, setName] = useState("");
     const [Loading,setLoading]=useState(false);
-
-    const [cloading, setCLoading] = useState(false);
     const alert = props.alert;
 
     const handleChange = (event) => {
@@ -35,7 +32,7 @@ const Compile =(props)=> {
         client: Client,
         onCompleted: data => {
 
-            setCLoading(false)
+            setLoading(false)
         },
         onError: error1 => {
             alert.error(error1.toString(), {timeout: 2000})
@@ -60,14 +57,14 @@ const Compile =(props)=> {
                 return "violet";
         }
     }
-    const onCompiled = (liecense) => {
-        setCLoading(true)
+    const onCompiled = () => {
+        setLoading(true)
         newCompile({
             variables: {
                 name: name.toString(),
-                sId: liecense.order.smartContract.id,
-                pId: liecense.purchasedContract.id,
-                lId: liecense.id
+                sId: license.order.smartContract.id,
+                pId: license.purchasedContract.id,
+                lId: license.id
             },
             context: {
                 headers: {
@@ -83,10 +80,10 @@ const Compile =(props)=> {
             variables: {id: props.match.params.id},
             client: Client,
             onCompleted: data1 => {
-                if (data1.licenseById.used) {
-
-                }
                 setLicenses(data1.licenseById)
+                if (data1.licenseById.used){
+                    props.history.push(`/compiled_smart_contract/${data1.licenseById.id}`)
+                }
             }
         })
         if (loading) return <Spinner2/>
@@ -94,7 +91,7 @@ const Compile =(props)=> {
         if (error) return <div>{error.toString()}</div>
         if (data) {
             const liecense = data.licenseById;
-            const contract = license.testOrder.smartContract;
+            const contract = liecense.order.smartContract;
             return (
                 <div className={"customize"}>
                     <h2>Customize your contract</h2>
@@ -132,7 +129,7 @@ const Compile =(props)=> {
                         <Form.Field>
                             <label>Name of this compilation</label>
                             <Form.Input
-                                fluid onChange={(event) => props.change(event)}
+                                fluid onChange={(event) => handleChange(event)}
                                 type={'text'} value={props.name}
                             />
                             <p>This will help you differentiate it between multiple compilation</p>
@@ -156,4 +153,4 @@ const Compile =(props)=> {
         </CompileLayout>
     )
 }
-export default compose(connect(null,{setUser}),withAlert())(Compile);
+export default compose(connect(null,{setUser}),withAlert())(CustomizedSmartContract);
