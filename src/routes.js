@@ -31,7 +31,7 @@ import {setUser} from "./actions/Actions";
 import OrderContracts from "./components/user/dashboard/orderContract/OrderContracts";
 import ExplorerResult from "./components/block_explorer/explorerSearch/ExplorerResult";
 import EditSmartContract from "./components/home/uploadContract/editSmartContract/EditSmartContract";
-import Compile from "./components/home/smartContract/compileSmartContract/Compile";
+import Compile from "./components/home/smartContract/compileSmartContract/CustomizedSmartContract";
 import UploadDapps from "./components/home/dapps/uploadDapps/uploadDapps";
 import DappsDetails from "./components/home/dapps/detailDApps/DappsDetails";
 import EditDapp from "./components/home/dapps/eidtDapp/EditDapp";
@@ -51,6 +51,9 @@ import KYC from "./components/user/myAccount/kycSetting/KYC";
 import WithdrawDeposite from "./components/user/myAccount/WithdrawDeposite";
 import Transactions from "./components/user/myAccount/Transactions";
 import TwoFA from "./components/user/myAccount/TwoFA";
+import CustomizedSmartContract from "./components/home/smartContract/compileSmartContract/CustomizedSmartContract";
+import CompileResult from "./components/home/smartContract/compileSmartContract/CompileResult";
+import DeploySmartContract from "./components/home/smartContract/deploySmartContract/DeploySmartContract";
 
 
 const Routes =(props)=>{
@@ -83,8 +86,10 @@ const Routes =(props)=>{
               <PrivateRoute {...props} path={"/request_smart_contract"} exact component={RequestSmartContract}/>
               <PrivateRoute {...props} path={"/delete_user"} exact component={DeleteUser}/>
               <PrivateRoute {...props} path={"/edit_samrt_contract/:id"} exact component={EditSmartContract}/>
-              <PrivateRoute {...props} path={"/compile/:id"} exact component={Compile}/>
-              <PrivateRoute {...props} path={"/customize_test_smart_contract/:id"} exact component={TestCustomizeSmartContract}/>
+             <PrivateRoute {...props} path={"/customize_smart_contract/:id"} exact component={CustomizedSmartContract}/>
+             <PrivateRoute {...props} path={"/compiled_smart_contract/:id"} exact component={CompileResult}/>
+             <PrivateRoute {...props} path={"/deploy_smart_contract/:id"} exact component={DeploySmartContract}/>
+             <PrivateRoute {...props} path={"/customize_test_smart_contract/:id"} exact component={TestCustomizeSmartContract}/>
               <PrivateRoute {...props} path={"/compiled_test_smart_contract/:id"} exact component={TestCompileResult}/>
               <PrivateRoute {...props} path={"/deploy_test_smart_contract/:id"} exact component={TestDeploy}/>
               <PrivateRoute {...props} path={"/upload_samrt_contract"} exact component={UploadSmartContract}/>

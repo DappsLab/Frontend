@@ -1,7 +1,7 @@
 import React from "react";
 import {CalendarContainer} from "react-datepicker";
 
-export const alphanumaric=RegExp(/^[a-zA-Z][a-zA-Z0-9\s]*$/);
+export const alphanumaric=RegExp(/^[a-zA-Z0-9][a-zA-Z0-9\s]*$/);
 export const nameReg=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
 export const numericReg=RegExp(/^[0-9]*$/);
 export const phoneNumber=RegExp(/^[0-9+]*$/);
@@ -156,3 +156,20 @@ export  const  categoryOption=[
     {label: "SOCIAL",value: "SOCIAL"},
     {label: "ESCROW",value: "ESCROW"}
 ]
+export function getObjects(obj, key, val) {
+    let objects = [];
+    for (const i in obj) {
+        if (!obj.hasOwnProperty(i)) continue;
+        if (typeof obj[i] == 'object') {
+            objects = objects.concat(getObjects(obj[i], key, val));
+        } else
+        if (i === key && obj[i] === val || i === key && val === '') {
+            objects.push(obj);
+        } else if (obj[i] === val && key === ''){
+            if (objects.lastIndexOf(obj) === -1){
+                objects.push(obj);
+            }
+        }
+    }
+    return objects;
+}
