@@ -11,7 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
 const UpdateKyc = (props) => {
-    const [type,setType]=useState('text')
+
     const [street,setStreet]=useState('')
     const [building,setBuilding]=useState('')
     const [postalCode,setPostalCode]=useState('')
@@ -23,7 +23,7 @@ const UpdateKyc = (props) => {
     const {alert,fetch,user}=props
     const [date, setDate] = useState();
 
-    console.log(user.kyc)
+
     const [updatekyc]=useMutation(kycMutation,{
         client:Client,context: {
             headers: {
@@ -33,22 +33,22 @@ const UpdateKyc = (props) => {
             alert.error(error.toString(),{timeout:5000})
         },onCompleted:data => {
             fetch()
+            alert.success("Update Successsfully" ,{timeout:3000})
         }
     })
     const handlSubmit=()=>{
-
         if(handleEmpty()) {
             updatekyc({
                 variables: {
                     id: user.id,
                     mobile: mobile!==''?mobile:user.kyc.mobile,
-                    birth: dateOfBirth!==''?mobile:user.kyc.birthDate,
-                    nationality: nationality!==''?mobile:user.kyc.nationality,
-                    country: country!==''?mobile:user.kyc.country,
-                    postalCode: postalCode!==''?mobile:user.kyc.postalCode,
-                    city: city!==''?mobile:user.kyc.city,
-                    street: street!==''?mobile:user.kyc.street,
-                    building: building!==''?mobile:user.kyc.building
+                    birth: dateOfBirth!==''?dateOfBirth:user.kyc.birthDate,
+                    nationality: nationality!==''?nationality:user.kyc.nationality,
+                    country: country!==''?country:user.kyc.country,
+                    postalCode: postalCode!==''?postalCode:user.kyc.postalCode,
+                    city: city!==''?city:user.kyc.city,
+                    street: street!==''?street:user.kyc.street,
+                    building: building!==''?building:user.kyc.building
                 },
             }).catch(err=>{
                 console.log(err.toString())
