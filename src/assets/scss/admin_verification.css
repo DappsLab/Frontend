@@ -40,7 +40,8 @@
   border-radius: 20px;
   background: #04031C; }
   .contract-container .source-view h3, .dapp-container .source-view h3 {
-    min-width: 25%; }
+    max-width: 280px;
+    width: 100%; }
     .contract-container .source-view h3 span, .dapp-container .source-view h3 span {
       display: block;
       margin-top: 20px;
