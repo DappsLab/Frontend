@@ -8,9 +8,7 @@ import {Spinner2} from "../../../ui/Spinner";
 import {Button, Form, Grid, Header, Input, TextArea} from "semantic-ui-react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated/dist/react-select.esm";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowUp} from "@fortawesome/free-solid-svg-icons";
-import Avatar from "@material-ui/core/Avatar";
+
 import {categoryOption, nameReg, numericReg} from "../../../ui/Helpers";
 import {withAlert} from "react-alert";
 import Uploader from "../../../ui/Uploader";
@@ -187,7 +185,7 @@ const EditDapp = (props) => {
         client:Client,
         onCompleted:data => {
             alert.success("Update Successfully" ,{timeout:2000})
-            // props.history.push('/dashboard/developed_dapps')
+            props.history.push('/dashboard/developed_dapps')
         },context: {
             headers: {
                 authorization: localStorage.getItem("token")
