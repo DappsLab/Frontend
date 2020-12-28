@@ -1,37 +1,56 @@
 import React from 'react';
 import {useQuery} from "@apollo/client";
-import {me_Query} from "../../../../queries/queries";
+import {licenseById} from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
 import {Spinner2} from "../../../ui/Spinner";
 import {Button, Divider, Icon} from "semantic-ui-react";
+import CompileLayout from "../../../../hoc/CompileLayout";
+import GetABI from "./getCompileData/GetABI";
+import GetBinery from "./getCompileData/GetBinery";
+
 
 const CompileResult = (props) => {
-    const {loading,error,data}=useQuery(me_Query,{client:Client,
-        onCompleted:data1 => {
-            props.setUser(data1.me);
-            console.log("me query",data1.me)
-        },onError:error1 => {
-            alert.error(error1.toString(),{timeout:5000})
-        },
-        context: {
-            headers: {
-                authorization: localStorage.getItem("token")
-            }
+    const id=props.match.params.id;
+
+    const RenderData=()=> {
+        const {error, loading, data} = useQuery(licenseById, {
+            variables: {id: id},
+            fetchPolicy: 'network-only',
+            client: Client, context: {
+                headers: {
+                    authorization: localStorage.getItem('token')
+                }
+            },
+        })
+        if (loading) return <Spinner2/>
+        if (error) return <div>{error.toString()}</div>
+        if (data) {
+            const license = data.licenseById
+            const newID = license.compilations[license.compilations.length - 1].id
+            return (
+                <div className={'compile_result'}>
+                    <h2>Successfully Compiled</h2>
+                    <Divider/>
+                    <Icon circular size={'huge'} inverted color='green' name={'checkmark'}/>
+                    <p>Huray!</p>
+                    <p>Your contract is compiled and ready for deployment</p>
+                    {id && <div>
+                        <GetABI id={newID}/>
+                        <GetBinery id={newID}/>
+                    </div>
+                    }
+                    <Button color={'green'} onClick={()=>{
+                        props.history.push(`/deploy_smart_contract/${license.id}`)
+                    }}>Next</Button>
+                </div>
+            )
         }
-    });
-    if (loading) return <Spinner2/>
-    if (error) return <div>{error.toString()}</div>
-    console.log(data.me)
+        return <div>Not Found</div>
+    }
     return (
-        <div className={'compile_result'}>
-            <h2>Successfully Compiled</h2>
-            <Divider/>
-            <Icon circular size={'huge'}  inverted color='green'  name={'checkmark'}/>
-            <p>Huray!</p>
-            <p>Your contract is compiled and ready for deployment</p>
-            <Button color={'blue'}>Download</Button>
-            <Button color={'green'}>Deploy</Button>
-        </div>
+        <CompileLayout type={'main'}>
+            {RenderData()}
+        </CompileLayout>
     )
 };
 

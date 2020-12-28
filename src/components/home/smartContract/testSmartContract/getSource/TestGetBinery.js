@@ -4,7 +4,7 @@ import { getTestBinery} from "../../../../../queries/queries";
 import {Client} from "../../../../../queries/Services";
 import {Spinner2} from "../../../../ui/Spinner";
 
-const GetBinery = (props) => {
+const TestGetBinery = (props) => {
     const {data,error,loading}=useQuery(getTestBinery,{
         client:Client,
         context:{
@@ -28,4 +28,4 @@ const GetBinery = (props) => {
     return <div>Nont found</div>
 }
 
-export default GetBinery;
+export default TestGetBinery;

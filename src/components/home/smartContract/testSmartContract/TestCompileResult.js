@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Button, Divider, Icon} from "semantic-ui-react";
-import GetBinery from "./getSource/GetBinery";
-import GetAbi from "./getSource/GetABI";
+import TestGetBinery from "./getSource/TestGetBinery";
+import TestGetABI from "./getSource/TestGetABI";
 import {useQuery} from "@apollo/client";
 import {testLicenseById} from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
@@ -34,8 +34,8 @@ const TestCompileResult = (props) => {
                    <p>Huray!</p>
                    <p>Your contract is compiled and ready for deployment</p>
                    {id && <div>
-                       <GetAbi id={newID}/>
-                       <GetBinery id={newID}/>
+                       <TestGetABI id={newID}/>
+                       <TestGetBinery id={newID}/>
                    </div>
                    }
                    <Button color={'green'} onClick={()=>{
@@ -46,7 +46,7 @@ const TestCompileResult = (props) => {
        }
    }
    return (
-       <CompileLayout>
+       <CompileLayout type={'test'}>
            {RenderData()}
        </CompileLayout>
    )
