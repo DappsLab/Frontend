@@ -40,7 +40,7 @@ const Licenses = (props) => {
                                             {license.order.licenseType==="SINGLELICENSE" && license.used ?
                                                 ""
                                                 :<Button onClick={() => {
-                                                   props.history.push(`/compile/${license.id}`)
+                                                   props.history.push(`/customize_smart_contract/${license.id}`)
                                                 }}>Compile</Button>
                                             }
                                         </div>
@@ -54,7 +54,7 @@ const Licenses = (props) => {
                                             <h3>{license.order.smartContract.contractName}</h3>
                                         </div>
                                         <Button color={'green'} onClick={() => {
-                                            props.history.push(`/compile/${license.id}`)
+                                            props.history.push(`/deploy_smart_contract/${license.id}`)
                                         }}>Deploy</Button>
                                     </Segment>:""
                                 }
