@@ -15,11 +15,12 @@ export const Client = new ApolloClient({
 export const match=(data)=>{
     if (data.toString().toLowerCase().includes("error: authentication must be provided")){
         localStorage.removeItem('token');
+        console.log("here")
         window.location.reload();
         return true
     }
     if (data.toString().toLowerCase().includes('error: failed to fetch')){
-        // localStorage.removeItem('token')
+        localStorage.removeItem('token')
         return true;
     }
 }

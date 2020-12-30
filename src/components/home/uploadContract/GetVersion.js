@@ -2,7 +2,6 @@ import React from 'react';
 import {useQuery} from "@apollo/client";
 import {getCompiler} from "../../../queries/queries";
 import {Client} from "../../../queries/Services";
-import {Form} from "semantic-ui-react";
 
 const GetVersion = (props) => {
 

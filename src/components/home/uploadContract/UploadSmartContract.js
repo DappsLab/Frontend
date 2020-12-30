@@ -167,7 +167,7 @@ const UploadSmartContract =(props)=>{
         //                 one:false,
         //                 two:false,
     }
-    const onConstVersion=(event)=>{
+    const onContractVersion=(event)=>{
         const {value}=event.target;
         if (value==="select"){
             setVersion('')
@@ -238,7 +238,7 @@ const UploadSmartContract =(props)=>{
                                         <Form>
                                             <FuncationName funcationName={funcationName} setfuncationName={setfuncationName} />
                                         </Form>
-                                        <GetVersion onConstVersion={(event)=>onConstVersion(event)}/>
+                                        <GetVersion onContractVersion={(event)=>onContractVersion(event)}/>
                                         <Button variant="contained" className={'publishbtn'} disabled={active}   onClick={()=>HandlePublish()} color="primary">Publish</Button>
                                     </div>
                                     }

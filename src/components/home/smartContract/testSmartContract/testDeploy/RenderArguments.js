@@ -11,6 +11,7 @@ const RenderArguments = (props) => {
     const {license,fee,name,alert}=props
     const newID=license.testCompilations[license.testCompilations.length - 1].id;
     const [inputSize,setInputSize]=useState(0)
+    const [argument,setArgument]=useState([])
 
 
 
@@ -45,7 +46,16 @@ const RenderArguments = (props) => {
             console.log(err.toString())
         })
     }
+    const getType =(type)=>{
+        if (type==="bytes32[]"){
 
+        }
+    }
+    const handleChange=(event,index)=>{
+        argument[index]=event.target.value
+        setArgument(argument)
+    }
+    console.log(argument)
     const {data,error,loading}=useQuery(getTestABI,{
         client:Client,
         context:{
@@ -59,7 +69,8 @@ const RenderArguments = (props) => {
             const inputArr=getObjects(abi,"type","constructor")
             if (inputArr.length>0) {
                 if (inputArr[0].inputs.length > 0) {
-                    console.log("array",inputArr[0])
+                    console.log("array",inputArr[0].inputs)
+                    setArgument(inputArr[0].inputs)
                     setInputSize(inputArr[0].inputs.length)
                 } else {
                     setInputSize(inputArr[0].inputs.length)
@@ -70,14 +81,23 @@ const RenderArguments = (props) => {
     if (loading) return <Spinner2/>
     if (error) return <div>{error.toString()}</div>
     if (data) {
-        console.log("Input size",inputSize)
         if (inputSize>0){
+            console.log("Input size",inputSize)
             return (
-                <div>
-                    sjdn
-                </div>
+                <form>
+                    {
+                        argument.map((argu,index)=>{
+                             return <input
+                                 key={index} name={argu.name}  type={'text'}
+                                 onChange={(event,index)=>handleChange(event,argu.type,index)}
+                             />
+
+                        })
+                    }
+                </form>
             )
         }else {
+            console.log("Input size in Else",inputSize)
             return <Button onClick={()=>onTestDeploy()}>Deploy</Button>
         }
     }
