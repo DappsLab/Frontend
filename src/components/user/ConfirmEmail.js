@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {confirmEmail} from "../../queries/queries";
 import {graphql} from "react-apollo";
-import {Button} from "@material-ui/core";
-import {Grid, Segment} from "semantic-ui-react";
-import {Spinner} from "../ui/Spinner";
+import {Button} from "semantic-ui-react";
 import {withAlert} from "react-alert";
 import {flowRight as compose} from 'lodash';
-
+import logo from '../../assets/images/dappslab-logo.png'
+import square from '../../assets/images/Rectangle2.png'
+import rectangle from '../../assets/images/Rectangle3.png'
 import "../../assets/scss/confirm_email.css"
 
 class ConfirmEmail extends Component {
@@ -42,24 +42,27 @@ class ConfirmEmail extends Component {
         });
     }
     render() {
-        // console.log(this.props)
         return (
-            <div>
-            <Grid textAlign="center"  verticalAlign='middle' >
-                <Grid.Column style={{maxWidth:600}}>
-                    <Segment  className={"confirm_email"}>
-                        <h1>Welcome in DappsLab</h1>
-                        <p>Woweee! Thanks for registering an account with DappsLab. Before we get started, we'll need
-                            to verify your email. Simply click button below to varify your email address</p>
-                    <Button  onClick={this.handleConfirm}
-                            variant="contained" color="primary">
-                        Varify email address
-                    </Button>
-
-                    </Segment>
-                </Grid.Column>
-            </Grid>
-                 {this.state.loading&&<Spinner/>}
+            <div className={"password_container"} style={{height:window.innerHeight}}>
+                <div className={"confirm_email flex"}>
+                    <div className={'confirm_left'}>
+                        <div>
+                            <h1>Welcome in DappsLab</h1>
+                            <p>
+                                Thanks for registering an account with DappsLab.
+                            </p>
+                        </div>
+                        <img src={square}/>
+                    </div>
+                    <div className={'confirm_right'}>
+                        <img src={logo}/>
+                        <div className={'flex'}>
+                            <p>  Before we get started, we'll need
+                                to verify your email. Simply click button below to varify your email address</p>
+                            <Button fluid onClick={this.handleConfirm} >Varify email address</Button>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }

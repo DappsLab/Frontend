@@ -1,28 +1,72 @@
 @import "colors";
 
 .confirm_email{
-  padding: 0 0 20px 0!important;
-  h1{
-    margin: 10px 0;
-    text-align: left;
-    padding: 0 25px;
-  }
-  p{
-    padding: 0 25px 25px 25px;
-    text-align: justify;
-  }
-  .logo-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 !important;
-    height: 90px;
-    background: $default-accent !important;
-    .LogoCaption {
-      height: 35px;
+  max-height: 700px;
+  max-width: 1462px;
+  width: 100%;
+  height: 100%;
+  .confirm_right{
+    max-width: 470px;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    padding:  30px;
+    border-radius: 0 12px 12px 0;
+    img{
+      width: 200px;
+    }
+    .flex{
+      height: 94.8%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      p{
+        font-size: 20px;
+      }
+      Button{
+        padding: 10px!important;
+        border-radius: 30px!important;
+        background-color: #fff!important;
+        color: #04031c!important;
+        border: 2px solid #04031c;
+        font-size: 20px!important;
+        &:hover{
+          background-color: #04031c!important;
+          color: #fff!important;
+        }
+      }
     }
   }
-  Form{
-    padding: 0 20px;
+  .confirm_left{
+    height: 100%;
+    background-color: #04031c;
+    border-radius: 12px 0 0 12px;
+    max-width: 990px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .flex{
+
+    }
+    h1{
+      color: #fff;
+      width: 300px;
+      font-size: 55px;
+      &:after{
+        content: '';
+        display: block;
+        height: 10px;
+        width: 100px;
+        margin-top: 30px;
+        background-color: #0FBA87;
+      }
+    }
+    p{
+      font-size: 25px;
+      margin-top: 30px;
+      color: #fff;
+    }
   }
 }

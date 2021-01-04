@@ -1,8 +1,15 @@
- import React from "react";
+ import React, {useState} from "react";
 import "../../assets/scss/SearchResult.css"
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+ import FormControl from "@material-ui/core/FormControl";
+ import {InputLabel} from "@material-ui/core";
+ import Input from "@material-ui/core/Input";
+ import InputAdornment from "@material-ui/core/InputAdornment";
+ import IconButton from "@material-ui/core/IconButton";
+ import Visibility from "@material-ui/icons/Visibility";
+ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 
 export  const SearchField = ({formData,id,change,press}) => {
@@ -136,3 +143,28 @@ export const CheckBox=({check,name,change,index})=>{
     return(renderTemplate())
 }
 
+export const PasswordField=(props)=>{
+    const [showPass,setshowPass]=useState(false)
+    const {password,setPassword,name}=props
+    return(
+    <FormControl  >
+        <InputLabel>{name}</InputLabel>
+        <Input
+            type={showPass ? 'text' : 'password'}
+            value={password} name={name} autoComplete={'off'}
+            onChange={(event)=>setPassword(event.target.value)}
+            endAdornment={
+                <InputAdornment position="end">
+                    <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={()=>{setshowPass(!showPass)}}
+                    >
+                        {showPass ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                </InputAdornment>
+            }
+        />
+
+    </FormControl>
+    )
+ }

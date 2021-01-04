@@ -128,7 +128,7 @@ const Register =(props)=> {
                                 <Link to={'/login'} className="signup">Login</Link>
                             </div>
                         </div>
-                        <div className="form">
+                        <form className="form">
                             <h2>Sign Up</h2>
                             <TextField className={'fname'}
                                 label="Full Name" value={fullName} type={'text'} name={'fullName'}
@@ -187,8 +187,7 @@ const Register =(props)=> {
                                 {renderCheckBox()}
                             </div>
                             <button onClick={HandleSubmit} className="login strock">SignUp</button>
-
-                            </div>
+                            </form>
                         </div>
 
                         <div className="register-left flex password-left">
