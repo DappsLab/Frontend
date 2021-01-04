@@ -14,10 +14,10 @@ const TestLicenses = (props) => {
                     return <div><Segment className={'licenses_header'}>
                         <div>
                             <h2 className={"flex"}>
-                                <Icon circular inverted color='blue' size={'large'} name={'shopping cart'}/>
+                                <Icon  inverted color='blue' size={'large'} name={'shopping cart'}/>
                                 Test Licenses
                             </h2>
-                            {/*<span>Customization Left: {purchased[i].unlimitedCustomization?"Unlimited Customizations":purchased[i].customizationsLeft}</span>*/}
+                            <span>Customization Left: {purchased[i].unlimitedCustomization?"Unlimited Customizations":purchased[i].customizationsLeft}</span>
                         </div>
                         <div className={'flex'}>
                             <span>{purchased[i].testLicenses.length}</span>

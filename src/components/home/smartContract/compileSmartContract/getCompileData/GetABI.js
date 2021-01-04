@@ -13,11 +13,14 @@ const GetABI = (props) => {
             }
         },variables:{
             id:props.id
+        },onError:error1 => {
+            console.log(error1.toString())
+            props.setLoading(false)
         }
     })
-    if (loading) return <Spinner2/>
+    // if (loading) return <Spinner2/>
     if (error) return <div>{error.toString()}</div>
-    if (data) {
+    if (data&&!loading) {
         let blob = new Blob([data.getABI], { type: ' application/json' });
         return (
             <div>

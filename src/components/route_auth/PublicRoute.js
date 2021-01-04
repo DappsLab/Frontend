@@ -3,7 +3,7 @@ import React, {useEffect} from 'react';
 import {Route, Redirect, Switch} from "react-router-dom";
 import {useQuery} from "@apollo/client";
 import {me_Query} from "../../queries/queries";
-import {Client, match} from "../../queries/Services";
+import {Client, ErrorStringMatch, match} from "../../queries/Services";
 import {Spinner2} from "../ui/Spinner";
 import {setUser} from "../../actions/Actions";
 
@@ -28,7 +28,7 @@ const PublicRoute = ({setUser,user,component:Comp,...rest}) => {
         })
         if (loading) return <div className={'main-spinner'}><Spinner2/></div>
         if (error) return  (
-            match(error.toString())&&  <Route {...rest} component={(props) => (
+            match(error.toString())&& <Route {...rest} component={(props) => (
             rest.restricted ?
                 (!!localStorage.getItem('token') ?
                         <Redirect to={"/"}/>
@@ -61,17 +61,18 @@ const PublicRoute = ({setUser,user,component:Comp,...rest}) => {
                             <Comp {...props} user={null}/>
                     )}/>
             )
-        }else {
-          return  <Route {...rest} component={(props) => (
-                rest.restricted ?
-                    (!!localStorage.getItem('token') ?
-                            <Redirect to={"/"}/>
-                            :
-                            <Comp {...props} user={null}/>
-                    ) :
-                    <Comp {...props} user={null}/>
-            )}/>
         }
+        // else {
+        //   return  <Route {...rest} component={(props) => (
+        //         rest.restricted ?
+        //             (!!localStorage.getItem('token') ?
+        //                     <Redirect to={"/"}/>
+        //                     :
+        //                     <Comp {...props} user={null}/>
+        //             ) :
+        //             <Comp {...props} user={null}/>
+        //     )}/>
+        // }
     }
     return RenderQuery()
     //     :<Route {...rest} component={(props)=>(

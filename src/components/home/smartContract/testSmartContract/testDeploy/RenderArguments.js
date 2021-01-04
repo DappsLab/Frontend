@@ -3,7 +3,7 @@ import {useMutation, useQuery} from "@apollo/client";
 import {getTestABI, testDeploy} from "../../../../../queries/queries";
 import {Client} from "../../../../../queries/Services";
 import {Spinner2} from "../../../../ui/Spinner";
-import {Button} from "semantic-ui-react";
+import {Button, Form, Input} from "semantic-ui-react";
 import {withAlert} from "react-alert";
 import {getObjects} from "../../../../ui/Helpers";
 
@@ -22,7 +22,7 @@ const RenderArguments = (props) => {
                 authorization:localStorage.getItem('token')
             }
         },onCompleted:data1 => {
-            console.log(data1)
+            console.log("test deploy :",data1)
         },
         onError:error1 => {
             alert.error(error1.toString(),{timeout:3000})
@@ -46,16 +46,12 @@ const RenderArguments = (props) => {
             console.log(err.toString())
         })
     }
-    const getType =(type)=>{
-        if (type==="bytes32[]"){
-
-        }
-    }
-    const handleChange=(event,index)=>{
+    const handleChange=(event,index,name,ty)=>{
+        const {value}=event.target
         argument[index]=event.target.value
+        console.log(index,value,name,ty)
         setArgument(argument)
     }
-    console.log(argument)
     const {data,error,loading}=useQuery(getTestABI,{
         client:Client,
         context:{
@@ -80,25 +76,26 @@ const RenderArguments = (props) => {
     })
     if (loading) return <Spinner2/>
     if (error) return <div>{error.toString()}</div>
-    if (data) {
+    if (data&&!loading) {
         if (inputSize>0){
-            console.log("Input size",inputSize)
             return (
-                <form>
+                <Form className={'arguments'}>
                     {
                         argument.map((argu,index)=>{
-                             return <input
-                                 key={index} name={argu.name}  type={'text'}
-                                 onChange={(event,index)=>handleChange(event,argu.type,index)}
-                             />
-
+                             return <Form.Field  key={index}>
+                                 <label>{argu.name}</label>
+                                 <Input
+                                     name={argu.name}  type={'text'}
+                                     onChange={(event)=>handleChange(event,index,argu.name,argu.type)}
+                                 />
+                             </Form.Field>
                         })
                     }
-                </form>
+                    <Button className={'deploy_btn'} onClick={()=>onTestDeploy()}>Deploy</Button>
+                </Form>
             )
         }else {
-            console.log("Input size in Else",inputSize)
-            return <Button onClick={()=>onTestDeploy()}>Deploy</Button>
+            return <Button className={'deploy_btn'} onClick={()=>onTestDeploy()}>Deploy</Button>
         }
     }
     return <div>Nont found</div>

@@ -20,20 +20,30 @@ const CompileLayout = (props) => {
                 <Segment className={"compile_left"}>
                     {type==="test"?
                         compileTab.map(tab=>{
-                            return  <div key={tab.link} className={`sub_tab ${window.location.pathname.includes(tab.link)  && "blue_background"}`}>
-                                <div className={"tab_number"}>{tab.key}</div>
+                            return  <div key={tab.link} className={'items_container flex'}>
+                                <div  className={`sub_tab`}>
+                                <div className={`tab_number ${window.location.pathname.includes(tab.link)&& "meadow-color"}`}>{tab.key}</div>
                                 <div>
                                     <h3>{tab.heading}</h3>
                                     <span>{tab.subHeading}</span>
                                 </div>
                             </div>
+                            <div className={'flex square_container'}>
+                                <div className={`square  ${window.location.pathname.includes(tab.link)&&"meadow-color"}`}> </div>
+                            </div>
+                            </div>
                         }):
                         mainCompileTab.map(tab=>{
-                            return  <div key={tab.link} className={`sub_tab ${window.location.pathname.includes(tab.link)  && "blue_background"}`}>
-                                <div className={"tab_number"}>{tab.key}</div>
-                                <div>
-                                    <h3>{tab.heading}</h3>
-                                    <span>{tab.subHeading}</span>
+                            return <div key={tab.link} className={'items_container flex'}>
+                                <div  className={`sub_tab `}>
+                                    <div className={`tab_number ${window.location.pathname.includes(tab.link)&& "meadow-color"}`}>{tab.key}</div>
+                                    <div>
+                                        <h3>{tab.heading}</h3>
+                                        <span>{tab.subHeading}</span>
+                                    </div>
+                                </div>
+                                <div className={'flex square_container'}>
+                                    <div className={`square  ${window.location.pathname.includes(tab.link)&&"meadow-color"}`}> </div>
                                 </div>
                             </div>
                         })

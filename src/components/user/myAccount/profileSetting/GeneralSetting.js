@@ -1,11 +1,10 @@
-import React, {Component, useEffect, useState} from 'react';
-import Button from "@material-ui/core/Button";
+import React, { useState} from 'react';
 import {Avatar} from "@material-ui/core";
 import "../../../../assets/scss/general_setting.css"
 import CustomizedDialogs from "../../../ui/DialogBox";
 import 'react-image-crop/dist/ReactCrop.css';
 import {Form} from 'semantic-ui-react';
-import {imageUpload, me_Query, updateUser} from "../../../../queries/queries"
+import {imageUpload, me_Query} from "../../../../queries/queries"
 import {flowRight as compose} from 'lodash';
 import {connect} from "react-redux";
 import {setUser} from "../../../../actions/Actions";

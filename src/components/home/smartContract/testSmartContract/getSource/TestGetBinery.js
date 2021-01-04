@@ -13,11 +13,16 @@ const TestGetBinery = (props) => {
             }
         },variables:{
             id:props.id
+        },onCompleted:data1 => {
+            props.setLoading(false)
+            console.log(data1)
+        },onError:error1 => {
+            props.setLoading(false)
         }
     })
-    if (loading) return <Spinner2/>
+    // if (loading) return <Spinner2/>
     if (error) return <div>{error.toString()}</div>
-    if (data) {
+    if (data&&!loading) {
         let blob = new Blob([data.testGetBinary], { type: ' text/plain' });
         return (
             <div>

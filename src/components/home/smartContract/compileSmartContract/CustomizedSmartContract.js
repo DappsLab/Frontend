@@ -31,8 +31,8 @@ const CustomizedSmartContract =(props)=> {
     const [newCompile] = useMutation(compile, {
         client: Client,
         onCompleted: data => {
-
             setLoading(false)
+            props.history.push(`/compiled_smart_contract/${license.id}`)
         },
         onError: error1 => {
             alert.error(error1.toString(), {timeout: 2000})
@@ -148,7 +148,7 @@ const CustomizedSmartContract =(props)=> {
         return <div>Not found Retry</div>
     }
     return (
-        <CompileLayout type={'test'}>
+        <CompileLayout type={'main'}>
             {RenderData()}
         </CompileLayout>
     )

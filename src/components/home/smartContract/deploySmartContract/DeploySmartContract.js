@@ -15,17 +15,7 @@ const DeploySmartContract = (props) => {
     const [fee, setFee] = useState(100000);
     const [name, setName] = useState('');
     const id = props.match.params.id
-    // bool
-    // Int
-    // Uint
-    // int8 -> 256
-    // uint8 -> 256
-    // fixed
-    // ufixed
-    // address
-    // Byte1 ->32
-    // Bytes
-    // String
+
     const RenderData=()=> {
         const {error, loading, data} = useQuery(licenseById, {
             variables: {id: id},
@@ -45,6 +35,7 @@ const DeploySmartContract = (props) => {
             const license = data.licenseById;
             return (
                 <div className={'test_deploy'}>
+                    <h2>Deploy</h2>
                     <Form>
                         <Form.Field>
                             <label>Label Name</label>

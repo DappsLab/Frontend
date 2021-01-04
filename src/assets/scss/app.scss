@@ -82,6 +82,10 @@ a {
 .cursor{
   cursor: pointer;
 }
+.meadow-color{
+  border:none!important;
+  background-color: $meadow-color!important;
+}
 .flex{
   display:flex;
   align-items: center;

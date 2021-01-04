@@ -35,6 +35,7 @@ const TestDeploy = (props) => {
             const license = data.testLicenseById;
             return (
                 <div className={'test_deploy'}>
+                    <h2>Deploy</h2>
                     <Form>
                         <Form.Field>
                             <label>Label Name</label>

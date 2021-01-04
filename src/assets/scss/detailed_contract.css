@@ -1,28 +1,65 @@
 .contractContainer {
   justify-content: center;
   align-items: flex-start;
-  background: url(../images/background.jpg); }
+  background-image: linear-gradient(135.14deg, #04031D 0%, #0F0E2e 100%); }
+  .contractContainer .PrivateRadioButtonIcon-root-8 {
+    color: #0FBA87 !important; }
+  .contractContainer .ui.form .field > label, .contractContainer .price_label {
+    font-weight: bold;
+    font-size: 16px;
+    color: #0FBA87;
+    text-align: left; }
+  .contractContainer p, .contractContainer h3 span, .contractContainer .ui.basic.label {
+    color: #fff; }
+  .contractContainer .ui.form .field .ui.input input[type=text], .contractContainer select {
+    border: 1px solid #5754ab !important;
+    color: #fff;
+    background: #0F0E2e !important;
+    border-radius: 10px !important; }
+  .contractContainer .ui.labeled.input:not([class*="corner labeled"]) .label:first-child + input {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important; }
+  .contractContainer .ui.basic.label {
+    background-color: #5754AB !important; }
 
 .contractLeft {
   width: 730px;
   margin: 30px 20px;
   border-radius: 10px;
-  padding: 30px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12); }
+  padding: 30px; }
   .contractLeft .MuiAvatar-circle {
     width: 80px !important;
     height: 80px !important; }
+  .contractLeft .fa-icon {
+    margin: 20px 0; }
+    .contractLeft .fa-icon i.inverted.bordered.icon {
+      border-radius: 5px;
+      margin-right: 10px; }
+    .contractLeft .fa-icon i.inverted.bordered.icon:nth-child(1) {
+      background-color: #3B5998 !important; }
+    .contractLeft .fa-icon i.inverted.bordered.icon:nth-child(2) {
+      background-color: #03A9F4 !important; }
+    .contractLeft .fa-icon i.inverted.bordered.icon:nth-child(3) {
+      background-color: #0E76A8 !important; }
+  .contractLeft h2, .contractLeft h3, .contractLeft span, .contractLeft label {
+    color: #fff; }
+  .contractLeft label {
+    font-size: 25px; }
+  .contractLeft p {
+    margin-top: 20px; }
   .contractLeft h3 {
     margin-top: 5px; }
+  .contractLeft h2 {
+    font-size: 40px;
+    margin-bottom: 0; }
 
 .contractRight {
-  border-radius: 10px;
-  width: 420px;
-  background-color: #ffffff;
+  width: 470px;
   margin: 30px 20px;
-  padding: 20px;
-  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12); }
+  padding: 20px 70px 20px 20px;
+  border-right: 1px solid rgba(250, 250, 250, 0.45); }
+  .contractRight .test-address {
+    margin-bottom: 30px; }
 
 .checkCircle {
   color: #39B64A;
@@ -119,5 +156,8 @@
   width: 100%; }
   .test-address select:focus {
     stroke: none; }
+
+.ui.segment {
+  background: none; }
 
 /*# sourceMappingURL=detailed_contract.css.map */

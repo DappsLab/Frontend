@@ -13,7 +13,8 @@ export  const ContractImg = (props) => {
             borderRadius:"15px",
             width:props.width,
             height:props.height,
-            backgroundSize:"cover"
+            backgroundSize:"cover",
+            marginRight:props.margin? props.margin:""
         }}
     />;
 };

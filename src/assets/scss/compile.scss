@@ -1,15 +1,119 @@
 @import "colors";
 .compile{
-  //width: 70%;
+
   display: flex!important;
   justify-content: center;
   align-items: flex-start;
+  @include default-color();
+
+  .get_data_btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .download{
+      margin: 0;
+    }
+    div:nth-child(1){
+      a{
+        border: 2px solid #5754ab;
+        background-color: #5754AB;
+        &:hover{
+          background-color: #0F0E2e;
+          color: #fff;
+        }
+      }
+    }
+    div:nth-child(2){
+      margin: 0 20px;
+      a {
+        background-color: #0FBA87;
+        border: 2px solid #0FBA87;
+        &:hover{
+          background-color: #0F0E2e;
+          color: #fff;
+        }
+      }
+    }
+    .ui.green.button{
+      background-color: #8F4114;
+      border: 2px solid #8F4114;
+      padding: 12px 50px!important;
+      border-radius: 20px;
+      &:hover{
+        background-color: #0F0E2e;
+      }
+    }
+  }
   .segment{
     width: 20%;
     margin: 0 10px ;
+    .ui.form input[type=text]{
+      border: 1px solid rgba(255,255,255,.15)!important;
+      color: #fff;
+      height: 50px;
+      background: #070622!important;
+      border-radius: 10px!important;
+    }
+    .ui.form .field>label{
+      font-size: 16px;
+      color: #fff;
+    }
+    .description,p,h2,i.icon.checkmark:before{
+      color: #fff!important;
+    }
+    .compile_result{
+      text-align: center;
+      h3, i.icon.setting:before{
+        color: #0FBA87;
+      }
+
+
+      h3{
+        font-size: 40px;
+      }
+      .result_icons{
+        background-color: #0D3741;
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        margin: 0 auto 30px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        div{
+          height: 150px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 150px;
+          border-radius: 50%;
+          background-color: #0E7864 ;
+        }
+      }
+    }
   }
 
   .compile_left{
+    border-right: 1px solid rgba(34,255,255,.15);
+
+    .items_container {
+      justify-content: space-between;
+      .square_container {
+        flex-direction: column;
+        .square {
+          content: "";
+          border-radius: 3px;
+          border: 1px solid rgba(34,255,255,.15);
+          position: relative;
+          background-color: #080723;
+          width: 20px;
+          height: 20px;
+          left: 25px;
+          margin: 20px auto;
+          transform: rotate(138deg)
+        }
+      }
+    }
     .sub_tab{
       width: 100%;
       display: flex;
@@ -20,41 +124,57 @@
       padding: 10px 0;
       h3{
         margin-bottom: 0!important;
+        color: #fff;
+      }
+      span{
+        color: #fff;
       }
       .tab_number{
         font-size: 20px;
         margin-right: 20px;
-        border-radius: 10px;
-        padding: 20px 26px;
-        border: 1px solid #3C3F41;
+        color: #fff;
+        border-radius: 50%;
+        padding: 20px 24px;
+        border: 1px solid rgba(34,255,255,.15);
       }
     }
   }
-  .blue_background{
-    .tab_number {
-      background: #1A97FF;
-      border: none !important;
-      color: #FFFFFF;
-    }
-    h3{
-      color: #1A97FF;
-    }
-  }
+
   .compile_right{
+
+    h2{
+      font-size: 50px;
+      color: #fff;
+    }
     width: 40%;
     padding: 20px 35px;
+    .ui.labeled.input:not([class*="corner labeled"]) .label:first-child+input{
+      border-top-left-radius:0 !important;
+      border-bottom-left-radius: 0!important;
+    }
+    .ui.basic.label{
+      background-color: #5754AB!important;
+      font-size: 18px;
+    }
     .customize{
+      h2,.header{
+        color: #fff!important;
+      }
       .image{
         width: 130px!important;
       }
-      .meta span:nth-child(2){
-        color: #1A97FF;
+      .meta {
+        color: #fff;
+        span:nth-child(2) {
+          color: #5754AB;
+        }
       }
       .form{
         margin: 20px 0;
+
         p{
           margin: 0;
-          color: #96A3B6;
+          color: #8F4114;
           position: relative;
           top: -10px;
         }
@@ -87,5 +207,19 @@
   .sub_spinner{
     height: 30px;
     width: 30px;
+  }
+}
+
+.arguments{
+  margin: 20px 0!important;
+}
+.deploy_btn{
+  background-color: #8F4114!important;
+  border-radius: 30px!important;
+  padding: 15px 50px!important;
+  color: #fff!important;
+  border: 2px solid #8F4114!important;
+  &:hover{
+    background-color: #0F0E2e!important;
   }
 }

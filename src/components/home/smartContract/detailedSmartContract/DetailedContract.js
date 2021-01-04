@@ -38,45 +38,48 @@ const  DetailedContract =(props)=>{
         if (data) {
             const contract=data.smartContractById;
             return    <div className={"contractContainer flex"}>
-            <div className={"contractLeft"}>
-                <ContractImg
-                    position={"unset"}
-                    imagePath={contract.image}
-                    height={"90px"} width={"90px"}
-                />
-                <h2>{contract.contractName}</h2>
-                <span>{getDate(contract.publishingDateTime)}</span>
-                <div>
-                    <Button size={"mini"} color='facebook'>
-                        <Icon name='facebook' /> Facebook
-                    </Button>
-                    <Button size={"mini"} color='twitter'>
-                        <Icon name='twitter' /> Twitter
-                    </Button>
-                    <Button size={"mini"} color='linkedin'>
-                        <Icon name='linkedin' /> LinkedIn
-                    </Button>
-                    <div className={"contract_category"}>
-                        {contract.contractCategory.map((category, index) => {
-                            return <Link  key={category}  to={`/search_result/${category}`} >
-                                <Button
-                                    size={"mini"}
-                                    color={color["0"][index]} >
-                                    {category}</Button>
-                            </Link>
-                        })
-                        }
-                    </div>
-                    <Divider/>
-                    <label><strong>Description</strong></label>
-                    <p>{contract.description}</p>
-                    <Avatar  src={contract.publisher.avatar}/>
-                    <h3>{contract.publisher.fullName}</h3>
-                </div>
-                <Licenses contract={contract} logged_session={props.logged_session}  {...props} user={props.currentUser}/>
-                <TestLicenses contract={contract} logged_session={props.logged_session}  {...props} user={props.currentUser}/>
-            </div>
                 <ContractBuyDetails contract={contract} logged_session={props.logged_session}  {...props} user={props.currentUser}/>
+                <div className={"contractLeft"}>
+                    <div className={'flex'}>
+                        <ContractImg
+                            position={"unset"}
+                            imagePath={contract.image}
+                            height={"160px"} width={"160px"}
+                            margin={'50px'}
+                        />
+                        <div>
+                            <h2>{contract.contractName.toUpperCase()}</h2>
+                            <span>{getDate(contract.publishingDateTime)}</span>
+                            <div className={'fa-icon'}>
+                                <Icon name='facebook f' inverted bordered/>
+                                <Icon name='twitter'  inverted bordered/>
+                                <Icon name='linkedin'  inverted bordered/>
+                            </div>
+                            <div className={"contract_category"}>
+                                {contract.contractCategory.map((category, index) => {
+                                    return <Link  key={category}  to={`/search_result/${category}`} >
+                                        <Button
+                                            size={"mini"}
+                                            color={color["0"][index]} >
+                                            {category}</Button>
+                                    </Link>
+                                })
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                       <div className={'flex'}>
+                           <Avatar  src={contract.publisher.avatar} style={{marginRight:'40px'}}/>
+                           <h3>{contract.publisher.fullName}</h3>
+                       </div>
+                        <Divider/>
+                        <label><strong>Description</strong></label>
+                        <p>{contract.description}</p>
+                    </div>
+                    <Licenses contract={contract} logged_session={props.logged_session}  {...props} user={props.currentUser}/>
+                    <TestLicenses contract={contract} logged_session={props.logged_session}  {...props} user={props.currentUser}/>
+                </div>
             </div>
         }
     }

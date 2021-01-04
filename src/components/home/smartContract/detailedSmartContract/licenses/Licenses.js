@@ -14,7 +14,7 @@ const Licenses = (props) => {
                     return <div> <Segment className={'licenses_header'}>
                         <div>
                             <h2 className={"flex"}>
-                                <Icon circular inverted color='blue' size={'large'}  name={'shopping cart'}/>
+                                <Icon  inverted color='blue' size={'large'}  name={'shopping cart'}/>
                                 Licenses
                             </h2>
                             <span>Customization Left: {purchased[i].unlimitedCustomization?"Unlimited Customizations":purchased[i].customizationsLeft}</span>
@@ -46,7 +46,6 @@ const Licenses = (props) => {
                                         </div>
                                     </Segment>
                                 </div>
-                                {console.log("now",license)}
                                 {license.used?
                                     <Segment className={"compiled"}>
                                         <div>

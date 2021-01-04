@@ -78,6 +78,10 @@ a {
 .cursor {
   cursor: pointer; }
 
+.meadow-color {
+  border: none !important;
+  background-color: #0FBA87 !important; }
+
 .flex {
   display: flex;
   align-items: center; }

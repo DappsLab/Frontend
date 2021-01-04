@@ -3,44 +3,96 @@
 .contractContainer{
   justify-content: center;
   align-items: flex-start;
-  background: url(../images/background.jpg) ;
+  @include default-color();
+  .PrivateRadioButtonIcon-root-8{
+    color: #0FBA87!important;
+  }
+  .ui.form .field>label,.price_label{
+    font-weight: bold;
+    font-size: 16px;
+    color: #0FBA87;
+    text-align: left;
+  }
+  p,h3 span, .ui.basic.label{
+    color: #fff;
+  }
+  .ui.form .field .ui.input input[type=text],select{
+    border: 1px solid rgb(87,84,171)!important;
+    color: #fff;
+    background: #0F0E2e!important;
+    border-radius: 10px!important;
+
+  }
+  .ui.labeled.input:not([class*="corner labeled"]) .label:first-child+input{
+    border-top-left-radius:0 !important;
+    border-bottom-left-radius: 0!important;
+  }
+  .ui.basic.label{
+    background-color: #5754AB!important;
+  }
 }
 .contractLeft{
   width: 730px;
   margin: 30px 20px;
   border-radius: 10px;
   padding: 30px;
-  background-color: $paper-color;
-  box-shadow: 0 2px 1px -1px rgba(0,0,0,0.2),
-  0px 1px 1px 0px rgba(0,0,0,0.14),
-  0px 1px 3px 0px rgba(0,0,0,0.12);
   .MuiAvatar-circle{
     width: 80px!important;
     height: 80px!important;
   }
+  .fa-icon{
+    margin: 20px 0;
+    i.inverted.bordered.icon{
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+    i.inverted.bordered.icon:nth-child(1){
+      background-color: #3B5998!important;
+    }
+    i.inverted.bordered.icon:nth-child(2){
+      background-color: #03A9F4!important;
+    }
+    i.inverted.bordered.icon:nth-child(3){
+      background-color: #0E76A8!important;
+    }
+  }
+  h2,h3,span,label{
+    color: #fff;
+  }
+  label{
+    font-size: 25px;
+  }
+  p{
+    margin-top: 20px;
+  }
   h3{
     margin-top: 5px;
   }
+  h2{
+    font-size: 40px;
+    margin-bottom: 0;
+  }
 }
 .contractRight{
-  border-radius: 10px;
-  width: 420px;
-  background-color: $paper-color;
+  width: 470px;
   margin: 30px 20px;
-  padding: 20px;
-  box-shadow: 0 2px 1px -1px rgba(0,0,0,0.2),
-  0px 1px 1px 0px rgba(0,0,0,0.14),
-  0px 1px 3px 0px rgba(0,0,0,0.12);
+  padding: 20px 70px 20px 20px;
+  border-right: 1px solid rgba(250,250,250,0.45);
+  .test-address{
+    margin-bottom: 30px;
+  }
 }
 .checkCircle{
   color: $green-color;
   font-size: 20px;
   margin-right: 20px;
 }
+
 .buy-top{
   border-bottom: 1px solid #1F2125;
   padding: 10px 0;
   margin-bottom: 15px;
+
 }
 .contractRight h4{
   margin: 10px 0;
@@ -148,4 +200,7 @@
       stroke: none;
     }
   }
+}
+.ui.segment{
+  background: none;
 }
