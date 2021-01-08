@@ -288,6 +288,7 @@ export const enableFA=gql`
 export const disable2FA=gql`
   mutation {
     disable2FA
+   
   }
 `
 //=======================================================================
@@ -335,6 +336,7 @@ export const search=gql` query ($search:String){
   }
 }
 `
+// address{ id }
 export const licenseById=gql`query ($id:ID!){
   licenseById(id: $id) {
     id used compilations {
@@ -346,6 +348,7 @@ export const licenseById=gql`query ($id:ID!){
    
     order {
       id
+     
       smartContract {
         id
         contractName shortDescription

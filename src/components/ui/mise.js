@@ -61,3 +61,13 @@ export const FormValidation=(oldValue,value,name)=>{
     }
 
 }
+export const CheckDimension=(str)=>{
+    let count = (str.match(/]/g) || []).length;
+    if(count === 1 ){
+        return 1
+    }else if(count > 1 ){
+        return 2
+    }else {
+        return 0
+    }
+}

@@ -5,18 +5,25 @@ import {getABI} from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
 import {getObjects} from "../../../ui/Helpers";
 import {Spinner2} from "../../../ui/Spinner";
-import {Button} from "semantic-ui-react";
+import {Button, Form, Input} from "semantic-ui-react";
 
 const RenderMainArguments = (props) => {
     const {license,fee,name,alert}=props
     const newID=license.compilations[license.compilations.length - 1].id;
     const [inputSize,setInputSize]=useState(0)
+    const [argument,setArgument]=useState([])
 
 
+    const handleChange=(event,index,name,ty)=>{
+        const {value}=event.target
+        argument[index]=event.target.value
+        console.log(index,value,name,ty)
+        setArgument(argument)
+    }
     const onDeploy=()=>{
         const input= {}
         input["testCompiledContractId"] = newID
-        input["testAddressId"]=license.testOrder.testAddress.id
+        input["testAddressId"]=license.order.testAddress.id
         input['deplopmentLabel']=name
         input['fee']=fee
         if (inputSize>0){
@@ -44,18 +51,29 @@ const RenderMainArguments = (props) => {
             }
         }
     })
-    if (loading) return <Spinner2/>
+    if (loading) return "Please Wait Loading"
     if (error) return <div>{error.toString()}</div>
-    if (data) {
+    if (data&&!loading) {
         console.log("Input size",inputSize)
         if (inputSize>0){
             return (
-                <div>
-                    sjdn
-                </div>
+                <Form className={'arguments'}>
+                    {
+                        argument.map((argu,index)=>{
+                            return <Form.Field  key={index}>
+                                <label>{argu.name}</label>
+                                <Input
+                                    name={argu.name}  type={'text'}
+                                    onChange={(event)=>handleChange(event,index,argu.name,argu.type)}
+                                />
+                            </Form.Field>
+                        })
+                    }
+                    <Button className={'deploy_btn'} onClick={()=>onDeploy()}>Deploy</Button>
+                </Form>
             )
         }else {
-            return <Button onClick={()=>onDeploy()}>Deploy</Button>
+            return <Button className={'deploy_btn'} onClick={()=>onDeploy()}>Deploy</Button>
         }
     }
     return <div>Nont found</div>

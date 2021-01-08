@@ -8,6 +8,7 @@ import DashboardLayout from "../../../hoc/DashboardLayout";
 
 
 const SmartContractVerification = (props) => {
+    console.log(props)
     useEffect(()=>{
         refetch();
     },[])
@@ -19,7 +20,9 @@ const SmartContractVerification = (props) => {
         },fetchPolicy:'network-only',
         client: Client
         });
-    if (loading) return <div className={'main-spinner'}><Spinner2/></div>
+    if (loading) return  <DashboardLayout user={props.user}>
+        <Spinner2/>
+    </DashboardLayout>
     if (error) return <div className={"errorMessage"}>{error.toString()}</div>
     if (data.searchPendingSmartContracts.length > 0) return <DashboardLayout user={props.user}>
         <h1><strong>Pending <span>Smart Contract</span></strong></h1>

@@ -24,9 +24,8 @@ const TestDeploy = (props) => {
                 headers: {
                     authorization: localStorage.getItem('token')
                 }
-            },
-            onCompleted: data1 => {
-                console.log(data1.testLicenseById)
+            },onError:error=>{
+                console.log(error.toString())
             }
         })
         if (loading) return <Spinner2/>

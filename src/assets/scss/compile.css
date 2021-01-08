@@ -39,8 +39,12 @@
       height: 50px;
       background: #070622 !important;
       border-radius: 10px !important; }
+    .compile .segment .ui.input.error > input {
+      border-color: #9f3a38 !important;
+      color: #9f3a38 !important;
+      box-shadow: none; }
     .compile .segment .ui.form .field > label {
-      font-size: 16px;
+      font-size: 20px;
       color: #fff; }
     .compile .segment .description, .compile .segment p, .compile .segment h2, .compile .segment i.icon.checkmark:before {
       color: #fff !important; }
@@ -151,8 +155,19 @@
 
 .arguments {
   margin: 20px 0 !important; }
+  .arguments label {
+    display: inline !important; }
+  .arguments .ui.input {
+    margin-top: 5px; }
+  .arguments .info {
+    margin: 5px 0 0 0;
+    font-size: 16px;
+    color: #0FBA87 !important; }
+  .arguments .field {
+    margin-top: 10px !important; }
 
 .deploy_btn {
+  margin-top: 20px !important;
   background-color: #8F4114 !important;
   border-radius: 30px !important;
   padding: 15px 50px !important;

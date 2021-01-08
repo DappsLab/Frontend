@@ -10,7 +10,6 @@ const TestLicenses = (props) => {
         if (purchased.length > 0) {
             for (let i = 0; i < purchased.length; i++) {
                 if (purchased[i].smartContract.id === contract.id) {
-                    console.log(purchased[i])
                     return <div><Segment className={'licenses_header'}>
                         <div>
                             <h2 className={"flex"}>

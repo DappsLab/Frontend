@@ -47,7 +47,7 @@ const TestCompileResult = (props) => {
                <div className={'result_icons'}>
                    <div>
                        <Icon.Group size='big'>
-                           <Icon loading={Loading} size='huge' name='setting ' />
+                           <Icon loading={Loading} size='huge' name='setting' />
                            <Icon size={'small'} name='checkmark' />
                        </Icon.Group>
                    </div>

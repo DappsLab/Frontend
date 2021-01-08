@@ -20,7 +20,9 @@ const KycVerification =(props)=> {
         },
         client: Client
     })
-    if (loading) return <div className={'main-spinner'}><Spinner2/></div>
+    if (loading) return  <DashboardLayout user={props.user}>
+        <Spinner2/>
+    </DashboardLayout>
     if (error) return <div className={"errorMessage"}>{error.toString()}</div>
     if (data.searchPendingKyc.length > 0) return <DashboardLayout user={props.user}>
         <h1><strong>Pending <span>KYC Verification</span></strong></h1>

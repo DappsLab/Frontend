@@ -18,8 +18,9 @@ const DappsVerification = (props) => {
         },
         client: Client,
         })
-    if (loading) return <div className={'main-spinner'}><Spinner2/></div>
-
+    if (loading) return  <DashboardLayout user={props.user}>
+        <Spinner2/>
+    </DashboardLayout>
     if (error) return <div className={"errorMessage"}>{error.toString()}</div>
     if (data.searchPendingDApps.length > 0) return <DashboardLayout user={props.user}>
         <h1><strong>Pending <span>Dapps</span></strong></h1>

@@ -31,7 +31,6 @@ import {setUser} from "./actions/Actions";
 import OrderContracts from "./components/user/dashboard/orderContract/OrderContracts";
 import ExplorerResult from "./components/block_explorer/explorerSearch/ExplorerResult";
 import EditSmartContract from "./components/home/uploadContract/editSmartContract/EditSmartContract";
-import Compile from "./components/home/smartContract/compileSmartContract/CustomizedSmartContract";
 import UploadDapps from "./components/home/dapps/uploadDapps/uploadDapps";
 import DappsDetails from "./components/home/dapps/detailDApps/DappsDetails";
 import EditDapp from "./components/home/dapps/eidtDapp/EditDapp";
@@ -50,7 +49,7 @@ import GeneralSetting from "./components/user/myAccount/profileSetting/GeneralSe
 import KYC from "./components/user/myAccount/kycSetting/KYC";
 import WithdrawDeposite from "./components/user/myAccount/WithdrawDeposite";
 import Transactions from "./components/user/myAccount/Transactions";
-import TwoFA from "./components/user/myAccount/TwoFA";
+import TwoFA from "./components/user/myAccount/TwoFA/TwoFA";
 import CustomizedSmartContract from "./components/home/smartContract/compileSmartContract/CustomizedSmartContract";
 import CompileResult from "./components/home/smartContract/compileSmartContract/CompileResult";
 import DeploySmartContract from "./components/home/smartContract/deploySmartContract/DeploySmartContract";
