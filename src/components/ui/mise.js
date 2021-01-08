@@ -71,3 +71,12 @@ export const CheckDimension=(str)=>{
         return 0
     }
 }
+export const convertArrayToObject = (array, key) => {
+    const initialValue = {};
+    return array.reduce((obj, item) => {
+        return {
+            ...obj,
+            [item[key]]: item,
+        };
+    }, initialValue);
+};

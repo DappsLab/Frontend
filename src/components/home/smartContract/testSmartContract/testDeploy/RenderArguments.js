@@ -6,7 +6,7 @@ import {Spinner2} from "../../../../ui/Spinner";
 import {Button, Form, Input} from "semantic-ui-react";
 import {withAlert} from "react-alert";
 import {getObjects} from "../../../../ui/Helpers";
-import {CheckDimension} from "../../../../ui/mise";
+import {CheckDimension, convertArrayToObject} from "../../../../ui/mise";
 import {
      recursiveChecker
 } from "../../../../ui/InputValidation";
@@ -71,42 +71,43 @@ const RenderArguments = (props) => {
         input['deplopmentLabel']=name
         input['fee']=fee.toString()
         if (inputSize>0){
+
+            let final =[]
            for (let i=0;i<argument.length;i++){
                let array=[]
-               let argument_array=[]
+               let argument_array={}
                const count=CheckDimension(argument[i].type);
                let value=argument[i].data
                if (count===2){
 
                }else if (count===1){
-                   console.log(value)
                    let split=value.split(',')
                    for (let i=0;i<split.length;i++){
                        array.push(split[i])
                    }
-                   argument_array['dataType']=argument[i].type
-                   argument_array['dataType']=i
+                   argument_array['dataType']=argument[i].type.toString()
+                   argument_array['index']=i
                    argument_array['data']=split
-                   input['argumentsArray']=argument_array
+                   final.push(argument_array)
                }else {
                    array.push(value)
-                   argument_array['dataType']=argument[i].type
-                   argument_array['dataType']=i
+                   argument_array['dataType']=argument[i].type.toString()
+                   argument_array['index']=i
                    argument_array['data']=array
-                   input['argumentsArray']=argument_array
-
+                   final.push(argument_array)
                }
            }
+            console.log(convertArrayToObject(final,'index'))
+            input['argumentsArray']=final
         }
-        console.log(input)
-        // console.log("INPUT",input)
-        // deploy({
-        //     variables:{
-        //         input:input
-        //     }
-        // }).catch(err=>{
-        //     console.log(err.toString())
-        // })
+        console.log("INPUT",input)
+        deploy({
+            variables:{
+                input:input
+            }
+        }).catch(err=>{
+            console.log(err.toString())
+        })
     }
     const handleChange=(event,index,name,ty)=>{
         const {value}=event.target
