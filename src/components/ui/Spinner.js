@@ -16,3 +16,11 @@ export const Spinner2 = () => (
         </div>
     </div>
 )
+export const Spinner3 = () => (
+    <div className="square-container">
+        <div className="square">
+            <div> </div>
+            <div> </div>
+        </div>
+    </div>
+)

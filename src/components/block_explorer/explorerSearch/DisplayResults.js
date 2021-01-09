@@ -75,7 +75,7 @@ export const AddressesResult=(props)=>{
     console.log(data)
     return <div className={"address"}>
         <h4>Address: {search[1]}</h4>
-        <Table color={"green"} className={"striped"}>
+        <Table lapt className={"striped"}>
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell >Transaction Hash </Table.HeaderCell>

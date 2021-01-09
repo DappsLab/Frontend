@@ -3,10 +3,10 @@ import {Route,Redirect} from "react-router-dom";
 import {useQuery} from "@apollo/client";
 import {me_Query} from "../../queries/queries";
 import {Client, match} from "../../queries/Services";
-import {Spinner2} from "../ui/Spinner";
+import { Spinner3} from "../ui/Spinner";
 import {connect} from "react-redux";
 import {setUser} from "../../actions/Actions";
-import Routes from "../../routes";
+
 
 const PrivateRoute = ({setUser,user,component:Comp,...rest}) => {
     useEffect(()=>{
@@ -25,7 +25,7 @@ const PrivateRoute = ({setUser,user,component:Comp,...rest}) => {
                 }
             }
         })
-        if (loading) return <div className={'main-spinner'}><Spinner2/></div>
+        if (loading) return <div className={'main-spinner'}><Spinner3/></div>
         if (error) return  (
             match(error.toString())?
                 <Redirect to="/login"/>:

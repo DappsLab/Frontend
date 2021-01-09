@@ -4,7 +4,7 @@ import {Route, Redirect, Switch} from "react-router-dom";
 import {useQuery} from "@apollo/client";
 import {me_Query} from "../../queries/queries";
 import {Client, ErrorStringMatch, match} from "../../queries/Services";
-import {Spinner2} from "../ui/Spinner";
+import {Spinner3} from "../ui/Spinner";
 import {setUser} from "../../actions/Actions";
 
 
@@ -26,7 +26,7 @@ const PublicRoute = ({setUser,user,component:Comp,...rest}) => {
                 }
             }
         })
-        if (loading) return <div className={'main-spinner'}><Spinner2/></div>
+        if (loading) return <div className={'main-spinner'}><Spinner3/></div>
         if (error) return  (
             match(error.toString())&& <Route {...rest} component={(props) => (
             rest.restricted ?

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Layout from "../../hoc/Layout";
-import {Grid, Input,Dropdown, Table} from "semantic-ui-react";
+import {Grid, Input, Dropdown, Table, Form} from "semantic-ui-react";
 import "../../assets/scss/block_explorer.css"
 import {RecentBlock} from "./RecentBlock";
 import {RecentTransaction} from "./RecentTransaction";
@@ -90,11 +90,9 @@ class BlockExplorer extends Component {
         const {loading,transactions,serverError,error,blocks}=this.state
         return (
             <Layout>
-               <Grid textAlign="center"  verticalAlign='middle' >
-                   <Grid.Row className={"block_explorer"} style={{maxWidth:1200}}>
-                       <Grid.Column>
-                           <h1>TestNet <span>Block Explorer</span></h1>
-                           <p>Discover blocks, transactions and all the information you want about blocks with the help of Blockchain Explorer.</p>
+                <div className={"block-explorer-container"}>
+                    <div className={'block_explorer'}>
+                       <Form >
                            <Input
                                placeholder={"Search"}  size={'big'} fluid type={"text"}
                                label={
@@ -113,32 +111,31 @@ class BlockExplorer extends Component {
                                onKeyPress={(event)=>{this.onKeyUp(event)}}
                                labelPosition='left' error={error}
                            />
-                       </Grid.Column>
-                   </Grid.Row>
-                   {loading ? <Spinner2/> :
-                      ( serverError!=="" ?
-                              <Grid.Row style={{maxWidth: 1200}}><span>{serverError}</span></Grid.Row> :
-                               <Grid.Row className={"recent_block"} style={{maxWidth: 1200}}>
-                                   <Grid.Column textAlign={"left"} width={5}>
-                                       <h2>Recent <span>BLock</span></h2>
+                       </Form>
+                       {loading ? <Spinner2/> :
+                           ( serverError==="" ?
+                               <div className={"block-transaction"}>
+                                   <div className={'recent_block'}>
+                                       <h2>Recent BLock</h2>
                                        <Table className={"striped"}>
                                            <Table.Body>
                                                <RecentBlock blocks={blocks}/>
                                            </Table.Body>
                                        </Table>
-                                   </Grid.Column>
-                                   <Grid.Column className={"recent_transaction"} textAlign={"left"} width={11}>
-                                       <h2>Recent <span>Transaction</span></h2>
+                                   </div>
+                                   <div className={"recent_transaction"} >
+                                       <h2>Recent Transaction</h2>
                                        <Table className={"striped"}>
                                            <Table.Body>
                                                <RecentTransaction transactions={transactions}/>
                                            </Table.Body>
                                        </Table>
-                                   </Grid.Column>
-                               </Grid.Row>
-                       )
-                   }
-               </Grid>
+                                   </div>
+                               </div>:"Error"
+                           )
+                       }
+                    </div>
+                </div>
             </Layout>
         );
     }

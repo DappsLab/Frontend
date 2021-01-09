@@ -61,10 +61,15 @@
   .source-view{
     margin:  35px 0 ;
     color: #fff;
+    max-width: 100%;
     width: 100%;
     padding: 20px;
     border-radius: 20px;
     background: #04031C;
+    .react-codemirror2{
+      max-width: 145vh!important;
+      overflow-y: hidden;
+    }
     h3{
       max-width: 280px;
       width: 100%;

@@ -1,41 +1,78 @@
-.block_explorer {
-  background: url("../images/background.jpg");
-  background-size: 100% 100%;
-  height: auto;
-  margin: 15px !important;
-  padding: 40px 20px 20px 20px !important;
-  object-fit: cover; }
-  .block_explorer .input .dropdown {
-    align-items: center;
-    display: flex; }
-    .block_explorer .input .dropdown i.icon:before {
-      position: relative;
-      right: 0 !important; }
+.block-explorer-container {
+  background-image: linear-gradient(135.14deg, #04031D 0%, #0F0E2e 100%); }
 
-.recent_block, .block_explorer {
-  align-items: flex-start !important; }
-  .recent_block .column .ui.table, .block_explorer .column .ui.table {
-    margin-bottom: 20px !important;
-    border-top: 1px solid rgba(34, 36, 38, 0.15);
-    border-bottom: 1px solid rgba(34, 36, 38, 0.15);
-    border-left: 0;
-    border-right: 0;
-    font-size: 12px !important; }
-    .recent_block .column .ui.table tr, .block_explorer .column .ui.table tr {
-      height: 70px !important; }
-  .recent_block .column h1, .recent_block .column h2, .block_explorer .column h1, .block_explorer .column h2 {
-    font-size: 36px; }
-    .recent_block .column h1 span, .recent_block .column h2 span, .block_explorer .column h1 span, .block_explorer .column h2 span {
-      background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; }
+.block_explorer {
+  height: auto;
+  margin: auto;
+  padding: 40px 20px 20px 20px;
+  width: 90%; }
+  .block_explorer .input {
+    width: 50% !important; }
+    .block_explorer .input .dropdown {
+      background-color: #5754AB;
+      align-items: center;
+      display: flex; }
+      .block_explorer .input .dropdown i.icon:before {
+        position: relative;
+        right: 0 !important; }
+    .block_explorer .input .menu {
+      background-color: #04031c !important; }
+      .block_explorer .input .menu .item {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important; }
+        .block_explorer .input .menu .item .text {
+          color: #fff !important; }
+  .block_explorer .ui.teal.button {
+    background-color: #04031c !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.15) !important; }
+    .block_explorer .ui.teal.button:hover {
+      background-color: #0F0E2e !important; }
+  .block_explorer .ui.fluid.input > input {
+    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #fff;
+    height: 50px;
+    background: #070622 !important; }
+  .block_explorer .block-transaction, .block_explorer .block_explorer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    align-items: flex-start; }
+    .block_explorer .block-transaction .ui.table, .block_explorer .block_explorer .ui.table {
+      border-left: 0;
+      border-right: 0;
+      color: #fff !important;
+      background-color: #151339 !important;
+      font-size: 12px !important; }
+      .block_explorer .block-transaction .ui.table tr, .block_explorer .block_explorer .ui.table tr {
+        font-size: 16px !important;
+        border-bottom: 1px solid #fff !important;
+        height: 70px !important; }
+    .block_explorer .block-transaction h1, .block_explorer .block-transaction h2, .block_explorer .block_explorer h1, .block_explorer .block_explorer h2 {
+      color: #0FBA87;
+      font-size: 36px; }
+    .block_explorer .block-transaction .recent_block, .block_explorer .block_explorer .recent_block {
+      width: 30%;
+      padding: 20px;
+      background-color: #151339; }
+      .block_explorer .block-transaction .recent_block .ui.table tr td:nth-child(2), .block_explorer .block_explorer .recent_block .ui.table tr td:nth-child(2) {
+        color: #8F4114 !important; }
+    .block_explorer .block-transaction .recent_transaction, .block_explorer .block_explorer .recent_transaction {
+      padding: 20px;
+      width: 65%;
+      background-color: #151339; }
+      .block_explorer .block-transaction .recent_transaction .ui.table tr td:nth-child(3), .block_explorer .block_explorer .recent_transaction .ui.table tr td:nth-child(3) {
+        color: #8F4114 !important; }
+      .block_explorer .block-transaction .recent_transaction h2, .block_explorer .block_explorer .recent_transaction h2 {
+        color: #fff; }
 
 .row .block_address {
   width: 250px;
   display: flex; }
   .row .block_address span {
     width: 240px !important;
-    margin: 0;
+    margin: 0 0 0 10px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

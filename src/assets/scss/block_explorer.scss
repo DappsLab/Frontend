@@ -1,14 +1,17 @@
 @import "colors";
 
+.block-explorer-container{
+  @include default-color();
+}
 .block_explorer{
-  background: url("../images/background.jpg");
-  background-size: 100% 100%;
   height: auto;
-  margin: 15px !important;
-  padding: 40px 20px 20px 20px !important;
-  object-fit: cover;
+  margin: auto;
+  padding: 40px 20px 20px 20px;
+  width: 90%;
   .input{
+    width: 50%!important;
     .dropdown {
+      background-color: #5754AB;
       i.icon:before {
         position: relative;
         right: 0 !important;
@@ -16,41 +19,83 @@
       align-items: center;
       display: flex;
     }
+    .menu{
+      background-color: #04031c!important;
+      .item {
+        .text {
+          color: #fff !important;
+        }
+        border-bottom: 1px solid rgba(255,255,255,.15)!important;
+      }
+    }
   }
-
-}
-
-.recent_block  ,.block_explorer  {
-  align-items: flex-start!important;
-
-  .column {
+  .ui.teal.button{
+    background-color: #04031c!important;
+    border-top: 1px solid rgba(255,255,255,.15)!important;
+    border-bottom: 1px solid rgba(255,255,255,.15)!important;
+    border-right: 1px solid rgba(255,255,255,.15)!important;
+    &:hover{
+      background-color: #0F0E2e!important;
+    }
+  }
+  .ui.fluid.input>input{
+    border-top: 1px solid rgba(255,255,255,.15)!important;
+    border-bottom: 1px solid rgba(255,255,255,.15)!important;
+    color: #fff;
+    height: 50px;
+    background: #070622!important;
+  }
+  .block-transaction ,.block_explorer  {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    align-items: flex-start;
     .ui.table {
-      margin-bottom: 20px!important;
-      border-top: 1px solid rgba(34,36,38,.15);
-      border-bottom: 1px solid rgba(34,36,38,.15);
       border-left: 0;
       border-right: 0;
+      color: #fff!important;
+      background-color: #151339!important;
       font-size: 12px!important;
       tr{
+        font-size: 16px!important;
+        border-bottom: 1px solid #fff!important;
         height: 70px!important;
       }
     }
     h1, h2 {
+      color: #0FBA87;
       font-size: 36px;
-
-      span {
-        @include default-link();
+    }
+    .recent_block{
+      .ui.table tr td:nth-child(2){
+          color: #8F4114!important;
+      }
+      width: 30%;
+      padding: 20px;
+      background-color: #151339;
+    }
+    .recent_transaction {
+      padding: 20px;
+      width: 65%;
+      .ui.table tr td:nth-child(3) {
+        color: #8F4114 !important;
+      }
+      background-color: #151339;
+      h2 {
+        color: #fff;
       }
     }
   }
 }
+
+
 .row {
   .block_address {
     width: 250px;
     display: flex;
     span {
       width: 240px !important;
-      margin: 0;
+      margin: 0 0 0 10px;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;

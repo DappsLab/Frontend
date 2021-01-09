@@ -1,42 +1,56 @@
 @import "colors";
 .result_container{
+  @include default-color();
   .segment{
     padding: 16px 0!important;
   }
-  margin: 10px 0!important;
+  margin:  0!important;
   min-height: 200px;
   .block_result{
     text-align: left;
     h4{
       padding-left: 10px;
+      color: #fff;
     }
     .flex{
       display: flex!important;
       padding: 14px 10px;
     }
-    .content{
-      width: 300px!important;
+    .item{
+      color: #fff;
     }
+    //.content{
+    //  width: 300px!important;
+    //}
   }
 }
 .address{
-
   h4{
+    color: #fff;
     text-align: left;
     margin-left: 10px;
   }
 }
 .block_address {
-  width: 250px;
+  width: 300px;
   text-align: center;
   display: flex;
+  div{
+    width: 50px;
+    text-align: left;
+  }
   a {
-    @include default-link();
     width: 240px !important;
     margin: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     display: inline-block;
+  }
+  .addresss a{
+    @include default-link();
+  }
+  .hash a{
+    color: #0FBA87!important;
   }
 }
