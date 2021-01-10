@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
-import Layout from "../../../hoc/Layout";
 import '../../../assets/scss/add_test_address.css'
 import {Button, Icon, Table} from "semantic-ui-react";
 import { useMutation, useQuery} from "@apollo/client";
 import {deleteTestAddress,addTestAddress,requestCoin, me_Query} from "../../../queries/queries";
 import {Client} from "../../../queries/Services";
 import {withAlert} from "react-alert";
-import {Spinner2} from "../../ui/Spinner";
+import {Spinner3} from "../../ui/Spinner";
 import {flowRight as compose} from "lodash";
 import {connect} from "react-redux";
 import {setUser} from "../../../actions/Actions";
+import DashboardLayout from "../../../hoc/DashboardLayout";
 
 const AddTestAddress = (props) => {
     const {alert}=props;
@@ -69,7 +69,7 @@ const AddTestAddress = (props) => {
         })
     }
     const {loading,data,error,refetch}=useQuery(me_Query,{
-        client:Client,context:context,
+        client:Client,context:context,fetchPolicy:'network-only',
         onCompleted:data => {
             setUser(data.me)
             props.setUser(data.me)
@@ -77,10 +77,12 @@ const AddTestAddress = (props) => {
             alert.error("new"+error.toString(),{timeout:3000})
         }
     });
-    if (loading) return <Spinner2/>
+    if (loading) return <DashboardLayout user={props.user}>
+        <Spinner3/>
+    </DashboardLayout>
     if (error) return <div>{error.toString()}</div>
     return (
-        <Layout>
+        <DashboardLayout  user={props.user}>
             <div className={'add-test'}>
                 <h2>Add Test Address</h2>
                 <Table>
@@ -111,7 +113,7 @@ const AddTestAddress = (props) => {
                 </Table>
                 <Button color={"green"} onClick={AddAddress}>Add new Adress</Button>
             </div>
-        </Layout>
+        </DashboardLayout>
     );
 };
 

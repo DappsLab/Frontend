@@ -650,15 +650,16 @@ export const getABI=gql`query  ($id:ID!) {
 export const getBinery=gql`query  ($id:ID!) {
   getBinary(id: $id)
 }`
-
+// export const deploy=gql`
+//
+// `
 export const testDeploy=gql`
    mutation ($input:TestDeployedContractInput!){
    testDeployContract(newDeploy: $input){
   id
 }
 }
-   
-    `
+`
 export const getCompiler=gql`
    query   {
    getCompilerVersions

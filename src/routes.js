@@ -53,6 +53,7 @@ import TwoFA from "./components/user/myAccount/TwoFA/TwoFA";
 import CustomizedSmartContract from "./components/home/smartContract/compileSmartContract/CustomizedSmartContract";
 import CompileResult from "./components/home/smartContract/compileSmartContract/CompileResult";
 import DeploySmartContract from "./components/home/smartContract/deploySmartContract/DeploySmartContract";
+import TestExplorerResult from "./components/block_explorer/test-explorer/TestExplorerResult";
 
 
 const Routes =(props)=>{
@@ -79,7 +80,7 @@ const Routes =(props)=>{
               <PrivateRoute {...props} path={"/account_settings/transaction"} component={Transactions}/>
               <PrivateRoute {...props} path={"/account_settings/2fa"} component={TwoFA}/>
               <PrivateRoute {...props} path={'/upload_dapps'} component={UploadDapps}/>
-              <PrivateRoute {...props} path={'/add_test_address'} component={AddTestAddress}/>
+              <PrivateRoute {...props} path={'/dashboard/add_test_address'} component={AddTestAddress}/>
               <PrivateRoute {...props} path={'/edit_dapp/:id'} component={EditDapp}/>
               <PrivateRoute {...props} path={"/logout"} exact component={Logout}/>
               <PrivateRoute {...props} path={"/request_smart_contract"} exact component={RequestSmartContract}/>
@@ -95,6 +96,7 @@ const Routes =(props)=>{
               <PublicRoute {...props} restricted={false} path={'/dapps_details/:id'} component={DappsDetails}/>
               <PublicRoute {...props} restricted={false} path={"/2FA_varifivcation/:token"} exact component={FAConfirmation}/>
               <PublicRoute {...props} restricted={false} path={"/block_explorer/:search"} exact component={ExplorerResult}/>
+             <PublicRoute {...props} restricted={false} path={"/test_block_explorer/:search"} exact component={TestExplorerResult}/>
               <PublicRoute {...props} restricted={false} path={"/user/reset-password/:key"} exact component={ChangePassword}/>
               <PublicRoute {...props} restricted={false} path={"/user/confirm/:key"} exact component={ConfirmEmail}/>
               <PublicRoute {...props} restricted={false} path={"/detailed_contract/:id"} exact component={DetailedContract}/>

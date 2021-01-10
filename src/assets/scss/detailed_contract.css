@@ -21,6 +21,8 @@
     border-bottom-left-radius: 0 !important; }
   .contractContainer .ui.basic.label {
     background-color: #5754AB !important; }
+  .contractContainer .MuiIconButton-label {
+    color: #fff; }
 
 .contractLeft {
   width: 730px;

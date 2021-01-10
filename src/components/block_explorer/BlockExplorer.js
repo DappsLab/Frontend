@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Layout from "../../hoc/Layout";
-import {Grid, Input, Dropdown, Table, Form} from "semantic-ui-react";
+import { Input, Dropdown, Table, Form} from "semantic-ui-react";
 import "../../assets/scss/block_explorer.css"
 import {RecentBlock} from "./RecentBlock";
 import {RecentTransaction} from "./RecentTransaction";
@@ -15,19 +15,24 @@ class BlockExplorer extends Component {
 
     state={
         search:"",
+        explorerType:'main',
         type:"All_Filters",
         blocks:null,
         transactions:null,
         loading:true,
         error:false,
         serverError:"",
+        testBlocks:null,
+        testTransactions:null,
+        testLoading:true,
+        testServerError:"",
     }
      options = [
          { key: 'All Filters', text: 'All Filters', value: 'All Filters' },
          { key: 'Addresses', text: 'Addresses', value: 'Addresses' },
          { key: 'Block', text: 'Block', value: 'Block' },
          { key: 'Transaction', text: 'Transaction', value: 'Transaction' },
-]
+     ]
     componentDidMount() {
         const that=this;
         client.query({query:gql`                
@@ -39,7 +44,6 @@ class BlockExplorer extends Component {
                     }
                 }
             `}).then(result=>{
-            console.log(result.data.blocks)
             that.setState({blocks:result.data.blocks})
             client.query({query:gql`
                     query {
@@ -50,7 +54,6 @@ class BlockExplorer extends Component {
                         }
                     }
                 `}).then(result=>{
-                console.log(result.data.transactions)
                 that.setState({loading:false,transactions:result.data.transactions});
             }).catch(error=>{
                 that.setState({loading:false,serverError:"Error! Try Again"})
@@ -58,6 +61,34 @@ class BlockExplorer extends Component {
             })
         }).catch(error=>{
             that.setState({loading:false,serverError:"Error! Try Again"})
+            console.log(error.toString())
+        })
+        client.query({query:gql`                
+                query {
+                    testBlocks{
+                        id gasUsed number createdAt hash
+                        receiptsRoot sha3Uncles
+                        stateRoot transactionsRoot
+                    }
+                }
+            `}).then(result=>{
+            that.setState({testBlocks:result.data.testBlocks})
+            client.query({query:gql`
+                    query {
+                        testTransactions {
+                            transactionHash
+                            from blockNumber
+                            id to
+                        }
+                    }
+                `}).then(result=>{
+                that.setState({testLoading:false,testTransactions:result.data.testTransactions});
+            }).catch(error=>{
+                that.setState({testLoading:false,testServerError:"Error! Try Again"})
+                console.log(error.toString())
+            })
+        }).catch(error=>{
+            that.setState({testLoading:false,testServerError:"Error! Try Again"})
             console.log(error.toString())
         })
 
@@ -76,9 +107,13 @@ class BlockExplorer extends Component {
 
     }
     handleSearch(){
-        const {search,type} =this.state
+        const {explorerType,search,type} =this.state
         if (search.length>0) {
-            this.props.history.push(`/block_explorer/${type.toLowerCase()}:${search}`)
+            if (explorerType==="main") {
+                this.props.history.push(`/block_explorer/${type.toLowerCase()}:${search}`)
+            }else {
+                this.props.history.push(`/test_block_explorer/${type.toLowerCase()}:${search}`)
+            }
         }else {
             this.setState({error:true})
         }
@@ -86,12 +121,20 @@ class BlockExplorer extends Component {
     handleChange=(event)=>{
         this.setState({error:false,search:event.target.value})
     }
+    handleTab=(tab)=>{
+        this.setState({explorerType:tab})
+    }
     render() {
-        const {loading,transactions,serverError,error,blocks}=this.state
+        const {loading,testBlocks,testTransactions,explorerType,transactions,serverError,error,blocks}=this.state
         return (
             <Layout>
                 <div className={"block-explorer-container"}>
-                    <div className={'block_explorer'}>
+                    <div className={`block_explorer ${explorerType==='main'?'main-active':'test-active'}`}>
+                        <div className={'btn-container'}>
+                            <button onClick={()=>this.handleTab('main')} className={`explorer-main`}>Main Explorer</button>
+                            <button onClick={()=>this.handleTab('test')} className={`explorer-test`}>Test Explorer</button>
+                        </div>
+                        <hr className={`${explorerType==='main'?'main':'test'}`}/>
                        <Form >
                            <Input
                                placeholder={"Search"}  size={'big'} fluid type={"text"}
@@ -119,7 +162,7 @@ class BlockExplorer extends Component {
                                        <h2>Recent BLock</h2>
                                        <Table className={"striped"}>
                                            <Table.Body>
-                                               <RecentBlock blocks={blocks}/>
+                                               <RecentBlock type={explorerType} blocks={explorerType==="main"? blocks:testBlocks}/>
                                            </Table.Body>
                                        </Table>
                                    </div>
@@ -127,7 +170,7 @@ class BlockExplorer extends Component {
                                        <h2>Recent Transaction</h2>
                                        <Table className={"striped"}>
                                            <Table.Body>
-                                               <RecentTransaction transactions={transactions}/>
+                                               <RecentTransaction type={explorerType} transactions={explorerType==="main"?transactions:testTransactions}/>
                                            </Table.Body>
                                        </Table>
                                    </div>

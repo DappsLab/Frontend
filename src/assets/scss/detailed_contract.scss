@@ -30,6 +30,9 @@
   .ui.basic.label{
     background-color: #5754AB!important;
   }
+  .MuiIconButton-label{
+    color: #fff;
+  }
 }
 .contractLeft{
   width: 730px;
@@ -40,6 +43,7 @@
     width: 80px!important;
     height: 80px!important;
   }
+
   .fa-icon{
     margin: 20px 0;
     i.inverted.bordered.icon{

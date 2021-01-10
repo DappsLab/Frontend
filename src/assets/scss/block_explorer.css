@@ -1,15 +1,39 @@
 .block-explorer-container {
   background-image: linear-gradient(135.14deg, #04031D 0%, #0F0E2e 100%); }
+  .block-explorer-container .btn-container button {
+    padding: 10px 30px;
+    margin-right: 10px;
+    color: #fff;
+    cursor: pointer; }
+    .block-explorer-container .btn-container button:focus {
+      outline: none; }
+  .block-explorer-container .explorer-main {
+    border: 3px solid #5754AB;
+    background-color: #5754AB; }
+  .block-explorer-container .explorer-test {
+    border: 3px solid #0FBA87;
+    background-color: #0FBA87; }
+  .block-explorer-container hr {
+    height: 3px;
+    margin-bottom: 10px;
+    border: none; }
+  .block-explorer-container .main {
+    background-color: #5754AB; }
+  .block-explorer-container .test {
+    background-color: #0FBA87; }
+  .block-explorer-container .main-active .dropdown {
+    background-color: #5754AB; }
+  .block-explorer-container .test-active .dropdown {
+    background-color: #0FBA87; }
 
 .block_explorer {
   height: auto;
   margin: auto;
-  padding: 40px 20px 20px 20px;
+  padding: 40px 20px;
   width: 90%; }
   .block_explorer .input {
     width: 50% !important; }
     .block_explorer .input .dropdown {
-      background-color: #5754AB;
       align-items: center;
       display: flex; }
       .block_explorer .input .dropdown i.icon:before {

@@ -30,6 +30,18 @@
     text-align: left;
     margin-left: 10px;
   }
+  .ui.table thead th{
+    background-color: #0F0E2e;
+    color: #fff;
+  }
+  .striped{
+    color: #fff;
+    background-color: #0F0E2e;
+    tr{
+
+      background-color: #0F0E2e;
+    }
+  }
 }
 .block_address {
   width: 300px;

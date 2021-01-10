@@ -10,6 +10,7 @@ const DashboardNav = (props) => {
     const {user}=props;
     const type=user.type;
     const links=[
+        {icon:<LocalMallIcon/>, title:"Add Test Address",linkTo:"/dashboard/add_test_address"},
         {icon:<LocalMallIcon/>, title:"Custom Orders",linkTo:"/dashboard/custom_orders"},
         {icon:<LocalMallIcon/>,title:"Ordered Contract",linkTo:"/dashboard/ordered_contract"},
         {icon:<LocalMallIcon/>, title:"Purchased Smart Contract",linkTo:"/dashboard/purchased_contracts"},

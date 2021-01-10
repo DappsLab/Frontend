@@ -2,16 +2,55 @@
 
 .block-explorer-container{
   @include default-color();
+  .btn-container {
+    button{
+      padding: 10px 30px;
+      margin-right: 10px;
+      color: #fff;
+      cursor: pointer;
+      &:focus{
+        outline: none;
+      }
+    }
+  }
+  .explorer-main{
+    border: 3px solid #5754AB;
+    background-color: #5754AB;
+  }
+  .explorer-test{
+    border: 3px solid #0FBA87;
+    background-color: #0FBA87;
+  }
+  hr{
+    height: 3px;
+    margin-bottom: 10px;
+    border: none;
+  }
+  .main{
+    background-color: #5754AB;
+  }
+  .test{
+    background-color: #0FBA87;
+  }
+  .main-active{
+    .dropdown{
+      background-color: #5754AB;
+    }
+  }
+  .test-active{
+    .dropdown{
+      background-color: #0FBA87;
+    }
+  }
 }
 .block_explorer{
   height: auto;
   margin: auto;
-  padding: 40px 20px 20px 20px;
+  padding: 40px 20px;
   width: 90%;
   .input{
     width: 50%!important;
     .dropdown {
-      background-color: #5754AB;
       i.icon:before {
         position: relative;
         right: 0 !important;
