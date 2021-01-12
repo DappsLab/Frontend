@@ -54,6 +54,7 @@ import CustomizedSmartContract from "./components/home/smartContract/compileSmar
 import CompileResult from "./components/home/smartContract/compileSmartContract/CompileResult";
 import DeploySmartContract from "./components/home/smartContract/deploySmartContract/DeploySmartContract";
 import TestExplorerResult from "./components/block_explorer/test-explorer/TestExplorerResult";
+import TestInteraction from "./components/home/smartContract/testSmartContract/testInteract/TestInteraction";
 
 
 const Routes =(props)=>{
@@ -93,7 +94,8 @@ const Routes =(props)=>{
               <PrivateRoute {...props} path={"/compiled_test_smart_contract/:id"} exact component={TestCompileResult}/>
               <PrivateRoute {...props} path={"/deploy_test_smart_contract/:id"} exact component={TestDeploy}/>
               <PrivateRoute {...props} path={"/upload_samrt_contract"} exact component={UploadSmartContract}/>
-              <PublicRoute {...props} restricted={false} path={'/dapps_details/:id'} component={DappsDetails}/>
+             <PrivateRoute {...props} path={"/interact_test_smart_contract/:id"} exact component={TestInteraction}/>
+             <PublicRoute {...props} restricted={false} path={'/dapps_details/:id'} component={DappsDetails}/>
               <PublicRoute {...props} restricted={false} path={"/2FA_varifivcation/:token"} exact component={FAConfirmation}/>
               <PublicRoute {...props} restricted={false} path={"/block_explorer/:search"} exact component={ExplorerResult}/>
              <PublicRoute {...props} restricted={false} path={"/test_block_explorer/:search"} exact component={TestExplorerResult}/>

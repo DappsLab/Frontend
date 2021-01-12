@@ -14,11 +14,10 @@ import {
 const RenderArguments = (props) => {
     const {license,fee,name,alert}=props
     const newID=license.testCompilations[license.testCompilations.length - 1].id;
+    const type=license.testPurchasedContract.unlimitedCustomization;
     const [inputSize,setInputSize]=useState(0)
     const [argument,setArgument]=useState([])
     const [errors,setError]=useState(false)
-
-
     const [deploy]=useMutation(testDeploy,{
         client:Client,
         context:{
@@ -27,6 +26,9 @@ const RenderArguments = (props) => {
             }
         },onCompleted:data1 => {
             console.log("test deploy :",data1)
+            alert.success("Deploy Successfull")
+            props.history.push(`/interact_test_smart_contract/${license.id}`)
+
         },
         onError:error1 => {
             alert.error(error1.toString(),{timeout:3000})
@@ -69,7 +71,8 @@ const RenderArguments = (props) => {
         input["testCompiledContractId"] = newID
         input["testAddressId"]=license.testOrder.testAddress.id
         input['deplopmentLabel']=name
-        input['fee']=fee.toString()
+        input['unlimitedCustomization']=type
+        // input['fee']=fee.toString()
         if (inputSize>0){
 
             let final =[]

@@ -608,9 +608,9 @@ export const purchasedTestOrder=gql`
 export const testLicenseById=gql`query ($id:ID!){
 testLicenseById(id: $id) {
  testCompilations{
-    id
+    id used
   } used
-    id testPurchasedContract { id }
+    id testPurchasedContract { unlimitedCustomization id }
     testOrder { id
         testAddress{ id }
       smartContract {

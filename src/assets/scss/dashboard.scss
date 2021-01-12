@@ -5,7 +5,8 @@
   background-position: center;
   align-items: flex-start!important;
   background-size: 100%;
-  padding: 5em 10em;
+  padding: 5em 0;
+  justify-content:center ;
   min-height: 1200px;
   max-height: 1200px;
   .MuiList-padding {
@@ -41,6 +42,7 @@
   }
   .dash-right{
     margin-left: 40px;
+    max-width: 1100px;
     width: 100%;
     .scroll {
       overflow-y: auto;

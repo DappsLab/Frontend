@@ -262,7 +262,7 @@ class ExplorerResult extends Component {
                 console.log("here")
                 return <Grid textAlign={'center'}>
                     <Grid.Row>
-                        {error}
+                        <p style={{color:'#fff'}}>{error}</p>
                     </Grid.Row>
                     <Grid.Row>
                         <Button onClick={()=>{this.props.history.push("/block_explorer")}}><Link  to={"/block_explorer"}>Goto Block Explorer</Link></Button>

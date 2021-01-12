@@ -41,30 +41,36 @@ class Transactions extends Component {
             }
         }).catch(error => {
             that.setState({loading: false, error: "Not Found"});
-            console.log(error)
         })
     }
+    ErrorDisplay=()=>(
+        <TableRow>
+            <TableCell> </TableCell>
+            <TableCell> </TableCell>
+            <TableCell style={{textAlign:'center'}}>No Transaction</TableCell>
+            <TableCell> </TableCell>
+            <TableCell> </TableCell>
+        </TableRow>
+    )
     renderTransaction(){
         const {data}=this.state;
         console.log("transaction",data)
-        if (data.length>0){
-            return data.slice(0,10).map(da=> {
-                return <TableRow key={da.id}>
-                    <TableCell>{da.blockNumber}</TableCell>
-                    <TableCell>{da.to}</TableCell>
-                    <TableCell>{da.gasUsed}</TableCell>
-                    <TableCell> {dateTime(da.createdAt)}</TableCell>
-                    <TableCell>{da.status?"True":"False"}</TableCell>
-                </TableRow>
-            })
+        if (data){
+            if (data.length>0) {
+                return data.slice(0, 10).map(da => {
+                    return <TableRow key={da.id}>
+                        <TableCell>{da.blockNumber}</TableCell>
+                        <TableCell>{da.to}</TableCell>
+                        <TableCell>{da.gasUsed}</TableCell>
+                        <TableCell> {dateTime(da.createdAt)}</TableCell>
+                        <TableCell>{da.status ? "True" : "False"}</TableCell>
+                    </TableRow>
+                })
+            }else {
+                return this.ErrorDisplay()
+            }
         }else {
-            return <TableRow>
-                <TableCell> </TableCell>
-                <TableCell> </TableCell>
-                <TableCell style={{textAlign:'center'}}>No Transaction</TableCell>
-                <TableCell> </TableCell>
-                <TableCell> </TableCell>
-            </TableRow>
+            return this.ErrorDisplay()
         }
     }
     render() {

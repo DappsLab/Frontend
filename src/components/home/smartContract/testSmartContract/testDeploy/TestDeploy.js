@@ -26,6 +26,12 @@ const TestDeploy = (props) => {
                 }
             },onError:error=>{
                 console.log(error.toString())
+            },onCompleted:data1 => {
+                const license=data1.testLicenseById
+                const used=license.testCompilations[license.testCompilations.length - 1].used
+                if (used){
+                    props.history.push(`/interact_test_smart_contract/${data1.testLicenseById.id}`)
+                }
             }
         })
         if (loading) return <Spinner2/>
@@ -74,7 +80,7 @@ const TestDeploy = (props) => {
                             />
                         </Form.Field>
                     </Form>
-                    <RenderArguments fee={fee} name={name} license={license}/>
+                    <RenderArguments {...props} fee={fee}  name={name} license={license}/>
                 </div>
             );
         }

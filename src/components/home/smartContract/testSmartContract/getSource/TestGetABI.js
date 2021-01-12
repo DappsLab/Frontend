@@ -18,7 +18,7 @@ const TestGetABI = (props) => {
         }
     })
     // if (loading) return <Spinner2/>
-    if (error) return <div>{error.toString()}</div>
+    if (error) return <p>{error.toString()}</p>
     if (data&&!loading) {
         let blob = new Blob([data.testGetABI], { type: ' application/json' });
         return (

@@ -4,10 +4,11 @@ import Layout from "./Layout";
 
 const CompileLayout = (props) => {
     const {type}=props
-    const compileTab=[
+    const testCompileTab=[
         {key:1,heading:"Customize",subHeading:"Insert your own parameter",link:"/customize_test_smart_contract"},
         {key:2,heading:"Compile",subHeading:"Create the customized contract",link:"/compiled_test_smart_contract"},
         {key:3,heading:"Deploy",subHeading:"Deploy your contract on the network",link:"/deploy_test_smart_contract"},
+        {key:3,heading:"Intraction",subHeading:"Intertact with your contract",link:"/interact_test_smart_contract"},
     ]
     const mainCompileTab=[
         {key:1,heading:"Customize",subHeading:"Insert your own parameter",link:"/customize_smart_contract"},
@@ -19,7 +20,7 @@ const CompileLayout = (props) => {
             <Container fluid className={"compile flex"}>
                 <Segment className={"compile_left"}>
                     {type==="test"?
-                        compileTab.map(tab=>{
+                        testCompileTab.map(tab=>{
                             return  <div key={tab.link} className={'items_container flex'}>
                                 <div  className={`sub_tab`}>
                                 <div className={`tab_number ${window.location.pathname.includes(tab.link)&& "meadow-color"}`}>{tab.key}</div>
