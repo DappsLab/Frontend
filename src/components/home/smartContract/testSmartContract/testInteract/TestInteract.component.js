@@ -6,13 +6,61 @@ import {Client} from "../../../../../queries/Services";
 import {getObjects} from "../../../../ui/Helpers";
 
 const TestIntract = (props) => {
+    const [name,setName]=useState('');
+    const [value,setValue]=useState('');
     const [abi,setAbi]=useState();
-    const {license}=props
-    const newID = license.testCompilations[license.testCompilations.length - 1].id;
-    const deploymentLength=license.testCompilations[license.testCompilations.length - 1].testDeployments.length;
-    const deploy=license.testCompilations[license.testCompilations.length - 1].testDeployments
-    const contractAddress=deploy[deploymentLength-1].contractAddress;
-    const onwerAddress=deploy[deploymentLength-1].ownerAddress;
+    const {license,newID,ownerAddress,ownerKey,contractAddress}=props
+
+    const onFunctionSubmit=async (targetArray,contract)=>{
+        if (targetArray.stateMutability==='view') {
+            let callData = await callContract(contract, targetArray, targetArray.name, ownerAddress);
+            setValue(callData)
+        }
+        else if (targetArray.stateMutability==="nonpayable"||targetArray.stateMutability==="payable"){
+            let callData = await sendContractValue(contract,ownerKey,targetArray.stateMutability ,targetArray.name,ownerAddress);
+            console.log(callData)
+        }
+    }
+    const handleSelect=(event)=>{
+        const {value}=event.target;
+        if (value==='Select Funtion'){
+            setName('')
+        }else {
+            setName(value)
+        }
+    }
+    const renderData=(array,contract)=>{
+        if (name.length>0) {
+            let tagertArray
+            for (let i=0;i<array.length;i++){
+                if (array[i].name===name){
+                    tagertArray=array[i]
+                    break;
+                }
+            }
+            if (tagertArray.inputs.length>0){
+                console.log('input',tagertArray)
+                return <div>Input</div>
+            }else {
+                return <button className={'Interact_button'} onClick={()=>onFunctionSubmit(tagertArray,contract)} >Execute</button>
+            }
+        }
+    }
+    const renderResult=(array)=>{
+        if (value.length>0) {
+            let tagertArray
+            for (let i=0;i<array.length;i++){
+                if (array[i].name===name){
+                    tagertArray=array[i]
+                    break;
+                }
+            }
+         return   <div className={'execute-result'}>
+             <h3>Result</h3>
+                {value}
+            </div>
+        }
+    }
     const {data,error,loading}=useQuery(getTestABI,{
         client:Client,
         context:{
@@ -22,37 +70,32 @@ const TestIntract = (props) => {
         },variables:{
             id:newID
         },onError:error1 => {
-            props.setLoading(false)
+            console.log(error1.toString())
+            // props.setLoading(false)
         },onCompleted:data1 => {
             setAbi(data.testGetABI)
         }
     })
+    if (loading) return <p>Loading...</p>
     if (error) return <p>{error.toString()}</p>
     if (data&&!loading&&abi) {
        let contract=loadContract(abi, contractAddress)
-        console.log(JSON.parse(abi))
+        console.log(contract)
         const inputArr=getObjects(JSON.parse(abi),"type","function");
-        const interfaceFuncation=contract._jsonInterface;
+        const functionArrays=contract._jsonInterface;
         return <div>
-            {interfaceFuncation.map((result,index)=>{
-                if (result.inputs.length>0){
-                    return <div key={index} >nothing</div>
-                }else{
-                    return <button className={'Interact_button'} onClick={
-                        async ()=>{
-
-                            if (result.stateMutability==='view') {
-                                let callData = await callContract(contract, result, result.name, onwerAddress);
-                                console.log(callData)
-                            }
-                            else if (result.stateMutability==="nonpayable"||result.stateMutability==="payable"){
-                                let callData = await sendContractValue(contract,result.stateMutability ,result.name, onwerAddress);
-                                console.log(callData)
-                            }
-                        }
-                    } key={index}>{result.name}</button>
-                }
-            })}
+            <form>
+                <select onClick={(event)=>handleSelect(event)}>
+                    <option>Select Funtion</option>
+                    {
+                        functionArrays.map(((functionArr,index)=>(
+                            <option key={index} >{functionArr.name}</option>
+                        )))
+                    }
+                </select>
+            </form>
+            {renderData(functionArrays,contract)}
+            {renderResult(functionArrays)}
         </div>
     }
     return (

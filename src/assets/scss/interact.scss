@@ -2,7 +2,47 @@
 
 
 .intreraction-container{
-
+  width: 100%;
+  @include default-color();
+  min-width: 500px;
+  display: flex;
+  padding: 20px 0;
+  justify-content: center;
+  .intraction-left{
+    width: 400px;
+  }
+  .intraction-right{
+    width: 900px;
+    form{
+      margin-bottom: 20px;
+      select{
+        width: 300px;
+        height: 45px;
+        border-radius: 7px;
+        background-color: #0F0E2e;
+        color: #fff;
+        border: 1px solid rgba(255,255,255,0.15);
+        &:focus{
+          outline: none;
+        }
+      }
+    }
+    .execute-result{
+      width: 100%;
+      min-height: 100px;
+      padding: 20px;
+      margin-top: 10px;
+      border-radius: 7px;
+      background-color: #0F0E2e;
+    }
+  }
+  .intraction-right,.intraction-left{
+    color: #fff!important;
+    background-color: #151339;
+    margin: 0 10px;
+    padding: 20px;
+    border-radius: 10px;
+  }
 }
 .Interact_button{
   border:2px solid #8F4114;

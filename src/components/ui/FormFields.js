@@ -10,6 +10,7 @@ import Checkbox from "@material-ui/core/Checkbox";
  import IconButton from "@material-ui/core/IconButton";
  import Visibility from "@material-ui/icons/Visibility";
  import VisibilityOff from "@material-ui/icons/VisibilityOff";
+ import {getContractBalance} from "./ContractInteractionHelper";
 
 
 export  const SearchField = ({formData,id,change,press}) => {

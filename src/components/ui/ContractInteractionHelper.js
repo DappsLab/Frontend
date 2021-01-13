@@ -14,7 +14,7 @@ export const callContract=async (contract,functionArr,name,address)=>{
     }
     return contractMethod
 }
-export const sendContractValue=async (contract,type,name,ownerAddress)=>{
+export const sendContractValue=async (contract,ownerKey,type,name,ownerAddress)=>{
     //const gasParice=await calculateGas(contract,name,address)
     //console.log(gasParice)
     try {
@@ -26,7 +26,7 @@ export const sendContractValue=async (contract,type,name,ownerAddress)=>{
             gas:2000000,
             data:encodedABI
         };
-        let signTx = await web3.eth.accounts.signTransaction(tx,"0x75d8c69d217d44bcd4f487e76a710ed093b946a6fe5e25e3ce39cfc725f315b2");
+        let signTx = await web3.eth.accounts.signTransaction(tx,ownerKey);
         let tran = web3.eth.sendSignedTransaction(signTx.rawTransaction)
         return "true"
     }catch (e) {
@@ -43,4 +43,13 @@ export const calculateGas= async (contract,name,address)=>{
         console.log("error:",e.toString())
     }
     return gasPrice
+}
+export const getContractBalance= async (address)=>{
+    let balance
+    try {
+        balance= await web3.eth.getBalance(address);
+    }catch (err){
+        console.log(err.toString())
+    }
+    return balance;
 }
