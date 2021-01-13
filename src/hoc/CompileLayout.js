@@ -8,7 +8,6 @@ const CompileLayout = (props) => {
         {key:1,heading:"Customize",subHeading:"Insert your own parameter",link:"/customize_test_smart_contract"},
         {key:2,heading:"Compile",subHeading:"Create the customized contract",link:"/compiled_test_smart_contract"},
         {key:3,heading:"Deploy",subHeading:"Deploy your contract on the network",link:"/deploy_test_smart_contract"},
-        {key:3,heading:"Intraction",subHeading:"Intertact with your contract",link:"/interact_test_smart_contract"},
     ]
     const mainCompileTab=[
         {key:1,heading:"Customize",subHeading:"Insert your own parameter",link:"/customize_smart_contract"},

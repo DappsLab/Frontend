@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import CompileLayout from "../../../../../hoc/CompileLayout";
-import {getTestABI, testLicenseById} from "../../../../../queries/queries";
+import '../../../../../assets/scss/interact.css';
 import {Spinner2} from "../../../../ui/Spinner";
 import {useQuery} from "@apollo/client";
 import {Client} from "../../../../../queries/Services";
 import gql from "graphql-tag";
 import TestIntract from "./TestInteract.component";
+import Layout from "../../../../../hoc/Layout";
 
 const license=gql`query ($id:ID!){
   testLicenseById(id: $id) {
@@ -46,11 +46,19 @@ const TestInteraction = (props) => {
             );
         }
     }
+    console.log("here")
     return (
-        <CompileLayout type={'test'}>
-            <h2>Start Intracting with  Contract</h2>
-            {RenderData()}
-        </CompileLayout>
+        <Layout>
+            <div className={'intreraction-container'}>
+                <div className={'intraction-left'}>
+                    <h2>sdnfsd</h2>
+                </div>
+                <div className={'intraction-right'}>
+                    <h2>Start Intracting with  Contract</h2>
+                    {RenderData()}
+                </div>
+            </div>
+        </Layout>
     );
 }
         

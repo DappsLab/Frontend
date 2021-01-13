@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import web3 from 'web3';
-import {loadContract} from "../../../../ui/ContractInteractionHelper";
+import {callContract, loadContract, sendContractValue} from "../../../../ui/ContractInteractionHelper";
 import {useQuery} from "@apollo/client";
 import {getTestABI} from "../../../../../queries/queries";
 import {Client} from "../../../../../queries/Services";
@@ -12,7 +11,7 @@ const TestIntract = (props) => {
     const newID = license.testCompilations[license.testCompilations.length - 1].id;
     const deploymentLength=license.testCompilations[license.testCompilations.length - 1].testDeployments.length;
     const deploy=license.testCompilations[license.testCompilations.length - 1].testDeployments
-    const address=deploy[deploymentLength-1].contractAddress;
+    const contractAddress=deploy[deploymentLength-1].contractAddress;
     const onwerAddress=deploy[deploymentLength-1].ownerAddress;
     const {data,error,loading}=useQuery(getTestABI,{
         client:Client,
@@ -30,18 +29,34 @@ const TestIntract = (props) => {
     })
     if (error) return <p>{error.toString()}</p>
     if (data&&!loading&&abi) {
-       let contract=loadContract(abi, address)
+       let contract=loadContract(abi, contractAddress)
         console.log(JSON.parse(abi))
         const inputArr=getObjects(JSON.parse(abi),"type","function");
-        console.log(inputArr)
-        console.log(onwerAddress)
-        console.log(contract)
-        return <div>sdf</div>
+        const interfaceFuncation=contract._jsonInterface;
+        return <div>
+            {interfaceFuncation.map((result,index)=>{
+                if (result.inputs.length>0){
+                    return <div key={index} >nothing</div>
+                }else{
+                    return <button className={'Interact_button'} onClick={
+                        async ()=>{
+
+                            if (result.stateMutability==='view') {
+                                let callData = await callContract(contract, result, result.name, onwerAddress);
+                                console.log(callData)
+                            }
+                            else if (result.stateMutability==="nonpayable"||result.stateMutability==="payable"){
+                                let callData = await sendContractValue(contract,result.stateMutability ,result.name, onwerAddress);
+                                console.log(callData)
+                            }
+                        }
+                    } key={index}>{result.name}</button>
+                }
+            })}
+        </div>
     }
     return (
-        <div>
-
-        </div>
+        <div>Error Refresh</div>
     );
 };
 
