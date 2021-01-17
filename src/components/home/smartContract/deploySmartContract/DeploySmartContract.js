@@ -7,7 +7,6 @@ import {Spinner2} from "../../../ui/Spinner";
 import {Form, Input} from "semantic-ui-react";
 import {Slider} from "react-semantic-ui-range";
 import {feeProcessTime} from "../../../ui/Helpers";
-import RenderArguments from "../testSmartContract/testDeploy/RenderArguments";
 import RenderMainArguments from "./RenderMainArguments";
 
 
@@ -26,7 +25,11 @@ const DeploySmartContract = (props) => {
                 }
             },
             onCompleted: data1 => {
-                console.log(data1.licenseById)
+                const license=data1.licenseById
+                const used=license.compilations[license.compilations.length - 1].used
+                if (used){
+                    props.history.push(`/interact_smart_contract/${data1.licenseById.id}`)
+                }
             }
         })
         if (loading) return <Spinner2/>
@@ -74,7 +77,7 @@ const DeploySmartContract = (props) => {
                                 disabled label={{basic: true, content: 'Wei'}}
                             />
                         </Form.Field>
-                        <RenderMainArguments fee={fee} name={name} license={license}/>
+                        <RenderMainArguments {...props} fee={fee} name={name} license={license}/>
                     </Form>
                 </div>
             );

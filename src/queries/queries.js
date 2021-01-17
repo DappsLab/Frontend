@@ -339,16 +339,18 @@ export const search=gql` query ($search:String){
 // address{ id }
 export const licenseById=gql`query ($id:ID!){
   licenseById(id: $id) {
-    id used compilations {
-      id
+    id used 
+    compilations {
+      id used
     }
     purchasedContract {
+    unlimitedCustomization
       id
     }
    
     order {
       id
-     
+     addrees{id}
       smartContract {
         id
         contractName shortDescription
@@ -656,6 +658,13 @@ export const getBinery=gql`query  ($id:ID!) {
 export const testDeploy=gql`
    mutation ($input:TestDeployedContractInput!){
    testDeployContract(newDeploy: $input){
+  id
+}
+}
+`
+export const deploy=gql`
+   mutation ($input:deployedContractInput!){
+   deployContract(newDeploy: $input){
   id
 }
 }

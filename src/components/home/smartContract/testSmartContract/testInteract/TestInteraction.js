@@ -9,7 +9,7 @@ import Layout from "../../../../../hoc/Layout";
 import GetBalance from "../../../../ui/GetBalance";
 
 
-const license=gql`query ($id:ID!){
+const testLicense=gql`query ($id:ID!){
   testLicenseById(id: $id) {
   id
     testCompilations {
@@ -38,8 +38,8 @@ const TestInteraction =  (props) => {
     //     console.log(value)
     //     return value;
     // }
-    const RenderData=  ( )=> {
-        const {error, loading, data} = useQuery(license, {
+    const RenderData=()=> {
+        const {error, loading, data} = useQuery(testLicense, {
             variables: {id: id},
             fetchPolicy: 'network-only',
             client: Client, context: {
@@ -47,24 +47,28 @@ const TestInteraction =  (props) => {
                     authorization: localStorage.getItem('token')
                 }
             },onCompleted:data1 => {
-                const license = data1.testLicenseById
-                const ID = license.testCompilations[license.testCompilations.length - 1].id;
-                const deploymentLength=license.testCompilations[license.testCompilations.length - 1].testDeployments.length;
-                const deploy=license.testCompilations[license.testCompilations.length - 1].testDeployments;
-                const contract=deploy[deploymentLength-1].contractAddress;
-                const address=deploy[deploymentLength-1].ownerAddress;
-                const key=deploy[deploymentLength-1].ownerPrivateKey;
-                setownerKey(key);
-                setownerAddress(address);
-                setcontractAddress(contract)
-                setnewID(ID);
-                setLoading(true)
+              try {
+                  const license = data1.testLicenseById
+                  const ID = license.testCompilations[license.testCompilations.length - 1].id;
+                  const deploymentLength=license.testCompilations[license.testCompilations.length - 1].testDeployments.length;
+                  const deploy=license.testCompilations[license.testCompilations.length - 1].testDeployments;
+                  const contract=deploy[deploymentLength-1].contractAddress;
+                  const address=deploy[deploymentLength-1].ownerAddress;
+                  const key=deploy[deploymentLength-1].ownerPrivateKey;
+                  setownerKey(key);
+                  setownerAddress(address);
+                  setcontractAddress(contract)
+                  setnewID(ID);
+                  setLoading(true)
+              }catch (e) {
+                  console.log(e.toString())
+              }
             }
         })
         if (loading) return <Spinner2/>
         if (error) return <p>{error.toString()}</p>
         if (data && !loading&&Loading) {
-            // const license = data.testLicenseById
+            const license = data.testLicenseById
             // const newID = license.testCompilations[license.testCompilations.length - 1].id;
             // const deploymentLength=license.testCompilations[license.testCompilations.length - 1].testDeployments.length;
             // const deploy=license.testCompilations[license.testCompilations.length - 1].testDeployments;

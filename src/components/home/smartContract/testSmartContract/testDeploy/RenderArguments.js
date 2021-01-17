@@ -18,6 +18,7 @@ const RenderArguments = (props) => {
     const [inputSize,setInputSize]=useState(0)
     const [argument,setArgument]=useState([])
     const [errors,setError]=useState(false)
+
     const [deploy]=useMutation(testDeploy,{
         client:Client,
         context:{
@@ -49,7 +50,6 @@ const RenderArguments = (props) => {
         }else {
             array.push(value)
         }
-
 
         if (value.length>0) {
             if (recursiveChecker(ty,array)){
@@ -170,7 +170,7 @@ const RenderArguments = (props) => {
             return <Button className={'deploy_btn'} onClick={()=>onTestDeploy()}>Deploy</Button>
         }
     }
-    return <div>Nont found</div>
+    return <div>Not found</div>
 };
 
 export default withAlert()(RenderArguments);
