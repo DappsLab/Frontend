@@ -350,7 +350,7 @@ export const licenseById=gql`query ($id:ID!){
    
     order {
       id
-     addrees{id}
+     address
       smartContract {
         id
         contractName shortDescription

@@ -1,5 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {callContract, loadContract, sendContractValue} from "../../../../ui/ContractInteractionHelper";
+import {
+     callMainContract,
+     loadMainContract,
+    sendMainContractValue
+} from "../../../../ui/ContractInteractionHelper";
 import {useQuery} from "@apollo/client";
 import {getTestABI} from "../../../../../queries/queries";
 import {Client} from "../../../../../queries/Services";
@@ -13,11 +17,11 @@ const TestIntract = (props) => {
 
     const onFunctionSubmit=async (targetArray,contract)=>{
         if (targetArray.stateMutability==='view') {
-            let callData = await callContract(contract, targetArray, targetArray.name, ownerAddress);
+            let callData = await callMainContract(contract, targetArray, targetArray.name, ownerAddress);
             setValue(callData)
         }
         else if (targetArray.stateMutability==="nonpayable"||targetArray.stateMutability==="payable"){
-            let callData = await sendContractValue(contract,ownerKey,targetArray.stateMutability ,targetArray.name,ownerAddress);
+            let callData = await sendMainContractValue(contract,ownerKey,targetArray.stateMutability ,targetArray.name,ownerAddress);
             console.log(callData)
         }
     }
@@ -79,7 +83,7 @@ const TestIntract = (props) => {
     if (loading) return <p>Loading...</p>
     if (error) return <p>{error.toString()}</p>
     if (data&&!loading&&abi) {
-       let contract=loadContract(abi, contractAddress)
+       let contract=loadMainContract(abi, contractAddress)
         console.log(contract)
         const inputArr=getObjects(JSON.parse(abi),"type","function");
         const functionArrays=contract._jsonInterface;

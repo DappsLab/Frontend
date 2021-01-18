@@ -9,11 +9,11 @@ import TestIntract from "../../testSmartContract/testInteract/TestInteract.compo
 import IntractArguments from "./InteractionArguments";
 
 const license=gql`query ($id:ID!){
-  testLicenseById(id: $id) {
+  licenseById(id: $id) {
   id
-    testCompilations {
+    compilations {
       used id
-      testDeployments { id ownerPrivateKey
+      deployments { id ownerPrivateKey
         contractAddress ownerAddress
       }
     }
