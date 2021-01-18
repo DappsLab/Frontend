@@ -68,7 +68,7 @@ const AddTestAddress = (props) => {
             console.log(error.toString())
         })
     }
-    const {loading,data,error,refetch}=useQuery(me_Query,{
+    const {loading,data,error}=useQuery(me_Query,{
         client:Client,context:context,fetchPolicy:'network-only',
         onCompleted:data => {
             setUser(data.me)

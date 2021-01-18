@@ -5,7 +5,7 @@ import {Client} from "../../../../queries/Services";
 import {withAlert} from "react-alert";
 
 const UpdateUser = (props) => {
-    const {alert,fullName,setLoading,imgPath,type,location,user}=props
+    const {alert,fullName,imgPath,type,location,user}=props
 
     const [editUser]=useMutation(updateUser,{
         client:Client,context:{

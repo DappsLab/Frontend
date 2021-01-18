@@ -16,7 +16,7 @@
     "@uiw/react-md-editor": "^1.14.7",
     "apollo-boost": "^0.4.9",
     "apollo-upload-client": "^14.1.2",
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "clsx": "^1.1.1",
     "codemirror": "^5.58.3",
     "fade": "^0.2.0",

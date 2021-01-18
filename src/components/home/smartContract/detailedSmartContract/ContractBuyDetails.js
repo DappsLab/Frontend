@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 import FormControl from "@material-ui/core/FormControl";
 import RadioGroup from "@material-ui/core/RadioGroup";
-import { Divider, Form,Select, Input} from "semantic-ui-react";
+import { Divider, Form, Input} from "semantic-ui-react";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
 import {Slider} from "react-semantic-ui-range";
@@ -46,7 +46,7 @@ const ContractBuyDetails = (props) => {
         if (error){
             console.log(error.toString())
         }
-        if (data) {
+        if (data&&!loading) {
             return (
                 <div className={`btnGroups`}>
                     <BuySmartContract

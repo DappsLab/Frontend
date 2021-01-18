@@ -7,17 +7,15 @@ import { Provider} from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducer/Reducer';
 import { ApolloProvider} from "react-apollo";
-import {ApolloClient, useQuery,ApolloLink, concat, InMemoryCache} from '@apollo/client';
+import {ApolloClient,ApolloLink, concat, InMemoryCache} from '@apollo/client';
 import {createUploadLink} from "apollo-upload-client";
 import 'semantic-ui-css/semantic.min.css'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic';
-import {Spinner} from "./components/ui/Spinner";
 import Routes from "./routes";
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
-import {me_Query} from "./queries/queries";
-import {Client, match} from "./queries/Services";
+
 
 const store = createStore(rootReducer, composeWithDevTools());
 const options = {
@@ -42,30 +40,9 @@ const client = new ApolloClient({
     link:concat(authMiddleware,link),
     cache: new InMemoryCache(),
 });
-const  Main =(props)=>{
-    const RenderData=()=>{
-        const {loading,data,error} =useQuery(me_Query,{
-            client:Client,
-            context:{
-                headers: {
-                    authorization: localStorage.getItem('token')||null
-                }
-            }
-        })
-        if (loading) return <Spinner/>
-        if (error) return (
-            match(error.toString())?
-                <Routes {...props} user={null}/>:
-                <div>{error.toString()}</div>
-        )
-        if (data) {
-            return <Routes {...props} user={data.me}/>
-        }
-        return <Routes {...props} />
-    }
+const  Main =()=>{
     return  (
         <AlertProvider template={AlertTemplate} {...options}>
-            {/*{RenderData()}*/}
             <Routes/>
         </AlertProvider>
     )

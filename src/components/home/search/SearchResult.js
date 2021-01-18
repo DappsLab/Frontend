@@ -127,12 +127,16 @@ const alphabetRegex=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
          let {sort,tag,checkboxs,sliderMaxValue,sliderMinValue,name}=this.state;
          sliderMaxValue=sliderMaxValue*5;
          const category=[];
-         checkboxs.map(checkbox=>{
-             if (checkbox.check){
-                 category.push(checkbox.name)
+         for (let i=0;i<checkboxs.length;i++){
+             if (checkboxs[i].check){
+                 category.push(checkboxs[i].name)
              }
-         });
-        console.log(sort,tag,category,sliderMinValue,name,sliderMaxValue)
+         }
+         // checkboxs.map(checkbox=>{
+         //     if (checkbox.check){
+         //         category.push(checkbox.name)
+         //     }
+         // });
          const input= {         }
          if (name!==""){
              input["contractName"]=name
@@ -193,7 +197,7 @@ const alphabetRegex=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
                                  </div>
                                  <div className={"search_tag flex"} >
                                      {data.tags.map(tag=>{
-                                         return <a key={tag} href={'#'}> #{tag} </a>
+                                         return <span key={tag} > #{tag} </span>
                                      })}
                                  </div>
                                  <span>{data.singleLicensePrice} Dapps</span>
@@ -213,7 +217,7 @@ const alphabetRegex=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
          }
      }
      render() {
-         const {loading,name,sort,tag,sliderMinValue,sliderMaxValue,visible}=this.state;
+         const {loading,name,sort,tag,sliderMinValue,sliderMaxValue}=this.state;
          return (
              <Layout>
                  <div className={"container flex sr_container"}>

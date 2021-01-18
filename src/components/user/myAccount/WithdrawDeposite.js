@@ -1,14 +1,14 @@
-import React, { useState} from 'react';
+import React from 'react';
 import {Divider} from "@material-ui/core";
 import QRCode from 'react-qr-code';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-import {Form, Popup} from "semantic-ui-react";
+import {Form} from "semantic-ui-react";
 import AccountLayout from "../../../hoc/AccountLayout";
 import {withAlert} from "react-alert";
 
-const timeoutLength = 2500
+// const timeoutLength = 2500
 const WithdrawDeposite =(props)=>{
-    const [isOpen,setIsOpen]=useState(false);
+    // const [isOpen,setIsOpen]=useState(false);
     const {user,alert}=props
 
     return (

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Button, Container} from "semantic-ui-react";
 import {withAlert} from "react-alert";
 import {useLazyQuery, useMutation} from "@apollo/client";
-import {orderContract, purchaseDapp, purchasedContract, verifyOrder} from "../../../../queries/queries";
+import {orderContract, purchasedContract, verifyOrder} from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
 
 const BuySmartContract = (props) => {
@@ -90,7 +90,7 @@ const BuySmartContract = (props) => {
         :
         <Container fluid className={"kyc_information"}>
             <p>Before you can purchase this contract, you have to complete your KYC information and get validated.</p>
-            <Button  fluid onClick={()=>{props.history.push('/account_settings')}} className={"testbtn"}>Verify your Account</Button>
+            <Button  fluid onClick={()=>{props.history.push('/account_settings/KYC')}} className={"testbtn"}>Verify your Account</Button>
         </Container>
 }
 

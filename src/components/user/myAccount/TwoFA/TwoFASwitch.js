@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { useMutation} from "@apollo/client";
 import {disable2FA, enableFA, me_Query} from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
@@ -17,8 +17,10 @@ const MyComponent = (props) => {
     const [disable]=useMutation(disable2FA,{
         client:Client,context:context,
         onCompleted:data => {
-            alert.success("Disable Successfully",{timeout:3000})
-            // props.history.push('/account_settings/2fa')
+            if (data) {
+                alert.success("Disable Successfully", {timeout: 3000})
+                // props.history.push('/account_settings/2fa')
+            }
         },
         onError:error => {
             alert.error(error.toString(), {timeout: 3000})

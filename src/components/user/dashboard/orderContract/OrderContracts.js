@@ -1,6 +1,6 @@
-import React, {Component, useEffect} from 'react';
+import React, { useEffect} from 'react';
 import DashboardLayout from "../../../../hoc/DashboardLayout";
-import {Table,Tab} from "semantic-ui-react";
+import {Tab} from "semantic-ui-react";
 import OrderRow from "./OrderRow";
 
 

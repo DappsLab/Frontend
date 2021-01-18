@@ -28,6 +28,7 @@ export const sendContractValue=async (contract,ownerKey,type,name,ownerAddress)=
         };
         let signTx = await web3.eth.accounts.signTransaction(tx,ownerKey);
         let tran = web3.eth.sendSignedTransaction(signTx.rawTransaction)
+        console.log('transaction',tran)
         return "true"
     }catch (e) {
         console.log("error:",e.toString())
@@ -85,6 +86,7 @@ export const sendMainContractValue=async (contract,ownerKey,type,name,ownerAddre
         };
         let signTx = await web3.eth.accounts.signTransaction(tx,ownerKey);
         let tran = mainWeb3.eth.sendSignedTransaction(signTx.rawTransaction)
+        console.log("main transaction",tran)
         return "true"
     }catch (e) {
         console.log("error:",e.toString())

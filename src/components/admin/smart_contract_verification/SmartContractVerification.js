@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Spinner2} from "../../ui/Spinner";
 import { pendingSmartContract} from "../../../queries/queries";
 import CollapsibleFormTable from "../../ui/CollapsibleTableForm";
@@ -8,11 +8,7 @@ import DashboardLayout from "../../../hoc/DashboardLayout";
 
 
 const SmartContractVerification = (props) => {
-    console.log(props)
-    useEffect(()=>{
-        refetch();
-    },[])
-    const {loading, error, data,refetch} = useQuery(pendingSmartContract, {
+    const {loading, error, data} = useQuery(pendingSmartContract, {
         context: {
             headers: {
                 authorization: localStorage.getItem("token")

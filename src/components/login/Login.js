@@ -92,7 +92,7 @@ const Login =(props)=>{
                         </div>
                         <div className="form">
                             <h2>Login</h2>
-                            <img className="bar1" src={bar1}/><br/>
+                            <img className="bar1" src={bar1} alt={'bar'}/><br/>
                             <form autoComplete={'off'} noValidate>
                                 <FormControl className={'uname'} >
                                     <InputLabel>Username</InputLabel>
@@ -133,7 +133,7 @@ const Login =(props)=>{
                             <img src={Rectangle2} alt={''} width={"85px"} height={"85px"}/>
                         </div>
                         <p>Login to continue to your account</p>
-                        <img className="box2" src={Rectangle3}/>
+                        <img className="box2" src={Rectangle3} alt={'img'}/>
                     </div>
                 </div>
             </div>

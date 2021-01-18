@@ -73,11 +73,16 @@ const Dapps = () => {
 
     const OnSubmit=()=>{
         const category=[];
-        checkboxs.map(checkbox=>{
-            if (checkbox.check){
-                category.push(checkbox.name)
+        for (let i=0;i<checkboxs.length;i++){
+            if (checkboxs[i].check){
+                category.push(checkboxs[i].name)
             }
-        });
+        }
+        // checkboxs.map(checkbox=>{
+        //     if (checkbox.check){
+        //         category.push(checkbox.name)
+        //     }
+        // });
         if (name!==""){
             input["dAppName"]=name
         }

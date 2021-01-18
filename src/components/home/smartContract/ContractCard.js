@@ -4,7 +4,7 @@ import '../../../assets/scss/contract_card.css';
 import {Link} from "react-router-dom";
 import {graphql } from "react-apollo";
 import {Button} from "semantic-ui-react";
-import {getContract, getDapps} from "../../../queries/queries";
+import {getContract} from "../../../queries/queries";
 import {cardColors, categoryColors, getDate} from "../../ui/Helpers";
 import {Spinner2} from "../../ui/Spinner";
 

@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {useQuery} from "@apollo/client";
 import {licenseById} from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
-import {Spinner2} from "../../../ui/Spinner";
 import {Button, Divider, Icon} from "semantic-ui-react";
 import CompileLayout from "../../../../hoc/CompileLayout";
 import GetABI from "./getCompileData/GetABI";

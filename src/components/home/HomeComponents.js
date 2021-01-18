@@ -30,7 +30,7 @@ export const HomeBlockChain=()=>{
                 </p>
             </div>
             <div className="b-right">
-                <img alt={''} src={group}/>
+                <img alt={'group'} src={group}/>
             </div>
     </section>
     )
@@ -39,7 +39,7 @@ export const OurSmartContract=(props)=>{
     return(
         <section className={"our-contract flex"}>
             <div className={"s-right"}>
-                <img  src={ourcontract}/>
+                <img alt={'our contract'} src={ourcontract}/>
             </div>
             <div className={"s-left" }>
                 <h2>Our <span>Smart Contracts</span></h2>
@@ -69,7 +69,7 @@ export const CustomSmartContractInfo=(props)=>{
                 <button onClick={()=>{props.history.push('/request_smart_contract')}} className="strock cursor">Request Smart Contract</button>
             </div>
             <div className="c-right">
-                <img  src={group2}/>
+                <img  alt={'group'} src={group2}/>
             </div>
         </section>
     )

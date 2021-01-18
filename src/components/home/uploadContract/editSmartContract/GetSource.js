@@ -2,7 +2,6 @@ import React from 'react';
 import {useQuery} from "@apollo/client";
 import {getSource,getZip} from "../../../../queries/queries";
 import {Controlled as CodeMirror} from "react-codemirror2";
-import TableCell from "@material-ui/core/TableCell";
 import {Client} from "../../../../queries/Services";
 
 export const GetSource = (props) => {
@@ -22,7 +21,7 @@ export const GetSource = (props) => {
 };
 
 export const DappSource=(props)=>{
-    const {loading,error,data}=useQuery(getZip,{
+    const {loading,error}=useQuery(getZip,{
         variables:{
             did:props.did,
             pid:props.pid,
@@ -35,5 +34,6 @@ export const DappSource=(props)=>{
     });
     if (loading) return "Loading"
     if (error) return <div className={`errorMessage`}>{error.toString()}</div>
-    return <a>Downlaod </a>
+
+    return <div>Downlaod </div>
 }

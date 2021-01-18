@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import '../../../../assets/scss/dapp_details.css'
 import Layout from "../../../../hoc/Layout";
 import {useQuery} from "@apollo/client";
 import {Client} from "../../../../queries/Services";
 import {Spinner2} from "../../../ui/Spinner";
 import {dappsbyid} from "../../../../queries/queries";
-import {Button, Container, Segment} from "semantic-ui-react";
+import {Button, Segment} from "semantic-ui-react";
 import Avatar from "@material-ui/core/Avatar";
 import {categoryColors, getDate} from "../../../ui/Helpers";
 import {connect} from 'react-redux'

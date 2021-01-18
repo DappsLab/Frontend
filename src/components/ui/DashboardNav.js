@@ -8,7 +8,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 const DashboardNav = (props) => {
     const {user}=props;
-    const type=user.type;
     const links=[
         {icon:<LocalMallIcon/>, title:"Add Test Address",linkTo:"/dashboard/add_test_address"},
         {icon:<LocalMallIcon/>, title:"Custom Orders",linkTo:"/dashboard/custom_orders"},

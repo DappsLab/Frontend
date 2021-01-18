@@ -1,11 +1,10 @@
 import React, {useEffect} from 'react';
 
-import {Route, Redirect, Switch} from "react-router-dom";
+import {Route, Redirect} from "react-router-dom";
 import {useQuery} from "@apollo/client";
 import {me_Query} from "../../queries/queries";
-import {Client, ErrorStringMatch, match} from "../../queries/Services";
+import {Client, match} from "../../queries/Services";
 import {Spinner3} from "../ui/Spinner";
-import {setUser} from "../../actions/Actions";
 
 
 const PublicRoute = ({setUser,user,component:Comp,...rest}) => {

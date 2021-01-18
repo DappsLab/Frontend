@@ -6,7 +6,6 @@ import {withAlert} from "react-alert";
 import {flowRight as compose} from 'lodash';
 import logo from '../../assets/images/dappslab-logo.png'
 import square from '../../assets/images/Rectangle2.png'
-import rectangle from '../../assets/images/Rectangle3.png'
 import "../../assets/scss/confirm_email.css"
 
 class ConfirmEmail extends Component {
@@ -52,10 +51,10 @@ class ConfirmEmail extends Component {
                                 Thanks for registering an account with DappsLab.
                             </p>
                         </div>
-                        <img src={square}/>
+                        <img src={square} alt={'img'}/>
                     </div>
                     <div className={'confirm_right'}>
-                        <img src={logo}/>
+                        <img src={logo} alt={'img'} />
                         <div className={'flex'}>
                             <p>  Before we get started, we'll need
                                 to verify your email. Simply click button below to varify your email address</p>

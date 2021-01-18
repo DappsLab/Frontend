@@ -2,7 +2,7 @@ import React, { useState} from 'react';
 import "../../../assets/scss/upload_smart_contract.css"
 import {Divider} from "@material-ui/core";
 import Fade from "react-reveal/Fade";
-import { Form, Grid, Input, TextArea, Header} from "semantic-ui-react"
+import { Form, Grid, TextArea, Header} from "semantic-ui-react"
 import Button from "@material-ui/core/Button";
 import {flowRight as compose} from "lodash";
 import {
@@ -26,6 +26,7 @@ import {
     OneLicense,
     UnlimitedLicense
 } from "./contractCompoent/ContractFileds";
+import {Link} from "react-router-dom";
 
 const descriptionRGP=RegExp(/^[a-zA-Z][a-zA-Z\s,.]*$/);
 
@@ -37,7 +38,6 @@ const UploadSmartContract =(props)=>{
     const [active,setActive]=useState(true);
     const [imgPath,setImgPath]=useState("");
     const [shortCounter,setshortCounter]=useState(200);
-    const [finalCategoryArray,setFinalCategoryArray]=useState([]);
     const [tags,setTag]=useState([]);
     const [uplaodLoading,setuplaodLoading]=useState(false);
     const [shortDescription,setshortDescription]=useState("");
@@ -46,12 +46,14 @@ const UploadSmartContract =(props)=>{
     const [funcationName,setfuncationName]=useState("");
     const [sourcePath,setsourcePath]=useState("");
     const [version,setVersion]=useState("");
-    const {user,alert}=props
+    const [finalCategoryArray,setfinalCategoryArray]=useState([])
+
+    const {alert}=props
+
 
     const handleChange=(event)=>{
         const {name,value}=event.target;
         switch (name){
-
             case "shortDescription":
                 if (value.length<=200) {
                     descriptionRGP.test(value)&&setshortCounter(200-value.length)
@@ -60,7 +62,7 @@ const UploadSmartContract =(props)=>{
                 }
                 break;
             default:
-                break
+                break;
         }
     }
 
@@ -71,6 +73,7 @@ const UploadSmartContract =(props)=>{
             for (let i = 0; i < category.length; i++) {
                finalCategoryArray.push(category[i]['value']);
             }
+            console.log(finalCategoryArray)
         }
     }
     const isEmpty=()=>{
@@ -112,6 +115,7 @@ const UploadSmartContract =(props)=>{
         client:Client,
         onCompleted:data => {
             console.log(data)
+            setfinalCategoryArray([])
             props.history.push('/dashboard/developed_contract');
             setuplaodLoading(false)
         },
@@ -175,7 +179,6 @@ const UploadSmartContract =(props)=>{
             setVersion(value)
         }
     }
-    console.log(cName,category,onePrice,uPrice)
     return  (
         <Layout>
             {uplaodLoading&&<Spinner2/>}
@@ -199,7 +202,7 @@ const UploadSmartContract =(props)=>{
                                 <div className={"generalRight"}>
                                     <h1>Publish New  Smart Contract</h1>
                                    <div className={'guiding'}>
-                                       <a >Downlaod User Guiding For Adding a Smart Contract</a>
+                                       <Link  to={'#'}>Downlaod User Guiding For Adding a Smart Contract</Link>
                                    </div>
                                     <Fade right delay={300}>
                                         <Header as={'h3'} floated={'left'}>

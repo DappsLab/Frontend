@@ -2,7 +2,6 @@ import React from 'react';
 import {useQuery} from "@apollo/client";
 import {getABI} from "../../../../../queries/queries";
 import {Client} from "../../../../../queries/Services";
-import {Spinner2} from "../../../../ui/Spinner";
 
 const GetABI = (props) => {
     const {data,error,loading}=useQuery(getABI,{
@@ -24,8 +23,9 @@ const GetABI = (props) => {
         let blob = new Blob([data.getABI], { type: ' application/json' });
         return (
             <div>
-
-                <a className={'downlaod'} download href={URL.createObjectURL(blob)} target={'_blank'}>Download ABI</a>
+                <a className={'downlaod'} download href={URL.createObjectURL(blob)}
+                   // target={'_blank'}
+                >Download ABI</a>
             </div>
         )
     }

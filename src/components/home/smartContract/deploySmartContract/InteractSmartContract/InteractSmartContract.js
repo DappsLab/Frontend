@@ -5,7 +5,6 @@ import {useQuery} from "@apollo/client";
 import {Client} from "../../../../../queries/Services";
 import {Spinner2} from "../../../../ui/Spinner";
 import GetBalance from "../../../../ui/GetBalance";
-import TestIntract from "../../testSmartContract/testInteract/TestInteract.component";
 import IntractArguments from "./InteractionArguments";
 
 const license=gql`query ($id:ID!){

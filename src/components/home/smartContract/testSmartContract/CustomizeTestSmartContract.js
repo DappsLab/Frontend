@@ -3,7 +3,7 @@ import {useMutation, useQuery} from "@apollo/client";
 import {testCompile, testLicenseById} from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
 import {Spinner2} from "../../../ui/Spinner";
-import {Button, Divider, Form, Item, Segment} from "semantic-ui-react";
+import {Button, Divider, Form, Item} from "semantic-ui-react";
 import CompileLayout from "../../../../hoc/CompileLayout";
 import {categoryColors} from "../../../ui/Helpers";
 import {withAlert} from "react-alert";

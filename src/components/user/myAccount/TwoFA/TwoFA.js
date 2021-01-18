@@ -1,10 +1,7 @@
 import React, { useState} from 'react';
 import {flowRight as compose} from "lodash";
-import {disable2FA, enableFA, me_Query} from "../../../../queries/queries";
 import AccountLayout from "../../../../hoc/AccountLayout";
 import {withAlert} from "react-alert";
-import {Client} from "../../../../queries/Services";
-import {useMutation, useQuery} from "@apollo/client";
 import {Spinner2} from "../../../ui/Spinner";
 import {connect} from "react-redux";
 import {setUser} from "../../../../actions/Actions";
@@ -34,13 +31,13 @@ const TwoFA =(props)=> {
                 // <div>
                 //     <label>Enable your Two-Factor Authentication</label>
 
-                {/*    {user.twoFactorEnabled && <div className={" QR"}>*/}
-                {/*        <h3>Scan QR</h3>*/}
-                {/*        <img src={user.twoFactorCode} alt={""}/>*/}
-                {/*        <p>Open the Google Authenticator app and scan this QR code</p>*/}
-                {/*    </div>*/}
-                {/*    }*/}
-                {/*</div>*/}
+                // {/*    {user.twoFactorEnabled && <div className={" QR"}>*/}
+                // {/*        <h3>Scan QR</h3>*/}
+                // {/*        <img src={user.twoFactorCode} alt={""}/>*/}
+                // {/*        <p>Open the Google Authenticator app and scan this QR code</p>*/}
+                // {/*    </div>*/}
+                // {/*    }*/}
+                // {/*</div>*/}
 
         // }else {
         //     return <div>Refresh</div>

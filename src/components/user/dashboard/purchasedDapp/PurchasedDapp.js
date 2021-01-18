@@ -1,12 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import DashboardLayout from "../../../../hoc/DashboardLayout";
-import {Button, Table} from "semantic-ui-react";
-import {categoryColors} from "../../../ui/Helpers";
+import { Table} from "semantic-ui-react";
 import {dateTime} from "../../../../helpers/DateTimeConversion";
 import DownlaodDapp from "../../../home/dapps/detailDApps/DownlaodDapp";
 
 const PurchasedDapp = (props) => {
-    const [user,setUser]=useState(props.user)
+    const {user}=props
     const dapp=user.purchasedDApps;
     return (
         <DashboardLayout user={user}>

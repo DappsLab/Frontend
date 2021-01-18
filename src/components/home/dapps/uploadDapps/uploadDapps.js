@@ -7,16 +7,13 @@ import {
     createDapps,
     dappsFile,
     getDapps,
-    imageUpload, me_Query,
+    me_Query,
 
 } from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
 import {Form, Button,Grid, Header, Input, TextArea} from "semantic-ui-react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated/dist/react-select.esm";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowUp} from "@fortawesome/free-solid-svg-icons";
-import Avatar from "@material-ui/core/Avatar";
 import {withAlert} from "react-alert";
 import Uploader from "../../../ui/Uploader";
 import {Spinner2} from "../../../ui/Spinner";
@@ -64,9 +61,11 @@ const UploadDapps = (props) => {
     const [createDapp]=useMutation(createDapps,{
         client:Client,
         onCompleted:data => {
-            setLoading(false);
-            alert.success("Upload SUccessfully" ,{timeout:2000})
-            props.history.push('/dashboard/developed_dapps')
+            if (data) {
+                setLoading(false);
+                alert.success("Upload SUccessfully", {timeout: 2000})
+                props.history.push('/dashboard/developed_dapps')
+            }
         },onError:error => {
             alert.error(error.toString(),{timeout:2000})
             setLoading(false)
@@ -124,7 +123,7 @@ const UploadDapps = (props) => {
         },
     })
     const isEmpty=()=>{
-       if (cName.length>0&&imgPath.length>0&&tags.length>0,category.length>0,shortDescription.length>0,longDescription.length>0,onePrice.length>0){
+       if (cName.length>0&&imgPath.length>0&&tags.length>0&&category.length>0&&shortDescription.length>0&&longDescription.length>0&&onePrice.length>0){
             return true
         }else {
             alert.error("all fields Required",{timeout:2000})

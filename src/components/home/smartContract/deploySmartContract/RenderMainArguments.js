@@ -4,13 +4,12 @@ import {useMutation, useQuery} from "@apollo/client";
 import {getABI, deploy} from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
 import {getObjects} from "../../../ui/Helpers";
-import {Spinner2} from "../../../ui/Spinner";
 import {Button, Form, Input} from "semantic-ui-react";
 import {CheckDimension, convertArrayToObject} from "../../../ui/mise";
 import {recursiveChecker} from "../../../ui/InputValidation";
 
 const RenderMainArguments = (props) => {
-    const {license,fee,name,alert}=props
+    const {license,name,alert}=props
     const newID=license.compilations[license.compilations.length - 1].id;
     const type=license.purchasedContract.unlimitedCustomization;
     const [inputSize,setInputSize]=useState(0)
@@ -62,7 +61,7 @@ const RenderMainArguments = (props) => {
             input['argumentsArray']=final
         }
         console.log("INPUT",input)
-        deploy({
+        deployMutate({
             variables:{
                 input:input
             }

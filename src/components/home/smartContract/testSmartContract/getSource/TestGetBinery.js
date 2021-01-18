@@ -2,7 +2,6 @@ import React from 'react';
 import {useQuery} from "@apollo/client";
 import { getTestBinery} from "../../../../../queries/queries";
 import {Client} from "../../../../../queries/Services";
-import {Spinner2} from "../../../../ui/Spinner";
 
 const TestGetBinery = (props) => {
     const {data,error,loading}=useQuery(getTestBinery,{
@@ -17,6 +16,7 @@ const TestGetBinery = (props) => {
             props.setLoading(false)
             console.log(data1)
         },onError:error1 => {
+            console.log(error1.toString())
             props.setLoading(false)
         }
     })
@@ -26,7 +26,9 @@ const TestGetBinery = (props) => {
         let blob = new Blob([data.testGetBinary], { type: ' text/plain' });
         return (
             <div>
-                <a style={{margin:"20px 0"}} className={'downlaod'} download href={URL.createObjectURL(blob)} target={'_blank'}>Download Binary</a>
+                <a style={{margin:"20px 0"}} className={'downlaod'} download href={URL.createObjectURL(blob)}
+                   // target={'_blank'}
+                >Download Binary</a>
             </div>
         );
     }

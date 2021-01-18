@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Container, Form, Input, Segment} from "semantic-ui-react";
-import {useLazyQuery, useMutation, useQuery} from "@apollo/client";
+import {useLazyQuery, useMutation} from "@apollo/client";
 import {orderContract, purchaseDapp,verifyOrder} from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
 import {withAlert} from "react-alert";
@@ -11,22 +11,30 @@ import {feeProcessTime} from "../../../ui/Helpers";
 import DownlaodDapp from "./DownlaodDapp";
 
 const BuyDapp = (props) => {
-    const [currentUser,setCurrentUser]=useState(props.currentUser);
-    const [loading,setLoading]=useState(false);
+    // const [loading,setLoading]=useState(false);
     const [fee,setFee]=useState(100000);
-    const [downalaod,setDownlaod]=useState(false);
+    // const [downalaod,setDownlaod]=useState(false);
     const [orderID,setOrderID]=useState();
     const [purchased,setPurchased]=useState(null);
-    const alert=props.alert;
+    const {alert,id,currentUser}=props
 
     useEffect(()=>{
-        if (currentUser) {
-            currentUser.purchasedDApps.map(dapp => {
-                if (props.id === dapp.dApp.id) {
-                    setPurchased(dapp);
+        const getDapp=()=>{
+            if (currentUser) {
+                const purchasedDapps=currentUser.purchasedDApps;
+                for(let i=0;i<purchasedDapps.length;i++){
+                    if (id===purchasedDapps[i].dApp.id){
+                        setPurchased(purchasedDapps[i].dApp)
+                    }
                 }
-            });
+                // currentUser.purchasedDApps.map(dapp => {
+                //     if (props.id === dapp.dApp.id) {
+                //         setPurchased(dapp);
+                //     }
+                // });
+            }
         }
+        getDapp();
     })
     const [buydApp]=useMutation(orderContract,{
         client:Client, context: {
@@ -84,7 +92,8 @@ const BuyDapp = (props) => {
     })
 
     const HandelBuy=()=>{
-        buydApp({variables:{
+        buydApp({
+            variables:{
                 producttype:'DAPP',
                 fee: fee.toString(),
                 did:props.id,

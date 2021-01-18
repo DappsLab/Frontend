@@ -3,7 +3,7 @@ import {Form} from "semantic-ui-react";
 import '../../../../assets/scss/upload_smart_contract.css'
 
 const Tags = (props) => {
-    const {setTag,contract,tags,dapp}=props
+    const {setTag,contract,tags}=props
     const removeTags=(i)=> {
         setTag(tags.filter((tag, index) => index !== i))
     }

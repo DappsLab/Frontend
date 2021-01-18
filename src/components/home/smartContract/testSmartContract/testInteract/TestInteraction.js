@@ -67,7 +67,7 @@ const TestInteraction =  (props) => {
         })
         if (loading) return <Spinner2/>
         if (error) return <p>{error.toString()}</p>
-        if (data && !loading&&Loading) {
+        if (data && !loading&&Loading&&contractAddress!=='') {
             const license = data.testLicenseById
             // const newID = license.testCompilations[license.testCompilations.length - 1].id;
             // const deploymentLength=license.testCompilations[license.testCompilations.length - 1].testDeployments.length;

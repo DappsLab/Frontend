@@ -81,11 +81,16 @@ class Smart_Contracts extends Component {
         const that=this;
         let {searchValue,sort,tag,checkboxs,sliderMaxValue,sliderMinValue,name}=this.state;
         const category=[];
-        checkboxs.map(checkbox=>{
-            if (checkbox.check){
-                category.push(checkbox.name)
+        for (let i=0;i<checkboxs.length;i++){
+            if (checkboxs[i].check){
+                category.push(checkboxs[i].name)
             }
-        });
+        }
+        // checkboxs.map(checkbox=>{
+        //     if (checkbox.check){
+        //         category.push(checkbox.name)
+        //     }
+        // });
         const input= {}
         if (name!==""){
             input["contractName"]=name

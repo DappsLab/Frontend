@@ -5,7 +5,6 @@ import TestGetABI from "./getSource/TestGetABI";
 import {useQuery} from "@apollo/client";
 import {testLicenseById} from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
-import {Spinner2} from "../../../ui/Spinner";
 import CompileLayout from "../../../../hoc/CompileLayout";
 
 const TestCompileResult = (props) => {

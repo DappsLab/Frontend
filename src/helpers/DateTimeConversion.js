@@ -2,9 +2,9 @@ export  let dateTime=(timestemp)=>{
 
     let ts = Date(timestemp);
    let date_ob = new Date(ts);
-    let sec = date_ob.getSeconds();
-    let min = date_ob.getMinutes();
-    let hour = date_ob.getHours();
+    // let sec = date_ob.getSeconds();
+    // let min = date_ob.getMinutes();
+    // let hour = date_ob.getHours();
     let date = date_ob.getDate();
     let month = date_ob.getMonth() ;
     let year = date_ob.getFullYear();
@@ -44,6 +44,8 @@ export  let dateTime=(timestemp)=>{
             break;
         case 11:
             month="December"
+            break;
+        default:
             break;
     }
 // prints date & time in YYYY-MM-DD format

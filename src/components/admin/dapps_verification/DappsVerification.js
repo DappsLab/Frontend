@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useQuery} from "@apollo/client";
 import {pendingDapps} from "../../../queries/queries";
 import {Client} from "../../../queries/Services";
@@ -7,16 +7,14 @@ import CollapsibleDappsTable from "../../ui/CollapsibleDappsTable";
 import DashboardLayout from "../../../hoc/DashboardLayout";
 
 const DappsVerification = (props) => {
-    useEffect(()=>{
-        refetch();
-    },[])
-    const {loading, data, error, refetch} = useQuery(pendingDapps, {
+
+    const {loading, data, error} = useQuery(pendingDapps, {
         context: {
             headers: {
                 authorization: localStorage.getItem("token")
             }
         },
-        client: Client,
+        client: Client,fetchPolicy:'network-only'
         })
     if (loading) return  <DashboardLayout user={props.user}>
         <Spinner2/>
@@ -28,7 +26,7 @@ const DappsVerification = (props) => {
     </DashboardLayout>
     return <DashboardLayout user={props.user}>
         <h1><strong>Pending <span>Dapps</span></strong></h1>
-        <div>Empty</div>
+        <p>Empty</p>
     </DashboardLayout>
 }
 export default DappsVerification;

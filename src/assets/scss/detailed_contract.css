@@ -91,6 +91,8 @@
   font-size: 16px;
   min-height: auto !important;
   padding: 15px; }
+  .btnGroups .kyc_information p {
+    color: black; }
   .btnGroups .kyc_information .testbtn {
     margin-left: 0 !important;
     background: #39B64A !important; }

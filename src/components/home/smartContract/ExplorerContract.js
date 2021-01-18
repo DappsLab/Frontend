@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import "../../../assets/scss/explorer_content.css"
 import {Form,Input,Icon} from "semantic-ui-react";
 

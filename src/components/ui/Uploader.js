@@ -8,10 +8,12 @@ const Uploader = (props) => {
 
     const handleSubmit = (files, allFiles) => {
         let file;
-        files.map(f=>{
-            file= f.file
-            console.log(f.file)
-        })
+        for (let i=0;i<files.length;i++){
+            file=files[i].file
+        }
+        // files.map(f=>{
+        //     file= f.file
+        // })
         if (props.type==="dapps") {
             if (file.name.toLowerCase().includes(".zip") && filename.test(file.name.replace('.zip', ''))) {
                 props.onSubmit(file)

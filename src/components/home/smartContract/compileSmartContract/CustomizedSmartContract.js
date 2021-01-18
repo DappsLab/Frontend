@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
 import "../../../../assets/scss/compile.css"
-import {Button, Divider, Form, Item, Segment} from "semantic-ui-react";
+import {Button, Divider, Form, Item} from "semantic-ui-react";
 import {flowRight as compose} from "lodash";
 import {compile, licenseById, me_Query} from "../../../../queries/queries";
 import {Spinner2} from "../../../ui/Spinner";
@@ -31,10 +31,13 @@ const CustomizedSmartContract =(props)=> {
     const [newCompile] = useMutation(compile, {
         client: Client,
         onCompleted: data => {
-            setLoading(false)
-            props.history.push(`/compiled_smart_contract/${license.id}`)
+            if (data) {
+                setLoading(false)
+                props.history.push(`/compiled_smart_contract/${license.id}`)
+            }
         },
         onError: error1 => {
+            setLoading(false)
             alert.error(error1.toString(), {timeout: 2000})
         },
         refetchQueries: me_Query

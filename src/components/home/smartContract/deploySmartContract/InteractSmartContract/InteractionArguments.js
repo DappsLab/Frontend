@@ -3,14 +3,13 @@ import {useQuery} from "@apollo/client";
 import {getABI} from "../../../../../queries/queries";
 import {Client} from "../../../../../queries/Services";
 import {callContract, loadContract, sendContractValue} from "../../../../ui/ContractInteractionHelper";
-import {getObjects} from "../../../../ui/Helpers";
 
 const IntractArguments = (props) => {
     const [name,setName]=useState('');
     const [value,setValue]=useState('');
     const [abi,setAbi]=useState();
-    const {license,newID,ownerAddress,ownerKey,contractAddress}=props
-
+    const {newID,ownerAddress,ownerKey,contractAddress}=props
+    console.log(name,value)
     const handleSelect=(event)=>{
         const {value}=event.target;
         if (value==='Select Funtion'){
@@ -49,7 +48,7 @@ const IntractArguments = (props) => {
     if (data&&!loading&&abi) {
         let contract=loadContract(abi, contractAddress)
         console.log(contract)
-        const inputArr=getObjects(JSON.parse(abi),"type","function");
+        // const inputArr=getObjects(JSON.parse(abi),"type","function");
         const functionArrays=contract._jsonInterface;
         return <div>
             <form>

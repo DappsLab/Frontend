@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export const DropDown =({check,updateimage,user,removeImage})=> {
+export const DropDown =({check,user,removeImage})=> {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const anchorRef= useRef(null);

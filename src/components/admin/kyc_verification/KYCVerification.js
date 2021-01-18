@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {pending_kyc_query} from "../../../queries/queries";
 import {Spinner2} from "../../ui/Spinner";
 import CollapsibleTable from "../../ui/CollapsibleTable";
@@ -9,16 +9,14 @@ import DashboardLayout from "../../../hoc/DashboardLayout";
 
 
 const KycVerification =(props)=> {
-    useEffect(()=>{
-        refetch();
-    },[])
-    const {loading, error, data,refetch} = useQuery(pending_kyc_query, {
+
+    const {loading, error, data} = useQuery(pending_kyc_query, {
         context: {
             headers: {
                 authorization: localStorage.getItem("token")
             }
         },
-        client: Client
+        client: Client,fetchPolicy:'network-only'
     })
     if (loading) return  <DashboardLayout user={props.user}>
         <Spinner2/>

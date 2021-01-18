@@ -13,16 +13,13 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import {dateTime} from "../../helpers/DateTimeConversion";
 import {Button} from "semantic-ui-react";
 import {
-     getSource, cancelDapps, pendingDapps, verifyDapps,
+      cancelDapps, pendingDapps, verifyDapps,
 } from "../../queries/queries";
 import {withAlert} from "react-alert";
-import {useMutation, useQuery} from "@apollo/client";
+import {useMutation} from "@apollo/client";
 import MEDitor from "@uiw/react-md-editor";
-import {Controlled as CodeMirror} from 'react-codemirror2'
-import Avatar from "@material-ui/core/Avatar";
 import {Client} from "../../queries/Services";
 import {getDate} from "./Helpers";
 
@@ -88,6 +85,7 @@ function Row(props) {
             alert.error(error.toString()+"new",{timeout:5000})
         })
     }
+
     return (
         <React.Fragment>
             <TableRow className={classes.root}>

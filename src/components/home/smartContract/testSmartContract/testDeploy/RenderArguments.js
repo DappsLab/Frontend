@@ -12,7 +12,7 @@ import {
 } from "../../../../ui/InputValidation";
 
 const RenderArguments = (props) => {
-    const {license,fee,name,alert}=props
+    const {license,name,alert}=props
     const newID=license.testCompilations[license.testCompilations.length - 1].id;
     const type=license.testPurchasedContract.unlimitedCustomization;
     const [inputSize,setInputSize]=useState(0)

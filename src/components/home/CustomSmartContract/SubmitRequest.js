@@ -58,7 +58,7 @@ const SubmitRequest = (props) => {
         {key:"dp",value:"DAPP",text:"DAPP"}
     ]
     const isEmpty=()=>{
-        if (website!=="",bname!=="",email!=="",phone!=="",role!=="",type!=="",description!==""){
+        if (website!==""&&bname!==""&&email!==""&&phone!==""&&role!==""&&type!==""&&description!==""){
             return true
         }else {
             alert.error("All Fields not Required",{timeout:3000})

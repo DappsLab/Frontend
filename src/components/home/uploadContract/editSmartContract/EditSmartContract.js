@@ -1,8 +1,7 @@
 import React, { useState} from 'react';
 import Layout from "../../../../hoc/Layout";
 import '../../../../assets/scss/edit_smart_contract.css'
-import { nameReg, numericReg} from "../../../ui/Helpers";
-import {Button, Form, Grid, Header, Input, TextArea} from "semantic-ui-react";
+import {Button, Form, Grid, Header, TextArea} from "semantic-ui-react";
 import {useMutation, useQuery} from "@apollo/client";
 import {contractById, editContract, testVersion, me_Query, sourceUpload} from "../../../../queries/queries";
 import {Spinner2} from "../../../ui/Spinner";
@@ -179,11 +178,11 @@ const EditSmartContract =(props)=> {
             }
         });
         if (loading) return <Spinner2/>
-        if (error) return <div>{error.toString()}</div>
-        return <div> </div>
+        if (error) return <p>{error.toString()}</p>
+        if (data){
+            return <div> </div>
+        }
     }
-
-    console.log(imgPath)
     return (
         <Layout>
         <section className={'edit_contract generalContainer'}>
@@ -244,7 +243,7 @@ const EditSmartContract =(props)=> {
                     </div>
                     <h3>Contract Source</h3>
                     <GetSource id={contract.id}/>
-                    <Button onClick={() => HnadleSubmit(contract)} className={'update-btn'}>Update Smart Contract</Button>
+                    <Button loading={Loading} onClick={() => HnadleSubmit(contract)} className={'update-btn'}>Update Smart Contract</Button>
                 </Grid.Column>
             </Grid>
             }

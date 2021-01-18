@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import DashboardLayout from "../../../../hoc/DashboardLayout";
-import {Tab,} from 'semantic-ui-react'
+import {Tab} from 'semantic-ui-react'
 import PurchasedRow from "./PurchasedRow";
 import {withAlert} from "react-alert";
 
@@ -22,6 +22,7 @@ const Purchased =(props)=> {
                   menu={{ fluid: true,tabular: true }}
                   panes={panes}
              />
+
          </DashboardLayout>
      );
 }

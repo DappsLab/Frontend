@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, { useState} from 'react';
 import {Grid, Form, Segment, Input} from 'semantic-ui-react'
 import fa from "../../assets/images/fa.png"
 import { ApolloClient, InMemoryCache } from '@apollo/client';

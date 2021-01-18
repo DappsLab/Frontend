@@ -1,10 +1,9 @@
-import React, {Component, useState} from 'react';
+import React, { useState} from 'react';
 import {Button} from "semantic-ui-react";
 import "../../assets/scss/change-password.css"
 import {withAlert} from "react-alert";
 import {flowRight as compose} from 'lodash';
 import {newPassword} from "../../queries/queries";
-import {Spinner} from "../ui/Spinner";
 import logo from '../../assets/images/dappslab-logo.png'
 import square from '../../assets/images/Rectangle2.png'
 import rectangle from '../../assets/images/Rectangle3.png'
@@ -52,7 +51,6 @@ const ChangePassword =(props)=> {
     }
     const onChnagePassword=(event)=>{
         event.preventDefault();
-        console.log(password,confirmPassword)
         if (password!==''&&confirmPassword!=='') {
             if (isValid()) {
                 setLoading(true)
@@ -86,7 +84,7 @@ const ChangePassword =(props)=> {
                     <PasswordField password={confirmPassword} setPassword={setconfirmPassword} name={'Confirm Password'}/>
                     <Button loading={loading} disabled={loading} fluid onClick={(event)=>onChnagePassword(event)}>Submit</Button>
                 </form>
-                <img className={'rectangle'} src={rectangle}/>
+                <img className={'rectangle'} alt={'rectangle'} src={rectangle}/>
           </div>
        </div>
         // {loading&&<Spinner/>}

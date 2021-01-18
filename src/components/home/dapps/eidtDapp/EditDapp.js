@@ -2,13 +2,12 @@ import React, {useState} from 'react';
 import Layout from "../../../../hoc/Layout";
 import '../../../../assets/scss/edit_smart_contract.css'
 import {useMutation, useQuery} from "@apollo/client";
-import {editDapp, dappsbyid, getDapps, imageUpload, me_Query, dappsFile} from "../../../../queries/queries";
+import {editDapp, dappsbyid, getDapps, me_Query, dappsFile} from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
 import {Spinner2} from "../../../ui/Spinner";
 import {Button, Form, Grid, Header, Input, TextArea} from "semantic-ui-react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated/dist/react-select.esm";
-
 import {categoryOption, nameReg, numericReg} from "../../../ui/Helpers";
 import {withAlert} from "react-alert";
 import Uploader from "../../../ui/Uploader";
@@ -24,7 +23,7 @@ const EditDapp = (props) => {
     const [shortCounter,setshortCounter]=useState(200);
     const [imgPath,setImgPath]=useState("");
     const [tags,setTag]=useState([]);
-    const [Loading,setLoading]=useState(false);
+    // const [Loading,setLoading]=useState(false);
     const [shortDescription,setshortDescription]=useState("");
     const [longDescription,setlongDescription]=useState("");
     const [filesource,setFileSource]=useState("");
@@ -178,7 +177,6 @@ const EditDapp = (props) => {
             }
         }).catch(error1=>{
             alert.error(error1.toString(),{timeout:2000})
-            setLoading(false)
         })
     }
     const [updateDapp]=useMutation(editDapp,{
