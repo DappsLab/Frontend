@@ -2,7 +2,11 @@ import React, {useState} from 'react';
 import {useQuery} from "@apollo/client";
 import {getABI} from "../../../../../queries/queries";
 import {Client} from "../../../../../queries/Services";
-import {callContract, loadContract, sendContractValue} from "../../../../ui/ContractInteractionHelper";
+import {
+    callMainContract,
+     loadMainContract,
+    sendMainContractValue
+} from "../../../../ui/ContractInteractionHelper";
 
 const IntractArguments = (props) => {
     const [name,setName]=useState('');
@@ -20,12 +24,45 @@ const IntractArguments = (props) => {
     }
     const onFunctionSubmit=async (targetArray,contract)=>{
         if (targetArray.stateMutability==='view') {
-            let callData = await callContract(contract, targetArray, targetArray.name, ownerAddress);
+            let callData = await callMainContract(contract, targetArray, targetArray.name, ownerAddress);
             setValue(callData)
         }
         else if (targetArray.stateMutability==="nonpayable"||targetArray.stateMutability==="payable"){
-            let callData = await sendContractValue(contract,ownerKey,targetArray.stateMutability ,targetArray.name,ownerAddress);
+            let callData = await sendMainContractValue(contract,ownerKey,targetArray.stateMutability ,targetArray.name,ownerAddress);
             console.log(callData)
+        }
+    }
+    const renderData=(array,contract)=>{
+        if (name.length>0) {
+            let tagertArray
+            for (let i=0;i<array.length;i++){
+                if (array[i].name===name){
+                    tagertArray=array[i]
+                    break;
+                }
+            }
+            if (tagertArray.inputs.length>0){
+                console.log('input',tagertArray)
+                return <div>Input</div>
+            }else {
+                return <button className={'Interact_button'} onClick={()=>onFunctionSubmit(tagertArray,contract)} >Execute</button>
+            }
+        }
+    }
+    const renderResult=(array)=>{
+        if (value!=='') {
+            let tagertArray
+            for (let i=0;i<array.length;i++){
+                if (array[i].name===name){
+                    tagertArray=array[i]
+                    break;
+                }
+            }
+            console.log("Taget Array",tagertArray)
+            return   <div className={'execute-result'}>
+                <h3>Result</h3>
+                {value}
+            </div>
         }
     }
     const {data,error,loading}=useQuery(getABI,{
@@ -46,7 +83,7 @@ const IntractArguments = (props) => {
     if (loading) return <p>Loading...</p>
     if (error) return <p>{error.toString()}</p>
     if (data&&!loading&&abi) {
-        let contract=loadContract(abi, contractAddress)
+        let contract=loadMainContract(abi, contractAddress)
         console.log(contract)
         // const inputArr=getObjects(JSON.parse(abi),"type","function");
         const functionArrays=contract._jsonInterface;
@@ -61,8 +98,8 @@ const IntractArguments = (props) => {
                     }
                 </select>
             </form>
-            {/*{renderData(functionArrays,contract)}*/}
-            {/*{renderResult(functionArrays)}*/}
+            {renderData(functionArrays,contract)}
+            {renderResult(functionArrays)}
         </div>
     }
     return (

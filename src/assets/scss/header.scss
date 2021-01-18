@@ -1,5 +1,6 @@
 @import 'colors';
 header {
+  border-bottom: 1px solid rgba(255,255,255,0.2);
   @include default-color();
   background-color: $primary-color;
   width: 100%;

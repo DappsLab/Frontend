@@ -5,7 +5,7 @@ import {useQuery} from "@apollo/client";
 import {Client} from "../../../../queries/Services";
 import {Spinner2} from "../../../ui/Spinner";
 import {dappsbyid} from "../../../../queries/queries";
-import {Button, Segment} from "semantic-ui-react";
+import {Button} from "semantic-ui-react";
 import Avatar from "@material-ui/core/Avatar";
 import {categoryColors, getDate} from "../../../ui/Helpers";
 import {connect} from 'react-redux'
@@ -28,7 +28,7 @@ const DappsDetails = (props) => {
         if (data) {
             const dapp=data.dAppById;
             return <div className={'detail-container flex'}>
-                <Segment className={"dapps-details"}>
+                <div className={"dapps-details"}>
                     <Avatar src={dapp.image} style={{borderRadius:0,height:"150px",width:"150px"}}/>
                     <h2>{dapp.dAppName}</h2>
                     <div>
@@ -48,7 +48,7 @@ const DappsDetails = (props) => {
                     <p>{dapp.description}</p>
                     <h4>Created By  <span>{dapp.publisher.fullName}</span></h4>
                     <Avatar src={dapp.publisher.avatar} style={{height:"100px",width:"100px"}} />
-                </Segment>
+                </div>
                 <BuyDapp id={dapp.id} price={dapp.singleLicensePrice} {...props} currentUser={props.currentUser}/>
             </div>
         }

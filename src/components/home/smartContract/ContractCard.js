@@ -22,7 +22,6 @@ const ContractCard =(props)=>{
     )
    const displayContract=()=>{
         const data = props.data;
-       console.log(data)
         if (data.loading){
             return <Spinner2/>
         }

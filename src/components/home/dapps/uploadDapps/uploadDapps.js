@@ -209,10 +209,8 @@ const UploadDapps = (props) => {
                                 </Form.Field>
                                 <Button disabled={sourcePath===''&&true} className={'update-btn'} onClick={()=>UploadDapp()}>Uplaod Dapp</Button>
                             </Form>
-
                         </Grid.Column>
                     </Grid>
-
                 }
             </section>
         </Layout>

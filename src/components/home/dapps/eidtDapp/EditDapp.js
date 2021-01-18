@@ -139,7 +139,7 @@ const EditDapp = (props) => {
                                    value={longDescription} name={"longDescription"}
                                    onChange={(event)=>setlongDescription(event.target.value)} className={"editor"} >
                                </TextArea>
-                               <ReactMarkdown source={longDescription} className={'markdown'}/>
+                               <ReactMarkdown source={longDescription===''?dapp.description:longDescription} className={'markdown'}/>
                            </Form.Field>
                            <Button onClick={()=>OnUpdate(dapp)}  className={'update-btn'}>Update Dapp</Button>
                        </Form>

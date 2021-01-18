@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Container, Form, Input, Segment} from "semantic-ui-react";
+import {Button, Container, Form, Input} from "semantic-ui-react";
 import {useLazyQuery, useMutation} from "@apollo/client";
 import {orderContract, purchaseDapp,verifyOrder} from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
@@ -24,7 +24,7 @@ const BuyDapp = (props) => {
                 const purchasedDapps=currentUser.purchasedDApps;
                 for(let i=0;i<purchasedDapps.length;i++){
                     if (id===purchasedDapps[i].dApp.id){
-                        setPurchased(purchasedDapps[i].dApp)
+                        setPurchased(purchasedDapps[i])
                     }
                 }
                 // currentUser.purchasedDApps.map(dapp => {
@@ -104,7 +104,7 @@ const BuyDapp = (props) => {
         })
     }
     return (
-        <Segment className={"buy-dapps"}>
+        <div className={"buy-dapps"}>
             {purchased===null?
                 <div>
                     <h2>Buy Dapp</h2>
@@ -168,7 +168,7 @@ const BuyDapp = (props) => {
                 </div>:
                 <DownlaodDapp check={true} purchased={purchased}/>
             }
-        </Segment>
+        </div>
     )
 }
 
