@@ -63,10 +63,10 @@ let mainWeb3=new Web3('http://127.0.0.1:7545')
 export const   loadMainContract= (abi,contractAddress)=> {
     return new mainWeb3.eth.Contract(JSON.parse(abi), contractAddress);
 }
-export const callMainContract=async (contract,functionArr,name,address)=>{
+export const callMainContract=async (contract,functionArr,name,ownerAddress)=>{
     let contractMethod
     try {
-        contractMethod = await contract.methods[name]().call({from:address});
+        contractMethod = await contract.methods[name]().call({from:ownerAddress});
     }catch (e) {
         console.log("error:",e.toString())
     }
@@ -74,19 +74,20 @@ export const callMainContract=async (contract,functionArr,name,address)=>{
 }
 export const sendMainContractValue=async (contract,ownerKey,type,name,ownerAddress)=>{
     //const gasParice=await calculateGas(contract,name,address)
-    //console.log(gasParice)
     try {
         let transfer=contract.methods[name]();
         let encodedABI = transfer.encodeABI();
         let tx = {
             from: ownerAddress,
             to:contract._address,
+            data:encodedABI,
             gas:2000000,
-            data:encodedABI
+
         };
-        let signTx = await web3.eth.accounts.signTransaction(tx,ownerKey);
-        let tran = mainWeb3.eth.sendSignedTransaction(signTx.rawTransaction)
-        console.log("main transaction",tran)
+        let signTx = await mainWeb3.eth.accounts.signTransaction(tx,ownerKey);
+        console.log("signTx",signTx)
+        let sendTransaction=await mainWeb3.eth.sendSignedTransaction(signTx.rawTransaction);
+        console.log("sendTransaction",sendTransaction)
         return "true"
     }catch (e) {
         console.log("error:",e.toString())

@@ -1,7 +1,7 @@
 import React, {useEffect,useState} from 'react';
 import {getContractBalance} from "./ContractInteractionHelper";
 
-const GetBalance = (props) => {
+const GetTestBalance = (props) => {
     const [balance,setBalance]=useState('Loading');
    useEffect( ()=>{
        let getBalance=async ()=> {
@@ -17,4 +17,4 @@ const GetBalance = (props) => {
     );
 };
 
-export default GetBalance;
+export default GetTestBalance;

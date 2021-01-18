@@ -4,11 +4,37 @@
   min-width: 500px;
   display: flex;
   padding: 20px 0;
-  justify-content: center; }
+  justify-content: center;
+  align-items: flex-start; }
   .intreraction-container .intraction-left {
-    width: 400px; }
+    width: 400px;
+    padding: 20px 0; }
+    .intreraction-container .intraction-left .left-block {
+      margin: 20px; }
+      .intreraction-container .intraction-left .left-block label {
+        color: #8F4114;
+        font-size: 20px; }
+    .intreraction-container .intraction-left .space {
+      background-color: #060520;
+      min-height: 50px; }
+    .intreraction-container .intraction-left .contract-detail {
+      padding: 20px; }
+      .intreraction-container .intraction-left .contract-detail h3 {
+        font-size: 25px; }
+      .intreraction-container .intraction-left .contract-detail p {
+        min-height: 200px;
+        max-height: 200px;
+        overflow-y: auto; }
+      .intreraction-container .intraction-left .contract-detail .contract-img {
+        height: 150px;
+        width: 150px; }
+        .intreraction-container .intraction-left .contract-detail .contract-img img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover; }
   .intreraction-container .intraction-right {
-    width: 900px; }
+    width: 900px;
+    padding: 20px; }
     .intreraction-container .intraction-right form {
       margin-bottom: 20px; }
       .intreraction-container .intraction-right form select {
@@ -31,8 +57,10 @@
     color: #fff !important;
     background-color: #151339;
     margin: 0 10px;
-    padding: 20px;
     border-radius: 10px; }
+    .intreraction-container .intraction-right h2, .intreraction-container .intraction-left h2 {
+      color: #0FBA87;
+      font-size: 35px; }
 
 .Interact_button {
   border: 2px solid #8F4114;

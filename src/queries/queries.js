@@ -71,7 +71,10 @@ export const me_Query=gql`query {
     purchasedContracts {
       customizationsLeft id unlimitedCustomization
       licenses {
-        purchaseDateTime id used
+        purchaseDateTime id used 
+         compilations {
+          used
+        }
         order {
           id status licenseType
           smartContract {
@@ -663,7 +666,7 @@ export const testDeploy=gql`
 }
 `
 export const deploy=gql`
-   mutation ($input:deployedContractInput!){
+   mutation ($input:DeployedContractInput!){
    deployContract(newDeploy: $input){
   id
 }

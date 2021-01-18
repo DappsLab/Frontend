@@ -4,14 +4,18 @@ import Layout from "../../../../../hoc/Layout";
 import {useQuery} from "@apollo/client";
 import {Client} from "../../../../../queries/Services";
 import {Spinner2} from "../../../../ui/Spinner";
-import GetBalance from "../../../../ui/GetBalance";
 import IntractArguments from "./InteractionArguments";
+import GetMainAddress from "../../../../ui/GetMainAddress";
 
 const license=gql`query ($id:ID!){
   licenseById(id: $id) {
   id
     compilations {
-      used id
+      used id  smartContract {
+        contractName
+        description
+        image
+      }
       deployments { id ownerPrivateKey
         contractAddress ownerAddress
       }
@@ -52,31 +56,42 @@ const IntractionSmartContract = (props) => {
                    setnewID(ID);
                    setLoading(true)
                }catch (e) {
-                   console.log(e.toString())
+                   console.log("Query error",e.toString())
                }
             }
         })
         if (loading) return <Spinner2/>
         if (error) return <p>{error.toString()}</p>
-        if (data && !loading&&Loading) {
+        if (data && !loading&&Loading&&contractAddress) {
             const license = data.licenseById
+            const contract=license.compilations[license.compilations.length - 1].smartContract
             return (
                 <div className={'intreraction-container'}>
                     <div className={'intraction-left'}>
                         <h2>Contract Overview</h2>
-                        <div>
+                        <div className={'left-block'}>
                             <label>Contract Address:</label>
                             <address>{contractAddress}</address>
                         </div>
-                        <div>
+                        <div className={'left-block'}>
                             <label>Balance:</label>
-                            <GetBalance address={contractAddress}/>
+                            <GetMainAddress address={contractAddress}/>
                         </div>
-                        <div>
+                        <div className={'left-block'}>
                             <label>Contract Creator:</label>
                             <address>{ownerAddress}</address>
                         </div>
+                        <div className={'space'}>
 
+                        </div>
+                        <div className={'contract-detail'}>
+                            <div className={'contract-img'}>
+                                <img src={contract.image} alt={'img'}/>
+                            </div>
+                            <h3>{contract.contractName}</h3>
+                            <h4>Description</h4>
+                            <p>{contract.description}</p>
+                        </div>
                     </div>
                     <div className={'intraction-right'}>
                         <h2>Start Intracting with  Contract</h2>

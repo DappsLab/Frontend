@@ -5,7 +5,6 @@ const Licenses = (props) => {
     const [showLicenses,setShowLicenses]=useState(false)
     const {user,logged_session,contract}=props
 
-    console.log(user)
     const RenderLicenses=()=>{
         const purchased=user.purchasedContracts;
         if (purchased.length>0){
@@ -46,6 +45,7 @@ const Licenses = (props) => {
                                         </div>
                                     </Segment>
                                 </div>
+                                {console.log("license",license)}
                                 {license.used?
                                     <Segment className={"compiled"}>
                                         <div>

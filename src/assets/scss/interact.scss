@@ -8,11 +8,45 @@
   display: flex;
   padding: 20px 0;
   justify-content: center;
+  align-items: flex-start;
   .intraction-left{
     width: 400px;
+    padding:  20px 0;
+    .left-block {
+      margin: 20px;
+      label {
+        color: #8F4114;
+        font-size: 20px;
+      }
+    }
+    .space{
+      background-color: #060520;
+      min-height: 50px;
+    }
+    .contract-detail{
+      padding: 20px;
+      h3{
+        font-size: 25px;
+      }
+      p{
+        min-height: 200px;
+        max-height: 200px;
+        overflow-y: auto;
+      }
+      .contract-img{
+        height: 150px;
+        width: 150px;
+        img{
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+    }
   }
   .intraction-right{
     width: 900px;
+    padding: 20px;
     form{
       margin-bottom: 20px;
       select{
@@ -40,8 +74,12 @@
     color: #fff!important;
     background-color: #151339;
     margin: 0 10px;
-    padding: 20px;
+
     border-radius: 10px;
+    h2{
+      color: #0FBA87;
+      font-size: 35px;
+    }
   }
 }
 .Interact_button{

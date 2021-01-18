@@ -27,7 +27,7 @@ const RenderMainArguments = (props) => {
 
         const input= {}
         input["compiledContractId"] = newID
-        input["addressId"]=license.testOrder.testAddress.id
+        // input["addressId"]=license.order.address
         input['unlimitedCustomization']=type
         input['deplopmentLabel']=name
         // input['fee']=fee.toString()
@@ -76,9 +76,8 @@ const RenderMainArguments = (props) => {
                 authorization:localStorage.getItem('token')
             }
         },onCompleted:data1 => {
-            console.log("test deploy :",data1)
             alert.success("Deploy Successfull")
-            props.history.push(`/interact_test_smart_contract/${license.id}`)
+            props.history.push(`/interact_smart_contract/${license.id}`)
 
         },
         onError:error1 => {

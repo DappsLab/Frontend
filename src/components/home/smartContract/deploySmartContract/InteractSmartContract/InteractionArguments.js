@@ -13,7 +13,6 @@ const IntractArguments = (props) => {
     const [value,setValue]=useState('');
     const [abi,setAbi]=useState();
     const {newID,ownerAddress,ownerKey,contractAddress}=props
-    console.log(name,value)
     const handleSelect=(event)=>{
         const {value}=event.target;
         if (value==='Select Funtion'){
@@ -23,13 +22,14 @@ const IntractArguments = (props) => {
         }
     }
     const onFunctionSubmit=async (targetArray,contract)=>{
+
         if (targetArray.stateMutability==='view') {
             let callData = await callMainContract(contract, targetArray, targetArray.name, ownerAddress);
             setValue(callData)
         }
         else if (targetArray.stateMutability==="nonpayable"||targetArray.stateMutability==="payable"){
             let callData = await sendMainContractValue(contract,ownerKey,targetArray.stateMutability ,targetArray.name,ownerAddress);
-            console.log(callData)
+            console.log("SendMainContractValue",callData)
         }
     }
     const renderData=(array,contract)=>{
@@ -92,9 +92,9 @@ const IntractArguments = (props) => {
                 <select onClick={(event)=>handleSelect(event)}>
                     <option>Select Funtion</option>
                     {
-                        functionArrays.map(((functionArr,index)=>(
+                        functionArrays.map((functionArr,index)=>(
                             <option key={index} >{functionArr.name}</option>
-                        )))
+                        ))
                     }
                 </select>
             </form>
