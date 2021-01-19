@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Form} from "semantic-ui-react";
+import {Form} from "semantic-ui-react";
 import {useMutation} from "@apollo/client";
 import {createCustomOrder} from "../../../queries/queries";
 import {Client} from "../../../queries/Services";
@@ -69,15 +69,17 @@ const SubmitRequest = (props) => {
         <div>
             <h2>Submit the Smart Contract Info</h2>
             <Form className={'request-form'}>
-                <Form.Input
-                    text={'text'} fluid label={'Business Name'} placeholder={'Business Name'}
-                    onChange={(event, {name, value})=>setBName(FormValidation(bname,value,name))}
-                    name={'bname'} value={bname}
-                />
-                <Form.Select
-                     fluid label={'Request Type'} placeholder={'Request Type'} options={optionType} name={'type'}
-                      value={type} onChange={(event ,{value})=>{setType(value);} }
-                />
+               <Form.Group widths={'equal'}>
+                   <Form.Input
+                       text={'text'} fluid label={'Business Name'} placeholder={'Business Name'}
+                       onChange={(event, {name, value})=>setBName(FormValidation(bname,value,name))}
+                       name={'bname'} value={bname}
+                   />
+                   <Form.Select
+                       fluid label={'Request Type'} placeholder={'Request Type'} options={optionType} name={'type'}
+                       value={type} onChange={(event ,{value})=>{setType(value);} }
+                   />
+               </Form.Group>
                 <Form.Group widths={"equal"}>
                     <Form.Input
                         type={'text'} fluid  label='Role' placeholder={'Role'} value={role}  name={'role'}
@@ -104,7 +106,7 @@ const SubmitRequest = (props) => {
                     label={desc} name={'description'} value={description}
                     onChange={(event)=>setDescription(event.target.value)}> </Form.TextArea>
 
-                <Button color={'blue'} onClick={handelSubmit}>Submit</Button>
+                <button color={'blue'} onClick={handelSubmit}>Submit Request</button>
             </Form>
         </div>
     );

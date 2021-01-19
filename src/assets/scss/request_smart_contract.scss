@@ -1,26 +1,85 @@
 @import "colors";
+  .request-contract {
+    @include default-color();
+    color: #fff!important;
+    padding: 50px 0;
+    h1, h2 {
+      color: #0FBA87;
+      font-size: 40px;
+      text-align: center;
+    }
+    .request-info {
+      width: 1200px;
+      margin: 50px auto;
+      text-align: center;
+      align-items: flex-start;
+      h3{
+        margin-top: 10px;
+        font-size: 25px;
+        color: #8F4114;
+      }
+      p{
+        text-align: justify;
+      }
+      div {
+        background-color: #151339;
+        border-radius: 10px;
+        padding: 20px;
+        width: 500px;
+        min-height: 300px;
+        margin: 0 20px;
+      }
 
-.request-contract{
-  h1,h2{
-    text-align: center;
-  }
+      .icon {
+        margin: 20px 0 0 0 !important;
+        font-size: 40px !important;
+      }
+    }
 
-  .request-info{
-    width: 50%;
-    margin: 30px auto;
-    text-align: center;
-    div{
-      margin: 0 10px;
-    }
-    .icon{
-      font-size: 20px!important;
+    .request-form {
+      width: 1200px;
+      margin: 0 auto 4em auto;
+      label{
+        color: #8F4114!important;
+        font-size: 18px!important;
+      }
+      .ui.dropdown>.text{
+        margin: 5px;
+      }
+      .ui.fluid.input>input,.ui.selection.dropdown,textarea{
+        border: 1px solid rgba(255,255,255,.15)!important;
+        color: #fff!important;
+        font-size: 14px!important;
+        height: 50px;
+        font-family: 'Roboto', sans-serif;
+        background: #070622!important;
+        border-radius: 10px!important;
+        i.icon:before{
+          color: #fff;
+        }
+      }
+      .equal{
+        margin: 20px 0!important;
+      }
+      .ui.form textarea:focus{
+        color: #fff!important;
+      }
+      textarea {
+        color: #fff;
+        min-height: 200px;
+        max-height: 500px;
+      }
+      button{
+        margin-top: 30px;
+        background-color: #8F4114;
+        color: #fff;
+        cursor: pointer;
+        padding: 18px 60px;
+        border-radius: 30px;
+        border: 2px solid #8F4114;
+        &:hover{
+          background-color: #0F0E2e;
+        }
+      }
     }
   }
-  .request-form{
-    width: 50%;
-    margin: 0 auto 4em auto;
-    textarea{
-      min-height: 200px;
-    }
-  }
-}

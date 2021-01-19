@@ -1,15 +1,15 @@
-import React, { useEffect} from 'react';
+import React, { useState} from 'react';
 import DashboardLayout from "../../../../hoc/DashboardLayout";
 import {Table} from "semantic-ui-react";
 import {connect} from "react-redux";
 import DevelopContractRow from "./DevelopContractRow";
 import {setUser} from "../../../../actions/Actions";
-
+import {Query} from "react-apollo";
+import {me_Query} from "../../../../queries/queries";
+import {Spinner3} from "../../../ui/Spinner";
 
 const DevelopedContracts =(props)=> {
-    useEffect(()=>{
-        props.refetch();
-    })
+    const [currentUser,setCurrentUser]=useState(null)
     return (
         <DashboardLayout user={props.user}>
             <h1><strong>Developed <span>Smart Contract</span></strong></h1>
@@ -26,8 +26,18 @@ const DevelopedContracts =(props)=> {
                         <Table.HeaderCell width={1}>Action</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
-                <DevelopContractRow smartContracts={props.user.smartContracts}/>
+                {currentUser&&<DevelopContractRow smartContracts={currentUser.smartContracts}/>}
             </Table>
+                <Query query={me_Query} fetchPolicy={'network-only'} onCompleted={data => {
+                    setCurrentUser(data.me)
+                }}>
+                    {({loading,data,error})=>{
+                        if (loading) return <Spinner3/>
+                        if (data){
+                            return <div> </div>
+                        }
+                    }}
+                </Query>
             </div>
         </DashboardLayout>
     );

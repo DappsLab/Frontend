@@ -1,17 +1,67 @@
-.request-contract h1, .request-contract h2 {
-  text-align: center; }
-.request-contract .request-info {
-  width: 50%;
-  margin: 30px auto;
-  text-align: center; }
-  .request-contract .request-info div {
-    margin: 0 10px; }
-  .request-contract .request-info .icon {
-    font-size: 20px !important; }
-.request-contract .request-form {
-  width: 50%;
-  margin: 0 auto 4em auto; }
-  .request-contract .request-form textarea {
-    min-height: 200px; }
+.request-contract {
+  background-image: linear-gradient(135.14deg, #04031D 0%, #0F0E2e 100%);
+  color: #fff !important;
+  padding: 50px 0; }
+  .request-contract h1, .request-contract h2 {
+    color: #0FBA87;
+    font-size: 40px;
+    text-align: center; }
+  .request-contract .request-info {
+    width: 1200px;
+    margin: 50px auto;
+    text-align: center;
+    align-items: flex-start; }
+    .request-contract .request-info h3 {
+      margin-top: 10px;
+      font-size: 25px;
+      color: #8F4114; }
+    .request-contract .request-info p {
+      text-align: justify; }
+    .request-contract .request-info div {
+      background-color: #151339;
+      border-radius: 10px;
+      padding: 20px;
+      width: 500px;
+      min-height: 300px;
+      margin: 0 20px; }
+    .request-contract .request-info .icon {
+      margin: 20px 0 0 0 !important;
+      font-size: 40px !important; }
+  .request-contract .request-form {
+    width: 1200px;
+    margin: 0 auto 4em auto; }
+    .request-contract .request-form label {
+      color: #8F4114 !important;
+      font-size: 18px !important; }
+    .request-contract .request-form .ui.dropdown > .text {
+      margin: 5px; }
+    .request-contract .request-form .ui.fluid.input > input, .request-contract .request-form .ui.selection.dropdown, .request-contract .request-form textarea {
+      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      color: #fff !important;
+      font-size: 14px !important;
+      height: 50px;
+      font-family: 'Roboto', sans-serif;
+      background: #070622 !important;
+      border-radius: 10px !important; }
+      .request-contract .request-form .ui.fluid.input > input i.icon:before, .request-contract .request-form .ui.selection.dropdown i.icon:before, .request-contract .request-form textarea i.icon:before {
+        color: #fff; }
+    .request-contract .request-form .equal {
+      margin: 20px 0 !important; }
+    .request-contract .request-form .ui.form textarea:focus {
+      color: #fff !important; }
+    .request-contract .request-form textarea {
+      color: #fff;
+      min-height: 200px;
+      max-height: 500px; }
+    .request-contract .request-form button {
+      margin-top: 30px;
+      background-color: #8F4114;
+      color: #fff;
+      cursor: pointer;
+      padding: 18px 60px;
+      border-radius: 30px;
+      border: 2px solid #8F4114; }
+      .request-contract .request-form button:hover {
+        background-color: #0F0E2e; }
 
 /*# sourceMappingURL=request_smart_contract.css.map */

@@ -9,7 +9,7 @@ import {setUser} from "../../actions/Actions";
 import {client, login, me_Query} from "../../queries/queries";
 import {Spinner2} from "../ui/Spinner";
 import logo from '../../assets/images/logo_dapps.png'
-import  bar1 from '../../assets/images/bar1.png';
+import bar1 from '../../assets/images/bar1.png';
 import Rectangle2 from '../../assets/images/Rectangle2.png'
 import Rectangle3 from '../../assets/images/Rectangle3.png'
 import FormControl from "@material-ui/core/FormControl";

@@ -5,11 +5,8 @@ import SubmitRequest from "./SubmitRequest";
 import {infoData} from "../../ui/Helpers";
 import {Icon} from "semantic-ui-react";
 
+
 const RequestSmartContract = (props) => {
-
-
-
-
     return (
         <Layout>
             <div className={'request-contract'}>

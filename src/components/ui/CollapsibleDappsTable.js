@@ -47,14 +47,16 @@ function Row(props) {
             }
         },
         client:Client,
-        refetchQueries:[{query:pendingDapps,context: {
-                headers: {
-                    authorization: localStorage.getItem("token")
-                }
-            }
-        }],
+        // refetchQueries:[{query:pendingDapps,context: {
+        //         headers: {
+        //             authorization: localStorage.getItem("token")
+        //         }
+        //     }
+        // }],
         onCompleted:data=>{
-            console.log(data)
+            if (data){
+                props.fetch();
+            }
         }
     });
     const [cancel]=useMutation(cancelDapps, {
@@ -64,14 +66,16 @@ function Row(props) {
             }
         },
         client:Client,
-        refetchQueries:[{query:pendingDapps,context: {
-                headers: {
-                    authorization: localStorage.getItem("token")
-                }
-            }
-        }],
+        // refetchQueries:[{query:pendingDapps,context: {
+        //         headers: {
+        //             authorization: localStorage.getItem("token")
+        //         }
+        //     }
+        // }],
         onCompleted:data=>{
-            console.log(data)
+            if (data){
+                props.fetch();
+            }
         }
     });
     const alert=props.alert;
@@ -150,7 +154,7 @@ function CollapsibleDappsTable(props) {
                 </TableHead>
                 <TableBody>
                     {data.map((row) => (
-                        <Row key={row.id} {...props}  row={row} />
+                        <Row fetch={fetch} key={row.id} {...props}  row={row} />
                     ))}
                 </TableBody>
             </Table>
