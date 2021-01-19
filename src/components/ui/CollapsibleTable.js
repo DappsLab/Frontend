@@ -15,7 +15,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {dateTime} from "../../helpers/DateTimeConversion";
 import {Button} from "semantic-ui-react";
-import {verifyKyc, cancelKyc, pending_kyc_query} from "../../queries/queries";
+import {verifyKyc, cancelKyc} from "../../queries/queries";
 import {useMutation} from "@apollo/client";
 import {withAlert} from "react-alert";
 import {Client} from "../../queries/Services";
@@ -29,7 +29,7 @@ const useRowStyles = makeStyles({
 });
 
 function Row(props) {
-    const { row } = props;
+    const { row,fetch } = props;
     const [open, setOpen] = React.useState(false);
     const classes = useRowStyles();
     const [verify] = useMutation(verifyKyc, {
@@ -39,14 +39,16 @@ function Row(props) {
             }
         },
         client:Client,
-        refetchQueries:mutationResult=>[{query:pending_kyc_query, context: {
-                headers: {
-                    authorization: localStorage.getItem("token")
-                }
-            }
-        }],
+        // refetchQueries:mutationResult=>[{query:pending_kyc_query, context: {
+        //         headers: {
+        //             authorization: localStorage.getItem("token")
+        //         }
+        //     }
+        // }],
         onCompleted:data=>{
-            console.log(data)
+            if (data){
+                fetch();
+            }
         }
     });
     const [cancel]=useMutation(cancelKyc, {
@@ -56,14 +58,16 @@ function Row(props) {
             }
         },
         client:Client,
-        refetchQueries:mutationResult=>[{query:pending_kyc_query, context: {
-                headers: {
-                    authorization: localStorage.getItem("token")
-                }
-            }
-        }],
+        // refetchQueries:mutationResult=>[{query:pending_kyc_query, context: {
+        //         headers: {
+        //             authorization: localStorage.getItem("token")
+        //         }
+        //     }
+        // }],
         onCompleted:data=>{
-            console.log(data)
+            if (data){
+                fetch();
+            }
         }
     });
     const alert=props.alert;
@@ -127,7 +131,7 @@ function Row(props) {
 
 
  function CollapsibleTable(props) {
-    const {data}=props;
+    const {data,fetch}=props;
     return (
         <div className={'scroll'}>
         <TableContainer className={'kyc-verification'} component={Paper}>
@@ -143,7 +147,7 @@ function Row(props) {
                 </TableHead>
                 <TableBody>
                     {data.map((row) => (
-                        <Row key={row.id} {...props} row={row} />
+                        <Row fetch={fetch} key={row.id} {...props} row={row} />
                     ))}
                 </TableBody>
             </Table>

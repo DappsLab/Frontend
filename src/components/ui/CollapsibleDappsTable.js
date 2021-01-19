@@ -15,7 +15,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {Button} from "semantic-ui-react";
 import {
-      cancelDapps, pendingDapps, verifyDapps,
+      cancelDapps, verifyDapps,
 } from "../../queries/queries";
 import {withAlert} from "react-alert";
 import {useMutation} from "@apollo/client";
@@ -138,7 +138,7 @@ function Row(props) {
 
 
 function CollapsibleDappsTable(props) {
-    const {data}=props;
+    const {data,fetch}=props;
     return(
         <div className={'scroll'}>
         <TableContainer className={'dapp-container'} component={Paper}>

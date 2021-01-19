@@ -17,7 +17,7 @@ import {Button} from "semantic-ui-react";
 import {
     verify_smart_contract,
     cancel_smart_contract,
-    pendingSmartContract, getSource,
+     getSource,
 } from "../../queries/queries";
 import {withAlert} from "react-alert";
 import {useMutation, useQuery} from "@apollo/client";
@@ -40,7 +40,7 @@ const useRowStyles = makeStyles({
 
 
 function Row(props) {
-    const { row } = props;
+    const { row,fetch } = props;
     const [open, setOpen] = React.useState(false);
     const classes = useRowStyles();
     const [verify] = useMutation(verify_smart_contract, {
@@ -50,13 +50,15 @@ function Row(props) {
             }
         },
         client:Client,
-        refetchQueries:mutationResult=>[{query:pendingSmartContract,context: {
-                headers: {
-                    authorization: localStorage.getItem("token")
-                }
-            }}],
+        // refetchQueries:mutationResult=>[{query:pendingSmartContract,context: {
+        //         headers: {
+        //             authorization: localStorage.getItem("token")
+        //         }
+        //     }}],
         onCompleted:data=>{
-            console.log(data)
+            if (data){
+                fetch();
+            }
         }
     });
     const [cancel]=useMutation(cancel_smart_contract, {
@@ -66,14 +68,16 @@ function Row(props) {
             }
         },
         client:Client,
-        refetchQueries:mutationResult=>[{query:pendingSmartContract,context: {
-                headers: {
-                    authorization: localStorage.getItem("token")
-                }
-            }
-        }],
+        // refetchQueries:mutationResult=>[{query:pendingSmartContract,context: {
+        //         headers: {
+        //             authorization: localStorage.getItem("token")
+        //         }
+        //     }
+        // }],
         onCompleted:data=>{
-            console.log(data)
+            if (data){
+                fetch();
+            }
         }
     });
     const alert=props.alert;
@@ -162,7 +166,7 @@ function Row(props) {
 
 
  function CollapsibleFormTable(props) {
-    const {data}=props;
+    const {data,fetch}=props;
     return (
         <div className={'scroll'}>
         <TableContainer className={'contract-container'} component={Paper}>
@@ -178,7 +182,7 @@ function Row(props) {
                 </TableHead>
                 <TableBody>
                     {data.map((row) => (
-                        <Row key={row.id} {...props}  row={row} />
+                        <Row fetch={fetch} key={row.id} {...props}  row={row} />
                     ))}
                 </TableBody>
             </Table>
