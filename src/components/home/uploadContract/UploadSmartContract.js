@@ -235,15 +235,17 @@ const UploadSmartContract =(props)=>{
                                     <Button disabled={showAssocited}  onClick={handleSaveContractData} className={"publishbtn"} >Save</Button>
 
                                     {showAssocited&&
-                                    <div className={"attached_files"}>
-                                        <h1>Associated Files</h1>
-                                        <Uploader type={'contract'} onSubmit={(file) => Submit(file)}/>
-                                        <Form>
-                                            <FuncationName funcationName={funcationName} setfuncationName={setfuncationName} />
-                                        </Form>
-                                        <GetVersion onContractVersion={(event)=>onContractVersion(event)}/>
-                                        <Button variant="contained" className={'publishbtn'} disabled={active}   onClick={()=>HandlePublish()} color="primary">Publish</Button>
-                                    </div>
+                                    <Fade top>
+                                        <div className={"attached_files"}>
+                                            <h1>Associated Files</h1>
+                                            <Uploader type={'contract'} onSubmit={(file) => Submit(file)}/>
+                                            <Form>
+                                                <FuncationName funcationName={funcationName} setfuncationName={setfuncationName} />
+                                            </Form>
+                                            <GetVersion onContractVersion={(event)=>onContractVersion(event)}/>
+                                            <Button variant="contained" className={'publishbtn'} disabled={active}   onClick={()=>HandlePublish()} color="primary">Publish</Button>
+                                        </div>
+                                    </Fade>
                                     }
                                 </div>
                             </div>

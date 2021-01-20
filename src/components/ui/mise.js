@@ -1,4 +1,4 @@
-import {alphabetRegex, alphanumaric, alphabetOutSpace, nameReg, phoneNumber, numericReg} from "./Helpers";
+import {alphabetRegex, alphanumaric, alphabetOutSpace, nameReg, phoneNumber, numericReg, floatReg} from "./Helpers";
 
 
 
@@ -37,6 +37,12 @@ export const FormValidation=(oldValue,value,name)=>{
         case 'location':
         case 'city':
             return value!==""?alphabetRegex.test(value)?value:oldValue:""
+        case 'payable':
+            let newValue=value!==""?floatReg.test(value)?value:oldValue:""
+            if (counter(newValue,'.')>1){
+                return oldValue
+            }
+            return newValue
         case 'bname':
         case 'cName':
             return value!==""?nameReg.test(value)?value:oldValue:""
@@ -79,3 +85,12 @@ export const convertArrayToObject = (array, key) => {
         };
     }, initialValue);
 };
+export const counter= (str, letter)=> {
+    let letter_Count = 0;
+    for (let position = 0; position < str.length; position++) {
+        if (str.charAt(position) === letter) {
+            letter_Count += 1;
+        }
+    }
+    return letter_Count;
+}

@@ -4,6 +4,7 @@ import {CalendarContainer} from "react-datepicker";
 export const alphanumaric=RegExp(/^[a-zA-Z0-9][a-zA-Z0-9\s]*$/);
 export const nameReg=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);
 export const numericReg=RegExp(/^[0-9]*$/);
+export const floatReg=RegExp(/^[.0-9.]*$/);
 export const phoneNumber=RegExp(/^[0-9+]*$/);
 export const acceptedImageTypes = 'image/x-png, image/png, image/jpg, image/jpeg';
 export const acceptedImageTypesArray = acceptedImageTypes.split(",").map((item) => {return item.trim()});

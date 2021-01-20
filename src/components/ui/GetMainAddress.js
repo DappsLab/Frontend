@@ -10,9 +10,9 @@ const GetMainAddress = (props) => {
         }
         getBalance()
     })
-    return (
+    return balance!=='Loading'?(
         <div>{balance}</div>
-    );
+    ):<div>Loading</div>
 };
 
 export default GetMainAddress;
