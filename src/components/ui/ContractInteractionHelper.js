@@ -14,9 +14,16 @@ export const callContract=async (contract,functionArr,name,address)=>{
     }
     return contractMethod
 }
-export const sendContractValue=async (contract,ownerKey,type,name,ownerAddress)=>{
+export const sendContractValue=async (contract,ownerKey,type,name,ownerAddress,payableValue,sendValue)=>{
     //const gasParice=await calculateGas(contract,name,address)
     //console.log(gasParice)
+    let payableConvertedValue,checkedSenderValue=''
+    if (payableValue){
+        payableConvertedValue=toWei(payableValue)
+        checkedSenderValue=isAddress(sendValue)?sendValue:""
+    }else {
+        payableConvertedValue=toWei(0)
+    }
     try {
         let transfer=contract.methods[name]();
         let encodedABI = transfer.encodeABI();
@@ -24,15 +31,17 @@ export const sendContractValue=async (contract,ownerKey,type,name,ownerAddress)=
             from: ownerAddress,
             to:contract._address,
             gas:2000000,
-            data:encodedABI
+            data:encodedABI,
+            value:payableConvertedValue,
+            sender:checkedSenderValue,
         };
         let signTx = await web3.eth.accounts.signTransaction(tx,ownerKey);
         let tran = web3.eth.sendSignedTransaction(signTx.rawTransaction)
         console.log('transaction',tran)
         return "true"
     }catch (e) {
-        console.log("error:",e.toString())
-        return "Error"
+        // console.log("error:",e.toString())
+        return e.toString()
     }
 }
 
@@ -72,8 +81,7 @@ export const callMainContract=async (contract,functionArr,name,ownerAddress)=>{
     }
     return contractMethod
 }
-export const sendMainContractValue=async (contract,ownerKey,type,name,ownerAddress,payableValue,sendValue)=>{
-    //const gasParice=await calculateGas(contract,name,address)
+export const sendMainContractValue=async (contract,ownerKey,type,name,ownerAddress,payableValue,sendValue,argument)=>{
     let payableConvertedValue,checkedSenderValue=''
     if (payableValue){
         payableConvertedValue=toWei(payableValue)
@@ -81,8 +89,10 @@ export const sendMainContractValue=async (contract,ownerKey,type,name,ownerAddre
     }else {
         payableConvertedValue=toWei(0)
     }
+    //const gasParice=await calculateGas(contract,name,address)
+    console.log('argument',argument)
     try {
-        let transfer=contract.methods[name]();
+        let transfer=contract.methods[name](344,"name");
         let encodedABI = transfer.encodeABI();
         let tx = {
             from: ownerAddress,
@@ -97,7 +107,7 @@ export const sendMainContractValue=async (contract,ownerKey,type,name,ownerAddre
         return "true"
     }catch (e) {
         console.log("error:",e.toString())
-        return "Error"
+        return e.toString()
     }
 }
 

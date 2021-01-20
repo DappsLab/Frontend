@@ -46,6 +46,10 @@
         border: 1px solid rgba(255, 255, 255, 0.15); }
         .intreraction-container .intraction-right form select:focus, .intreraction-container .intraction-right form input:focus {
           outline: none; }
+      .intreraction-container .intraction-right form .input-block {
+        margin: 10px 0; }
+      .intreraction-container .intraction-right form h3 {
+        color: #0FBA87; }
       .intreraction-container .intraction-right form label {
         display: block;
         font-size: 16px;

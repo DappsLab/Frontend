@@ -5,7 +5,7 @@ import {getABI, deploy} from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
 import {getObjects} from "../../../ui/Helpers";
 import {Button, Form, Input} from "semantic-ui-react";
-import {CheckDimension, convertArrayToObject} from "../../../ui/mise";
+import {CheckDimension} from "../../../ui/mise";
 import {recursiveChecker} from "../../../ui/InputValidation";
 
 const RenderMainArguments = (props) => {
@@ -57,10 +57,8 @@ const RenderMainArguments = (props) => {
                     final.push(argument_array)
                 }
             }
-            console.log(convertArrayToObject(final,'index'))
             input['argumentsArray']=final
         }
-        console.log("INPUT",input)
         deployMutate({
             variables:{
                 input:input
@@ -154,7 +152,9 @@ const RenderMainArguments = (props) => {
                                     )
                             }</span>
                                 <Input
-                                    name={argu.name}  type={'text'} error={argu.error} onBlur={(event)=>handleBlur(event,index,argu.name,argu.type)}
+                                    name={argu.name}  type={'text'} error={argu.error} onBlur={
+                                        (event)=>handleBlur(event,index,argu.name,argu.type)
+                                    }
                                     onChange={(event)=>handleChange(event,index,argu.name,argu.type)}
                                 />
                             </Form.Field>

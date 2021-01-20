@@ -47,31 +47,44 @@
   .intraction-right{
     width: 900px;
     padding: 20px;
-    form{
+    form {
       margin-bottom: 20px;
-      select,input{
+
+      select, input {
         width: 300px;
         height: 45px;
         border-radius: 7px;
         background-color: #0F0E2e;
         color: #fff;
-        border: 1px solid rgba(255,255,255,0.15);
-        &:focus{
+        border: 1px solid rgba(255, 255, 255, 0.15);
+
+        &:focus {
           outline: none;
         }
       }
-      label{
+      .input-block {
+        margin: 10px 0;
+      }
+
+      h3 {
+        color: #0FBA87;
+      }
+
+      label {
         display: block;
         font-size: 16px;
         color: #8F4114;
       }
-      p{
+
+      p {
         color: #0FBA87;
       }
-      input{
+
+      input {
         padding-left: 5px;
       }
-      p{
+
+      p {
 
       }
     }
