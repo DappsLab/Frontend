@@ -15,12 +15,12 @@ export const match=(data)=>{
         localStorage.removeItem('token');
         // console.log("here")
         // window.location.reload();
-        return true
+        return 'authentication'
     }
     if (data.toString().toLowerCase().includes('error: failed to fetch')){
-        localStorage.removeItem('token')
-        return true;
+        return 'fetch';
     }
+    return 'fetch'
 }
 
 export const ErrorStringMatch=(data)=>{

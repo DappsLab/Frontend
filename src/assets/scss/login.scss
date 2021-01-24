@@ -20,22 +20,38 @@
   flex-flow: row-reverse;
   display: flex;
 }
-.top{
-  margin: 0 0 110px 0;
-  display: flex;
-  justify-content: space-between;
-}
+
 .loginRight{
   max-width: 470px;
   background-color: white;
   width: 100%;
-  padding:  30px;
+  padding: 50px 30px;
   border-radius: 0 12px 12px 0;
   h2{
     color: #04031c;
     font-size: 50px;
     margin: 0 0 18px 0;
   }
+  .top{
+    display: flex;
+    align-items: center;
+    margin-bottom: 6em;
+    justify-content: space-between;
+  }
+  .signup{
+    border-radius: 6px;
+    background-color: #04031c;
+    padding: 10px 25px 10px 25px;
+    font-size: 15px;
+    border: 2px solid #04031c;
+    color: white;
+    &:hover{
+      background: #fff;
+      color: #333;
+      border: 2px solid #04031c;
+    }
+  }
+
 }
 .loginleft{
   background-color: #04031c;
@@ -60,25 +76,8 @@
     top: 6.8em!important;
   }
 }
-.btn {
-  margin: 39px 0 0 0;
-}
-.logo{
-  margin: 28px 0 0 0;
-}
-.signup{
-  border-radius: 6px;
-  background-color: #04031c;
-  padding: 10px 25px 10px 25px;
-  font-size: 15px;
-  border: 2px solid #04031c;
-  color: white;
-}
-.signup:hover{
-  background: #fff;
-  color: #333;
-  border: 2px solid #04031c;
-}
+
+
 .bar1{
   margin: 0 0 95px 0;
 }
@@ -96,22 +95,6 @@
   text-transform: capitalize;
 }
 
-.login{
-  margin-top: 2em;
-  color: #04031c;
-  font-weight: 600;
-  width: 100%;
-  font-size: 25px;
-  padding: 13px 0;
-  background: white;
-  border: 3px solid #04031c;
-  border-radius: 26px;
-}
-.login:hover{
-  cursor: pointer;
-  background-color: #04031c;
-  color: white;
-}
 
 
 

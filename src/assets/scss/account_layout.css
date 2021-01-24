@@ -58,12 +58,16 @@
 /*=======================================================
                  Transaction
 =========================================================*/
+.transaction h2 {
+  font-size: 40px; }
 .transaction .MuiPaper-root {
   background-color: #0F0E2e;
   color: #fff; }
 .transaction .fullWidth {
   margin: 10px 0;
-  padding: 0; }
+  padding: 0;
+  max-height: 700px;
+  overflow-x: auto; }
 .transaction .MuiTableCell-root {
   border: none;
   color: #fff !important; }

@@ -9,6 +9,7 @@ import {getTestABI} from "../../../../../queries/queries";
 import {Client} from "../../../../../queries/Services";
 import {CheckDimension, FormValidation} from "../../../../ui/mise";
 import {recursiveChecker} from "../../../../ui/InputValidation";
+import {withAlert} from "react-alert";
 
 const TestIntract = (props) => {
     const [name,setName]=useState('');
@@ -18,7 +19,7 @@ const TestIntract = (props) => {
     const [sendValue,setSendValue]=useState('');
     const [abi,setAbi]=useState();
     const [argument,setArgument]=useState([])
-    const {newID,ownerAddress,ownerKey,contractAddress}=props
+    const {newID,ownerAddress,ownerKey,contractAddress,alert}=props
 
     const onFunctionSubmit=async (targetArray,contract)=>{
         if (targetArray.stateMutability==='view') {
@@ -26,20 +27,21 @@ const TestIntract = (props) => {
             setValue(callData)
         }
         else if (targetArray.stateMutability==="nonpayable"){
-            let callData = await sendContractValue(contract,ownerKey,targetArray.stateMutability ,targetArray.name,ownerAddress);
+            let callData = await sendContractValue(contract,ownerKey,targetArray.stateMutability ,targetArray.name,ownerAddress,'',0,argument);
             if (callData==='true'){
                 alert.success("Funcation called Successfully",{timeout:1000})
             }else {
                 alert.error(callData,{timeout:3000})
             }
         }else if (targetArray.stateMutability==="payable"||targetArray.payable){
-            let callData = await sendContractValue(contract,ownerKey,targetArray.stateMutability ,targetArray.name,ownerAddress,payableValue);
+            let callData = await sendContractValue(contract,ownerKey,targetArray.stateMutability ,targetArray.name,ownerAddress,payableValue,sendValue,argument);
             if (callData==='true'){
                 alert.success("Funcation called Successfully",{timeout:1000})
             }else {
                 alert.error(callData,{timeout:3000})
             }
         }
+        setArgument([])
     }
     const handleSelect=(event)=>{
         const {value}=event.target;
@@ -133,14 +135,13 @@ const TestIntract = (props) => {
     }
     const renderResult=(array)=>{
         if (value!=='') {
-            let tagertArray
-            for (let i=0;i<array.length;i++){
-                if (array[i].name===name){
-                    tagertArray=array[i]
-                    break;
-                }
-            }
-            console.log("Taget Array",tagertArray)
+            // let tagertArray
+            // for (let i=0;i<array.length;i++){
+            //     if (array[i].name===name){
+            //         tagertArray=array[i]
+            //         break;
+            //     }
+            // }
          return   <div className={'execute-result'}>
              <h3>Result</h3>
                 {value}
@@ -189,4 +190,4 @@ const TestIntract = (props) => {
     );
 };
 
-export default TestIntract;
+export default withAlert() (TestIntract);

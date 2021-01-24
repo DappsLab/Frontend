@@ -77,7 +77,7 @@ const ChangePassword =(props)=> {
                <h2>Reset Your Password</h2>
                {/*<p>*/}
                {/*    Need to reset your password? No problem  just enter new password*/}
-               {/*    and click on below submit button*/}
+               {/*    and click on below submit custom-button*/}
                {/*</p>*/}
                 <form>
                     <PasswordField password={password} setPassword={setPassword} name={'Password'}/>

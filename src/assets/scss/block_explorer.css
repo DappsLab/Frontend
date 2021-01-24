@@ -79,10 +79,14 @@
     .block_explorer .block-transaction .recent_block, .block_explorer .block_explorer .recent_block {
       width: 30%;
       padding: 20px;
-      background-color: #151339; }
+      background-color: #151339;
+      max-height: 1000px;
+      overflow-y: auto; }
       .block_explorer .block-transaction .recent_block .ui.table tr td:nth-child(2), .block_explorer .block_explorer .recent_block .ui.table tr td:nth-child(2) {
         color: #8F4114 !important; }
     .block_explorer .block-transaction .recent_transaction, .block_explorer .block_explorer .recent_transaction {
+      max-height: 1000px;
+      overflow-y: auto;
       padding: 20px;
       width: 65%;
       background-color: #151339; }

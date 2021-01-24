@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
-
 import {Route, Redirect} from "react-router-dom";
 import {useQuery} from "@apollo/client";
 import {me_Query} from "../../queries/queries";
 import {Client, match} from "../../queries/Services";
 import {Spinner3} from "../ui/Spinner";
+import ServerError from "../ui/errors/server-error/ServerError";
 
 
 const PublicRoute = ({setUser,user,component:Comp,...rest}) => {
@@ -26,20 +26,25 @@ const PublicRoute = ({setUser,user,component:Comp,...rest}) => {
             }
         })
         if (loading) return <div className={'main-spinner'}><Spinner3/></div>
-        if (error) return  (
-            match(error.toString())&& <Route {...rest} component={(props) => (
-            rest.restricted ?
-                (!!localStorage.getItem('token') ?
-                        <Redirect to={"/"}/>
-                        :
+        if (error) {
+            console.log('public route ',error.toString())
+            return (
+                match(error.toString())==="authentication" ?
+                <Route {...rest} component={(props) => (
+                    rest.restricted ?
+                        (!!localStorage.getItem('token') ?
+                                <Redirect to={"/"}/>
+                                :
+                                <Comp {...props} user={null}/>
+                        ) :
                         <Comp {...props} user={null}/>
-                ) :
-                <Comp {...props} user={null}/>
-        )}/>
+                )}/>:<ServerError />
+                    // <Redirect to={{pathname:'/error',state:{error:'ServerError'}}} />
                 // ?
                 // <Redirect to="/login"/>:
                 // <div>{error.toString()}</div>
-        )
+            )
+        }
         if (data) {
             return (!!localStorage.getItem('token') ?
                     <Route {...rest} component={(props) => (

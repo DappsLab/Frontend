@@ -1,0 +1,9 @@
+@import "../../../../assets/scss/colors";
+
+.error-container{
+  min-height: 200px;
+  text-align: center;
+  color: #fff!important;
+  @include default-color();
+  margin-top: 30px;
+}

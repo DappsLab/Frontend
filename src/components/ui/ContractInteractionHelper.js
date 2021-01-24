@@ -14,7 +14,7 @@ export const callContract=async (contract,functionArr,name,address)=>{
     }
     return contractMethod
 }
-export const sendContractValue=async (contract,ownerKey,type,name,ownerAddress,payableValue,sendValue)=>{
+export const sendContractValue=async (contract,ownerKey,type,name,ownerAddress,payableValue,sendValue,argument)=>{
     //const gasParice=await calculateGas(contract,name,address)
     //console.log(gasParice)
     let payableConvertedValue,checkedSenderValue=''
@@ -24,8 +24,19 @@ export const sendContractValue=async (contract,ownerKey,type,name,ownerAddress,p
     }else {
         payableConvertedValue=toWei(0)
     }
+    const data = [];
+    for (let i=0;i<argument.length;i++){
+        let object={}
+        object['data']=argument[i].data
+        data.push(object)
+    }
+    const finalArgument = data.map(
+        function({data}) {
+            return data;
+        }
+    );
     try {
-        let transfer=contract.methods[name]();
+        let transfer=contract.methods[name](...finalArgument);
         let encodedABI = transfer.encodeABI();
         let tx = {
             from: ownerAddress,
@@ -90,9 +101,20 @@ export const sendMainContractValue=async (contract,ownerKey,type,name,ownerAddre
         payableConvertedValue=toWei(0)
     }
     //const gasParice=await calculateGas(contract,name,address)
-    console.log('argument',argument)
+
+    const data = [];
+    for (let i=0;i<argument.length;i++){
+        let object={}
+        object['data']=argument[i].data
+        data.push(object)
+    }
+    const finalArgument = data.map(
+        function({data}) {
+            return data;
+        }
+    );
     try {
-        let transfer=contract.methods[name](344,"name");
+        let transfer=contract.methods[name](...finalArgument);
         let encodedABI = transfer.encodeABI();
         let tx = {
             from: ownerAddress,
@@ -105,9 +127,8 @@ export const sendMainContractValue=async (contract,ownerKey,type,name,ownerAddre
         let signTx = await mainWeb3.eth.accounts.signTransaction(tx,ownerKey);
         await mainWeb3.eth.sendSignedTransaction(signTx.rawTransaction);
         return "true"
-    }catch (e) {
-        console.log("error:",e.toString())
-        return e.toString()
+    }catch (err) {
+        return err.toString()
     }
 }
 

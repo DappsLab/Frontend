@@ -125,10 +125,10 @@
       border: 2px solid #5754ab;
       margin: 4em 0;
       color: white;
-    }
-    button:hover{
-      background: #fff;
-      color: #5754ab;
+      &:hover{
+        background: #fff;
+        color: #5754ab;
+      }
     }
   }
   .s-right{

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch} from "react-router-dom";
+import { Switch} from "react-router-dom";
 
 
 //Routes Setup
@@ -7,8 +7,6 @@ import Home from "./components/home/Home";
 import AboutUs from "./components/home/AboutUs";
 import BlockExplorer from "./components/block_explorer/BlockExplorer";
 import Dapps from "./components/home/dapps/Dapps";
-import Downloads from "./components/home/Downloads";
-import Help from "./components/home/Help";
 import Smart_Contracts from "./components/home/smartContract/Smart_Contracts";
 import Login from "./components/login/Login";
 import Register from "./components/login/Register";
@@ -110,8 +108,6 @@ const Routes =(props)=>{
               <PublicRoute {...props} restricted={true} path={"/register"} exact component={Register}/>
               <PublicRoute {...props} restricted={true} path={"/login"} exact component={Login}/>
               <PublicRoute {...props} restricted={false} path={"/smart_contracts"} exact component={Smart_Contracts}/>
-              <PublicRoute {...props} restricted={false} path={"/help"} exact component={Help}/>
-              <PublicRoute {...props} restricted={false} path={"/downloads"} exact component={Downloads}/>
               <PublicRoute {...props} restricted={false} path={"/dapps"} exact component={Dapps}/>
               <PublicRoute {...props} restricted={false} path={"/block_explorer"} exact component={BlockExplorer}/>
               <PublicRoute {...props} restricted={false} path={"/about_us"} exact component={AboutUs}/>

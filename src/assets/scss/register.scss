@@ -23,7 +23,7 @@
   border-radius: 0px 12px 12px 0px;
   .top{
     display: flex;
-    margin-bottom: 5em;
+    margin-bottom: 3em;
     align-items: center;
     justify-content: space-between;
     .logo,.btn{
@@ -47,19 +47,24 @@
     background-color: #04031c;
     padding: 10px 25px 10px 25px;
     font-size: 15px;
-    border: none;
+    border: 2px solid #04031c;
     color: white;
+    &:hover{
+      background-color: #fff;
+      color: #04031c;
+    }
   }
   .form{
     .fname{
       width: 100%;
+      margin: 0 0 25px 0;
     }
     label{
       font-size: 18px;
     }
     .flex {
       justify-content: space-between ;
-      margin: 25px 0;
+      margin: 0 0 25px 0;
       .MuiInput-root{
         width: 190px!important;
       }
@@ -79,7 +84,8 @@
       }
     }
     h2{
-      margin-bottom: 2.5em;
+      font-size: 50px;
+      margin-bottom: 1em;
     }
     h2::after{
       content: "";

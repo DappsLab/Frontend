@@ -19,6 +19,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment'
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import CustomButton from "../ui/custom-button/custom-button.component";
 
 
 const Login =(props)=>{
@@ -124,7 +125,7 @@ const Login =(props)=>{
                                 </FormControl>
                             </form>
                             <p className="fgtpwd"><Link to={'/forget_password'}>forget password </Link></p>
-                            <button onClick={HandleSubmit} className="login">Login</button>
+                            <CustomButton login onClick={HandleSubmit}>Login</CustomButton>
                         </div>
                     </div>
                     <div className="loginleft flex password-left">

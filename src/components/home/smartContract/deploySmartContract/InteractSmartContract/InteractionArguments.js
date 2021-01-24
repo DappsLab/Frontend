@@ -30,7 +30,6 @@ const IntractArguments = (props) => {
         }
     }
     const onFunctionSubmit=async (targetArray,contract)=>{
-        console.log('nam',argument)
         if (targetArray.stateMutability==='view') {
             let callData = await callMainContract(contract, targetArray, targetArray.name, ownerAddress);
             setValue(callData)
@@ -50,6 +49,7 @@ const IntractArguments = (props) => {
                alert.error(callData,{timeout:3000})
            }
         }
+        setArgument([])
     }
     const handleChange=(event,index,inputArray)=>{
         const {value}=event.target

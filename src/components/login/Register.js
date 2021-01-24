@@ -19,6 +19,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import {useMutation} from "@apollo/client";
 import {Client} from "../../queries/Services";
 import {Spinner2} from "../ui/Spinner";
+import CustomButton from "../ui/custom-button/custom-button.component";
 
 const Register =(props)=> {
 
@@ -134,16 +135,16 @@ const Register =(props)=> {
                                 label="Full Name" value={fullName} type={'text'} name={'fullName'}
                                 onChange={(event => setFullName(event.target.value))}
                             />
-                           <div className={'flex user-email'}>
-                               <TextField
+                           {/*<div className={'flex user-email'}>*/}
+                               <TextField className={'fname'}
                                    label="Username" value={username} type={'text'} name={'username'}
                                    onChange={(event => setUsername(event.target.value))}
                                />
-                               <TextField
+                               <TextField className={'fname'}
                                    label="Email" value={email} type={'email'} name={'email'}
                                    onChange={(event => setEmail(event.target.value))}
                                />
-                           </div>
+                           {/*</div>*/}
                             <div className={'pass flex'}>
                                 <FormControl  >
                                     <InputLabel>Password</InputLabel>
@@ -186,7 +187,7 @@ const Register =(props)=> {
                             <div className={"checkboxs"}>
                                 {renderCheckBox()}
                             </div>
-                            <button onClick={HandleSubmit} className="login strock">SignUp</button>
+                            <CustomButton login onClick={HandleSubmit}>SignUp</CustomButton>
                             </form>
                         </div>
 

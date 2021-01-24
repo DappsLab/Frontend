@@ -21,7 +21,6 @@ class Transactions extends Component {
     }
     componentDidMount() {
         const address = this.props.user.address;
-        console.log(address)
         const that = this;
         client.query({
             query: gql`
@@ -54,15 +53,14 @@ class Transactions extends Component {
     )
     renderTransaction(){
         const {data}=this.state;
-        console.log("transaction",data)
         if (data){
             if (data.length>0) {
-                return data.slice(0, 10).map(da => {
+                return data.map(da => {
                     return <TableRow key={da.id}>
                         <TableCell>{da.blockNumber}</TableCell>
                         <TableCell>{da.to}</TableCell>
                         <TableCell>{da.gasUsed}</TableCell>
-                        <TableCell> {dateTime(da.createdAt)}</TableCell>
+                        <TableCell>{dateTime(da.createdAt)}</TableCell>
                         <TableCell>{da.status ? "True" : "False"}</TableCell>
                     </TableRow>
                 })

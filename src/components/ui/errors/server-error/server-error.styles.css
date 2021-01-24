@@ -1,0 +1,17 @@
+.refresh-page {
+  background-image: linear-gradient(135.14deg, #04031D 0%, #0F0E2e 100%);
+  color: #fff !important;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .refresh-page h1 {
+    color: #0FBA87;
+    font-size: 70px; }
+  .refresh-page span {
+    font-size: 30px;
+    color: #8F4114; }
+  .refresh-page p {
+    margin-top: 20px;
+    font-size: 20px; }
+
+/*# sourceMappingURL=server-error.styles.css.map */

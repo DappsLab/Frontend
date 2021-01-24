@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,gBAAgB;EACd,UAAU,EAAE,KAAK;EACjB,UAAU,EAAE,MAAM;EAClB,KAAK,EAAE,eAAc;ECerB,gBAAgB,EAAE,oDAAmD;EDbrE,UAAU,EAAE,IAAI",
+"sources": ["error.style.scss","../../../../assets/scss/colors.scss"],
+"names": [],
+"file": "error.style.css"
+}

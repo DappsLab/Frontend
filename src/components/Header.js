@@ -20,10 +20,10 @@ class Header extends React.Component {
         {title: 'HOME', linkTo: '/',active:"/"},
         {title: 'SMART CONTRACTS', linkTo: '/smart_contracts',active:"/smart_contracts"},
         {title: 'DAPPS', linkTo: '/dapps',active:"/dapps"},
-        {title: 'DOWNLOADS', linkTo: '/downloads',active:"/downloads"},
+        // {title: 'DOWNLOADS', linkTo: '/downloads',active:"/downloads"},
         {title: 'BLOCK EXPLORER', linkTo: '/block_explorer',active:"/block_explorer"},
         {title: 'ABOUT US', linkTo: '/about_us',active:"/about_us"},
-        {title: 'HELP', linkTo: '/help',active:"/help"}
+        // {title: 'HELP', linkTo: '/help',active:"/help"}
     ];
     link = [
         {title: 'Login', linkTo: '/login'},

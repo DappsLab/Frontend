@@ -11,12 +11,13 @@ import {Link} from "react-router-dom";
 import "../../../../assets/scss/licenses.css"
 import {getDate} from "../../../ui/Helpers";
 import {Client} from "../../../../queries/Services";
-import {Spinner2} from "../../../ui/Spinner";
+import {Spinner3} from "../../../ui/Spinner";
 import Licenses from "./licenses/Licenses";
 import {useQuery} from "@apollo/client";
 import ContractBuyDetails from "./ContractBuyDetails";
 import {setUser} from "../../../../actions/Actions";
 import TestLicenses from "./licenses/TestLicenses";
+import Error from "../../../ui/errors/error/Error";
 
 
 const  DetailedContract =(props)=>{
@@ -33,8 +34,8 @@ const  DetailedContract =(props)=>{
                 }
             }
         })
-        if (loading) return <Spinner2/>
-        if (error) return <div>{error.toString()}</div>
+        if (loading) return <Spinner3/>
+        if (error) return <Error contractError={error.toString()}/>
         if (data) {
             const contract=data.smartContractById;
             return    <div className={"contractContainer flex"}>

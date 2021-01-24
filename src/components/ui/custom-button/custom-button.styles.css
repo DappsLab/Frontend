@@ -1,0 +1,29 @@
+.custom-button {
+  min-width: 165px;
+  width: auto;
+  height: 55px;
+  letter-spacing: 0.5px;
+  line-height: 50px;
+  padding: 0 35px 0 35px;
+  font-size: 25px;
+  background: white;
+  color: #04031c;
+  text-transform: uppercase;
+  font-weight: bolder;
+  border: 3px solid #04031c;
+  cursor: pointer;
+  border-radius: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .custom-button:focus {
+    outline: none; }
+  .custom-button:hover {
+    color: white;
+    background-color: #04031c;
+    border: 1px solid black; }
+  .custom-button.login {
+    margin-top: 2.5em;
+    width: 100%; }
+
+/*# sourceMappingURL=custom-button.styles.css.map */

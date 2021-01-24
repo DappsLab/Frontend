@@ -74,7 +74,7 @@ class ResetPassword extends Component {
                                             onChange={(event => this.handleChange(event))}
                                         />
                                     </form>
-                                    <button onClick={this.handleSubmit} className="login">Send</button>
+                                    <button onClick={this.handleSubmit} className="login strock">Send</button>
                                 </div>
                             </div>
 
@@ -83,7 +83,7 @@ class ResetPassword extends Component {
                                     <h1>Reset Password</h1>
                                     <img src={Rectangle2} alt={''} width={"85px"} height={"85px"}/>
                                 </div>
-                                <img className="box2" alt={''} src={Rectangle3}/>
+                                <img className="box2" alt={'img'} src={Rectangle3}/>
                             </div>
                         </div>
                 </div>

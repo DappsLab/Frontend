@@ -6,6 +6,7 @@ import {Client, match} from "../../queries/Services";
 import { Spinner3} from "../ui/Spinner";
 import {connect} from "react-redux";
 import {setUser} from "../../actions/Actions";
+import ServerError from "../ui/errors/server-error/ServerError";
 
 
 const PrivateRoute = ({setUser,user,component:Comp,...rest}) => {
@@ -26,11 +27,13 @@ const PrivateRoute = ({setUser,user,component:Comp,...rest}) => {
             }
         })
         if (loading) return <div className={'main-spinner'}><Spinner3/></div>
-        if (error) return  (
-            match(error.toString())?
-                <Redirect to="/login"/>:
-                <div>{error.toString()}</div>
+        if (error) {
+            return (
+                match(error.toString())==="authentication" ?
+                    <Redirect to="/login"/> :
+                    <ServerError/>
             )
+        }
         if (data) {
             return <Route {...rest} component={(props) => (
                 !!localStorage.getItem('token') ?

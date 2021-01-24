@@ -233,6 +233,7 @@ const  GeneralSetting =(props)=>{
                                     <button onClick={() => handleDelete()}>Delete Account</button>
                                 </Form.Field>
                             </Form>
+
                         </div>
                     </div>
                     {imgModel ?
