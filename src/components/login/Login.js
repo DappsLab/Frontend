@@ -5,7 +5,7 @@ import Layout from "../../hoc/Layout";
 import { withAlert} from "react-alert";
 import {flowRight as compose} from "lodash";
 import {connect} from "react-redux";
-import {setUser} from "../../actions/Actions";
+import {setUser} from "../../reducer/user/user.actions";
 import {client, login, me_Query} from "../../queries/queries";
 import {Spinner2} from "../ui/Spinner";
 import logo from '../../assets/images/logo_dapps.png'

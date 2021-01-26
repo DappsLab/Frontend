@@ -4,7 +4,7 @@ import AccountLayout from "../../../../hoc/AccountLayout";
 import {withAlert} from "react-alert";
 import {Spinner2} from "../../../ui/Spinner";
 import {connect} from "react-redux";
-import {setUser} from "../../../../actions/Actions";
+import {setUser} from "../../../../reducer/user/user.actions";
 import TwoFASwitch from "./TwoFASwitch";
 
 const TwoFA =(props)=> {

@@ -6,7 +6,7 @@ import {compile, licenseById, me_Query} from "../../../../queries/queries";
 import {Spinner2} from "../../../ui/Spinner";
 import { useMutation, useQuery} from "@apollo/client";
 import {connect} from "react-redux";
-import {setUser} from "../../../../actions/Actions";
+import {setUser} from "../../../../reducer/user/user.actions";
 import {withAlert} from "react-alert";
 import {Client} from "../../../../queries/Services";
 

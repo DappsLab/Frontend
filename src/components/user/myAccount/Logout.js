@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {clearUser} from "../../../actions/Actions";
+import {clearUser} from "../../../reducer/user/user.actions";
 import {connect} from  'react-redux';
 import {Loader,Dimmer} from "semantic-ui-react";
 

@@ -2,7 +2,7 @@ import React from 'react';
 import "../../../../assets/scss/kyc.css";
 import {flowRight as compose} from "lodash";
 import {connect} from "react-redux";
-import {setUser} from "../../../../actions/Actions";
+import {setUser} from "../../../../reducer/user/user.actions";
 import {withAlert} from "react-alert";
 import AccountLayout from "../../../../hoc/AccountLayout";
 import {useQuery} from "@apollo/client";

@@ -50,6 +50,11 @@
         border: 2px solid #DD2121; }
         .general_data .general_right .delete-btn button:hover {
           background-color: #0F0E2e; }
+    .general_data .general_right .change {
+      margin-top: 20px;
+      justify-content: space-between !important; }
+      .general_data .general_right .change label {
+        font-size: 14px !important; }
     .general_data .general_right .avatar {
       margin-top: 10px;
       width: 170px;

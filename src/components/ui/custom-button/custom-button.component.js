@@ -1,10 +1,10 @@
 import React from 'react';
 import './custom-button.styles.css'
-const CustomButton = ({children,login,inverted,...otherProps}) => {
+const CustomButton = ({children,isChangePassword,login,inverted,...otherProps}) => {
     return (
         <button className={` custom-button
          ${login?'login':''}
-        ${inverted?'inverted':''}
+        ${isChangePassword?'change-password':''}
         `} {...otherProps}>
             {children}
         </button>

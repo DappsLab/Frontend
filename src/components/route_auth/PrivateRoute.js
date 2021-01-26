@@ -5,7 +5,7 @@ import {me_Query} from "../../queries/queries";
 import {Client, match} from "../../queries/Services";
 import { Spinner3} from "../ui/Spinner";
 import {connect} from "react-redux";
-import {setUser} from "../../actions/Actions";
+import {setUser} from "../../reducer/user/user.actions";
 import ServerError from "../ui/errors/server-error/ServerError";
 
 

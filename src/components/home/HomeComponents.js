@@ -2,7 +2,7 @@ import React from 'react';
 import ourcontract from '../../assets/images/group5.png'
 import group from '../../assets/images/Group4.png'
 import group2 from '../../assets/images/group6.png'
-import CustomButton from "../ui/custom-button/custom-button.component";
+
 export const HomeBanner = () => {
     return (
         <section className={'dappslab_banner home_banner'}>

@@ -8,7 +8,7 @@ import {withAlert} from "react-alert";
 import {Spinner3} from "../../ui/Spinner";
 import {flowRight as compose} from "lodash";
 import {connect} from "react-redux";
-import {setUser} from "../../../actions/Actions";
+import {setUser} from "../../../reducer/user/user.actions";
 import DashboardLayout from "../../../hoc/DashboardLayout";
 
 const AddTestAddress = (props) => {

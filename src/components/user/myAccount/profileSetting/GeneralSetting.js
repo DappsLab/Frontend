@@ -7,7 +7,7 @@ import {Form} from 'semantic-ui-react';
 import {imageUpload, me_Query} from "../../../../queries/queries"
 import {flowRight as compose} from 'lodash';
 import {connect} from "react-redux";
-import {setUser} from "../../../../actions/Actions";
+import {setUser} from "../../../../reducer/user/user.actions";
 import { useMutation, useQuery} from "@apollo/client";
 import {withAlert} from "react-alert";
 import AccountLayout from "../../../../hoc/AccountLayout";
@@ -16,6 +16,8 @@ import {Client} from "../../../../queries/Services";
 import {Spinner2} from "../../../ui/Spinner";
 import UpdateUser from "./UpdateUser";
 import {FormValidation} from "../../../ui/mise";
+import ChangePassword from "./change-password";
+import CustomButton from "../../../ui/custom-button/custom-button.component";
 
 
 const  GeneralSetting =(props)=>{
@@ -26,6 +28,7 @@ const  GeneralSetting =(props)=>{
     const [imgRef,setImgRef]=useState();
     const [fullName,setFullName]=useState('');
     const [Loading,setLoading]=useState(false)
+    const [passToggle,setPassToggle]=useState(false)
     const [type,setType]=useState('');
     const [location,setLocation]=useState('');
     const {alert,setUser}=props;
@@ -217,7 +220,6 @@ const  GeneralSetting =(props)=>{
                                     }} className={'strock remove_picture'}>Remove Photo
                                     </button>
                                 </div>
-
                             </div>
                             <Form>
                                 <Form.Field className={"opacity"}>
@@ -232,10 +234,15 @@ const  GeneralSetting =(props)=>{
                                     <span>Want to delete your account?</span>
                                     <button onClick={() => handleDelete()}>Delete Account</button>
                                 </Form.Field>
+                                <Form.Field className={'flex change'}>
+                                    <label>want to change Password</label>
+                                    <CustomButton isChangePassword onClick={()=>{setPassToggle(!passToggle)}}>Change Password</CustomButton>
+                                </Form.Field>
                             </Form>
 
                         </div>
                     </div>
+                    {passToggle?<ChangePassword toggle={passToggle} setToggle={setPassToggle}/>:""}
                     {imgModel ?
                         <CustomizedDialogs
                             crop={crop}

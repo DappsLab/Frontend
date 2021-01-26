@@ -25,7 +25,7 @@ import UploadSmartContract from "./components/home/uploadContract/UploadSmartCon
 import FAConfirmation from "./components/user/2FAConfirmation";
 import NotFound from "./components/ui/NotFound";
 import {connect} from "react-redux";
-import {setUser} from "./actions/Actions";
+import {setUser} from "./reducer/user/user.actions";
 import OrderContracts from "./components/user/dashboard/orderContract/OrderContracts";
 import ExplorerResult from "./components/block_explorer/explorerSearch/ExplorerResult";
 import EditSmartContract from "./components/home/uploadContract/editSmartContract/EditSmartContract";

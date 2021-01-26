@@ -5,7 +5,7 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 import {withAlert} from "react-alert";
 import {flowRight as compose} from "lodash";
 import {connect} from "react-redux";
-import {setUser} from "../../actions/Actions";
+import {setUser} from "../../reducer/user/user.actions";
 import {Spinner2} from "../ui/Spinner";
 import {me_Query, verify2FA} from "../../queries/queries";
 

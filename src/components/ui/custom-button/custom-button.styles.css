@@ -21,9 +21,17 @@
   .custom-button:hover {
     color: white;
     background-color: #04031c;
-    border: 1px solid black; }
+    border: 3px solid #04031c; }
   .custom-button.login {
     margin-top: 2.5em;
     width: 100%; }
+  .custom-button.change-password {
+    background-color: #0FBA87;
+    border: 3px solid #0FBA87;
+    color: #fff;
+    font-size: 14px;
+    height: 50px; }
+    .custom-button.change-password:hover {
+      background-color: #0F0E2e; }
 
 /*# sourceMappingURL=custom-button.styles.css.map */

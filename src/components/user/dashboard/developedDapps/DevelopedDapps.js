@@ -2,7 +2,7 @@ import React, { useState} from 'react';
 import DashboardLayout from "../../../../hoc/DashboardLayout";
 import {Table} from "semantic-ui-react";
 import {connect} from "react-redux";
-import {setUser} from "../../../../actions/Actions";
+import {setUser} from "../../../../reducer/user/user.actions";
 import DappsRow from "./DappsRow";
 import {Query} from "react-apollo";
 import {me_Query} from "../../../../queries/queries";

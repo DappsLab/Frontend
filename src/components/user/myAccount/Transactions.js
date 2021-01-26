@@ -9,6 +9,8 @@ import {ApolloClient,gql, InMemoryCache} from "@apollo/client";
 import {Spinner2} from "../../ui/Spinner";
 import {dateTime} from "../../../helpers/DateTimeConversion";
 import AccountLayout from "../../../hoc/AccountLayout";
+import {connect} from "react-redux";
+import {toggleHidden} from "../../../reducer/toggle/toggle.actions";
 const client = new ApolloClient({
     uri: 'http://localhost:4001/graphql',
     cache: new InMemoryCache(),
@@ -100,4 +102,5 @@ class Transactions extends Component {
     }
 }
 
-export default Transactions;
+
+export default  (Transactions);

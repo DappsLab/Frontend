@@ -15,7 +15,7 @@ import {Spinner3} from "../../../ui/Spinner";
 import Licenses from "./licenses/Licenses";
 import {useQuery} from "@apollo/client";
 import ContractBuyDetails from "./ContractBuyDetails";
-import {setUser} from "../../../../actions/Actions";
+import {setUser} from "../../../../reducer/user/user.actions";
 import TestLicenses from "./licenses/TestLicenses";
 import Error from "../../../ui/errors/error/Error";
 

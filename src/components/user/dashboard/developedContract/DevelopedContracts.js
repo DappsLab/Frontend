@@ -3,7 +3,7 @@ import DashboardLayout from "../../../../hoc/DashboardLayout";
 import {Table} from "semantic-ui-react";
 import {connect} from "react-redux";
 import DevelopContractRow from "./DevelopContractRow";
-import {setUser} from "../../../../actions/Actions";
+import {setUser} from "../../../../reducer/user/user.actions";
 import {Query} from "react-apollo";
 import {me_Query} from "../../../../queries/queries";
 import {Spinner3} from "../../../ui/Spinner";
