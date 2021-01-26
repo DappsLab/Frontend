@@ -152,6 +152,9 @@
     font-size: 20px;
     font-weight: bold; }
 
+.ui.page.dimmer {
+  background-color: unset !important; }
+
 .change-pass-modal {
   padding: 40px; }
   .change-pass-modal .buttons {

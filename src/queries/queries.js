@@ -203,6 +203,11 @@ export const newPassword=gql`
     resetPassword(token:$token,password:$password)
   }
 `
+export const updatePassword=gql`
+mutation  ($pass:String!,$newPass:String!){
+  changePassword(password: $pass, newPassword:$newPass)
+}
+`
 //=====================kyc==================================
 export const kycMutation=gql`
   mutation UserKyc($id:String!,$mobile:String,$birth:String,$nationality:String,$country:String,$postalCode:String,$city:String,$street:String,$building:String){

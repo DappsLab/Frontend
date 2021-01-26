@@ -208,8 +208,14 @@
   }
 
 }
+//.pass-model-dimmer{
+  .ui.page.dimmer{
+    background-color: unset!important;
+  }
+//}
 .change-pass-modal{
   padding: 40px;
+  //position: relative;
   .buttons{
     justify-content: flex-end;
   }

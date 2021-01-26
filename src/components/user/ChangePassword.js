@@ -51,6 +51,7 @@ const ChangePassword =(props)=> {
     }
     const onChnagePassword=(event)=>{
         event.preventDefault();
+
         if (password!==''&&confirmPassword!=='') {
             if (isValid()) {
                 setLoading(true)

@@ -6,11 +6,21 @@ $main-color: black;
   font-size: 12px;
   color: $main-color;
 }
-
+@mixin passShrinkLabel {
+  top: 5px;
+}
 .group {
   position: relative;
-  margin: 45px 0;
-
+  .icon-input{
+    position: relative;
+    display: flex;
+    i{
+      position: absolute;
+      top: 38%;
+      right: 3%;
+      cursor: pointer;
+    }
+  }
   .form-input {
     background: none;
     background-color: white;
@@ -24,12 +34,18 @@ $main-color: black;
     border-bottom: 1px solid $sub-color;
     margin: 25px 0;
 
+
     &:focus {
       outline: none;
     }
 
     &:focus ~ .form-input-label {
       @include shrinkLabel();
+    }
+    &.pass-input{
+      &:focus ~ .form-input-label {
+        @include passShrinkLabel();
+      }
     }
   }
 
@@ -46,9 +62,15 @@ $main-color: black;
     left: 5px;
     top: 10px;
     transition: 300ms ease all;
-
+    &.form-icon-label{
+      top: 35px;
+    }
     &.shrink {
       @include shrinkLabel();
     }
+    &.password-shrink{
+      @include passShrinkLabel();
+    }
   }
+
 }

@@ -11,18 +11,22 @@ import  bar1 from '../../assets/images/bar1.png';
 import Rectangle2 from '../../assets/images/Rectangle2.png'
 import Rectangle3 from '../../assets/images/Rectangle3.png'
 import {withAlert} from "react-alert";
-import {TextField} from "@material-ui/core";
+import CustomButton from "../ui/custom-button/custom-button.component";
+import FormInput from "../ui/form-input/form-input.component";
 class ResetPassword extends Component {
     state = {
         email: "",
         loading:false
     }
 
-    handleChange = event => {
-        const {name,value}=event.target;
-        this.setState({[name]:value},()=>{});
+    handleChange = (event) => {
+        event.preventDefault();
+        const {value}=event.target;
+        this.setState({email:value},()=>{});
     }
-    handleSubmit=()=>{
+
+    handleSubmit=(event)=>{
+        event.preventDefault();
         const alert=this.props.alert
         const that=this;
         if (this.state.email!=="") {
@@ -68,13 +72,14 @@ class ResetPassword extends Component {
                                         Enter the email associated with your account and we’ll send an
                                         email with instructions to reset your password
                                     </p>
-                                    <form autoComplete="off">
-                                        <TextField
+                                    <form autoComplete="off" onSubmit={this.handleSubmit}>
+                                        <FormInput
                                             label="Email" value={email} type={'email'} name={'email'}
-                                            onChange={(event => this.handleChange(event))}
+                                            handleChange={(event)=>this.handleChange(event)}
                                         />
+                                        <CustomButton login type={'submit'}>Send</CustomButton>
                                     </form>
-                                    <button onClick={this.handleSubmit} className="login strock">Send</button>
+
                                 </div>
                             </div>
 

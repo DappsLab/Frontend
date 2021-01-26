@@ -94,7 +94,7 @@ const Login =(props)=>{
                         <div className="form">
                             <h2>Login</h2>
                             <img className="bar1" src={bar1} alt={'bar'}/><br/>
-                            <form autoComplete={'off'} noValidate>
+                            <form autoComplete={'off'} onSubmit={HandleSubmit} noValidate>
                                 <FormControl className={'uname'} >
                                     <InputLabel>Username</InputLabel>
                                     <Input
@@ -123,9 +123,10 @@ const Login =(props)=>{
                                         }
                                     />
                                 </FormControl>
+                                <p className="fgtpwd"><Link to={'/forget_password'}>forget password </Link></p>
+                                <CustomButton login type={'submit'}>Login</CustomButton>
                             </form>
-                            <p className="fgtpwd"><Link to={'/forget_password'}>forget password </Link></p>
-                            <CustomButton login onClick={HandleSubmit}>Login</CustomButton>
+
                         </div>
                     </div>
                     <div className="loginleft flex password-left">

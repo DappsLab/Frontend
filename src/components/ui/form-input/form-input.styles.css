@@ -1,6 +1,13 @@
 .group {
-  position: relative;
-  margin: 45px 0; }
+  position: relative; }
+  .group .icon-input {
+    position: relative;
+    display: flex; }
+    .group .icon-input i {
+      position: absolute;
+      top: 38%;
+      right: 3%;
+      cursor: pointer; }
   .group .form-input {
     background: none;
     background-color: white;
@@ -19,6 +26,8 @@
       top: -14px;
       font-size: 12px;
       color: black; }
+    .group .form-input.pass-input:focus ~ .form-input-label {
+      top: 5px; }
   .group input[type='password'] {
     letter-spacing: 0.3em; }
   .group .form-input-label {
@@ -30,9 +39,13 @@
     left: 5px;
     top: 10px;
     transition: 300ms ease all; }
+    .group .form-input-label.form-icon-label {
+      top: 35px; }
     .group .form-input-label.shrink {
       top: -14px;
       font-size: 12px;
       color: black; }
+    .group .form-input-label.password-shrink {
+      top: 5px; }
 
 /*# sourceMappingURL=form-input.styles.css.map */
