@@ -33,5 +33,12 @@
     height: 50px; }
     .custom-button.change-password:hover {
       background-color: #0F0E2e; }
+  .custom-button.cancel {
+    background-color: #ff0000;
+    border: 2px solid #ff0000;
+    color: #fff; }
+    .custom-button.cancel:hover {
+      background-color: #fff;
+      color: #04031c; }
 
 /*# sourceMappingURL=custom-button.styles.css.map */

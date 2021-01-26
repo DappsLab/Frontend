@@ -148,7 +148,6 @@
    .wrapper .file-upload:hover {
      color: #2590eb;
    }
-
  }
 .picture_menu{
   margin-top: 10px;
@@ -206,6 +205,17 @@
   .balance{
     font-size: 20px;
     font-weight: bold;
+  }
+
+}
+.change-pass-modal{
+  padding: 40px;
+  .buttons{
+    justify-content: flex-end;
+  }
+  .custom-button{
+    font-size: 100%;
+    margin: 0 0 0 10px;
   }
 }
 

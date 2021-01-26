@@ -152,4 +152,12 @@
     font-size: 20px;
     font-weight: bold; }
 
+.change-pass-modal {
+  padding: 40px; }
+  .change-pass-modal .buttons {
+    justify-content: flex-end; }
+  .change-pass-modal .custom-button {
+    font-size: 100%;
+    margin: 0 0 0 10px; }
+
 /*# sourceMappingURL=general_setting.css.map */
