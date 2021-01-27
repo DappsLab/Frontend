@@ -45,7 +45,7 @@ import TestCompileResult from "./components/home/smartContract/testSmartContract
 import TestDeploy from "./components/home/smartContract/testSmartContract/testDeploy/TestDeploy";
 import GeneralSetting from "./components/user/myAccount/profileSetting/GeneralSetting";
 import KYC from "./components/user/myAccount/kycSetting/KYC";
-import WithdrawDeposite from "./components/user/myAccount/WithdrawDeposite";
+import WithdrawDeposite from "./components/user/myAccount/withdraw-deposite/WithdrawDeposite";
 import Transactions from "./components/user/myAccount/Transactions";
 import TwoFA from "./components/user/myAccount/TwoFA/TwoFA";
 import CustomizedSmartContract from "./components/home/smartContract/compileSmartContract/CustomizedSmartContract";
@@ -55,6 +55,7 @@ import TestExplorerResult from "./components/block_explorer/test-explorer/TestEx
 import TestInteraction from "./components/home/smartContract/testSmartContract/testInteract/TestInteraction";
 import InteractSmartContract
     from "./components/home/smartContract/deploySmartContract/InteractSmartContract/InteractSmartContract";
+import CustomOrdersVerification from "./components/admin/custom-order-verification/CustomOrdersVerification";
 
 
 const Routes =(props)=>{
@@ -74,6 +75,7 @@ const Routes =(props)=>{
               <PrivateRoute {...props} path={"/dashboard/purchased_dapps"} exact component={PurchasedDapp}/>
               <PrivateRoute {...props} path={"/dashboard/contract_verification"} exact component={SmartContractVerification}/>
               <PrivateRoute {...props} path={"/dashboard/dapps_verification"} exact component={DappsVerification}/>
+              <PrivateRoute {...props} path={"/dashboard/custom_orders_verification"} exact component={CustomOrdersVerification}/>
               <PrivateRoute {...props} path={"/dashboard/kyc_verification"} exact component={KycVerification}/>
               <PrivateRoute {...props} path={"/account_settings/profile"} component={GeneralSetting}/>
               <PrivateRoute {...props} path={"/account_settings/KYC"} component={KYC}/>

@@ -11,5 +11,7 @@
     color: #ffffff;
     font-size: 18px;
     border-radius: 30px; }
+    .custom_section .button:focus {
+      outline: none; }
 
 /*# sourceMappingURL=custom_smart_contract.css.map */

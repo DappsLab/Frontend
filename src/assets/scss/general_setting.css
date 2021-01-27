@@ -23,7 +23,7 @@
     .general_data .general_left .update {
       cursor: pointer;
       margin-top: 2em;
-      border: 2px solid #8F4114;
+      border: 3px solid #8F4114;
       background: #8F4114;
       color: #fff;
       border-radius: 30px;
@@ -40,6 +40,8 @@
         margin-bottom: 20px; }
       .general_data .general_right .delete-btn span {
         font-size: 14px; }
+      .general_data .general_right .delete-btn div {
+        justify-content: space-between !important; }
       .general_data .general_right .delete-btn button {
         margin-left: 20px;
         color: #fff;
@@ -47,13 +49,14 @@
         border-radius: 30px;
         padding: 15px 30px;
         cursor: pointer;
-        border: 2px solid #DD2121; }
+        border: 3px solid #DD2121; }
         .general_data .general_right .delete-btn button:hover {
           background-color: #0F0E2e; }
     .general_data .general_right .change {
       margin-top: 20px;
       justify-content: space-between !important; }
       .general_data .general_right .change label {
+        font-weight: unset;
         font-size: 14px !important; }
     .general_data .general_right .avatar {
       margin-top: 10px;

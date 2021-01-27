@@ -27,7 +27,7 @@ const SubmitRequest = (props) => {
                 history.push('/dashboard/custom_orders')
             }
         },onError:error => {
-            alert.success(error.toString(),{timeout:2000})
+            alert.error(error.toString(),{timeout:2000})
             console.log(error.toString())
         }
     })

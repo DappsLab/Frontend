@@ -25,8 +25,13 @@ const DevelopedDapps = (props) => {
                             <Table.HeaderCell width={1}>Action</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
-                    {currentUser&&<DappsRow {...props} smartContracts={currentUser.dApps}/>}
+                    {currentUser&&currentUser.dApps.length>0&&<DappsRow {...props} dapps={currentUser.dApps}/>}
                 </Table>
+                {currentUser&&!currentUser.dApps.length>0&&
+                    <div className={'zero-result'}>
+                        Found 0 Developed Dapps
+                    </div>
+                }
                 <Query query={me_Query} fetchPolicy={'network-only'} onCompleted={
                     data => {
                         setCurrentUser(data.me)

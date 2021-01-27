@@ -24,7 +24,9 @@ const  GeneralSetting =(props)=>{
     const [imgPath,setImgPath]=useState("");
     const [img,setImg]=useState(null);
     const [imgModel,setimgModel]=useState(false);
-    const [crop,setCrop]=useState({x: 0, y: 0, width: 300, height: 300, aspect: 1})
+    const [crop,setCrop]=useState(
+        {x: 0, y: 0, width: 300, height: 300, aspect: 1}
+        )
     const [imgRef,setImgRef]=useState();
     const [fullName,setFullName]=useState('');
     const [Loading,setLoading]=useState(false)
@@ -231,8 +233,10 @@ const  GeneralSetting =(props)=>{
                                 </Form.Field>
                                 <Form.Field className={'delete-btn'}>
                                     <label>Delete your Account</label>
-                                    <span>Want to delete your account?</span>
-                                    <button onClick={() => handleDelete()}>Delete Account</button>
+                                   <div className={'flex'}>
+                                       <span>Want to delete your account?</span>
+                                       <button onClick={() => handleDelete()}>Delete Account</button>
+                                   </div>
                                 </Form.Field>
                                 <Form.Field className={'flex change'}>
                                     <label>want to change Password</label>

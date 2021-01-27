@@ -9,7 +9,7 @@ import {useMutation} from "@apollo/client";
 import {deleteDApp} from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
 
-const DappsRow =({alert,smartContracts,history})=>{
+const DappsRow =({alert,dapps,history})=>{
     const [modalOpen,setModalOpen]=useState(false);
     const [deleteID,setDeleteID]=useState('');
     const closeModal=()=> {
@@ -42,7 +42,7 @@ const DappsRow =({alert,smartContracts,history})=>{
     }
 
     const HandelDeveloped=()=>{
-        return smartContracts.map((contract, index)=>{
+        return dapps.map((contract, index)=>{
             return <Table.Row key={contract.id} >
                 <Table.Cell>{index+1}</Table.Cell>
                 <Table.Cell width={3}>{contract.dAppName}</Table.Cell>
@@ -67,7 +67,7 @@ const DappsRow =({alert,smartContracts,history})=>{
     }
     return (
         <Table.Body>
-            {HandelDeveloped()}
+            {dapps.length>0&&HandelDeveloped()}
             <DeleteModal
                 open={modalOpen}
                 close={()=>setModalOpen(false)}

@@ -18,13 +18,13 @@ import {
     verify_smart_contract,
     cancel_smart_contract,
      getSource,
-} from "../../queries/queries";
+} from "../../../queries/queries";
 import {withAlert} from "react-alert";
 import {useMutation, useQuery} from "@apollo/client";
 import MEDitor from "@uiw/react-md-editor";
 import {Controlled as CodeMirror} from 'react-codemirror2'
-import {getDate} from "./Helpers";
-import {Client} from "../../queries/Services";
+import {getDate} from "../Helpers";
+import {Client} from "../../../queries/Services";
 
 const useRowStyles = makeStyles({
     root: {

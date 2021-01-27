@@ -2,7 +2,7 @@ import React from 'react';
 import {Query} from "react-apollo";
 import {pendingDapps} from "../../../queries/queries";
 import { Spinner3} from "../../ui/Spinner";
-import CollapsibleDappsTable from "../../ui/CollapsibleDappsTable";
+import CollapsibleDappsTable from "../../ui/admin-tables/CollapsibleDappsTable";
 import DashboardLayout from "../../../hoc/DashboardLayout";
 
 const DappsVerification = (props) => {

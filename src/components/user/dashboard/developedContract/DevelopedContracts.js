@@ -26,8 +26,11 @@ const DevelopedContracts =(props)=> {
                         <Table.HeaderCell width={1}>Action</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
-                {currentUser&&<DevelopContractRow {...props} smartContracts={currentUser.smartContracts}/>}
+                {currentUser&&currentUser.smartContracts.length>0&&<DevelopContractRow {...props} smartContracts={currentUser.smartContracts}/>}
             </Table>
+                {currentUser&&!currentUser.smartContracts.length>0&&<div className={'zero-result'}>
+                    Found 0 Developed Smart Contract
+                </div>}
                 <Query query={me_Query}  fetchPolicy={'network-only'} onCompleted={data => {
                     setCurrentUser(data.me)
                 }}>

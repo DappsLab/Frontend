@@ -60,6 +60,7 @@ export const FormValidation=(oldValue,value,name)=>{
             return value!==""?alphanumaric.test(value)?value:oldValue:""
         case 'onePrice':
         case 'uPrice':
+        case 'amount':
             return value!==""?numericReg.test(value)?value:oldValue:""
         default:
             return

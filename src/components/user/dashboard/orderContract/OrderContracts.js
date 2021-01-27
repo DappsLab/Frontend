@@ -8,9 +8,11 @@ const OrderContracts =(props)=>{
     useEffect(()=>{
         props.refetch();
     })
+    const {orders,testOrders}=props.user
+
     const panes = [
-        { menuItem: 'Main Network', render:()=>  <OrderRow orders={props.user.orders}/>},
-        { menuItem: 'Test Network', render:()=>  <OrderRow orders={props.user.testOrders}/> },
+        { menuItem: 'Main Network', render:()=>  <OrderRow orders={orders}/>},
+        { menuItem: 'Test Network', render:()=>  <OrderRow orders={testOrders}/> },
     ]
     return (
         <DashboardLayout user={props.user}>

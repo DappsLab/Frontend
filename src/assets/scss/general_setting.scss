@@ -31,7 +31,7 @@
      .update{
        cursor: pointer;
        margin-top: 2em;
-       border: 2px solid #8F4114;
+       border: 3px solid #8F4114;
        background: #8F4114;
        color: #fff;
        border-radius: 30px;
@@ -54,6 +54,9 @@
        span{
          font-size: 14px;
        }
+       div{
+         justify-content: space-between!important;
+       }
        button{
          margin-left: 20px;
          color: #fff;
@@ -61,7 +64,7 @@
          border-radius: 30px;
          padding: 15px 30px;
          cursor: pointer;
-         border: 2px solid #DD2121;
+         border: 3px solid #DD2121;
          &:hover{
            background-color: #0F0E2e;
          }
@@ -71,6 +74,7 @@
        margin-top: 20px;
        justify-content: space-between!important;
        label{
+         font-weight: unset;
          font-size: 14px!important;
        }
      }

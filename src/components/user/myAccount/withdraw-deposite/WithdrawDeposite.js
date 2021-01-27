@@ -1,14 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Divider} from "@material-ui/core";
 import QRCode from 'react-qr-code';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {Form} from "semantic-ui-react";
-import AccountLayout from "../../../hoc/AccountLayout";
+import AccountLayout from "../../../../hoc/AccountLayout";
 import {withAlert} from "react-alert";
+import Withdraw from "./withdraw.component";
+import {me_Query} from "../../../../queries/queries";
+import {Query} from "react-apollo";
+import {Spinner2} from "../../../ui/Spinner";
+
 
 // const timeoutLength = 2500
 const WithdrawDeposite =(props)=>{
-    // const [isOpen,setIsOpen]=useState(false);
+    // const [isOpen,setIsOpen]=useState(true);
+    const [currentUser,setCurrentUser]=useState(null)
+
     const {user,alert}=props
 
     return (
@@ -26,14 +33,30 @@ const WithdrawDeposite =(props)=>{
                                 </CopyToClipboard>
                             </Form.Field>
                         </Form>
+
+                        <Query query={me_Query} fetchPolicy={'network-only'} onCompleted={
+                            data => {
+                                setCurrentUser(data.me)
+                            }}>
+                            {({loading,error,data})=>{
+                                if(loading) return <Spinner2/>
+                                if (error) return <p>{error.toString()}</p>
+                                if (data&&currentUser) {
+                                    return <div className={"withdraw"}>
+                                        <h2>Current Balance</h2>
+                                        <div className={'balance'}>
+                                            <h3>Dapps Coin</h3>
+                                            <span>Balance: {currentUser.balance}</span>
+                                        </div>
+                                    </div>
+                                }else {
+                                     return <p>Refresh</p>
+                                }
+                            }}
+                        </Query>
                         <div className={"withdraw"}>
                             <h2>Withdraw</h2>
-                            <div className={'balance'}>
-                                <h3>Dapps Coin</h3>
-                                <span>Balance: {user.balance}</span>
-                            </div>
-
-                            <button className={'withdrawbtn'}>Withdraw</button>
+                            <Withdraw {...props}/>
                         </div>
                     </div>
                     <div className={"QR"}>

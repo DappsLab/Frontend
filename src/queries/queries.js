@@ -705,3 +705,26 @@ export const deleteDApp=gql`
     success
   }
 }`
+export const transferAmount=gql`
+    mutation ($address:String!,$amount:String!){
+  transferBalance(account: $address, amount: $amount)
+}
+`
+export const pendingCustomOrders=gql`{
+  searchPendingCustomOrders {
+    businessEmail
+    businessName
+    businessPhone
+    businessWebsite
+    id
+    productType
+    requirements
+    role
+    user {
+      id
+      fullName
+    }
+  }
+}
+
+    `

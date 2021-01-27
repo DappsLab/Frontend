@@ -81,40 +81,49 @@ const AddTestAddress = (props) => {
         <Spinner3/>
     </DashboardLayout>
     if (error) return <div>{error.toString()}</div>
-    return (
-        <DashboardLayout  user={props.user}>
-            <div className={'add-test'}>
-                <h2>Add Test Address</h2>
-                <Table>
-                    <Table.Header>
-                        <Table.Row>
-                        <Table.HeaderCell width={1}>No</Table.HeaderCell>
-                        <Table.HeaderCell>Address</Table.HeaderCell>
-                        <Table.HeaderCell>Balance</Table.HeaderCell>
-                        <Table.HeaderCell width={2}>Delete Address</Table.HeaderCell>
-                        <Table.HeaderCell>Add Balance</Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Header>
-                    <Table.Body>
-                        {data.me.testAddress.length>0&&
-                            data.me.testAddress.map((test,index)=>{
-                              return  <Table.Row key={test.id}>
-                                  <Table.Cell>{index+1}</Table.Cell>
-                                  <Table.Cell>{test.address}</Table.Cell>
-                                  <Table.Cell>{test.balance}</Table.Cell>
-                                  <Table.Cell style={{textAlign:'center'}}>
-                                      <span onClick={()=>{RemoveAddress(test.id)}}> <Icon circular link  inverted color='red' name='delete'/></span>
-                                  </Table.Cell>
-                                  <Table.Cell><Button onClick={()=>AddBalance(test.id)}>Add Balance</Button></Table.Cell>
-                              </Table.Row>
+    if (data) {
+        const address=data.me.testAddress
+        return (
+            <DashboardLayout user={props.user}>
+                <div className={'add-test'}>
+                    <h1><strong>Add <span>Test Address</span></strong></h1>
+                    <Table>
+                        <Table.Header>
+                            <Table.Row>
+                                <Table.HeaderCell width={1}>No</Table.HeaderCell>
+                                <Table.HeaderCell>Address</Table.HeaderCell>
+                                <Table.HeaderCell>Balance</Table.HeaderCell>
+                                <Table.HeaderCell width={2}>Delete Address</Table.HeaderCell>
+                                <Table.HeaderCell>Add Balance</Table.HeaderCell>
+                            </Table.Row>
+                        </Table.Header>
+                        <Table.Body>
+                            {address.length > 0 &&
+                            address.map((test, index) => {
+                                return <Table.Row key={test.id}>
+                                    <Table.Cell>{index + 1}</Table.Cell>
+                                    <Table.Cell>{test.address}</Table.Cell>
+                                    <Table.Cell>{test.balance}</Table.Cell>
+                                    <Table.Cell style={{textAlign: 'center'}}>
+                                        <span onClick={() => {
+                                            RemoveAddress(test.id)
+                                        }}> <Icon circular link inverted color='red' name='delete'/></span>
+                                    </Table.Cell>
+                                    <Table.Cell><Button onClick={() => AddBalance(test.id)}>Add
+                                        Balance</Button></Table.Cell>
+                                </Table.Row>
                             })
-                        }
-                    </Table.Body>
-                </Table>
-                <Button color={"green"} onClick={AddAddress}>Add new Adress</Button>
-            </div>
-        </DashboardLayout>
-    );
+                            }
+                        </Table.Body>
+                    </Table>
+                    {!address.length && <div className={'zero-result'}>
+                        0 Test Address Found
+                    </div>}
+                    <Button color={"green"} onClick={AddAddress}>Add new Adress</Button>
+                </div>
+            </DashboardLayout>
+        );
+    }
 };
 
 export default compose(

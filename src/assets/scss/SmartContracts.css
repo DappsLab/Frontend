@@ -23,10 +23,6 @@
   background-color: #ffffff;
   margin: 0 !important;
   padding: 40px 0 100px 20px !important; }
-  .contract_container .zero-result {
-    text-align: center;
-    font-size: 40px;
-    padding: 50px 0; }
   .contract_container .column:first-child {
     border-right: 1px solid #3C3F41;
     max-height: 900px;

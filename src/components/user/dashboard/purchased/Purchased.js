@@ -6,14 +6,14 @@ import {withAlert} from "react-alert";
 
 
 const Purchased =(props)=> {
-    const {user}=props
+    const {user,user:{purchasedContracts,testPurchasedContracts}}=props
     useEffect(()=>{
         props.refetch();
     });
 
     const panes = [
-        { menuItem: 'Main Network', render:()=> <PurchasedRow {...props} purchased={user.purchasedContracts}/>},
-        { menuItem: 'Test Network', render:()=> <PurchasedRow {...props} purchased={user.testPurchasedContracts}/> },
+        { menuItem: 'Main Network', render:()=> <PurchasedRow {...props} purchased={purchasedContracts}/>},
+        { menuItem: 'Test Network', render:()=> <PurchasedRow {...props} purchased={testPurchasedContracts}/> },
     ]
      return (
          <DashboardLayout user={user}>

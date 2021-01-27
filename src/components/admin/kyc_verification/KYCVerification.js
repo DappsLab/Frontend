@@ -1,7 +1,7 @@
 import React from 'react';
 import {pending_kyc_query} from "../../../queries/queries";
 import { Spinner3} from "../../ui/Spinner";
-import CollapsibleTable from "../../ui/CollapsibleTable";
+import CollapsibleTable from "../../ui/admin-tables/CollapsibleTable";
 import DashboardLayout from "../../../hoc/DashboardLayout";
 import {Query} from "react-apollo";
 

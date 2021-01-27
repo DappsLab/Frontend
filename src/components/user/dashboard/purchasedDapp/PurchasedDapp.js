@@ -5,8 +5,7 @@ import {dateTime} from "../../../../helpers/DateTimeConversion";
 import DownlaodDapp from "../../../home/dapps/detailDApps/DownlaodDapp";
 
 const PurchasedDapp = (props) => {
-    const {user}=props
-    const dapp=user.purchasedDApps;
+    const {user,user:{purchasedDApps}}=props
     return (
         <DashboardLayout user={user}>
             <h1> <strong>Purchased <span>Dapps</span></strong></h1>
@@ -22,8 +21,7 @@ const PurchasedDapp = (props) => {
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
-                    {dapp.length>0?(
-                    dapp.map((data,index)=>{
+                    {purchasedDApps.length>0&&purchasedDApps.map((data,index)=>{
                         return   <Table.Row  key={data.id} >
                             <Table.Cell>{index+1}</Table.Cell>
                             <Table.Cell >{data.dApp.dAppName}</Table.Cell>
@@ -31,18 +29,12 @@ const PurchasedDapp = (props) => {
                             <Table.Cell>{dateTime(data.dApp.createdAt)}</Table.Cell>
                             <Table.Cell className={'dapp-spinner'}><DownlaodDapp check={false} purchased={data}/></Table.Cell>
                         </Table.Row>
-                    })):
-                        <Table.Row>
-                            <Table.Cell style={{textAlign:"center"}}> </Table.Cell>
-                            <Table.Cell style={{textAlign:"center"}}> </Table.Cell>
-                            <Table.Cell style={{textAlign:"center"}}>
-                                NO Data
-                            </Table.Cell>
-                            <Table.Cell style={{textAlign:"center"}}> </Table.Cell>
-                        </Table.Row>
-                    }
+                    })}
                     </Table.Body>
                 </Table>
+                {!purchasedDApps.length>0&&<div className={'zero-result'}>
+                    Found 0 Purchased Dapps
+                </div>}
             </div>
         </DashboardLayout>
     );

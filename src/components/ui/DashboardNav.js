@@ -18,7 +18,8 @@ const DashboardNav = (props) => {
         {icon:<LocalMallIcon/>,title:"Purchased Dapps",linkTo:"/dashboard/purchased_dapps"},
         {icon:<LocalMallIcon/>,title:"KYC (Account Setting)",subtitle:"(Account Setting)",linkTo:"/dashboard/kyc_verification"},
         {icon:<LocalMallIcon/>,title:"Smart Contract (Contract  Verification)",subtitle:"(Contract  Verification)",linkTo:"/dashboard/contract_verification"},
-        {icon:<LocalMallIcon/>,title:"Dapps (Dapps Verification)",subtitle:"(Dapps Verification)",linkTo:"/dashboard/dapps_verification"}
+        {icon:<LocalMallIcon/>,title:"Dapps (Dapps Verification)",subtitle:"(Dapps Verification)",linkTo:"/dashboard/dapps_verification"},
+        {icon:<LocalMallIcon/>,title:"Custom Orders Verification",subtitle:"(Dapps Verification)",linkTo:"/dashboard/custom_orders_verification"}
 
     ]
     return (
@@ -35,28 +36,30 @@ const DashboardNav = (props) => {
                     </Link>
                 </ListItem>
             })
-            :(user.type==="DEVELOPER"?
-                links.slice(0,5).map(link=>{
+            :(
+                // user.type==="DEVELOPER"?
+                links.slice(0,7).map(link=>{
                 return  <ListItem key={link.title}>
                         {window.location.pathname===link.linkTo&&<div className={'active-nav'}> </div>}
                 <Link to={link.linkTo}>
                 <ListItemIcon>
-                <InboxIcon style={{ color: '#fff' }} />
+                    <InboxIcon style={{ color: '#fff' }} />
                 </ListItemIcon>
                 <ListItemText primary={link.title} />
                 </Link>
                 </ListItem>
-                }):links.slice(1,5).map(link=>{
-                    return  <ListItem key={link.title}>
-                        {window.location.pathname===link.linkTo&&<div className={'active-nav'}> </div>}
-                        <Link to={link.linkTo}>
-                            <ListItemIcon>
-                                <InboxIcon style={{ color: '#fff' }} />
-                            </ListItemIcon>
-                            <ListItemText primary={link.title} />
-                        </Link>
-                </ListItem>
-            })
+                })
+            //             :links.slice(0,5).map(link=>{
+            //         return  <ListItem key={link.title}>
+            //             {window.location.pathname===link.linkTo&&<div className={'active-nav'}> </div>}
+            //             <Link to={link.linkTo}>
+            //                 <ListItemIcon>
+            //                     <InboxIcon style={{ color: '#fff' }} />
+            //                 </ListItemIcon>
+            //                 <ListItemText primary={link.title} />
+            //             </Link>
+            //     </ListItem>
+            // })
             )
              }
         </List>

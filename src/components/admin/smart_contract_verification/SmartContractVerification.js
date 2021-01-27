@@ -1,7 +1,7 @@
 import React from 'react';
 import { Spinner3} from "../../ui/Spinner";
 import { pendingSmartContract} from "../../../queries/queries";
-import CollapsibleFormTable from "../../ui/CollapsibleTableForm";
+import CollapsibleFormTable from "../../ui/admin-tables/CollapsibleTableForm";
 import DashboardLayout from "../../../hoc/DashboardLayout";
 import {Query} from "react-apollo";
 

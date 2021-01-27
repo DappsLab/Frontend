@@ -71,8 +71,8 @@ export default function CustomizedDialogs({imageData,src,crop,handleSave,onImage
                         src={src}
                         crop={crop}
                         ruleOfThirds
-                        disabled= {imageData.disabled}
-                        locked= {imageData.locked}
+                        // disabled= {imageData.disabled}
+                        // locked= {imageData.locked}
                         onImageLoaded={(image)=>onImageLoad(image)}
                         onComplete = {(crop,pixelCrop)=>onCropComplete(crop,pixelCrop)}
                         onChange={(crop)=>onCropChange(crop)}/>
