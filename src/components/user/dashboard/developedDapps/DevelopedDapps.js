@@ -25,7 +25,7 @@ const DevelopedDapps = (props) => {
                             <Table.HeaderCell width={1}>Action</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
-                    {currentUser&&<DappsRow smartContracts={currentUser.dApps}/>}
+                    {currentUser&&<DappsRow {...props} smartContracts={currentUser.dApps}/>}
                 </Table>
                 <Query query={me_Query} fetchPolicy={'network-only'} onCompleted={
                     data => {
@@ -34,6 +34,7 @@ const DevelopedDapps = (props) => {
                 }>
                     {({loading,data,error})=>{
                         if (loading) return <Spinner3/>
+                        if (error) return <p>{error.toString()}</p>
                         if (data){
                             return <div> </div>
                         }

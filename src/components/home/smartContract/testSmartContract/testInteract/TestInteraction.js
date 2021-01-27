@@ -7,6 +7,8 @@ import gql from "graphql-tag";
 import TestIntract from "./TestInteract.component";
 import Layout from "../../../../../hoc/Layout";
 import GetTestBalance from "../../../../ui/GetTestBalance";
+import TestGetABI from "../getSource/TestGetABI";
+import TestGetBinery from "../getSource/TestGetBinery";
 
 
 const testLicense=gql`query ($id:ID!){
@@ -34,7 +36,7 @@ const TestInteraction =  (props) => {
     const [contractAddress,setcontractAddress]=useState('')
     const [ownerAddress,setownerAddress]=useState('')
     const [ownerKey,setownerKey]=useState('')
-
+    const [Loader,setLoader]=useState(false)
     const id=props.match.params.id;
 
 
@@ -66,7 +68,7 @@ const TestInteraction =  (props) => {
                   setnewID(ID);
                   setLoading(true)
               }catch (e) {
-                  console.log(e.toString())
+                  console.log(e.toString(),Loader)
               }
             }
         })
@@ -99,6 +101,10 @@ const TestInteraction =  (props) => {
                         <div className={'left-block'}>
                             <label>Contract Creator:</label>
                             <address>{ownerAddress}</address>
+                        </div>
+                        <div className={"interaction-dowloads"}>
+                            <TestGetABI setLoading={setLoader} id={newID}/>
+                            <TestGetBinery setLoading={setLoader} id={newID}/>
                         </div>
                         <div className={'space'}>
 

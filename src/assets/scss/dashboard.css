@@ -63,6 +63,7 @@
 .developed {
   width: 100%; }
   .developed .action {
+    justify-content: center;
     text-align: center !important; }
 
 .order_tab .ui.menu {

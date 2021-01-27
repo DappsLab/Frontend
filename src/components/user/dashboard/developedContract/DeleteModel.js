@@ -2,7 +2,6 @@ import React from 'react';
 import {Modal,Header,Icon,Button} from 'semantic-ui-react'
 const DeleteModal = (props) => {
 
-
     return (
         <Modal
             open={props.open}

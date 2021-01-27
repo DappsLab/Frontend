@@ -15,18 +15,23 @@
     .result_container .block_result .item {
       color: #fff; }
 
-.address h4 {
-  color: #fff;
-  text-align: left;
-  margin-left: 10px; }
-.address .ui.table thead th {
-  background-color: #0F0E2e;
-  color: #fff; }
-.address .striped {
-  color: #fff;
-  background-color: #0F0E2e; }
-  .address .striped tr {
-    background-color: #0F0E2e; }
+.address {
+  max-height: 1000px;
+  overflow: auto; }
+  .address h4 {
+    color: #fff;
+    text-align: left;
+    margin-left: 10px; }
+  .address .ui.table thead th {
+    background-color: #0F0E2e;
+    color: #fff; }
+  .address .striped {
+    color: #fff;
+    background-color: #0F0E2e;
+    max-height: 1000px;
+    overflow-x: auto; }
+    .address .striped tr {
+      background-color: #0F0E2e; }
 
 .block_address {
   width: 300px;

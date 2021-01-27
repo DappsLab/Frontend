@@ -4,7 +4,7 @@ import { Switch} from "react-router-dom";
 
 //Routes Setup
 import Home from "./components/home/Home";
-import AboutUs from "./components/home/AboutUs";
+import AboutUsComponent from "./components/about-us/about-us.component";
 import BlockExplorer from "./components/block_explorer/BlockExplorer";
 import Dapps from "./components/home/dapps/Dapps";
 import Smart_Contracts from "./components/home/smartContract/Smart_Contracts";
@@ -110,7 +110,7 @@ const Routes =(props)=>{
               <PublicRoute {...props} restricted={false} path={"/smart_contracts"} exact component={Smart_Contracts}/>
               <PublicRoute {...props} restricted={false} path={"/dapps"} exact component={Dapps}/>
               <PublicRoute {...props} restricted={false} path={"/block_explorer"} exact component={BlockExplorer}/>
-              <PublicRoute {...props} restricted={false} path={"/about_us"} exact component={AboutUs}/>
+              <PublicRoute {...props} restricted={false} path={"/about_us"} exact component={AboutUsComponent}/>
               <PublicRoute {...props} restricted={false} path={"/"} exact component={Home}/>
               <PublicRoute {...props} restricted={false} component={NotFound}/>
          </Switch>

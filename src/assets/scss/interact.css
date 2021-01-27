@@ -9,6 +9,8 @@
   .intreraction-container .intraction-left {
     width: 400px;
     padding: 20px 0; }
+    .intreraction-container .intraction-left h2 {
+      margin: 0 20px; }
     .intreraction-container .intraction-left .left-block {
       margin: 20px; }
       .intreraction-container .intraction-left .left-block label {
@@ -32,6 +34,18 @@
           height: 100%;
           width: 100%;
           object-fit: cover; }
+  .intreraction-container .interaction-dowloads {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 10px 10px 10px; }
+    .intreraction-container .interaction-dowloads a {
+      padding: 10px 20px;
+      border: 2px solid #0FBA87;
+      background: #0FBA87; }
+      .intreraction-container .interaction-dowloads a:hover {
+        color: #fff;
+        background: #151339; }
   .intreraction-container .intraction-right {
     width: 900px;
     padding: 20px; }

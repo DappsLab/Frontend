@@ -26,13 +26,14 @@ const DevelopedContracts =(props)=> {
                         <Table.HeaderCell width={1}>Action</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
-                {currentUser&&<DevelopContractRow smartContracts={currentUser.smartContracts}/>}
+                {currentUser&&<DevelopContractRow {...props} smartContracts={currentUser.smartContracts}/>}
             </Table>
-                <Query query={me_Query} fetchPolicy={'network-only'} onCompleted={data => {
+                <Query query={me_Query}  fetchPolicy={'network-only'} onCompleted={data => {
                     setCurrentUser(data.me)
                 }}>
                     {({loading,data,error})=>{
                         if (loading) return <Spinner3/>
+                        if (error) return <p>{error.toString()}</p>
                         if (data){
                             return <div> </div>
                         }

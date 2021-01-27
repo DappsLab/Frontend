@@ -1,0 +1,12 @@
+@import "../../assets/scss/colors";
+
+.about-us{
+  @include default-color();
+  color: #fff!important;
+  padding: 40px 0;
+  .about-dapplab{
+    width: 500px;
+    margin: auto;
+    text-align: center;
+  }
+}

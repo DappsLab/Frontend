@@ -25,6 +25,8 @@
   }
 }
 .address{
+  max-height: 1000px;
+  overflow: auto;
   h4{
     color: #fff;
     text-align: left;
@@ -41,6 +43,8 @@
 
       background-color: #0F0E2e;
     }
+    max-height: 1000px;
+    overflow-x: auto;
   }
 }
 .block_address {

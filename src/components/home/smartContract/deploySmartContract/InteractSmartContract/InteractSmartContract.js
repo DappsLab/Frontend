@@ -6,6 +6,8 @@ import {Client} from "../../../../../queries/Services";
 import {Spinner2} from "../../../../ui/Spinner";
 import IntractArguments from "./InteractionArguments";
 import GetMainAddress from "../../../../ui/GetMainAddress";
+import GetABI from "../../compileSmartContract/getCompileData/GetABI";
+import GetBinery from "../../compileSmartContract/getCompileData/GetBinery";
 
 const license=gql`query ($id:ID!){
   licenseById(id: $id) {
@@ -30,7 +32,7 @@ const IntractionSmartContract = (props) => {
     const [contractAddress,setcontractAddress]=useState('')
     const [ownerAddress,setownerAddress]=useState('')
     const [ownerKey,setownerKey]=useState('')
-
+    const [Loader,setLoader]=useState(false)
     const id=props.match.params.id;
 
     const RenderMainData=()=>{
@@ -56,7 +58,7 @@ const IntractionSmartContract = (props) => {
                    setnewID(ID);
                    setLoading(true)
                }catch (e) {
-                   console.log("Query error",e.toString())
+                   console.log("Query error",e.toString(),Loader)
                }
             }
         })
@@ -80,6 +82,10 @@ const IntractionSmartContract = (props) => {
                         <div className={'left-block'}>
                             <label>Contract Creator:</label>
                             <address>{ownerAddress}</address>
+                        </div>
+                        <div className={'interaction-dowloads'}>
+                            <GetABI setLoading={setLoader} id={newID}/>
+                            <GetBinery setLoading={setLoader} id={newID}/>
                         </div>
                         <div className={'space'}>
 

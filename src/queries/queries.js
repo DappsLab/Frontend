@@ -691,3 +691,17 @@ mutation ($id:ID!,$version:String!) {
 }
 
 `
+export const deleteSmartContract=gql`
+    mutation ($id:ID!){
+  deleteSmartContract(id: $id) {
+    message
+    success
+  }
+}`
+export const deleteDApp=gql`
+    mutation ($id:ID!){
+  deleteDApp(id: $id) {
+    message
+    success
+  }
+}`

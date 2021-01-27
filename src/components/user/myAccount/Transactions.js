@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { useState} from 'react';
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
@@ -9,73 +9,25 @@ import {ApolloClient,gql, InMemoryCache} from "@apollo/client";
 import {Spinner2} from "../../ui/Spinner";
 import {dateTime} from "../../../helpers/DateTimeConversion";
 import AccountLayout from "../../../hoc/AccountLayout";
+import {Query} from "react-apollo";
 
 const client = new ApolloClient({
     uri: 'http://localhost:4001/graphql',
     cache: new InMemoryCache(),
 });
-
-class Transactions extends Component {
-    state={
-        loading:true,
-        data:null,
-    }
-    componentDidMount() {
-        const address = this.props.user.address;
-        const that = this;
-        client.query({
-            query: gql`
-                    query ($address:String!) {
-                        transactionsByAddress(address: $address) {
-                            from id to blockHash blockNumber
-                            status transactionHash contractAddress
-                            gasPrice gasUsed createdAt
-                        }
-                    }
-                `, variables: {address: address.toString()}
-        }).then(result => {
-            if (result.data.transactionsByAddress) {
-                that.setState({loading: false, data: result.data.transactionsByAddress})
-            } else {
-                that.setState({loading: false, error: "Not Found"})
-            }
-        }).catch(error => {
-            that.setState({loading: false, error: "Not Found"});
-        })
-    }
-    ErrorDisplay=()=>(
-        <TableRow>
-            <TableCell> </TableCell>
-            <TableCell> </TableCell>
-            <TableCell style={{textAlign:'center'}}>No Transaction</TableCell>
-            <TableCell> </TableCell>
-            <TableCell> </TableCell>
-        </TableRow>
-    )
-    renderTransaction(){
-        const {data}=this.state;
-        if (data){
-            if (data.length>0) {
-                return data.map(da => {
-                    return <TableRow key={da.id}>
-                        <TableCell>{da.blockNumber}</TableCell>
-                        <TableCell>{da.to}</TableCell>
-                        <TableCell>{da.gasUsed}</TableCell>
-                        <TableCell>{dateTime(da.createdAt)}</TableCell>
-                        <TableCell>{da.status ? "True" : "False"}</TableCell>
-                    </TableRow>
-                })
-            }else {
-                return this.ErrorDisplay()
-            }
-        }else {
-            return this.ErrorDisplay()
+const transactionBYAddress=gql`
+     query ($address:String!) {
+     transactionsByAddress(address: $address) {
+        from id to blockHash blockNumber
+        status transactionHash contractAddress
+        gasPrice gasUsed createdAt
         }
-    }
-    render() {
-        const {loading}=this.state
-        return (
-            <AccountLayout {...this.props}>
+     }`
+const Transactions =(props)=> {
+    const [data,setData]=useState(null)
+
+    return (
+        <AccountLayout {...props}>
             <div className={"transaction"}>
                 <h2>Transaction</h2>
                 <Paper   className={"fullWidth"}>
@@ -90,15 +42,42 @@ class Transactions extends Component {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {!loading&&this.renderTransaction()}
+                            {data!==null&& data.map(da => (
+                                <TableRow key={da.id}>
+                                    <TableCell>{da.blockNumber}</TableCell>
+                                    <TableCell>{da.to}</TableCell>
+                                    <TableCell>{da.gasUsed}</TableCell>
+                                    <TableCell>{dateTime(da.createdAt)}</TableCell>
+                                    <TableCell>{da.status ? "True" : "False"}</TableCell>
+                                </TableRow>
+                            ))}
                         </TableBody>
                     </Table>
-                    {loading&&<Spinner2/>}
+                    <Query query={transactionBYAddress} client={client}
+                           fetchPolicy={'network-only'} variables={{
+                               address: props.user.address
+                           }} onCompleted={
+                        data => {
+                            if (data.transactionsByAddress.length) {
+                                setData(data.transactionsByAddress)
+                            }
+                        }
+                    }>
+                        {({loading,data,error})=>{
+                            if (loading) return <Spinner2/>
+                            if (error) return <p>{error.toString()} </p>
+                            if (data){
+                                if (!data.transactionsByAddress.length){
+                                    return <div>No Transaction</div>
+                                }
+                                return <div> </div>
+                            }
+                        }}
+                    </Query>
                 </Paper>
             </div>
-            </AccountLayout>
-        );
-    }
+        </AccountLayout>
+    );
 }
 
 
