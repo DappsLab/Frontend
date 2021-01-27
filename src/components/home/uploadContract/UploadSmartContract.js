@@ -28,7 +28,7 @@ import {
 } from "./contractCompoent/ContractFileds";
 import {Link} from "react-router-dom";
 
-const descriptionRGP=RegExp(/^[a-zA-Z][a-zA-Z\s,.]*$/);
+const descriptionRGP=RegExp(/^[a-zA-Z0-9][a-zA-Z0-9\s,.]*$/);
 
 const UploadSmartContract =(props)=>{
     const [cName,setcName]=useState("");
