@@ -6,7 +6,7 @@ import { Form, Grid, TextArea, Header} from "semantic-ui-react"
 import Button from "@material-ui/core/Button";
 import {flowRight as compose} from "lodash";
 import {
-    createNewContract, me_Query,
+    createNewContract,
     sourceUpload
 } from "../../../queries/queries";
 import Layout from "../../../hoc/Layout";
@@ -124,11 +124,6 @@ const UploadSmartContract =(props)=>{
             alert.error(error.toString(),{timeout:2000})
             console.log(error.toString())
         },
-        refetchQueries:[{query:me_Query,context:{
-                headers: {
-                    authorization: localStorage.getItem("token")
-                }
-            }}],
         context: {
             headers: {
                 authorization: localStorage.getItem("token")

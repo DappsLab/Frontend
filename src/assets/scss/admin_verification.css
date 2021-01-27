@@ -13,7 +13,8 @@
     border: none !important; }
 
 .contract-container .MuiCollapse-wrapper, .dapp-container .MuiCollapse-wrapper {
-  padding: 10px 30px; }
+  padding: 10px 30px;
+  max-width: 1138px; }
 .contract-container .contract-details, .dapp-container .contract-details {
   display: flex;
   justify-content: space-between;

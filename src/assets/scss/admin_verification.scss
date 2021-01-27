@@ -19,6 +19,7 @@
       margin: 10px 0 20px 0 !important;
       background: $background-color;
       border-radius: 10px;
+
     }
 
     td{
@@ -33,6 +34,7 @@
 .contract-container ,.dapp-container{
   .MuiCollapse-wrapper{
     padding: 10px 30px;
+    max-width: 1138px;
   }
   .contract-details{
     display: flex;
