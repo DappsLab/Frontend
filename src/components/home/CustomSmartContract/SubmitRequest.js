@@ -14,10 +14,7 @@ const SubmitRequest = (props) => {
     const [type,setType]=useState("");
     const [phone,setPhone]=useState("");
     const [description,setDescription]=useState('')
-    const {alert}=props;
-
-
-
+    const {alert,history}=props;
 
     const [create]=useMutation(createCustomOrder,{
         client:Client,context: {
@@ -25,8 +22,12 @@ const SubmitRequest = (props) => {
                 authorization: localStorage.getItem("token")
             }
         },onCompleted:data => {
-            console.log(data)
+            if (data){
+                alert.success("Request Submit Successful",{timeout:2000})
+                history.push('/dashboard/custom_orders')
+            }
         },onError:error => {
+            alert.success(error.toString(),{timeout:2000})
             console.log(error.toString())
         }
     })

@@ -29,40 +29,45 @@ const ContractCard =(props)=>{
             return <div>{data.error.message}</div>
        }else {
             const smartContract=props.searchdata===null?data.verifiedSmartContracts:props.searchdata;
-           return <div>
-            <div style={{ height: `${smartContract.length>6?height:'820px'}`}} className={"flex card-container"}>
-                   {smartContract.map((contract, index) => {
-                       return <Link style={{backgroundColor: `${cardColors(index)}`}}
-                                    to={`/detailed_contract/${contract.id}`} className={"card flex"} key={contract.id}>
-                           <div className={"card-top flex"}>
-                               <ContractImg
-                                   position={"relative"}
-                                   imagePath={contract.image}
-                                   height={"100px"}
-                                   width={"100px"}
-                               />
-                               <div className={"card-right"}>
-                                   <h1>{contract.contractName}</h1>
-                                   <span>Publish By </span>
-                                   <span>{contract.publisher.fullName}</span>
-                                   <span> created at {getDate(contract.publishingDateTime)}</span>
+           if (smartContract.length) {
+               return <div>
+                   <div style={{height: `${smartContract.length > 6 ? height : '820px'}`}}
+                        className={"flex card-container"}>
+                       {smartContract.map((contract, index) => {
+                           return <Link style={{backgroundColor: `${cardColors(index)}`}}
+                                        to={`/detailed_contract/${contract.id}`} className={"card flex"}
+                                        key={contract.id}>
+                               <div className={"card-top flex"}>
+                                   <ContractImg
+                                       position={"relative"}
+                                       imagePath={contract.image}
+                                       height={"100px"}
+                                       width={"100px"}
+                                   />
+                                   <div className={"card-right"}>
+                                       <h1>{contract.contractName}</h1>
+                                       <span>Publish By </span>
+                                       <span>{contract.publisher.fullName}</span>
+                                       <span> created at {getDate(contract.publishingDateTime)}</span>
+                                   </div>
                                </div>
-                           </div>
-                           <p>{contract.shortDescription}</p>
-                           <div>
-                               {renderCategory(contract.contractCategory)}
-                           </div>
-                           <span className={"block"}>{contract.singleLicensePrice} Dapps</span>
-                       </Link>
-                   })}
-           </div>
-               {smartContract.length>8&&
-               <Button className={'see_more'} onClick={() => {
-                   setHeight("auto")
-               }}>See More</Button>
-               }
-           </div>
-
+                               <p>{contract.shortDescription}</p>
+                               <div>
+                                   {renderCategory(contract.contractCategory)}
+                               </div>
+                               <span className={"block"}>{contract.singleLicensePrice} Dapps</span>
+                           </Link>
+                       })}
+                   </div>
+                   {smartContract.length > 8 &&
+                   <Button className={'see_more'} onClick={() => {
+                       setHeight("auto")
+                   }}>See More</Button>
+                   }
+               </div>
+           }else {
+               return <div className={'zero-result'}>0 Result Found</div>
+           }
         }
     }
     return (displayContract());

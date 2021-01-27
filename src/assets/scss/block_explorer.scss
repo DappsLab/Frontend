@@ -1,6 +1,7 @@
 @import "colors";
 
 .block-explorer-container{
+  min-height: 500px;
   @include default-color();
   .btn-container {
     button{
@@ -48,6 +49,9 @@
   margin: auto;
   padding: 40px 20px;
   width: 90%;
+  .spinner2{
+    margin-top: 60px;
+  }
   .input{
     width: 50%!important;
     .dropdown {

@@ -16,7 +16,7 @@ const AboutUs =()=> {
                         powerful and cost-effective DApps without trust to a third party through decentralization powered by blockchain technologies.
                     </p>
                 </div>
-                <img src={AboutContract} alt={'about us'}/>
+                <img className={'about-img'} src={AboutContract} alt={'about us'}/>
             </div>
         </Layout>
     );

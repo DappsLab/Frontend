@@ -28,41 +28,45 @@ const DappsCard = (props) => {
         return <div>{data.error.message}</div>
     } else {
         const dapps = props.searchdata === null ? data.verifiedDApps : props.searchdata;
-        return (
-            <div>
-                <div style={{height: `${dapps.length > 6 ? height : '820px'}`}} className={"flex card-container"}>
-                    {dapps.map((dapp, index) => {
-                        return <Link style={{backgroundColor: `${cardColors(index)}`}}
-                                     to={`/dapps_details/${dapp.id}`} className={"card flex"} key={dapp.id}>
-                            <div className={"card-top flex"}>
-                                <ContractImg
-                                    position={"relative"}
-                                    imagePath={dapp.image}
-                                    height={"100px"}
-                                    width={"100px"}
-                                />
-                                <div className={"card-right"}>
-                                    <h1>{dapp.dAppName}</h1>
-                                    <span>Publish By </span>
-                                    <span>{dapp.publisher.fullName}</span>
-                                    <span> created at {getDate(dapp.publishingDateTime)}</span>
+        if (dapps.length) {
+            return (
+                <div>
+                    <div style={{height: `${dapps.length > 6 ? height : '820px'}`}} className={"flex card-container"}>
+                        {dapps.map((dapp, index) => {
+                            return <Link style={{backgroundColor: `${cardColors(index)}`}}
+                                         to={`/dapps_details/${dapp.id}`} className={"card flex"} key={dapp.id}>
+                                <div className={"card-top flex"}>
+                                    <ContractImg
+                                        position={"relative"}
+                                        imagePath={dapp.image}
+                                        height={"100px"}
+                                        width={"100px"}
+                                    />
+                                    <div className={"card-right"}>
+                                        <h1>{dapp.dAppName}</h1>
+                                        <span>Publish By </span>
+                                        <span>{dapp.publisher.fullName}</span>
+                                        <span> created at {getDate(dapp.publishingDateTime)}</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <p>{dapp.shortDescription}</p>
-                            <div>
-                                {renderCategory(dapp.dAppCategory)}
-                            </div>
-                            <span className={"block"}>{dapp.singleLicensePrice} Dapps</span>
-                        </Link>
-                    })}
+                                <p>{dapp.shortDescription}</p>
+                                <div>
+                                    {renderCategory(dapp.dAppCategory)}
+                                </div>
+                                <span className={"block"}>{dapp.singleLicensePrice} Dapps</span>
+                            </Link>
+                        })}
+                    </div>
+                    {dapps.length > 8 &&
+                    <Button className={'see_more'} onClick={() => {
+                        setHeight("auto")
+                    }}>See More</Button>
+                    }
                 </div>
-                {dapps.length > 8 &&
-                <Button className={'see_more'} onClick={() => {
-                    setHeight("auto")
-                }}>See More</Button>
-                }
-            </div>
-        );
+            );
+        }else {
+            return <div className={'zero-result'}>0 Result Found</div>
+        }
     }
 }
 

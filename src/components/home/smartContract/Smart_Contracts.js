@@ -195,7 +195,7 @@ class Smart_Contracts extends Component {
                     <Grid.Column width={12}>
                         <img className={"square_block"} src={square_blue} alt={"square"}/>
                         <h2>Our <span>Products</span></h2>
-                        {searchError.length>0?<div>{searchError}</div>:
+                        {searchError.length>0?<div className={'zero-result'}>{searchError}</div>:
                             <ContractCard searchdata={searchdata}/>
                         }
                     </Grid.Column>

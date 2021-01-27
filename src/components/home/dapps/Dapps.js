@@ -111,11 +111,11 @@ const Dapps = () => {
                 setsearchError("")
             }else {
                 setLoading(false);
-                setsearchError("NotFound")            }
+                setsearchError("0 Result Found")            }
         }).catch(error=>{
             console.log(error.toString())
             setLoading(false);
-            setsearchError("NotFound")          })
+            setsearchError("0 Result Found")})
     }
     const renderCheckbox=()=>(
         checkboxs.map((check,index)=>(
@@ -188,7 +188,7 @@ const Dapps = () => {
                 <Grid.Column width={12}>
                     <img className={"square_block"} src={square_blue} alt={"square"}/>
                     <h2>Our <span>Products</span></h2>
-                    {searchError.length>0?<div>{searchError}</div>
+                    {searchError.length>0?<div className={'zero-result'}>{searchError}</div>
                     :<DappsCard searchdata={searchdata}/>
                     }
 

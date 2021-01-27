@@ -1,4 +1,5 @@
 .block-explorer-container {
+  min-height: 500px;
   background-image: linear-gradient(135.14deg, #04031D 0%, #0F0E2e 100%); }
   .block-explorer-container .btn-container button {
     padding: 10px 30px;
@@ -31,6 +32,8 @@
   margin: auto;
   padding: 40px 20px;
   width: 90%; }
+  .block_explorer .spinner2 {
+    margin-top: 60px; }
   .block_explorer .input {
     width: 50% !important; }
     .block_explorer .input .dropdown {
