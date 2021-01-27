@@ -57,6 +57,7 @@ export const DropDown =({check,user,removeImage})=> {
         {title:"My Account",linkTo:"/account_settings/profile"},
         {title:"Upload Smart Contract",linkTo:"/upload_samrt_contract"},
         {title:"Upload Dapps",linkTo:"/upload_dapps"},
+        {title:"Custom Order",linkTo:"/request_smart_contract"},
         {title:"Logout",linkTo:"/logout"}
     ]
     const renderItem=()=>(
