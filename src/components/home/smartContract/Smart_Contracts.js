@@ -126,11 +126,11 @@ class Smart_Contracts extends Component {
             if (result.data.filterSmartContract.length>0){
                 that.setState({loading:false,searchValue:"",searchError:"",searchdata:result.data.filterSmartContract})
             }else {
-                that.setState({searchValue:"",loading:false,searchError:"Not Found"})
+                that.setState({searchValue:"",loading:false,searchError:"0 Rsult Found"})
             }
         }).catch(error=>{
             console.log(error.toString())
-            that.setState({searchValue:"",loading:false,searchError:"Not Found"})
+            that.setState({searchValue:"",loading:false,searchError:"0 Result Found"})
         })
     }
     renderCheckbox=()=>(
