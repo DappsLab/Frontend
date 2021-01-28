@@ -1,9 +1,9 @@
 import React from 'react';
 import { Spinner3} from "../../ui/Spinner";
 import { pendingSmartContract} from "../../../queries/queries";
-import CollapsibleFormTable from "../../ui/admin-tables/CollapsibleTableForm";
 import DashboardLayout from "../../../hoc/DashboardLayout";
 import {Query} from "react-apollo";
+import CollapsibleContractFormTable from "../../ui/admin-tables/CollapsibleContractTableForm";
 
 
 const SmartContractVerification = (props) => {
@@ -38,7 +38,7 @@ const SmartContractVerification = (props) => {
                     if (data){
                         if (data.searchPendingSmartContracts.length>0){
                             return (
-                                <CollapsibleFormTable {...props} fetch={refetch} data={data.searchPendingSmartContracts}/>
+                                <CollapsibleContractFormTable {...props} fetch={refetch} data={data.searchPendingSmartContracts}/>
                             )
                         }else {
                             return (

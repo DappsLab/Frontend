@@ -1,14 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import DashboardLayout from "../../../../hoc/DashboardLayout";
 import {Tab, } from "semantic-ui-react";
-
 import CustomOrderRow from "./CustomOderRow";
+import {Query} from "react-apollo";
+import {me_Query} from "../../../../queries/queries";
+import {Spinner3} from "../../../ui/Spinner";
 
 const CustomOrder = (props) => {
     const {user}=props
+    const [myOrder,setMyOrders]=useState(null)
 
     const myOrders=()=>{
-       return <CustomOrderRow orders={user.customOrders}/>
+       return  <Query query={me_Query}  fetchPolicy={'network-only'} onCompleted={data => {
+           setMyOrders(data.me.customOrders)
+       }}>
+           {({loading,data,error})=>{
+               if (loading) return <Spinner3/>
+               if (error) return <p>{error.toString()}</p>
+               if (data&&myOrder){
+                   console.log(data)
+                   return <CustomOrderRow orders={myOrder}/>
+               }else return <div>Loading</div>
+           }}
+       </Query>
     }
     const allOrders=()=>{
        return <CustomOrderRow orders={user.customOrders}/>
@@ -26,7 +40,7 @@ const CustomOrder = (props) => {
                       menu={{fluid: true, tabular: true}}
                       panes={panes}
                 />
-                : <CustomOrderRow orders={user.customOrders}/>
+                : myOrders()
             }
         </DashboardLayout>
     );

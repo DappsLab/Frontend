@@ -716,7 +716,7 @@ export const pendingCustomOrders=gql`{
     businessName
     businessPhone
     businessWebsite
-    id
+    id createdAt
     productType
     requirements
     role
@@ -726,5 +726,12 @@ export const pendingCustomOrders=gql`{
     }
   }
 }
-
-    `
+`
+export const verifyCustomeOrder=gql`
+    mutation ($id:ID!){
+  verifyCustomOrder(id: $id)
+}`
+export const cancelCustomeOrder=gql`
+    mutation ($id:ID!){
+    cancelCustomOrder(id: $id)
+}`

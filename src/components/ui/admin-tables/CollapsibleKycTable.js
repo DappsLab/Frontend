@@ -130,7 +130,7 @@ function Row(props) {
 }
 
 
- function CollapsibleTable(props) {
+ function CollapsibleKycTable(props) {
     const {data,fetch}=props;
     return (
         <div className={'scroll'}>
@@ -155,4 +155,4 @@ function Row(props) {
         </div>
     );
 }
-export default  withAlert()(CollapsibleTable);
+export default  withAlert()(CollapsibleKycTable);

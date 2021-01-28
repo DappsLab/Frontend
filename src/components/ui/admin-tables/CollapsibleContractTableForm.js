@@ -165,7 +165,7 @@ function Row(props) {
 }
 
 
- function CollapsibleFormTable(props) {
+ function CollapsibleContractFormTable(props) {
     const {data,fetch}=props;
     return (
         <div className={'scroll'}>
@@ -190,4 +190,4 @@ function Row(props) {
         </div>
     );
 }
-export default withAlert()(CollapsibleFormTable)
+export default withAlert()(CollapsibleContractFormTable)
