@@ -78,8 +78,9 @@ class Header extends React.Component {
                             </Dropdown.Menu>
                         </Dropdown>
                         {/*<DarkMode/>*/}
-                        {this.props.logged_session ?
-                            this.renderAccount()
+
+                        {localStorage.getItem('token')&&this.props.logged_session ?
+                        this.renderAccount()
                             : this.renderButtons()
                         }
                     </div>

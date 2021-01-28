@@ -17,7 +17,8 @@ const ContractBuyDetails = (props) => {
     const [radioValue,setradioValue]=useState("SINGLELICENSE");
     const [fee,setFee]=useState(100000);
     const [address,setAddress]=useState("");
-    const {logged_session,user,contract}=props;
+    const {logged_session,contract}=props;
+    const [currentUser,setCurrentUser]=useState(null);
     const handleChange = (event) => {
         setradioValue(event.target.value)
     };
@@ -36,9 +37,10 @@ const ContractBuyDetails = (props) => {
                 headers: {
                     authorization: localStorage.getItem("token")
                 }
-            },
+            },fetchPolicy:'network-only',
             onCompleted:data1 => {
                 props.setUser(data1.me)
+                setCurrentUser(data1.me)
             },onError:error1 => {
                 console.log(error1.toString())
             }
@@ -46,15 +48,16 @@ const ContractBuyDetails = (props) => {
         if (error){
             console.log(error.toString())
         }
-        if (data&&!loading) {
+        if (data&&!loading&&currentUser) {
+
             return (
                 <div className={`btnGroups`}>
                     <BuySmartContract
-                        contract={contract} refetch={refetch} user={user} type={radioValue} fee={fee}
-                        logged_session={logged_session}{...props}
+                        contract={contract} refetch={refetch} user={currentUser} type={radioValue} fee={fee}
+                        logged_session={logged_session} {...props}
                     />
                     <BuyTestSmartContract
-                        contract={contract} refetch={refetch} user={user} type={radioValue} fee={fee}
+                        contract={contract} refetch={refetch} user={currentUser} type={radioValue} fee={fee}
                         logged_session={logged_session} {...props} address={address}
                     />
                 </div>
@@ -138,8 +141,8 @@ const ContractBuyDetails = (props) => {
                     </Form>
                 </RadioGroup>
             </FormControl>
-            {logged_session&&(
-                user.testAddress.length>0&&
+            {logged_session&&currentUser!==null&&(
+                currentUser.testAddress.length>0&&
                     <form className={'test-address'}>
                         <label>Select Test Address</label>
                         <select
@@ -147,7 +150,7 @@ const ContractBuyDetails = (props) => {
                             onChange={(event)=>handleSelect(event)}
                         >
                             <option  value={'select'}>Select Address</option>
-                            { user.testAddress.map(add => (
+                            { currentUser.testAddress.map(add => (
                                 <option key={add.id}  value={add.id}>{add.address}  ({Math.trunc(add.balance)})</option>
                             ))}
                         </select>

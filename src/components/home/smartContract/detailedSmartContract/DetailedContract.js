@@ -21,6 +21,8 @@ import Error from "../../../ui/errors/error/Error";
 
 
 const  DetailedContract =(props)=>{
+    const {logged_session}=props
+    const session=logged_session&&localStorage.getItem('token')&&true
     const color=[
         {0:"violet",1:"blue",2:"orange",3:"grey",4:"real",5:"yellow",6:"brown"}
     ]
@@ -39,7 +41,7 @@ const  DetailedContract =(props)=>{
         if (data) {
             const contract=data.smartContractById;
             return    <div className={"contractContainer flex"}>
-                <ContractBuyDetails contract={contract} logged_session={props.logged_session}  {...props} user={props.currentUser}/>
+                <ContractBuyDetails contract={contract} logged_session={session}  {...props} user={props.currentUser}/>
                 <div className={"contractLeft"}>
                     <div className={'flex'}>
                         <ContractImg
@@ -78,8 +80,8 @@ const  DetailedContract =(props)=>{
                         <label><strong>Description</strong></label>
                         <p>{contract.description}</p>
                     </div>
-                    <Licenses contract={contract} logged_session={props.logged_session}  {...props} user={props.currentUser}/>
-                    <TestLicenses contract={contract} logged_session={props.logged_session}  {...props} user={props.currentUser}/>
+                    <Licenses contract={contract} logged_session={session}  {...props} user={props.currentUser}/>
+                    <TestLicenses contract={contract} logged_session={session}  {...props} user={props.currentUser}/>
                 </div>
             </div>
         }
