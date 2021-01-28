@@ -759,6 +759,10 @@ export const blockUser=gql`
     mutation ($id:ID!){
     blockUser(id: $id)
 }`
+export const unBlockUser=gql`
+    mutation ($id:ID!){
+    unBlockUser(id: $id)
+}`
 
 export const searchUnBLockedUser=gql`{
   searchUnBlockedUsers {

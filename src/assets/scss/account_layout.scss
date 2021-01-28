@@ -79,6 +79,9 @@
   h2{
     font-size: 40px;
   }
+  a{
+    @include default-link();
+  }
   .MuiPaper-root{
     background-color: #0F0E2e;
     color: #fff;

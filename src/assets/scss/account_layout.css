@@ -60,6 +60,10 @@
 =========================================================*/
 .transaction h2 {
   font-size: 40px; }
+.transaction a {
+  background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; }
 .transaction .MuiPaper-root {
   background-color: #0F0E2e;
   color: #fff; }

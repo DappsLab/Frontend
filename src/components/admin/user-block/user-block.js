@@ -21,9 +21,8 @@ const UserBlock = (props) => {
                 if (loading) return <Spinner3/>
                 if (error) return <p>{error.toString()}</p>
                 if (data&&allUser){
-                    console.log(data)
                     return <UnBlockRow {...props} users={allUser}/>
-                }else return <div>Loading</div>
+                }else return <div className={'zero-result'}>Found 0 Request</div>
             }}
         </Query>
     }
@@ -37,7 +36,7 @@ const UserBlock = (props) => {
                 if (data&&allRequest){
                     console.log(data)
                     return <UnBlockRow {...props} request users={allRequest}/>
-                }else return <div>Loading</div>
+                }else return <div className={'zero-result'}>Found 0 Request</div>
             }}
         </Query>
     }

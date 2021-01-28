@@ -69,7 +69,8 @@
     text-align: left;
   }
   a {
-      //width: 240px !important;
+
+    //width: 240px !important;
       //margin: 0;
     //overflow: hidden;
     //white-space: nowrap;
@@ -77,7 +78,7 @@
     display: inline-block;
   }
   .addresss a{
-
+    @include default-link();
   }
   .hash a{
     color: #0FBA87!important;

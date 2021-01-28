@@ -3,7 +3,7 @@
 //===============================================================
 //                        Kyc
 //===============================================================
-.kyc-verification,.contract-container,.dapp-container {
+.kyc-verification,.contract-container,.dapp-container,.user-block-table {
   border-radius: 20px!important;
   thead tr {
     th {
@@ -15,7 +15,7 @@
       font-size: 30px!important;
       font-weight: bold!important;
     }
-    .MuiCollapse-wrapper{
+    .MuiCollapse-wrapper,.MuiTableCell-root{
       margin: 10px 0 20px 0 !important;
       background: $background-color;
       border-radius: 10px;

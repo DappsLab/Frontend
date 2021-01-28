@@ -11,7 +11,7 @@ import {feeProcessTime} from "../../../ui/Helpers";
 import DownlaodDapp from "./DownlaodDapp";
 
 const BuyDapp = (props) => {
-    // const [loading,setLoading]=useState(false);
+    const [loading,setLoading]=useState(false);
     const [fee,setFee]=useState(100000);
     // const [downalaod,setDownlaod]=useState(false);
     const [orderID,setOrderID]=useState();
@@ -50,6 +50,7 @@ const BuyDapp = (props) => {
         },
         onError:error => {
             alert.error(error.toString(),{timeout:3000})
+            setLoading(false)
         }
     });
     const [verifiyOrder]=useLazyQuery(verifyOrder,{
@@ -68,10 +69,12 @@ const BuyDapp = (props) => {
                     console.log(err)
                 })
             }else {
+                setLoading(false)
                 alert.error("Order Succesfull. Purchased Failed",{timeout:3000})
             }
         },
         onError:error => {
+            setLoading(false)
             alert.success("Order Succesfull.",{timeout:3000})
             alert.error(error.toString(),{timeout:3000})
         }
@@ -83,15 +86,18 @@ const BuyDapp = (props) => {
             }
         },
         onError:error => {
+            setLoading(false)
             alert.error("purchasd "+error.toString(),{timeout:5000})
         },
         onCompleted:data => {
+            setLoading(false)
             alert.success("Congratulation, You purchasd Dapps Successfully and You can download it.",{timeout:5000})
             setPurchased(data.purchaseDApp)
         }
     })
 
     const HandelBuy=()=>{
+        setLoading(true)
         buydApp({
             variables:{
                 producttype:'DAPP',
@@ -153,14 +159,14 @@ const BuyDapp = (props) => {
                                         />
                                     </Form.Field>
                                 </Form>
-                                <Button onClick={HandelBuy} fluid className={"buybtn"}>Buy Dapp</Button>
+                                <Button onClick={HandelBuy} loading={loading} fluid className={"buybtn"}>Buy Dapp</Button>
                             </div>
                             :
                             <Container fluid className={"kyc_information"}>
                                 <p>Before you can purchase this contract, you have to complete your KYC information and
                                     get validated.</p>
                                 <Button fluid onClick={() => {
-                                    props.history.push('/account_settings')}} className={"testbtn"}>
+                                    props.history.push('/account_settings/KYC')}} className={"testbtn"}>
                                     Verify your Account
                                 </Button>
                             </Container>

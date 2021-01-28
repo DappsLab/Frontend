@@ -40,12 +40,16 @@ const DappsRow =({alert,dapps,history})=>{
         })
         closeModal();
     }
-
+    const handleClick=(id)=>{
+        history.push(`/dapps_details/${id}`)
+    }
     const HandelDeveloped=()=>{
         return dapps.map((contract, index)=>{
             return <Table.Row key={contract.id} >
                 <Table.Cell>{index+1}</Table.Cell>
-                <Table.Cell width={3}>{contract.dAppName}</Table.Cell>
+                <Table.Cell selectable onClick={() => {
+                    handleClick(contract.id);
+                }} width={3}>{contract.dAppName}</Table.Cell>
                 <Table.Cell width={2}>{contract.singleLicensePrice}</Table.Cell>
                 <Table.Cell width={3}>{getDate( contract.publishingDateTime)}</Table.Cell>
                 <Table.Cell width={1}>

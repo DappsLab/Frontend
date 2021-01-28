@@ -25,9 +25,12 @@ const IntractArguments = (props) => {
         const {value}=event.target;
         if (value==='Select Funtion'){
             setName('')
+            setValue('')
         }else {
             setName(value)
+            setValue('')
         }
+
     }
     const onFunctionSubmit=async (targetArray,contract)=>{
         if (targetArray.stateMutability==='view') {

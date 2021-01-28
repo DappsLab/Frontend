@@ -10,6 +10,8 @@ import {Spinner2} from "../../ui/Spinner";
 import {dateTime} from "../../../helpers/DateTimeConversion";
 import AccountLayout from "../../../hoc/AccountLayout";
 import {Query} from "react-apollo";
+import {toEth} from "../../ui/ContractInteractionHelper";
+import {Link} from "react-router-dom";
 
 const client = new ApolloClient({
     uri: 'http://localhost:4001/graphql',
@@ -20,7 +22,7 @@ const transactionBYAddress=gql`
      transactionsByAddress(address: $address) {
         from id to blockHash blockNumber
         status transactionHash contractAddress
-        gasPrice gasUsed createdAt
+        gasPrice gasUsed createdAt value
         }
      }`
 const Transactions =(props)=> {
@@ -34,21 +36,19 @@ const Transactions =(props)=> {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell>Block</TableCell>
+                                <TableCell>Block Hash</TableCell>
                                 <TableCell>to</TableCell>
-                                <TableCell>Gas Used</TableCell>
                                 <TableCell>Date</TableCell>
-                                <TableCell>Status</TableCell>
+                                <TableCell>Value</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {data!==null&& data.map(da => (
                                 <TableRow key={da.id}>
-                                    <TableCell>{da.blockNumber}</TableCell>
-                                    <TableCell>{da.to}</TableCell>
-                                    <TableCell>{da.gasUsed}</TableCell>
+                                    <TableCell><Link to={`/block_explorer/transaction:${da.transactionHash}`}>{da.blockHash}</Link></TableCell>
+                                    <TableCell><Link to={`/block_explorer/addresses:${da.to}`}>{da.to}</Link></TableCell>
                                     <TableCell>{dateTime(da.createdAt)}</TableCell>
-                                    <TableCell>{da.status ? "True" : "False"}</TableCell>
+                                    <TableCell>{toEth(da.value)}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

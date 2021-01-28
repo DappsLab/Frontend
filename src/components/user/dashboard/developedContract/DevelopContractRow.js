@@ -41,12 +41,17 @@ const DevelopContractRow =(props)=>{
         })
         closeModal();
     }
+    const handleClick=(id)=>{
+        history.push(`/detailed_contract/${id}`)
+    }
     const HandelDeveloped=()=>{
         const smartContracts = props.smartContracts;
         return smartContracts.map((contract,index)=>{
             return <Table.Row key={contract.id} >
                 <Table.Cell>{index+1}</Table.Cell>
-                <Table.Cell>{contract.contractName}</Table.Cell>
+                <Table.Cell selectable onClick={() => {
+                    handleClick(contract.id);
+                }}>{contract.contractName}</Table.Cell>
                 <Table.Cell >{contract.singleLicensePrice}</Table.Cell>
                 <Table.Cell >{contract.unlimitedLicensePrice}</Table.Cell>
                 <Table.Cell >{getDate( contract.publishingDateTime)}</Table.Cell>

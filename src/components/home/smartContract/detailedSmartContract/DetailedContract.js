@@ -36,6 +36,7 @@ const  DetailedContract =(props)=>{
                 }
             }
         })
+
         if (loading) return <Spinner3/>
         if (error) return <Error contractError={error.toString()}/>
         if (data) {
@@ -60,7 +61,7 @@ const  DetailedContract =(props)=>{
                             </div>
                             <div className={"contract_category"}>
                                 {contract.contractCategory.map((category, index) => {
-                                    return <Link  key={category}  to={`/search_result/${category}`} >
+                                    return <Link  key={category}  to={`/smart_contracts`} >
                                         <Button
                                             size={"mini"}
                                             color={color["0"][index]} >
