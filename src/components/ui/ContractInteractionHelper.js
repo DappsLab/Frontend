@@ -72,7 +72,7 @@ export const getContractBalance= async (address)=>{
     }catch (err){
         console.log(err.toString())
     }
-    return balance;
+    return toEth(balance);
 }
 
 
@@ -148,11 +148,14 @@ export const getMainContractBalance= async (address)=>{
     }catch (err){
         console.log(err.toString())
     }
-    return balance;
+    return toEth(balance);
 }
 export const toWei=  (eth)=>{
     return eth*1000000000000000000;
 }
 export const isAddress =  (address) => {
     return web3.utils.isAddress(address);
+}
+export const toEth = (wei) => {
+    return wei / 1000000000000000000;
 }

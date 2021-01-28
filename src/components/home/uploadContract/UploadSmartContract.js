@@ -4,7 +4,6 @@ import {Divider} from "@material-ui/core";
 import Fade from "react-reveal/Fade";
 import { Form, Grid, TextArea, Header} from "semantic-ui-react"
 import Button from "@material-ui/core/Button";
-import {flowRight as compose} from "lodash";
 import {
     createNewContract,
     sourceUpload
@@ -114,10 +113,10 @@ const UploadSmartContract =(props)=>{
     const [newContract]=useMutation(createNewContract,{
         client:Client,
         onCompleted:data => {
-            console.log(data)
             setfinalCategoryArray([])
-            props.history.push('/dashboard/developed_contract');
             setuplaodLoading(false)
+            props.history.push('/dashboard/developed_contract');
+
         },
         onError:error => {
             setuplaodLoading(false)
@@ -246,13 +245,10 @@ const UploadSmartContract =(props)=>{
                             </div>
                         </div>
                     </Grid.Row>
-                    <Grid.Row>
-
-                    </Grid.Row>
                 </Grid.Column>
             </Grid>
         </Layout>
     );
 }
 
-export default  compose(withAlert(),)(UploadSmartContract);
+export default  withAlert()(UploadSmartContract);

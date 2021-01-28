@@ -63,14 +63,18 @@ const Login =(props)=>{
                 });
                 if (user){
                     setLoading(false);
-                    if (user.data.me.twoFactorEnabled){
-                        props.history.push(`/2FA_varifivcation/${logged.token}`);
-                    }else {
-                        localStorage.setItem("token",logged.token);
-                        props.setUser(user.data.me);
-                        alert.success("Login Successfully", {timeout: 5000});
-                        props.history.push('/');
-                    }
+                    // if (user.data.me.isBlocked){
+                    //     console.log("user",user)
+                    // }else {
+                        if (user.data.me.twoFactorEnabled) {
+                            props.history.push(`/2FA_varifivcation/${logged.token}`);
+                        } else {
+                            localStorage.setItem("token", logged.token);
+                            props.setUser(user.data.me);
+                            alert.success("Login Successfully", {timeout: 5000});
+                            props.history.push('/');
+                        }
+                    // }
                 }
             }
             setLoading(false);

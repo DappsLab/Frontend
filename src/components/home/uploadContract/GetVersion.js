@@ -4,8 +4,6 @@ import {getCompiler} from "../../../queries/queries";
 import {Client} from "../../../queries/Services";
 
 const GetVersion = (props) => {
-
-    console.log(props.value)
     const {data,loading,error}=useQuery(getCompiler,{
         client:Client
     })

@@ -17,7 +17,7 @@ const ContractBuyDetails = (props) => {
     const [radioValue,setradioValue]=useState("SINGLELICENSE");
     const [fee,setFee]=useState(100000);
     const [address,setAddress]=useState("");
-    const {logged_session,contract}=props;
+    const {logged_session,user,contract}=props;
     const [currentUser,setCurrentUser]=useState(null);
     const handleChange = (event) => {
         setradioValue(event.target.value)
@@ -157,7 +157,7 @@ const ContractBuyDetails = (props) => {
                             <p className={'info'}>Only Select When you want test smart contracty</p>
                     </form>
             )}
-            {logged_session&&
+            {logged_session&&!user.isBlocked&&
                  RenderButtonGroup()
             }
         </div>

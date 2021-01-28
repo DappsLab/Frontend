@@ -9,7 +9,7 @@ export const client = new ApolloClient({
 
 export const me_Query=gql`query {
   me{
-    avatar address fullName id type twoFactorCode
+    avatar address fullName id type twoFactorCode isBlocked
     email location userName twoFactorEnabled balance
      testPurchasedContracts {
       id  customizationsLeft createdAt
@@ -746,7 +746,6 @@ export const searchCustomOrders=gql`{
   }
   
 }
-
 `
 export const verifyCustomeOrder=gql`
     mutation ($id:ID!){
@@ -756,3 +755,39 @@ export const cancelCustomeOrder=gql`
     mutation ($id:ID!){
     cancelCustomOrder(id: $id)
 }`
+export const blockUser=gql`
+    mutation ($id:ID!){
+    blockUser(id: $id)
+}`
+
+export const searchUnBLockedUser=gql`{
+  searchUnBlockedUsers {
+    id
+    fullName
+    email confirmed
+    userName
+  }
+}
+`
+export const searchUnBLockedUsersRequest=gql`{
+  unBlockRequests {
+    description
+    id
+    user {
+      id
+      fullName
+      email
+      confirmed
+      userName
+    }
+    unBlocked
+  }
+}
+`
+export const createUnBlockRequest=gql`
+mutation ($description:String!){
+  createUnBlockRequest(description:$description){
+  id
+}
+}
+    `

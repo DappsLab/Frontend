@@ -99,15 +99,7 @@
         color: #fff; }
 
 .row .block_address {
-  width: 250px;
   display: flex; }
-  .row .block_address span {
-    width: 240px !important;
-    margin: 0 0 0 10px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    display: inline-block; }
 
 .ui[class*="middle aligned"].grid > .row > .column {
   flex-direction: column;

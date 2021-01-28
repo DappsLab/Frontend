@@ -1,11 +1,15 @@
 @import "colors";
+.ui[class*="middle aligned"].grid>.column:not(.row){
+  align-self: flex-start!important;
+}
 .result_container{
   @include default-color();
+
   .segment{
     padding: 16px 0!important;
   }
   margin:  0!important;
-  min-height: 200px;
+  min-height: 500px;
   .block_result{
     text-align: left;
     h4{
@@ -46,6 +50,15 @@
     max-height: 1000px;
     overflow-x: auto;
   }
+  a {
+    width: 240px !important;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    @include default-link();
+  }
 }
 .block_address {
   width: 300px;
@@ -56,15 +69,15 @@
     text-align: left;
   }
   a {
-    width: 240px !important;
-    margin: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+      //width: 240px !important;
+      //margin: 0;
+    //overflow: hidden;
+    //white-space: nowrap;
+    //text-overflow: ellipsis;
     display: inline-block;
   }
   .addresss a{
-    @include default-link();
+
   }
   .hash a{
     color: #0FBA87!important;

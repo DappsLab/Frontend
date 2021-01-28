@@ -35,6 +35,18 @@ const PrivateRoute = ({setUser,user,component:Comp,...rest}) => {
             )
         }
         if (data) {
+            if (data.me.isBlocked===true){
+                if (rest.path==='/unblock_request'){
+                    return <Route {...rest} component={(props)=>(
+                        !!localStorage.getItem('token') ?
+                            <Comp {...props} />
+                            :
+                            <Redirect to="/login"/>
+                    )}/>
+                }
+                return <Redirect to={'/unblock_request'}/>
+            }
+
             return <Route {...rest} component={(props) => (
                 !!localStorage.getItem('token') ?
                     <Comp {...props} refetch={refetch} user={data.me}/>

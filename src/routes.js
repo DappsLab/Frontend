@@ -57,6 +57,7 @@ import InteractSmartContract
     from "./components/home/smartContract/deploySmartContract/InteractSmartContract/InteractSmartContract";
 import CustomOrdersVerification from "./components/admin/custom-order-verification/CustomOrdersVerification";
 import UserBlock from "./components/admin/user-block/user-block";
+import UnBlockRequest from "./components/user/unblock-request/UnBlockRequest";
 
 
 const Routes =(props)=>{
@@ -88,6 +89,7 @@ const Routes =(props)=>{
               <PrivateRoute {...props} path={'/dashboard/add_test_address'} component={AddTestAddress}/>
               <PrivateRoute {...props} path={'/edit_dapp/:id'} component={EditDapp}/>
               <PrivateRoute {...props} path={"/logout"} exact component={Logout}/>
+              <PrivateRoute {...props} path={"/unblock_request"} exact component={UnBlockRequest}/>
               <PrivateRoute {...props} path={"/request_smart_contract"} exact component={RequestSmartContract}/>
               <PrivateRoute {...props} path={"/delete_user"} exact component={DeleteUser}/>
               <PrivateRoute {...props} path={"/edit_samrt_contract/:id"} exact component={EditSmartContract}/>

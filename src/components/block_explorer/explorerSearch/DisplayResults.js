@@ -72,7 +72,6 @@ export const AddressesResult=(props)=>{
     const data=props.data;
     let search=props.address;
     search=search.split(":");
-    console.log(data)
     return <div className={"address"}>
         <h4>Address: {search[1]}</h4>
         <Table  className={"striped"}>

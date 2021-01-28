@@ -1,7 +1,10 @@
+.ui[class*="middle aligned"].grid > .column:not(.row) {
+  align-self: flex-start !important; }
+
 .result_container {
   background-image: linear-gradient(135.14deg, #04031D 0%, #0F0E2e 100%);
   margin: 0 !important;
-  min-height: 200px; }
+  min-height: 500px; }
   .result_container .segment {
     padding: 16px 0 !important; }
   .result_container .block_result {
@@ -32,6 +35,16 @@
     overflow-x: auto; }
     .address .striped tr {
       background-color: #0F0E2e; }
+  .address a {
+    width: 240px !important;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; }
 
 .block_address {
   width: 300px;
@@ -41,16 +54,7 @@
     width: 50px;
     text-align: left; }
   .block_address a {
-    width: 240px !important;
-    margin: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     display: inline-block; }
-  .block_address .addresss a {
-    background-image: linear-gradient(-90deg, #5068ff 3%, #ab37f9 97%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; }
   .block_address .hash a {
     color: #0FBA87 !important; }
 

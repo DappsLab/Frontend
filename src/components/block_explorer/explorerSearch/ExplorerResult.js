@@ -275,7 +275,7 @@ class ExplorerResult extends Component {
         return (
             <Layout>
                 <Grid textAlign="center"  verticalAlign='middle' className={"result_container"}>
-                    <Grid.Column style={{maxWidth:this.state.search==="addresses"?1400:1000}}>
+                    <Grid.Column style={{alignSelf:'flex-start!important',maxWidth:this.state.search==="addresses"?1400:1000}}>
                         {this.state.loading?<Spinner2/>:
                             <Segment>
                                 {this.handleReturn()}

@@ -41,7 +41,7 @@ const  DetailedContract =(props)=>{
         if (data) {
             const contract=data.smartContractById;
             return    <div className={"contractContainer flex"}>
-                <ContractBuyDetails contract={contract} logged_session={session}  {...props} user={props.currentUser}/>
+                <ContractBuyDetails contract={contract}  logged_session={session}  {...props} user={props.currentUser}/>
                 <div className={"contractLeft"}>
                     <div className={'flex'}>
                         <ContractImg

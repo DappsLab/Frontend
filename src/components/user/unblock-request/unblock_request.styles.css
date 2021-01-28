@@ -1,0 +1,24 @@
+.unblock_container {
+  min-height: 500px;
+  color: #fff !important; }
+  .unblock_container .form h2 {
+    margin-top: 20px; }
+  .unblock_container .bar1 {
+    margin-bottom: 40px; }
+  .unblock_container form textarea {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 7px;
+    max-width: 100%;
+    min-width: 100%;
+    padding: 10px;
+    min-height: 200px;
+    max-height: 390px; }
+  .unblock_container form .custom-button {
+    margin-top: 30px;
+    background-color: #0FBA87;
+    border: 2px solid #0FBA87; }
+    .unblock_container form .custom-button:hover {
+      background-color: #fff;
+      color: #04031c; }
+
+/*# sourceMappingURL=unblock_request.styles.css.map */

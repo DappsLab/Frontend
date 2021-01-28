@@ -68,7 +68,7 @@ const TestLicenses = (props) => {
     }
     return (
         <div>
-            {logged_session&& RenderTestLicenses()}
+            {logged_session&&!user.isBlocked &&RenderTestLicenses()}
         </div>
     );
 };

@@ -37,9 +37,9 @@ const CustomOrderRow = ({orders}) => {
                    }
                </Table.Body>
             </Table>
-            <div className={'zero-result'}>
-                {orders.length>0?"":"0 Orders Found"}
-            </div>
+            {!orders.length>0&&<div className={'zero-result'}>
+                {orders.length > 0 ? "" : "0 Orders Found"}
+            </div>}
         </div>
     );
 };

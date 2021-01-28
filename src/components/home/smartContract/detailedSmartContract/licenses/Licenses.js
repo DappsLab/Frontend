@@ -66,7 +66,7 @@ const Licenses = (props) => {
     }
     return (
         <div>
-            {logged_session&& RenderLicenses()}
+            {logged_session &&!user.isBlocked&& RenderLicenses()}
         </div>
     );
 }
