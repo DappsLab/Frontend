@@ -40,7 +40,7 @@ const DappsVerification = (props) => {
                             )
                         }else {
                             return (
-                                <div>No Pending Dapps </div>
+                                <div className={'zero-result'}>Found 0 Pending Dapps </div>
                             )
                         }
                     }

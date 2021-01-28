@@ -3,12 +3,13 @@ import DashboardLayout from "../../../../hoc/DashboardLayout";
 import {Tab, } from "semantic-ui-react";
 import CustomOrderRow from "./CustomOderRow";
 import {Query} from "react-apollo";
-import {me_Query} from "../../../../queries/queries";
+import {me_Query,searchCustomOrders} from "../../../../queries/queries";
 import {Spinner3} from "../../../ui/Spinner";
 
 const CustomOrder = (props) => {
     const {user}=props
     const [myOrder,setMyOrders]=useState(null)
+    const [allOrder,setAllOrders]=useState(null)
 
     const myOrders=()=>{
        return  <Query query={me_Query}  fetchPolicy={'network-only'} onCompleted={data => {
@@ -25,7 +26,19 @@ const CustomOrder = (props) => {
        </Query>
     }
     const allOrders=()=>{
-       return <CustomOrderRow orders={user.customOrders}/>
+       return <Query query={searchCustomOrders}  fetchPolicy={'network-only'} onCompleted={data => {
+           setAllOrders(data.searchVerifiedCustomOrders)
+       }}>
+           {({loading,data,error})=>{
+               if (loading) return <Spinner3/>
+               if (error) return <p>{error.toString()}</p>
+               if (data&&allOrder){
+                   console.log(data)
+                   return <CustomOrderRow orders={allOrder}/>
+
+               }else return <div>Loading</div>
+           }}
+       </Query>
     }
     const panes = [
         { menuItem: 'My Order', render:()=> myOrders() },
@@ -35,7 +48,7 @@ const CustomOrder = (props) => {
     return (
         <DashboardLayout user={props.user}>
             <h1><strong>Custom orders of <span>Smart Contract/Dapp</span></strong></h1>
-            {user.type === "ADMIN" || user.type === 'DEVELOPER' ?
+            {user.type === 'DEVELOPER' ?
                 <Tab className={"order_tab"}
                       menu={{fluid: true, tabular: true}}
                       panes={panes}

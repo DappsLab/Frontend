@@ -47,6 +47,7 @@ function Row(props) {
         // }],
         onCompleted:data=>{
             if (data){
+                alert.success("VERIFIED SUCCESSFULLY",{timeout:2000})
                 fetch();
             }
         }
@@ -66,6 +67,7 @@ function Row(props) {
         // }],
         onCompleted:data=>{
             if (data){
+                alert.success("REJECTED SUCCESSFULLY",{timeout:2000})
                 fetch();
             }
         }

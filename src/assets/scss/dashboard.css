@@ -18,8 +18,8 @@
     color: #fff !important;
     background-image: url("../images/admin-nav-bg.png");
     background-repeat: no-repeat;
-    background-size: 100%;
-    min-height: 955px;
+    background-size: 100% 100%;
+    min-height: 1000px;
     flex-direction: column;
     justify-content: center; }
   .dashContainer li {

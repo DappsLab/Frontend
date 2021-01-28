@@ -727,6 +727,27 @@ export const pendingCustomOrders=gql`{
   }
 }
 `
+export const searchCustomOrders=gql`{
+  searchVerifiedCustomOrders {
+    businessEmail
+    businessName
+    businessPhone
+    businessWebsite
+    id
+    createdAt
+    productType
+    requirements
+    role
+    user {
+      id
+      fullName
+    }
+    status
+  }
+  
+}
+
+`
 export const verifyCustomeOrder=gql`
     mutation ($id:ID!){
   verifyCustomOrder(id: $id)

@@ -42,7 +42,7 @@ const SmartContractVerification = (props) => {
                             )
                         }else {
                             return (
-                                <div>No Pending Smart Contract </div>
+                                <div className={'zero-result'}>Found 0  Pending Smart Contract </div>
                             )
                         }
                     }

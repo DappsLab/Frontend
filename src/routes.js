@@ -56,6 +56,7 @@ import TestInteraction from "./components/home/smartContract/testSmartContract/t
 import InteractSmartContract
     from "./components/home/smartContract/deploySmartContract/InteractSmartContract/InteractSmartContract";
 import CustomOrdersVerification from "./components/admin/custom-order-verification/CustomOrdersVerification";
+import UserBlock from "./components/admin/user-block/user-block";
 
 
 const Routes =(props)=>{
@@ -75,6 +76,7 @@ const Routes =(props)=>{
               <PrivateRoute {...props} path={"/dashboard/purchased_dapps"} exact component={PurchasedDapp}/>
               <PrivateRoute {...props} path={"/dashboard/contract_verification"} exact component={SmartContractVerification}/>
               <PrivateRoute {...props} path={"/dashboard/dapps_verification"} exact component={DappsVerification}/>
+              <PrivateRoute {...props} path={"/dashboard/block_users"} exact component={UserBlock}/>
               <PrivateRoute {...props} path={"/dashboard/custom_orders_verification"} exact component={CustomOrdersVerification}/>
               <PrivateRoute {...props} path={"/dashboard/kyc_verification"} exact component={KycVerification}/>
               <PrivateRoute {...props} path={"/account_settings/profile"} component={GeneralSetting}/>

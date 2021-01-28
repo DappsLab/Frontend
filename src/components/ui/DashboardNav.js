@@ -19,7 +19,8 @@ const DashboardNav = (props) => {
         {icon:<LocalMallIcon/>,title:"KYC (Account Setting)",subtitle:"(Account Setting)",linkTo:"/dashboard/kyc_verification"},
         {icon:<LocalMallIcon/>,title:"Smart Contract (Contract  Verification)",subtitle:"(Contract  Verification)",linkTo:"/dashboard/contract_verification"},
         {icon:<LocalMallIcon/>,title:"Dapps (Dapps Verification)",subtitle:"(Dapps Verification)",linkTo:"/dashboard/dapps_verification"},
-        {icon:<LocalMallIcon/>,title:"Custom Orders Verification",subtitle:"(Dapps Verification)",linkTo:"/dashboard/custom_orders_verification"}
+        {icon:<LocalMallIcon/>,title:"Custom Orders Verification",subtitle:"(Dapps Verification)",linkTo:"/dashboard/custom_orders_verification"},
+        {icon:<LocalMallIcon/>,title:"Block User",subtitle:"(Dapps Verification)",linkTo:"/dashboard/block_users"}
 
     ]
     return (

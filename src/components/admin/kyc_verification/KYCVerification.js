@@ -43,7 +43,7 @@ const KycVerification =(props)=> {
                             )
                         }else {
                             return (
-                                <div>No Pending KYC Varifections </div>
+                                <div className={'zero-result'}>Found 0 Pending KYC Varifections </div>
                             )
                         }
                     }
