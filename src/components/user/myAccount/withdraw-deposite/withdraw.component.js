@@ -41,7 +41,7 @@ const Withdraw = ({alert,history}) => {
     }
     return (
         <form onSubmit={handleSubmit}>
-            <FormInput type={'text'} name={'address'} label={"Receipt Address"} handleChange={
+            <FormInput type={'text'} name={'address'} label={"Reciever Address"} handleChange={
                 (event)=>setAddress(event.target.value)
             } value={address}/>
 
@@ -50,7 +50,7 @@ const Withdraw = ({alert,history}) => {
                     setAmount(FormValidation(amount, event.target.value, event.target.name))
                 }
             } value={amount}/>
-            <CustomButton type={'submit'}>Withdraw</CustomButton>
+            <CustomButton type={'submit'}>Transfer</CustomButton>
         </form>
     );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import DashboardLayout from "../../../../hoc/DashboardLayout";
 import { Table} from "semantic-ui-react";
-import {dateTime} from "../../../../helpers/DateTimeConversion";
+import {dateTime} from "../../../ui/DateTimeConversion";
 import DownlaodDapp from "../../../home/dapps/detailDApps/DownlaodDapp";
 
 const PurchasedDapp = (props) => {

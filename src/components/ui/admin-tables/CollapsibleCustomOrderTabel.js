@@ -12,7 +12,7 @@ import {Client} from "../../../queries/Services";
 import IconButton from "@material-ui/core/IconButton";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-import {dateTime} from "../../../helpers/DateTimeConversion";
+import {dateTime} from "../DateTimeConversion";
 import Collapse from "@material-ui/core/Collapse";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";

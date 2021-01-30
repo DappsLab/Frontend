@@ -1,7 +1,7 @@
 import React from 'react';
 import {List, Divider, Button, Table} from "semantic-ui-react";
 import {Link} from "react-router-dom";
-import {dateTime} from "../../../helpers/DateTimeConversion";
+import {dateTime} from "../../ui/DateTimeConversion";
 
 export const BlockResult=(props)=>{
     const data=props.data;

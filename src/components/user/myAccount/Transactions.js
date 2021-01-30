@@ -7,7 +7,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import {ApolloClient,gql, InMemoryCache} from "@apollo/client";
 import {Spinner2} from "../../ui/Spinner";
-import {dateTime} from "../../../helpers/DateTimeConversion";
+import {dateTime} from "../../ui/DateTimeConversion";
 import AccountLayout from "../../../hoc/AccountLayout";
 import {Query} from "react-apollo";
 import {toEth} from "../../ui/ContractInteractionHelper";
