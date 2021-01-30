@@ -12,6 +12,9 @@
     margin: 0 10px;
     padding: 30px;
     border-radius: 1px; }
+    .detail-container .dapps-details .markdown {
+      margin-top: 10px;
+      width: 100%; }
     .detail-container .dapps-details h2 {
       margin-bottom: 0; }
     .detail-container .dapps-details span:nth-child(2) {
