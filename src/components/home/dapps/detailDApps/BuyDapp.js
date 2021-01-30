@@ -88,11 +88,11 @@ const BuyDapp = (props) => {
         },
         onError:error => {
             setLoading(false)
-            alert.error("purchasd "+error.toString(),{timeout:5000})
+            alert.error("purchased "+error.toString(),{timeout:5000})
         },
         onCompleted:data => {
             setLoading(false)
-            alert.success("Congratulation, You purchasd Dapps Successfully and You can download it.",{timeout:5000})
+            alert.success("Congratulation, You purchased Dapps Successfully and You can download it.",{timeout:5000})
             setPurchased(data.purchaseDApp)
         }
     })
@@ -162,8 +162,7 @@ const BuyDapp = (props) => {
                                 </Form>
                                 <Button onClick={HandelBuy} loading={loading} fluid className={"buybtn"}>Buy Dapp</Button>
                             </div>
-                            :
-                           <Query query={me_Query} fetchPolicy={'network-only'}>
+                            : <Query query={me_Query} fetchPolicy={'network-only'}>
                                {({loading, data, error}) => {
                                    if (loading) return <div>Loading</div>
                                    if (error) return <div>{error.toString()}</div>
