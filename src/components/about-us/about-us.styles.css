@@ -1,12 +1,50 @@
 .about-us {
   background-image: linear-gradient(135.14deg, #04031D 0%, #0F0E2e 100%);
-  color: #fff !important;
-  padding: 40px 0; }
+  color: #fff !important; }
   .about-us .about-dapplab {
-    width: 500px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 700px;
     margin: auto;
     text-align: center; }
+    .about-us .about-dapplab h2 {
+      font-size: 60px;
+      color: #0FBA87; }
+    .about-us .about-dapplab p {
+      font-size: 20px; }
   .about-us .about-img {
     width: 100%; }
+  .about-us .our-team {
+    width: 100%;
+    display: flex;
+    padding: 60px 0;
+    border-top: 1px solid rgba(250, 250, 250, 0.1);
+    justify-content: space-around; }
+    .about-us .our-team .our-team-card {
+      min-width: 400px;
+      background-color: #151339;
+      border-radius: 10px;
+      min-height: 400px;
+      text-align: center;
+      border: 1px solid rgba(250, 250, 250, 0.1);
+      padding: 40px 20px; }
+      .about-us .our-team .our-team-card .image {
+        margin: auto;
+        height: 200px;
+        width: 200px; }
+        .about-us .our-team .our-team-card .image img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%; }
+      .about-us .our-team .our-team-card h2 {
+        color: #0FBA87;
+        margin-bottom: 0; }
+      .about-us .our-team .our-team-card span {
+        color: #8F4114; }
+      .about-us .our-team .our-team-card .socila-links {
+        margin-top: 20px; }
 
 /*# sourceMappingURL=about-us.styles.css.map */

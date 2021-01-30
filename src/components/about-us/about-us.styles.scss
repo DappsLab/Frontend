@@ -3,13 +3,60 @@
 .about-us{
   @include default-color();
   color: #fff!important;
-  padding: 40px 0;
   .about-dapplab{
-    width: 500px;
+    h2{
+      font-size: 60px;
+      color: #0FBA87;
+    }
+    p{
+      font-size: 20px;
+    }
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 700px;
     margin: auto;
     text-align: center;
   }
   .about-img{
     width: 100%;
+  }
+  .our-team{
+    width: 100%;
+    display: flex;
+    padding: 60px 0;
+    border-top: 1px solid rgba(250,250,250,.1);
+    justify-content: space-around;
+    .our-team-card{
+      min-width: 400px;
+      background-color: #151339;
+      border-radius: 10px;
+      min-height: 400px;
+      text-align: center;
+      border: 1px solid rgba(250,250,250,.1);
+      padding: 40px 20px;
+      .image{
+        margin: auto;
+        height: 200px;
+        width: 200px;
+        img{
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+        }
+      }
+      h2{
+        color: #0FBA87;
+        margin-bottom: 0;
+      }
+      span{
+        color: #8F4114;
+      }
+      .socila-links{
+        margin-top: 20px;
+      }
+    }
   }
 }
