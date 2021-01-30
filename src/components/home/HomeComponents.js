@@ -21,12 +21,12 @@ export const HomeBlockChain=()=>(
     <section className="home_blockchain">
         <div className="b-left">
             <h2>Dappslab <span> Blockchain</span></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                anim id est laborum.
+            <p><strong>DappsLab</strong> is a distributed public block chain network that focuses on running programming code of any
+                decentralized application. More simply, it is a platform for sharing information across the globe that
+                cannot be manipulated or changed.
+                <strong> DAppCoin</strong> is a decentralized digital currency, also known as DAC. In addition to being
+                a tradeable cryptocurrency, dAppCoin powers the DApp network by paying for transaction fees and
+                computational services. DAppCoin is paving the way for a more intelligent financial platform.
             </p>
         </div>
         <div className="b-right">
