@@ -798,3 +798,8 @@ export const deleteCustomOrders=gql`
     mutation ($id:ID!){
   deleteCustomOrder(id: $id)
 }`
+export const createAdmin=gql`
+mutation ($email:String!) {
+  createAdmin(email: $email)
+}
+`
