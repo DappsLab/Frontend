@@ -13,7 +13,7 @@ const TestLicenses = (props) => {
                     return <div><Segment className={'licenses_header'}>
                         <div>
                             <h2 className={"flex"}>
-                                <Icon  inverted color='blue' size={'large'} name={'shopping cart'}/>
+                                <Icon  inverted color='blue' size={'small'} name={'shopping cart'}/>
                                 Test Licenses
                             </h2>
                             <span>Customization Left: {purchased[i].unlimitedCustomization?"Unlimited Customizations":purchased[i].customizationsLeft}</span>
@@ -23,7 +23,7 @@ const TestLicenses = (props) => {
                             <div onClick={() => {
                                 setShowLicenses(!showLicenses)
                             }}>
-                                <Icon link size={'large'} name={`chevron ${showLicenses ? "up" : "down"}`}/>
+                                <Icon link size={'small'} name={`chevron ${showLicenses ? "up" : "down"}`}/>
                             </div>
                         </div>
                     </Segment>

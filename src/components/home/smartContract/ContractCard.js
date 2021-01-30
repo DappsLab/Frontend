@@ -32,11 +32,11 @@ const ContractCard =(props)=>{
            if (smartContract.length) {
                return <div>
                    <div style={{height: `${smartContract.length > 6 ? height : '820px'}`}}
-                        className={"flex card-container"}>
+                        className={"card-container"}>
                        {smartContract.map((contract, index) => {
-                           return <Link style={{backgroundColor: `${cardColors(index)}`}}
-                                        to={`/detailed_contract/${contract.id}`} className={"card flex"}
-                                        key={contract.id}>
+                           return <div className={'card'}   key={contract.id}>
+                               <Link style={{backgroundColor: `${cardColors(index)}`}}
+                                        to={`/detailed_contract/${contract.id}`} className={"sub-card flex"}>
                                <div className={"card-top flex"}>
                                    <ContractImg
                                        position={"relative"}
@@ -57,6 +57,7 @@ const ContractCard =(props)=>{
                                </div>
                                <span className={"block"}>{contract.singleLicensePrice} Dapps</span>
                            </Link>
+                           </div>
                        })}
                    </div>
                    {smartContract.length > 8 &&

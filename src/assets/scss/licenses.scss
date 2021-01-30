@@ -1,12 +1,12 @@
 @import "colors";
 
 .licenses_header {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    margin: 20px !important;
-    padding: 16px 25px;
-    min-height: 120px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px !important;
+  padding: 16px 25px;
+  min-height: 120px;
   background-color: #191840!important;
   //i.inverted.circular.blue.icon{
   //  background-color: #0FBA87!important;
@@ -16,6 +16,9 @@
   }
   i.icon.chevron.down:before,i.icon.chevron.up:before{
     color: #fff;
+  }
+  h2{
+    font-size: 30px;
   }
 }
 .licenses {

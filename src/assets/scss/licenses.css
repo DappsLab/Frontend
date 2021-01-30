@@ -10,6 +10,8 @@
     color: #0FBA87; }
   .licenses_header i.icon.chevron.down:before, .licenses_header i.icon.chevron.up:before {
     color: #fff; }
+  .licenses_header h2 {
+    font-size: 30px; }
 
 .licenses {
   margin: 20px;
