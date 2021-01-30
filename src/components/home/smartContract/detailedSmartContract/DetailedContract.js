@@ -18,6 +18,7 @@ import ContractBuyDetails from "./ContractBuyDetails";
 import {setUser} from "../../../../reducer/user/user.actions";
 import TestLicenses from "./licenses/TestLicenses";
 import Error from "../../../ui/errors/error/Error";
+import ReactMarkdown from "react-markdown";
 
 
 const  DetailedContract =(props)=>{
@@ -79,7 +80,8 @@ const  DetailedContract =(props)=>{
                        </div>
                         <Divider/>
                         <label><strong>Description</strong></label>
-                        <p>{contract.description}</p>
+                        <ReactMarkdown source={contract.description} className={'markdown'}/>
+                        {/*<p>{contract.description}</p>*/}
                     </div>
                     <Licenses contract={contract} logged_session={session}  {...props} user={props.currentUser}/>
                     <TestLicenses contract={contract} logged_session={session}  {...props} user={props.currentUser}/>

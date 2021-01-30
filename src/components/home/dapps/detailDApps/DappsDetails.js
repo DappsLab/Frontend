@@ -10,6 +10,7 @@ import Avatar from "@material-ui/core/Avatar";
 import {categoryColors, getDate} from "../../../ui/Helpers";
 import {connect} from 'react-redux'
 import BuyDapp from "./BuyDapp";
+import ReactMarkdown from "react-markdown";
 
 
 const DappsDetails = (props) => {
@@ -45,7 +46,8 @@ const DappsDetails = (props) => {
                         })}
                     </div>
                     <h3>Description</h3>
-                    <p>{dapp.description}</p>
+                    <ReactMarkdown source={dapp.description} className={'markdown'}/>
+                    {/*<p>{dapp.description}</p>*/}
                     <h4>Created By  <span>{dapp.publisher.fullName}</span></h4>
                     <Avatar src={dapp.publisher.avatar} style={{height:"100px",width:"100px"}} />
                 </div>

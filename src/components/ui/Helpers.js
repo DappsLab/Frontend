@@ -91,13 +91,13 @@ export const  categoryColors=(color)=> {
         case "SOCIAL":
             return "#5FAD2F";
         case "DOCUMENTS":
-            return "#5754AB";
+            return "#C792EA";
         case "UTILITY":
             return "#0FBA87";
         case "ESCROW":
             return "#8F4114";
         case "FINANCIAL":
-            return "#1D1B46";
+            return "#FDD835";
         default:
             return ;
     }

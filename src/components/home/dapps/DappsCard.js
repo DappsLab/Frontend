@@ -31,30 +31,32 @@ const DappsCard = (props) => {
         if (dapps.length) {
             return (
                 <div>
-                    <div style={{height: `${dapps.length > 6 ? height : '820px'}`}} className={"flex card-container"}>
+                    <div style={{height: `${dapps.length > 6 ? height : '820px'}`}} className={" card-container"}>
                         {dapps.map((dapp, index) => {
-                            return <Link style={{backgroundColor: `${cardColors(index)}`}}
-                                         to={`/dapps_details/${dapp.id}`} className={"card flex"} key={dapp.id}>
-                                <div className={"card-top flex"}>
-                                    <ContractImg
-                                        position={"relative"}
-                                        imagePath={dapp.image}
-                                        height={"100px"}
-                                        width={"100px"}
-                                    />
-                                    <div className={"card-right"}>
-                                        <h1>{dapp.dAppName}</h1>
-                                        <span>Publish By </span>
-                                        <span>{dapp.publisher.fullName}</span>
-                                        <span> created at {getDate(dapp.publishingDateTime)}</span>
+                            return <div className={'card'}   key={dapp.id}>
+                                <Link style={{backgroundColor: `${cardColors(index)}`}}
+                                             to={`/dapps_details/${dapp.id}`} className={"sub-card flex"} key={dapp.id}>
+                                    <div className={"card-top flex"}>
+                                        <ContractImg
+                                            position={"relative"}
+                                            imagePath={dapp.image}
+                                            height={"100px"}
+                                            width={"100px"}
+                                        />
+                                        <div className={"card-right"}>
+                                            <h1>{dapp.dAppName}</h1>
+                                            <span>Publish By </span>
+                                            <span>{dapp.publisher.fullName}</span>
+                                            <span> created at {getDate(dapp.publishingDateTime)}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <p>{dapp.shortDescription}</p>
-                                <div>
-                                    {renderCategory(dapp.dAppCategory)}
-                                </div>
-                                <span className={"block"}>{dapp.singleLicensePrice} Dapps</span>
-                            </Link>
+                                    <p>{dapp.shortDescription}</p>
+                                    <div>
+                                        {renderCategory(dapp.dAppCategory)}
+                                    </div>
+                                    <span className={"block"}>{dapp.singleLicensePrice} Dapps</span>
+                                </Link>
+                            </div>
                         })}
                     </div>
                     {dapps.length > 8 &&
