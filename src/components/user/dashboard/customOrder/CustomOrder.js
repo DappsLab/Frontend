@@ -20,7 +20,7 @@ const CustomOrder = (props) => {
                if (error) return <p>{error.toString()}</p>
                if (data&&myOrder){
                    console.log(data)
-                   return <CustomOrderRow orders={myOrder}/>
+                   return <CustomOrderRow {...props} orders={myOrder}/>
                }else return <div>Loading</div>
            }}
        </Query>
@@ -33,8 +33,7 @@ const CustomOrder = (props) => {
                if (loading) return <Spinner3/>
                if (error) return <p>{error.toString()}</p>
                if (data&&allOrder){
-                   console.log(data)
-                   return <CustomOrderRow orders={allOrder}/>
+                   return <CustomOrderRow {...props} orders={allOrder}/>
 
                }else return <div>Loading</div>
            }}

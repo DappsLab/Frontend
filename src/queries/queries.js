@@ -793,5 +793,8 @@ mutation ($description:String!){
   createUnBlockRequest(description:$description){
   id
 }
-}
-    `
+}`
+export const deleteCustomOrders=gql`
+    mutation ($id:ID!){
+  deleteCustomOrder(id: $id)
+}`

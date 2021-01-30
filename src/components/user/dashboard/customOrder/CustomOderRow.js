@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button, Icon, Table} from "semantic-ui-react";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
@@ -11,12 +11,48 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import TableBody from "@material-ui/core/TableBody";
 import {useRowStyles} from "../../../ui/mise";
+import DeleteModal from "../developedContract/DeleteModel";
+import {useMutation} from "@apollo/client";
+import {Client} from "../../../../queries/Services";
+import {deleteCustomOrders} from "../../../../queries/queries";
+import {withAlert} from "react-alert";
 
 
-const CustomOrderRow = ({orders}) => {
+const CustomOrderRow = ({alert,orders,history}) => {
+    const [modalOpen, setModalOpen] =useState(false);
+    const [deleteID, setDeleteID] = useState('');
+    const closeModal=()=> {
+        setModalOpen(false)
+    }
+    const [cancel]=useMutation(deleteCustomOrders,{
+        client:Client,
+        context:{
+            headers:{
+                authorization:localStorage.getItem('token')
+            }
+        },
+        onCompleted:data => {
+            alert.success("Custom Order Deleted Successfully",{timeout:3000})
+            setDeleteID('')
+            history.push('/dashboard/custom_orders')
+        },onError:error => {
+            alert.error(error.toString(),{timeout:2000})
+        }
+    })
+    const delateAction=()=>{
+        cancel({
+            variables:{
+                id:deleteID
+            }
+        }).catch(err=>{
+            console.log(err.toString())
+        })
+        closeModal();
+    }
     function Row(props) {
+        const [open, setOpen] =useState(false);
+
         const { row } = props;
-        const [open, setOpen] = React.useState(false);
         const classes = useRowStyles();
 
         return (
@@ -38,7 +74,10 @@ const CustomOrderRow = ({orders}) => {
                     </Table.Cell>
                     <Table.Cell className={'action'}  >
                              {/*{order.status!=="VERIFIED"&&<Link to={`/edit_custom_order/${order.id}`}><Icon circular  link  inverted color='green' name='edit'/></Link>}*/}
-                             <span> <Icon circular link  inverted color='red' name='delete'/></span>
+                             <span onClick={()=>{
+                                 setDeleteID(row.id)
+                                 setModalOpen(true);
+                             }}> <Icon circular link  inverted color='red' name='delete'/></span>
                     </Table.Cell>
                 </TableRow>
                 <TableRow>
@@ -83,7 +122,7 @@ const CustomOrderRow = ({orders}) => {
                         <Table.HeaderCell >Phone No.</Table.HeaderCell>
                         <Table.HeaderCell >Website</Table.HeaderCell>
                         <Table.HeaderCell >Status</Table.HeaderCell>
-                        <Table.HeaderCell>Action</Table.HeaderCell>
+                        <Table.HeaderCell textAlign={'center'}>Action</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
                <Table.Body>
@@ -110,8 +149,14 @@ const CustomOrderRow = ({orders}) => {
             {!orders.length>0&&<div className={'zero-result'}>
                 {orders.length > 0 ? "" : "0 Orders Found"}
             </div>}
+            <DeleteModal
+                order={!!deleteID}
+                open={modalOpen}
+                close={()=>setModalOpen(false)}
+                deleteAction={delateAction}
+            />
         </div>
     );
 };
 
-export default CustomOrderRow;
+export default withAlert() (CustomOrderRow);
