@@ -32,6 +32,9 @@
   .contractLeft .MuiAvatar-circle {
     width: 80px !important;
     height: 80px !important; }
+  .contractLeft .markdown {
+    margin-top: 10px;
+    width: 100%; }
   .contractLeft .fa-icon {
     margin: 20px 0; }
     .contractLeft .fa-icon i.inverted.bordered.icon {
