@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Container, Form, Input} from "semantic-ui-react";
 import {useLazyQuery, useMutation} from "@apollo/client";
-import {orderContract, purchaseDapp,verifyOrder} from "../../../../queries/queries";
+import {me_Query, orderContract, purchaseDapp, verifyOrder} from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
 import {withAlert} from "react-alert";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -9,6 +9,7 @@ import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 import {Slider} from "react-semantic-ui-range";
 import {feeProcessTime} from "../../../ui/Helpers";
 import DownlaodDapp from "./DownlaodDapp";
+import {Query} from "react-apollo";
 
 const BuyDapp = (props) => {
     const [loading,setLoading]=useState(false);
@@ -162,14 +163,22 @@ const BuyDapp = (props) => {
                                 <Button onClick={HandelBuy} loading={loading} fluid className={"buybtn"}>Buy Dapp</Button>
                             </div>
                             :
-                            <Container fluid className={"kyc_information"}>
-                                <p>Before you can purchase this contract, you have to complete your KYC information and
-                                    get validated.</p>
-                                <Button fluid onClick={() => {
-                                    props.history.push('/account_settings/KYC')}} className={"testbtn"}>
-                                    Verify your Account
-                                </Button>
-                            </Container>
+                           <Query query={me_Query} fetchPolicy={'network-only'}>
+                               {({loading, data, error}) => {
+                                   if (loading) return <div>Loading</div>
+                                   if (error) return <div>{error.toString()}</div>
+                                   if (data&&!loading){
+                                      return  <Container fluid className={"kyc_information"}>
+                                          <p>Before you can purchase this contract, you have to complete your KYC information and
+                                              get validated.</p>
+                                          <Button fluid onClick={() => {
+                                              props.history.push('/account_settings/KYC')}} className={"testbtn"}>
+                                              Verify your Account
+                                          </Button>
+                                      </Container>
+                                   }
+                               }}
+                           </Query>
                         )}
                 </div>:
                 <DownlaodDapp check={true} purchased={purchased}/>

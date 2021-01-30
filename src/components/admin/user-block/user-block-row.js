@@ -115,7 +115,6 @@ const UnBlockRow = (props) => {
                                    <Table.Cell className={'action'} width={2}>
                                   <span onClick={() => {
                                       setUnBlockID(user.id)
-                                      console.log("here")
                                       setModalOpen(true);
                                   }}> <Icon circular link inverted color='green' name='checkmark'/></span>
                                    </Table.Cell>
