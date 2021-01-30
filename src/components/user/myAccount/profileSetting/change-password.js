@@ -57,7 +57,6 @@ const ChangePassword =(props)=>{
         }else {
             alert.error("Password is too short")
         }
-
     }
     return (
         <Modal className={'pass-model-dimmer'} open={toggle} onClose={() => setToggle(false)}>

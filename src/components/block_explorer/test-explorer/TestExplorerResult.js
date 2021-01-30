@@ -253,11 +253,11 @@ class TestExplorerResult extends Component{
             console.log(search,data,error)
             if (error===""&&data!==null) {
                 if (search === "block") {
-                    return <BlockResult data={data}/>
+                    return <BlockResult {...this.props} type={'test'} data={data}/>
                 }  if (search === "transaction") {
-                    return <TransactionResult data={data}/>
+                    return <TransactionResult {...this.props} type={'test'} data={data}/>
                 }if (search==="addresses"){
-                    return <AddressesResult address={this.props.match.params.search} data={data}/>
+                    return <AddressesResult {...this.props} type={'test'} address={this.props.match.params.search} data={data}/>
                 }
             } else {
                 console.log("here")

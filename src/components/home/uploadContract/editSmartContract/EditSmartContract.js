@@ -64,6 +64,7 @@ const EditSmartContract =(props)=> {
         onCompleted:data1 => {
             console.log(data1)
             setNewSource(data1.contractUploader);
+            alert.success("UPLOAD Source")
         },
         onError:error1 => {
             alert.error(error1.toString(),{timeout:2000})
@@ -173,6 +174,9 @@ const EditSmartContract =(props)=> {
                 }
             },onCompleted:data1 => {
                 setContract(data1.smartContractById)
+                const contractData=data1.smartContractById;
+                setshortDescription(contractData.shortDescription)
+                setlongDescription(contractData.description)
             },onError:error1 => {
                 alert.error(error1.toString(),{timeout:3000})
             }
@@ -221,7 +225,8 @@ const EditSmartContract =(props)=> {
                         </Header>
                         <Form>
                             <TextArea
-                                value={shortDescription} placeholder={contract.shortDescription}
+                                value={shortDescription}
+                                // placeholder={contract.shortDescription}
                                 name={"shortDescription"}
                                 onChange={(event) => onInputChange(event)} className={"editor"}>
                             </TextArea>
@@ -234,7 +239,8 @@ const EditSmartContract =(props)=> {
                         <Form>
                             <Form.Field className={'longDesc flex'}>
                                 <TextArea
-                                    value={longDescription} name={"longDescription"} placeholder={contract.description}
+                                    value={longDescription} name={"longDescription"}
+                                    // placeholder={contract.description}
                                     onChange={(event)=>setlongDescription(event.target.value)} className={"editor"} >
                                 </TextArea>
                                 <ReactMarkdown source={longDescription===""?contract.description:longDescription} className={'markdown'}/>

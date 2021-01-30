@@ -53,6 +53,8 @@ const IntractArguments = (props) => {
            }
         }
         setArgument([])
+        setPayableValue('')
+        setSendValue('')
     }
     const handleChange=(event,index,inputArray)=>{
         const {value}=event.target
@@ -140,8 +142,17 @@ const IntractArguments = (props) => {
         }
     }
     const renderResult=(array)=>{
-        if (value!=='') {
-            // console.log(array)
+        if (value!==''&&value) {
+           let newValue = value.toString()
+           if (newValue.search(',')) {
+               let split=newValue.split(",")
+               return <div className={'execute-result'}>
+                   <h3>Result</h3>
+                   {split.map((data,index) => {
+                     return  <div key={index}>{data}</div>
+                   })}
+               </div>
+           }
             // let tagertArray
             // for (let i=0;i<array.length;i++){
             //     if (array[i].name===name){

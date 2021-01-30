@@ -1,4 +1,13 @@
-import {alphabetRegex, alphanumaric, alphabetOutSpace, nameReg, phoneNumber, numericReg, floatReg} from "./Helpers";
+import {
+    alphabetRegex,
+    alphanumaric,
+    alphabetOutSpace,
+    nameReg,
+    phoneNumber,
+    numericReg,
+    floatReg,
+    emailRegex
+} from "./Helpers";
 import {makeStyles} from "@material-ui/core/styles";
 
 
@@ -63,6 +72,8 @@ export const FormValidation=(oldValue,value,name)=>{
         case 'uPrice':
         case 'amount':
             return value!==""?numericReg.test(value)?value:oldValue:""
+        case 'email':
+            return value!==""?emailRegex.test(value)?value:oldValue:""
         default:
             return
     }

@@ -221,7 +221,7 @@ class ExplorerResult extends Component {
             }
         } else if(search[0]==="addresses"){
             // if (search[0].length===42) {
-                console.log("addresses1")
+                console.log("addresses")
                 this.byAddresses(search[1])
             // }else {
             //     this.setState({loading:false,error:"Not Found"})
@@ -252,14 +252,13 @@ class ExplorerResult extends Component {
             console.log(search,data,error)
             if (error===""&&data!==null) {
                 if (search === "block") {
-                    return <BlockResult data={data}/>
+                    return <BlockResult type={'main'} {...this.props} data={data}/>
                 }  if (search === "transaction") {
-                    return <TransactionResult data={data}/>
+                    return <TransactionResult type={'main'} {...this.props} data={data}/>
                 }if (search==="addresses"){
-                    return <AddressesResult address={this.props.match.params.search} data={data}/>
+                    return <AddressesResult type={'main'} {...this.props} address={this.props.match.params.search} data={data}/>
                 }
             } else {
-                console.log("here")
                 return <Grid textAlign={'center'}>
                     <Grid.Row>
                         <p style={{color:'#fff'}}>{error}</p>

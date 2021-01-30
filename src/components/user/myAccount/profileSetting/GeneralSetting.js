@@ -18,6 +18,7 @@ import UpdateUser from "./UpdateUser";
 import {FormValidation} from "../../../ui/mise";
 import ChangePassword from "./change-password";
 import CustomButton from "../../../ui/custom-button/custom-button.component";
+import AddAdmin from "./AddAdmin";
 
 
 const  GeneralSetting =(props)=>{
@@ -31,6 +32,7 @@ const  GeneralSetting =(props)=>{
     const [fullName,setFullName]=useState('');
     const [Loading,setLoading]=useState(false)
     const [passToggle,setPassToggle]=useState(false)
+    const [adminToggle,setAdminToggle]=useState(false)
     const [type,setType]=useState('');
     const [location,setLocation]=useState('');
     const {alert,setUser}=props;
@@ -139,9 +141,7 @@ const  GeneralSetting =(props)=>{
     }
     //image end
 
-    const handleDelete=()=>{
-        console.log("id")
-    }
+
 
     const  RenderData= ()=> {
         const {data, error, loading} =  useQuery(me_Query, {
@@ -175,14 +175,13 @@ const  GeneralSetting =(props)=>{
                                 </Form.Field>
                                 <Form.Field className={"opacity"}>
                                     <label>Username</label>
-                                    <Form.Input disabled
-                                                placeholder={user.userName} type={"text"}
-                                                name="userName"/>
+                                    <Form.Input
+                                        disabled placeholder={user.userName} type={"text"}
+                                        name="userName"/>
                                 </Form.Field>
-
-                                <Form.Field>
+                                <Form.Field className={user.type==='ADMIN'?"opacity":""}>
                                     <label>User Type</label>
-                                    <Form.Select
+                                    <Form.Select disabled={user.type==='ADMIN'}
                                         placeholder={user.type} name={'type'} value={type}
                                         options={typeOptions}
                                         onChange={((event, {value}) => {
@@ -232,10 +231,10 @@ const  GeneralSetting =(props)=>{
                                         type={"email"} name="email"/>
                                 </Form.Field>
                                 <Form.Field className={'delete-btn'}>
-                                    <label>Delete your Account</label>
+                                    <label>Assign New Addmin</label>
                                    <div className={'flex'}>
-                                       <span>Want to delete your account?</span>
-                                       <button onClick={() => handleDelete()}>Delete Account</button>
+                                       <span>Want to add new Admin?</span>
+                                       <button onClick={()=>{setAdminToggle(!adminToggle)}}>Add Admin</button>
                                    </div>
                                 </Form.Field>
                                 <Form.Field className={'flex change'}>
@@ -246,6 +245,7 @@ const  GeneralSetting =(props)=>{
 
                         </div>
                     </div>
+                    {adminToggle?<AddAdmin toggle={adminToggle} setToggle={setAdminToggle}/>:""}
                     {passToggle?<ChangePassword toggle={passToggle} setToggle={setPassToggle}/>:""}
                     {imgModel ?
                         <CustomizedDialogs

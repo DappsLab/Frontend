@@ -36,6 +36,12 @@ const EditDapp = (props) => {
                 headers: {
                     authorization: localStorage.getItem("token")
                 }
+            },onCompleted:data1 => {
+                const dappData=data1.dAppById
+                setshortDescription(dappData.shortDescription)
+                setlongDescription(dappData.description)
+            },onError:error1 => {
+                alert.error(error1.toString(),{timeout:2000})
             }
         });
         if (loading) return <Spinner2/>
@@ -124,7 +130,7 @@ const EditDapp = (props) => {
                        </Header>
                        <Form>
                            <TextArea
-                               value={shortDescription} placeholder={dapp.shortDescription} name={"shortDescription"}
+                               value={shortDescription}  name={"shortDescription"}
                                onChange={(event)=>onInputChange(event)} className={"editor"} >
                            </TextArea>
                        </Form>
