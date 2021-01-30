@@ -193,6 +193,7 @@ class ExplorerResult extends Component {
     }
     componentDidMount() {
         let search=this.props.match.params.search;
+        console.log(window.location.pathname)
         search=search.split(":");
         this.setState({search:search[0]})
         if (search[0]==="block") {
@@ -210,6 +211,7 @@ class ExplorerResult extends Component {
             }
 
         }else if (search[0]==="transaction"){
+            console.log(search)
             if (search[1].length===66) {
                 console.log("transaction hash")
                 this.transactionByHash(search[1])
@@ -244,9 +246,6 @@ class ExplorerResult extends Component {
                 this.setState({loading:false,error:"Not Found"})
                 console.log(search[0])
             }
-        }else if (search[0]==="tx"){
-            console.log("tx")
-            this.transactionByHash(search[1])
         }
     }
     handleReturn(){
@@ -283,7 +282,6 @@ class ExplorerResult extends Component {
                                 {this.handleReturn()}
                             </Segment>
                         }
-
                     </Grid.Column>
                 </Grid>
             </Layout>

@@ -58,6 +58,7 @@ import InteractSmartContract
 import CustomOrdersVerification from "./components/admin/custom-order-verification/CustomOrdersVerification";
 import UserBlock from "./components/admin/user-block/user-block";
 import UnBlockRequest from "./components/user/unblock-request/UnBlockRequest";
+import ExplorerTransactions from "./components/block_explorer/explorerSearch/transaction";
 
 
 const Routes =(props)=>{
@@ -105,6 +106,7 @@ const Routes =(props)=>{
              <PublicRoute {...props} restricted={false} path={'/dapps_details/:id'} component={DappsDetails}/>
               <PublicRoute {...props} restricted={false} path={"/2FA_varifivcation/:token"} exact component={FAConfirmation}/>
               <PublicRoute {...props} restricted={false} path={"/block_explorer/:search"} exact component={ExplorerResult}/>
+              <PublicRoute {...props} restricted={false} path={"/block_explorer/transaction:/tx/:search"} exact component={ExplorerTransactions}/>
              <PublicRoute {...props} restricted={false} path={"/test_block_explorer/:search"} exact component={TestExplorerResult}/>
               <PublicRoute {...props} restricted={false} path={"/user/reset-password/:key"} exact component={ChangePassword}/>
               <PublicRoute {...props} restricted={false} path={"/user/confirm/:key"} exact component={ConfirmEmail}/>
