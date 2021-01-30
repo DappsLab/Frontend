@@ -1,4 +1,5 @@
 import {alphabetRegex, alphanumaric, alphabetOutSpace, nameReg, phoneNumber, numericReg, floatReg} from "./Helpers";
+import {makeStyles} from "@material-ui/core/styles";
 
 
 
@@ -95,3 +96,10 @@ export const counter= (str, letter)=> {
     }
     return letter_Count;
 }
+export const useRowStyles = makeStyles({
+    root: {
+        '& > *': {
+            borderBottom: 'unset',
+        },
+    },
+});
