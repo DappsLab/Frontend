@@ -244,6 +244,9 @@ class ExplorerResult extends Component {
                 this.setState({loading:false,error:"Not Found"})
                 console.log(search[0])
             }
+        }else if (search[0]==="tx"){
+            console.log("tx")
+            this.transactionByHash(search[1])
         }
     }
     handleReturn(){
