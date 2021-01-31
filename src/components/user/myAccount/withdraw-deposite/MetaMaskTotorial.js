@@ -9,26 +9,38 @@ import _6 from '../../../../assets/images/metamask-6.png'
 import Layout from "../../../../hoc/Layout";
 import FormInput from "../../../ui/form-input/form-input.component";
 import CustomButton from "../../../ui/custom-button/custom-button.component";
-import {Query} from'react-apollo'
-import {Spinner3} from "../../../ui/Spinner";
-import {getPrivateKey} from "../../../../queries/queries";
+import {client, getPrivateKey} from "../../../../queries/queries";
+import {withAlert} from "react-alert";
+import {CopyToClipboard} from "react-copy-to-clipboard";
+import {Form} from "semantic-ui-react";
 
 const MetaMask = (props) => {
     const [passOne,setpassOne]=useState(true)
     const [password,setPassword]=useState('')
-    const [call,setCall]=useState(false)
-    const handleSubmit=async (event)=>{
+    const [privateKey,setPrivateKey]=useState('')
+    const {alert}=props
+   const handleSubmit=async (event)=>{
         event.preventDefault()
-        setCall(true)
-        return <Query query={getPrivateKey}>
-            {({loading,data,error})=>{
-            if (loading) return <Spinner3/>
-            if (error) return <div>{error.toString()}</div>
-            if (data){
-                return <div>sd</div>
+        console.log("here")
+        const results = await client.query({
+            query: getPrivateKey,
+            variables: { pass: password},
+            context:{
+                headers:{
+                    Authorization:localStorage.getItem('token')
+                }
             }
-        }}
-    </Query>
+        }).catch(error => {
+            alert.error(error.toString()+" Try Again", {timeout: 5000})
+        });
+        if (results&&results.data){
+            try{
+                setPassword('')
+                setPrivateKey(results.data.getPrivateKey.wallet.privateKey)
+            }catch (e) {
+                console.log(e.toString())
+            }
+        }
     }
     return (
         <Layout>
@@ -44,7 +56,18 @@ const MetaMask = (props) => {
                     />
                     <CustomButton type={'submit'} >get Private key</CustomButton>
                 </form>
-
+                <Form>
+                    {privateKey.length?
+                        <Form.Field className={'address'}>
+                            <Form.Input
+                                disabled label={'Address'} value={privateKey}
+                            />
+                            <CopyToClipboard text={privateKey}>
+                                <label className={'copied'} onClick={()=>{alert.success("Copied",{timeout:1000})}}> copy</label>
+                            </CopyToClipboard>
+                        </Form.Field>:''
+                    }
+                </Form>
                 <h2 className={'metamask-heading'}>How To Connact To MetaMask Wallet</h2>
                 <div className={'image-Container'}>
                     <div>
@@ -77,4 +100,4 @@ const MetaMask = (props) => {
     );
 }
 
-export default MetaMask;
+export default withAlert() (MetaMask);

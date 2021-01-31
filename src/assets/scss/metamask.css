@@ -31,6 +31,36 @@
       .metamask-container form .custom-button:hover {
         background-color: #0F0E2e;
         border: 2px solid #0FBA87; }
+  .metamask-container .ui.form {
+    width: 700px; }
+    .metamask-container .ui.form .address {
+      display: flex;
+      width: 100%; }
+      .metamask-container .ui.form .address input[type=text] {
+        border-radius: 10px !important;
+        background-color: #0A0927 !important;
+        border: 2px solid rgba(255, 255, 255, 0.29) !important;
+        color: #fff; }
+      .metamask-container .ui.form .address .field > label {
+        font-size: 16px !important;
+        color: #fff !important;
+        opacity: unset !important; }
+      .metamask-container .ui.form .address .disabled.field {
+        opacity: unset !important; }
+      .metamask-container .ui.form .address .disabled {
+        width: 100%;
+        margin: 0; }
+      .metamask-container .ui.form .address .copied {
+        color: #fff !important;
+        position: relative;
+        top: 24px;
+        left: -20px;
+        background: #5754AB;
+        border-radius: 10px;
+        height: 38px;
+        padding: 9px 20px;
+        cursor: pointer;
+        margin: 0; }
   .metamask-container .image-Container {
     display: flex;
     justify-content: space-around;

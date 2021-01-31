@@ -39,6 +39,43 @@
       }
     }
   }
+  .ui.form{
+    width: 700px;
+    .address {
+      display: flex;
+      width: 100%;
+      input[type=text]{
+        border-radius: 10px!important;
+        background-color: #0A0927!important;
+        border: 2px solid rgba(255,255,255,.29)!important;
+        color: #fff;
+      }
+      .field>label{
+        font-size: 16px!important;
+        color: #fff!important;
+        opacity: unset!important;
+      }
+      .disabled.field{
+        opacity: unset!important;
+      }
+      .disabled{
+        width: 100%;
+        margin: 0;
+      }
+      .copied {
+        color: #fff !important;
+        position: relative;
+        top: 24px;
+        left: -20px;
+        background: #5754AB;
+        border-radius: 10px;
+        height: 38px;
+        padding: 9px 20px;
+        cursor: pointer;
+        margin: 0;
+      }
+    }
+  }
   .image-Container {
     display: flex;
     justify-content: space-around;

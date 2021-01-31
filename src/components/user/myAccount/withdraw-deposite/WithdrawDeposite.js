@@ -10,14 +10,12 @@ import {me_Query} from "../../../../queries/queries";
 import {Query} from "react-apollo";
 import {Spinner2} from "../../../ui/Spinner";
 import CustomButton from "../../../ui/custom-button/custom-button.component";
-import MetaMask from "./MetaMaskTotorial";
 
 
 // const timeoutLength = 2500
 const WithdrawDeposite =(props)=>{
     // const [isOpen,setIsOpen]=useState(true);
     const [currentUser,setCurrentUser]=useState(null)
-    const [metaMask,setMetaMask]=useState(false)
     const {user,alert,history}=props
 
     return (
