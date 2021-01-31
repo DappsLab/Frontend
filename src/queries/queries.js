@@ -803,3 +803,10 @@ mutation ($email:String!) {
   createAdmin(email: $email)
 }
 `
+export const getPrivateKey=gql`query ($pass:String!){
+  getPrivateKey(password: $pass) {
+    wallet {
+      privateKey
+    }
+  }
+}`

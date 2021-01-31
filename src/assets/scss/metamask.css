@@ -1,0 +1,44 @@
+.metamask-container {
+  padding: 60px 0;
+  background-image: linear-gradient(135.14deg, #04031D 0%, #0F0E2e 100%);
+  color: #fff !important;
+  text-align: center; }
+  .metamask-container form {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 500px;
+    margin: auto; }
+    .metamask-container form .password-shrink {
+      color: #fff !important; }
+    .metamask-container form .form-icon-label {
+      top: 40px !important;
+      color: #fff; }
+    .metamask-container form .shrink {
+      top: 5px !important; }
+    .metamask-container form .pass-input {
+      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      color: #fff;
+      height: 50px;
+      background: #070622 !important;
+      border-radius: 10px !important; }
+    .metamask-container form .custom-button {
+      font-size: 15px;
+      padding: 0 10px;
+      height: 40px;
+      background-color: #0FBA87;
+      color: #fff; }
+      .metamask-container form .custom-button:hover {
+        background-color: #0F0E2e;
+        border: 2px solid #0FBA87; }
+  .metamask-container .image-Container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: center; }
+    .metamask-container .image-Container div {
+      margin-bottom: 60px; }
+    .metamask-container .image-Container img {
+      width: 400px; }
+
+/*# sourceMappingURL=metamask.css.map */

@@ -9,14 +9,16 @@ import Withdraw from "./withdraw.component";
 import {me_Query} from "../../../../queries/queries";
 import {Query} from "react-apollo";
 import {Spinner2} from "../../../ui/Spinner";
+import CustomButton from "../../../ui/custom-button/custom-button.component";
+import MetaMask from "./MetaMaskTotorial";
 
 
 // const timeoutLength = 2500
 const WithdrawDeposite =(props)=>{
     // const [isOpen,setIsOpen]=useState(true);
     const [currentUser,setCurrentUser]=useState(null)
-
-    const {user,alert}=props
+    const [metaMask,setMetaMask]=useState(false)
+    const {user,alert,history}=props
 
     return (
             <AccountLayout {...props}>
@@ -32,8 +34,8 @@ const WithdrawDeposite =(props)=>{
                                     <label className={'copied'} onClick={()=>{alert.success("Copied",{timeout:1000})}}> copy</label>
                                 </CopyToClipboard>
                             </Form.Field>
+                            <CustomButton onClick={()=>{history.push('/metamask')}} metamask>Connect to MetaMask</CustomButton>
                         </Form>
-
                         <Query query={me_Query} fetchPolicy={'network-only'} onCompleted={
                             data => {
                                 setCurrentUser(data.me)
@@ -68,7 +70,6 @@ const WithdrawDeposite =(props)=>{
                     </div>
                 </div>
                 <Divider/>
-
             </AccountLayout>
         );
 }

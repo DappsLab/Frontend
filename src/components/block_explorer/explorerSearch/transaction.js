@@ -37,7 +37,7 @@ const ExplorerTransactions = (props) => {
     return (
         <Layout>
             <Grid textAlign="center"  verticalAlign='middle' className={"result_container"}>
-                <Grid.Column style={{alignSelf:'flex-start!important',maxWidth:1000}}>
+                <Grid.Column style={{alignSelf:'flex-start!important',maxWidth:1100}}>
                     <Segment>
                         <div>dsdf</div>
                         {handleReturn()}

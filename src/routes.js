@@ -59,6 +59,7 @@ import CustomOrdersVerification from "./components/admin/custom-order-verificati
 import UserBlock from "./components/admin/user-block/user-block";
 import UnBlockRequest from "./components/user/unblock-request/UnBlockRequest";
 import ExplorerTransactions from "./components/block_explorer/explorerSearch/transaction";
+import MetaMask from "./components/user/myAccount/withdraw-deposite/MetaMaskTotorial";
 
 
 const Routes =(props)=>{
@@ -87,6 +88,7 @@ const Routes =(props)=>{
               <PrivateRoute {...props} path={"/account_settings/transaction"} component={Transactions}/>
               <PrivateRoute {...props} path={"/account_settings/2fa"} component={TwoFA}/>
               <PrivateRoute {...props} path={'/upload_dapps'} component={UploadDapps}/>
+              <PrivateRoute {...props} path={'/metamask'} component={MetaMask}/>
               <PrivateRoute {...props} path={'/dashboard/add_test_address'} component={AddTestAddress}/>
               <PrivateRoute {...props} path={'/edit_dapp/:id'} component={EditDapp}/>
               <PrivateRoute {...props} path={"/logout"} exact component={Logout}/>
@@ -106,7 +108,7 @@ const Routes =(props)=>{
              <PublicRoute {...props} restricted={false} path={'/dapps_details/:id'} component={DappsDetails}/>
               <PublicRoute {...props} restricted={false} path={"/2FA_varifivcation/:token"} exact component={FAConfirmation}/>
               <PublicRoute {...props} restricted={false} path={"/block_explorer/:search"} exact component={ExplorerResult}/>
-              <PublicRoute {...props} restricted={false} path={"/block_explorer/transaction:/tx/:search"} exact component={ExplorerTransactions}/>
+              <PublicRoute {...props} restricted={false} path={"/block_explorer/tx/:search"} exact component={ExplorerTransactions}/>
              <PublicRoute {...props} restricted={false} path={"/test_block_explorer/:search"} exact component={TestExplorerResult}/>
               <PublicRoute {...props} restricted={false} path={"/user/reset-password/:key"} exact component={ChangePassword}/>
               <PublicRoute {...props} restricted={false} path={"/user/confirm/:key"} exact component={ConfirmEmail}/>

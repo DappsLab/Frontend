@@ -1,0 +1,63 @@
+@import "colors";
+.metamask-container {
+  padding: 60px 0;
+  @include default-color();
+  color: #fff !important;
+  text-align: center;
+  form{
+    display: flex;
+    align-items: center;
+    justify-content:space-around ;
+    width: 500px;
+    margin: auto;
+    .password-shrink{
+      color: #fff!important;
+    }
+    .form-icon-label{
+      top: 40px!important;
+      color: #fff;
+    }
+    .shrink{
+      top: 5px!important;
+    }
+    .pass-input{
+      border: 1px solid rgba(255,255,255,.15)!important;
+      color: #fff;
+      height: 50px;
+      background: #070622!important;
+      border-radius: 10px!important;
+    }
+    .custom-button{
+      font-size: 15px;
+      padding: 0 10px;
+      height: 40px;
+      background-color: #0FBA87;
+      color: #fff;
+      &:hover{
+        background-color: #0F0E2e;
+        border: 2px solid #0FBA87;
+      }
+    }
+  }
+  .image-Container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: center;
+
+    div {
+      margin-bottom: 60px;
+    }
+
+    h3 {
+      //height: 100px;
+      //width: 100px;
+      //background-color: #0FBA87;
+      //border-radius: 50%;
+    }
+
+    img {
+      width: 400px;
+    }
+  }
+}
