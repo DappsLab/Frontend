@@ -135,6 +135,16 @@ const TestIntract = (props) => {
     }
     const renderResult=(array)=>{
         if (value!=='') {
+            let newValue = value.toString()
+            if (newValue.search(',')) {
+                let split=newValue.split(",")
+                return <div className={'execute-result'}>
+                    <h3>Result</h3>
+                    {split.map((data,index) => {
+                        return  <div key={index}>{data}</div>
+                    })}
+                </div>
+            }
             // let tagertArray
             // for (let i=0;i<array.length;i++){
             //     if (array[i].name===name){

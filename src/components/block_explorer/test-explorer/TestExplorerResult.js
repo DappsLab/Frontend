@@ -6,9 +6,10 @@ import {Button, Grid, Segment} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 import Layout from "../../../hoc/Layout";
 import {Spinner2} from "../../ui/Spinner";
+import {BCDB_PORT, SERVER_URL} from "../../../constants";
 
 const client = new ApolloClient({
-    uri: 'http://localhost:4001/graphql',
+    uri: `${SERVER_URL}${BCDB_PORT}/graphql`,
     cache: new InMemoryCache(),
 });
 const number=RegExp(/^[0-9]*$/);
