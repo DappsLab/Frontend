@@ -5,6 +5,7 @@ import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
 import {Query} from 'react-apollo'
 import {Spinner3} from "../../ui/Spinner";
 import {TransactionResult} from "./DisplayResults";
+import {BCDB_PORT, SERVER_URL} from "../../../constants";
 
 const transactionHash=gql`
      query ($hash:String!) {
@@ -16,8 +17,9 @@ const transactionHash=gql`
         transactionIndex
     }
 }`
+
 const client = new ApolloClient({
-    uri: 'http://localhost:4001/graphql',
+    uri: `${SERVER_URL}${BCDB_PORT}/graphql`,
     cache: new InMemoryCache(),
 });
 

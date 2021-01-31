@@ -1,8 +1,12 @@
 import { gql } from '@apollo/client';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
-export const grapqg_path='http://localhost:4000/graphql';
+import {DAPPSLAB_PORT, SERVER_URL} from "../constants";
+
+
+export const grapqg_path=`${SERVER_URL}${DAPPSLAB_PORT}/graphql`;
+
 export const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql',
+  uri: `${SERVER_URL}${DAPPSLAB_PORT}/graphql`,
   cache: new InMemoryCache()
 });
 

@@ -12,9 +12,11 @@ import AccountLayout from "../../../hoc/AccountLayout";
 import {Query} from "react-apollo";
 import {toEth} from "../../ui/ContractInteractionHelper";
 import {Link} from "react-router-dom";
+import {BCDB_PORT, SERVER_URL} from "../../../constants";
+
 
 const client = new ApolloClient({
-    uri: 'http://localhost:4001/graphql',
+    uri: `${SERVER_URL}${BCDB_PORT}/graphql`,
     cache: new InMemoryCache(),
 });
 const transactionBYAddress=gql`

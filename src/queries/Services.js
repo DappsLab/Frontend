@@ -1,10 +1,11 @@
 import {ApolloClient, InMemoryCache} from "@apollo/client";
 import {createUploadLink} from "apollo-upload-client";
+import {DAPPSLAB_PORT, SERVER_URL} from "../constants";
 
 
 
 export const Client = new ApolloClient({
-    link: createUploadLink({uri:"http://localhost:4000/graphql"}),
+    link: createUploadLink({uri:`${SERVER_URL}${DAPPSLAB_PORT}/graphql`}),
     cache: new InMemoryCache(),
     headers:{
         authorization:localStorage.getItem('token')||null

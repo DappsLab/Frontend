@@ -6,9 +6,10 @@ import {RecentBlock} from "./RecentBlock";
 import {RecentTransaction} from "./RecentTransaction";
 import {ApolloClient,gql, InMemoryCache} from "@apollo/client";
 import {Spinner2} from "../ui/Spinner";
+import {BCDB_PORT, SERVER_URL} from "../../constants";
 
 const client = new ApolloClient({
-    uri: 'http://localhost:4001/graphql',
+    uri: `${SERVER_URL}${BCDB_PORT}/graphql`,
     cache: new InMemoryCache(),
 });
 class BlockExplorer extends Component {

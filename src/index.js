@@ -15,6 +15,8 @@ import AlertTemplate from 'react-alert-template-basic';
 import Routes from "./routes";
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
+import {DAPPSLAB_PORT, SERVER_URL} from "./constants";
+
 
 
 const store = createStore(rootReducer, composeWithDevTools());
@@ -26,7 +28,7 @@ const options = {
 }
 
 
-const link=createUploadLink({uri:"http://localhost:4000/graphql"});
+const link=createUploadLink({uri:`${SERVER_URL}${DAPPSLAB_PORT}/graphql`});
 const authMiddleware = new ApolloLink((operation, forward) => {
     operation.setContext({
         headers: {

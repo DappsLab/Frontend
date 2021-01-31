@@ -6,8 +6,11 @@ import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
 import {AddressesResult, BlockResult, TransactionResult} from "./DisplayResults";
 import {Spinner2} from "../../ui/Spinner";
 import {Link} from "react-router-dom";
+import {BCDB_PORT, SERVER_URL} from "../../../constants";
+
+
 const client = new ApolloClient({
-    uri: 'http://localhost:4001/graphql',
+    uri: `${SERVER_URL}${BCDB_PORT}/graphql`,
     cache: new InMemoryCache(),
 });
 const number=RegExp(/^[0-9]*$/);
