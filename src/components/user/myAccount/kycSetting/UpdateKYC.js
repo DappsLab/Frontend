@@ -115,6 +115,7 @@ const UpdateKyc = (props) => {
                 <DatePicker
                     showMonthDropdown
                     showYearDropdown
+                    dateFormat="dd/MM/yyyy"
                     dropdownMode="select"
                     placeholderText={user.kyc.birthDate}
                     selected={date}
