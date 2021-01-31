@@ -146,7 +146,7 @@ export const getDateBirth=(data)=>{
     let date = date_ob.getDate();
     let month = date_ob.getMonth() ;
     let year = date_ob.getFullYear();
-    return month+1+'/'+date+'/'+year
+    return date+'/'+month+1+'/'+year
 
 }
 export  const  categoryOption=[

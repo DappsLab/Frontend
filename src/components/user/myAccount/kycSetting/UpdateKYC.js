@@ -23,7 +23,6 @@ const UpdateKyc = (props) => {
     const {alert,fetch,user}=props
     const [date, setDate] = useState();
 
-
     const [updatekyc]=useMutation(kycMutation,{
         client:Client,context: {
             headers: {
@@ -114,7 +113,9 @@ const UpdateKyc = (props) => {
                <div className={'date-picker'}>
                    <label>Date of Birth</label>
                 <DatePicker
-
+                    showMonthDropdown
+                    showYearDropdown
+                    dropdownMode="select"
                     placeholderText={user.kyc.birthDate}
                     selected={date}
                     onChange={date => {
