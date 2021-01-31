@@ -17,6 +17,10 @@
   border-radius: 10px !important; }
   .kyc_section .ui.form input[type=text] i.icon:before, .kyc_section .ui.form input[type=email] i.icon:before, .kyc_section .ui.form input[type=date] i.icon:before, .kyc_section .ui.selection.dropdown i.icon:before {
     color: #fff; }
+.kyc_section .react-datepicker-popper {
+  margin-top: 0 !important; }
+  .kyc_section .react-datepicker-popper div {
+    background-color: #fff !important; }
 .kyc_section h2 span {
   font-size: 14px; }
 .kyc_section label {
