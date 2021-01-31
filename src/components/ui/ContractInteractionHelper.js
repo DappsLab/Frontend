@@ -1,6 +1,7 @@
 import Web3 from "web3";
+import {MAIN_NET_PORT, SERVER_URL, TEST_NET_PORT} from "../../constants";
 
-let web3=new Web3('http://127.0.0.1:7546')
+let web3=new Web3(`${SERVER_URL}${TEST_NET_PORT}`)
 
 export const   loadContract= (abi,contractAddress)=> {
     return new web3.eth.Contract(JSON.parse(abi), contractAddress);
@@ -79,7 +80,7 @@ export const getContractBalance= async (address)=>{
 //==============================================================
 //                             Main
 //==============================================================
-let mainWeb3=new Web3('http://127.0.0.1:7545')
+let mainWeb3=new Web3(`${SERVER_URL}${MAIN_NET_PORT}`)
 export const   loadMainContract= (abi,contractAddress)=> {
     return new mainWeb3.eth.Contract(JSON.parse(abi), contractAddress);
 }

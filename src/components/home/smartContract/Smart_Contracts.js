@@ -12,8 +12,9 @@ import {CheckBox} from "../../ui/FormFields";
 import square_blue from "../../../assets/images/square_blue.png";
 import Developer from "../uploadContract/Developer";
 import ExplorerContract from "./ExplorerContract";
+import {DAPPSLAB_PORT, SERVER_URL} from "../../../constants";
 const client = new ApolloClient({
-    uri: 'http://localhost:4000/graphql',
+    uri: `${SERVER_URL}${DAPPSLAB_PORT}/graphql`,
     cache: new InMemoryCache()
 });
 class Smart_Contracts extends Component {

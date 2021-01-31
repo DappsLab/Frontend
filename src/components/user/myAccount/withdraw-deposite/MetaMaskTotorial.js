@@ -21,7 +21,6 @@ const MetaMask = (props) => {
     const {alert}=props
    const handleSubmit=async (event)=>{
         event.preventDefault()
-        console.log("here")
         const results = await client.query({
             query: getPrivateKey,
             variables: { pass: password},

@@ -6,8 +6,9 @@ import Layout from "../../../hoc/Layout";
 import {Loader,Select,Button, Form,Container,Item} from "semantic-ui-react";
 import { gql } from '@apollo/client';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
+import {DAPPSLAB_PORT, SERVER_URL} from "../../../constants";
 const client = new ApolloClient({
-    uri: 'http://localhost:4000/graphql',
+    uri: `${SERVER_URL}${DAPPSLAB_PORT}/graphql`,
     cache: new InMemoryCache()
 });
 const alphabetRegex=RegExp(/^[a-zA-Z][a-zA-Z\s]*$/);

@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import {setUser} from "../../reducer/user/user.actions";
 import {Spinner2} from "../ui/Spinner";
 import {me_Query, verify2FA} from "../../queries/queries";
+import {DAPPSLAB_PORT, SERVER_URL} from "../../constants";
 
 
 const number=RegExp(/^[0-9]*$/);
@@ -17,7 +18,7 @@ const FAConfirmation = (props)=> {
     const [loading,setLoading] =useState(false)
     const alert = props.alert;
     const client = new ApolloClient({
-    uri: 'http://localhost:4000/graphql',
+    uri: `${SERVER_URL}${DAPPSLAB_PORT}/graphql`,
     cache: new InMemoryCache(),
     headers: {
         authorization: props.match.params.token,
