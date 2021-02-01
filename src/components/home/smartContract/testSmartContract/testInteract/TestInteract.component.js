@@ -100,7 +100,7 @@ const TestIntract = (props) => {
                 inputArray=tagertArray.inputs
             }
             return <div>
-                {tagertArray.payable||tagertArray.stateMutability==='payable'?(
+                {/*{tagertArray.payable||tagertArray.stateMutability==='payable'?(*/}
                     <form>
                         <label>Enter paybale Value</label>
                         <input type={'text'}  name={'payable'} value={payableValue} onChange={(event)=>{
@@ -113,7 +113,7 @@ const TestIntract = (props) => {
                         }}/>
                         <p>This funcation is payably</p>
                     </form>
-                ):""}
+                {/*):""}*/}
                 {inputArray&&inputArray.length > 0 ? <form>
                     <h3>Function Input</h3>
                     {inputArray.map((array, index) => {

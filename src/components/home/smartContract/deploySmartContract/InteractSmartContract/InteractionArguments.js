@@ -9,7 +9,7 @@ import {
 } from "../../../../ui/ContractInteractionHelper";
 import {CheckDimension, FormValidation} from "../../../../ui/mise";
 import {withAlert} from "react-alert";
-import {Divider} from "semantic-ui-react";
+import {Divider,Form} from "semantic-ui-react";
 import {recursiveChecker} from "../../../../ui/InputValidation";
 
 const IntractArguments = (props) => {
@@ -38,7 +38,7 @@ const IntractArguments = (props) => {
             setValue(callData)
         }
         else if (targetArray.stateMutability==="nonpayable"){
-            let callData = await sendMainContractValue(contract,ownerKey,targetArray.stateMutability ,targetArray.name,ownerAddress,'',0,argument);
+            let callData = await sendMainContractValue(contract,ownerKey,targetArray.stateMutability ,targetArray.name,ownerAddress,payableValue,payableValue,argument);
             if (callData==='true'){
                 alert.success("Funcation called Successfully",{timeout:1000})
             }else {
@@ -105,7 +105,8 @@ const IntractArguments = (props) => {
                 inputArray=tagertArray.inputs
             }
             return <div>
-                {tagertArray.payable || tagertArray.stateMutability === 'payable' ? (
+                {/*{tagertArray.payable || tagertArray.stateMutability === 'payable' ? (*/}
+                {console.log("here")}
                     <form>
                         <label>Enter paybale Value</label>
                         <input type={'text'} name={'payable'} value={payableValue} onChange={(event) => {
@@ -119,7 +120,7 @@ const IntractArguments = (props) => {
                         <p>This funcation is payably</p>
                         <Divider/>
                     </form>
-                ) : ""}
+                {/*) : ""}*/}
                 {inputArray&&inputArray.length > 0 ? <form>
                     <h3>Function Input</h3>
                     {inputArray.map((array, index) => {
@@ -200,6 +201,9 @@ const IntractArguments = (props) => {
                     }
                 </select>
             </form>
+            <Form>
+
+            </Form>
             {renderData(functionArrays,contract)}
             {renderResult(functionArrays)}
         </div>

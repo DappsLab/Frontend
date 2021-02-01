@@ -9,6 +9,9 @@
   padding: 20px 0;
   justify-content: center;
   align-items: flex-start;
+  .markdown{
+    width:100%!important;
+  }
   .intraction-left{
     width: 400px;
     padding:  20px 0;
@@ -27,6 +30,7 @@
       min-height: 50px;
     }
     .contract-detail{
+
       padding: 20px;
       h3{
         font-size: 25px;

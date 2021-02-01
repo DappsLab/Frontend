@@ -5,15 +5,19 @@ import {Client} from "../../../../../queries/Services";
 import {Spinner2} from "../../../../ui/Spinner";
 import {Button, Form, Input} from "semantic-ui-react";
 import {withAlert} from "react-alert";
-import {getObjects} from "../../../../ui/Helpers";
+import {findobject, getObjects} from "../../../../ui/Helpers";
 import {CheckDimension, convertArrayToObject} from "../../../../ui/mise";
 import {
      recursiveChecker
 } from "../../../../ui/InputValidation";
+import {loadContract} from "../../../../ui/ContractInteractionHelper";
 
 const RenderArguments = (props) => {
     const {license,name,alert}=props
+    // const [sender,setSender]=useState('')
+    const [senderValue,setSenderValue]=useState('')
     const newID=license.testCompilations[license.testCompilations.length - 1].id;
+
     const type=license.testPurchasedContract.unlimitedCustomization;
     const [inputSize,setInputSize]=useState(0)
     const [argument,setArgument]=useState([])
@@ -72,6 +76,8 @@ const RenderArguments = (props) => {
         input["testAddressId"]=license.testOrder.testAddress.id
         input['deplopmentLabel']=name
         input['unlimitedCustomization']=type
+        // input['sender']=sender
+        input['value']=senderValue
         // input['fee']=fee.toString()
         if (inputSize>0){
 
@@ -128,14 +134,17 @@ const RenderArguments = (props) => {
             id:newID
         },onCompleted:data1 => {
             const abi=JSON.parse(data1.testGetABI);
-            const inputArr=getObjects(abi,"type","constructor")
-            if (inputArr.length>0) {
-                if (inputArr[0].inputs.length > 0) {
-                    console.log("array",inputArr[0].inputs)
-                    setArgument(inputArr[0].inputs)
-                    setInputSize(inputArr[0].inputs.length)
+
+            const inputArr=findobject(abi)
+
+            if (inputArr) {
+                console.log("inputArr",inputArr)
+                if (inputArr.inputs.length > 0) {
+                    console.log("array",inputArr.inputs)
+                    setArgument(inputArr.inputs)
+                    setInputSize(inputArr.inputs.length)
                 } else {
-                    setInputSize(inputArr[0].inputs.length)
+                    setInputSize(inputArr.inputs.length)
                 }
             }
         }
@@ -143,9 +152,25 @@ const RenderArguments = (props) => {
     if (loading) return <Spinner2/>
     if (error) return <div>{error.toString()}</div>
     if (data&&!loading) {
+        console.log(argument)
         if (inputSize>0){
             return (
                 <Form className={'arguments'}>
+                    {/*<Form.Field>*/}
+                    {/*    <label>Sender</label>*/}
+                    {/*    <Input*/}
+                    {/*        name={"sender"}  type={'text'}*/}
+                    {/*        onChange={(event)=>setSender(event.target.value)}*/}
+                    {/*    />*/}
+                    {/*</Form.Field>*/}
+                    <Form.Field>
+                        <label>Sender Value</label>
+                        <Input
+                            name={"value"}  type={'text'}
+                            onChange={(event)=>setSenderValue(event.target.value)}
+                        />
+                    </Form.Field>
+
                     {
                         argument.map((argu,index)=>{
                              return <Form.Field  key={index}>
@@ -167,7 +192,17 @@ const RenderArguments = (props) => {
                 </Form>
             )
         }else {
-            return <Button className={'deploy_btn'} onClick={()=>onTestDeploy()}>Deploy</Button>
+            return <Form>
+                <Form.Field>
+                    <label>Sender Value</label>
+                    <Input
+                        name={"value"}  type={'text'}
+                        onChange={(event)=>setSenderValue(event.target.value)}
+                    />
+                </Form.Field>
+                <Button className={'deploy_btn'} onClick={()=>onTestDeploy()}>Deploy</Button>
+
+            </Form>
         }
     }
     return <div>Not found</div>

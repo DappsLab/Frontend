@@ -3,13 +3,15 @@ import {withAlert} from "react-alert";
 import {useMutation, useQuery} from "@apollo/client";
 import {getABI, deploy} from "../../../../queries/queries";
 import {Client} from "../../../../queries/Services";
-import {getObjects} from "../../../ui/Helpers";
+import {findobject} from "../../../ui/Helpers";
 import {Button, Form, Input} from "semantic-ui-react";
 import {CheckDimension} from "../../../ui/mise";
 import {recursiveChecker} from "../../../ui/InputValidation";
 
 const RenderMainArguments = (props) => {
     const {license,name,alert}=props
+    // const [sender,setSender]=useState('')
+    const [senderValue,setSenderValue]=useState('')
     const newID=license.compilations[license.compilations.length - 1].id;
     const type=license.purchasedContract.unlimitedCustomization;
     const [inputSize,setInputSize]=useState(0)
@@ -29,6 +31,8 @@ const RenderMainArguments = (props) => {
         input["compiledContractId"] = newID
         // input["addressId"]=license.order.address
         input['unlimitedCustomization']=type
+        // input['sender']=sender
+        input['value']=senderValue
         input['deplopmentLabel']=name
         // input['fee']=fee.toString()
         if (inputSize>0){
@@ -122,14 +126,16 @@ const RenderMainArguments = (props) => {
             id:newID
         },onCompleted:data1 => {
             const abi=JSON.parse(data1.getABI);
-            const inputArr=getObjects(abi,"type","constructor")
-            if (inputArr.length>0) {
-                if (inputArr[0].inputs.length > 0) {
-                    console.log("array",inputArr[0])
-                    setArgument(inputArr[0].inputs)
-                    setInputSize(inputArr[0].inputs.length)
+            console.log("object",findobject(abi))
+            const inputArr=findobject(abi)
+            if (inputArr) {
+                console.log("inputArr",inputArr)
+                if (inputArr.inputs.length > 0) {
+                    console.log("array",inputArr.inputs)
+                    setArgument(inputArr.inputs)
+                    setInputSize(inputArr.inputs.length)
                 } else {
-                    setInputSize(inputArr[0].inputs.length)
+                    setInputSize(inputArr.inputs.length)
                 }
             }
         }
@@ -138,9 +144,17 @@ const RenderMainArguments = (props) => {
     if (error) return <div>{error.toString()}</div>
     if (data&&!loading) {
         console.log("Input size",inputSize)
+        console.log("argument",argument)
         if (inputSize>0){
             return (
                 <Form className={'arguments'}>
+                    <Form.Field>
+                        <label>Sender Value</label>
+                        <Input
+                            name={"value"}  type={'text'}
+                            onChange={(event)=>setSenderValue(event.target.value)}
+                        />
+                    </Form.Field>
                     {
                         argument.map((argu,index)=>{
                             return <Form.Field  key={index}>
@@ -164,7 +178,18 @@ const RenderMainArguments = (props) => {
                 </Form>
             )
         }else {
-            return <Button className={'deploy_btn'} onClick={()=>handleDeploy()}>Deploy</Button>
+            return  <Form>
+                <Form.Field>
+                    <label>Sender Value</label>
+                    <Input
+                        name={"value"}  type={'text'}
+                        onChange={(event)=>setSenderValue(event.target.value)}
+                    />
+                </Form.Field>
+                <Button className={'deploy_btn'} onClick={()=>handleDeploy()}>Deploy</Button>
+
+            </Form>
+
         }
     }
     return <div>Not found</div>

@@ -9,6 +9,7 @@ import Layout from "../../../../../hoc/Layout";
 import GetTestBalance from "../../../../ui/GetTestBalance";
 import TestGetABI from "../getSource/TestGetABI";
 import TestGetBinery from "../getSource/TestGetBinery";
+import ReactMarkdown from "react-markdown";
 
 
 const testLicense=gql`query ($id:ID!){
@@ -115,7 +116,9 @@ const TestInteraction =  (props) => {
                             </div>
                             <h3>{contract.contractName}</h3>
                             <h4>Description</h4>
-                            <p>{contract.description}</p>
+                            <ReactMarkdown  source={contract.description} className={'markdown'}/>
+
+                            {/*<p>{contract.description}</p>*/}
                         </div>
                     </div>
                     <div className={'intraction-right'}>

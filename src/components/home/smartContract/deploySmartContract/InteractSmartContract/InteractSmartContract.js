@@ -8,6 +8,7 @@ import IntractArguments from "./InteractionArguments";
 import GetMainAddress from "../../../../ui/GetMainAddress";
 import GetABI from "../../compileSmartContract/getCompileData/GetABI";
 import GetBinery from "../../compileSmartContract/getCompileData/GetBinery";
+import ReactMarkdown from "react-markdown";
 
 const license=gql`query ($id:ID!){
   licenseById(id: $id) {
@@ -96,7 +97,9 @@ const IntractionSmartContract = (props) => {
                             </div>
                             <h3>{contract.contractName}</h3>
                             <h4>Description</h4>
-                            <p>{contract.description}</p>
+                            {/*<p>{contract.description}</p>*/}
+                            <ReactMarkdown  source={contract.description} className={'markdown'}/>
+
                         </div>
                     </div>
                     <div className={'intraction-right'}>

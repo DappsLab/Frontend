@@ -174,3 +174,14 @@ export function getObjects(obj, key, val) {
     }
     return objects;
 }
+export const findobject=(object)=>{
+    for(let i = 0; i < object.length; i++)
+{
+    console.log(object[i].type)
+    if(object[i].type === 'constructor')
+    {
+        console.log(object[i])
+        return object[i];
+    }
+}
+}
