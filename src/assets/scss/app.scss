@@ -204,7 +204,11 @@ a {
 .login-bg a,.link a,.block_result a,.deposite a,.deposite .flex .address,.password a,.register-bg a,.indexContainer .borderless a,.general_password a,.forget_password a{
   @include default-link();
 }
-
+.intreraction-container{
+  .markdown{
+    width: 100%!important;
+  }
+}
 .main-spinner{
   padding-top: 200px;
 }
