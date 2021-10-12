@@ -1,6 +1,6 @@
 //locally
 export const BASE_URL = "http://127.0.0.1"
-export const SERVER_URL = "http://127.0.0.1:"
+export const SERVER_URL = "http://192.168.1.4:"
 export const NET_WS = 'ws://127.0.0.1:'
 export const DEFAULT_PORT = '3000'
 

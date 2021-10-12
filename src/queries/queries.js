@@ -556,6 +556,7 @@ export const login=gql`
   token
   user {
   id
+  fullName
  }
   }
   }`

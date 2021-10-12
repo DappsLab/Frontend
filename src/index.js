@@ -29,6 +29,7 @@ const options = {
 
 
 const link=createUploadLink({uri:`${SERVER_URL}${DAPPSLAB_PORT}/graphql`});
+
 const authMiddleware = new ApolloLink((operation, forward) => {
     operation.setContext({
         headers: {
